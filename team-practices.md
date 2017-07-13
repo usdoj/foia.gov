@@ -1,6 +1,6 @@
-# FOIA Discovery Team Practices
+# FOIA Team Practices
 
-This document describes the conventions the FOIA Discovery team has agreed to work under.
+This document describes the conventions the FOIA team has agreed to work under.
 For information about licensing, code of conduct and contributing to this project,
 see the [CONTRIBUTING](CONTRIBUTING.md) file.
 
