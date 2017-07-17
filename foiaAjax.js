@@ -10,9 +10,15 @@ var timeToJump="";
 var inProcess=0;
 var skipRequest=0;
 var chkSkipRequest=1;
+var FOIA_PROXY = './foia-proxy.php?u=';
 
 function startFoiaRequest(foiaDataURL){
 var focusComponent;
+
+    if (!foiaDataURL.match(/^https:/)) {
+        foiaDataURL = FOIA_PROXY + foiaDataURL;
+        console.log("new URL:", foiaDataURL);
+    }
 
 	if(skipRequest) return;
 	if(inProcess){
