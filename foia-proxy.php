@@ -17,6 +17,7 @@
     // grab entire query string instead of using $_GET because
     // param value may be un-escaped and $_GET may mangle parsing.
     $path = preg_replace('/^u=/', '', $_SERVER['QUERY_STRING']);
+    $path = urldecode($path);
 
     $resp = file_get_contents($base_url . $path, false, stream_context_create($ssl_opts));
     // error_log("resp for $path: $resp");
