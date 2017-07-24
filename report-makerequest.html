@@ -1,67 +1,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="cache-control" content="no-cache" />
 <meta http-equiv="PRAGMA" content="NO-CACHE" />
-<meta name="dc.title" content="FOIA.gov (Freedom of Information Act) Home Page" />
-<meta name="dc.description" content="The Freedom of Information Act (FOIA) is a law that gives you the right to access information from the federal government. It is often described as the law that keeps citizens in the know about their government." />
-<meta name="dc.creator" content="Freedom of Information Act (FOIA)" />
-<meta name="dc.language" scheme="ISO639" content="en-us" />
-<meta name="dc.date.created" content="2011-03-14" />
 <link rel="stylesheet" type="text/css" href="foia-style.css" />
+<link rel="stylesheet" type="text/css" href="reports.css" />
 <style>
 /*Change class to Indicate Current Active Page*/
-#tabnav li a.home {background: url(images/tab-home_on.png) 0 0 no-repeat; width: 104px; color: #121b26; }
-.articleimageborder {height:140px;width:200px;float:left;}
+#tabnav li a.about {
+	background: url(images/tab-about_on.png) 0 0 no-repeat;
+	color: #121b26;
+}
+/*Change to Indicate Current Active About Page*/
+#subNav li.subNav02 a {
+	background: #fff;
+	color: #336699;
+}
 </style>
 <script type="text/javascript" src="qtip/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.1/swfobject.js"></script>
-<script type="text/javascript" src="justiceiso.js"></script>
+<script type="text/javascript" src="foiaFunctions.js"></script>
+<script type="text/javascript" src="agencyWork.js"></script>
 <script type="text/javascript" src="foiareport.js"></script>
 <script type="text/javascript" src="FusionCharts.js"></script>
-<script type="text/javascript" src="foiaAjax.js"></script>
 <script type="text/javascript" src="tablehover.js"></script>
-<script type="text/javascript">
-function tabSwitch(new_tab, new_content) {
-
-	document.getElementById('tab-featured').style.display = 'none';
-	document.getElementById('tab-recent').style.display = 'none';
-	document.getElementById('tab-popular').style.display = 'none';
-	document.getElementById('tab-glance').style.display = 'none';
-	document.getElementById(new_content).style.display = 'block';
-
-	document.getElementById('tab01').className = '';
-	document.getElementById('tab02').className = '';
-	document.getElementById('tab03').className = '';
-	document.getElementById('tab04').className = '';
-	document.getElementById(new_tab).className = 'active';
-
-}
-function tabSwitch_2(active, number, tab_prefix, content_prefix) {
-
-	for (var i=1; i < number+1; i++) {
-	  document.getElementById(content_prefix+i).style.display = 'none';
-	  document.getElementById(tab_prefix+i).className = '';
-	}
-	document.getElementById(content_prefix+active).style.display = 'block';
-	document.getElementById(tab_prefix+active).className = 'active';
-
-}
-</script>
-
-<title>FOIA.gov - Freedom of Information Act</title>
+<title>FOIA.gov - Freedom of Information Act: Where to Make a FOIA request</title>
 </head>
 <body>
-
 <!-- Start FOIA Template -->
 <div id="background">
-<div id="container">
-<!-- Start Header -->
-<script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOJ"></script>
+  <div id="container">
+    <!-- Start Header -->
+    <script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOJ"></script>
 <script type="text/javascript" src="scripts/breakout.js"></script>
 <div id="header">
-  <div class="skip"><a id="skip-link" href="2011foiapost03.html#mainContent">Skip to Main Content</a>|<a id="skip-link" href="2011foiapost03.html#footerLinks">Skip to Footer</a></div>
+  <div class="skip"><a id="skip-link" href="report-makerequest.html#mainContent">Skip to Main Content</a>|<a id="skip-link" href="report-makerequest.html#footerLinks">Skip to Footer</a></div>
   <div id="doj"><img src="images/doj-top-logo.jpg" alt="United States Department of Justice" width="360" height="35" class="headerDOJ" /></div>
   <div id="headNav">
     <div><a href="index.html"><img src="images/foia-title-final.jpg" alt="Foia.gov" width="330" height="80" class="foiaTitle" /></a></div>
@@ -92,243 +66,92 @@ function tabSwitch_2(active, number, tab_prefix, content_prefix) {
   </div>
 </div>
 
-<!-- End Header -->
-
-<!-- Start Main Page -->
-<div id="main">
-<!-- Start Hero Box -->
-<div id="hero">
-<div id="herotext">
-  <h1>What is FOIA?</h1>
-  <p>The Freedom of Information Act (FOIA) is a law that gives you the right to access information from the federal government. It is often described as the law that keeps citizens in the know about their government.</p>
-  <div class="herobuttons"><a href="about.html" class="aboutButton"><span>Learn About FOIA</span></a><a href="data.html" class="dataButton"><span> Explore FOIA Data</span></a></div>
-</div>
-</div>
-<!-- End Hero Box -->
-<!-- Start Browser and Javascript Warnings -->
-<!--[if lte IE 6]>
-<div id="warning">
- <h1>Sorry, FOIA.gov does not support your current browser settings.</h1>
- <p>We're sorry, but it appears your browser may not fully support all of the features of this web application. While you can continue to use FOIA.gov, certain functions may not be optimal with your settings. Please enable Javascript to experience the full features of this site. </p>
- <p>If using an old web browser, please consider upgrading to a modern web browser such as <a href="http://www.mozilla.com/firefox">Mozilla Firefox</a>, <a href="http://www.google.com/chrome">Google Chrome</a>, <a href="http://www.apple.com/safari">Safari</a>, <a href="http://www.opera.com">Opera</a>, or <a href="http://www.microsoft.com">Internet Explorer</a> 7.0 or later. </p>
- <p>More users with accessibility needs, please see our <a href="accessibility.html">Accessibility</a> page for information on equivalent content and other Section 508 issues.</p>
-</div>
-<![endif]-->
-<noscript>
-<div id="warning">
-  <h1>To experience all the features of this web site, please enable Javascript.</h1>
-  <p>If you have concerns about privacy, please view our <a href="privacy.html">Privacy Policy</a> to learn how this website uses your information. If you have concerns about Accessibility and Section 508 issues, please view our <a href="accessibility.html">Accessibility</a> information.</p>
-</div>
-</noscript>
-<!-- End Warnings -->
-<!-- Start Content -->
-<div id="content">
-  <div>
-    <div class="homeChart" style="width:auto;">
-    <h2 style="margin: 20px 0 5px 0;"><img src="images/home-data-glance.jpg" alt="FOIA Data at a Glance - FY 2008 &amp; 2009 &amp; 2010 (available data on FOIA.gov, from across all agencies of the U.S. Government)" style="margin:0 0 0 20px;" /><span>FOIA Data at a Glance - FY2008, FY2009, FY2010</span></h2>
-
-	      <div style="float:left;">
-	      	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-			codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
-			width="300" height="400" id="RequestReceived">
-			<param name="movie" value="/FusionCharts/Charts/Column2D.swf" />
-			<param name="FlashVars" value="&dataURL=/RequestReceived.xml&chartWidth=300&chartHeight=400"/>
-			<param name="quality" value="high"/>
-			<embed src="FusionCharts/Charts/Column2D.swf"
-				flashVars="&dataURL=/RequestReceived.xml&chartWidth=300&chartHeight=400"
-				quality="high"
-				width="300"
-				height="400"
-				name="RequestReceived"
-				type="application/x-shockwave-flash"pluginspage="http://www.macromedia.com/go/getflashplayer"/>
-			<p style="display:none;">The chart of FOIA Request Received.</p>
-			</object>
-	      </div>
-	      <div style="float:left;">
-	      	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-			codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
-			width="300" height="400" id="DispositionRequest">
-			<param name="movie" value="/FusionCharts/Charts/Pie2D.swf" />
-			<param name="FlashVars" value="&dataURL=/DispositionRequest.xml&chartWidth=300&chartHeight=400"/>
-			<param name="quality" value="high"/>
-			<embed src="FusionCharts/Charts/Pie2D.swf"
-				flashVars="&dataURL=/DispositionRequest.xml&chartWidth=300&chartHeight=400"
-				quality="high"
-				width="300"
-				height="400"
-				name="DispositionRequest"
-				type="application/x-shockwave-flash"pluginspage="http://www.macromedia.com/go/getflashplayer"/>
-			<p style="display:none;">The chart of FOIA Disposition of Requests for FY 2015.</p>
-			</object>
-	      </div>
-	      <div style="float:left;">
-	      	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-			codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"
-			width="300" height="400" id="BacklogRequest">
-			<param name="movie" value="/FusionCharts/Charts/Column2D.swf" />
-			<param name="FlashVars" value="&dataURL=/BacklogRequest.xml&chartWidth=300&chartHeight=400"/>
-			<param name="quality" value="high"/>
-			<embed src="FusionCharts/Charts/Column2D.swf"
-				flashVars="&dataURL=/BacklogRequest.xml&chartWidth=300&chartHeight=400"
-				quality="high"
-				width="300"
-				height="400"
-				name="RequestReceived"
-				type="application/x-shockwave-flash"pluginspage="http://www.macromedia.com/go/getflashplayer"/>
-			<!-- The chart of FOIA Backlog of Requests. -->
-			</object>
-      </div>
-    </div>
-    <div class="clear"></div>
-    <div class="homeChartLegend">
-    <p><a href="glossary.html" class="chartHelp" title=""><img src="images/question-icon.gif" alt="Help Icon - Question Mark" /> What Do These Charts Mean?</a></p>
-    <div class="clear">&nbsp;</div>
-    </div>
-  </div>
-  <div class="lineshadow"></div>
-  <div>
-  <div id="homeLeft">
-  <div class="highlights">
-    <h2><img src="images/highlights-title.jpg" alt="Highlights - Agencies at the end of FY 2015" /><span>Highlights - Agencies at the end of FY 2015</span></h2>
-    <div class="highlightList">
-    <h3><a href="data.html?foia/Services/RequestDisposition.jsp?agencyName=DOJ&amp;agencyName=DoD&amp;agencyName=HHS&amp;requestYear=2015">Most Full Grants </a></h3>
-    <ol>
-      <li><a href="data.html?foia/Services/RequestDisposition.jsp?agencyName=DOJ&amp;requestYear=2016">Dept. of Justice </a></li>
-      <li><a href="data.html?foia/Services/RequestDisposition.jsp?agencyName=DoD&amp;requestYear=2016">Dept. of Defense </a></li>
-      <li><a href="data.html?foia/Services/RequestDisposition.jsp?agencyName=HHS&amp;requestYear=2016">Dept. of Health and Human Services </a></li>
-    </ol>
-    <p><a href="data.html" class="viewmore">View More FOIA Data</a></p>
-    <!-- ul type ="disc">
-      <li><a href="data.html?foia/Services/DataRequest.jsp?requestYear=2012&advanceSearch=51001.gt.-999999">Requests - Requests Received and Processed </a></li>
-      <li><a href="data.html?foia/Services/RequestDisposition.jsp?requestYear=2012&advanceSearch=52101.gt.-999999">Disposition - Disposition of All Processed FOIA Requests </a></li>
-      <li><a href="data.html?foia/Services/DataProcessTime.jsp?requestYear=2012&advanceSearch=71001.gt.-999999">Processing Time - Processing Time for Processed Perfected Requests </a></li>
-      <li><a href="data.html?foia/Services/DataBacklog.jsp?requestYear=2012&advanceSearch=121001.gt.-999999">Backlog - Backlogs of FOIA Requests and Administrative Appeals </a></li>
-    </ul -->
-    </div>
-
-    <div class="highlightList">
-    <h3><a href="data.html?foia/Services/DataRequest.jsp?agencyName=DHS&amp;agencyName=DOJ&amp;agencyName=DoD&amp;requestYear=2015">Most Requests Processed </a></h3>
-    <ol>
-      <li><a href="data.html?foia/Services/DataRequest.jsp?agencyName=DHS&amp;requestYear=2016">Dept. of Homeland Security </a></li>
-      <li><a href="data.html?foia/Services/DataRequest.jsp?agencyName=DOJ&amp;requestYear=2016">Dept. of Justice </a></li>
-      <li><a href="data.html?foia/Services/DataRequest.jsp?agencyName=DoD&amp;requestYear=2016">Dept. of Defense </a></li>
-    </ol>
-    <p><a href="data.html" class="viewmore">View More FOIA Data</a></p>
-    </div>
-    <div class="clear"></div>
-  </div>
-  </div>
-  <div id="homeRight">
-  <div>
-    <h2><a href="reports.html"><img src="images/reports-homepage-title.gif" alt="Reports" /></a><span>Reports</span></h2>
-    <!-- Start Reports Tab Box -->
-    <div class="homeReports">
-     <ul class="tabs">
-      <!-- <li><a href="javascript:tabSwitch('tab01', 'tab-featured');" id="tab01" class="active">&nbsp;&nbsp;Featured</a></li> -->
-       <li><a href="javascript:tabSwitch('tab02', 'tab-recent');" id="tab02" class="active">&nbsp;&nbsp;&nbsp;&nbsp;Recent</a></li>
-       <li><a href="javascript:tabSwitch('tab03', 'tab-popular');" id="tab03">&nbsp;&nbsp;&nbsp;Popular</a></li>
-       <li><a href="javascript:tabSwitch('tab04', 'tab-glance');" id="tab04">Snapshot</a></li>
-     </ul>
-     <div class="clear"></div>
-     <div id="tab-featured" class="tabContent">
-       <ul>
-         <li><a href="data.html?foia/Services/DataRequest.jsp?agencyName=DoD&amp;agencyName=VA&amp;agencyName=DHS&amp;requestYear=2011">Number of FOIA Requests Received by Three Largest Federal Agencies</a></li>
-         <li><a href="data.html?foia/Services/DataExemption.jsp?agencyName=DHS&amp;agencyName=DoD&amp;agencyName=EEOC&amp;requestYear=2011">Exemptions Applied by Agencies with Most Partial Grants in FY 2011</a></li>
-         <li><a href="data.html?foia/Services/DataProcessTime.jsp?agencyName=NARA&amp;agencyName=DoD&amp;agencyName=CIA&amp;requestYear=2011">Processing Time at Agencies with Oldest Pending Requests at the end of FY 2011</a> </li>
-         <li><a href="data.html?foia/Services/DataBacklog.jsp?agencyName=DOE&amp;agencyName=HUD&amp;agencyName=State&amp;requestYear=2011">Request Backlog at Smallest Federal Departments</a></li>
-       </ul>
-       <div class="tabMore"><a href="reports.html">VIEW MORE</a></div>
-     </div>
-
-     <div id="tab-recent" class="tabContent">
-	    <div id="tab-recent-text">
-        </div>
-        <div class="tabMore"><a href="reports.html">VIEW MORE</a></div>
-     </div>
-
-     <div id="tab-popular" class="tabContent">
-		<ul><div class="reportText">The most popular reports run by users of FOIA.gov</div><li><a href="data.html?foia/Services/DataRequest.jsp?agencyName=DHS&amp;requestYear=2016">Department of Homeland Security: Requests 2016</a></li>
-<li><a href="data.html?foia/Services/DataRequest.jsp?agencyName=DOJ&amp;requestYear=2016">Department of Justice: Requests 2016</a></li>
-<li><a href="data.html?foia/Services/DataRequest.jsp?agencyName=DoD&amp;requestYear=2016">Department of Defense: Requests 2016</a></li>
-<li><a href="data.html?foia/Services/DataRequest.jsp?agencyName=DHS&amp;requestYear=2015">Department of Homeland Security: Requests 2015</a></li>
+    <!-- End Header -->
+    <!-- Start Main Page -->
+    <div id="main">
+      <!-- Start Content -->
+      <div id="content">
+        <div id="subLeft"> <img src="images/make-request-title.gif" alt="How to Make a FOIA request" class="subTitle" />
+        <!-- Start SubNav Menu -->
+		<ul id="subNav">
+<li class="subNav01"><a href="about.html">What is FOIA?</a></li>
+<li class="subNav03"><a href="how-to.html">How to Make a FOIA Request</a></li>
+<li class="subNav02"><a href="report-makerequest.html">Where to Make a FOIA Request</a></li>
+<li class="subNav05"><a href="opengov.html">Additional Government Resources</a></li>
+<li class="subNav04"><a href="faq.html">Frequently Asked Questions</a></li>
+<li class="subNav08"><a href="index-es.html">FOIA en Espa&ntilde;ol</a></li>
 </ul>
-     <div class="tabMore"><a href="reports.html">VIEW MORE</a></div>
-     </div>
+        <!-- End SubNav Menu -->
+        </div>
+        <div id="subRight">
 
-     <div id="tab-glance" class="tabContent">
-     <br />
-        <ul>
-         <li><a href="glance.html?DoS">Department of State</a></li>
-         <li><a href="glance.html?DOJ">Department of Justice</a></li>
-         <li><a href="glance.html?DHS">Department of Homeland Security</a> </li>
-         <li><a href="glance.html?DoD">Department of Defense</a></li>
-        </ul>
-        <div class="tabMore"><a href="glance.html">VIEW MORE</a></div>
-     </div>
+          <span style="display:none;"><h1>Where to Make a FOIA request</h1></span>
+          <a name="top" id="top"></a>
+          <h1>I want to make a FOIA request to:</h1>
+          <div style="font-weight: normal; font-style: italic; margin: 0 0 10px 0;"><strong>Note:</strong> After you select an agency, to make another selection, please use the link on the left: "Where to Make a FOIA Request." Your "Back" button will not take you to your previous search results. </div>
+          <div class="clear"></div>
+          <div id="agencyList">
+          <ul>
+            <li class="ag24"><a href="javascript:startRequest('USAID');">U.S. Agency for International Development</a></li>
+            <li class="ag01"><a href="javascript:startRequest('USDA');">Department of Agriculture</a></li>
+            <li class="ag05"><a href="javascript:startRequest('DOE');">Department of Energy</a></li>
+            <li class="ag04"><a href="javascript:startRequest('ED');">Department of Education</a></li>
+            <li class="ag02"><a href="javascript:startRequest('DOC');">Department of Commerce</a></li>
+            <li class="ag03"><a href="javascript:startRequest('DoD');">Department of Defense</a></li>
+            <li class="ag06"><a href="javascript:startRequest('HHS');">Department of Health and Human Services</a></li>
+            <li class="ag07"><a href="javascript:startRequest('DHS');">Department of Homeland Security</a></li>
+            <li class="ag08"><a href="javascript:startRequest('HUD');">Department of Housing and<br /> Urban Development</a></li>
+            <li class="ag09"><a href="javascript:startRequest('DOI');">Department of Interior</a></li>
+            <li class="ag10"><a href="javascript:startRequest('DOJ');">Department of Justice</a></li>
+            <li class="ag11"><a href="javascript:startRequest('U.S. DOL');">Department of Labor</a></li>
+            <li class="ag12"><a href="javascript:startRequest('State');">Department of State</a></li>
+            <li class="ag13"><a href="javascript:startRequest('DOT');">Department of Transportation</a></li>
+            <li class="ag14"><a href="javascript:startRequest('Treasury');">Department of the Treasury</a></li>
+            <li class="ag15"><a href="javascript:startRequest('VA');">Department of Veterans Affairs</a></li>
+            <li class="ag16"><a href="javascript:startRequest('EPA');">Environmental Protection Agency</a></li>
+            <li class="ag23"><a href="javascript:startRequest('GSA');">General Services Administration</a></li>
+            <li class="ag19"><a href="javascript:startRequest('NASA');">National Aeronautics and<br /> Space Administration</a></li>
+            <li class="ag25"><a href="javascript:startRequest('NSF');">National Science Foundation</a></li>
+            <li class="ag22"><a href="javascript:startRequest('USNRC');">Nuclear Regulatory Commission</a></li>
+            <li class="ag26"><a href="javascript:startRequest('OPM');">Office of Personnel Management</a></li>
+            <li class="ag20"><a href="javascript:startRequest('SBA');">Small Business Administration</a></li>
+            <li class="ag27"><a href="javascript:startRequest('SSA');">Social Security Administration</a></li>
+            <li class="ag28"><a href="javascript:startRequest('CEQ');">Council on Environmental Quality</a></li>
+            <li class="ag28"><a href="javascript:startRequest('OMB');">Office of Management and Budget</a></li>
+            <li class="ag28"><a href="javascript:startRequest('ONDCP');">Office of National Drug Control Policy</a></li>
+            <li class="ag28"><a href="javascript:startRequest('OSTP');">Office of Science and Technology Policy</a></li>
+            <li class="ag28"><a href="javascript:startRequest('USTR');">Office of United States<br /> Trade Representative</a></li>
+          </ul>
+          </div>
+          <div class="clear"></div>
+          <p>&nbsp;</p>
+          <h1><a href="javascript:popupWinOpen();" style="font-style: normal;">View the full list of agencies for information on how to make a FOIA request</a>&nbsp;<a name="vid" id="vid"></a><a href="report-makerequest.html#vid" class="video1b"><img src="images/video-icon.gif" width="12" height="12" alt="Watch a FOIA.gov video: Help - Making a FOIA Request" /></a></h1>
+          <p align="right"><a href="report-makerequest.html#top">Return to Top</a></p>
+          <div class="lineshadow"></div>
+          <h2><a name="disclaimer" id="disclaimer"></a>The FOIA applies to all federal agencies,  which means it does not apply to:</h2>
+            <img src="images/supreme-court.jpg" alt="Judicial Branch" width="140" height="100" style="float:left; margin: 0 30px 0 0;" />
+            <p><strong>The Judicial Branch and Federal Courts</strong></p>
+            <p><em>For records and more information on the  Federal Court System, please visit</em> <a href="http://www.uscourts.gov">www.uscourts.gov</a>  </p>
+       	    <div class="clear">&nbsp;</div>
+       	    <br/>
+      	    <img src="images/capitol.jpg" alt="Legislative Branch" width="140" height="100" style="float:left; margin: 10px 30px 30px 0;" />
+            <p><strong>The Legislative Branch and Congress</strong></p>
+            <p><em>For records and more information on both houses of Congress, please contact your local House Representative or Senator. You may also visit <a href="http://www.house.gov">www.house.gov</a>, <a href="http://www.senate.gov">www.senate.gov</a>, or <a href="http://www.congress.gov">www.congress.gov</a> for additional information on the legislative branch.</em></p>
+		  	<div class="clear">&nbsp;</div>
+   			<img src="images/states.jpg" alt="State Governments and Courts" width="140" height="100" style="float:left; margin: 0 30px 0 0;" />
+            <p><strong>State Governments and Courts</strong></p>
+            <p><em>For records and more information on State or local agencies, and courts, please contact those entities directly.</em></p>
+            <div class="clear">&nbsp;</div>
+            <p align="right">Last Updated: 2/2011</p>
+            <p align="right"><a href="report-makerequest.html#top">Return to Top</a></p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <!-- End Content -->
     </div>
-    <!-- End Report Tab Box -->
-    <div class="clear"></div>
-  </div>
-  </div>
-  <div class="clear"></div>
-  </div>
-  <!-- Start Featured News -->
-
-   <div class="rssFeed" style="margin: 20px 25px 0 0;"><a href="xml/foiarss.xml"><span>RSS Feed</span></a></div>
-   <h2><a href="news-spotlight.html"><img src="images/spotlight-title.gif" alt="FOIA Spotlight" /></a><span>FOIA Spotlight</span></h2>
-    <div style="width: 470px; float: left; padding: 0 15px 0 0;">
-    <!-- Article 1 -->
-    <div>
-      <div class="articleimageborder"><p><a href="news-spotlight.html#cfpbupdatedatabase"><img src="images/logo-cfpb.jpg" alt="CFPB agency seal" width="140" height="100" class="spotlight" /></a></p></div>
-      <h3><a href="news-spotlight.html#cfpbupdatedatabase">CFPB Continues to Update Consumer Complaint Database</a> </h3>
-<p>Database now contains over 176,000 entries of consumer complaints regarding products and services handled by the agency.</p>
-<p><a href="http://www.consumerfinance.gov/complaintdatabase/" class="viewmore">Learn more</a></p>
-    </div>
-
-    <!-- End Article 1 -->
-    <div class="clear">&nbsp;</div>
-    <!-- Article 2 -->
-    <div>
-      <div class="articleimageborder"><p><a href="news-spotlight.html#fsispublicyoutube"><img src="images/logo-usda.jpg" alt="USDA agency seal" class="spotlight" width="140px"/></a></p></div>
-      <h3><a href="news-spotlight.html#fsispublicyoutube">FSIS Releases Public Service YouTube Series</a></h3>
-<p>The series on food safety details practical steps to reduce the risk of food poisoning.</p>
-<p><a href="javascript:exitWinOpen('https://www.youtube.com/playlist?list=PL1FB7B9DA0B767F87')" class="viewmore">Learn more</a></p>
-    </div>
-
-    <!-- End Article 2 -->
-    </div>
-
-    <div style="float:right; width: 455px; padding: 0 20px 0 0; ">
-    <!-- Article 3 -->
-    <div>
-      <div class="articleimageborder"><a href="news-spotlight.html#usaidfinancialdata"><img src="images/logo-usaid.jpg" alt="USAID agency Seal" width="140" height="119" class="spotlight"  /></a></div>
-      <h3><a href="news-spotlight.html#usaidfinancialdata">USAID Releases Transaction-Level Financial Data for First Time</a></h3>
-      <p>Public can download and search data on investment recipients.</p>
-      <p><a href="http://www.foreignassistance.gov/web/default.aspx" class="viewmore">Learn more</a></p>
-    </div>
-    <!-- End Article 3 -->
-    <div class="clear">&nbsp;</div>
-    <!-- Article 4 -->
-     <div>
-      <div class="articleimageborder"><a href="news-spotlight.html#boemrenewableenergy"><img src="images/logo-doi.jpg" alt="Interior agency seal" class="spotlight" width="140px" /></a></div>
-      <h3><a href="news-spotlight.html#boemrenewableenergy">BOEM Launches Interactive Renewable Energy Activity Map</a></h3>
-      <p>Site displays and describes information on activities across the United States.</p>
-      <p><a href="http://www.boem.gov/Renewable-Energy-Program/State-Activities/Index.aspx" class="viewmore">Learn more</a></p>
-    </div>
-<!-- End Article 4 -->
-    </div>
-	<div class="clear"></div>
-    <p align="right"><a href="news.html" class="viewmore" style="margin: 0 30px 0 30px;">View more &raquo;</a></p></div>
-	<div class="clear">&nbsp;</div>
-  <!-- End Featured News -->
-
-<!-- End Content -->
-</div>
-<!-- End Main Page -->
-<div id="shadowFilter" class="blockout" style="display:none;"></div>
-<div id="exitMsg" class="exitMsg" style="display:none;"></div>
-<!-- Start Footer -->
-<div id="footer"><a href="index.html"><img src="images/foia-footer.gif" alt="foia.gov" /><span>Foia.gov</span></a>
+    <!-- End Main Page -->
+    <!-- Start Footer -->
+    <div id="footer"><a href="index.html"><img src="images/foia-footer.gif" alt="foia.gov" /><span>Foia.gov</span></a>
   <div id="footerNav">   
 	<a id="footerLinks"></a>
   <ul>
@@ -351,37 +174,251 @@ function tabSwitch_2(active, number, tab_prefix, content_prefix) {
     <a href="http://www.recovery.gov/"><img src="images/recoverygov-footer.gif" alt="recovery.gov" /><span>Recovery.gov</span></a>
   </div>
 </div>
-<!-- End Footer -->
-</div>
+    <!-- End Footer -->
+  </div>
 </div>
 <!-- End FOIA Template -->
+<div id="shadowFilter" class="blockout" style="display:none;"></div>
+<!-- Start Popup Window -->
+<div id="popupMsg" class="popupWindow" style="display:none;">
+	<div class="popupClose"><a href="javascript:popupWinClose();">close</a><a href="javascript:popupWinClose();"><img src="images/popup-close.gif" alt="Close Window" /></a></div>
+	<div class="clear"></div>
+	<div class="popupBody" id="popupMsgBody">
+		<!-- Popup Body -->
+        <h1>SELECT UNITED STATES FEDERAL DEPARTMENTS</h1>
+        <div style="width: 230px; float: left;">
+        <ul>
+            <li class="ag24"><a href="javascript:startRequest('USAID');">Agency for International Development</a></li>
+            <li class="ag01"><a href="javascript:startRequest('DOA');">Department of Agriculture</a></li>
+            <li class="ag05"><a href="javascript:startRequest('DOE');">Department of Energy</a></li>
+            <li class="ag04"><a href="javascript:startRequest('ED');">Department of Education</a></li>
+            <li class="ag02"><a href="javascript:startRequest('DOC');">Department of Commerce</a></li>
+            <li class="ag03"><a href="javascript:startRequest('DoD');">Department of Defense</a></li>
+            <li class="ag06"><a href="javascript:startRequest('HHS');">Department of Health and Human Services</a></li>
+            <li class="ag07"><a href="javascript:startRequest('DHS');">Department of Homeland Security</a></li>
+            <li class="ag08"><a href="javascript:startRequest('HUD');">Department of Housing and<br /> Urban Development</a></li>
+            <li class="ag09"><a href="javascript:startRequest('DOI');">Department of Interior</a></li>
+            <li class="ag10"><a href="javascript:startRequest('DOJ');">Department of Justice</a></li>
+          </ul>
+          </div>
+          <div style="width: 240px; float: left;">
+          <ul>
+            <li class="ag11"><a href="javascript:startRequest('U.S. DOL');">Department of Labor</a></li>
+            <li class="ag12"><a href="javascript:startRequest('State');">Department of State</a></li>
+            <li class="ag13"><a href="javascript:startRequest('DOT');">Department of Transportation</a></li>
+            <li class="ag14"><a href="javascript:startRequest('Treasury');">Department of the Treasury</a></li>
+            <li class="ag15"><a href="javascript:startRequest('VA');">Department of Veterans Affairs</a></li>
+            <li class="ag16"><a href="javascript:startRequest('EPA');">Environmental Protection Agency</a></li>
+            <li class="ag23"><a href="javascript:startRequest('GSA');">General Services Administration</a></li>
+            <li class="ag19"><a href="javascript:startRequest('NASA');">National Aeronautics and<br /> Space Administration</a></li>
+            <li class="ag25"><a href="javascript:startRequest('NSF');">National Science Foundation</a></li>
+            <li class="ag22"><a href="javascript:startRequest('NRC');">Nuclear Regulatory Commission</a></li>
+            <li class="ag26"><a href="javascript:startRequest('OPM');">Office of Personnel Management</a></li>
+          </ul>
+          </div>
+          <div style="width: 230px; float: left;">
+          <ul>
+            <li class="ag20"><a href="javascript:startRequest('SBA');">Small Business Administration</a></li>
+            <li class="ag27"><a href="javascript:startRequest('SSA');">Social Security Administration</a></li>
+            <li class="ag28"><a href="javascript:startRequest('CEQ');">Council on Environmental Quality</a></li>
+            <li class="ag28"><a href="javascript:startRequest('OMB');">Office of Management and Budget</a></li>
+            <li class="ag28"><a href="javascript:startRequest('ONDCP');">Office of National Drug Control Policy</a></li>
+            <li class="ag28"><a href="javascript:startRequest('OSTP');">Office of Science and Technology Policy</a></li>
+            <li class="ag28"><a href="javascript:startRequest('USTR');">Office of United States Trade Representative</a></li>
+          </ul>
+          </div>
+          <div class="clear">&nbsp;</div>
+          <div class="lineshadow"></div>
+          <p>&nbsp;</p>
+          <h1>SELECT UNITED STATES FEDERAL AGENCIES</h1>
+          <div style="width: 300px; float: left;">
+          <ul>
+            <li><a href="javascript:startRequest('ABMC');">American Battle Monuments Commission</a></li>
+            <li><a href="javascript:startRequest('AMTRAK');">AMTRAK</a></li>
+            <li><a href="javascript:startRequest('BBG');">Broadcasting Board of Governors</a></li>
+            <li><a href="javascript:startRequest('CIA');">Central Intelligence Agency</a></li>
+            <li><a href="javascript:startRequest('CSHIB');">Chemical Safety and Hazard Investigations Board</a></li>
+            <li><a href="javascript:startRequest('USCCR');">U.S. Commission on Civil Rights</a></li>
+            <li><a href="javascript:startRequest('CPPBSD');">Committee for Purchase from People who are Blind or Severely Disabled</a></li>
+            <li><a href="javascript:startRequest('CFTC');">Commodity Futures Trading Commission</a></li>
+          </ul>
+
+          </div>
+          <div class="clear"></div>
+    </div>
+</div>
 <script type="text/javascript">
-
 var jumpLocation="";
+var xmlHttp;
+var w3c=(document.getElementById)?true:false;
+var ie=(document.all)?true:false;
+var N=-1;
+var isWorked=0;
+var divAjaxData="foiaData";
+var lineAgencySelection=1;
+var pageAgencySelection=15;
 
-function startRequest(){
-var requestString="/foia/Statistics?Type=ShortRecent";
+initRequests();
+//Video 1b
+$('a.video1b').qtip({
+    content: '<div id="vid1b">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
+         position: {
+            corner: {
+               tooltip: 'topRight', // ...and position it center of the screen
+               target: 'bottomLeft' // ...and position it center of the screen
+            }
+         },
+         show: {
+            when: 'click', // Show it on click...
+            solo: true // ...and hide all others when its shown
+         },
+         hide: 'unfocus', // Hide it when inactive...
+         style: {
+            width: 640,
+            height: 398,
+            padding: 0,
+            tip: true,
+            name: 'dark'
+         },
+         api: {
+            onRender: function()
+            {
 
-	divAjaxData="tab-recent-text";
-	IEAjaxRequest(requestString);
+               // Setup video paramters
+               var params = { FlashVars: 'flvPath=foia/foia1b.flv&captionUrl=video/1b-cap.xml&previewUrl=images/1b.png' };
+               var attrs = { id: 'vid1b' };
+
+               // Embed the youtube video using SWFObject script
+               swfobject.embedSWF('video/DOJVideoPlayer16to9.swf', 'vid1b', '640', '398', '10', '#333333', '', params ,attrs);
+            },
+
+            onHide: function(){
+               // Pause the vide when hidden
+               var playerAPI = this.elements.content.find('vid1b').get(0);
+               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
+            }
+         }
+      }
+      ).attr('href', '#vid');
+
+
+function initRequests(){
+var requestString="";
+
+	try{
+		//alert(location.search);
+		if(location.search != ""){
+			requestString=location.search;
+			if(location.search.charAt(0) == '?'){
+				//alert(requestString);
+				requestString=location.search.substr(1);
+				//alert(requestString);
+				startRequest(requestString);
+			}
+		}else{
+			getListAgencyinPage("popupMsgBody",2);
+		}
+	}catch(e){}
 }
 
-startRequest();
+function refreshLoadPage(){
 
-$('a.chartHelp').qtip({
-	content: 'The charts here are a sample of the Annual FOIA Report data collected each year from federal agencies by the Department of Justice, and now available on FOIA.gov. FOIA data beginning with fiscal year 2008 is available to view, compare, and download in various formats. Please note that not all agency data is available on FOIA.gov for FY 2008 and FY 2009; however, all agency Annual FOIA Reports can be accessed on the website of the <a href="http://www.justice.gov/oip/reports.html" style="color:#fff; font-style: italic;">Office of Information Policy</a> at the Department of Justice.<br /><br /> You can create your own comparisons and view much more FOIA data on the <a href="data.html" style="color:#fff; font-style: italic;">Data page</a> here on FOIA.gov.',
+$('a.foiaHelp').qtip({
+	content: '<p><strong>Chief FOIA Officer</strong> &ndash; A designated high-level official within each agency who has overall responsibility for the agency&rsquo;s compliance with the FOIA.</p><p>&nbsp;</p><p><strong>Requester Service Center</strong> &ndash; This is the name and phone number of a contact at each agency or office, where you can call and ask questions about your pending FOIA request. Much like with the FOIA Contact, each agency or office handles only the requests that have been sent to them, and can only answer questions on pending requests within their office.</p><p>&nbsp;</p><p><strong>FOIA Public Liaison</strong> &ndash; If you have any issues with how an agency or office is handling your request, you can call the number found here to talk with that agency or office&rsquo;s FOIA Public Liaison, who will work to address your concerns.</p><p>&nbsp;</p><p><strong>FOIA Contact </strong> &ndash; The name, address and phone number at each agency or office where you can make a FOIA request.  Each agency or office only handles their own records, so make sure you direct a request to the agency or office that would have the records you are interested in.</p><p>&nbsp;</p><p><a href="faq.html#where" style="color:#fff;">Where do I send a FOIA request?</a></p><p>&nbsp;</p><p><a href="faq.html#handle" style="color:#fff;">Who handles FOIA requests?</a></p>',
 	hide: {
             fixed: true,
             delay: 240
          },
-	style: { width: 500, padding: 5, color: '#ffffff', background: '#577493', border:{width:7, radius: 5, color: '#577493'}, tip: 'topRight'},
+	style: { width: 600, padding: 5, color: '#ffffff', background: '#577493', border:{width:7, radius: 5, color: '#577493'}, tip: 'rightMiddle'},
 	position: {
       corner: {
-         target: 'bottomLeft',
-         tooltip: 'topRight'
+         target: 'leftMiddle',
+         tooltip: 'rightMiddle'
       }
    }
 });
+}
+
+function startRequest(param){
+var requestString="foia/FoiaMakeRequest?agency="+param;
+
+	divAjaxData="subRight";
+	IEAjaxRequest(requestString);
+	popupWinClose();
+}
+
+function startFoiaRequest(foiaDataURL){
+
+
+	if(window.ActiveXObject){
+		try {
+  			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+ 		}catch(e){
+			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	}
+	else if(window.XMLHttpRequest){
+		xmlHttp=new XMLHttpRequest();
+	}
+	//xmlHttp.status=0;
+	xmlHttp.open("GET",foiaDataURL,true);
+	xmlHttp.setRequestHeader( "Content-type", "text/xml" );
+	xmlHttp.onreadystatechange=showFoiaData;
+	xmlHttp.send(null);
+}
+
+
+
+function showFoiaData(){
+
+	if(xmlHttp.readyState == 4){
+		if(xmlHttp.status == 200){
+			var s=xmlHttp.responseText;
+			var area=document.getElementById(divAjaxData);
+			area.innerHTML=s;
+			//Initial();
+			refreshLoadPage();
+
+		}
+		else{
+			alert("ready="+xmlHttp.status);
+
+		}
+	}
+	else{
+		//alert("status="+xmlHttp.readystate);
+	}
+}
+
+function IEAjaxRequest(url){
+
+	url+="&Random=";
+	url+=Math.floor(Math.random()*200);
+	//alert(url);
+	startFoiaRequest(url);
+}
+
+function ShowComponents(){
+var x=document.getElementById("ComponentsList");
+
+	if(x != null){
+	  for(var i=0;i<x.length;++i){
+		  chart=document.getElementById(i);
+		  if(chart != null){
+			chart.style.display='none';
+		  }
+	  }
+	  chart=document.getElementById(x.selectedIndex);
+	  if(chart != null){
+		chart.style.display='block';
+	  }
+		//alert(x.size+"  "+x.selectedIndex+"   "+x.length);
+	}
+}
 </script>
+<noscript>
+<p>Javascript is either not enabled or not available.</p>
+</noscript>
+<!-- End Popup Window -->
 </body>
 </html>
