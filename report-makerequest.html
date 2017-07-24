@@ -347,8 +347,13 @@ var requestString="foia/FoiaMakeRequest?agency="+param;
 	popupWinClose();
 }
 
-function startFoiaRequest(foiaDataURL){
+var FOIA_PROXY = './foia-proxy.php?u=';
 
+function startFoiaRequest(foiaDataURL){
+    if (!foiaDataURL.match(/^https:/)) {
+        foiaDataURL = FOIA_PROXY + foiaDataURL;
+        console.log("new URL:", foiaDataURL);
+    }
 
 	if(window.ActiveXObject){
 		try {
