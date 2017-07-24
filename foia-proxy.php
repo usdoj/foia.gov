@@ -21,7 +21,7 @@ if (!$resp) {
 }
 
 $filtered = filter_response($resp);
-// error_log("filtered: $filtered");
+ error_log("filtered: $filtered");
 print $filtered;
 
 
@@ -34,6 +34,9 @@ print $filtered;
 function filter_response($resp) {
     $resp = preg_replace('/\/FusionCharts\//', './FusionCharts/', $resp);
     $resp = preg_replace('/\/foia\/FormChart/', './foia-proxy.php?u=/foia/FormChart', $resp);
+    $resp = preg_replace('/href="\/quarter.html\?/', 'href="./quarter.html?', $resp);
+    $resp = preg_replace('/href="\/glance.html\?/', 'href="./glance.html?', $resp);
+    $resp = preg_replace('/src="\/images\//', 'src="./images/', $resp);
     return $resp;
 }
 
