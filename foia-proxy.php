@@ -21,7 +21,7 @@ if (!$resp) {
 }
 
 $filtered = filter_response($resp);
- error_log("filtered: $filtered");
+// error_log("filtered: $filtered");
 print $filtered;
 
 
