@@ -122,7 +122,7 @@ function IEAjaxRequest(url){
 	
 	url+="&Random=";
 	url+=Math.floor(Math.random()*200);
-	if(consolelog) console.log(url);
+	if(console.log) console.log(url);
 	startFoiaRequest(url);
 }
 
