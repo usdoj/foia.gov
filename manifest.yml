@@ -2,3 +2,4 @@
 buildpack: php_buildpack
 memory: 256M
 name: foia-dot-gov
+path: www.foia.gov
