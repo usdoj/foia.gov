@@ -2,7 +2,7 @@
 test:
 	@echo No tests, OK.
 
-clean deploy:
-	$(MAKE) -C www.foia.gov $@
+deploy:
+	bin/cf_deploy.sh foia-dot-gov doj-foia-discovery prototype
 
 .PHONY: all clean deploy test

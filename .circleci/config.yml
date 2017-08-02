@@ -28,7 +28,7 @@ jobs:
           name: cf push
           command: |
             export PATH=$HOME/bin:$PATH
-            bin/cf_deploy.sh adborden-foia-dot-gov doj-foia-discovery prototype
+            make deploy
 
 
 workflows:
