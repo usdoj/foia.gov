@@ -17,4 +17,10 @@ Run the tests.
 
     $ make test
 
+Run the site locally.
+
+    $ make serve
+
+And open your browser to http://localhost:4000/.
+
 See more in the [README.md](www.foia.gov/README.md).
