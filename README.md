@@ -9,6 +9,10 @@ discovery sprint with the Department of Justice.
 
 ## Development
 
+Build the site.
+
+    $ make build
+
 Run the tests.
 
     $ make test
