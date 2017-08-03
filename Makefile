@@ -8,7 +8,7 @@ serve:
 	bundle exec jekyll serve
 
 test:
-	@echo No tests, OK.
+	bin/htmlproofer.sh
 
 deploy:
 	bin/cf_deploy.sh foia-dot-gov doj-foia-discovery prototype
