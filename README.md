@@ -9,6 +9,11 @@ discovery sprint with the Department of Justice.
 
 ## Development
 
+Install the dependencies.
+
+    $ gem install bundler
+    $ bundle install
+
 Build the site.
 
     $ make build

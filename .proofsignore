@@ -6,3 +6,8 @@
 *.swf
 *.xls
 *.zip
+.htpasswd
+FusionCharts
+iepd
+images
+video
