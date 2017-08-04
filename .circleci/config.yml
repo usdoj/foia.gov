@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+    steps:
+      - checkout
+      - run:
+          name: Run tests
+          command: make test
+  deploy:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+    steps:
+      - checkout
+      - run:
+          name: Install cf cli
+          command: |
+            mkdir -p $HOME/bin
+            export PATH=$HOME/bin:$PATH
+            curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.23.0" | tar xzv -C $HOME/bin
+            cf install-plugin autopilot -f -r CF-Community
+
+      - run:
+          name: Generate htpasswd
+          command: bin/gen_htpasswd.sh www.foia.gov/.htpasswd
+      - deploy:
+          name: cf push
+          command: |
+            export PATH=$HOME/bin:$PATH
+            make deploy
+
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
