@@ -52,8 +52,8 @@ function tabSwitch_2(active, number, tab_prefix, content_prefix) {
 
 <title>FOIA.gov - Freedom of Information Act</title>
 </head>
-<body>
 
+<body>
 <!-- Start FOIA Template -->
 <div id="background">
 <div id="container">
@@ -323,6 +323,35 @@ function tabSwitch_2(active, number, tab_prefix, content_prefix) {
   <!-- End Featured News -->
 
 <!-- End Content -->
+<script type="text/javascript">
+
+var jumpLocation="";
+
+function startRequest(){
+var requestString="/foia/Statistics?Type=ShortRecent";
+
+	divAjaxData="tab-recent-text";
+	IEAjaxRequest(requestString);
+}
+
+startRequest();
+
+$('a.chartHelp').qtip({
+	content: 'The charts here are a sample of the Annual FOIA Report data collected each year from federal agencies by the Department of Justice, and now available on FOIA.gov. FOIA data beginning with fiscal year 2008 is available to view, compare, and download in various formats. Please note that not all agency data is available on FOIA.gov for FY 2008 and FY 2009; however, all agency Annual FOIA Reports can be accessed on the website of the <a href="http://www.justice.gov/oip/reports.html" style="color:#fff; font-style: italic;">Office of Information Policy</a> at the Department of Justice.<br /><br /> You can create your own comparisons and view much more FOIA data on the <a href="data.html" style="color:#fff; font-style: italic;">Data page</a> here on FOIA.gov.',
+	hide: {
+            fixed: true,
+            delay: 240
+         },
+	style: { width: 500, padding: 5, color: '#ffffff', background: '#577493', border:{width:7, radius: 5, color: '#577493'}, tip: 'topRight'},
+	position: {
+      corner: {
+         target: 'bottomLeft',
+         tooltip: 'topRight'
+      }
+   }
+});
+</script>
+
 </div>
 <!-- End Main Page -->
 <div id="shadowFilter" class="blockout" style="display:none;"></div>
@@ -352,36 +381,9 @@ function tabSwitch_2(active, number, tab_prefix, content_prefix) {
   </div>
 </div>
 <!-- End Footer -->
+
 </div>
 </div>
 <!-- End FOIA Template -->
-<script type="text/javascript">
-
-var jumpLocation="";
-
-function startRequest(){
-var requestString="/foia/Statistics?Type=ShortRecent";
-
-	divAjaxData="tab-recent-text";
-	IEAjaxRequest(requestString);
-}
-
-startRequest();
-
-$('a.chartHelp').qtip({
-	content: 'The charts here are a sample of the Annual FOIA Report data collected each year from federal agencies by the Department of Justice, and now available on FOIA.gov. FOIA data beginning with fiscal year 2008 is available to view, compare, and download in various formats. Please note that not all agency data is available on FOIA.gov for FY 2008 and FY 2009; however, all agency Annual FOIA Reports can be accessed on the website of the <a href="http://www.justice.gov/oip/reports.html" style="color:#fff; font-style: italic;">Office of Information Policy</a> at the Department of Justice.<br /><br /> You can create your own comparisons and view much more FOIA data on the <a href="data.html" style="color:#fff; font-style: italic;">Data page</a> here on FOIA.gov.',
-	hide: {
-            fixed: true,
-            delay: 240
-         },
-	style: { width: 500, padding: 5, color: '#ffffff', background: '#577493', border:{width:7, radius: 5, color: '#577493'}, tip: 'topRight'},
-	position: {
-      corner: {
-         target: 'bottomLeft',
-         tooltip: 'topRight'
-      }
-   }
-});
-</script>
 </body>
 </html>
