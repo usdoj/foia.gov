@@ -18,7 +18,7 @@ test:
 	# Canary test. Make sure any changes to the static content is
 	# intentional. If any differences are output, confirm they were
 	# intentional and update the canary.
-	diff $(DIFFOPTS) _site _www.foia.gov-canary
+	diff $(DIFFOPTS) _www.foia.gov-canary _site
 	@echo OK
 
 deploy:
