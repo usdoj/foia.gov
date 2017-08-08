@@ -1,4 +1,10 @@
 
+DIFFOPTS=-u -b -B -r -X .canaryignore
+
+ifneq ($(DEBUG), 1)
+  DIFFOPTS+=-q
+endif
+
 all: build test
 
 build:
@@ -12,7 +18,7 @@ test:
 	# Canary test. Make sure any changes to the static content is
 	# intentional. If any differences are output, confirm they were
 	# intentional and update the canary.
-	diff -b -B -r -q -X .proofsignore _site _www.foia.gov-proofs
+	diff $(DIFFOPTS) _site _www.foia.gov-canary
 	@echo OK
 
 deploy:
