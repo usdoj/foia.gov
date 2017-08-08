@@ -6,6 +6,9 @@ There have been small modifications made to the original HTML and JS
 to make all links relative, and to proxy backend requests through
 the `foia-proxy.php` script, which points at the original site.
 
+The main pages have been migrated to [Jekyll](https://jekyllrb.com/) so that we
+can develop the look and feel of the Portal in tandem with the entire site.
+
 
 ## Authentication
 
@@ -17,6 +20,43 @@ at deploy time via CI/CD. Create the `.htpasswd` file at the root of the site
 directory:
 
     $ htpasswd -c -b .htpasswd theusername thepassword
+
+
+## Testing
+
+    $ make test
+
+We do html linting on the built site. We exclude the existing foia.gov content
+through `.htmlprooferignore`. If you make significant modifications to the
+html, you should remove that file from the ignore list so that it can be linted.
+
+In addition to linting, as a sanity check, we check that we don't make any
+accidental modifications to the existing content. These are called the "canary"
+tests. A copy of the built site exists in `_www.foia.gov-canary`. We compare the
+build directory `_site` to the files in `_www.foia.gov-canary`, ignoring any
+files in `.canaryignore`. Any differences will fail the test with output like
+this.
+
+```
+Files _site/index.html and _www.foia.gov-canary/index.html differ
+Makefile:11: recipe for target 'test' failed
+make: *** [test] Error 1
+```
+
+You should then diff the files to inspect what the difference is.
+
+    $ diff -u _www.foia.gov-canary/index.html _site/index.html
+    # (or you can run the tests in verbose mode)
+    $ make DEBUG=1 test
+
+If the change was unintentional, fix it so there are no differences between your
+build and the canary. If the change was intentional, update the canary by
+copying the build file to the canary directory.
+
+In the initial part of the build phase, it's assumed we shouldn't be modifying the
+foia.gov content very often so the canary sanity check is useful. As we ramp up
+development and start affecting styles globally, this sanity check is less
+useful and we can remove it at that point for better tests.
 
 
 ## Deployment
