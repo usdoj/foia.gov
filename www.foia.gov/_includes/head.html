@@ -1,17 +1,13 @@
 <head>
-<meta http-equiv="cache-control" content="no-cache" />
-<meta http-equiv="PRAGMA" content="NO-CACHE" />
+<meta http-equiv="cache-control" content="{{ page.cache_control | default: 'no-cache' }}" />
+<meta http-equiv="pragma" content="no-cache" />
 <meta name="dc.title" content="FOIA.gov (Freedom of Information Act) Home Page" />
 <meta name="dc.description" content="The Freedom of Information Act (FOIA) is a law that gives you the right to access information from the federal government. It is often described as the law that keeps citizens in the know about their government." />
 <meta name="dc.creator" content="Freedom of Information Act (FOIA)" />
 <meta name="dc.language" scheme="ISO639" content="en-us" />
 <meta name="dc.date.created" content="2011-03-14" />
 <link rel="stylesheet" type="text/css" href="foia-style.css" />
-<style>
-/*Change class to Indicate Current Active Page*/
-#tabnav li a.home {background: url(images/tab-home_on.png) 0 0 no-repeat; width: 104px; color: #121b26; }
-.articleimageborder {height:140px;width:200px;float:left;}
-</style>
+{% for css in page.stylesheets %}<link rel="stylesheet" type="text/css" href="{{ css }}.css" />{% endfor %}
 <script type="text/javascript" src="qtip/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.1/swfobject.js"></script>
@@ -48,5 +44,5 @@ function tabSwitch_2(active, number, tab_prefix, content_prefix) {
 }
 </script>
 
-<title>FOIA.gov - Freedom of Information Act</title>
+<title>FOIA.gov - Freedom of Information Act{% if page.title %}: {{ page.title }}{% endif %}</title>
 </head>

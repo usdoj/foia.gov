@@ -21,15 +21,14 @@
   <div id="tabs">
     <div id="tabnav">
       <ul>
-       <li><a href="index.html" class="home"><p>Home</p></a></li>
-       <li><a href="data.html" class="data"><p>Data</p></a></li>
-       <li><a href="reports.html" class="reports"><p>Reports</p></a></li>
-	   <li><a href="search.html" class="find"><p>Find</p></a></li>
-       <li><a href="about.html" class="about"><p>Learn</p></a></li>
+        <li><a href="index.html" class="home{% if page.navigation == 'home' %} selected{% endif %}"><p>Home</p></a></li>
+        <li><a href="data.html" class="data{% if page.navigation == 'data' %} selected{% endif %}"><p>Data</p></a></li>
+        <li><a href="reports.html" class="reports{% if page.navigation == 'reports' %} selected{% endif %}"><p>Reports</p></a></li>
+        <li><a href="search.html" class="find{% if page.navigation == 'find' %} selected{% endif %}"><p>Find</p></a></li>
+        <li><a href="about.html" class="about{% if page.navigation == 'about' %} selected{% endif %}"><p>Learn</p></a></li>
       </ul>
     </div>
-    
-	<a id="mainContent"></a>
+      <a id="mainContent"></a>
   </div>
 </div>
 
