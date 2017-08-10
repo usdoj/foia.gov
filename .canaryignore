@@ -8,6 +8,7 @@
 *.zip
 .htpasswd
 FusionCharts
+foia-style.css
 iepd
 images
 video

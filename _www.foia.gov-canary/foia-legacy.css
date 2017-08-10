@@ -513,3 +513,16 @@ input.checkBox {height:15px; width: 15px; border: 1px solid #d9d6d6;}
 #chartset {
 	padding: 0 20px 0 50px;
 }
+
+/* Indicate Current Active Page */
+#tabnav li a.selected {
+    background: url(images/tab-home_on.png) 0 0 no-repeat;
+    width: 104px;
+    color: #121b26;
+}
+
+.articleimageborder {
+    height:140px;
+    width:200px;
+    float:left;
+}
