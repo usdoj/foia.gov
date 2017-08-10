@@ -1,0 +1,14 @@
+---
+---
+
+@charset "utf-8";
+
+//TODO the legacy styles should be removed as we move the site to a unified
+// visual design
+@import "foia-legacy.css";
+
+// SMACSS https://smacss.com/
+@import "base";
+@import "layout";
+@import "modules";
+@import "theme";
