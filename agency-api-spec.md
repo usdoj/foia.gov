@@ -3,7 +3,9 @@
 This is [a draft spec](https://github.com/18F/foia/issues/32) for integrating
 the FOIA.gov portal with existing FOIA case management systems (_e.g._,
 [FOIAonline](https://foiaonline.regulations.gov/foia/action/public/home)) in the
-federal government. This work stems from the interviews and research the led to our [FOIA Portal Discovery Recommendations](#).
+federal government. This work stems from the interviews and research that led to
+our [FOIA Portal Discovery
+Recommendations](https://docs.google.com/document/d/1sRWq2vDAdoz97zdxgiOzU-9N7nBNEUiEeHzsa7J3j_A/edit).
 
 Once a case management system supports this specification, it can receive FOIA
 requests directly from the FOIA.gov portal, rather than having the request data sent via e-mail.
@@ -58,6 +60,8 @@ endpoints for future development and features.
 ### Data Params
 
 JSON payload that contains the form fields.
+
+    Content-Type: application/json
 
 
 #### Request fields
@@ -184,4 +188,36 @@ Services like [api.data.gov](https://api.data.gov/about/) provide this authentic
 
 ### Sample Call
 
-    $ curl -X POST -H "Content-Type: application/json" -d '{allthejsonstuff}' https://api.foia.gov/components/234/requests
+    $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency.gov/components/234/requests <<EOF
+    {
+	"agency": "Department of Justice",
+	"agency_component_name": "Office of Information Policy",
+	"attachments": [
+	    {
+		"content_type": "application/pdf",
+		"filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg==",
+		"filename": "letter.pdf",
+		"filesize": 27556
+	    }
+	],
+	"description": "I am seeking records pertaining to ...",
+	"email": "george.washington@example.com",
+	"expedited": false,
+	"fax": "+15551234589",
+	"fee_waiver": false,
+	"max_fee": 25.0,
+	"organization": "Newspaper Inc",
+	"phone": "+15551234567",
+	"requester_address": {
+	    "address1": "1800 F Street",
+	    "address2": "Suite 400",
+	    "city": "Mount Vernon",
+	    "state": "Virginia",
+	    "zip": "98273"
+	},
+	"requester_name": {
+	    "first": "George",
+	    "last": "Washington"
+	}
+    }
+    EOF
