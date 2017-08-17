@@ -2,17 +2,15 @@
 
 This is [a draft spec](https://github.com/18F/foia/issues/32) for integrating
 the FOIA.gov portal with existing FOIA case management systems (_e.g._,
-[FOIAonline](https://foiaonline.regulations.gov/foia/action/public/home))in the
-federal government. The work is based on our initial
-[discovery and interviews](https://github.com/18F/foia-recommendations/blob/master/schemas.md#creating-a-request).
+[FOIAonline](https://foiaonline.regulations.gov/foia/action/public/home)) in the
+federal government. This work stems from the interviews and research the led to our [FOIA Portal Discovery Recommendations](#).
 
 Once a case management system supports this specification, it can receive FOIA
-requests directly from the FOIA.gov portal, rather than having the request data
-first sent via e-mail.
+requests directly from the FOIA.gov portal, rather than having the request data sent via e-mail.
 
-In an effort to keep requirements low, we've designed this spec so that some of
-the tedious bits of implementing an API can be managed by a service like
-[api.data.gov](https://api.data.gov/about/). api.data.gov provides a free API
+To minimize agency effort, we've designed this spec so that some of
+the tedious bits of implementing an API can be handled by a service like
+[api.data.gov](https://api.data.gov/about/), which provides a free API
 management service for federal agencies.
 
 
@@ -29,15 +27,19 @@ This draft does not address:
 
 ### URL
 
-You may choose any pathname you wish. If your system handles requests for
-multiple agency components (like a decentralized agency), we recommend using
-a URL that allows for the component ID as a parameter. Your URL should not
+You may choose any pathname you wish. If your system handles requests for multiple agency components (like a decentralized agency), we recommend using
+a URL structure that explicitly identifies the agency component receiving the FOIA request. Your URL should not
 contain any query parameters.
 
     /components/:id/requests/
 
-Hosting the API on a dedicated sub-domain like `foia-api.agency.gov` is
-suggested. Using this kind of pathname hierarchy allows us to add additional API
+For example:
+* `/components/88/requests/`
+
+But not:
+* `/requests?component=88`
+
+In addition, we recommend hosting the API on a dedicated sub-domain like `foia-api.agency.gov`. Using this kind of pathname hierarchy allows us to add additional API
 endpoints for future development and features.
 
 
@@ -157,35 +159,27 @@ JSON payload that contains the form fields.
 **Code:** | 200 OK
 :--- |:---
 **Content:** | `{ "id" : 33, "status_tracking_number": "doj-1234" }`
-**Meaning:** | Confirm that the request was created and return an `id` that can uniquely identify the request in the case management system. The (optional) status tracking number that a requester can use to track their request.
+**Meaning:** | Confirm that the request was created and return an `id` that can uniquely identify the request in the case management system. The (optional) status tracking number can be used by a requester to track a request.
 
 
 ### Error Response
 
-**Code:** 404 NOT FOUND
+**Code:** | 404 NOT FOUND
 :--- |:---
-**Content:** `{ "code" : "A234", "message" : "agency component not found", "description": "description of the error that is specific to the case management system"}`
-**Meaning:**
-the target agency component specified in URI was not found (error payload includes a place for a system-specific message, to make it easier to track down problems)
+**Content:** | `{ "code" : "A234", "message" : "agency component not found", "description": "description of the error that is specific to the case management system"}`
+**Meaning:** | The target agency component specified in URI was not found (error payload includes a place for a system-specific message, to make it easier to track down problems)
 
-**Code:** 500 INTERNAL SERVER ERROR
+**Code:** | 500 INTERNAL SERVER ERROR
 :--- |:---
-**Content:** `{ "code" : "500", "message" : "internal error", "description": "description of the error that is specific to the case management system"}`
-**Meaning:**
-the case management system encountered an internal error when trying to create the FOIA request (error payload includes a place for a system-specific message, to make it easier to track down problems)
+**Content:** | `{ "code" : "500", "message" : "internal error", "description": "description of the error that is specific to the case management system"}`
+**Meaning:** | The case management system encountered an internal error when trying to create the FOIA request (error payload includes a place for a system-specific message, to make it easier to track down problems)
 
 
 ### Authentication
 
-In order to ensure your API and case management system aren't exposed to the
-public, it is recommended that you restrict access to your API so that only the
-portal can access it. This is done via a secret HTTP header token. You will
-provide this secret token to the portal though configuration. Every request from
-the portal will include this token and your API should validate that it is the
-correct token.
+To ensure that your API and case management system aren't publicly exposed, we recommend restricting your API access to the FOIA.gov portal. This is done via a secret HTTP header token. You will provide this secret token to the portal though configuration. Every request from the portal will include this token, and your API should validate that it is the correct token.
 
-Services like [api.data.gov](https://api.data.gov/about/) provide this
-authentication for you.
+Services like [api.data.gov](https://api.data.gov/about/) provide this authentication for you.
 
 
 ### Sample Call
