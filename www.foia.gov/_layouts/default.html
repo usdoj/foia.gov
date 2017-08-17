@@ -23,5 +23,6 @@
 </div>
 </div>
 <!-- End FOIA Template -->
+{% if page.init %}<script type="text/javascript" src="{{ page.init | prepend: "/" | prepend: site.baseurl }}"></script>{% endif %}
 </body>
 </html>
