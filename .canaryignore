@@ -1,0 +1,14 @@
+*.gif
+*.jpeg
+*.jpg
+*.pdf
+*.png
+*.swf
+*.xls
+*.zip
+.htpasswd
+FusionCharts
+foia-style.css
+iepd
+images
+video

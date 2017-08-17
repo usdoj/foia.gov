@@ -1,0 +1,528 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*RESET*/
+* {border:0; margin:0; padding:0;}
+
+/*Core Styles*/
+html {background: #121B26;}
+body {font: 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif normal; color: #333; }
+#background {background: url(images/bg-grad.jpg) repeat-x top left }
+#container {display: block; width: 960px; margin: 0 auto;}
+
+#warning {font:Georgia, "Times New Roman", Times, serif; width: auto; background: #f8f8f8; border: 3px double #ccc; color: #333; margin: 30px; padding: 15px;}
+#warning h1 {font-size: 16px;}
+#warning p {margin: 15px 0; font-size: 11px;}
+#warning a {font-weight: bold;}
+
+.skip {
+	height: 1px;
+	width: 1px;
+	left: -10000px;
+	overflow: hidden;
+	position:absolute;
+}
+
+/*Header Styles*/
+#header {padding: 0; margin: 0; background: url(images/bg-header.jpg) repeat-x 0 0; }
+#doj {height: 38px;}
+.headerDOJ {float: right;}
+.foiaTitle {float: left;}
+
+#headNav {height: 80px; width: 960px; margin: 0; padding: 0; font-size: 14px; font-family: Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; font-style: normal; font-weight:normal; }
+#headNav img {padding: 0; margin:0;}
+#headNav ul {list-style-type: none; margin: 0 0 0 460px;}
+#headNav li {display:inline;}
+#headNav li a {display: block; float: left; color: #fff; margin: 18px 0 0 30px; padding: 0 0 20px 0;}
+#headNav li a:hover {/*background:url(images/arrow.gif) -30px -10px no-repeat;*/ text-decoration: underline;}
+
+#tabs {font: normal 16px Georgia, "Times New Roman", Times, serif; color: #fff; height: 48px; margin:0; padding:0;}
+#tabnav {float: left; width:755px;}
+#tabnav ul {list-style-type: none;}
+#tabnav li {display: inline;}
+#tabnav li a {display: block; float: left; color: #fff; text-decoration:none; height: 48px;}
+#tabnav li a.home {background: url(images/tab-home_off.png) 0 0 no-repeat; width: 104px; }
+#tabnav li a.home:hover {background: url(images/tab-home_hover.png) 0 0 no-repeat; color: #fff;}
+#tabnav li a.home:active {background: url(images/tab-home_on.png) 0 0 no-repeat; color: #121b26;}
+#tabnav li a.home p {margin: 21px 0 0 42px;}
+#tabnav li a.data {background: url(images/tab-data_off.png) 0 0 no-repeat; width: 85px; }
+#tabnav li a.data:hover {background: url(images/tab-data_hover.png) 0 0 no-repeat; color: #fff;}
+#tabnav li a.data:active {background: url(images/tab-data_on.png) 0 0 no-repeat; color: #121b26;}
+#tabnav li a.data p {margin: 21px 0 0 25px;}
+#tabnav li a.reports {background: url(images/tab-reports_off.png) 0 0 no-repeat; width: 97px; }
+#tabnav li a.reports:hover {background: url(images/tab-reports_hover.png) 0 0 no-repeat; color: #fff;}
+#tabnav li a.reports:active {background: url(images/tab-reports_on.png) 0 0 no-repeat; color: #121b26;}
+#tabnav li a.reports p {margin: 21px 0 0 18px;}
+#tabnav li a.about {background: url(images/tab-about_off.png) 0 0 no-repeat; width: 98px; }
+#tabnav li a.about:hover {background: url(images/tab-about_hover.png) 0 0 no-repeat; color: #fff;}
+#tabnav li a.about:active {background: url(images/tab-about_on.png) 0 0 no-repeat; color: #121b26;}
+#tabnav li a.about p {margin: 21px 0 0 23px;}
+#tabnav li a.find {background: url(images/tab-find_off.png) 0 0 no-repeat; width: 80px; }
+#tabnav li a.find:hover {background: url(images/tab-find_hover.png) 0 0 no-repeat; color: #fff;}
+#tabnav li a.find:active {background: url(images/tab-find_on.png) 0 0 no-repeat; color: #121b26;}
+#tabnav li a.find p {margin: 21px 0 0 23px;}
+
+#requestbutton {width:205px; margin: 0 auto;}
+#requestbutton a {display: block; width: 205px; height: 47px; background: url(images/request-button.png) 0 0 no-repeat;}
+#requestbutton a:hover {background: url(images/request-button-hover.png) 0 0 no-repeat;}
+#requestbutton span {display: none;}
+
+/*Core Body Styles*/
+.clear {clear: both;}
+label, legend {display: none; font-size:1px;}
+ol { list-style-type: decimal; list-style-position: inside; }
+ol li {margin: 10px 0; }
+ol li:hover {background: #FFFFCD;}
+ol li a {font-weight: bold; margin: 0 0 0 5px;}
+a {color: #336699; text-decoration: none;}
+a:hover {text-decoration: underline;}
+a.viewmore {font-weight: bold; text-transform:uppercase; font-style: normal; font-size: 10px;}
+hr {background-color:#f8f8f8; color: #f8f8f8; height: 1px; border-bottom: #DEDEDE 1px solid;}
+
+#mainbackground {margin: 0; padding: 0;}
+#main {background: #fff;}
+#content {padding: 10px 0;}
+#content h2 {font-size: 18px; font-weight: bold; margin: 20px 0 25px 0;}
+#content h2 img {margin: 0 0 0 30px;}
+#content h2 span {display: none;}
+
+.homeChart {display: block; float: left; width: 260px; padding: 0 0px;}
+.homeChart img {margin: 15px;}
+.homeChart a {color: #CB9933;}
+.homeChartLegend {padding: 0 30px;}
+.homeChartLegend ul {float: left; height: 30px;}
+.homeChartLegend li {display: inline; color: #656565; margin: 0 15px; font-size: 11px;}
+.homeChartLegend li img {margin: 0 10px;}
+.homeChartLegend p {display: block; float:right; font-style:italic; font-weight:bold; font-size: 12px;}
+
+
+#homeLeft {float: left; width: 480px;}
+#homeRight {float: right; width: 480px; padding: 0;}
+.homeReports {height: 239px; width: 399px; margin: 25px 0px 30px 30px; padding: 0px 15px 0 15px; font-size: 13px; font-weight: bold; background:  url(images/homereports-bg.gif) top left no-repeat;}
+.latestNews {padding: 0 30px 20px 20px;}
+.latestNews p {padding: 5px 0 3px 10px;}
+.latestNews a {font: bold 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; font-weight:bold;}
+
+/*#homeLeft {width: 960px;padding: 10px 0 20px 20px;}
+#homeRight {width: 296px; padding: 10px 0 20px 20px;}
+
+.homeReports {float:right; height: 295px; width: 330px; margin: 30px 0 30px 30px; padding: 0 15px 0 15px; font-size: 13px; font-weight: bold; background:  url(images/homereports-bg1.gif) top left no-repeat;}
+.highlightList {width: 430px; float:left; margin: 5px 0 10px 30px;}
+*/
+.highlightList {width: 200px; float:left; margin: 5px 0 10px 30px;} 
+.highlightList h3 {padding: 0 0 15px 0;}
+.highlightList p {margin: 12px 0;}
+.highlightList ol li {list-style-type: decimal; list-style-position: inside;}
+.highlightList ol li {list-style-type: decimal; list-style-position: inside; margin:0; padding: 5px 0; background: url(images/highlight-list-bg.jpg) bottom left repeat-x;}
+.highlightList ol li:hover {background:#FFFFCD; } 
+.highlightList ul li {list-style-type: decimal; list-style-position: inside;}
+.highlightList ul li {list-style-type: decimal; list-style-position: inside; margin:0; padding: 5px 0; background: url(images/highlight-list-bg.jpg) bottom left repeat-x;}
+.highlightList ul li:hover {background:#FFFFCD; }
+
+.spotlight {float: left; margin: 0 30px;}
+.devResources li {list-style-type: none; font-weight:bold; display:block; width: 200px; float: left; padding: 15px 0 5px 30px;}
+
+.reportDownload {margin: 10px 0; font-size: 11px; font-weight: bold; display: inline; float:right;}
+.reportDownloadText {display: block; float: left; width: 130px;}
+.xmlbutton {display: block; float: left; width: 27px; height: 12px; margin: 0 3px;}
+.xmlbutton a {background: url(images/xml-button_off.gif) 0 0 no-repeat;}
+.xmlbutton a:hover {background: url(images/xml-button_on.gif) 0 0 no-repeat;}
+.xmlbutton span {display: none;}
+.csvbutton {display: block; float: left; width: 27px; height: 12px; margin: 0 3px;}
+.csvbutton a {display: block; background: url(images/csv-button_off.gif) 0 0 no-repeat;}
+.csvbutton a:hover {background: url(images/csv-button_on.gif) 0 0 no-repeat;}
+.csvbutton span {display: none;}
+.printbutton {display: block; float: left; color: #ccc; font-size: 11px; margin: -5px 10px 0 0;}
+
+/*Tabbed Report Box Styles on the Homepage*/
+
+ul.tabs li {list-style:none; display: inline;}
+/* ul.tabs li a {display: block; float: left; height: 22px; width: 79px; background: url(images/hrtab-off.gif) 0 0 no-repeat; margin: 15px 0 0 0; padding: 8px 0 0 20px;} */
+ul.tabs li a {display: block; float: left; height: 30px; width: 79px; background: url(images/hrtab-off.gif) 0 0 no-repeat; margin: 9px 0 0 0; padding: 12px 0 0 20px;}
+ul.tabs li a:hover {background: url(images/hrtab-on.gif) 0 0 no-repeat; text-decoration: none; color:#333;}
+ul.tabs li a.active {background: url(images/hrtab-on.gif) 0 0 no-repeat; text-decoration: none; color:#333;}
+.tabContent {height: 190px; overflow: auto;}
+.tabContent ul li {list-style: none; font-size: 14px; line-height:171%; padding: 10px 0 0 5px;}
+#tab-featured, #tab-popular, #tab-glance {display: none;}
+.tabMore {font-size: 10px; margin: 10px 0 5px 5px;}
+
+/* Input and Form Element Styles */
+
+/* Report Page Styles */
+#reportsPopular {float: left; width: 260px; padding: 0 30px 30px 30px;}
+#reportsRecent {float: left; width: 260px; padding: 0 30px 30px 30px;}
+#reportsOfficial {float: right; width: 260px; padding: 0 30px 30px 30px;}
+#reportsGlance {float: left; width: 260px; padding: 0 30px 30px 30px;}
+.reportInfo {font-style: italic; font-size: 11px; color: #999; padding: 0 0 0 20px;}
+.reportText {margin: -20px 0 20px 0; color: #666; font-size: 13px;}
+.reportText ol li {margin: 8px 0 8px 20px;}
+.reportText ol li:hover {background: none;}
+
+/*Sub-Page Content Styles*/
+#subLeft {float: left; width: 230px; padding: 0 30px 0 0;}
+.subTitle {margin: 25px 0 17px 28px;}
+#subNav {list-style-type: none; width: 200px; margin: 0 0 0 28px; font: bold 13px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; }
+#subNav li a {display: block; height: 30px; background:url(images/subnav-bg.jpg) repeat-x 0 0; color: #656565; padding: 5px 10px;}
+#subNav li a:hover {background: #FFFFCD; color: #336699; text-decoration:none;}
+
+#subNav2 li a {display: block; height: 15px; background:url(images/subnav-bg.jpg) repeat-x 0 0; color: #656565; padding: 10px 5px;} 
+#subNav2 li a:hover {background: #FFFFCD; color: #336699; text-decoration:none;}
+#subNav2 {list-style-type: none; width: 235px; margin: 0 0 0 28px; font: bold 13px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; }
+
+#subRight {float: right; width: 640px; padding: 65px 60px 30px 0;}
+#subPlain {padding: 30px;}
+#subRight h1, #subPlain h1 {font: bold 18px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; margin: 0 0 18px 0;}
+#subRight h2, #subPlain h2 {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; margin: 8px 0 16px 0;}
+#subRight h3, #subPlain h3 {font: bold 15px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; margin: 20px 0 -12px 0;}
+#subRight p, #subPlain p {font: 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; line-height: 138%; margin: 12px 0;}
+#subRight p.caption, #subPlain p.caption {color: #999; font-style: italic; line-height: 133%;}
+#subRight a, #subPlain a {font-style: italic;}
+#subRight h3 a, #subPlain h3 a {font-style: normal;}
+#subRight ul, #subPlain ul {list-style-type: disc; color: #ccc;}
+#subRight ul li, #subPlain ul li {margin: 12px 0 12px 35px; line-height:138%; }
+#subRight ul li a, #subPlain ul li a {font-style:normal;}
+#subRight ol li, #subPlain ol li {margin: 12px 0 12px 35px; line-height:138%; }
+#subRight ol li:hover, #subPlain ol li:hover {background:#fff;}
+#subRight blockquote, #subPlain blockquote {margin: 15px 30px; padding: 5px 15px; border: 1px solid #ccc; background:#f8f8f8; }
+#subRight blockquote p, #subPlain blockquote p {line-height: 100%; padding: 0px;}
+.subImg {float: right; width: auto; margin: 30px 0 30px 30px;}
+.subImgRight {float: left; width: auto; margin: 25px 30px 30px 0;}
+.lineshadow {height: 12px; background:url(images/line-shadow.jpg) no-repeat center top; border-top: 1px solid #fff;}
+.linedivider {height: 8px; background:url(images/line-shadow-small.jpg) no-repeat center top; margin: 0 0 15px 0;}
+.newsSpot {width: 720px; margin: 0 0 0 170px;}
+
+/* Agency Listing Styles */
+
+#agencyList ul {list-style-type: none; margin: 0; font: bold 13px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif;}
+#agencyList ul li {margin: 0;line-height: 0;}
+#agencyList li a {display: inline; height: 50px; width: 290px; float: left; border: 1px solid #ccc; color: #656565; padding: 30px 10px 0px 10px; margin: 2px; font-style: normal; line-height: 100%;}
+#agencyList li a:hover {color: #336699; text-decoration:none;}
+
+#agencyList li.ag01 a {background: url(images/logosprite.png) 0px 0px no-repeat; }
+#agencyList li.ag01 a:hover {background: url(images/logosprite.png) 0px -80px no-repeat; }
+
+#agencyList li.ag02 a {background: url(images/logosprite.png) 0px -160px no-repeat; }
+#agencyList li.ag02 a:hover {background: url(images/logosprite.png) 0px -240px no-repeat; }
+
+#agencyList li.ag03 a {background: url(images/logosprite.png) 0px -320px no-repeat; }
+#agencyList li.ag03 a:hover {background: url(images/logosprite.png) 0px -400px no-repeat; }
+
+#agencyList li.ag04 a {background: url(images/logosprite.png) 0px -480px no-repeat; }
+#agencyList li.ag04 a:hover {background: url(images/logosprite.png) 0px -560px no-repeat; }
+
+#agencyList li.ag05 a {background: url(images/logosprite.png) 0px -640px no-repeat; }
+#agencyList li.ag05 a:hover {background: url(images/logosprite.png) 0px -720px no-repeat; }
+
+#agencyList li.ag06 a {background: url(images/logosprite.png) 0px -800px no-repeat; }
+#agencyList li.ag06 a:hover {background: url(images/logosprite.png) 0px -880px no-repeat; }
+
+#agencyList li.ag07 a {background: url(images/logosprite.png) 0px -960px no-repeat; }
+#agencyList li.ag07 a:hover {background: url(images/logosprite.png) 0px -1040px no-repeat; }
+
+#agencyList li.ag08 a {background: url(images/logosprite.png) 0px -1120px no-repeat; }
+#agencyList li.ag08 a:hover {background: url(images/logosprite.png) 0px -1200px no-repeat; }
+
+#agencyList li.ag09 a {background: url(images/logosprite.png) 0px -1280px no-repeat; }
+#agencyList li.ag09 a:hover {background: url(images/logosprite.png) 0px -1360px no-repeat; }
+
+#agencyList li.ag10 a {background: url(images/logosprite.png) 0px -1440px no-repeat; }
+#agencyList li.ag10 a:hover {background: url(images/logosprite.png) 0px -1520px no-repeat; }
+
+#agencyList li.ag11 a {background: url(images/logosprite.png) 0px -1600px no-repeat; }
+#agencyList li.ag11 a:hover {background: url(images/logosprite.png) 0px -1680px no-repeat; }
+
+#agencyList li.ag12 a {background: url(images/logosprite.png) 0px -1760px no-repeat; }
+#agencyList li.ag12 a:hover {background: url(images/logosprite.png) 0px -1840px no-repeat; }
+
+#agencyList li.ag13 a {background: url(images/logosprite.png) 0px -1920px no-repeat; }
+#agencyList li.ag13 a:hover {background: url(images/logosprite.png) 0px -2000px no-repeat; }
+
+#agencyList li.ag14 a {background: url(images/logosprite.png) 0px -2080px no-repeat; }
+#agencyList li.ag14 a:hover {background: url(images/logosprite.png) 0px -2160px no-repeat; }
+
+#agencyList li.ag15 a {background: url(images/logosprite.png) 0px -2240px no-repeat; }
+#agencyList li.ag15 a:hover {background: url(images/logosprite.png) 0px -2320px no-repeat; }
+
+#agencyList li.ag16 a {background: url(images/logosprite.png) 0px -2400px no-repeat; }
+#agencyList li.ag16 a:hover {background: url(images/logosprite.png) 0px -2480px no-repeat; }
+
+#agencyList li.ag17 a {background: url(images/logosprite.png) 0px -2560px no-repeat; }
+#agencyList li.ag17 a:hover {background: url(images/logosprite.png) 0px -2640px no-repeat; }
+
+#agencyList li.ag18 a {background: url(images/logosprite.png) 0px -2720px no-repeat; }
+#agencyList li.ag18 a:hover {background: url(images/logosprite.png) 0px -2800px no-repeat; }
+
+#agencyList li.ag19 a {background: url(images/logosprite.png) 0px -2880px no-repeat; }
+#agencyList li.ag19 a:hover {background: url(images/logosprite.png) 0px -2960px no-repeat; }
+
+#agencyList li.ag20 a {background: url(images/logosprite.png) 0px -3040px no-repeat; }
+#agencyList li.ag20 a:hover {background: url(images/logosprite.png) 0px -3120px no-repeat; }
+
+#agencyList li.ag21 a {background: url(images/logosprite.png) 0px -3200px no-repeat; }
+#agencyList li.ag21 a:hover {background: url(images/logosprite.png) 0px -3280px no-repeat; }
+
+#agencyList li.ag22 a {background: url(images/logosprite.png) 0px -3360px no-repeat; }
+#agencyList li.ag22 a:hover {background: url(images/logosprite.png) 0px -3440px no-repeat; }
+
+#agencyList li.ag23 a {background: url(images/logosprite.png) 0px -3520px no-repeat; }
+#agencyList li.ag23 a:hover {background: url(images/logosprite.png) 0px -3600px no-repeat; }
+
+#agencyList li.ag24 a {background: url(images/logosprite.png) 0px -3680px no-repeat; }
+#agencyList li.ag24 a:hover {background: url(images/logosprite.png) 0px -3760px no-repeat; }
+
+#agencyList li.ag25 a {background: url(images/logosprite.png) 0px -3840px no-repeat; }
+#agencyList li.ag25 a:hover {background: url(images/logosprite.png) 0px -3920px no-repeat; }
+
+#agencyList li.ag26 a {background: url(images/logosprite.png) 0px -4000px no-repeat; }
+#agencyList li.ag26 a:hover {background: url(images/logosprite.png) 0px -4080px no-repeat; }
+
+#agencyList li.ag27 a {background: url(images/logosprite.png) 0px -4160px no-repeat; }
+#agencyList li.ag27 a:hover {background: url(images/logosprite.png) 0px -4240px no-repeat; }
+
+#agencyList li.ag28 a {background: url(images/logosprite.png) 0px -4320px no-repeat; }
+#agencyList li.ag28 a:hover {background: url(images/logosprite.png) 0px -4400px no-repeat; }
+
+#agencyList li.ag29 a {background: url(images/logosprite.png) 0px -4480px no-repeat; }
+#agencyList li.ag29 a:hover {background: url(images/logosprite.png) 0px -4560px no-repeat; }
+
+#agencyList li.ag30 a {background: url(images/logosprite.png) 0px -4640px no-repeat; }
+#agencyList li.ag30 a:hover {background: url(images/logosprite.png) 0px -4720px no-repeat; }
+
+#agencyList li.ag31 a {background: url(images/logosprite.png) 0px -4800px no-repeat; }
+#agencyList li.ag31 a:hover {background: url(images/logosprite.png) 0px -4880px no-repeat; }
+
+#agencyList li.ag32 a {background: url(images/logosprite.png) 0px -4960px no-repeat; }
+#agencyList li.ag32 a:hover {background: url(images/logosprite.png) 0px -5040px no-repeat; }
+
+#agencyList li.ag33 a {background: url(images/logosprite.png) 0px -5120px no-repeat; }
+#agencyList li.ag33 a:hover {background: url(images/logosprite.png) 0px -5200px no-repeat; }
+
+#agencyList li.ag34 a {background: url(images/logosprite.png) 0px -5280px no-repeat; }
+#agencyList li.ag34 a:hover {background: url(images/logosprite.png) 0px -5360px no-repeat; }
+
+#agencyList li.ag35 a {background: url(images/logosprite.png) 0px -5440px no-repeat; }
+#agencyList li.ag35 a:hover {background: url(images/logosprite.png) 0px -5520px no-repeat; }
+
+#agencyList li.ag36 a {background: url(images/logosprite.png) 0px -5600px no-repeat; }
+#agencyList li.ag36 a:hover {background: url(images/logosprite.png) 0px -5680px no-repeat; }
+
+#agencyList li.ag37 a {background: url(images/logosprite.png) 0px -5760px no-repeat; }
+#agencyList li.ag37 a:hover {background: url(images/logosprite.png) 0px -5840px no-repeat; }
+
+#agencyList li.ag38 a {background: url(images/logosprite.png) 0px -5920px no-repeat; }
+#agencyList li.ag38 a:hover {background: url(images/logosprite.png) 0px -6000px no-repeat; }
+
+#agencyList li.ag39 a {background: url(images/logosprite.png) 0px -6080px no-repeat; }
+#agencyList li.ag39 a:hover {background: url(images/logosprite.png) 0px -6160px no-repeat; }
+
+#agencyList li.ag40 a {background: url(images/logosprite.png) 0px -6240px no-repeat; }
+#agencyList li.ag40 a:hover {background: url(images/logosprite.png) 0px -6320px no-repeat; }
+
+#agencyList li.ag40 a {background: url(images/logosprite.png) 0px -6400px no-repeat; }
+#agencyList li.ag40 a:hover {background: url(images/logosprite.png) 0px -6480px no-repeat; }
+
+
+/*Hero Box - on the Home Page*/
+#hero {background: url(images/homepage-herobg.jpg); height: 274px;}
+#herotext {display: block; width: 525px; margin: 0 0 0 378px;}
+#herotext h1 {font: 36px Georgia, 'Times New Roman', Times, serif normal; color: #242424; padding: 46px 0 0 0;}
+#herotext p {
+	color: #666;
+	font-family: Georgia, 'Times New Roman', Times, "serif italic";
+	font-size: 16px;
+	font-style: italic;
+	line-height: 1.5em;
+	padding: 10px 0;
+}
+.herobuttons {padding: 38px 0 0 0;}
+.herobuttons span {display: none;}
+.aboutButton {background: url(images/learn-foia.png) 0 0 no-repeat; display: block; float: left; height: 47px; width: 207px; margin: 0 10px 0 0; padding: 0;}
+.aboutButton:hover {background: url(images/learn-foia-hover.png) 0 0 no-repeat;}
+.dataButton  {background: url(images/explore-foia.png) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 0; padding: 0;}
+.dataButton:hover {background: url(images/explore-foia-hover.png) 0 0 no-repeat;}
+.learnButton {background: url(https://www.foia.gov/images/learn-more.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
+.learnButton:hover {background: url(https://www.foia.gov/images/learn-more-hover.gif) 0 0 no-repeat;}
+.searchButton {background: url(https://www.foia.gov/images/find.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
+.searchButton:hover {background: url(https://www.foia.gov/images/find-hover.gif) 0 0 no-repeat;}
+.contactButton {background: url(https://www.foia.gov/images/foia-contacts.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
+.contactButton:hover {background: url(https://www.foia.gov/images/foia-contacts-hover.gif) 0 0 no-repeat;}
+.exploremoreButton {background: url(https://www.foia.gov/images/explore-more-data.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
+.exploremoreButton:hover {background: url(https://www.foia.gov/images/explore-more-data-hover.gif) 0 0 no-repeat;}
+
+.herobuttons2 {padding: 13px 0 0 0;}
+.herobuttons2 span {display: none;}
+.aboutButton2 {background: url(https://www.foia.gov/images/learn-foia-es.png) 0 0 no-repeat; display: block; float: left; height: 47px; width: 207px; margin: 0 10px 0 0; padding: 0;}
+.aboutButton2:hover {background: url(https://www.foia.gov/images/learn-foia-hover-es.png) 0 0 no-repeat;}
+.dataButton2  {background: url(images/explore-foia-es.png) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 0; padding: 0;}
+.dataButton2:hover {background: url(images/explore-foia-hover-es.png) 0 0 no-repeat;}
+
+.compareButton {background: url(images/compare-button_off.png) 0 0 no-repeat; display: block; height: 29px; width: 84px; margin: 0; padding: 0;}
+.compareButton:hover {background: url(images/compare-button_on.png) 0 0 no-repeat;}
+.compareButton span {display:none;}
+.selectButton {background: url(images/select-button_off.png) 0 0 no-repeat; display: block; height: 29px; width: 84px; margin: 0; padding: 0;}
+.selectButton:hover {background: url(images/select-button_on.png) 0 0 no-repeat;}
+.selectButton span {display:none;}
+.submitButton {background: url(images/submit-button_off.png) 0 0 no-repeat; display: block; height: 29px; width: 84px; margin: 0; padding: 0;}
+.submitButton:hover {background: url(images/submit-button_on.png) 0 0 no-repeat;}
+.submitButton span {display:none;}
+.setButton {background: url(images/set-button_off.png) 0 0 no-repeat; display: block; height: 29px; width: 84px; margin: 0; padding: 0;}
+.setButton:hover {background: url(images/set-button_on.png) 0 0 no-repeat;}
+.setButton span {display:none;}
+.clearButton {background: url(images/clear-button_off.png) 0 0 no-repeat; display: block; height: 29px; width: 84px; margin: 0; padding: 0;}
+.clearButton:hover {background: url(images/clear-button_on.png) 0 0 no-repeat;}
+.clearButton span {display:none;}
+
+.breadcrumbcontent {padding: 0 0 20px 0; font-size: 14px; font-family:Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; font-weight: bold; color: #333;}
+.breadcrumbcontent a {color: #4d8a10;}
+
+/*Table and Data Styles*/
+#dataTable {padding: 0;}
+#tableContainer {padding: 0 30px 30px 30px;}
+#tableTitle {margin: 30px 0 0 0;}
+table, th, tr, td {border: 1px solid #e7e7e7; border-collapse: collapse; background: #fff; }
+th {background: url(images/table-th-bg.jpg) bottom left repeat-x; font: bold 12px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; padding: 5px;}
+td {padding: 6px 6px 6px 12px;}
+
+tr.odd td.highlite, tr.even td.highlite {background:#e8f3b2;color:#000;}
+
+tr.even td{background:#f3f3f3;}
+tr.odd td{background:#ffffff;}
+
+th.over, tr.even th.over, tr.odd th.over{background:#e3ecd7;}
+th.down, tr.even th.down, tr.odd th.down{background:#eff2e9;}
+th.selected, tr.even th.selected, tr.odd th.selected{}
+
+td.over, tr.even td.over, tr.odd td.over{background:#FFFFCD;}
+td.down, tr.even td.down, tr.odd td.down{background:#e8f3b2;color:#000;}
+td.selected, tr.even td.selected, tr.odd td.selected{background:#e8f3dd;color:#000;}
+
+#foiaReports {}
+
+#createReport {padding: 30px; height: auto; background:url(images/create-report-bg.jpg) bottom left repeat-x;}
+#selectReport {width: 175px; float: left;}
+
+#selectAgency {width: 340px; float:left;}
+#selectAgency ul li {font-size: 11px; font-weight: bold; height: 13px; padding: 0 5px 0 0;}
+#selectAgency ul li a {font-style: italic;}
+#selectAgency ul li a img {margin: 5px 0 0 0;}
+
+#selectFY {width: 170px; float:left; padding: 0 0 0 15px;}
+#selectFY p {font: bold 14px; margin: 0 0 15px 0;}
+
+#generateReport {float:right; width: 207px; height: 80px;}
+#generateReport a {display: block; margin: 20px 0 0 0; height: 47px; background:url(images/generate-button.png) no-repeat top left;}
+#generateReport a:hover {background:url(images/generate-button-hover.png) no-repeat top left;}
+#generateReport a span {display:none;}
+
+#selectReport h2, #selectAgency h2, #selectFY h2 {font:bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; text-transform:uppercase; margin: 0 0 20px 0;}
+#selectReport ul {list-style-type: none; font:bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; }
+#selectReport li a {display: block; height: 26px; width: 145px; text-decoration: none; color: #656565; padding: 3px 0 0 9px;}
+#selectReport li a:hover {background: url(images/report-list-bg.jpg) top left repeat-x; color: #fff;}
+
+#selectReport li ul {font-size: 12px;}
+#selectReport li ul li {border-bottom: 1px solid #ccc; height: 29px; padding: 0;}
+#selectReport li ul li:last-child {border-bottom:none;}
+
+#selectReport ul li .menu {background: #e7e7e7; display:none; width: 139px;}
+#selectReport ul li .menu a {height: 23px; padding: 6px 0 0 9px;}
+#selectReport ul li .menu a:hover {background: #FFFFCD top left repeat; color: #656565; width: 130px;}
+/* #selectReport ul li:hover .menu {display: block;} */
+#selectReport .reportSelected { background: url(images/report-list-bg.jpg) top left repeat-x; color: #fff;}
+
+#selectAgency ul {list-style-type: none; margin: 0 0 12px 0;}
+#selectAgency li {display: inline;}
+.agencyTextdrop {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; width: 390px;}
+.agencyTextbox {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; width: 270px;}
+.agencyTextlist {font: bold 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; }
+.addAgency {background: url(images/add-agency-off.png) 0 0 no-repeat; width: 37px; height:26px;}
+.addAgency:hover {background: url(images/add-agency-on.png) 0 0 no-repeat;}
+.deleteAgency {background: url(images/delete-agency-off.png) 0 0 no-repeat; width: 37px; height:26px;}
+.deleteAgency:hover {background: url(images/delete-agency-on.png) 0 0 no-repeat;}
+
+input.checkBox {height:15px; width: 15px; border: 1px solid #d9d6d6;}
+.blueTitle {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; }
+.blueTitle p {font: normal 13px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif;}
+.chartIcon {margin: 0 3px; padding: 5px 0 0 0;}
+
+.glanceChart a {font-weight: bold; color: #4D8A13;}
+#glanceData h3 {font-size: 14px; color: #333; font-weight: bold;}
+#glanceData a {font: bold 32px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A13;}
+
+.learnlinks {font: bold 18px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A13; padding: 5px 10px 10px 5px;}
+.learnmore {float:right; padding: 10px 0 0 0;}
+
+/*Footer Styles*/
+#footer {height: 125px; font: 12px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif normal; }
+#footer a {color: #718BA7; text-decoration:none;}
+#footer img {padding: 0 0 0 30px;}
+#footer span {display: none;}
+#footerNav {margin: -22px 0 0 150px;}
+#footerNav ul {margin: 0; display: block; }
+#footerNav ul li {list-style-type: none; display: inline; float: left;}
+#footerNav ul li a {padding: 0 15px 0 0;}
+#footerNav ul li a:hover {text-decoration: underline;}
+
+/*Alphabetical Menu*/
+#alphabet ul {margin: 0; display: block;}
+#alphabet ul li {list-style-type: none; display: inline; float: left; margin:0; padding:0;  }
+#alphabet ul li a {display: block; padding: 4px 7px; border: 1px solid #CCC; background:url(images/create-report-bg.jpg) bottom left repeat-x;}
+#alphabet ul li a:hover {text-decoration: underline; background:#FFFFCD;}
+
+/*RSS Feed Styles*/
+.rssFeed {float: right; margin: 0;}
+.rssFeed a {display: block; width: 16px; height: 15px; background: url(images/rss-subscribe.gif) 0 0 no-repeat;}
+.rssFeed a:hover {background: url(images/rss-subscribe.gif) bottom left no-repeat;}
+.rssFeed span {display: none;}
+
+/* outside.cgi */
+.blockout {
+	opacity:0.6;
+	background-color:rgb(0,0,0);
+	z-index: 998;
+	top:0;
+	left:0;
+	position:absolute;
+	width:100%;
+	height:1584px;
+}
+.exitMsg {
+	position:fixed;
+	z-index: 999;
+	border:solid #336699;
+	border-width:thick;
+	width: 500px;
+	height:300px;
+	background-color:#FFFFFF;
+	margin-left:-250px;
+	top:50%;
+	margin-top: -150px;
+	left:50%;
+	font-family: Georgia;
+	color:#333333;
+	font-size:12px;
+	padding:10px;
+	line-height:1.3em;
+}
+.exitMsg p{
+	margin: 1em 0 0 1em;
+}
+/*Spotlight News Styles*/
+.spotcontentholder {float: right; margin: 0; width:252px;}
+
+/* slideshow */
+#chartset {
+	padding: 0 20px 0 50px;
+}
+
+/* Indicate Current Active Page */
+#tabnav li a.selected {
+    background: url(images/tab-home_on.png) 0 0 no-repeat;
+    width: 104px;
+    color: #121b26;
+}
+
+.articleimageborder {
+    height:140px;
+    width:200px;
+    float:left;
+}

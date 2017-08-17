@@ -1,13 +1,26 @@
 version: 2
 jobs:
-  test:
+  build:
     docker:
       - image: circleci/ruby:2.4.1-node
     steps:
       - checkout
+      - type: cache-restore
+        key: v1-bundle-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Install dependencies
+          command: bundle install --path vendor/bundle
+      - type: cache-save
+        key: v1-bundle-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+      - run:
+          name: Build
+          command: make build
       - run:
           name: Run tests
           command: make test
+
   deploy:
     docker:
       - image: circleci/ruby:2.4.1-node
@@ -35,10 +48,10 @@ workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - test
+      - build
       - deploy:
           requires:
-            - test
+            - build
           filters:
             branches:
               only: master

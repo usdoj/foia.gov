@@ -1,0 +1,7 @@
+<chart caption='Disposition of Requests' showPercentageInLabel='1' showValues='1' showPercentValues='0'
+	showLabels='0' showLegend='1' bgColor='FFFFFF' showBorder='0' formatNumberScale='0' enableSmartLabels='0'
+	legendBorderThickness='0' legendShadow='0' legendBorderColor='FFFFFF' defaultAnimation='0' baseFontColor='577493'>
+        <set value='175309' label='Released in Full FY 2016' color='73B7DB'/> 
+        <set value='279602' label='Released in Part FY 2016' color='377493'/> 
+        <set value='42995' label='Denied in Full FY 2016' color='A88422'/>
+</chart>
