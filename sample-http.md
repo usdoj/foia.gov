@@ -175,6 +175,19 @@ the target agency component specified in URI was not found (error payload includ
 the case management system encountered an internal error when trying to create the FOIA request (error payload includes a place for a system-specific message, to make it easier to track down problems)
 
 
+### Authentication
+
+In order to ensure your API and case management system aren't exposed to the
+public, it is recommended that you restrict access to your API so that only the
+portal can access it. This is done via a secret HTTP header token. You will
+provide this secret token to the portal though configuration. Every request from
+the portal will include this token and your API should validate that it is the
+correct token.
+
+Services like [api.data.gov](https://api.data.gov/about/) provide this
+authentication for you.
+
+
 ### Sample Call
 
     $ curl -X POST -H "Content-Type: application/json" -d '{allthejsonstuff}' https://api.foia.gov/components/234/requests
