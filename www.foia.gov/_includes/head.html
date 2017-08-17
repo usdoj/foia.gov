@@ -1,6 +1,7 @@
 <head>
 <meta http-equiv="cache-control" content="{{ page.cache_control | default: 'no-cache' }}" />
 <meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="dc.title" content="FOIA.gov (Freedom of Information Act) Home Page" />
 <meta name="dc.description" content="The Freedom of Information Act (FOIA) is a law that gives you the right to access information from the federal government. It is often described as the law that keeps citizens in the know about their government." />
 <meta name="dc.creator" content="Freedom of Information Act (FOIA)" />
@@ -10,39 +11,13 @@
 {% for css in page.stylesheets %}<link rel="stylesheet" type="text/css" href="{{ css }}.css" />{% endfor %}
 <script type="text/javascript" src="qtip/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.1/swfobject.js"></script>
-<script type="text/javascript" src="justiceiso.js"></script>
+{% for script in page.scripts %}
+<script type="text/javascript" src="{{ script }}"></script>
+{% endfor %}
 <script type="text/javascript" src="foiareport.js"></script>
 <script type="text/javascript" src="FusionCharts.js"></script>
 <script type="text/javascript" src="foiaAjax.js"></script>
 <script type="text/javascript" src="tablehover.js"></script>
-<script type="text/javascript">
-function tabSwitch(new_tab, new_content) {
-
-	document.getElementById('tab-featured').style.display = 'none';
-	document.getElementById('tab-recent').style.display = 'none';
-	document.getElementById('tab-popular').style.display = 'none';
-	document.getElementById('tab-glance').style.display = 'none';
-	document.getElementById(new_content).style.display = 'block';
-
-	document.getElementById('tab01').className = '';
-	document.getElementById('tab02').className = '';
-	document.getElementById('tab03').className = '';
-	document.getElementById('tab04').className = '';
-	document.getElementById(new_tab).className = 'active';
-
-}
-function tabSwitch_2(active, number, tab_prefix, content_prefix) {
-
-	for (var i=1; i < number+1; i++) {
-	  document.getElementById(content_prefix+i).style.display = 'none';
-	  document.getElementById(tab_prefix+i).className = '';
-	}
-	document.getElementById(content_prefix+active).style.display = 'block';
-	document.getElementById(tab_prefix+active).className = 'active';
-
-}
-</script>
 
 <title>FOIA.gov - Freedom of Information Act{% if page.title %}: {{ page.title }}{% endif %}</title>
 </head>
