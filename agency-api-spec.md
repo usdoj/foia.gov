@@ -165,7 +165,7 @@ JSON payload that contains the form fields.
 **Example:** | `{"form_460A_case_number": "3347", "requester_type": "Journalist"}`
 
 
-#### Agency form fields
+#### Agency component specific form fields
 
 Your agency component might have additional fields specified in your [agency
 metadata file][agency-metadata-file-schema].  These additional fields are unique
