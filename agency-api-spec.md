@@ -192,7 +192,7 @@ Consider this sample [agency metadata
 file](https://github.com/18F/foia/blob/master/GSA.json). A truncated version is
 provided below.
 
-```json
+```
 {
     "abbreviation": "GSA",
     "departments": [
@@ -237,7 +237,7 @@ provided below.
 
 So in the request payload, `agency_form_fields` would look like:
 
-```json
+```
 {
     // ...
     "agency_form_fields": {
