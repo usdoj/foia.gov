@@ -1,0 +1,61 @@
+{
+    "abbreviation": "GSA",
+    "departments": [
+        {
+            "additional_form_fields": [
+                {
+                    "help_text": "If your request relates to a GSA contract, please provide the contract number (which starts with \"GS-\")",
+                    "label": "GS- Contract number",
+                    "name": "contract_number"
+                },
+                {
+                    "help_text": "(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT",
+                    "label": "GSA Region",
+                    "name": "region"
+                }
+            ],
+            "name": "General Services Administration (General)",
+            "reading_rooms": [
+                "https://www.gsa.gov/portal/content/305477"
+            ],
+            "required_form_fields": [
+                {
+                    "enum": [
+                        "Company",
+                        "Individual/Self",
+                        "Organization"
+                    ],
+                    "help_text": "Company",
+                    "label": "Request Origin",
+                    "name": "request_origin",
+                    "regs_url": null
+                }
+            ],
+            "uiSchema": {
+                "ui:order": {},
+                "fields": {
+                }
+	    },
+            "submission_methods": [
+                {
+                    "address_lines": [
+                        "Room 7308",
+                        "1800 F. Street, NW",
+                        "Washington, DC 20405"
+                    ],
+                    "name": "FOIA Contact",
+                    "submission_format": "paper",
+                    "title": "FOIA Requester Service Center (H1C)"
+                },
+                {
+                    "email": "GSA.FOIA@gsa.gov",
+                    "submission_format": "email"
+                },
+                {
+                    "submission_format": "web",
+                    "url": "https://foiaonline.regulations.gov/foia/action/public/home"
+                }
+            ]
+        }
+    ]
+}
