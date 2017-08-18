@@ -544,6 +544,8 @@ input.checkBox {height:15px; width: 15px; border: 1px solid #d9d6d6;}
   background: url(images/tab-about_on.png) 0 0 no-repeat;
 }
 
+#subNav li.selected a {background: #fff; color: #336699;}
+
 .articleimageborder {
     height:140px;
     width:200px;
