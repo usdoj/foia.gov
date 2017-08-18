@@ -229,12 +229,9 @@ provided below.
 }
 ```
 
-It has the following `required_form_fields`
+`agency_form_fields` therefore has the following fields.
 
-- `request_origin`
-
-...and `additional_form_fields`.
-
+- (required) `request_origin`
 - `contract_number`
 - `region`
 
