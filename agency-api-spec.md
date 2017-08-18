@@ -157,6 +157,121 @@ JSON payload that contains the form fields.
 **Required:** | no
 **Example:** | `[{"filename": "letter.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}]`
 
+**Field:** | `agency_form_fields`
+:--- |:---
+**Type:** | object
+**Description:** | Agency specific request form fields as specified in your [agency's metadata file](https://github.com/18F/foia-recommendations/blob/master/schemas.md#agency-metadata-file).
+**Required:** | if applicable
+**Example:** | `{"form_460A_case_number": "3347", "requester_type": "Journalist"}`
+
+
+#### Agency form fields
+
+Your agency might have additional fields specified in your [agency metadata file](https://github.com/18F/foia-recommendations/blob/master/schemas.md#agency-metadata-file).
+These additional fields are unique to your agency and are captured separately in
+the `agency_form_fields` object.
+
+The specific fields in `agency_form_fields` will be defined by your metadata
+file which includes both required and optional form fields. Any fields in
+`required_form_fields` will be considered required. Any fields in
+`additional_form_fields` will be considered optional. The portal will validate
+that any required fields are present.
+
+**Field:** | `*`
+:--- |:---
+**Type:** | determined by the [agency metadata file][agency-metadata-file-schema]
+**Description:** | Agency specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
+**Required:** | if applicable
+**Example:** | See [below](#agency-form-fields-example)
+
+
+<a id="agency-form-fields-example"></a>
+##### Example
+
+Consider this sample [agency metadata
+file](https://github.com/18F/foia/blob/master/GSA.json). A truncated version is
+provided below.
+
+```json
+{
+    "abbreviation": "GSA",
+    "departments": [
+        {
+            // ...
+            "additional_form_fields": [
+                {
+                    "help_text": "If your request relates to a GSA contract, please provide the contract number (which starts with \"GS-\")",
+                    "label": "GS- Contract number",
+                    "name": "contract_number"
+
+                },
+                {
+                    "help_text": "(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT",
+                    "label": "GSA Region",
+                    "name": "region"
+                }
+            ],
+            "required_form_fields": [
+                {
+                    "enum": [
+                        "Company",
+                        "Individual/Self",
+                        "Organization"
+                    ],
+                    "help_text": "Company",
+                    "label": "Request Origin",
+                    "name": "request_origin",
+                    "regs_url": null
+                }
+            ]
+        }
+    ]
+}
+```
+
+It has the following `required_form_fields`
+
+- `request_origin`
+
+...and `additional_form_fields`.
+
+- `contract_number`
+- `region`
+
+So in the request payload, `agency_form_fields` would look like:
+
+```json
+{
+    // ...
+    "agency_form_fields": {
+        "contract_number": "5547",
+        "region": "9",
+        "request_origin": "Individual/Self"
+    }
+}
+```
+
+**Field:** | `request_origin`
+:--- |:---
+**Type:** | enum (`"Individual/Self"`, `"Company"`, `"Organization"`)
+**Description:** | Agency specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
+**Required:** | yes
+**Example:** | `"Individual/Self"`
+
+**Field:** | `contract_number`
+:--- |:---
+**Type:** | text
+**Description:** | Agency specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
+**Required:** | no
+**Example:** | `"5547"`
+
+**Field:** | `region`
+:--- |:---
+**Type:** | text
+**Description:** | Agency specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
+**Required:** | no
+**Example:** | `"9"`
+
 
 ### Success Response
 
@@ -221,3 +336,6 @@ Services like [api.data.gov](https://api.data.gov/about/) provide this authentic
 	}
     }
     EOF
+
+
+[agency-metadata-file-schema]: https://github.com/18F/foia-recommendations/blob/master/schemas.md#agency-metadata-file
