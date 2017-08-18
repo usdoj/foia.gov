@@ -157,30 +157,32 @@ JSON payload that contains the form fields.
 **Required:** | no
 **Example:** | `[{"filename": "letter.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}]`
 
-**Field:** | `agency_form_fields`
+**Field:** | `agency_component_specific_fields`
 :--- |:---
 **Type:** | object
-**Description:** | Agency specific request form fields as specified in your [agency's metadata file](https://github.com/18F/foia-recommendations/blob/master/schemas.md#agency-metadata-file).
+**Description:** | Agency component specific request form fields as specified in your [agency's metadata file][agency-metadata-file-schema].
 **Required:** | if applicable
 **Example:** | `{"form_460A_case_number": "3347", "requester_type": "Journalist"}`
 
 
 #### Agency form fields
 
-Your agency might have additional fields specified in your [agency metadata file](https://github.com/18F/foia-recommendations/blob/master/schemas.md#agency-metadata-file).
-These additional fields are unique to your agency and are captured separately in
-the `agency_form_fields` object.
+Your agency component might have additional fields specified in your [agency
+metadata file][agency-metadata-file-schema].  These additional fields are unique
+to your agency and are captured separately in the
+`agency_component_specific_fields` object.
 
-The specific fields in `agency_form_fields` will be defined by your metadata
+The fields in `agency_component_specific_fields` will be defined by your agency metadata
 file which includes both required and optional form fields. Any fields in
 `required_form_fields` will be considered required. Any fields in
-`additional_form_fields` will be considered optional. The portal will validate
-that any required fields are present.
+`additional_form_fields` will be considered optional. The FOIA.gov portal will
+ensure that required fields are present before POSTing a request to your
+endpoint.
 
 **Field:** | `*`
 :--- |:---
 **Type:** | determined by the [agency metadata file][agency-metadata-file-schema]
-**Description:** | Agency specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
+**Description:** | Agency component specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
 **Required:** | if applicable
 **Example:** | See [below](#agency-form-fields-example)
 
@@ -229,45 +231,24 @@ provided below.
 }
 ```
 
-`agency_form_fields` therefore has the following fields.
+`agency_component_specific_fields` therefore has the following fields.
 
 - (required) `request_origin`
 - `contract_number`
 - `region`
 
-So in the request payload, `agency_form_fields` would look like:
+So in the request payload, `agency_component_specific_fields` would look like:
 
 ```
 {
     // ...
-    "agency_form_fields": {
+    "agency_component_specific_fields": {
         "contract_number": "5547",
         "region": "9",
         "request_origin": "Individual/Self"
     }
 }
 ```
-
-**Field:** | `request_origin`
-:--- |:---
-**Type:** | enum (`"Individual/Self"`, `"Company"`, `"Organization"`)
-**Description:** | Agency specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
-**Required:** | yes
-**Example:** | `"Individual/Self"`
-
-**Field:** | `contract_number`
-:--- |:---
-**Type:** | text
-**Description:** | Agency specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
-**Required:** | no
-**Example:** | `"5547"`
-
-**Field:** | `region`
-:--- |:---
-**Type:** | text
-**Description:** | Agency specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
-**Required:** | no
-**Example:** | `"9"`
 
 
 ### Success Response
@@ -312,6 +293,11 @@ Services like [api.data.gov](https://api.data.gov/about/) provide this authentic
 		"filesize": 27556
 	    }
 	],
+	"agency_component_specific_fields": {
+	    "contract_number": "5547",
+	    "region": "9",
+	    "request_origin": "Individual/Self"
+	},
 	"description": "I am seeking records pertaining to ...",
 	"email": "george.washington@example.com",
 	"expedited": false,
