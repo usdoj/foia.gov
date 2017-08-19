@@ -7,4 +7,10 @@ plain old javascript files and will copy them to the Jekyll build directory
 
 ## Development
 
+This will start the Jekyll server and webpack in watch mode.
 
+    $ make serve
+
+## Tests
+
+The test files are compiled via `mocha-webpack` and then run with mocha.

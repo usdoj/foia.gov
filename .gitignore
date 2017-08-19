@@ -1,6 +1,7 @@
 .htpasswd
 .jekyll-metadata
 .sass-cache
+.tmp/
 _site
 node_modules/
 /www.foia.gov/assets/
