@@ -28,6 +28,7 @@ Once you've got Ruby installed, install bundler.
 Install the dependencies.
 
     $ bundle install
+    $ npm install
 
 Build the site.
 
