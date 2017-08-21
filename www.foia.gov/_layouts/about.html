@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<a name="top" id="top"></a>
+<div id="subLeft">
+  <img src="images/{{ page.subnav | default:'about' }}-title.gif" alt="{{ page.title | defualt:'About' }}" class="subTitle" />
+  {% include about-subnav.html %}
+</div>
+<div id="subRight">
+  {{ content }}
+  <p align="right"><a href="#top">Return to Top</a></p>
+</div>
+<div class="clear"></div>
