@@ -2,7 +2,7 @@
 <script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOJ"></script>
 <script type="text/javascript" src="scripts/breakout.js"></script>
 <div id="header">
-  <div class="skip"><a id="skip-link" href="2011foiapost03.html#mainContent">Skip to Main Content</a>|<a id="skip-link" href="2011foiapost03.html#footerLinks">Skip to Footer</a></div>
+  <div class="skip"><a href="#mainContent">Skip to Main Content</a>|<a href="#footerLinks">Skip to Footer</a></div>
   <div id="doj"><img src="images/doj-top-logo.jpg" alt="United States Department of Justice" width="360" height="35" class="headerDOJ" /></div>
   <div id="headNav">
     <div><a href="index.html"><img src="images/foia-title-final.jpg" alt="Foia.gov" width="330" height="80" class="foiaTitle" /></a></div>
@@ -21,7 +21,8 @@
   <div id="tabs">
     <div id="tabnav">
       <ul>
-        <li><a href="index.html" class="home{% if page.navigation == 'home' %} selected{% endif %}"><p>Home</p></a></li>
+        <li><a href="index.html" class="home{% if page.navigation == nil or page.navigation == 'home' %} selected{% endif %}"><p>Home</p></a></li>
+        <li><a href="request.html" class="request{% if page.navigation == 'request' %} selected{% endif %}"><p>Request</p></a></li>
         <li><a href="data.html" class="data{% if page.navigation == 'data' %} selected{% endif %}"><p>Data</p></a></li>
         <li><a href="reports.html" class="reports{% if page.navigation == 'reports' %} selected{% endif %}"><p>Reports</p></a></li>
         <li><a href="search.html" class="find{% if page.navigation == 'find' %} selected{% endif %}"><p>Find</p></a></li>
