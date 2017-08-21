@@ -2,7 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.3.4-node
+      - image: circleci/ruby:2.4.1-node
+    working_directory: ~/foia
     steps:
       - checkout
       - type: cache-restore
@@ -17,15 +18,22 @@ jobs:
       - run:
           name: Build
           command: make build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - _site
       - run:
           name: Run tests
           command: make test
 
   deploy:
     docker:
-      - image: circleci/ruby:2.3.4-node
+      - image: circleci/ruby:2.4.1-node
+    working_directory: ~/foia
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/foia
       - run:
           name: Install cf cli
           command: |
@@ -36,7 +44,7 @@ jobs:
 
       - run:
           name: Generate htpasswd
-          command: bin/gen_htpasswd.sh www.foia.gov/.htpasswd
+          command: bin/gen_htpasswd.sh _site/.htpasswd
       - deploy:
           name: cf push
           command: |
