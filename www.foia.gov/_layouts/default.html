@@ -10,7 +10,11 @@
 {% include header.html %}
 <!-- Start Main Page -->
 <div id="main">
+<!-- Start Content -->
+<div id="content">
 {{ content }}
+</div>
+<!-- End Content -->
 </div>
 <!-- End Main Page -->
 <div id="shadowFilter" class="blockout" style="display:none;"></div>
@@ -19,5 +23,6 @@
 </div>
 </div>
 <!-- End FOIA Template -->
+{% if page.init %}<script type="text/javascript" src="{{ page.init | prepend: "/" | prepend: site.baseurl }}"></script>{% endif %}
 </body>
 </html>

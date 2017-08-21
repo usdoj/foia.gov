@@ -49,10 +49,10 @@ body {font: 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif normal; c
 #tabnav li a.data:hover {background: url(images/tab-data_hover.png) 0 0 no-repeat; color: #fff;}
 #tabnav li a.data:active {background: url(images/tab-data_on.png) 0 0 no-repeat; color: #121b26;}
 #tabnav li a.data p {margin: 21px 0 0 25px;}
-#tabnav li a.reports {background: url(images/tab-reports_off.png) 0 0 no-repeat; width: 97px; }
-#tabnav li a.reports:hover {background: url(images/tab-reports_hover.png) 0 0 no-repeat; color: #fff;}
-#tabnav li a.reports:active {background: url(images/tab-reports_on.png) 0 0 no-repeat; color: #121b26;}
-#tabnav li a.reports p {margin: 21px 0 0 18px;}
+#tabnav li a.reports, #tabnav li a.request {background: url(images/tab-reports_off.png) 0 0 no-repeat; width: 97px; }
+#tabnav li a.reports:hover, #tabnav li a.request:hover {background: url(images/tab-reports_hover.png) 0 0 no-repeat; color: #fff;}
+#tabnav li a.reports:active, #tabnav li a.request:active {background: url(images/tab-reports_on.png) 0 0 no-repeat; color: #121b26;}
+#tabnav li a.reports p, #tabnav li a.request p {margin: 21px 0 0 18px;}
 #tabnav li a.about {background: url(images/tab-about_off.png) 0 0 no-repeat; width: 98px; }
 #tabnav li a.about:hover {background: url(images/tab-about_hover.png) 0 0 no-repeat; color: #fff;}
 #tabnav li a.about:active {background: url(images/tab-about_on.png) 0 0 no-repeat; color: #121b26;}
@@ -515,11 +515,36 @@ input.checkBox {height:15px; width: 15px; border: 1px solid #d9d6d6;}
 }
 
 /* Indicate Current Active Page */
-#tabnav li a.selected {
+#tabnav li .selected {
     background: url(images/tab-home_on.png) 0 0 no-repeat;
-    width: 104px;
     color: #121b26;
 }
+
+#tabnav li .selected.home {
+  background: url(images/tab-home_on.png) 0 0 no-repeat;
+}
+
+#tabnav li .selected.request {
+  background: url(images/tab-reports_on.png) 0 0 no-repeat;
+}
+
+#tabnav li .selected.data {
+  background: url(images/tab-data_on.png) 0 0 no-repeat;
+}
+
+#tabnav li .selected.reports {
+  background: url(images/tab-reports_on.png) 0 0 no-repeat;
+}
+
+#tabnav li .selected.find {
+  background: url(images/tab-find_on.png) 0 0 no-repeat;
+}
+
+#tabnav li .selected.about {
+  background: url(images/tab-about_on.png) 0 0 no-repeat;
+}
+
+#subNav li.selected a {background: #fff; color: #336699;}
 
 .articleimageborder {
     height:140px;

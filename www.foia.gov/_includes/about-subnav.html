@@ -1,0 +1,9 @@
+<ul id="subNav">
+  {% comment %} it's okay if there is no default subnav selected, like in the case of search.html{% endcomment %}
+  <li class="about{% if page.subnav == 'about' %} selected{% endif %}"><a href="about.html">What is FOIA?</a></li>
+  <li class="how-to{% if page.subnav == 'how-to' %} selected{% endif %}"><a href="how-to.html">How to Make a FOIA Request</a></li>
+  <li class="make-request{% if page.subnav == 'make-request' %} selected{% endif %}"><a href="report-makerequest.html">Where to Make a FOIA Request</a></li>
+  <li class="opengov{% if page.subnav == 'opengov' %} selected{% endif %}"><a href="opengov.html">Additional Government Resources</a></li>
+  <li class="faq{% if page.subnav == 'faq' %} selected{% endif %}"><a href="faq.html">Frequently Asked Questions</a></li>
+  <li class="es{% if page.subnav == 'es' %} selected{% endif %}"><a href="index-es.html">FOIA en Espa&ntilde;ol</a></li>
+</ul>
