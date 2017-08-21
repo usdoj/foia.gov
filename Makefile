@@ -8,12 +8,15 @@ endif
 all: build test
 
 build:
+	npm run build
 	bundle exec jekyll build
 
 serve:
+	npm run watch &
 	bundle exec jekyll serve
 
 test:
+	npm test
 	bin/htmlproofer.sh
 	# Canary test. Make sure any changes to the static content is
 	# intentional. If any differences are output, confirm they were

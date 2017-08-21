@@ -1,0 +1,57 @@
+{
+  "name": "foia",
+  "version": "1.0.0",
+  "description": "New beta FOIA site and national portal.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "test:lint": "eslint js/**.js js/**.jsx",
+    "test:mocha": "mocha-webpack --webpack-config webpack.config.test.js js/**.test.js*",
+    "test": "npm-run-all test:*",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18F/foia.git"
+  },
+  "keywords": [
+    "doj",
+    "foia",
+    "government",
+    "national portal",
+    "usa",
+    "uswds"
+  ],
+  "author": "Aaron D Borden <adborden@a14n.net>",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/18F/foia/issues"
+  },
+  "homepage": "https://github.com/18F/foia#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "chai": "^4.1.1",
+    "enzyme": "^2.9.1",
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.2.1",
+    "mocha": "^3.5.0",
+    "mocha-webpack": "^0.7.0",
+    "npm-run-all": "^4.0.2",
+    "react-test-renderer": "^15.6.1",
+    "sinon": "^3.2.1",
+    "sinon-chai": "^2.13.0",
+    "webpack": "^2.7.0",
+    "webpack-node-externals": "^1.6.0"
+  }
+}
