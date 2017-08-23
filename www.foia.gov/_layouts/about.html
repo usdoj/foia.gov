@@ -1,10 +1,10 @@
 ---
-layout: default
+layout: legacy-layout
 ---
 <a name="top" id="top"></a>
 <div id="subLeft">
   <img src="images/{{ page.subnav | default:'about' }}-title.gif" alt="{{ page.title | defualt:'About' }}" class="subTitle" />
-  {% include about-subnav.html %}
+  {% include legacy/about-subnav.html %}
 </div>
 <div id="subRight">
   {{ content }}

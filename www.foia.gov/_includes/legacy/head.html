@@ -1,0 +1,19 @@
+<head>
+<meta http-equiv="cache-control" content="{{ page.cache_control | default: 'no-cache' }}" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="dc.title" content="FOIA.gov (Freedom of Information Act) {{ page.title | default: 'Home Page' }}" />
+<meta name="dc.description" content="The Freedom of Information Act (FOIA) is a law that gives you the right to access information from the federal government. It is often described as the law that keeps citizens in the know about their government." />
+<meta name="dc.creator" content="Freedom of Information Act (FOIA)" />
+<meta name="dc.language" scheme="ISO639" content="en-us" />
+<meta name="dc.date.created" content="2011-03-14" />
+<link rel="stylesheet" type="text/css" href="foia-style.css" />
+{% for css in page.stylesheets %}<link rel="stylesheet" type="text/css" href="{{ css }}.css" />{% endfor %}
+<script type="text/javascript" src="qtip/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
+{% for script in page.scripts %}
+<script type="text/javascript" src="{{ script }}"></script>
+{% endfor %}
+
+<title>FOIA.gov - Freedom of Information Act{% if page.title %}: {{ page.title }}{% endif %}</title>
+</head>
