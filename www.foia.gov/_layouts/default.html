@@ -5,6 +5,10 @@
 {% include head.html %}
 <body>
 <!-- Start FOIA Template -->
+<!-- TODO: Remove this div when we dump the gradient. -->
+{% if page.legacy == true %}
+<div id="background">
+{% endif %}
 <div id="container">
 {% include header.html %}
 <!-- Start Main Page -->
@@ -15,6 +19,10 @@
 </div>
 <!-- End Content -->
 </div>
+<!-- TODO: Remove this div when we dump the gradient. -->
+{% if page.legacy == true %}
+</div>
+{% endif %}
 <!-- End Main Page -->
 {% include footer.html %}
 </div>

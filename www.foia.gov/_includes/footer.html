@@ -1,0 +1,18 @@
+<!-- Start Footer -->
+{% if page.legacy %}
+<div id="shadowFilter" class="blockout" style="display:none;"></div>
+<div id="exitMsg" class="exitMsg" style="display:none;"></div>
+{% endif %}
+
+<div id="footer">
+
+{% if page.legacy %}
+{% include legacy/footer.html %}
+{% endif %}
+
+</div>
+{% if page.legacy %}
+</div>
+</div>
+{% endif %}
+<!-- End Footer -->
