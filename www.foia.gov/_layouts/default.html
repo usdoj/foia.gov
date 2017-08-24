@@ -4,29 +4,23 @@
 <html>
 {% include head.html %}
 <body>
-<!-- Start FOIA Template -->
 <!-- TODO: Remove this div when we dump the gradient. -->
 {% unless page.not_legacy %}
 <div id="background">
 {% endunless %}
-<div id="container">
-{% include header.html %}
-<!-- Start Main Page -->
-<div id="main">
-<!-- Start Content -->
-<div id="content">
-{{ content }}
-</div>
-<!-- End Content -->
-</div>
+<div class="usa-grid">
+  {% include header.html %}
+  <div id="main">
+    <div id="content">
+    {{ content }}
+    </div>
+  </div>
 <!-- TODO: Remove this div when we dump the gradient. -->
 {% unless page.not_legacy %}
 </div>
 {% endunless %}
-<!-- End Main Page -->
 {% include footer.html %}
 </div>
-<!-- End FOIA Template -->
 {% if page.init %}<script type="text/javascript" src="{{ page.init | prepend: "/" | prepend: site.baseurl }}"></script>{% endif %}
 </body>
 </html>
