@@ -6,9 +6,9 @@
 <body>
 <!-- Start FOIA Template -->
 <!-- TODO: Remove this div when we dump the gradient. -->
-{% if page.legacy == true %}
+{% unless page.not_legacy %}
 <div id="background">
-{% endif %}
+{% endunless %}
 <div id="container">
 {% include header.html %}
 <!-- Start Main Page -->
@@ -20,9 +20,9 @@
 <!-- End Content -->
 </div>
 <!-- TODO: Remove this div when we dump the gradient. -->
-{% if page.legacy == true %}
+{% unless page.not_legacy %}
 </div>
-{% endif %}
+{% endunless %}
 <!-- End Main Page -->
 {% include footer.html %}
 </div>
