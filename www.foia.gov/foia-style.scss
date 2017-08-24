@@ -7,8 +7,11 @@
 // visual design
 @import "foia-legacy.css";
 
+// USWDS -- variable overrides can be found in _sass/_theme.scss
+@import '../../node_modules/uswds/src/stylesheets/uswds.scss';
+
 // SMACSS https://smacss.com/
+@import "theme"; // variable overrides for USWDS live here, so import first
 @import "base";
 @import "layout";
 @import "modules";
-@import "theme";
