@@ -10,8 +10,10 @@
 // USWDS -- variable overrides can be found in _sass/_theme.scss
 @import '../../node_modules/uswds/src/stylesheets/uswds.scss';
 
+$font-serif: Georgia, 'Times New Roman', Times, serif;
+
 // SMACSS https://smacss.com/
-@import "theme"; // variable overrides for USWDS live here, so import first
 @import "base";
 @import "layout";
 @import "modules";
+@import "theme"; // variable overrides for USWDS live here, so import first
