@@ -9,7 +9,12 @@ all: build test
 
 build:
 	npm run build
+	mkdir -p www.foia.gov/assets
+	cp -R -t www.foia.gov/assets node_modules/uswds/dist/fonts node_modules/uswds/dist/img
 	bundle exec jekyll build
+
+clean:
+	rm -rf www.foia.gov/assets
 
 serve:
 	npm run watch &
@@ -27,4 +32,4 @@ test:
 deploy:
 	bin/cf_deploy.sh foia-dot-gov doj-foia-discovery prototype
 
-.PHONY: all build deploy test
+.PHONY: all build clean deploy test
