@@ -5,7 +5,7 @@
 {% include head.html %}
 <body>
 <!-- TODO: Remove this div when we dump the gradient. -->
-{% unless page.not_legacy %}
+{% unless page.use-uswds %}
 <div id="background">
 {% endunless %}
 {% include header.html %}
@@ -16,7 +16,7 @@
     </div>
   </div>
 <!-- TODO: Remove this div when we dump the gradient. -->
-{% unless page.not_legacy %}
+{% unless page.use-uswds %}
 </div>
 {% endunless %}
 {% include footer.html %}

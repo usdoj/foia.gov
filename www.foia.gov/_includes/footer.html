@@ -1,17 +1,17 @@
 <!-- Start Footer -->
-{% unless page.not_legacy %}
+{% unless page.use-uswds %}
 <div id="shadowFilter" class="blockout" style="display:none;"></div>
 <div id="exitMsg" class="exitMsg" style="display:none;"></div>
 {% endunless %}
 
 <div class="footer usa-grid">
 
-{% unless page.not_legacy %}
+{% unless page.use-uswds %}
 {% include legacy/footer.html %}
 {% endunless %}
 
 </div>
-{% unless page.not_legacy %}
+{% unless page.use-uswds %}
 </div>
 </div>
 {% endunless %}

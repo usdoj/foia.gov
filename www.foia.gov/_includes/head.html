@@ -11,7 +11,7 @@
 {% for script in page.scripts %}
 <script type="text/javascript" src="{{ script }}"></script>
 {% endfor %}
-{% unless page.not_legacy %}
+{% unless page.use-uswds %}
 {% include legacy/head.html %}
 {% endunless %}
 <link rel="stylesheet" type="text/css" href="/foia-style.css" />
