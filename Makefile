@@ -11,6 +11,8 @@ build:
 	npm run build
 	mkdir -p www.foia.gov/assets
 	cp -R -t www.foia.gov/assets node_modules/uswds/dist/fonts node_modules/uswds/dist/img
+	# for osx
+	# cp -R node_modules/uswds/dist/fonts node_modules/uswds/dist/img www.foia.gov/assets
 	bundle exec jekyll build
 
 clean:
