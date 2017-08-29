@@ -11,6 +11,8 @@
 {% for script in page.scripts %}
 <script type="text/javascript" src="{{ script }}"></script>
 {% endfor %}
+<!--temp home for USWDS JS require statement -->
+<script src="/assets/js/request.bundle.js"></script>
 {% unless page.use-uswds %}
 {% include legacy/head.html %}
 {% endunless %}
