@@ -8,7 +8,6 @@
 html {background: #121B26;}
 body {font: 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif normal; color: #333; }
 #background {background: url(images/bg-grad.jpg) repeat-x top left }
-/*#container {display: block; width: 960px; margin: 0 auto;}*/
 
 #warning {font:Georgia, "Times New Roman", Times, serif; width: auto; background: #f8f8f8; border: 3px double #ccc; color: #333; margin: 30px; padding: 15px;}
 #warning h1 {font-size: 16px;}
@@ -24,20 +23,16 @@ body {font: 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif normal; c
 }
 
 /*Header Styles*/
-/*#header {padding: 0; margin: 0; background: url(images/bg-header.jpg) repeat-x 0 0; }*/
 #doj {height: 38px;}
 .headerDOJ {float: right;}
 .foiaTitle {float: left;}
 
 #headNav {height: 80px; width: 960px; margin: 0; padding: 0; font-size: 14px; font-family: Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; font-style: normal; font-weight:normal; }
-/*#headNav img {padding: 0; margin:0;}*/
-/*#headNav ul {list-style-type: none; margin: 0 0 0 460px;}*/
 #headNav li {display:inline;}
 #headNav li a {display: block; float: left; color: #fff; margin: 18px 0 0 30px; padding: 0 0 20px 0;}
 #headNav li a:hover {/*background:url(images/arrow.gif) -30px -10px no-repeat;*/ text-decoration: underline;}
 
 #tabs {font: normal 16px Georgia, "Times New Roman", Times, serif; color: #fff; height: 48px; margin:0; padding:0;}
-/*#tabnav {float: left; width:755px;}*/
 #tabnav ul {list-style-type: none;}
 #tabnav li {display: inline;}
 #tabnav li a {display: block; float: left; color: #fff; text-decoration:none; height: 48px;}
@@ -137,7 +132,6 @@ hr {background-color:#f8f8f8; color: #f8f8f8; height: 1px; border-bottom: #DEDED
 /*Tabbed Report Box Styles on the Homepage*/
 
 ul.tabs li {list-style:none; display: inline;}
-/* ul.tabs li a {display: block; float: left; height: 22px; width: 79px; background: url(images/hrtab-off.gif) 0 0 no-repeat; margin: 15px 0 0 0; padding: 8px 0 0 20px;} */
 ul.tabs li a {display: block; float: left; height: 30px; width: 79px; background: url(images/hrtab-off.gif) 0 0 no-repeat; margin: 9px 0 0 0; padding: 12px 0 0 20px;}
 ul.tabs li a:hover {background: url(images/hrtab-on.gif) 0 0 no-repeat; text-decoration: none; color:#333;}
 ul.tabs li a.active {background: url(images/hrtab-on.gif) 0 0 no-repeat; text-decoration: none; color:#333;}
