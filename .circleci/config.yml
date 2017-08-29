@@ -51,9 +51,7 @@ jobs:
           command: bin/gen_htpasswd.sh _site/.htpasswd
       - deploy:
           name: cf push
-          command: |
-            export PATH=$HOME/bin:$PATH
-            make deploy
+          command: cf_deploy.sh foia-dot-gov doj-foia-discovery prototype
 
 
 workflows:
