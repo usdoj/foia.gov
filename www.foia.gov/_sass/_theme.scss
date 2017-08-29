@@ -4,6 +4,10 @@ body {
   background-color: #121B26;
 }
 
+#background {
+  background-position: 0 25px; // to accommodate gov banner
+}
+
 #headNav img {
   max-width: none;
 }
