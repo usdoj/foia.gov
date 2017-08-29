@@ -37,20 +37,15 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/ruby:2.4.1-node
+      - image: adborden/cloud-foundry-cli
+        environment:
+          CF_API: https://api.fr.cloud.gov
+
     working_directory: ~/foia
     steps:
       - checkout
       - attach_workspace:
           at: ~/foia
-      - run:
-          name: Install cf cli
-          command: |
-            mkdir -p $HOME/bin
-            export PATH=$HOME/bin:$PATH
-            curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.23.0" | tar xzv -C $HOME/bin
-            cf install-plugin autopilot -f -r CF-Community
-
       - run:
           name: Generate htpasswd
           command: bin/gen_htpasswd.sh _site/.htpasswd
