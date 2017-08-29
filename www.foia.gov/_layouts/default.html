@@ -1,28 +1,26 @@
 ---
 ---
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml" >
+<!DOCTYPE html>
+<html>
 {% include head.html %}
 <body>
-<!-- Start FOIA Template -->
+<!-- TODO: Remove this div when we dump the gradient. -->
+{% unless page.use-uswds %}
 <div id="background">
-<div id="container">
+{% endunless %}
 {% include header.html %}
-<!-- Start Main Page -->
-<div id="main">
-<!-- Start Content -->
-<div id="content">
-{{ content }}
+<div class="usa-grid">
+  <div id="main">
+    <div id="content">
+    {{ content }}
+    </div>
+  </div>
+<!-- TODO: Remove this div when we dump the gradient. -->
+{% unless page.use-uswds %}
 </div>
-<!-- End Content -->
-</div>
-<!-- End Main Page -->
-<div id="shadowFilter" class="blockout" style="display:none;"></div>
-<div id="exitMsg" class="exitMsg" style="display:none;"></div>
+{% endunless %}
 {% include footer.html %}
 </div>
-</div>
-<!-- End FOIA Template -->
 {% if page.init %}<script type="text/javascript" src="{{ page.init | prepend: "/" | prepend: site.baseurl }}"></script>{% endif %}
 </body>
 </html>
