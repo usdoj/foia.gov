@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Dispatcher } from 'flux';
 import { Container } from 'flux/utils';
 
-import AgencyComponentSelector from './agency_component_selector';
-import FOIARequestForm from './foia_request_form';
-import Header from './header';
+import AgencyComponentSelector from 'components/agency_component_selector';
+import FOIARequestForm from 'components/foia_request_form';
+import Header from 'components/header';
 
-import AgencyStore from './stores/agency';
+import AgencyStore from 'stores/agency';
 
-import { request } from './actions';
+import { request } from 'actions';
 
 
 // TODO fetch list of agencies and agency components from the server

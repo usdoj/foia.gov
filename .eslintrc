@@ -1,4 +1,6 @@
 extends: airbnb
+settings:
+  import/resolver: webpack
 env:
   browser: yes
 rules:
