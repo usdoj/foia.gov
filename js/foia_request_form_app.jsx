@@ -8,7 +8,11 @@ import Header from 'components/header';
 
 import AgencyStore from 'stores/agency';
 
-import { request } from 'actions';
+import { RequestActions } from 'actions';
+
+import Api from 'util/api';
+
+const api = new Api('http://localhost:4000/api');
 
 
 // TODO fetch list of agencies and agency components from the server
@@ -21,8 +25,11 @@ const agencies = {
 const dispatcher = new Dispatcher();
 const agencyStore = new AgencyStore(dispatcher);
 
+const requestActions = RequestActions({ dispatcher, api });
+
 function agencyChange(agency) {
-  request.agencyChange(dispatcher, agency);
+  requestActions.agencyChange(agency)
+    .then(requestActions.receiveAgency);
 }
 
 
@@ -32,9 +39,10 @@ class FOIARequestFormApp extends Component {
   }
 
   static calculateState() {
-    const { selectedAgency } = agencyStore.getState();
+    const { agency, selectedAgency } = agencyStore.getState();
     return {
       agencies,
+      agency,
       selectedAgency,
     };
   }
@@ -48,7 +56,7 @@ class FOIARequestFormApp extends Component {
           selectedAgency={this.state.selectedAgency}
           onAgencyChange={agencyChange}
         />
-        { this.state.selectedAgency && <FOIARequestForm agency={this.state.selectedAgency} /> }
+        { this.state.agency && <FOIARequestForm agency={this.state.agency} /> }
       </div>
     );
   }

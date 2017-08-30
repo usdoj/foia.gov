@@ -8,6 +8,7 @@ class AgencyStore extends Store {
 
     // [string] The selected agency to submit the FOIA request to
     this.state = {
+      agency: null,
       selectedAgency: null,
     };
   }
@@ -23,6 +24,13 @@ class AgencyStore extends Store {
         this.__emitChange();
         break;
       }
+
+      case types.REQUEST_RECEIVE_AGENCY: {
+        this.state.agency = payload.agency;
+        this.__emitChange();
+        break;
+      }
+
 
       default:
     }
