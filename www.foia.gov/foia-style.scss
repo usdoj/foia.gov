@@ -7,6 +7,12 @@
 // visual design
 @import "foia-legacy.css";
 
+// USWDS
+@import '../../node_modules/uswds/src/stylesheets/uswds.scss';
+
+// Variable overrides
+$font-serif: Georgia, 'Times New Roman', Times, serif;
+
 // SMACSS https://smacss.com/
 @import "base";
 @import "layout";
