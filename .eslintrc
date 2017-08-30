@@ -2,5 +2,6 @@ extends: airbnb
 env:
   browser: yes
 rules:
-  semi: ["error", "always"]
   camelcase: 0
+  'react/forbid-prop-types': 0
+  semi: ["error", "always"]
