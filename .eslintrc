@@ -3,3 +3,4 @@ env:
   browser: yes
 rules:
   semi: ["error", "always"]
+  camelcase: 0
