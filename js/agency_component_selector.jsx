@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function AgencyComponentSelector(props) {
-  const { agencies, selectedAgency } = props;
+  const { agencies, selectedAgency, onAgencyChange } = props;
 
-  function onChange() {
-    console.log('select changed');
+  function onChange(e) {
+    onAgencyChange(e.target.value);
   }
 
   const options = Object.entries(agencies)
@@ -25,6 +25,7 @@ function AgencyComponentSelector(props) {
 
 AgencyComponentSelector.propTypes = {
   agencies: PropTypes.object,
+  onAgencyChange: PropTypes.func.isRequired,
   selectedAgency: PropTypes.string,
 };
 
