@@ -8,10 +8,7 @@
 @import "foia-legacy.css";
 
 // USWDS
-@import '../../node_modules/uswds/src/stylesheets/uswds.scss';
-
-// Variable overrides
-$font-serif: Georgia, 'Times New Roman', Times, serif;
+@import "uswds";
 
 // SMACSS https://smacss.com/
 @import "base";
