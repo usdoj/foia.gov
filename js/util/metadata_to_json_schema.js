@@ -40,7 +40,7 @@ function metadataToJsonSchema(metadata, departmentName) {
     metadata.departments.find(department => department.name === departmentName) || {};
 
   const jsonSchema = {
-    title: metadata.abbreviation,
+    title: departmentMetadata.name || metadata.name,
     type: 'object',
     properties: {},
   };

@@ -1,6 +1,7 @@
 ---
 data:
   abbreviation: GSA
+  name: General Services Administration
   departments:
   - name: General Services Administration (General)
     reading_rooms:
@@ -32,7 +33,7 @@ data:
       help_text: If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")
     - name: region
       label: GSA Region
-      help_text: "(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT"
+      help_text: "i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT"
   - name: Office of Inspector General
     reading_rooms:
     - https://www.gsa.gov/portal/content/305477
