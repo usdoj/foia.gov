@@ -1,31 +1,11 @@
 /* Temporary styles to make adjusting the existing styles easier. */
 
 body {
-  background-color: #121B26;
+  background-color: #121B26; /* leave until we remove gradients */
 }
 
 #background {
   background-position: 0 25px; // to accommodate gov banner
-}
-
-#headNav img {
-  max-width: none;
-}
-
-#hero {
-  background-repeat: no-repeat;
-  h1 {
-    font-size: 32px;
-    margin-top: 0;
-  }
-  p {
-    margin: 0;
-    padding: 0;
-  }
-  .herobuttons {
-    float: none;
-    display: inline-block;
-  }
 }
 
 html,
@@ -55,10 +35,45 @@ ul.tabs li {
   }
 }
 
-.reportText {
-  margin-top: -30px;
+/* hide legacy labels and legends */
+#selectReport,
+#dataTable {
+  label,
+  legend {
+    @extend .usa-sr-only;
+  }
 }
 
+/* this is necessary because the markup in the HTML doesn't match the markup WDS expects, so it hides the whole thing */
+[type=checkbox],
+[type=radio] {
+  position: static;
+  left: 0;
+  display: inline-block;
+  width: 10px;
+  height: 1em;
+}
+
+/* home page temp overrides */
+#headNav img {
+  max-width: none;
+}
+
+#hero {
+  background-repeat: no-repeat;
+  h1 {
+    font-size: 32px;
+    margin-top: 0;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  .herobuttons {
+    float: none;
+    display: inline-block;
+  }
+}
 .articleimageborder {
   height: 200px;
   + h3 {
@@ -74,26 +89,19 @@ ul.tabs li {
   }
 }
 
-[type=checkbox],
-[type=radio] {
-  position: static;
-  left: 0;
-  display: inline-block;
-  width: 10px;
-  height: 1em;
-}
 /* temp data page styles */
 .agencyTextbox {
   float: left;
 }
-label[for=addagency1] {
-  display: none;
-}
+
 input.addAgency {
   background-color: transparent;
   margin: 0;
 }
 /* search temp styles */
+.reportText {
+  margin-top: 0px !important;
+}
 #edit-submit {
   right: 21px;
   top: -23px;
@@ -112,4 +120,5 @@ input.addAgency {
 .footer span {
   display: none; // this isn't accessible and the whole point is to be accessible
 }
+
 /* end temp styles */
