@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: './js/request.jsx',
+  entry: {
+    request: './js/request.jsx',
+    uswds: './js/uswds.js',
+  },
   output: {
     path: path.resolve(__dirname, 'www.foia.gov/assets/js'),
-    filename: 'request.bundle.js',
+    filename: '[name].bundle.js',
   },
   module: {
     loaders: [
