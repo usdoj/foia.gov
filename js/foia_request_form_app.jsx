@@ -4,7 +4,6 @@ import { Container } from 'flux/utils';
 
 import AgencyComponentSelector from 'components/agency_component_selector';
 import FOIARequestForm from 'components/foia_request_form';
-import Header from 'components/header';
 
 import AgencyStore from 'stores/agency';
 
@@ -50,7 +49,6 @@ class FOIARequestFormApp extends Component {
   render() {
     return (
       <div>
-        <Header />
         <AgencyComponentSelector
           agencies={this.state.agencies}
           selectedAgency={this.state.selectedAgency}

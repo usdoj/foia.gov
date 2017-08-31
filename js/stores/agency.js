@@ -20,7 +20,7 @@ class AgencyStore extends Store {
   __onDispatch(payload) {
     switch (payload.type) {
       case types.REQUEST_AGENCY_CHANGE: {
-        this.state.selectedAgency = payload.agency;
+        this.state.selectedAgency = payload.agency || null;
         this.__emitChange();
         break;
       }
