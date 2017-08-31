@@ -197,7 +197,7 @@ provided below.
 ```
 {
     "abbreviation": "GSA",
-    "departments": [
+    "components": [
         {
             // ...
             "additional_form_fields": [

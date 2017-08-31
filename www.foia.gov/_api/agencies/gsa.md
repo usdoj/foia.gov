@@ -2,7 +2,7 @@
 data:
   abbreviation: GSA
   name: General Services Administration
-  departments:
+  components:
   - name: General Services Administration (General)
     reading_rooms:
     - https://www.gsa.gov/portal/content/305477
@@ -18,16 +18,16 @@ data:
       email: GSA.FOIA@gsa.gov
     - submission_format: web
       url: https://foiaonline.regulations.gov/foia/action/public/home
-    required_form_fields:
+    form_fields:
     - name: request_origin
       label: Request Origin
       regs_url: null
       help_text: Company
+      required: true
       enum:
       - Company
       - Individual/Self
       - Organization
-    additional_form_fields:
     - name: contract_number
       label: GS- Contract number
       help_text: If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")
@@ -48,16 +48,16 @@ data:
         fax: +12025010414
       - submission_format: email
         email: OIGFOIA-PrivacyAct@gsaig.gov
-    required_form_fields:
+    form_fields:
     - name: request_origin
       label: Request Origin
       regs_url: null
       help_text: Company
+      required: true
       enum:
       - Company
       - Individual/Self
       - Organization
-    additional_form_fields:
     - name: contract_number
       label: GS- Contract number
       help_text: If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")

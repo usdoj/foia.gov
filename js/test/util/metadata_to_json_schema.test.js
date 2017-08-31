@@ -10,7 +10,7 @@ describe('metadataToJsonSchema()', () => {
     beforeEach(() => {
       metadata = {
         abbreviation: 'GSA',
-        departments: [{
+        components: [{
           name: 'Headquarters',
         }],
       };
@@ -37,7 +37,9 @@ describe('metadataToJsonSchema()', () => {
     });
 
     it('returns an empty uiSchema', () => {
-      expect(result.uiSchema).to.deep.equal({});
+      expect(result.uiSchema).to.deep.equal({
+        'ui:order': [],
+      });
     });
   });
 
@@ -48,9 +50,9 @@ describe('metadataToJsonSchema()', () => {
     beforeEach(() => {
       metadata = {
         abbreviation: 'GSA',
-        departments: [{
+        components: [{
           name: 'Headquarters',
-          additional_form_fields: [{
+          form_fields: [{
             name: 'contract_number',
             label: 'GS- Contract number',
             help_text: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
@@ -88,6 +90,10 @@ describe('metadataToJsonSchema()', () => {
 
     it('returns an uiSchema', () => {
       expect(result.uiSchema).to.deep.equal({
+        'ui:order': [
+          'contract_number',
+          'region',
+        ],
         contract_number: {
           'ui:title': 'GS- Contract number',
           'ui:description': 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
@@ -107,9 +113,9 @@ describe('metadataToJsonSchema()', () => {
     beforeEach(() => {
       metadata = {
         abbreviation: 'GSA',
-        departments: [{
+        components: [{
           name: 'Headquarters',
-          additional_form_fields: [{
+          form_fields: [{
             name: 'contract_number',
             label: 'GS- Contract number',
             help_text: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
@@ -117,12 +123,12 @@ describe('metadataToJsonSchema()', () => {
             name: 'region',
             label: 'GSA Region',
             help_text: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
-          }],
-          required_form_fields: [{
+          }, {
             name: 'request_origin',
             label: 'Request Origin',
             regs_url: null,
             help_text: 'Company',
+            required: true,
             enum: [
               'Company',
               'Individual/Self',
@@ -159,6 +165,11 @@ describe('metadataToJsonSchema()', () => {
 
     it('returns an uiSchema', () => {
       expect(result.uiSchema).to.deep.equal({
+        'ui:order': [
+          'contract_number',
+          'region',
+          'request_origin',
+        ],
         contract_number: {
           'ui:title': 'GS- Contract number',
           'ui:description': 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
@@ -183,7 +194,7 @@ describe('metadataToJsonSchema()', () => {
       metadata = {
         abbreviation: 'GSA',
         name: 'General Services Administration',
-        departments: [],
+        components: [],
       };
 
       result = metadataToJsonSchema(metadata, 'nonexistent');
