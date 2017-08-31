@@ -148,8 +148,21 @@ describe('metadataToJsonSchema()', () => {
       });
     });
 
-    it('returns an empty uiSchema', () => {
-      expect(result.uiSchema).to.deep.equal({});
+    it('returns an uiSchema', () => {
+      expect(result.uiSchema).to.deep.equal({
+        contract_number: {
+          'ui:title': 'GS- Contract number',
+          'ui:description': 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
+        },
+        region: {
+          'ui:title': 'GSA Region',
+          'ui:description': '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
+        },
+        request_origin: {
+          'ui:title': 'Request Origin',
+          'ui:description': 'Company',
+        },
+      });
     });
   });
 
