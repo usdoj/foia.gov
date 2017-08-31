@@ -13,6 +13,12 @@ export function RequestActions({ dispatcher, api }) {
         agency,
       });
 
+      if (!agency) {
+        // The agency was unselected
+        return Promise.resolve(null);
+      }
+
+      // TODO this should be in a fetch action, results cached
       return api.get(`/agencies/${agency}/`);
     },
 
@@ -21,6 +27,8 @@ export function RequestActions({ dispatcher, api }) {
         type: types.REQUEST_RECEIVE_AGENCY,
         agency,
       });
+
+      return Promise.resolve(agency);
     },
   };
 }
