@@ -1,13 +1,54 @@
 ---
-layout: sidenav
+layout: agency-info-updater
 use-uswds: true
 sidenav:
-  - title: Link 1
-    href: x
-  - title: Link 2
+  - title: General agency info
+    href: '#general-agency-information'
+  - title: FOIA public liason
+    href: '#foia-public-liason'
+  - title: Service center
+    href: '#service-center'
+  - title: Postal submission
+    href: '#postal-submission'
+  - title: Digital submission
+    href: '#digital-submission'
+  - title: Fax submission
+    href: '#fax-submission'
+agency-name: Department of Justice
+sections:
+  - title: General agency information
     children:
-      - title: Child 1
-        href: xx
-      - title: Child 2
-        href: xxx
+    - title: Agency component
+      value: Federal Bureau of Investigation
+      type: dropdown
+    - title: Agency mission
+    - title: Email
+      help-text: Email where people can send questions about FOIA.
+    - title: Website
+      help-text: What is your agency's non-FOIA homepage?
+    - title: Reading room URL
+  - title: FOIA public liason
+    children:
+    - title: Name
+    - title: Phone
+    - title: Email
+  - title: Service center
+    children:
+    - title: Phone
+    - title: Email
+  - title: Postal submissions
+    children:
+    - title: Mailing address 1
+    - title: Mailing address 2
+    - title: City
+    - title: State
+      type: dropdown
+    - title: ZIP
+  - title: Digital submissions
+    children:
+    - title: Email
+    - title: Web submission URL
+  - title: Fax submissions
+    children:
+    - title: Fax submission number
 ---

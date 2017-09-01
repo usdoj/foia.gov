@@ -1,0 +1,19 @@
+---
+layout: sidenav
+---
+{% for section in page.sections %}
+  <h3 id="{{ section.title | slugify }}">{{ section.title }}</h3>
+  {% for input in section.children %}
+    <label for="input-{{ input.title | slugify }}">{{ input.title }}</label>
+    {% if input.help-text %}
+    <span class="usa-form-hint">{{ input.help-text }}</span>
+    {% endif %}
+    <input id="input-{{ input.title | slugify }}" 
+           name="input-{{ input.title | slugify }}" 
+           {% unless input.type %}
+           type="text">
+           {% else %}
+           type="{{ input.type }}"
+           {% endunless %}
+  {% endfor %}
+{% endfor %}
