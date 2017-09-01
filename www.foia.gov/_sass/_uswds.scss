@@ -1,0 +1,8 @@
+// Variable overrides
+$font-serif: Georgia, 'Times New Roman', Times, serif;
+
+// Relative font and image file paths
+$font-path:   '/assets/fonts' !default;
+$image-path:  '/assets/img' !default;
+
+@import '../../node_modules/uswds/src/stylesheets/uswds';
