@@ -9,16 +9,16 @@
 <div id="background">
 {% endunless %}
 {% include header.html %}
-<div class="usa-grid">
-  <div id="main">
+<div class="usa-grid" id="main">
     <div id="content">
     {{ content }}
     </div>
-  </div>
 <!-- TODO: Remove this div when we dump the gradient. -->
 {% unless page.use-uswds %}
 </div>
 {% endunless %}
+</div>
+<div class="usa-grid">
 {% include footer.html %}
 </div>
 {% if page.init %}<script type="text/javascript" src="{{ page.init | prepend: "/" | prepend: site.baseurl }}"></script>{% endif %}
