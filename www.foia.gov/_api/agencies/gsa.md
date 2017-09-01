@@ -19,6 +19,57 @@ data:
     - submission_format: web
       url: https://foiaonline.regulations.gov/foia/action/public/home
     form_fields:
+    - name: first_name
+      label: First name
+    - name: last_name
+      label: Last name
+    - name: organization
+      label: Organization
+    - name: email
+      label: Email address
+      type: email
+      example: you@example.com
+    - name: phone
+      label: Phone number
+      type: tel
+    - name: fax
+      label: Fax number
+      type: tel
+    - name: address1
+      label: Street address 1
+    - name: address2
+      label: Street address 2
+    - name: city
+      label: City
+    - name: state
+      label: State
+    - name: zip
+      label: Zipcode
+    - name: processing_fees
+      label: Processing fees
+      help_text: What amount in fees are you willing to pay for this request?
+      example: 25
+    - name: delivery_method
+      label: Delivery method
+      help_text: How would you like to receive your responsive documents?
+      enum:
+      - Electronic
+      - Paper
+    - name: description
+      label: Request description
+      type: textarea
+      required: true
+    - name: request_fee_waiver
+      label: Request fee waiver
+      type: checkbox
+    - name: request_expedited_processing
+      label: Request expedited processing
+      type: checkbox
+    - name: attachement
+      label: Attachments / supporting documentation
+      type: file
+
+      # agency component specific fields
     - name: request_origin
       label: Request Origin
       regs_url: null

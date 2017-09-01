@@ -43,7 +43,7 @@ describe('metadataToJsonSchema()', () => {
     });
   });
 
-  describe('given metadata with additoinal fields', () => {
+  describe('given metadata with form fields', () => {
     let metadata;
     let result;
 
@@ -76,7 +76,7 @@ describe('metadataToJsonSchema()', () => {
         expect(result.jsonSchema).to.have.property('type', 'object');
       });
 
-      it('has properties object with additional fields', () => {
+      it('has properties object with form fields', () => {
         expect(result.jsonSchema.properties).to.deep.equal({
           region: { type: 'string' },
           contract_number: { type: 'string' },
@@ -150,7 +150,7 @@ describe('metadataToJsonSchema()', () => {
         expect(result.jsonSchema).to.have.property('type', 'object');
       });
 
-      it('has properties object with additional and required fields', () => {
+      it('has properties object with required and non-required fields', () => {
         expect(result.jsonSchema.properties).to.deep.equal({
           region: { type: 'string' },
           contract_number: { type: 'string' },
@@ -207,6 +207,246 @@ describe('metadataToJsonSchema()', () => {
 
       it('has a type', () => {
         expect(result.jsonSchema).to.have.property('type', 'object');
+      });
+    });
+  });
+
+  describe('metadata field properties', () => {
+    let metadata;
+    let result;
+
+    describe('given "example" property', () => {
+      beforeEach(() => {
+        metadata = {
+          abbreviation: 'GSA',
+          components: [{
+            name: 'Headquarters',
+            form_fields: [{
+              name: 'widget',
+              label: 'Widget',
+              example: '1234',
+            }],
+          }],
+        };
+
+        result = metadataToJsonSchema(metadata, 'Headquarters');
+      });
+
+      describe('uiSchema property', () => {
+        let uiSchemaProperty;
+        beforeEach(() => {
+          uiSchemaProperty = result.uiSchema.widget;
+        });
+
+        it('exists', () => {
+          expect(uiSchemaProperty).to.be.ok;
+        });
+
+        it('has a ui:placeholder', () => {
+          expect(uiSchemaProperty).to.have.property('ui:placeholder', '1234');
+        });
+      });
+    });
+
+    describe('given "type" property', () => {
+      describe('given type:checkbox', () => {
+        beforeEach(() => {
+          metadata = {
+            abbreviation: 'GSA',
+            components: [{
+              name: 'Headquarters',
+              form_fields: [{
+                name: 'widget',
+                label: 'Widget',
+                type: 'checkbox',
+              }],
+            }],
+          };
+
+          result = metadataToJsonSchema(metadata, 'Headquarters');
+        });
+
+        describe('jsonSchema property', () => {
+          let jsonSchemaProperty;
+
+          beforeEach(() => {
+            jsonSchemaProperty = result.jsonSchema.properties.widget;
+          });
+
+          it('exists', () => {
+            expect(jsonSchemaProperty).to.be.ok;
+          });
+
+          it('has boolean type', () => {
+            expect(jsonSchemaProperty).to.have.property('type', 'boolean');
+          });
+        });
+
+        describe('uiSchema property', () => {
+          let uiSchemaProperty;
+
+          beforeEach(() => {
+            uiSchemaProperty = result.uiSchema.widget;
+          });
+
+          it('exists', () => {
+            expect(uiSchemaProperty).to.be.ok;
+          });
+
+          it('has checkbox widget', () => {
+            expect(uiSchemaProperty).to.have.property('ui:widget', 'checkbox');
+          });
+        });
+      });
+
+      describe('given type:textarea', () => {
+        beforeEach(() => {
+          metadata = {
+            abbreviation: 'GSA',
+            components: [{
+              name: 'Headquarters',
+              form_fields: [{
+                name: 'widget',
+                label: 'Widget',
+                type: 'textarea',
+              }],
+            }],
+          };
+
+          result = metadataToJsonSchema(metadata, 'Headquarters');
+        });
+
+        describe('jsonSchema property', () => {
+          let jsonSchemaProperty;
+
+          beforeEach(() => {
+            jsonSchemaProperty = result.jsonSchema.properties.widget;
+          });
+
+          it('exists', () => {
+            expect(jsonSchemaProperty).to.be.ok;
+          });
+
+          it('has boolean type', () => {
+            expect(jsonSchemaProperty).to.have.property('type', 'string');
+          });
+        });
+
+        describe('uiSchema property', () => {
+          let uiSchemaProperty;
+
+          beforeEach(() => {
+            uiSchemaProperty = result.uiSchema.widget;
+          });
+
+          it('exists', () => {
+            expect(uiSchemaProperty).to.be.ok;
+          });
+
+          it('has checkbox widget', () => {
+            expect(uiSchemaProperty).to.have.property('ui:widget', 'textarea');
+          });
+        });
+      });
+
+      describe('given type:tel', () => {
+        beforeEach(() => {
+          metadata = {
+            abbreviation: 'GSA',
+            components: [{
+              name: 'Headquarters',
+              form_fields: [{
+                name: 'widget',
+                label: 'Widget',
+                type: 'tel',
+              }],
+            }],
+          };
+
+          result = metadataToJsonSchema(metadata, 'Headquarters');
+        });
+
+        describe('jsonSchema property', () => {
+          let jsonSchemaProperty;
+
+          beforeEach(() => {
+            jsonSchemaProperty = result.jsonSchema.properties.widget;
+          });
+
+          it('exists', () => {
+            expect(jsonSchemaProperty).to.be.ok;
+          });
+
+          it('has string type', () => {
+            expect(jsonSchemaProperty).to.have.property('type', 'string');
+          });
+        });
+
+        describe('uiSchema property', () => {
+          let uiSchemaProperty;
+
+          beforeEach(() => {
+            uiSchemaProperty = result.uiSchema.widget;
+          });
+
+          it('exists', () => {
+            expect(uiSchemaProperty).to.be.ok;
+          });
+
+          it('has ui:options', () => {
+            expect(uiSchemaProperty).to.have.deep.property('ui:options', { inputType: 'tel' });
+          });
+        });
+      });
+
+      describe('given type:file', () => {
+        beforeEach(() => {
+          metadata = {
+            abbreviation: 'GSA',
+            components: [{
+              name: 'Headquarters',
+              form_fields: [{
+                name: 'widget',
+                label: 'Widget',
+                type: 'file',
+              }],
+            }],
+          };
+
+          result = metadataToJsonSchema(metadata, 'Headquarters');
+        });
+
+        describe('jsonSchema property', () => {
+          let jsonSchemaProperty;
+
+          beforeEach(() => {
+            jsonSchemaProperty = result.jsonSchema.properties.widget;
+          });
+
+          it('exists', () => {
+            expect(jsonSchemaProperty).to.be.ok;
+          });
+
+          it('has string type', () => {
+            expect(jsonSchemaProperty).to.have.property('type', 'string');
+          });
+        });
+
+        describe('uiSchema property', () => {
+          let uiSchemaProperty;
+
+          beforeEach(() => {
+            uiSchemaProperty = result.uiSchema.widget;
+          });
+
+          it('exists', () => {
+            expect(uiSchemaProperty).to.be.ok;
+          });
+
+          it('has ui:widget file', () => {
+            expect(uiSchemaProperty).to.have.property('ui:widget', 'file');
+          });
+        });
       });
     });
   });
