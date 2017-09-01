@@ -1,5 +1,12 @@
 extends: airbnb
+settings:
+  import/resolver: webpack
 env:
   browser: yes
 rules:
+  camelcase: 0
+  no-underscore-dangle:
+    - 2
+    - allowAfterThis: true
+  'react/forbid-prop-types': 0
   semi: ["error", "always"]
