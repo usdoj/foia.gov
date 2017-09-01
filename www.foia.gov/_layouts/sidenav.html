@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<aside class="usa-width-one-fourth">
+  <ul class="usa-sidenav-list">
+  {% for link in page.sidenav %}
+    {% if link.children %}
+    <li>
+      <a class="usa-current" href="javascript:void(0);">{{ link.title }}</a>
+      <ul class="usa-sidenav-sub_list">
+        {% for child in link.children %}
+        <li>
+          <a href="{{ child.href }}">{{ child.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% else %}
+    <li>
+      <a href="{{ link.href }}">{{ link.title }}</a>
+    </li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+</aside>
+<div class="usa-width-three-fourths">
+ {{ content }}
+</div>
