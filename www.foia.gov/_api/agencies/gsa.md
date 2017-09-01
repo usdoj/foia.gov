@@ -3,7 +3,7 @@ data:
   abbreviation: GSA
   name: General Services Administration
   components:
-  - name: General Services Administration (General)
+  - name: General Services Administration
     reading_rooms:
     - https://www.gsa.gov/portal/content/305477
     submission_methods:
