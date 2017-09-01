@@ -1,6 +1,7 @@
 ---
 layout: sidenav
 ---
+<h2>{{ page.agency-name }}</h2>
 {% for section in page.sections %}
   <h3 id="{{ section.title | slugify }}">{{ section.title }}</h3>
   {% for input in section.children %}
@@ -13,7 +14,7 @@ layout: sidenav
            {% unless input.type %}
            type="text">
            {% else %}
-           type="{{ input.type }}"
+           type="{{ input.type }}">
            {% endunless %}
   {% endfor %}
 {% endfor %}
