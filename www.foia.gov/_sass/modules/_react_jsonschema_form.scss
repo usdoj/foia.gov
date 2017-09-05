@@ -1,0 +1,6 @@
+// Customization of the form elements generated from react-jsonschema-form
+
+.field-description {
+  @extend .usa-form-hint;
+  margin-top: 0; // override `p` styling
+}

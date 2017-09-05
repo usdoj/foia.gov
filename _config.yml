@@ -22,6 +22,17 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 timezone: America/New_York
 
+collections:
+  api:
+    output: true
+
+defaults:
+  - scope:
+      path: ''
+      type: api
+    values:
+      layout: json
+
 # Build settings
 markdown: kramdown
 source: www.foia.gov

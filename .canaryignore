@@ -7,6 +7,7 @@
 *.xls
 *.zip
 .htpasswd
+api
 assets
 FusionCharts
 foia-style.css
