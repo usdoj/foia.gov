@@ -4,6 +4,7 @@
 *.pdf
 *.png
 *.swf
+*.sw?
 *.xls
 *.zip
 .htaccess
