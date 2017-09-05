@@ -1,4 +1,5 @@
 AuthUserFile /home/vcap/app/htdocs/.htpasswd
 AuthType Basic
 AuthName "Restricted Access"
+DirectoryIndex index.php index.html index.htm index.json
 Require valid-user

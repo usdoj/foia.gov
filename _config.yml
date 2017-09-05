@@ -32,7 +32,7 @@ defaults:
       type: api
     values:
       layout: json
-      permalink: /:collection/:path/
+      permalink: /:collection/:path/index.json
 
 # Build settings
 markdown: kramdown
