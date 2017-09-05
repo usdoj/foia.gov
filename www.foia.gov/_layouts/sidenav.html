@@ -6,7 +6,7 @@ layout: default
   {% for link in page.sidenav %}
     {% if link.children %}
     <li>
-      <a class="usa-current" href="javascript:void(0);">{{ link.title }}</a>
+      <a href="javascript:void(0);">{{ link.title }}</a>
       <ul class="usa-sidenav-sub_list">
         {% for child in link.children %}
         <li>
@@ -23,6 +23,6 @@ layout: default
   {% endfor %}
   </ul>
 </aside>
-<div class="usa-width-three-fourths">
+<div class="usa-width-three-fourths sidenav_content">
  {{ content }}
 </div>

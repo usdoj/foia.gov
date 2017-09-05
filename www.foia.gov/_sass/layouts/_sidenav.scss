@@ -1,0 +1,6 @@
+@media screen and (min-width: $large-screen) {
+  .sidenav_content {
+    // TODO: Is there a more WDS way to do this?
+    padding-left: 4rem; // space between content and nav
+  }
+}
