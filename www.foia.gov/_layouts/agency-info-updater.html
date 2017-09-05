@@ -1,17 +1,20 @@
 ---
 layout: sidenav
 ---
-<h2>{{ page.agency-name }}</h2>
-<h3>Update information</h3>
-<p>This information will be published on your public-facing agency page.</p>
+<div class="page-header">
+  <h2 class="page-header_tag">{{ page.agency-name }}</h2>
+  <h3 class="page-header_title">Update information</h3>
+  <p class="page-header_lede">This information will be published on your public-facing agency page.</p>
+</div>
 <form>
 {% for section in page.sections %}
-  <h4 id="{{ section.title | slugify }}">{{ section.title }}</h4>
+  <section class="form-group">
+  <h4 class="form-group_header" id="{{ section.title | slugify }}">{{ section.title }}</h4>
   {% unless section.title == 'Postal submissions' %}
     {% for input in section.children %}
       <label for="input-{{ input.title | slugify }}">{{ input.title }}</label>
       {% if input.help-text %}
-      <span class="usa-form-hint">{{ input.help-text }}</span>
+      <span class="usa-form-hint form-group_help-text">{{ input.help-text }}</span>
       {% endif %}
       {% unless input.type %}
       <input id="input-{{ input.title | slugify }}" 
@@ -105,5 +108,6 @@ layout: sidenav
     <input class="usa-input-medium" id="zip" name="zip" type="text" pattern="[\d]{5}(-[\d]{4})?" data-grouplength="5,4" data-delimiter="-" data-politespace>
   </fieldset>
   {% endunless %}
+  </section>
 {% endfor %}
 </form>
