@@ -2,7 +2,7 @@ const assert = require('assert');
 const path = require('path');
 
 const env = process.env.NODE_ENV || 'development';
-assert(['prod', 'development'].includes(env), `${env} is not an acceptable environment.`);
+assert(['production', 'development'].includes(env), `${env} is not an acceptable environment.`);
 
 module.exports = {
   entry: {

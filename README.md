@@ -45,3 +45,7 @@ Run the site locally.
 And open your browser to http://localhost:4000/.
 
 See more in the [README.md](www.foia.gov/README.md).
+
+To build for production, set the `NODE_ENV` environment variable.
+
+    $ NODE_ENV=production make build

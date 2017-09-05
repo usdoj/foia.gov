@@ -26,7 +26,7 @@ jobs:
           - node_modules
       - run:
           name: Prod build
-          command: NODE_ENV=prod make build
+          command: NODE_ENV=production make build
       - persist_to_workspace:
           root: .
           paths:
