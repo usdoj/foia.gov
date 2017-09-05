@@ -6,6 +6,7 @@
 *.swf
 *.xls
 *.zip
+.htaccess
 .htpasswd
 api
 assets
