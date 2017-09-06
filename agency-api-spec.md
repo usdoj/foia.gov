@@ -29,11 +29,17 @@ This draft does not address:
 
 ### URL
 
-You may choose any pathname you wish. If your system handles requests for multiple agency components (like a decentralized agency), we recommend using
-a URL structure that explicitly identifies the agency component receiving the FOIA request. Your URL should not
-contain any query parameters.
+There are no required parameters or format for your API URL. You may choose any
+pathname you wish. If your system handles requests for multiple agency
+components (common for decentralized agencies), we recommend using a URL
+structure that explicitly identifies the agency component receiving the FOIA
+request. Your URL should not contain any query parameters.
+
+Recommended URL format for decentralized agencies:
 
     /components/:id/requests/
+
+Where `id` is a unique identifier for a component within your agency.
 
 For example:
 * `/components/88/requests/`
