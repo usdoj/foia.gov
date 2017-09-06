@@ -16,7 +16,7 @@ the tedious bits of implementing an API can be handled by a service like
 management service for federal agencies.
 
 
-## Make FOIA Request
+## Receive a FOIA Request
 
 ### Notes
 
