@@ -406,7 +406,7 @@ td.selected, tr.even td.selected, tr.odd td.selected{background:#e8f3dd;color:#0
 #selectAgency ul {list-style-type: none; margin: 0 0 12px 0;}
 #selectAgency li {display: inline;}
 .agencyTextdrop {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; width: 390px;}
-.agencyTextbox {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; width: 270px;}
+/*.agencyTextbox {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; width: 270px;}*/
 .agencyTextlist {font: bold 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; }
 .addAgency {background: url(images/add-agency-off.png) 0 0 no-repeat; width: 37px; height:26px;}
 .addAgency:hover {background: url(images/add-agency-on.png) 0 0 no-repeat;}

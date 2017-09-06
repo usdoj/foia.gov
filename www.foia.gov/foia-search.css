@@ -1,31 +1,3 @@
-#query {
-  -moz-border-radius-topleft: 5px;
-  -webkit-border-top-left-radius: 5px;
-  border-top-left-radius: 5px;
-  -moz-border-radius-bottomleft: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  float: left;
-  background-color: #fff;
-  border: 1px solid #cacaca;
-  font-size: 13px;
-  font-weight: normal;
-  height: 20px;
-  outline: 0;
-  padding: 4px 30px 4px 14px;
-  width: 545px;
-}
-
-#query:hover{
-border-color: #a0a0a0;
-}
-
-#query:focus{
-border: 3px solid;
-border-color: #f0aa64;
-padding: 2px 28px 2px 12px;
-}
-
 .element-invisible{
 font-size: 18px;
 font-weight: bold;

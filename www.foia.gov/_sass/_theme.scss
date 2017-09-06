@@ -97,17 +97,17 @@ ul.tabs li {
   float: left;
 }
 
-input.addAgency {
+input.addAgency,
+input.addAgency:hover,
+input.deleteAgency,
+input.deleteAgency:hover{
   background-color: transparent;
   margin: 0;
 }
+
 /* search temp styles */
 .reportText {
   margin-top: 0px !important;
-}
-#edit-submit {
-  right: 21px;
-  top: -23px;
 }
 
 /* page subnav temp styles */
