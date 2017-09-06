@@ -2,7 +2,7 @@
     "abbreviation": "GSA",
     "components": [
         {
-            "additional_form_fields": [
+            "form_fields": [
                 {
                     "help_text": "If your request relates to a GSA contract, please provide the contract number (which starts with \"GS-\")",
                     "label": "GS- Contract number",
@@ -12,13 +12,7 @@
                     "help_text": "(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT",
                     "label": "GSA Region",
                     "name": "region"
-                }
-            ],
-            "name": "General Services Administration (General)",
-            "reading_rooms": [
-                "https://www.gsa.gov/portal/content/305477"
-            ],
-            "required_form_fields": [
+                },
                 {
                     "enum": [
                         "Company",
@@ -28,14 +22,14 @@
                     "help_text": "Company",
                     "label": "Request Origin",
                     "name": "request_origin",
-                    "regs_url": null
+                    "regs_url": null,
+                    "required": true
                 }
             ],
-            "uiSchema": {
-                "ui:order": {},
-                "fields": {
-                }
-	    },
+            "name": "General Services Administration (General)",
+            "reading_rooms": [
+                "https://www.gsa.gov/portal/content/305477"
+            ],
             "submission_methods": [
                 {
                     "address_lines": [
