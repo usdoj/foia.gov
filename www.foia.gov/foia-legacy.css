@@ -21,12 +21,12 @@
 .headerDOJ {float: right;}
 .foiaTitle {float: left;}
 
-#headNav {height: 80px; width: 960px; margin: 0; padding: 0; font-size: 14px; font-family: Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; font-style: normal; font-weight:normal; }
+#headNav {height: 80px; width: 960px; font-size: 14px; font-family: Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; font-style: normal; font-weight:normal; }
 #headNav li {display:inline;}
 #headNav li a {display: block; float: left; color: #fff; margin: 18px 0 0 30px; padding: 0 0 20px 0;}
 #headNav li a:hover {/*background:url(images/arrow.gif) -30px -10px no-repeat;*/ text-decoration: underline;}
 
-#tabs {font: normal 16px Georgia, "Times New Roman", Times, serif; color: #fff; height: 48px; margin:0; padding:0;}
+#tabs {font: normal 16px Georgia, "Times New Roman", Times, serif; color: #fff; height: 48px;}
 #tabnav ul {list-style-type: none;}
 #tabnav li {display: inline;}
 #tabnav li a {display: block; float: left; color: #fff; text-decoration:none; height: 48px;}
