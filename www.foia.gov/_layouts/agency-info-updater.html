@@ -12,13 +12,13 @@ layout: sidenav
   <h4 class="form-group_header" id="{{ section.title | slugify }}">{{ section.title }}</h4>
   {% unless section.title == 'Postal submissions' %}
     {% for input in section.children %}
-      <label for="input-{{ input.title | slugify }}">{{ input.title }}</label>
+      <label for="input-{{ input.title | slugify }}-{{ section.title |slugify }}">{{ input.title }}</label>
       {% if input.help-text %}
       <span class="usa-form-hint form-group_help-text">{{ input.help-text }}</span>
       {% endif %}
       {% unless input.type %}
-      <input id="input-{{ input.title | slugify }}" 
-             name="input-{{ input.title | slugify }}" 
+      <input id="input-{{ input.title | slugify }}-{{ section.title |slugify }}" 
+             name="input-{{ input.title | slugify }}-{{ section.title |slugify }}" 
              type="text">
       {% endunless %}
       {% if input.type == 'dropdown' %}
