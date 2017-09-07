@@ -68,7 +68,7 @@ automatically.
 
 To provide Basic Auth, the `.htpasswd` file is created at deploy time using
 `bin/gen_htpasswd.sh`. You must set the environment variable `$HTPASSWD` to the
-user/hash in your CI system. We use [CircleCI](https://circleci.com/gh/18F/foia).
+user/hash in your CI system. We use [CircleCI](https://circleci.com/gh/18F/beta.foia.gov).
 
 
 ## Reporting API and foia-proxy
