@@ -60,6 +60,7 @@ defaults:
       type: api
     values:
       layout: json
+      permalink: /:collection/:path.json
 
 # Build settings
 markdown: kramdown
