@@ -19,7 +19,7 @@ export function RequestActions({ dispatcher, api }) {
       }
 
       // TODO this should be in a fetch action, results cached
-      return api.get(`/agencies/${agency}/`);
+      return api.get(`/agencies/${agency}.json`);
     },
 
     receiveAgency(agency) {

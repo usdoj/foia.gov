@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import { Dispatcher } from 'flux';
 import { Container } from 'flux/utils';
 
+import { RequestActions } from 'actions';
 import AgencyComponentSelector from 'components/agency_component_selector';
 import FOIARequestForm from 'components/foia_request_form';
-
+import settings from 'settings';
 import AgencyStore from 'stores/agency';
-
-import { RequestActions } from 'actions';
-
 import Api from 'util/api';
 
-const api = new Api('http://localhost:4000/api');
+const api = new Api(settings.api.baseURL);
 
 
 // TODO fetch list of agencies and agency components from the server
