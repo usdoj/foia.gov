@@ -1,16 +1,15 @@
 <!-- Start Footer -->
-{% unless page.use-uswds %}
+{% if page.use-uswds %}
+<footer class="usa-footer">
+
+</footer>
+{% else %}
 <div id="shadowFilter" class="blockout" style="display:none;"></div>
 <div id="exitMsg" class="exitMsg" style="display:none;"></div>
-{% endunless %}
-
-<div class="footer usa-grid">
-
-{% include legacy/footer.html %}
-
-</div>
-{% unless page.use-uswds %}
+<div class="footer usa-grid-full">
+  {% include legacy/footer.html %}
 </div>
 </div>
-{% endunless %}
+</div>
+{% endif %}
 <!-- End Footer -->
