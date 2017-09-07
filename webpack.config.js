@@ -1,4 +1,8 @@
+const assert = require('assert');
 const path = require('path');
+
+const env = process.env.NODE_ENV || 'development';
+assert(['production', 'development'].includes(env), `${env} is not an acceptable environment.`);
 
 module.exports = {
   entry: {
@@ -24,5 +28,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: [path.join(__dirname, 'js'), 'node_modules'],
+    alias: {
+      settings$: path.join(__dirname, 'js', 'settings', `${env}.js`),
+    },
   },
 };
