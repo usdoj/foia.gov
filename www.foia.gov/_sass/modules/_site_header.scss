@@ -1,0 +1,20 @@
+.doj-banner {
+  background-color: $color-black;
+  img {
+    float: right;
+  }
+}
+
+.usa-logo {
+  a {
+    display: flex;
+  }
+  img {
+    width: 70px;
+    height: 70px;
+    margin-right: 1.5rem;
+  }
+  h1 {
+    margin: 1rem 0;
+  }
+}
