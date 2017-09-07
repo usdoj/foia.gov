@@ -74,14 +74,14 @@ JSON payload that contains the form fields.
 
 **Field:** | `agency_name`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Name of the tier 1 agency.
 **Required:** | yes
 **Example:** | `"Department of Justice"`
 
 **Field:** | `agency_component_name`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Name of the department, bureau, or office.
 **Required:** | yes
 **Example:** | `"Office of Information Policy"`
@@ -102,7 +102,7 @@ JSON payload that contains the form fields.
 
 **Field:** | `description`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Description of the records the requester is seeking.
 **Required:** | yes
 **Example:** | `"I am seeking records pertaining to ..."`
@@ -130,35 +130,35 @@ JSON payload that contains the form fields.
 
 **Field:** | `organization`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Name of the organization or company on which the requester is making a request on behalf of.
 **Required:** | no
 **Example:** | `"Newspaper Inc"`
 
 **Field:** | `email`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Email address of the requester.
 **Required:** | yes
 **Example:** | `"george.washington@example.com"`
 
 **Field:** | `phone`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Phone number of the requester.
 **Required:** | no
 **Example:** | `"+15551234567"`
 
 **Field:** | `fax`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Fax number of the requester.
 **Required:** | no
 **Example:** | `"+15551234589"`
 
 **Field:** | `attachments`
 :--- |:---
-**Type:** | [object]
+**Type:** | array<object>
 **Description:** | Documents or attachments supporting the request provided by the requester.
 **Required:** | no
 **Example:** | `[{"filename": "letter.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}]`
