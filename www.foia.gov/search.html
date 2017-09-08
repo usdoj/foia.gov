@@ -3,8 +3,6 @@ title: Find
 layout: about
 navigation: find
 subnav: searchfind
-stylesheets:
-- foia-search
 scripts:
 - /scripts/breakout.js
 ---
@@ -20,41 +18,19 @@ scripts:
                 want to request more information on a given topic, you can
                 submit a FOIA request to the agencies&rsquo; Contacts.
 	</div>
-	<form accept-charset="UTF-8" action="https://search.foia.gov/search" id="search-bar" method="get">
+	<form class="usa-search usa-search-small" accept-charset="UTF-8" action="https://search.foia.gov/search" id="search-bar" method="get">
+    <div role="search">
 		  	<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
 		  	<input id="m" name="m" type="hidden" value="true" />
 		  	<input id="affiliate" name="affiliate" type="hidden" value="foia.gov" />
 
-		  <!-- div class="container-inline">
-		        <h2 class="element-invisible">Search form</h2>
-		      <div class="form-item form-type-textfield form-item-search-block-form">
-		    <label class="element-invisible" for="edit-search-block-form--2">Search </label>
-		   <input class="usagov-search-autocomplete ui-autocomplete-input ui-corner-all form-text" autocomplete="off" type="text" name="query" placeholder="Search this site" id="query" value="" size="15" maxlength="128">
-		  </div>
-		  <div class="form-actions form-wrapper" id="edit-actions">
-		  <input type="submit" id="edit-submit" name="op" value="Search" class="form-submit">
-		  </div>
-		  <input type="hidden" name="affiliate" value="justice">
-		  </div -->
-
-		  <div class="form-item form-type-textfield form-item-search-block-form">
-		  	<label class="element-invisible" for="query">Search federal agencies</label>
+		  	<label class="usa-sr-only" for="query">Search federal agencies</label>
 		  	<input class="usagov-search-autocomplete ui-autocomplete-input ui-corner-all form-text"
-		  		autocomplete="off" type="text" name="query" placeholder="" id="query" value="" size="15" maxlength="128" />
+		  		autocomplete="off" type="search" name="query" placeholder="" id="query" value="" size="15" maxlength="128" />
+		  	<button type="submit" name="op" value="Search" class="form-submit">
+          <span class="usa-sr-only">Search</span>
+        </button>
 		  </div>
-		  <div class="form-actions form-wrapper" id="edit-actions">
-		  	<input type="submit" id="edit-submit" name="op" value="Search" class="form-submit" />
-		  </div>
-
-		  <!-- label class="sr-only" for="query">Enter your search term</label>
-		  <input class="form-control typeahead-enabled" id="query" name="query" spellcheck="false" type="search" value="" />
-
-
-		  <span aria-live='polite' data-suggestion-count='0' id='tt-status' role='status'></span>
-		  <div id='clear-button' tabindex='-1'>
-		  <span>Clear</span>
-		  </div>
-		  <input id="search-button" name="commit" type="submit" value="Search" / -->
 	  </form>
 
 	  <p>&nbsp;</p>

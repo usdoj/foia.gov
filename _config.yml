@@ -22,6 +22,34 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 timezone: America/New_York
 
+navigation:
+  primary:
+    - href: index.html
+      title: Home
+    - href: request.html
+      title: Request
+    - href: data.html
+      title: Data
+    - href: reports.html
+      title: Reports
+    - href: search.html
+      title: Find
+    - href: about.html
+      title: Learn
+  secondary:
+    - href: news.html
+      title: News
+    - href: glossary.html
+      title: Glossary
+    - href: faq.html
+      title: FAQs
+    - href: index-es.html
+      title: en Espa&ntilde;ol
+    - href: feedback.html
+      title: Feedback
+    - href: report-makerequest.html
+      title: FOIA Contacts
+
 collections:
   api:
     output: true

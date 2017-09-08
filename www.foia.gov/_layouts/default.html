@@ -9,18 +9,16 @@
 <div id="background">
 {% endunless %}
 {% include header.html %}
-<div class="usa-grid">
-  <div id="main">
+<div class="usa-grid" id="main">
     <div id="content">
     {{ content }}
     </div>
-  </div>
 <!-- TODO: Remove this div when we dump the gradient. -->
 {% unless page.use-uswds %}
 </div>
 {% endunless %}
-{% include footer.html %}
 </div>
+{% include footer.html %}
 {% comment %}
 `page.init` is used for the legacy pages.
 `page.bundle` is used for the non-legacy pages.
