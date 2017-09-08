@@ -1,12 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-
-/*RESET*/
-* {border:0; margin:0; padding:0;}
-
 /*Core Styles*/
-html {background: #121B26;}
-body {font: 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif normal; color: #333; }
 #background {background: url(images/bg-grad.jpg) repeat-x top left }
 
 #warning {font:Georgia, "Times New Roman", Times, serif; width: auto; background: #f8f8f8; border: 3px double #ccc; color: #333; margin: 30px; padding: 15px;}
@@ -27,12 +21,12 @@ body {font: 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif normal; c
 .headerDOJ {float: right;}
 .foiaTitle {float: left;}
 
-#headNav {height: 80px; width: 960px; margin: 0; padding: 0; font-size: 14px; font-family: Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; font-style: normal; font-weight:normal; }
+#headNav {height: 80px; width: 960px; font-size: 14px; font-family: Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; font-style: normal; font-weight:normal; }
 #headNav li {display:inline;}
 #headNav li a {display: block; float: left; color: #fff; margin: 18px 0 0 30px; padding: 0 0 20px 0;}
 #headNav li a:hover {/*background:url(images/arrow.gif) -30px -10px no-repeat;*/ text-decoration: underline;}
 
-#tabs {font: normal 16px Georgia, "Times New Roman", Times, serif; color: #fff; height: 48px; margin:0; padding:0;}
+#tabs {font: normal 16px Georgia, "Times New Roman", Times, serif; color: #fff; height: 48px;}
 #tabnav ul {list-style-type: none;}
 #tabnav li {display: inline;}
 #tabnav li a {display: block; float: left; color: #fff; text-decoration:none; height: 48px;}
@@ -64,15 +58,7 @@ body {font: 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif normal; c
 
 /*Core Body Styles*/
 .clear {clear: both;}
-label, legend {display: none; font-size:1px;}
-ol { list-style-type: decimal; list-style-position: inside; }
-ol li {margin: 10px 0; }
-ol li:hover {background: #FFFFCD;}
-ol li a {font-weight: bold; margin: 0 0 0 5px;}
-a {color: #336699; text-decoration: none;}
-a:hover {text-decoration: underline;}
 a.viewmore {font-weight: bold; text-transform:uppercase; font-style: normal; font-size: 10px;}
-hr {background-color:#f8f8f8; color: #f8f8f8; height: 1px; border-bottom: #DEDEDE 1px solid;}
 
 #mainbackground {margin: 0; padding: 0;}
 #main {background: #fff;}
@@ -98,12 +84,6 @@ hr {background-color:#f8f8f8; color: #f8f8f8; height: 1px; border-bottom: #DEDED
 .latestNews p {padding: 5px 0 3px 10px;}
 .latestNews a {font: bold 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; font-weight:bold;}
 
-/*#homeLeft {width: 960px;padding: 10px 0 20px 20px;}
-#homeRight {width: 296px; padding: 10px 0 20px 20px;}
-
-.homeReports {float:right; height: 295px; width: 330px; margin: 30px 0 30px 30px; padding: 0 15px 0 15px; font-size: 13px; font-weight: bold; background:  url(images/homereports-bg1.gif) top left no-repeat;}
-.highlightList {width: 430px; float:left; margin: 5px 0 10px 30px;}
-*/
 .highlightList {width: 200px; float:left; margin: 5px 0 10px 30px;} 
 .highlightList h3 {padding: 0 0 15px 0;}
 .highlightList p {margin: 12px 0;}
@@ -426,7 +406,6 @@ td.selected, tr.even td.selected, tr.odd td.selected{background:#e8f3dd;color:#0
 #selectAgency ul {list-style-type: none; margin: 0 0 12px 0;}
 #selectAgency li {display: inline;}
 .agencyTextdrop {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; width: 390px;}
-.agencyTextbox {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; width: 270px;}
 .agencyTextlist {font: bold 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; }
 .addAgency {background: url(images/add-agency-off.png) 0 0 no-repeat; width: 37px; height:26px;}
 .addAgency:hover {background: url(images/add-agency-on.png) 0 0 no-repeat;}
