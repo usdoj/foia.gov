@@ -2,13 +2,14 @@
 
 This is [a draft spec](https://github.com/18F/beta.foia.gov/issues/32) for integrating
 the FOIA.gov portal with existing FOIA case management systems (_e.g._,
-[FOIAonline](https://foiaonline.regulations.gov/foia/action/public/home)) in the
-federal government. This work stems from the interviews and research that led to
-our [FOIA Portal Discovery
-Recommendations](https://docs.google.com/document/d/1sRWq2vDAdoz97zdxgiOzU-9N7nBNEUiEeHzsa7J3j_A/edit).
+[FOIAonline](https://foiaonline.regulations.gov/foia/action/public/home))
+operated by individual agencies in the federal government. This work stems from
+the interviews and research that led to our [FOIA Portal Discovery
+Recommendations](https://github.com/18F/foia-recommendations/blob/master/recommendations.md).
 
-Once a case management system supports this specification, it can receive FOIA
-requests directly from the FOIA.gov portal, rather than having the request data sent via e-mail.
+Once an agency's case management system supports this specification, it can
+receive FOIA requests directly from the FOIA.gov portal, rather than having the
+request data sent to the agency via e-mail.
 
 To minimize agency effort, we've designed this spec so that some of
 the tedious bits of implementing an API can be handled by a service like
