@@ -1,4 +1,0 @@
-AuthUserFile /home/vcap/app/htdocs/.htpasswd
-AuthType Basic
-AuthName "Restricted Access"
-Require valid-user

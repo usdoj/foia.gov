@@ -16,7 +16,7 @@ the tedious bits of implementing an API can be handled by a service like
 management service for federal agencies.
 
 
-## Make FOIA Request
+## Receive a FOIA Request
 
 ### Notes
 
@@ -29,11 +29,17 @@ This draft does not address:
 
 ### URL
 
-You may choose any pathname you wish. If your system handles requests for multiple agency components (like a decentralized agency), we recommend using
-a URL structure that explicitly identifies the agency component receiving the FOIA request. Your URL should not
-contain any query parameters.
+There are no required parameters or format for your API URL. You may choose any
+pathname you wish. If your system handles requests for multiple agency
+components (common for decentralized agencies), we recommend using a URL
+structure that explicitly identifies the agency component receiving the FOIA
+request. Your URL should not contain any query parameters.
+
+Recommended URL format for decentralized agencies:
 
     /components/:id/requests/
+
+Where `id` is a unique identifier for a component within your agency.
 
 For example:
 * `/components/88/requests/`
@@ -157,35 +163,62 @@ JSON payload that contains the form fields.
 **Required:** | no
 **Example:** | `[{"filename": "letter.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}]`
 
-**Field:** | `agency_component_specific_fields`
+**Field:** | `*`
 :--- |:---
-**Type:** | object
-**Description:** | Agency component specific request form fields as specified in your [agency's metadata file][agency-metadata-file-schema].
+**Type:** | Determined by the [agency metadata file][agency-metadata-file-schema]. See [agency component specific form fields](#agency-component-specific-form-fields) below.
+**Description:** | Agency component specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
 **Required:** | if applicable
-**Example:** | `{"form_460A_case_number": "3347", "requester_type": "Journalist"}`
+**Example:** | See [below](#agency-form-fields-example)
+
+
+##### Sample payload
+
+```
+{
+    "agency": "Department of Justice",
+    "agency_component_name": "Office of Information Policy",
+    "attachments": [
+        {
+            "content_type": "application/pdf",
+            "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg==",
+            "filename": "letter.pdf",
+            "filesize": 27556
+        }
+    ],
+    "description": "I am seeking records pertaining to ...",
+    "email": "george.washington@example.com",
+    "expedited": false,
+    "fax": "+15551234589",
+    "fee_waiver": false,
+    "max_fee": 25.0,
+    "organization": "Newspaper Inc",
+    "phone": "+15551234567",
+    "requester_address": {
+        "address1": "1800 F Street",
+        "address2": "Suite 400",
+        "city": "Mount Vernon",
+        "state": "Virginia",
+        "zip": "98273"
+    },
+    "requester_name": {
+        "first": "George",
+        "last": "Washington"
+    }
+}
+```
 
 
 #### Agency component specific form fields
 
 Your agency component might have additional fields specified in your [agency
-metadata file][agency-metadata-file-schema].  These additional fields are unique
-to your agency and are captured separately in the
-`agency_component_specific_fields` object.
+metadata file][agency-metadata-file-schema]. These additional fields are unique
+to your agency and are also captured in this request payload.
 
-The fields in `agency_component_specific_fields` will be defined by your agency metadata
-file which includes both required and optional form fields. Any fields in
-`required_form_fields` will be considered required. Any fields in
-`additional_form_fields` will be considered optional. The FOIA.gov portal will
-ensure that required fields are present before POSTing a request to your
+These additional fields will be defined by your agency metadata file which
+includes both required and optional form fields. Any fields marked `required`
+will be considered required. The default is not required. The FOIA.gov portal
+will ensure that required fields are present before POSTing a request to your
 endpoint.
-
-**Field:** | `*`
-:--- |:---
-**Type:** | determined by the [agency metadata file][agency-metadata-file-schema]
-**Description:** | Agency component specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
-**Required:** | if applicable
-**Example:** | See [below](#agency-form-fields-example)
-
 
 <a id="agency-form-fields-example"></a>
 ##### Example
@@ -200,20 +233,17 @@ provided below.
     "components": [
         {
             // ...
-            "additional_form_fields": [
+            "form_fields": [
                 {
                     "help_text": "If your request relates to a GSA contract, please provide the contract number (which starts with \"GS-\")",
                     "label": "GS- Contract number",
                     "name": "contract_number"
-
                 },
                 {
                     "help_text": "(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT",
                     "label": "GSA Region",
                     "name": "region"
-                }
-            ],
-            "required_form_fields": [
+                },
                 {
                     "enum": [
                         "Company",
@@ -223,7 +253,8 @@ provided below.
                     "help_text": "Company",
                     "label": "Request Origin",
                     "name": "request_origin",
-                    "regs_url": null
+                    "regs_url": null,
+                    "required": true
                 }
             ]
         }
@@ -231,22 +262,27 @@ provided below.
 }
 ```
 
-`agency_component_specific_fields` therefore has the following fields.
+Therefore, the payload has these additional fields.
 
 - (required) `request_origin`
 - `contract_number`
 - `region`
 
-So in the request payload, `agency_component_specific_fields` would look like:
+So in addition to the fields in the [above request payload](#request-fields),
+these fields might appear for GSA.
 
 ```
 {
-    // ...
-    "agency_component_specific_fields": {
-        "contract_number": "5547",
-        "region": "9",
-        "request_origin": "Individual/Self"
-    }
+    "requester_name": {
+        "first": "George",
+        "last": "Washington"
+    },
+    // ... standard request fields ...
+
+    // agency component specific fields appear within payload
+    "contract_number": "5547",
+    "region": "9",
+    "request_origin": "Individual/Self"
 }
 ```
 
@@ -279,46 +315,45 @@ To ensure that your API and case management system aren't publicly exposed, we r
 Services like [api.data.gov](https://api.data.gov/about/) provide this authentication for you.
 
 
-### Sample Call
+### Sample request
 
-    $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency.gov/components/234/requests <<EOF
-    {
-	"agency": "Department of Justice",
-	"agency_component_name": "Office of Information Policy",
-	"attachments": [
-	    {
-		"content_type": "application/pdf",
-		"filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg==",
-		"filename": "letter.pdf",
-		"filesize": 27556
-	    }
-	],
-	"agency_component_specific_fields": {
-	    "contract_number": "5547",
-	    "region": "9",
-	    "request_origin": "Individual/Self"
-	},
-	"description": "I am seeking records pertaining to ...",
-	"email": "george.washington@example.com",
-	"expedited": false,
-	"fax": "+15551234589",
-	"fee_waiver": false,
-	"max_fee": 25.0,
-	"organization": "Newspaper Inc",
-	"phone": "+15551234567",
-	"requester_address": {
-	    "address1": "1800 F Street",
-	    "address2": "Suite 400",
-	    "city": "Mount Vernon",
-	    "state": "Virginia",
-	    "zip": "98273"
-	},
-	"requester_name": {
-	    "first": "George",
-	    "last": "Washington"
-	}
+```
+$ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency.gov/components/234/requests <<EOF
+{
+    "agency": "General Services Administration",
+    "agency_component_name": "General Services Administration (General)",
+    "attachments": [
+        {
+            "content_type": "application/pdf",
+            "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg==",
+            "filename": "letter.pdf",
+            "filesize": 27556
+        }
+    ],
+    "contract_number": "5547",
+    "description": "I am seeking records pertaining to ...",
+    "email": "george.washington@example.com",
+    "expedited": false,
+    "fax": "+15551234589",
+    "fee_waiver": false,
+    "max_fee": 25.0,
+    "organization": "Newspaper Inc",
+    "phone": "+15551234567",
+    "region": "9",
+    "request_origin": "Individual/Self",
+    "requester_address": {
+        "address1": "1800 F Street",
+        "address2": "Suite 400",
+        "city": "Mount Vernon",
+        "state": "Virginia",
+        "zip": "98273"
+    },
+    "requester_name": {
+        "first": "George",
+        "last": "Washington"
     }
-    EOF
-
+}
+EOF
+```
 
 [agency-metadata-file-schema]: https://github.com/18F/foia-recommendations/blob/master/schemas.md#agency-metadata-file

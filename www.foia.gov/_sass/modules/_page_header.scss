@@ -1,0 +1,19 @@
+//TODO: remove ID when margin is no longer set on #content h2s in foia-legacy.css
+#content .page-header_tag {
+  font-size: $h4-font-size;
+  color: $color-primary;
+  margin-bottom: 1rem;
+  + .page-header_title {
+    margin-top: 0;
+  }
+}
+
+.page-header_title {
+  font-size: $h1-font-size;
+  color: $color-primary-darkest;
+}
+
+.page-header_lede {
+  font-style: italic;
+  color: $color-gray;
+}

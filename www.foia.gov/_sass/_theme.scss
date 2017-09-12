@@ -1,13 +1,63 @@
 /* Temporary styles to make adjusting the existing styles easier. */
 
 body {
-  background-color: #121B26;
+  background-color: #121B26; /* leave until we remove gradients */
 }
 
 #background {
   background-position: 0 25px; // to accommodate gov banner
 }
 
+html,
+p {
+  font-family: $font-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-sans;
+}
+
+a {
+  text-decoration: none;
+}
+
+ol,
+ul {
+  padding-left: 0;
+}
+
+ul.tabs li {
+  text-align: center;
+  a {
+    padding-left: 0px;
+  }
+}
+
+/* hide legacy labels and legends */
+#selectReport,
+#dataTable {
+  label,
+  legend {
+    @extend .usa-sr-only;
+  }
+}
+
+/* this is necessary because the markup in the HTML doesn't match the markup WDS expects, so it hides the whole thing */
+[type=checkbox],
+[type=radio] {
+  position: static;
+  left: 0;
+  display: inline-block;
+  width: 10px;
+  height: 1em;
+}
+
+/* home page temp overrides */
 #headNav img {
   max-width: none;
 }
@@ -27,38 +77,6 @@ body {
     display: inline-block;
   }
 }
-
-html,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  font-family: $font-serif;
-}
-
-a {
-  text-decoration: none;
-}
-
-ol,
-ul {
-  padding-left: 0;
-}
-
-ul.tabs li {
-  text-align: center;
-  a {
-    padding-left: 0px;
-  }
-}
-
-.reportText {
-  margin-top: -30px;
-}
-
 .articleimageborder {
   height: 200px;
   + h3 {
@@ -74,29 +92,22 @@ ul.tabs li {
   }
 }
 
-[type=checkbox],
-[type=radio] {
-  position: static;
-  left: 0;
-  display: inline-block;
-  width: 10px;
-  height: 1em;
-}
 /* temp data page styles */
 .agencyTextbox {
   float: left;
 }
-label[for=addagency1] {
-  display: none;
-}
-input.addAgency {
+
+input.addAgency,
+input.addAgency:hover,
+input.deleteAgency,
+input.deleteAgency:hover{
   background-color: transparent;
   margin: 0;
 }
+
 /* search temp styles */
-#edit-submit {
-  right: 21px;
-  top: -23px;
+.reportText {
+  margin-top: 0px !important;
 }
 
 /* page subnav temp styles */
@@ -112,4 +123,5 @@ input.addAgency {
 .footer span {
   display: none; // this isn't accessible and the whole point is to be accessible
 }
+
 /* end temp styles */

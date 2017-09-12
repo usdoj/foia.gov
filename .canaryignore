@@ -4,8 +4,10 @@
 *.pdf
 *.png
 *.swf
+*.sw?
 *.xls
 *.zip
+.htaccess
 .htpasswd
 api
 assets

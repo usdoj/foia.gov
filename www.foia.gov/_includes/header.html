@@ -1,42 +1,78 @@
 <!-- Start Header -->
 <script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOJ"></script>
 <script type="text/javascript" src="scripts/breakout.js"></script>
-<!-- Gov banner BEGIN -->
-  <div class="usa-banner">
-    <div class="usa-accordion">
-      <header class="usa-banner-header">
-        <div class="usa-grid usa-banner-inner">
-        <img src="/assets/img/favicons/favicon-57.png" alt="U.S. flag">
-        <p>An official website of the United States government</p>
-        <button class="usa-accordion-button usa-banner-button"
-          aria-expanded="false" aria-controls="gov-banner">
-          <span class="usa-banner-button-text">Here's how you know</span>
-        </button>
-        </div>
-      </header>
-      <div class="usa-banner-content usa-grid usa-accordion-content" id="gov-banner">
-        <div class="usa-banner-guidance-gov usa-width-one-half">
-          <img class="usa-banner-icon usa-media_block-img" src="/assets/img/icon-dot-gov.svg" alt="Dot gov">
-          <div class="usa-media_block-body">
-            <p>
-              <strong>The .gov means it’s official.</strong>
-              <br>
-              Federal government websites always use a .gov or .mil domain. Before sharing sensitive information online, make sure you’re on a .gov or .mil site by inspecting your browser’s address (or “location”) bar.
-            </p>
-          </div>
-        </div>
-        <div class="usa-banner-guidance-ssl usa-width-one-half">
-          <img class="usa-banner-icon usa-media_block-img" src="/assets/img/icon-https.svg" alt="SSL">
-          <div class="usa-media_block-body">
-            <p>This site is also protected by an SSL (Secure Sockets Layer) certificate that’s been signed by the U.S. government. The <strong>https://</strong> means all transmitted data is encrypted  — in other words, any information or browsing history that you provide is transmitted securely.</p>
-          </div>
-        </div>
+{% if page.use-uswds %}
+  <a class="usa-skipnav" href="#main">Skip to main content</a>
+  <header class="usa-header usa-header-extended" role="banner" style="background-color: white;">
+  {% include site-banner.html %}
+    <div class="usa-navbar">
+      <button class="usa-menu-btn">Menu</button>
+      <div class="usa-logo" id="logo">
+        <em class="usa-logo-text">
+          <a href="{{ site.baseurl }}/" accesskey="1" title="Home">
+            <img src="images/legacylogoonwhite.png" alt="Foia.gov">
+            <h1 class="usa-header-title">FOIA.gov</h1>
+          </a>
+        </em>
       </div>
     </div>
-  </div>
-  <!-- Gov banner END -->
-<div class="header usa-grid">
-{% include legacy/header.html %}
-</div>
+    <nav role="navigation" class="usa-nav">
+      <div class="usa-nav-inner">
+        <button class="usa-nav-close">
+          <img src="{{ site.baseurl }}/assets/img/close.svg" alt="close">
+        </button>
+        <ul class="usa-nav-primary usa-accordion">
+        {% for link in site.navigation.primary %}
+          {% if link.children %}
+            <li>
+            <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-{{ forloop.index }}">
+              <span>{{ link.title }}</span>
+            </button>
+            <ul id="sidenav-{{ forloop.index }}" class="usa-nav-submenu usa-unstyled-list">
+            {% for child in link.children %}
+              <li>
+                <a href="{{ child.href | prepend: site.baseurl }}">{{ child.title }}</a>
+              </li>
+            {% endfor %}
+            </ul>
+          </li>
+          {% else %}
+            <li>
+              <a class="usa-nav-link" href="{{ link.href | prepend: site.baseurl }}"><span>{{ link.title }}</span></a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+        <div class="usa-nav-secondary">
+          <!-- TODO: Uncomment this when we lose the Search page -->
+          <!-- <form class="usa-search usa-search-small js-search-form" action="{{ site.baseurl }}/search/">
+            <div role="search">
+              <label class="usa-sr-only" for="search-field-small">Search site</label>
+              <input id="search-field-small" type="search" name="q">
+              <button type="submit">
+                <span class="usa-sr-only">Search</span>
+              </button>
+            </div>
+          </form>-->
+          <ul class="usa-unstyled-list usa-nav-secondary-links">
+            <!-- TODO: Uncomment this when we lose the Search page -->
+            <!--<li class="js-search-button-container">
+              <button class="usa-header-search-button js-search-button">Search</button>
+            </li>-->
+            {% for link in site.navigation.secondary %}
+            <li>
+              <a href="{{ link.href | prepend: site.baseurl }}"><span>{{ link.title }}</span></a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="usa-overlay"></div>
+{% else %}
+  {% include site-banner.html %}
+  {% include legacy/header.html %}
+{% endif %}
 
 <!-- End Header -->
