@@ -49,7 +49,7 @@ jobs:
           command: bin/gen_htpasswd.sh _site/.htpasswd
       - deploy:
           name: cf push
-          command: cf_deploy.sh foia-dot-gov doj-foia-discovery prototype
+          command: cf_deploy.sh foia-dot-gov doj-foia-discovery staging
 
 
 workflows:
