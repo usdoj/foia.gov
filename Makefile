@@ -31,7 +31,5 @@ test:
 	diff $(DIFFOPTS) _www.foia.gov-canary _site
 	@echo OK
 
-deploy:
-	bin/cf_deploy.sh foia-dot-gov doj-foia-discovery prototype
 
 .PHONY: all build clean deploy test
