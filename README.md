@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/18F/foia.svg?style=svg)](https://circleci.com/gh/18F/foia)
+[![CircleCI](https://circleci.com/gh/18F/beta.foia.gov.svg?style=svg)](https://circleci.com/gh/18F/beta.foia.gov)
 
 # foia
 
