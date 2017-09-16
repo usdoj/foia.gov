@@ -1,5 +1,19 @@
 // Variable overrides
-$font-serif: Georgia, 'Times New Roman', Times, serif;
+$h1-font-size: 3.5rem; // heading 1
+$h2-font-size: 3rem;   // subhead 1
+$h3-font-size: 2rem;   // heading 2
+$h4-font-size: 2.2rem; // subhead 2
+$h5-font-size: 1.7rem; // menu/label items
+
+// Colors in use (USWDS defaults in use are included as comments for reference):
+// $color-primary: #0071bc;
+// $color-primary-darker: #205493;
+// $color-primary-darkest: #112e51;
+// $color-gray-light: #AEB0B5;
+$color-primary-alt: #5EAFF8;
+$color-gray-dark: #212121; // same as USWDS $color-base
+$color-gray-lightest: #F8F8F8;
+
 
 // Relative font and image file paths
 $font-path:   '/assets/fonts' !default;
