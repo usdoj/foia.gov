@@ -1,0 +1,9 @@
+---
+applications:
+- name: open-foia-redirect
+  buildpack: staticfile_buildpack
+  instances: 1
+  memory: 64M
+  path: .
+  env:
+    TARGET_DOMAIN: www.foia.gov
