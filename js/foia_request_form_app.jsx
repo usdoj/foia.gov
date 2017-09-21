@@ -14,8 +14,48 @@ const api = new Api(settings.api.baseURL);
 
 // TODO fetch list of agencies and agency components from the server
 const agencies = {
-  gsa: 'General Services Administration (GSA)',
-  oge: 'Office of Government Ethics (OGE)',
+  gsa: {
+    id: 'gsa',
+    name: 'General Services Administration',
+    agency: 'gsa',
+    agency_name: 'General Services Administration',
+  },
+  oge: {
+    id: 'oge',
+    name: 'Office of Government Ethics',
+    agency: 'oge',
+    agency_name: 'Office of Government Ethics',
+  },
+  aphis: {
+    id: 'aphis',
+    name: 'Animal & Plant Health Inspection Service',
+    agency: 'usda',
+    agency_name: 'Department of Agriculture',
+  },
+  fsa: {
+    id: 'fsa',
+    name: 'Farm Service Agency',
+    agency: 'usda',
+    agency_name: 'Department of Agriculture',
+  },
+  ams: {
+    id: 'ams',
+    name: 'Agricultural Marketing Service',
+    agency: 'usda',
+    agency_name: 'Department of Agriculture',
+  },
+  oip: {
+    id: 'oip',
+    name: 'Office of Information Policy',
+    agency: 'doj',
+    agency_name: 'Department of Justice',
+  },
+  fbi: {
+    id: 'fbi',
+    name: 'Federal Bureau of Investigation',
+    agency: 'doj',
+    agency_name: 'Department of Justice',
+  },
 };
 
 
@@ -25,7 +65,7 @@ const agencyStore = new AgencyStore(dispatcher);
 const requestActions = RequestActions({ dispatcher, api });
 
 function agencyChange(agency) {
-  requestActions.agencyChange(agency)
+  requestActions.agencyChange(agency.id)
     .then(requestActions.receiveAgency);
 }
 
@@ -49,7 +89,7 @@ class FOIARequestFormApp extends Component {
       <div>
         <AgencyComponentSelector
           agencies={this.state.agencies}
-          selectedAgency={this.state.selectedAgency}
+          selectedAgency={this.state.agency}
           onAgencyChange={agencyChange}
         />
         { this.state.agency && <FOIARequestForm agency={this.state.agency} /> }
