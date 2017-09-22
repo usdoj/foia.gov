@@ -61,10 +61,10 @@ data:
       required: true
     - name: request_fee_waiver
       label: Request fee waiver
-      type: checkbox
+      type: radio
     - name: request_expedited_processing
       label: Request expedited processing
-      type: checkbox
+      type: radio
     - name: attachement
       label: Attachments / supporting documentation
       type: file
