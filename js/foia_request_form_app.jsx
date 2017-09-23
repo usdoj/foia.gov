@@ -10,6 +10,7 @@ import AgencyComponentStore from 'stores/agency_component';
 import Api from 'util/api';
 
 const api = new Api(settings.api.baseURL);
+const jsonapi = new Api(settings.api.jsonApiBaseURL);
 
 
 // TODO fetch list of agencies and agency components from the server
@@ -62,7 +63,13 @@ const agencies = {
 const dispatcher = new Dispatcher();
 const agencyComponentStore = new AgencyComponentStore(dispatcher);
 
-const requestActions = RequestActions({ dispatcher, api });
+const requestActions = RequestActions({ dispatcher, api, jsonapi });
+
+function init() {
+  // Pre-fetch the list of agencies and components for typeahead
+  requestActions.fetchAgencyFinderData()
+    .then(requestActions.receiveAgencyFinderData);
+}
 
 function agencyChange(agency) {
   requestActions.agencyChange(agency.id)
@@ -82,6 +89,10 @@ class FOIARequestFormApp extends Component {
       agency,
       selectedAgency,
     };
+  }
+
+  componentDidMount() {
+    init();
   }
 
   render() {

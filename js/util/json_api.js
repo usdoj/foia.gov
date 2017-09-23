@@ -1,5 +1,5 @@
 import { buildQueryString as serialize } from 'd8-jsonapi-querystring';
-import Api from './api';
+import { parse } from 'jsonapi-parse';
 
 function defaults() {
   return {
@@ -7,11 +7,23 @@ function defaults() {
   };
 }
 
-
 class JsonApiParams {
-  constructor(baseURL) {
+  constructor(api) {
+    if (!api) {
+      throw new Error('You must provide and api instance to JsonApiParams');
+    }
+
     this._params = defaults();
-    this._api = new Api(baseURL);
+    this._api = api;
+  }
+
+  get(path) {
+    return this._api.get(path, {
+      params: this._params,
+      paramsSerializer: serialize,
+      transformResponse: parse,
+    })
+      .then(response => response.data);
   }
 
   include(entity) {
