@@ -6,7 +6,7 @@ import { RequestActions } from 'actions';
 import AgencyComponentSelector from 'components/agency_component_selector';
 import FOIARequestForm from 'components/foia_request_form';
 import settings from 'settings';
-import AgencyStore from 'stores/agency';
+import AgencyComponentStore from 'stores/agency_component';
 import Api from 'util/api';
 
 const api = new Api(settings.api.baseURL);
@@ -60,7 +60,7 @@ const agencies = {
 
 
 const dispatcher = new Dispatcher();
-const agencyStore = new AgencyStore(dispatcher);
+const agencyComponentStore = new AgencyComponentStore(dispatcher);
 
 const requestActions = RequestActions({ dispatcher, api });
 
@@ -72,11 +72,11 @@ function agencyChange(agency) {
 
 class FOIARequestFormApp extends Component {
   static getStores() {
-    return [agencyStore];
+    return [agencyComponentStore];
   }
 
   static calculateState() {
-    const { agency, selectedAgency } = agencyStore.getState();
+    const { agency, selectedAgency } = agencyComponentStore.getState();
     return {
       agencies,
       agency,
