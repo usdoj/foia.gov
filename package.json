@@ -6,9 +6,8 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "test:lint": "eslint js/**.js js/**.jsx",
-    "test:mocha": "mocha-webpack --webpack-config webpack.config.test.js js/**.test.js*",
-    "test": "npm-run-all test:*",
+    "lint": "eslint --ext jsx,js js/",
+    "test": "mocha-webpack --webpack-config webpack.config.test.js js/**.test.js*",
     "watch": "webpack --watch"
   },
   "repository": {
