@@ -1,17 +1,18 @@
 ---
 layout: default
 ---
-<aside class="usa-width-one-fourth">
-  <ul class="tabs">
-    <li>
-      <h4>Request directions</h4>
-      {% comment %} TODO: Populate these via React {% endcomment %}
+<aside class="usa-width-five-twelfths sidebar">
+  <ul class="sidebar_tab-controls">
+    <li class="tab_active"><a href="#js-request-directions">Request directions</a></li>
+    <li><a href="#js-agency-information">Agency information</a></li>
+  </ul>
+  <ul class="sidebar_tabs">
+    <li class="tab_active" id="js-request-directions">
       <h3>Department of Justice</h3>
       <h2>Federal Bureau of Investigation</h2>
 
-      {% comment %}For request pages, use the sidenav style as the progress bar for now{% endcomment %}
       {% if page.sidenav %}
-      <ul class="usa-sidenav-list">
+      <ul class="sidebar_progress-bar">
       {% for link in page.sidenav %}
         {% if link.children %}
         <li>
@@ -26,7 +27,7 @@ layout: default
         </li>
         {% else %}
         <li>
-          <a href="{{ link.href | prepend: site.baseurl }}">{{ link.title }}</a>
+          <a {% if forloop.index == 1 %} class="step_active"{% endif %} href="{{ link.href | prepend: site.baseurl }}">{{ link.title }}</a>
         </li>
         {% endif %}
       {% endfor %}
@@ -52,8 +53,7 @@ layout: default
           </li>
       </ul>
     </li>
-    <li>
-      <h4>Agency information</h4>
+    <li id="js-agency-information">
       <h3>Department of Justice</h3>
       <h2>Federal Bureau of Investigation</h2>
       <div class="submission-help_processing-time">
@@ -87,6 +87,6 @@ layout: default
     </li>
   </ul><!-- tab container -->
 </aside>
-<div class="usa-width-three-fourths sidenav_content">
+<div class="usa-width-seven-twelfths sidenav_content">
  {{ content }}
 </div>

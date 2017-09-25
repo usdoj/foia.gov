@@ -1,0 +1,18 @@
+.sidebar_progress-bar a{
+  &:before {
+    width: 1.6rem;
+    height: 1.6rem;
+    display: inline-block;
+    content: " ";
+    background-color: $color-primary-darkest;
+    border: 1px solid $color-primary-alt;
+    border-radius: 100px;
+    margin-right: 1.6rem;
+  }
+  &.step_active {
+    font-weight: bold;
+    &:before {
+      background-color: $color-primary-alt;
+    }
+  }
+}
