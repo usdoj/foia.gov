@@ -10,38 +10,41 @@ layout: default
     <li class="tab_active" id="js-request-directions">
       <h3>Department of Justice</h3>
       <h2>Federal Bureau of Investigation</h2>
-
-      {% if page.sidenav %}
-      <ul class="sidebar_progress-bar">
-      {% for link in page.sidenav %}
-        {% if link.children %}
-        <li>
-          <a href="javascript:void(0);">{{ link.title }}</a>
-          <ul class="usa-sidenav-sub_list">
-            {% for child in link.children %}
-            <li>
-              <a href="{{ child.href | prepend: site.baseurl }}">{{ child.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </li>
-        {% else %}
-        <li>
-          <a {% if forloop.index == 1 %} class="step_active"{% endif %} href="{{ link.href | prepend: site.baseurl }}">{{ link.title }}</a>
-        </li>
+      <section>
+        {% if page.sidenav %}
+        <ul class="sidebar_progress-bar">
+        {% for link in page.sidenav %}
+          {% if link.children %}
+          <li>
+            <a href="javascript:void(0);">{{ link.title }}</a>
+            <ul class="usa-sidenav-sub_list">
+              {% for child in link.children %}
+              <li>
+                <a href="{{ child.href | prepend: site.baseurl }}">{{ child.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% else %}
+          <li>
+            <a {% if forloop.index == 1 %} class="step_active"{% endif %} href="{{ link.href | prepend: site.baseurl }}">
+              <span>{{ link.title }}</span>
+            </a>
+          </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
         {% endif %}
-      {% endfor %}
-      </ul>
-      {% endif %}
-
-      <h2>Tips for submitting</h2>
-      <ul class="submission-help_tips">
-        <li>
-          <p>The person to reach out to about your FOIA request is:</p>
-          <p class="submission-help_poc">Dennis Argall, Public Liason</p>
-          <p class="submission-help_phone">540-868-4516</p> {% comment %} Mark this up for callability {% endcomment %}
-          <p class="submission-help_email"><a href="mailto:foiarequest@ic.fbi.gov">foiarequest@ic.fbi.gov</a></p>
-          <p>You can ask FOIA personnel about anything related to your request, including whether what you’re asking for is clear. You can also reach out to follow up on your request after it’s been submitted.</p>
+      </section>
+      <section>
+        <h2>Tips for submitting</h2>
+        <ul class="submission-help_tips">
+          <li>
+            <p>The person to reach out to about your FOIA request is:</p>
+            <p class="submission-help_poc">Dennis Argall, Public Liason</p>
+            <p class="submission-help_phone">540-868-4516</p> {% comment %} Mark this up for callability {% endcomment %}
+            <p class="submission-help_email"><a href="mailto:foiarequest@ic.fbi.gov">foiarequest@ic.fbi.gov</a></p>
+            <p>You can ask FOIA personnel about anything related to your request, including whether what you’re asking for is clear. You can also reach out to follow up on your request after it’s been submitted.</p>
           </li>
           <li>
             <p>The description of records you're requesting is very important.</p>
@@ -51,7 +54,8 @@ layout: default
             <p>Do research before you file.</p>
             <p class="submission-help_research">Sometime records and information you’re looking for  is already public. You can find out by reaching out to the agency you’re interested in or by visiting their website or their FOIA reading room.</p>
           </li>
-      </ul>
+        </ul>
+      </section>
     </li>
     <li id="js-agency-information">
       <h3>Department of Justice</h3>

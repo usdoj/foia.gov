@@ -1,4 +1,6 @@
-// Variable overrides
+/***********************************
+ * USWDS variable overrides
+ * ********************************/
 $h1-font-size: 3.5rem; // heading 1
 $h2-font-size: 3rem;   // subhead 1
 $h3-font-size: 2rem;   // heading 2
@@ -18,5 +20,15 @@ $color-gray-lightest: #F8F8F8;
 // Relative font and image file paths
 $font-path:   '/assets/fonts' !default;
 $image-path:  '/assets/img' !default;
+
+/***********************************
+ * New variable declarations
+ * ********************************/
+//Spacing vars
+$space-1x: 0.8rem;
+$space-2x: 1.6rem;
+$space-3x: 2.4rem;
+$space-4x: 3.2rem;
+$space-5x: 4.0rem;
 
 @import '../../node_modules/uswds/src/stylesheets/uswds';

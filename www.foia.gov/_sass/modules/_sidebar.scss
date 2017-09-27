@@ -1,5 +1,8 @@
 .sidebar {
   background: $color-primary-alt;
+  section {
+    border-top: 1px solid $color-primary-alt;
+  }
 }
 
 .sidebar_tab-controls {
