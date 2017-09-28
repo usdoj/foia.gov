@@ -34,13 +34,13 @@ ul.tabs li {
 }
 
 /* this is necessary because the markup in the HTML doesn't match the markup WDS expects, so it hides the whole thing */
-[type=checkbox],
-[type=radio] {
- // position: static;
- // left: 0;
- // display: inline-block;
- // width: 10px;
- // height: 1em;
+#selectFY [type=checkbox],
+#selectFY [type=radio] {
+  position: static;
+  left: 0;
+  display: inline-block;
+  width: 10px;
+  height: 1em;
 }
 
 /* home page temp overrides */
