@@ -16,7 +16,6 @@ function FOIARequestForm(props) {
   // For now, we just pick the component that matches the agency name, which
   // only sort of works for centralized agencies.
   const { jsonSchema, uiSchema } = metadataToJsonSchema(agency, agency.name);
-console.log('uiSchema: ', uiSchema);
   return (
     <div>
       <Form className="foia-request-form" 

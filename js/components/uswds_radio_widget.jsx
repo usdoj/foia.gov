@@ -1,13 +1,11 @@
 import React from 'react';
 const USWDSRadioWidget = function(props) {
-  console.log('props for radio: ', props);
   const { enumOptions, inline } = props.options;
 
 return (
     <fieldset className="usa-fieldset-inputs field-radio-group">
       <ul class="usa-unstyled-list">
       {enumOptions.map((option, i) => {
-        console.log('option: ', option);
         const radio = (
             <input
               type="radio"
