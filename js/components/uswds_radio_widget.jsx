@@ -1,8 +1,8 @@
 import React from 'react';
-const USWDSRadioWidget = function(props) {
+function USWDSRadioWidget(props) {
   const { enumOptions, inline } = props.options;
 
-return (
+  return (
     <fieldset className="usa-fieldset-inputs field-radio-group">
       <ul class="usa-unstyled-list">
       {enumOptions.map((option, i) => {
@@ -12,7 +12,7 @@ return (
               id={`${props.label}-${option.label}`}
               name={props.label}
               className={props.value ? "checked" : "unchecked"}
-              onClick={() => props.onChange(!props.value)}
+              onChange={() => props.onChange(!props.value)}
             />
         );
 

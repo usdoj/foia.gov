@@ -1,5 +1,5 @@
 import React from 'react';
-const USWDSCheckboxWidget = function(props) {
+function USWDSCheckboxWidget({ label, value }) {
   return (
     <div>
       <input 
@@ -7,7 +7,7 @@ const USWDSCheckboxWidget = function(props) {
         id={props.label} 
         name={props.label} 
         className={props.value ? "checked" : "unchecked"} 
-        onClick={() => props.onChange(!props.value)} 
+        onChange={() => props.onChange(!props.value)} 
       />
       <label htmlFor={props.label}>{props.options.title}</label>
     </div>
