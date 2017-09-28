@@ -20,7 +20,8 @@ clean:
 
 serve:
 	npm run watch &
-	bundle exec jekyll serve
+	bundle exec jekyll build --watch &
+	node js/dev-server.js
 
 test:
 	npm test
