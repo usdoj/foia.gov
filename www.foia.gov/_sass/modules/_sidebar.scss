@@ -1,0 +1,43 @@
+.sidebar {
+  background: $color-primary-alt;
+  section {
+    border-top: 1px solid $color-primary-alt;
+  }
+}
+
+.sidebar_tab-controls {
+  li {
+    a {
+      color: $color-primary-darkest;
+    }
+    &.tab_active {
+      font-weight: bold;
+      background-color: $color-primary-darkest;
+      a {
+        color: $color-white;
+      }
+    }
+  }
+}
+
+// TODO: Remove #content when legacy css goes away
+#content .sidebar_tabs {
+  .tab_active {
+    background-color: $color-primary-darkest;
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    a {
+      color: $color-white;
+    }
+  }
+  h2 {
+    font-family: $font-serif;
+    font-size: $h4-font-size;
+  }
+  h3 {
+    font-size: $h5-font-size;
+  }
+}

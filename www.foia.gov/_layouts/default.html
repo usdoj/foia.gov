@@ -9,7 +9,7 @@
 <div id="background">
 {% endunless %}
 {% include header.html %}
-<div class="usa-grid" id="main">
+<div class="{% if page.grid %}{{ page.grid }}{% else %}usa-grid{% endif %}" id="main">
     <div id="content">
     {{ content }}
     </div>

@@ -1,0 +1,31 @@
+.sidebar_progress-bar {
+  margin: 0 0 0 0.8rem; // to accommodate left half of bubbles
+  border-left: 1px solid $color-primary-alt; // line between bubbles
+  li {
+    line-height: 0.95; // to get the bubble/text to line up
+    margin-left: $space-1x * -1; // to line the bubbles halfway on the ul's border
+    margin-bottom: $space-3x;
+  }
+  a {
+    &:before {
+      width: $space-2x;
+      height: $space-2x;
+      display: block;
+      float: left;
+      content: " ";
+      background-color: $color-primary-darkest;
+      border: 1px solid $color-primary-alt;
+      border-radius: 100px;
+      margin-right: $space-2x;
+    }
+    &.step_active {
+      font-weight: bold;
+      &:before {
+        background-color: $color-primary-alt;
+      }
+    }
+    span {
+      display: block;
+    }
+  }
+}

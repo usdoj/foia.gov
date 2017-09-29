@@ -1,0 +1,49 @@
+$h1-leading: 1.4;
+$h2-leading: $heading-line-height; // 1.3
+$h3-leading: $base-line-height; // 1.5
+$h4-leading: $base-line-height;
+$h5-leading: $heading-line-height;
+$p-leading:  $heading-line-height;
+
+
+// Heading 1
+h1 {
+  font-family: $font-serif;
+  line-height: $h1-leading;
+  color: $color-primary-darkest;
+}
+
+// Subhead 1
+h2 {
+  font-family: $font-sans;
+  line-height: $h2-leading;
+  color: $color-primary-darkest;
+}
+
+// Heading 2
+h3 {
+  font-family: $font-serif;
+  line-height: $h3-leading;
+  color: $color-primary-darkest;
+}
+
+// Subhead 2
+h4 {
+  font-family: $font-serif;
+  line-height: $h4-leading;
+  color: $color-primary-darkest;
+}
+
+// Form labels/menu items
+h5 {
+  font-family: $font-sans;
+  line-height: $h5-leading;
+  font-weight: 500;
+  color: $color-primary-darkest;
+}
+
+p {
+  line-height: $p-leading;
+  color: $color-primary-darkest;
+}
+
