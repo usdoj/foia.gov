@@ -9,11 +9,13 @@
 *.zip
 .htaccess
 .htpasswd
+agency-info-updater.html
 api
 assets
 FusionCharts
 foia-style.css
 iepd
 images
+request
 video
 request.html
