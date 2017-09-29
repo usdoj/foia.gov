@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 function USWDSRadioWidget(props) {
   const { enumOptions, inline } = props.options;
@@ -6,26 +8,28 @@ function USWDSRadioWidget(props) {
   return (
     <fieldset className="usa-fieldset-inputs field-radio-group">
       <ul className="usa-unstyled-list">
-        {enumOptions.map((option, i) => {
+        {enumOptions.map((option) => {
+          const key = `${props.label}-${option.label}`;
           const radio = (
             <input
               type="radio"
-              id={`${props.label}-${option.label}`}
+              id={key}
               name={props.label}
               className={props.value ? 'checked' : 'unchecked'}
               onChange={() => props.onChange(!props.value)}
             />
           );
 
+
           return inline ? (
             <li>
               {radio}
-              <label htmlFor={`${props.label}-${option.label}`} key={i} className={'radio-inline'}>
+              <label htmlFor={key} key={key} className={'radio-inline'}>
                 {option.label}
               </label>
             </li>
           ) : (
-            <li key={i} className={'radio'}>
+            <li key={key} className={'radio'}>
               {radio}
               <label htmlFor={`${props.label}-${option.label}`}>{option.label}</label>
             </li>
@@ -35,5 +39,16 @@ function USWDSRadioWidget(props) {
     </fieldset>
   );
 }
+
+USWDSRadioWidget.propTypes = {
+  label: PropTypes.string.isRequired,
+  options: PropTypes.object,
+  value: PropTypes.string,
+};
+
+USWDSRadioWidget.defaultProps = {
+  options: {},
+  value: '',
+};
 
 export default USWDSRadioWidget;

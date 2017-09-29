@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 function USWDSCheckboxWidget(props) {
   return (
@@ -14,4 +16,20 @@ function USWDSCheckboxWidget(props) {
     </div>
   );
 }
+
+USWDSCheckboxWidget.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.shape({
+    title: PropTypes.string,
+  }),
+};
+
+USWDSCheckboxWidget.defaultProps = {
+  value: '',
+  onChange: () => {},
+  options: { title: '' },
+};
+
 export default USWDSCheckboxWidget;
