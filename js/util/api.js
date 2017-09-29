@@ -12,8 +12,8 @@ class Api {
     return new JsonApiParams(this._api);
   }
 
-  get(url) {
-    return this._api.get(url)
+  get(...args) {
+    return this._api.get(...args)
       .then(response => response.data);
   }
 }

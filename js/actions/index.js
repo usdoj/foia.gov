@@ -18,17 +18,18 @@ export function RequestActions({ dispatcher, api, jsonapi }) {
       return jsonapi.params()
         .include('agency')
         .fields('agency', ['name', 'abbreviation'])
-        .fields('agency_component', ['title', 'abbreviation'])
+        .fields('agency_component', ['title', 'abbreviation', 'agency'])
+        .limit(500) // TODO fetch over multiple requests
         .get('/agency_components');
     },
 
-    receiveAgencyFinderData(data) {
+    receiveAgencyFinderData(agencyComponents) {
       dispatcher.dispatch({
         type: types.AGENCY_FINDER_DATA_RECEIVE,
-        data,
+        agencyComponents,
       });
 
-      return Promise.resolve(data);
+      return Promise.resolve(agencyComponents);
     },
 
     agencyChange(agency) {

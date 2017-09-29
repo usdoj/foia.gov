@@ -3,6 +3,7 @@ import assert from 'assert';
 import { buildQueryString as serialize } from 'd8-jsonapi-querystring';
 import { parse } from 'jsonapi-parse';
 
+
 function defaults() {
   return {
     _format: 'api_json',
@@ -20,11 +21,11 @@ class JsonApiParams {
     this._groupId = 0;
   }
 
-  get(path) {
-    return this._api.get(path, {
+  get(path, options) {
+    return this._api.get(path, options || {
       params: this._params,
       paramsSerializer: serialize,
-      transformResponse: parse,
+      transformResponse: [parse, response => response.data],
     })
       .then(response => response.data);
   }

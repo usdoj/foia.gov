@@ -6,6 +6,9 @@ env:
 rules:
   camelcase: 0
   no-plusplus: 0
+  no-param-reassign:
+    - error
+    - props: false
   no-underscore-dangle:
     - 2
     - allowAfterThis: true

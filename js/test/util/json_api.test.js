@@ -61,7 +61,7 @@ describe('JsonApiParams', () => {
       expect(api.get).to.have.been.calledWith(sinon.match.any, sinon.match({
         params: { _format: 'api_json' },
         paramsSerializer: sinon.match.func,
-        transformResponse: sinon.match.func,
+        transformResponse: [sinon.match.func, sinon.match.func],
       }));
     });
 
