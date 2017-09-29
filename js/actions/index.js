@@ -3,6 +3,7 @@ export const types = {
   AGENCY_FINDER_DATA_FETCH: 'AGENCY_FINDER_DATA_FETCH',
   AGENCY_FINDER_DATA_RECEIVE: 'AGENCY_FINDER_DATA_RECEIVE',
   REQUEST_AGENCY_CHANGE: 'REQUEST_AGENCY_CHANGE',
+  REQUEST_AGENCY_FETCH: 'REQUEST_AGENCY_FETCH',
   REQUEST_RECEIVE_AGENCY: 'REQUEST_RECEIVE_AGENCY',
 };
 
@@ -36,13 +37,21 @@ export function RequestActions({ dispatcher, api, jsonapi }) {
         agency,
       });
 
-      if (!agency) {
-        // The agency was unselected
-        return Promise.resolve(null);
+      return Promise.resolve(agency);
+    },
+
+    fetchAgency(agencyId) {
+      dispatcher.dispatch({
+        type: types.REQUEST_AGENCY_FETCH,
+        agencyId,
+      });
+
+      if (!agencyId) {
+        return Promise.reject(new Error('You must provide an agencyId to fetch.'));
       }
 
       // TODO this should be in a fetch action, results cached
-      return api.get(`/agencies/${agency}.json`);
+      return api.get(`/agencies/${agencyId}.json`);
     },
 
     receiveAgency(agency) {

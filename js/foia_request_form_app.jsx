@@ -4,7 +4,6 @@ import { Container } from 'flux/utils';
 
 import { RequestActions } from 'actions';
 import AgencyComponentSelector from 'components/agency_component_selector';
-import FOIARequestForm from 'components/foia_request_form';
 import settings from 'settings';
 import AgencyComponentStore from 'stores/agency_component';
 import Api from 'util/api';
@@ -14,7 +13,7 @@ const jsonapi = new Api(settings.api.jsonApiBaseURL);
 
 
 // TODO fetch list of agencies and agency components from the server
-const agencies = {
+const stubAgencies = {
   gsa: {
     id: 'gsa',
     name: 'General Services Administration',
@@ -72,10 +71,12 @@ function init() {
 }
 
 function agencyChange(agency) {
+  const { history } = window.app;
   requestActions.agencyChange(agency.id)
-    .then(requestActions.receiveAgency);
+    .then(() => {
+      history.push(`/agency-component/${agency.id}/`);
+    });
 }
-
 
 class FOIARequestFormApp extends Component {
   static getStores() {
@@ -85,7 +86,7 @@ class FOIARequestFormApp extends Component {
   static calculateState() {
     const { agency, selectedAgency } = agencyComponentStore.getState();
     return {
-      agencies,
+      agencies: stubAgencies,
       agency,
       selectedAgency,
     };
@@ -96,14 +97,14 @@ class FOIARequestFormApp extends Component {
   }
 
   render() {
+    const { agencies } = this.state;
+
     return (
       <div>
         <AgencyComponentSelector
-          agencies={this.state.agencies}
-          selectedAgency={this.state.agency}
+          agencies={agencies}
           onAgencyChange={agencyChange}
         />
-        { this.state.agency && <FOIARequestForm agency={this.state.agency} /> }
       </div>
     );
   }
