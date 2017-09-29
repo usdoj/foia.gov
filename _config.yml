@@ -24,7 +24,7 @@ timezone: America/New_York
 
 navigation:
   primary:
-    - href: /index.html
+    - href: /
       title: Home
     - href: /request/
       title: Request
