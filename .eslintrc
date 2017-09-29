@@ -5,6 +5,7 @@ env:
   browser: yes
 rules:
   camelcase: 0
+  no-plusplus: 0
   no-underscore-dangle:
     - 2
     - allowAfterThis: true
