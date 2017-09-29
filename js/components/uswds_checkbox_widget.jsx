@@ -1,5 +1,5 @@
 import React from 'react';
-function USWDSCheckboxWidget({ label, value }) {
+function USWDSCheckboxWidget(props) {
   return (
     <div>
       <input 
