@@ -24,30 +24,30 @@ timezone: America/New_York
 
 navigation:
   primary:
-    - href: index.html
+    - href: /
       title: Home
-    - href: request.html
+    - href: /request/
       title: Request
-    - href: data.html
+    - href: /data.html
       title: Data
-    - href: reports.html
+    - href: /reports.html
       title: Reports
-    - href: search.html
+    - href: /search.html
       title: Find
-    - href: about.html
+    - href: /about.html
       title: Learn
   secondary:
-    - href: news.html
+    - href: /news.html
       title: News
-    - href: glossary.html
+    - href: /glossary.html
       title: Glossary
-    - href: faq.html
+    - href: /faq.html
       title: FAQs
-    - href: index-es.html
+    - href: /index-es.html
       title: en Espa&ntilde;ol
-    - href: feedback.html
+    - href: /feedback.html
       title: Feedback
-    - href: report-makerequest.html
+    - href: /report-makerequest.html
       title: FOIA Contacts
 
 collections:

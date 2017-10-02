@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
 import metadataToJsonSchema from 'util/metadata_to_json_schema';
-import USWDSRadioWidget from 'components/uswds_radio_widget.jsx';
-import USWDSCheckboxWidget from 'components/uswds_checkbox_widget.jsx';
+import USWDSRadioWidget from 'components/uswds_radio_widget';
+import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
 
 function FOIARequestForm(props) {
   const { agency } = props;
   const widgets = {
     CheckboxWidget: USWDSCheckboxWidget,
-    RadioWidget: USWDSRadioWidget // TODO: Check to make sure RadioWidget is the correct internal terminology
+    // TODO: Check to make sure RadioWidget is the correct internal terminology
+    RadioWidget: USWDSRadioWidget,
   };
 
   // TODO we should be able to get the component name from the selector and use that here
@@ -18,10 +19,12 @@ function FOIARequestForm(props) {
   const { jsonSchema, uiSchema } = metadataToJsonSchema(agency, agency.name);
   return (
     <div>
-      <Form className="foia-request-form" 
-            schema={jsonSchema} 
-            uiSchema={uiSchema} 
-            widgets={widgets} />
+      <Form
+        className="foia-request-form"
+        schema={jsonSchema}
+        uiSchema={uiSchema}
+        widgets={widgets}
+      />
     </div>
   );
 }

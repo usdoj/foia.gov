@@ -52,7 +52,7 @@ function toUiSchemaProperty(metadataField) {
   };
 
   if (metadataField.example) {
-    uiSchemaProperty['ui:placeholder'] = metadataField.example;
+    uiSchemaProperty['ui:placeholder'] = `${metadataField.example}`; // Coerce to string
   }
 
   // Map metadata field type to ui:widget or ui:options
