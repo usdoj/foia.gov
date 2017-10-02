@@ -37,7 +37,7 @@ class AgencyComponentRequestPage extends Component {
   }
 
   init() {
-    const agencyComponentId = this.props.match.params.agency;
+    const agencyComponentId = this.props.match.params.agencyComponentId;
 
     // Check agency exists in store
     const { agency } = agencyComponentStore.getState();

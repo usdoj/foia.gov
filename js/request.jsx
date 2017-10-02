@@ -21,7 +21,7 @@ render(
   <Router history={history}>
     <Switch>
       <Route exact path="/" component={RequestLandingPage} />
-      <Route path="/agency-component/:agency" component={AgencyComponentRequestPage} />
+      <Route path="/agency-component/:agencyComponentId" component={AgencyComponentRequestPage} />
       <Route component={NotFoundPage} />
     </Switch>
   </Router>,
