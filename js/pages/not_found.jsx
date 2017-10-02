@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Four04({ children }) {
+function NotFoundPage({ children }) {
   return (
     <div>
       <h1>Not found</h1>
@@ -11,12 +11,12 @@ function Four04({ children }) {
   );
 }
 
-Four04.propTypes = {
+NotFoundPage.propTypes = {
   children: PropTypes.node,
 };
 
-Four04.defaultProps = {
+NotFoundPage.defaultProps = {
   children: null,
 };
 
-export default Four04;
+export default NotFoundPage;

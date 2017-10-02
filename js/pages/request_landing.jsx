@@ -31,7 +31,7 @@ function agencyChange(agency) {
 }
 
 
-class FOIARequestFormApp extends Component {
+class RequestLandingPage extends Component {
   static getStores() {
     return [agencyComponentStore];
   }
@@ -65,4 +65,4 @@ class FOIARequestFormApp extends Component {
   }
 }
 
-export default Container.create(FOIARequestFormApp);
+export default Container.create(RequestLandingPage);

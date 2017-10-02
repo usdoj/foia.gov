@@ -19,7 +19,7 @@ const agencyComponentStore = new AgencyComponentStore(dispatcher);
 const requestActions = RequestActions({ dispatcher, api, jsonapi });
 
 
-class FOIARequestFormApp extends Component {
+class AgencyComponentRequestPage extends Component {
   static getStores() {
     return [agencyComponentStore];
   }
@@ -52,8 +52,8 @@ class FOIARequestFormApp extends Component {
   }
 }
 
-FOIARequestFormApp.propTypes = {
+AgencyComponentRequestPage.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-export default Container.create(FOIARequestFormApp);
+export default Container.create(AgencyComponentRequestPage);
