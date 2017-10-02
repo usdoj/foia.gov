@@ -1,15 +1,15 @@
 .twitter-typeahead {
+  max-width: 46rem; // Match the max-width on WDS inputs
   width: 100%;
 
   .tt-menu {
-    background-color: #fff;
-    border: 0.0625rem solid #ccc;
+    background-color: $color-white;
+    border: 0.0625rem solid $color-gray-light;
     border: 0.0625rem solid rgba(0, 0, 0, 0.2);
-    border-radius: 0.5rem;
     box-shadow: 0 0.3rem 0.625rem rgba(0,0,0,.2);
     cursor: pointer;
     margin-top: 0;
-    max-height: 150px;
+    max-height: 30rem;
     overflow-y: auto;
     padding: 1rem 0;
     width: 100%;
@@ -21,16 +21,15 @@
   }
 
   .tt-suggestion {
-    border-bottom: 0.0625rem solid #eee;
+    border-bottom: 0.0625rem solid $color-gray-light;
     font-size: $h4-font-size;
-    line-height: 1.5rem;
-    padding: 0.5rem 1.2rem;
+    padding: $space-1x $space-2x;
 
     &.tt-cursor,
     &:focus,
     &:hover {
-      background-color: #0071bc;
-      color: #fff;
+      background-color: $color-primary;
+      color: $color-white;
     }
 
     p {
