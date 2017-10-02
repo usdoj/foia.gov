@@ -5,6 +5,22 @@
   }
 }
 
+.usa-header-extended {
+  border-bottom: none; // WDS override
+  .usa-nav {
+    border-top: none; // WDS override
+    .usa-nav-inner {
+      margin-top: auto; // WDS override
+    }
+  }
+}
+
+.usa-nav-primary a,
+.usa-nav-primary > li > a,
+.usa-nav-secondary-links a {
+  color: $color-primary-darkest;
+}
+
 .usa-logo {
   a {
     display: flex;
