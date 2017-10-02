@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 import Api from '../../util/api';
-import JsonApiParams from '../../util/json_api';
+import JsonApiParams from '../../util/json_api_params';
 
 chai.use(sinonChai);
 

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import Api from '../../util/api';
-import JsonApiParams from '../../util/json_api';
+import JsonApiParams from '../../util/json_api_params';
 
 
 describe('Api', () => {

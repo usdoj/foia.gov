@@ -1,3 +1,10 @@
+/*
+ * JsonApiParams
+ *
+ * Incomplete DSL to construct queries against the Drupal json-api module.
+ * https://www.drupal.org/docs/8/modules/json-api/json-api
+ */
+
 import assert from 'assert';
 
 import { buildQueryString as serialize } from 'd8-jsonapi-querystring';
@@ -21,6 +28,9 @@ class JsonApiParams {
     this._groupId = 0;
   }
 
+  // TODO move this to a JsonApi class that extends the methods of JsonApiParams for convenience
+  // A convenience method to hook back to the Api so that you can construct
+  // params and then call `get` to execute.
   get(path, options) {
     return this._api.get(path, options || {
       params: this._params,

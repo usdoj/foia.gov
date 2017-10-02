@@ -1,5 +1,5 @@
 import axios from 'axios';
-import JsonApiParams from './json_api';
+import JsonApi from './json_api_params';
 
 class Api {
   constructor(baseURL) {
@@ -9,7 +9,7 @@ class Api {
   }
 
   params() {
-    return new JsonApiParams(this._api);
+    return new JsonApi(this._api);
   }
 
   get(...args) {
