@@ -118,10 +118,10 @@ workflows:
             - test
           filters:
             branches:
-              only: adb-acquia-cloud
+              only: master
       - deploy-development:
           requires:
             - build-development
           filters:
             branches:
-              only: adb-acquia-cloud
+              only: master
