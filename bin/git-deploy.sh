@@ -25,6 +25,11 @@ rm -rf "$deploy_dir"
 mkdir "$deploy_dir"
 cd "$deploy_dir"
 
+# Trust Acquia Cloud ssh servers
+cat - <<EOF >> ~/.ssh/known_hosts
+|1|pbwPrEpGRhczUeYTnv4TQeLd9o4=|Xg8WLpvNgV48Zph/TMjAjIsW2+g= ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPLqLvcodOBGuAyMJcMdl2NLB6xguovOAGoqGtQUCOxIbOQUz5WU5rJW1VVtM8L4CL907v07MoC+Xu6uULHwywompFX4f+dEe8Ej/J0SNLn1CxT0GuqcpckPWVyfCsKGoBofi39EMwWgLHL6A5yK9mAzJvXqvFEp69ioKl7oMTzLYcrhqGzXrbeKkqTqY3ls5LCCV3vfPJ0E5hy/zO4gCxo8/Cl40dF3ERyxyYhFYGRVmPVcQg2UIV+a+OLW2RLWX4e/cWD2tEkHrIn+Mog8mXQCcYceI1UQdNShC0cc1/3diNL8GID3qjWPR8XIPl4uhxviHi4sSqbNkGVuCeWKY1
+EOF
+
 # Git init
 git --version
 git init

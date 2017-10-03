@@ -61,14 +61,24 @@ useful and we can remove it at that point for better tests.
 
 ## Deployment
 
-This project is deployed automatically through continuous integration (CI) as
-a static application to [cloud.gov](https://cloud.gov/). Any changes merged to
+This project is deployed automatically through [continuous
+integration](https://circleci.com/gh/18F/beta.foia.gov) (CI) as a static
+application to [Acquia Cloud](https://cloud.acquia.com/). Any changes merged to
 the `master` branch will be vetted by our automated tests and then deployed
 automatically.
 
-To provide Basic Auth, the `.htpasswd` file is created at deploy time using
-`bin/gen_htpasswd.sh`. You must set the environment variable `$HTPASSWD` to the
-user/hash in your CI system. We use [CircleCI](https://circleci.com/gh/18F/beta.foia.gov).
+In the [CI settings](https://circleci.com/gh/18F/beta.foia.gov/edit#env-vars),
+you must configure the Acquia Cloud git repo as `$GIT_REPO`. The CI config runs
+`bin/git-deploy.sh _site <environment>` which pushes the build files in `_site`
+to the named environment in Acquia Cloud.
+
+To authorize CI, you must also [add an SSH key to
+CI](https://circleci.com/gh/18F/beta.foia.gov/edit#ssh), and the public key in
+your [Acquia Cloud account](https://cloud.acquia.com/app/profile/ssh-keys).
+
+For a deploy, CI first does a local build, then runs the tests.
+If the tests pass, a new environment specific build is preformed. If the build
+is successful, it is deployed to the named environment.
 
 
 ## Reporting API and foia-proxy
