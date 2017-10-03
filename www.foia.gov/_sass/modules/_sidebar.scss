@@ -22,7 +22,11 @@
 
 // TODO: Remove #content when legacy css goes away
 #content .sidebar_tabs {
+  li {
+    display: none;
+  }
   .tab_active {
+    display: block;
     background-color: $color-primary-darkest;
     h1,
     h2,
