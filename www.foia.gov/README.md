@@ -68,6 +68,14 @@ For a deploy, CI first does a local build, then runs the tests.
 If the tests pass, a new environment specific build is preformed. If the build
 is successful, it is deployed to the named environment.
 
+Each environment is deployed separately based on the git configuration based on
+[Git Flow](https://danielkummer.github.io/git-flow-cheatsheet/).
+
+| environment | hostname | git |
+| ---         | ---      | --- |
+| development | [foiafrontdev.prod.acquia-sites.com](http://foiafrontdev.prod.acquia-sites.com/) | `master` branch |
+| staging | [foiafrontstg.prod.acquia-sites.com](http://foiafrontstg.prod.acquia-sites.com/) | `release-*` branches |
+
 
 ## Reporting API and foia-proxy
 
