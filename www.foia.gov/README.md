@@ -10,18 +10,6 @@ The main pages have been migrated to [Jekyll](https://jekyllrb.com/) so that we
 can develop the look and feel of the Portal in tandem with the entire site.
 
 
-## Authentication
-
-The Basic Auth functionality is present during pre-ATO process. Team members
-should request the username/passphrase from their teammates.
-
-The user and password is specified in the `.htpasswd` as a hash which is created
-at deploy time via CI/CD. Create the `.htpasswd` file at the root of the site
-directory:
-
-    $ htpasswd -c -b .htpasswd theusername thepassword
-
-
 ## Testing
 
     $ make test
