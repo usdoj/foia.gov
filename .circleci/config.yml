@@ -97,6 +97,22 @@ jobs:
           NODE_ENV: development
     steps: *acquia-cloud-deploy-steps
 
+  # Build for the Acquia Cloud staging environment
+  build-staging:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: staging
+    steps: *build-steps
+
+  # Deploy job for the Acquia Cloud staging environment
+  deploy-staging:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: staging
+    steps: *acquia-cloud-deploy-steps
+
 
 workflows:
   version: 2
@@ -125,3 +141,16 @@ workflows:
           filters:
             branches:
               only: master
+
+      - build-staging:
+          requires:
+            - test
+          filters:
+            branches:
+              only: /^release-/
+      - deploy-staging:
+          requires:
+            - build-staging
+          filters:
+            branches:
+              only: /^release-/
