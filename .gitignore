@@ -5,5 +5,5 @@
 .tmp/
 _site
 node_modules/
-npm-debug.log
+npm-debug.log*
 /www.foia.gov/assets/
