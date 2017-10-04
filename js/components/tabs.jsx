@@ -57,8 +57,7 @@ class Tabs extends Component {
         </ul>
         <div className="sidebar_tabs">
           <section className={this.state.selectedTab === 0 ? 'tab_active' : ''}>
-            <h3>Department of Justice</h3>
-            <h2>Federal Bureau of Investigation</h2>
+            <h3>General Services Administration</h3>
             <section>
               <ul className="sidebar_progress-bar">
                 <li>
@@ -101,8 +100,8 @@ class Tabs extends Component {
                   <p className="submission-help_poc">Dennis Argall, Public Liason</p>
                   <p className="submission-help_phone">540-868-4516</p>
                   <p className="submission-help_email">
-                    <a href="mailto:foiarequest@ic.fbi.gov">
-                      foiarequest@ic.fbi.gov
+                    <a href="mailto:foiarequest@gsa.gov">
+                      foiarequest@gsa.gov
                     </a>
                   </p>
                   <p>You can ask FOIA personnel about anything related to your
@@ -127,8 +126,7 @@ class Tabs extends Component {
             </section>
           </section>
           <section className={this.state.selectedTab === 1 ? 'tab_active' : ''}>
-            <h3>Department of Justice</h3>
-            <h2>Federal Bureau of Investigation</h2>
+            <h3>General Services Administration</h3>
             <section className="submission-help_processing-time">
               <h5>Median processing time</h5>
               <p>15 working days for simple requests</p>
@@ -161,11 +159,11 @@ class Tabs extends Component {
             </section>
             <section className="submission-help_contact">
               <h5>Contact</h5>
-              <p className="submission-help_website">fbi.gov</p>
+              <p className="submission-help_website">gsa.gov</p>
               <p className="submission-help_poc">Dennis Argall, Public Liason</p>
               <p className="submission-help_phone">540-868-4516</p>
               <p className="submission-help_email">
-                <a href="mailto:foiarequest@ic.fbi.gov">foiarequest@ic.fbi.gov</a>
+                <a href="mailto:foiarequest@gsa.gov">foiarequest@gsa.gov</a>
               </p>
               <address className="submission-help_mailing">
                 <p>David M. Hardy</p>
