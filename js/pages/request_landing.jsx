@@ -54,12 +54,15 @@ class RequestLandingPage extends Component {
     const { agencies, agencyComponents } = this.state;
 
     return (
-      <div>
-        <AgencyComponentSelector
-          agencies={agencies}
-          agencyComponents={agencyComponents}
-          onAgencyChange={agencyChange}
-        />
+      <div id="request-landing-page" className="usa-grid">
+        <div className="usa-width-one-whole">
+          <h1>Select an agency to make a FOIA request</h1>
+          <AgencyComponentSelector
+            agencies={agencies}
+            agencyComponents={agencyComponents}
+            onAgencyChange={agencyChange}
+          />
+        </div>
       </div>
     );
   }
