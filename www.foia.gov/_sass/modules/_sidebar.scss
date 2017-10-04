@@ -1,12 +1,15 @@
 .sidebar {
-  background: $color-primary-alt;
+  background: $color-primary-alt-light;
   section {
-    border-top: 1px solid $color-primary-alt;
+    border-top: 1px solid $color-primary-alt-light;
   }
 }
 
 .sidebar_tab-controls {
+  display: flex;
   li {
+    flex-grow: 1;
+    cursor: pointer;
     a {
       color: $color-primary-darkest;
     }
@@ -22,7 +25,7 @@
 
 // TODO: Remove #content when legacy css goes away
 #content .sidebar_tabs {
-  li {
+  > li {
     display: none;
   }
   .tab_active {
@@ -35,6 +38,12 @@
     p,
     a {
       color: $color-white;
+    }
+
+    h5 {
+      color: $color-primary-alt-light;
+      font-weight: bold;
+      margin-top: 0;
     }
   }
   h2 {
