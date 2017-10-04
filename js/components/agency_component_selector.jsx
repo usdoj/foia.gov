@@ -60,7 +60,7 @@ class AgencyComponentSelector extends Component {
   render() {
     return (
       <form>
-        <input type="text" ref={(input) => { this.typeaheadInput = input; }} />
+        <input type="text" placeholder="Search FOIA offices" ref={(input) => { this.typeaheadInput = input; }} />
       </form>
     );
   }
