@@ -50,7 +50,7 @@ class AgencyComponentRequestPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="usa-grid-full grid-left">
         <aside className="usa-width-five-twelfths sidebar" id="react-tabs">
           <Tabs />
         </aside>
