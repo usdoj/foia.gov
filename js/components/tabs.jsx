@@ -48,8 +48,8 @@ class Tabs extends Component {
         <ul className="sidebar_tab-controls">
           { this.renderTabControls() }
         </ul>
-        <ul className="sidebar_tabs">
-          <li className={this.state.selectedTab==0 ? 'tab_active' : ''}>
+        <div className="sidebar_tabs">
+          <section className={this.state.selectedTab==0 ? 'tab_active' : ''}>
             <h3>Department of Justice</h3>
             <h2>Federal Bureau of Investigation</h2>
             <section>
@@ -90,24 +90,24 @@ class Tabs extends Component {
               <h2>Tips for submitting</h2>
               <ul className="submission-help_tips">
                 <li>
-                  <p>The person to reach out to about your FOIA request is:</p>
+                  <h5>The person to reach out to about your FOIA request is:</h5>
                   <p className="submission-help_poc">Dennis Argall, Public Liason</p>
                   <p className="submission-help_phone">540-868-4516</p>
                   <p className="submission-help_email"><a href="mailto:foiarequest@ic.fbi.gov">foiarequest@ic.fbi.gov</a></p>
                   <p>You can ask FOIA personnel about anything related to your request, including whether what you’re asking for is clear. You can also reach out to follow up on your request after it’s been submitted.</p>
                 </li>
                 <li>
-                  <p>The description of records you're requesting is very important.</p>
+                  <h5>The description of records you're requesting is very important.</h5>
                   <p className="submission-help_description">Be sure your request is clear and as specific as as possible.</p>
                 </li>
                 <li>
-                  <p>Do research before you file.</p>
+                  <h5>Do research before you file.</h5>
                   <p className="submission-help_research">Sometime records and information you’re looking for  is already public. You can find out by reaching out to the agency you’re interested in or by visiting their website or their FOIA reading room.</p>
                 </li>
               </ul>
             </section>
-          </li>
-          <li className={this.state.selectedTab==1 ? 'tab_active' : ''}>
+          </section>
+          <section className={this.state.selectedTab==1 ? 'tab_active' : ''}>
             <h3>Department of Justice</h3>
             <h2>Federal Bureau of Investigation</h2>
             <section className="submission-help_processing-time">
@@ -138,8 +138,8 @@ class Tabs extends Component {
                 <p>Winchester, VA 22602-4843</p>
               </address>
             </section>
-          </li>
-        </ul>
+          </section>
+        </div>
       </div>
     );
   }

@@ -2,7 +2,7 @@
   list-style: none;
   &.sidebar_tab-controls li {
     display: inline-block;
-    padding: 1rem 3.2rem;
+    padding: 1rem $space-4x;
     margin-bottom: 0;
   }
 }
@@ -13,18 +13,28 @@
 
 // TODO: Remove #content when legacy css goes away
 #content .sidebar section {
-  padding: $space-5x 0 0;
-  margin: $space-5x 0 0;
-  &> h2,
-  &> h3,
-  &> h4 {
+  h5 {
     margin-top: 0;
+    line-height: 1.5;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+  section {
+    padding: $space-5x 0 0;
+    margin: $space-5x 0 0;
+    &> h2,
+    &> h3,
+    &> h4 {
+      margin-top: 0;
+    }
   }
 }
 
 .sidebar_tabs {
   margin-top: 0;
   .tab_active {
-    padding: 4rem 3.2rem 3.2rem 3.2rem;
+    padding: $space-5x $space-3x $space-3x $space-3x;
   }
 }
