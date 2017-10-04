@@ -1,17 +1,9 @@
 ---
----<!DOCTYPE html>
-<html>
-{% include head.html %}
-<body>
-  {% include header.html %}
-  <div class="flex-container">
-    <aside class="sidebar" id="react-tabs">
+layout: default
+---
+    <aside class="usa-width-five-twelfths sidebar" id="react-tabs">
     </aside>
-    <div class="sidebar_content">
+    <div class="usa-width-seven-twelfths sidebar_content">
        {{ content }}
     </div>
   </div>
-  {% include footer.html %}
-  <script type="text/javascript" src="{{ page.bundle | append: ".bundle.js" | prepend: "/assets/js/" | prepend: site.baseurl }}" ></script>
-</body>
-</html>
