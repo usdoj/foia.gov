@@ -24,8 +24,7 @@
   }
 }
 
-// TODO: Remove #content when legacy css goes away
-#content .sidebar_tabs {
+.sidebar_tabs {
   > section {
     display: none;
     h5 {

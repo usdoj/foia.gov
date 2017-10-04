@@ -1,9 +1,12 @@
-.sidebar ul {
-  list-style: none;
-  &.sidebar_tab-controls li {
-    display: inline-block;
-    padding: 1rem $space-4x;
-    margin-bottom: 0;
+.sidebar {
+  width: 450px;
+  ul {
+    list-style: none;
+    &.sidebar_tab-controls li {
+      display: inline-block;
+      padding: 1rem $space-4x;
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -11,8 +14,7 @@
   margin: 0;
 }
 
-// TODO: Remove #content when legacy css goes away
-#content .sidebar section {
+.sidebar section {
   h5 {
     margin-top: 0;
     line-height: 1.5;
