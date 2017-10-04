@@ -26,7 +26,8 @@ function agencyChange(agency) {
   const { history } = window.app;
   requestActions.agencyChange(agency.id)
     .then(() => {
-      history.push(`/agency-component/${agency.id}/`);
+      //history.push(`/agency-component/${agency.id}/`);
+      history.push(`/agency-component/gsa/`);
     });
 }
 
