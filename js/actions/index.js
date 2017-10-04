@@ -1,3 +1,7 @@
+import { parse } from 'jsonapi-parse';
+
+import allAgencies from '../all-agencies.json';
+
 // Action types to identify an action
 export const types = {
   AGENCY_FINDER_DATA_FETCH: 'AGENCY_FINDER_DATA_FETCH',
@@ -15,12 +19,15 @@ export function RequestActions({ dispatcher, api, jsonapi }) {
         type: types.AGENCY_FINDER_DATA_FETCH,
       });
 
-      return jsonapi.params()
-        .include('agency')
-        .fields('agency', ['name', 'abbreviation'])
-        .fields('agency_component', ['title', 'abbreviation', 'agency'])
-        .limit(500) // TODO fetch over multiple requests
-        .get('/agency_components');
+      // return jsonapi.params()
+      //   .include('agency')
+      //   .fields('agency', ['name', 'abbreviation'])
+      //   .fields('agency_component', ['title', 'abbreviation', 'agency'])
+      //   .limit(500) // TODO fetch over multiple requests
+      //   .get('/agency_components');
+      return Promise.resolve(allAgencies)
+        .then(response => parse(response))
+        .then(response => response.data);
     },
 
     receiveAgencyFinderData(agencyComponents) {
