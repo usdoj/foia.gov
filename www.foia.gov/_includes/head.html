@@ -11,10 +11,10 @@
 {% for script in page.scripts %}
 <script type="text/javascript" src="{{ script }}"></script>
 {% endfor %}
-<script src="/assets/js/uswds.bundle.js"></script>
+<script src="{{ site.baseurl }}/assets/js/uswds.bundle.js"></script>
 {% unless page.use-uswds %}
 {% include legacy/head.html %}
 {% endunless %}
-<link rel="stylesheet" type="text/css" href="/foia-style.css" />
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/foia-style.css" />
 <title>FOIA.gov - Freedom of Information Act{% if page.title %}: {{ page.title }}{% endif %}</title>
 </head>
