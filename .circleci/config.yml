@@ -64,7 +64,15 @@ jobs:
           name: Run tests
           command: make test
 
-  deploy:
+
+  build-cloud-gov:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: cloud-gov
+    steps: *build-steps
+
+  deploy-cloud-gov:
     docker:
       - image: 18fgsa/cloud-foundry-cli
         environment:
@@ -122,9 +130,17 @@ workflows:
       - test:
           requires:
             - build-local
-      - deploy:
+
+      - build-cloud-gov:
           requires:
+            - deploy-development # Avoid race condition with build dir
             - test
+          filters:
+            branches:
+              only: master
+      - deploy-cloud-gov:
+          requires:
+            - build-cloud-gov
           filters:
             branches:
               only: master
