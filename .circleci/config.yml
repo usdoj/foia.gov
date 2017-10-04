@@ -64,6 +64,22 @@ jobs:
           name: Run tests
           command: make test
 
+  deploy:
+    docker:
+      - image: 18fgsa/cloud-foundry-cli
+        environment:
+          CF_API: https://api.fr.cloud.gov
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Generate htpasswd
+          command: bin/gen_htpasswd.sh _site/.htpasswd
+      - deploy:
+          name: cf push
+          command: cf_deploy.sh foia-dot-gov doj-foia-discovery staging
+
 
   # Build for the Acquia Cloud development environment
   build-development:
@@ -106,6 +122,12 @@ workflows:
       - test:
           requires:
             - build-local
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
 
       - build-development:
           requires:
