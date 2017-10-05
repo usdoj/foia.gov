@@ -4,6 +4,8 @@ import 'typeahead.js/dist/typeahead.jquery';
 import Bloodhound from 'typeahead.js/dist/bloodhound';
 import $ from 'jquery';
 
+import tokenizers from '../util/tokenizers';
+
 
 function datums(props) {
   const { agencies, agencyComponents } = props;
@@ -31,7 +33,11 @@ class AgencyComponentSelector extends Component {
             // For agency components
             []
               .concat(Bloodhound.tokenizers.nonword(datum.title))
-              .concat(Bloodhound.tokenizers.whitespace(datum.abbreviation))
+              .concat(
+                datum.abbreviation ?
+                  Bloodhound.tokenizers.whitespace(datum.abbreviation) :
+                  tokenizers.firstLetterOfEachCapitalizedWord(datum.title),
+              )
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.name))
           )
       ),
