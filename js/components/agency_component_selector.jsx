@@ -14,6 +14,11 @@ function datums(props) {
     .concat(agencyComponents);
 }
 
+function firstLetterOfEachCapitalizedWord(text = '') {
+  const letters = text.match(/\b[A-Z]/g);
+  return letters ? [letters.join('')] : [];
+}
+
 
 class AgencyComponentSelector extends Component {
   componentDidMount() {
@@ -31,7 +36,11 @@ class AgencyComponentSelector extends Component {
             // For agency components
             []
               .concat(Bloodhound.tokenizers.nonword(datum.title))
-              .concat(Bloodhound.tokenizers.whitespace(datum.abbreviation))
+              .concat(
+                datum.abbreviation ?
+                  Bloodhound.tokenizers.whitespace(datum.abbreviation) :
+                  firstLetterOfEachCapitalizedWord(datum.title),
+              )
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.name))
           )
       ),
