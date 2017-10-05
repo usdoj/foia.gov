@@ -15,8 +15,8 @@ var FOIA_PROXY = './foia-proxy.php?u=';
 function startFoiaRequest(foiaDataURL){
 var focusComponent;
 
-    if (!foiaDataURL.match(/^https:/)) {
-        foiaDataURL = FOIA_PROXY + foiaDataURL;
+    if (!/^https:/.test(foiaDataURL)) {
+        foiaDataURL = FOIA_PROXY + encodeURIComponent(foiaDataURL);
         console.log("new URL:", foiaDataURL);
     }
 
