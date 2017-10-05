@@ -4,17 +4,13 @@ import { Container } from 'flux/utils';
 
 import { RequestActions } from 'actions';
 import AgencyComponentSelector from 'components/agency_component_selector';
-import settings from 'settings';
 import AgencyComponentStore from 'stores/agency_component';
-import Api from 'util/api';
 
-const api = new Api(settings.api.baseURL);
-const jsonapi = new Api(settings.api.jsonApiBaseURL);
 
 const dispatcher = new Dispatcher();
 const agencyComponentStore = new AgencyComponentStore(dispatcher);
 
-const requestActions = RequestActions({ dispatcher, api, jsonapi });
+const requestActions = RequestActions({ dispatcher });
 
 function init() {
   // Pre-fetch the list of agencies and components for typeahead

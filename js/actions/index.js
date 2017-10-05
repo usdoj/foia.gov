@@ -1,3 +1,6 @@
+import api from '../util/api';
+import jsonapi from '../util/json_api';
+
 // Action types to identify an action
 export const types = {
   AGENCY_FINDER_DATA_FETCH: 'AGENCY_FINDER_DATA_FETCH',
@@ -8,7 +11,7 @@ export const types = {
 };
 
 // Action creators, to dispatch actions
-export function RequestActions({ dispatcher, api, jsonapi }) {
+export function RequestActions({ dispatcher }) {
   return {
     fetchAgencyFinderData() {
       dispatcher.dispatch({
