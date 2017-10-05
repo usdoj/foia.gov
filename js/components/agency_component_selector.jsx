@@ -42,6 +42,7 @@ class AgencyComponentSelector extends Component {
                   firstLetterOfEachCapitalizedWord(datum.title),
               )
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.name))
+              .concat(Bloodhound.tokenizers.whitespace(datum.agency.abbreviation))
           )
       ),
     });
