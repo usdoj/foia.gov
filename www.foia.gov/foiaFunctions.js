@@ -252,7 +252,7 @@ var z;
 
 
 function sortRequest(param){
-var requestString="foia/FoiaSort.jsp?";
+var requestString="/foia/FoiaSort.jsp?";
 var x;
 var agencyName="";
 
@@ -264,7 +264,7 @@ var agencyName="";
 }
 
 function breadcrumRequest(param){
-var requestString="foia/FoiaBreadcrum.jsp?";
+var requestString="/foia/FoiaBreadcrum.jsp?";
 var x;
 var agencyName="";
 var z;
@@ -318,13 +318,13 @@ var y;
 }
 
 function drilldownRequest(param){
-var requestString="foia/FoiaForm.jsp?";
+var requestString="/foia/FoiaForm.jsp?";
 var x;
 var agencyName="";
 
 	var multiple=param.indexOf("Multiple&");
 	if(multiple>-1){
-		requestString="foia/FoiaDrilldown.jsp?";
+		requestString="/foia/FoiaDrilldown.jsp?";
 		param=param.substring(multiple+9);
 	}
 	requestString+=param;
@@ -334,7 +334,7 @@ var agencyName="";
 }
 
 function compareRequest(param){
-var requestString="foia/FoiaCompare.jsp?";
+var requestString="/foia/FoiaCompare.jsp?";
 var x;
 var agencyName="";
 
@@ -345,7 +345,7 @@ var agencyName="";
 }
 
 function drilldownRequests(param){
-var requestString="foia/FoiaDrilldown.jsp?";
+var requestString="/foia/FoiaDrilldown.jsp?";
 var x;
 var agencyName="";
 

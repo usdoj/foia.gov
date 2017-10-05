@@ -252,7 +252,7 @@ var z;
 
 
 function sortRequest(param){
-var requestString="foia/FoiaSort.jsp?";
+var requestString="/foia/FoiaSort.jsp?";
 var x;
 var agencyName="";
 

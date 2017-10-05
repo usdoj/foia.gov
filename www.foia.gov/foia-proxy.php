@@ -34,6 +34,7 @@ print $filtered;
 function filter_response($resp) {
     $resp = preg_replace('/\/?foia\/FormChart/', '/foia-proxy.php?u=/foia/FormChart', $resp);
     $resp = preg_replace('/\/?foia\/FoiaDownload/', '/foia-proxy.php?u=/foia/FoiaDownload', $resp);
+    $resp = preg_replace('/\/?foia\/Services\//', '/foia-proxy.php?u=/foia/Services/', $resp);
     $resp = preg_replace('/\/?foia\/FoiaPrint.jsp/', '/foia-proxy.php?u=/foia/FoiaPrint.jsp', $resp);
     $resp = preg_replace('/src="\/?images\//', 'src="/images/', $resp);
     $resp = preg_replace('/url\(\/?images\//', 'url(/images/', $resp);
