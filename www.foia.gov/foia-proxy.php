@@ -32,11 +32,14 @@ print $filtered;
  * @return string
  */
 function filter_response($resp) {
-    $resp = preg_replace('/\/FusionCharts\//', './FusionCharts/', $resp);
-    $resp = preg_replace('/\/foia\/FormChart/', './foia-proxy.php?u=/foia/FormChart', $resp);
-    $resp = preg_replace('/href="\/quarter.html\?/', 'href="./quarter.html?', $resp);
-    $resp = preg_replace('/href="\/glance.html\?/', 'href="./glance.html?', $resp);
-    $resp = preg_replace('/src="\/images\//', 'src="./images/', $resp);
+    $resp = preg_replace('/\/?foia\/FormChart/', '/foia-proxy.php?u=/foia/FormChart', $resp);
+    $resp = preg_replace('/\/?foia\/FoiaDownload/', '/foia-proxy.php?u=/foia/FoiaDownload', $resp);
+    $resp = preg_replace('/\/?foia\/FoiaPrint.jsp/', '/foia-proxy.php?u=/foia/FoiaPrint.jsp', $resp);
+    $resp = preg_replace('/src="\/?images\//', 'src="/images/', $resp);
+    $resp = preg_replace('/url\(\/?images\//', 'url(/images/', $resp);
+
+    // These occur on the /foia/FoiaPrint.jsp page
+    $resp = preg_replace('/href="theme\//', '/href="/foia-proxy.php?u=/foia/theme/', $resp);
     return $resp;
 }
 

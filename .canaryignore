@@ -2,6 +2,7 @@
 *.jpeg
 *.jpg
 *.pdf
+*.php
 *.png
 *.swf
 *.sw?
