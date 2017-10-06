@@ -20,10 +20,9 @@ class AgencyComponentRequestPage extends Component {
   }
 
   static calculateState() {
-    const { agency, selectedAgency } = agencyComponentStore.getState();
+    const { agency } = agencyComponentStore.getState();
     return {
       agency,
-      selectedAgency,
     };
   }
 

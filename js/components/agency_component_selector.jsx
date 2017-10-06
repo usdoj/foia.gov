@@ -1,3 +1,4 @@
+import { Map, List } from 'immutable';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import 'typeahead.js/dist/typeahead.jquery';
@@ -7,11 +8,11 @@ import $ from 'jquery';
 
 function datums(props) {
   const { agencies, agencyComponents } = props;
-  return Object.values(agencies)
+  return Object.values(agencies.toJS())
     // Add a title property for common displayKey
     .map(agency => Object.assign({}, agency, { title: agency.name }))
     // Include agency components in typeahead
-    .concat(agencyComponents);
+    .concat(agencyComponents.toJS());
 }
 
 
@@ -68,16 +69,15 @@ class AgencyComponentSelector extends Component {
 
 AgencyComponentSelector.propTypes = {
   /* eslint-disable react/no-unused-prop-types */
-  agencies: PropTypes.object,
-  agencyComponents: PropTypes.arrayOf(PropTypes.object),
+  agencies: PropTypes.instanceOf(Map),
+  agencyComponents: PropTypes.instanceOf(List),
   /* eslint-enable react/no-unused-prop-types */
   onAgencyChange: PropTypes.func.isRequired,
 };
 
 AgencyComponentSelector.defaultProps = {
-  agencies: {},
-  agencyComponents: [],
-  selectedAgency: null,
+  agencies: new Map(),
+  agencyComponents: new List(),
 };
 
 export default AgencyComponentSelector;

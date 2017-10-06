@@ -32,12 +32,10 @@ class RequestLandingPage extends Component {
   }
 
   static calculateState() {
-    const { agency, selectedAgency, agencyComponents, agencies } = agencyComponentStore.getState();
+    const { agencyComponents, agencies } = agencyComponentStore.getState();
     return {
       agencies,
-      agency,
       agencyComponents,
-      selectedAgency,
     };
   }
 
