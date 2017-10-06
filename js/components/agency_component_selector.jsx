@@ -6,9 +6,9 @@ import Bloodhound from 'typeahead.js/dist/bloodhound';
 import $ from 'jquery';
 
 
-function datums(props) {
-  const { agencies, agencyComponents } = props;
-  return Object.values(agencies.toJS())
+// Expects agencies as a sequence type
+function datums({ agencies, agencyComponents }) {
+  return agencies.toJS()
     // Add a title property for common displayKey
     .map(agency => Object.assign({}, agency, { title: agency.name }))
     // Include agency components in typeahead
@@ -18,8 +18,12 @@ function datums(props) {
 
 class AgencyComponentSelector extends Component {
   componentDidMount() {
+    const { agencies, agencyComponents } = this.props;
     this.bloodhound = new Bloodhound({
-      local: datums(this.props),
+      local: datums({
+        agencies: agencies.valueSeq(), // Pull the values, convert to sequence
+        agencyComponents,
+      }),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       datumTokenizer: datum => (
         datum.type === 'agency' ?
@@ -53,9 +57,19 @@ class AgencyComponentSelector extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // TODO check nextProps against current props first
-    this.bloodhound.clear();
-    this.bloodhound.add(datums(nextProps));
+    if (this.props.agencies.equals(nextProps.agencies)
+        && this.props.agencyComponents.equals(nextProps.agencyComponents)) {
+      return;
+    }
+
+    const differenceAgencies = nextProps.agencies.toSet().subtract(this.props.agencies.toSet());
+    const differenceAgencyComponents =
+      nextProps.agencyComponents.toSet().subtract(this.props.agencyComponents.toSet());
+
+    this.bloodhound.add(datums({
+      agencies: differenceAgencies,
+      agencyComponents: differenceAgencyComponents,
+    }));
   }
 
   render() {

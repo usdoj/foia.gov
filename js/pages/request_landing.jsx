@@ -12,11 +12,6 @@ const agencyComponentStore = new AgencyComponentStore(dispatcher);
 
 const requestActions = RequestActions({ dispatcher });
 
-function init() {
-  // Pre-fetch the list of agencies and components for typeahead
-  requestActions.fetchAgencyFinderData();
-}
-
 function agencyChange(agency) {
   const { history } = window.app;
   requestActions.agencyChange(agency.id)
@@ -40,7 +35,12 @@ class RequestLandingPage extends Component {
   }
 
   componentDidMount() {
-    init();
+    if (this.state.agencies.size) {
+      return;
+    }
+
+    // Pre-fetch the list of agencies and components for typeahead
+    requestActions.fetchAgencyFinderData();
   }
 
   render() {
