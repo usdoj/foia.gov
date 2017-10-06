@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Dispatcher } from 'flux';
 import { Container } from 'flux/utils';
 
-import { RequestActions } from 'actions';
+import { requestActions } from 'actions';
 import FOIARequestForm from 'components/foia_request_form';
-import AgencyComponentStore from 'stores/agency_component';
-
-
-const dispatcher = new Dispatcher();
-const agencyComponentStore = new AgencyComponentStore(dispatcher);
-
-const requestActions = RequestActions({ dispatcher });
+import agencyComponentStore from 'stores/agency_component';
 
 
 class AgencyComponentRequestPage extends Component {

@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import { Dispatcher } from 'flux';
 import { Container } from 'flux/utils';
 
-import { RequestActions } from 'actions';
+import { requestActions } from 'actions';
 import AgencyComponentSelector from 'components/agency_component_selector';
-import AgencyComponentStore from 'stores/agency_component';
+import agencyComponentStore from '../stores/agency_component';
 
-
-const dispatcher = new Dispatcher();
-const agencyComponentStore = new AgencyComponentStore(dispatcher);
-
-const requestActions = RequestActions({ dispatcher });
 
 function agencyChange(agency) {
   const { history } = window.app;

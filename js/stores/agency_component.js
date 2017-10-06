@@ -3,10 +3,12 @@ import { Store } from 'flux/utils';
 
 import { types } from '../actions';
 import { Agency, AgencyComponent } from '../models';
+import dispatcher from '../util/dispatcher';
 
-class AgencyStore extends Store {
-  constructor(dispatcher) {
-    super(dispatcher);
+
+class AgencyComponentStore extends Store {
+  constructor(_dispatcher) {
+    super(_dispatcher);
 
     // [string] The selected agency to submit the FOIA request to
     this.state = {
@@ -71,4 +73,10 @@ class AgencyStore extends Store {
   }
 }
 
-export default AgencyStore;
+const agencyComponentStore = new AgencyComponentStore(dispatcher);
+
+export default agencyComponentStore;
+
+export {
+  AgencyComponentStore,
+};
