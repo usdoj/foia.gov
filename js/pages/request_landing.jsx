@@ -14,8 +14,7 @@ const requestActions = RequestActions({ dispatcher });
 
 function init() {
   // Pre-fetch the list of agencies and components for typeahead
-  requestActions.fetchAgencyFinderData()
-    .then(requestActions.receiveAgencyFinderData);
+  requestActions.fetchAgencyFinderData();
 }
 
 function agencyChange(agency) {

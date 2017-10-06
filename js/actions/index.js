@@ -22,8 +22,8 @@ export function RequestActions({ dispatcher }) {
         .include('agency')
         .fields('agency', ['name', 'abbreviation'])
         .fields('agency_component', ['title', 'abbreviation', 'agency'])
-        .limit(500) // TODO fetch over multiple requests
-        .get('/agency_components');
+        .limit(50) // Maximum allowed by drupal
+        .paginate('/agency_components', this.receiveAgencyFinderData);
     },
 
     receiveAgencyFinderData(agencyComponents) {
