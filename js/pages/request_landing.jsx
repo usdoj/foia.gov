@@ -29,6 +29,7 @@ class RequestLandingPage extends Component {
   }
 
   componentDidMount() {
+    // If there is any agency data, assume all the data is fetched.
     if (this.state.agencies.size) {
       return;
     }
