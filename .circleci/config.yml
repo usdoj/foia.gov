@@ -1,45 +1,82 @@
+# These are the steps common for a build
+build-steps: &build-steps
+  - checkout
+  - type: cache-restore
+    key: v1-bundle-{{ checksum "Gemfile.lock" }}
+  - run:
+      name: Install jekyll dependencies
+      command: bundle install --path vendor/bundle
+  - type: cache-save
+    key: v1-bundle-{{ checksum "Gemfile.lock" }}
+    paths:
+      - vendor/bundle
+  - type: cache-restore
+    key: v1-node-modules-{{ checksum "package.json" }}
+  - run:
+      name: Install npm dependencies
+      command: npm install
+  - type: cache-save
+    key: v1-node-modules-{{ checksum "package.json" }}
+    paths:
+      - node_modules
+  - run:
+      name: Build static application
+      command: make build
+  # Saves the build files so they can be recalled in other jobs
+  - persist_to_workspace:
+      root: .
+      paths:
+        - _site
+
+acquia-cloud-deploy-steps: &acquia-cloud-deploy-steps
+  - checkout
+  - attach_workspace:
+      at: .
+  - deploy:
+      name: Push to Acquia Cloud
+      command: bin/git-deploy.sh _site $NODE_ENV
+
+
 version: 2
 jobs:
-  build:
+  build-local:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+    steps: *build-steps
+
+  test:
     docker:
       - image: circleci/ruby:2.4.1-node
     steps:
       - checkout
+      # Restore dependencies required for running the tests
       - type: cache-restore
         key: v1-bundle-{{ checksum "Gemfile.lock" }}
       - run:
-          name: Install dependencies
+          name: Install jekyll dependencies
           command: bundle install --path vendor/bundle
-      - type: cache-save
-        key: v1-bundle-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
       - type: cache-restore
         key: v1-node-modules-{{ checksum "package.json" }}
-      - run:
-          name: npm install
-          command: npm install
-      - type: cache-save
-        key: v1-node-modules-{{ checksum "package.json" }}
-        paths:
-          - node_modules
-      - run:
-          name: Prod build
-          command: NODE_ENV=production make build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - _site
+      # Attach the build files for testing
+      - attach_workspace:
+          at: .
       - run:
           name: Run tests
           command: make test
 
-  deploy:
+
+  build-cloud-gov:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: cloud-gov
+    steps: *build-steps
+
+  deploy-cloud-gov:
     docker:
       - image: 18fgsa/cloud-foundry-cli
         environment:
           CF_API: https://api.fr.cloud.gov
-
     steps:
       - checkout
       - attach_workspace:
@@ -52,14 +89,84 @@ jobs:
           command: cf_deploy.sh foia-dot-gov doj-foia-discovery staging
 
 
+  # Build for the Acquia Cloud development environment
+  build-development:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: development
+    steps: *build-steps
+
+  # Deploy job for the Acquia Cloud development environment
+  deploy-development:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: development
+    steps: *acquia-cloud-deploy-steps
+
+  # Build for the Acquia Cloud staging environment
+  build-staging:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: staging
+    steps: *build-steps
+
+  # Deploy job for the Acquia Cloud staging environment
+  deploy-staging:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: staging
+    steps: *acquia-cloud-deploy-steps
+
+
 workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - build
-      - deploy:
+      - build-local
+      - test:
           requires:
-            - build
+            - build-local
+
+      - build-cloud-gov:
+          requires:
+            - deploy-development # Avoid race condition with build dir
+            - test
           filters:
             branches:
               only: master
+      - deploy-cloud-gov:
+          requires:
+            - build-cloud-gov
+          filters:
+            branches:
+              only: master
+
+      - build-development:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - deploy-development:
+          requires:
+            - build-development
+          filters:
+            branches:
+              only: master
+
+      - build-staging:
+          requires:
+            - test
+          filters:
+            branches:
+              only: /^release-/
+      - deploy-staging:
+          requires:
+            - build-staging
+          filters:
+            branches:
+              only: /^release-/
