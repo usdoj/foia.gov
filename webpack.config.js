@@ -1,6 +1,8 @@
 const assert = require('assert');
 const path = require('path');
 
+const webpack = require('webpack');
+
 const env = process.env.NODE_ENV || 'local';
 assert(['local', 'cloud-gov', 'development', 'staging', 'production'].includes(env), `${env} is not an acceptable environment.`);
 
@@ -25,6 +27,12 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: [path.join(__dirname, 'js'), 'node_modules'],

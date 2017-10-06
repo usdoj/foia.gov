@@ -1,9 +1,14 @@
 import { Map, List } from 'immutable';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import 'typeahead.js/dist/typeahead.jquery';
-import Bloodhound from 'typeahead.js/dist/bloodhound';
-import $ from 'jquery';
+
+
+// Only load typeahead in the browser (avoid loading it for tests)
+let Bloodhound;
+if (typeof window !== 'undefined') {
+  Bloodhound = require('typeahead.js/dist/bloodhound'); // eslint-disable-line global-require
+  require('typeahead.js/dist/typeahead.jquery'); // eslint-disable-line global-require
+}
 
 
 // Expects agencies as a sequence type

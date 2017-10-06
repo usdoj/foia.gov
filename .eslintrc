@@ -3,6 +3,9 @@ settings:
   import/resolver: webpack
 env:
   browser: yes
+globals:
+  $: true
+  jQuery: true
 rules:
   camelcase: 0
   no-plusplus: 0
