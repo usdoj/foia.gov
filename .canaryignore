@@ -9,6 +9,7 @@
 *.zip
 .htaccess
 .htpasswd
+404.html
 agency-info-updater.html
 api
 assets

@@ -1,1 +1,8 @@
 DirectoryIndex index.php index.html index.htm index.json
+
+ErrorDocument 404 /404.html
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^request/([a-z0-9_-]+/)*$ request/index.html
