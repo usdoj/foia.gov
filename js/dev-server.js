@@ -61,15 +61,13 @@ app.get('/request/*', (req, res) => {
   res.sendFile(path.join(static_path, 'request', 'index.html'));
 });
 
-// catch 404 and forward to error handler
+// catch 404 and render the static 404 page
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  res.status(404).sendFile(path.join(static_path, '404.html'));
 });
 
 // error handler
-app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.send(err);
 });

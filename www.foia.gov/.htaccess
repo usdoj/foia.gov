@@ -1,5 +1,8 @@
-AuthUserFile /home/vcap/app/htdocs/.htpasswd
-AuthType Basic
-AuthName "Restricted Access"
 DirectoryIndex index.php index.html index.htm index.json
-Require valid-user
+
+ErrorDocument 404 /404.html
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^request/([a-z0-9_-]+/)*$ request/index.html
