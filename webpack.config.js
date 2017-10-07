@@ -1,10 +1,14 @@
 const assert = require('assert');
 const path = require('path');
 
-const env = process.env.NODE_ENV || 'local';
+const env = process.env.APP_ENV || 'development';
 assert(['local', 'cloud-gov', 'development', 'staging', 'production'].includes(env), `${env} is not an acceptable environment.`);
 
+const isProduction = process.env.NODE_ENV === 'production';
+
+
 module.exports = {
+  devtool: isProduction ? 'source-map' : 'eval-source-map',
   entry: {
     request: './js/request.jsx',
     uswds: './js/uswds.js',
