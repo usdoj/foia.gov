@@ -14,9 +14,9 @@ class AgencyComponentRequestPage extends Component {
   }
 
   static calculateState() {
-    const { agency } = agencyComponentStore.getState();
+    const { agencyComponent } = agencyComponentStore.getState();
     return {
-      agency,
+      agencyComponent,
     };
   }
 
@@ -27,22 +27,48 @@ class AgencyComponentRequestPage extends Component {
   init() {
     const agencyComponentId = this.props.match.params.agencyComponentId;
 
-    // Check agency exists in store
-    const { agency } = agencyComponentStore.getState();
-    if (!agency) {
+    // Check agency component exists in store
+    const { agencyComponent } = agencyComponentStore.getState();
+    if (!agencyComponent.id) {
       requestActions.fetchAgency(agencyComponentId)
-        .then(requestActions.receiveAgency);
+        .then(requestActions.receiveAgency)
+        .catch((error) => {
+          if (!error.response) {
+            // Some kind of error
+            throw error;
+          }
+
+          if (error.response.status !== 404) {
+            // Unknown response code
+            throw error;
+          }
+
+          this.setState({
+            agencyComponentNotFound: true,
+          });
+        });
     }
   }
 
   render() {
+    if (this.state.agencyComponentNotFound) {
+      // The api returned a 404, we should do the same
+      return <NotFound />;
+    }
+
+    // TODO show a loading indicator?
+    const { agencyComponent } = this.state;
     return (
       <div className="usa-grid-full grid-left">
         <aside className="usa-width-five-twelfths sidebar" id="react-tabs">
-          <Tabs />
+          { agencyComponent.id ? <Tabs agencyComponent={agencyComponent} /> : null }
         </aside>
         <div className="usa-width-seven-twelfths sidebar_content">
-          {this.state.agency && <FOIARequestForm agency={this.state.agency} /> }
+          {
+            agencyComponent.id ?
+              <FOIARequestForm agencyComponent={this.state.agencyComponent} /> :
+              <div>Loading…</div>
+          }
         </div>
       </div>
     );

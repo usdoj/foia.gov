@@ -6,7 +6,7 @@ import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
 
 function FOIARequestForm(props) {
-  const { agency } = props;
+  const { agencyComponent } = props;
   const widgets = {
     CheckboxWidget: USWDSCheckboxWidget,
     RadioWidget: USWDSRadioWidget,
@@ -15,7 +15,7 @@ function FOIARequestForm(props) {
   // TODO we should be able to get the component name from the selector and use that here
   // For now, we just pick the component that matches the agency name, which
   // only sort of works for centralized agencies.
-  const { jsonSchema, uiSchema } = metadataToJsonSchema(agency, agency.name);
+  const { jsonSchema, uiSchema } = metadataToJsonSchema(agencyComponent, agencyComponent.name);
   return (
     <div>
       <Form
@@ -29,7 +29,7 @@ function FOIARequestForm(props) {
 }
 
 FOIARequestForm.propTypes = {
-  agency: PropTypes.object.isRequired,
+  agencyComponent: PropTypes.object.isRequired,
 };
 
 export default FOIARequestForm;
