@@ -1,3 +1,4 @@
+---
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -59,6 +60,7 @@
       <!-- Start Content -->
       <div id="content">
         <div id="subPlain">
+
           <img src="images/developer-title.gif" alt="Developer Resources" />
           <h1><a name="top" id="top"></a>The FOIA XML Schema</h1>
           <p>Federal agencies publish FOIA information   in accordance with guidelines prepared by the U. S. Department of Justice   Office of Information Policy. These guidelines, available <a href="http://www.justice.gov/oip/foiapost/guidance-annualreport-052008.pdf" target="_blank">here</a>,   describe the format and meaning of FOIA annual report information. In   addition, a <em>FOIA Annual Report XML schema</em> has been developed   allowing agency FOIA annual report information to be represented and   exchanged in a standardized format. This XML schema closely follows   the structure and terminology of the guidance document, and conforms   to the NIEM standard (<a href="http://niem.gov" target="_blank">http://niem.gov</a>).&nbsp;</p>

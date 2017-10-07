@@ -1,0 +1,22 @@
+{
+    "request_id": {{ site.data.request_fields.request_id.example }},
+    "agency": {{ site.data.request_fields.agency.example }},
+    "agency_component_name": {{ site.data.request_fields.agency_component_name.example }},
+    "attachments_supporting_documentation": {{ site.data.request_fields.attachments_supporting_documentation.example }},
+    "request_description": {{ site.data.request_fields.request_description.example }},
+    "email": {{ site.data.request_fields.email.example }},
+    "request_expedited_processing": {{ site.data.request_fields.request_expedited_processing.example }},
+    "fax_number": {{ site.data.request_fields.fax_number.example }},
+    "request_fee_waiver": {{ site.data.request_fields.request_fee_waiver.example }},
+    "processing_fees": {{ site.data.request_fields.processing_fees.example }},
+    "company_organization": {{ site.data.request_fields.company_organization.example }},
+    "phone_number": {{ site.data.request_fields.phone_number.example }},
+    "address_line1": {{ site.data.request_fields.address_line1.example }},
+    "address_line2": {{ site.data.request_fields.address_line2.example }},
+    "address_city": {{ site.data.request_fields.address_city.example }},
+    "address_state_province": {{ site.data.request_fields.address_state_province.example }},
+    "address_country": {{ site.data.request_fields.address_country.example }},
+    "address_zip_postal_code": {{ site.data.request_fields.address_zip_postal_code.example }},
+    "name_first": {{ site.data.request_fields.name_first.example }},
+    "name_last": {{ site.data.request_fields.name_last.example }}
+}
