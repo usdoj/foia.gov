@@ -36,16 +36,12 @@ export const requestActions = {
     return Promise.resolve(agencyComponents);
   },
 
-  fetchAgency(agencyId) {
-    assert(agencyId, 'You must provide an agencyId to fetchAgency.');
+  fetchAgencyComponent(agencyComponentId) {
+    assert(agencyComponentId, 'You must provide an agencyComponentId to fetchAgencyComponent.');
     dispatcher.dispatch({
       type: types.AGENCY_COMPONENT_FETCH,
-      agencyId,
+      agencyComponentId,
     });
-
-    if (!agencyId) {
-      return Promise.reject(new Error('You must provide an agencyId to fetch.'));
-    }
 
     return jsonapi.params()
       .include('agency')
@@ -55,10 +51,10 @@ export const requestActions = {
       .include('public_liaisons')
       .include('request_form')
       .include('service_centers')
-      .get(`/agency_components/${agencyId}`);
+      .get(`/agency_components/${agencyComponentId}`);
   },
 
-  receiveAgency(agencyComponent) {
+  receiveAgencyComponent(agencyComponent) {
     dispatcher.dispatch({
       type: types.AGENCY_COMPONENT_RECEIVE,
       agencyComponent,

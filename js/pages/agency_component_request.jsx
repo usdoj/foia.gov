@@ -31,16 +31,16 @@ class AgencyComponentRequestPage extends Component {
     // Check agency component exists in store
     const { agencyComponent } = agencyComponentStore.getState();
     if (!agencyComponent.id) {
-      requestActions.fetchAgency(agencyComponentId)
-        .then(requestActions.receiveAgency)
+      requestActions.fetchAgencyComponent(agencyComponentId)
+        .then(requestActions.receiveAgencyComponent)
         .catch((error) => {
           if (!error.response) {
-            // Some kind of error
+            // Non-axios error, rethrow
             throw error;
           }
 
           if (error.response.status !== 404) {
-            // Unknown response code
+            // API error other than 404, rethrow
             throw error;
           }
 
