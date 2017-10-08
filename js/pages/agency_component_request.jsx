@@ -6,6 +6,7 @@ import { requestActions } from 'actions';
 import Tabs from 'components/tabs';
 import FOIARequestForm from 'components/foia_request_form';
 import agencyComponentStore from 'stores/agency_component';
+import NotFound from './not_found';
 
 
 class AgencyComponentRequestPage extends Component {

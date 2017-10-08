@@ -5,11 +5,11 @@
  * https://www.drupal.org/docs/8/modules/json-api/json-api
  */
 
+import axios from 'axios';
 import { buildQueryString as serialize } from 'd8-jsonapi-querystring';
 import { parse } from 'jsonapi-parse';
 
 import settings from 'settings';
-import { Api } from './api';
 import JsonApiParams from './json_api_params';
 
 function finalize(response) {
@@ -19,9 +19,11 @@ function finalize(response) {
 function noop() { }
 
 
-class JsonApi extends Api {
+class JsonApi {
   constructor(baseURL) {
-    super(baseURL || settings.api.jsonApiBaseURL);
+    this._api = axios.create({
+      baseURL: baseURL || settings.api.jsonApiBaseURL,
+    });
   }
 
   params() {
