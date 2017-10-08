@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 
 import { AgencyComponent } from '../models';
+import AgencyComponentProcessingTime from './agency_component_processing_time';
 import FoiaPersonnel from './foia_personnel';
 import FoiaSubmissionAddress from './foia_submission_address';
 import PrettyUrl from './pretty_url';
@@ -144,11 +145,13 @@ class Tabs extends Component {
           <section className={this.state.selectedTab === 1 ? 'tab_active' : ''}>
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
-            <section className="submission-help_processing-time">
-              <h5>Median processing time</h5>
-              <p>15 working days for simple requests</p>
-              <p>187 working days for complex requests</p>
-            </section>
+            { agencyComponent.request_time_stats &&
+              <section className="submission-help_processing-time">
+                <AgencyComponentProcessingTime
+                  requestTimeStats={agencyComponent.request_time_stats}
+                />
+              </section>
+            }
             <section className="submission-help_agency-mission">
               <h5>Agency mission</h5>
               <p>{ agencyMission(agencyComponent) }</p>

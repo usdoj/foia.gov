@@ -15,6 +15,8 @@ const defaults = {
   public_liaisons: new List(), // foia_personnel
   reading_rooms: new List(),
   request_form: null,
+  // TODO request_time_stats does not exist in the API, but exists in the 2015 scraper data
+  request_time_stats: null,
   service_centers: new List(), // foia_personnel
   submission_address: new Map(),
   submission_api: null,
