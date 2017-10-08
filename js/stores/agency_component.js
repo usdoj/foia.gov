@@ -56,8 +56,16 @@ class AgencyComponentStore extends Store {
 
       case types.AGENCY_COMPONENT_RECEIVE: {
         const { agencyComponent } = this.state;
+        let formFields = [];
+        if (payload.agencyComponent.request_form) {
+          formFields = AgencyComponent.parseWebformElements(payload.agencyComponent.request_form);
+        }
+
         Object.assign(this.state, {
-          agencyComponent: agencyComponent.merge(payload.agencyComponent),
+          agencyComponent: agencyComponent.merge(
+            payload.agencyComponent,
+            { formFields },
+          ),
         });
         this.__emitChange();
         break;

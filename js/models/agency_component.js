@@ -7,6 +7,7 @@ const defaults = {
   email: null,
   field_misc: new List(), // foia_personnel
   foia_officers: new List(), // foia_personnel
+  formFields: new List(),
   id: null,
   links: new Map(),
   paper_receiver: null,
@@ -26,7 +27,22 @@ const defaults = {
   website: new Map(),
 };
 
+
 class AgencyComponent extends Record(defaults) {
+  static parseWebformElements(webform) {
+    const { elements } = webform;
+    return Object.keys(elements || {})
+      .map((name) => {
+        const element = elements[name];
+
+        // Map the keys from #type -> type
+        return Object.keys(element).reduce(
+          (webformField, key) => Object.assign(webformField, { [key.replace(/^#/, '')]: element[key] }),
+          { name },
+        );
+      });
+  }
+
   // Returns a list of all FOIA personnel
   foiaPersonnel() {
     function personnel(persons, title) {

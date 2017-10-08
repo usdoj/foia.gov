@@ -77,34 +77,31 @@ function toUiSchemaProperty(metadataField) {
  * Translates agency metadata into JSON schema and uiSchema for use with
  * react-jsonschema-form.
  */
-function metadataToJsonSchema(metadata, componentName) {
-  const componentMetadata =
-    metadata.components.find(component => component.name === componentName) || {};
-
-  const form_fields = componentMetadata.form_fields || [];
+function metadataToJsonSchema(agencyComponent) {
+  const formFields = agencyComponent.formFields || [];
 
   const jsonSchema = {
-    title: componentMetadata.name || metadata.name,
+    title: agencyComponent.title,
     type: 'object',
   };
 
-  // Parse out agency specific fields as JSON schema properties
-  jsonSchema.properties = form_fields
+  // Parse out agency component fields as JSON schema properties
+  jsonSchema.properties = formFields
     .map(toJsonSchemaProperty)
-    .reduce((property, properties) => Object.assign(properties, property), {});
+    .reduce((properties, property) => Object.assign(properties, property), {});
 
   // Add required fields to the `required` property
-  jsonSchema.required = form_fields
-    .filter(form_field => form_field.required)
-    .map(form_field => form_field.name);
+  jsonSchema.required = formFields
+    .filter(formField => formField.required)
+    .map(formField => formField.name);
 
   // Parse out uiSchema from fields
-  const uiSchema = form_fields
+  const uiSchema = formFields
     .map(toUiSchemaProperty)
-    .reduce((property, properties) => Object.assign(properties, property), {});
+    .reduce((properties, property) => Object.assign(properties, property), {});
 
   // Set ordering of form fields
-  uiSchema['ui:order'] = form_fields.map(form_field => form_field.name);
+  uiSchema['ui:order'] = formFields.map(formField => formField.name);
 
   return { jsonSchema, uiSchema };
 }
