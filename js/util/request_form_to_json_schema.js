@@ -1,19 +1,22 @@
 /**
  * Converts a metadata field's type to a JSON Schema type.
  */
-function toJsonSchemaType(metadataFieldType) {
+function toJsonSchemaType(webformFieldType) {
   let type;
 
   // This is sort of a reverse mapping of ui:widget to JSON Schema type
   // https://github.com/mozilla-services/react-jsonschema-form#alternative-widgets
-  switch (metadataFieldType) {
+  switch (webformFieldType) {
     case 'checkbox':
     case 'radio':
       type = 'boolean';
       break;
-    case 'file':
+    case 'email':
+    case 'managed_file':
+    case 'select':
     case 'tel':
     case 'textarea':
+    case 'textfield':
     default:
       type = 'string';
   }
@@ -25,43 +28,50 @@ function toJsonSchemaType(metadataFieldType) {
  * Converts a single form field from the agency metadata to a JSON schema
  * `properties` field.
  */
-function toJsonSchemaProperty(metadataField) {
-  const type = toJsonSchemaType(metadataField.type);
+function toJsonSchemaProperty(webformField) {
+  const type = toJsonSchemaType(webformField.type);
   const property = {
     type,
   };
 
-  // Copy over common schema properties
-  ['enum', 'enumNames'].forEach((key) => {
-    if (Object.prototype.hasOwnProperty.call(metadataField, key)) {
-      property[key] = metadataField[key];
-    }
-  });
+  // If options is present, translate them to enums
+  if (webformField.options && typeof webformField.options === 'object') {
+    property.enum = [];
+    property.enumNames = [];
 
-  return { [metadataField.name]: property };
+    Object.keys(webformField.options).forEach((key) => {
+      property.enum.push(key);
+      property.enumNames.push(webformField.options[key]);
+    });
+  }
+
+  return { [webformField.name]: property };
 }
 
 /**
  * Converts a single agency metadata form field to a uiSchema property to be
  * used with react-jsonschema-form.
  */
-function toUiSchemaProperty(metadataField) {
+function toUiSchemaProperty(webformField) {
   const uiSchemaProperty = {
-    'ui:title': metadataField.label,
-    'ui:description': metadataField.help_text,
+    'ui:title': webformField.title,
+    // TODO not sure where help text comes from
+    'ui:description': webformField.help_text || null,
   };
 
-  if (metadataField.example) {
-    uiSchemaProperty['ui:placeholder'] = `${metadataField.example}`; // Coerce to string
+  if (webformField.default_value) {
+    uiSchemaProperty['ui:placeholder'] = `${webformField.default_value}`; // Coerce to string
   }
 
   // Map metadata field type to ui:widget or ui:options
-  switch (metadataField.type) {
+  switch (webformField.type) {
+    case 'managed_file':
+      uiSchemaProperty['ui:widget'] = 'file';
+      break;
     case 'checkbox':
     case 'radio':
-    case 'file':
     case 'textarea':
-      uiSchemaProperty['ui:widget'] = metadataField.type;
+      uiSchemaProperty['ui:widget'] = webformField.type;
       break;
     case 'tel':
       uiSchemaProperty['ui:options'] = { inputType: 'tel' };
@@ -70,14 +80,15 @@ function toUiSchemaProperty(metadataField) {
       break;
   }
 
-  return { [metadataField.name]: uiSchemaProperty };
+  return { [webformField.name]: uiSchemaProperty };
 }
 
+
 /**
- * Translates agency metadata into JSON schema and uiSchema for use with
- * react-jsonschema-form.
+ * Translates agency components' Drupal Webform into JSON schema and uiSchema
+ * for use with react-jsonschema-form.
  */
-function metadataToJsonSchema(agencyComponent) {
+function requestFormToJsonSchema(agencyComponent) {
   const formFields = agencyComponent.formFields || [];
 
   const jsonSchema = {
@@ -107,4 +118,4 @@ function metadataToJsonSchema(agencyComponent) {
 }
 
 
-export default metadataToJsonSchema;
+export default requestFormToJsonSchema;

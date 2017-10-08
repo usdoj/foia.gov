@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
-import metadataToJsonSchema from 'util/metadata_to_json_schema';
+import requestFormToJsonSchema from 'util/request_form_to_json_schema';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
 
@@ -11,7 +11,7 @@ function FOIARequestForm({ agencyComponent }) {
     RadioWidget: USWDSRadioWidget,
   };
 
-  const { jsonSchema, uiSchema } = metadataToJsonSchema(agencyComponent.toJS());
+  const { jsonSchema, uiSchema } = requestFormToJsonSchema(agencyComponent.toJS());
   return (
     <div>
       <Form
