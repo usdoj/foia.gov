@@ -6,12 +6,14 @@ import AgencyComponentSelector from 'components/agency_component_selector';
 import agencyComponentStore from '../stores/agency_component';
 
 
-function agencyChange(agency) {
+function agencyChange(agencyComponent) {
+  if (agencyComponent.type === 'agency') {
+    // TODO we probably want to make top-level agencies un-selectable?
+    return;
+  }
+
   const { history } = window.app;
-  requestActions.agencyChange(agency.id)
-    .then(() => {
-      history.push(`/agency-component/${agency.id}/`);
-    });
+  history.push(`/agency-component/${agencyComponent.id}/`);
 }
 
 

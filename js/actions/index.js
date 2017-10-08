@@ -8,9 +8,8 @@ import jsonapi from '../util/json_api';
 export const types = {
   AGENCY_FINDER_DATA_FETCH: 'AGENCY_FINDER_DATA_FETCH',
   AGENCY_FINDER_DATA_RECEIVE: 'AGENCY_FINDER_DATA_RECEIVE',
-  REQUEST_AGENCY_CHANGE: 'REQUEST_AGENCY_CHANGE',
-  REQUEST_AGENCY_FETCH: 'REQUEST_AGENCY_FETCH',
-  REQUEST_RECEIVE_AGENCY: 'REQUEST_RECEIVE_AGENCY',
+  AGENCY_COMPONENT_FETCH: 'AGENCY_COMPONENT_FETCH',
+  AGENCY_COMPONENT_RECEIVE: 'AGENCY_COMPONENT_RECEIVE',
 };
 
 // Action creators, to dispatch actions
@@ -37,19 +36,10 @@ export const requestActions = {
     return Promise.resolve(agencyComponents);
   },
 
-  agencyChange(agency) {
-    dispatcher.dispatch({
-      type: types.REQUEST_AGENCY_CHANGE,
-      agency,
-    });
-
-    return Promise.resolve(agency);
-  },
-
   fetchAgency(agencyId) {
     assert(agencyId, 'You must provide an agencyId to fetchAgency.');
     dispatcher.dispatch({
-      type: types.REQUEST_AGENCY_FETCH,
+      type: types.AGENCY_COMPONENT_FETCH,
       agencyId,
     });
 
@@ -70,7 +60,7 @@ export const requestActions = {
 
   receiveAgency(agencyComponent) {
     dispatcher.dispatch({
-      type: types.REQUEST_RECEIVE_AGENCY,
+      type: types.AGENCY_COMPONENT_RECEIVE,
       agencyComponent,
     });
 

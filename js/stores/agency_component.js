@@ -15,7 +15,6 @@ class AgencyComponentStore extends Store {
       agencies: new Map(),
       agencyComponents: new List(),
       agencyComponent: new AgencyComponent(),
-      selectedAgency: null,
     };
   }
 
@@ -55,13 +54,7 @@ class AgencyComponentStore extends Store {
         break;
       }
 
-      case types.REQUEST_AGENCY_CHANGE: {
-        this.state.selectedAgency = payload.agency || null;
-        this.__emitChange();
-        break;
-      }
-
-      case types.REQUEST_RECEIVE_AGENCY: {
+      case types.AGENCY_COMPONENT_RECEIVE: {
         const { agencyComponent } = this.state;
         Object.assign(this.state, {
           agencyComponent: agencyComponent.merge(payload.agencyComponent),
