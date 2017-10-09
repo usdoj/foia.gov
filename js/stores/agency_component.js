@@ -10,7 +10,6 @@ class AgencyComponentStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
 
-    // [string] The selected agency to submit the FOIA request to
     this.state = {
       agencies: new Map(),
       agencyComponents: new List(),

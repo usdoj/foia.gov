@@ -7,20 +7,24 @@ import Tabs from 'components/tabs';
 import FOIARequestForm from 'components/foia_request_form';
 import agencyComponentStore from 'stores/agency_component';
 import requestFormStore from 'stores/request_form';
+import requestStore from 'stores/request';
 import NotFound from './not_found';
 
 
 class AgencyComponentRequestPage extends Component {
   static getStores() {
-    return [agencyComponentStore, requestFormStore];
+    return [agencyComponentStore, requestStore, requestFormStore];
   }
 
   static calculateState(prevState, props) {
     const agencyComponentId = props.match.params.agencyComponentId;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
     const requestForm = requestFormStore.getAgencyComponentForm(agencyComponentId);
+    const { isSubmitting, submissionResult } = requestStore.getState();
 
     return {
+      isSubmitting,
+      submissionResult,
       agencyComponent,
       requestForm,
     };
@@ -88,6 +92,8 @@ class AgencyComponentRequestPage extends Component {
             requestForm ?
               <FOIARequestForm
                 requestForm={requestForm}
+                isSubmitting={this.state.isSubmitting}
+                submissionResult={this.state.submissionResult}
               /> :
               <div>Loading…</div>
           }

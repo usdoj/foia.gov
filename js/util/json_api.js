@@ -13,6 +13,27 @@ import settings from 'settings';
 import JsonApiParams from './json_api_params';
 
 function finalize(response) {
+  // Bug where webform id is returned in attributes, it get's overridden by our
+  // parse library. This is a bug in the json-api module since having an
+  // attribute named `id` or `type` is not allowed.
+  // http://jsonapi.org/format/#document-resource-object-fields
+  if (response.data && response.data.included) {
+    try {
+      response.data.included.forEach((entity, index, included) => {
+        if (entity.type !== 'webform') {
+          return;
+        }
+
+        // Copy attributes id to formId
+        const webform = included[index];
+        webform.attributes.formId = webform.attributes.id;
+      });
+    } catch (error) {
+      // Log the error and continue
+      console.error('Failed to parse webform id attributes', error); // eslint-disable-line
+    }
+  }
+
   return parse(response.data).data;
 }
 

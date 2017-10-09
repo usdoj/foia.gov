@@ -2,6 +2,7 @@ import assert from 'assert';
 
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
+import requestapi from '../util/request_api';
 
 
 // Action types to identify an action
@@ -10,6 +11,8 @@ export const types = {
   AGENCY_FINDER_DATA_RECEIVE: 'AGENCY_FINDER_DATA_RECEIVE',
   AGENCY_COMPONENT_FETCH: 'AGENCY_COMPONENT_FETCH',
   AGENCY_COMPONENT_RECEIVE: 'AGENCY_COMPONENT_RECEIVE',
+  REQUEST_SUBMIT: 'REQUEST_SUBMIT',
+  REQUEST_SUBMIT_COMPLETE: 'REQUEST_SUBMIT_COMPLETE',
 };
 
 // Action creators, to dispatch actions
@@ -61,5 +64,35 @@ export const requestActions = {
     });
 
     return Promise.resolve(agencyComponent);
+  },
+
+  submitRequest(formData) {
+    dispatcher.dispatch({
+      type: types.REQUEST_SUBMIT,
+      formData,
+    });
+
+    return requestapi.post('/webform/submit', formData)
+      .catch((error) => {
+        const submissionResult = {
+          errorMessage: 'There was a problem submitting your form.',
+        };
+
+        if (error.response && error.response.data && error.response.data.errors) {
+          submissionResult.errors = error.response.data.errors;
+        }
+
+        return Promise.resolve(submissionResult);
+      })
+      .then(requestActions.completeSubmitRequest);
+  },
+
+  completeSubmitRequest(submissionResult) {
+    dispatcher.dispatch({
+      type: types.REQUEST_SUBMIT_COMPLETE,
+      submissionResult,
+    });
+
+    return Promise.resolve();
   },
 };
