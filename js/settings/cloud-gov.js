@@ -1,5 +1,5 @@
 const api = {
-  baseURL: 'http://localhost:4000/api',
+  baseURL: '/api',
   jsonApiBaseURL: 'http://foiadev.prod.acquia-sites.com/jsonapi',
 };
 
