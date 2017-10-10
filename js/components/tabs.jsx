@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
 
 class Tabs extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class Tabs extends Component {
     );
   }
 
-  renderTabControls(props) {
+  renderTabControls() {
     const tabControls = this.state.tabControls.map((name, index) => (
       this.renderTabControl(name, index)
     ));
@@ -49,7 +49,6 @@ class Tabs extends Component {
   }
 
   render() {
-    const tabControls = this.renderTabControls(this.props);
     return (
       <div className="sidebar">
         <ul className="sidebar_tab-controls">
@@ -181,10 +180,5 @@ class Tabs extends Component {
     );
   }
 }
-
-Tabs.propTypes = {
-  selectedTab: PropTypes.number,
-  tabControls: PropTypes.array,
-};
 
 export default Tabs;
