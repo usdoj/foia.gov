@@ -9,7 +9,6 @@ function FOIARequestForm(props) {
   const { agency } = props;
   const widgets = {
     CheckboxWidget: USWDSCheckboxWidget,
-    // TODO: Check to make sure RadioWidget is the correct internal terminology
     RadioWidget: USWDSRadioWidget,
   };
 
