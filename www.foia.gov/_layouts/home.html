@@ -1,0 +1,34 @@
+---
+---
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
+{% include header.html %}
+<section class="usa-hero">
+  <div class="usa-grid">
+    <div class="usa-hero-callout usa-section-dark">
+      <h2><span class="usa-hero-callout-alt">{{ page.hero.hed }}</span></h2>
+      <p>{{ page.hero.text }}</p>
+      <div class="hero-unit_button-group">
+        <a class="usa-button usa-button-outline" href="#">Start your request</a>
+        <span>or</span>
+        <a class="usa-button usa-button-outline" href="#">Learn more about FOIA</a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="usa-grid" id="main">
+    <div id="content">
+    {{ content }}
+    </div>
+</div>
+{% include footer.html %}
+{% comment %}
+`page.init` is used for the legacy pages.
+`page.bundle` is used for the non-legacy pages.
+{% endcomment %}
+{% if page.init %}<script type="text/javascript" src="{{ page.init | prepend: "/" | prepend: site.baseurl }}"></script>{% endif %}
+{% if page.bundle %}<script type="text/javascript" src="{{ page.bundle | append: ".bundle.js" | prepend: "/assets/js/" | prepend: site.baseurl }}" ></script>{% endif %}
+</body>
+</html>

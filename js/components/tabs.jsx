@@ -47,7 +47,6 @@ class Tabs extends Component {
       tabControls
     );
   }
-
   render() {
     return (
       <div className="sidebar">
