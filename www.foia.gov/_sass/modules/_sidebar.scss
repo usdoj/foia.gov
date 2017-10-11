@@ -1,29 +1,45 @@
-.sidebar {
-  background: $color-primary-alt;
-  section {
-    border-top: 1px solid $color-primary-alt;
-  }
-}
-
 .sidebar_tab-controls {
+  display: flex;
   li {
+    flex-grow: 1;
+    cursor: pointer;
     a {
       color: $color-primary-darkest;
     }
     &.tab_active {
       font-weight: bold;
+    }
+    &:first-child {
       background-color: $color-primary-darkest;
       a {
         color: $color-white;
       }
     }
+    &:last-child {
+      background-color: $color-primary-alt-light;
+      a {
+        color: $color-primary-darkest;
+      }
+    }
   }
 }
 
-// TODO: Remove #content when legacy css goes away
-#content .sidebar_tabs {
+.sidebar_tabs {
+  > section {
+    display: none;
+    h5 {
+      font-weight: bold;
+    }
+  }
   .tab_active {
+    display: block;
+  }
+  > section:first-child {
     background-color: $color-primary-darkest;
+    section {
+      border-top: 1px solid $color-primary-alt-light;
+    }
+
     h1,
     h2,
     h3,
@@ -32,7 +48,19 @@
     a {
       color: $color-white;
     }
+
+    h5 {
+      color: $color-primary-alt-light;
+    }
   }
+
+  > section:last-child {
+    background-color: $color-primary-alt-light;
+    section {
+      border-top: 1px solid $color-primary-darkest;
+    }
+  }
+
   h2 {
     font-family: $font-serif;
     font-size: $h4-font-size;
