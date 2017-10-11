@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 
 import { AgencyComponent } from '../models';
 import AgencyComponentProcessingTime from './agency_component_processing_time';
