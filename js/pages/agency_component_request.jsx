@@ -8,7 +8,7 @@ import FOIARequestForm from 'components/foia_request_form';
 import settings from 'settings';
 import AgencyComponentStore from 'stores/agency_component';
 import Api from 'util/api';
-import Glossary from 'util/glossary';
+
 
 const api = new Api(settings.api.baseURL);
 const jsonapi = new Api(settings.api.jsonApiBaseURL);

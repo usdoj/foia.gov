@@ -11,9 +11,6 @@
 {% include header.html %}
 <div class="{% if page.grid %}{{ page.grid }}{% else %}usa-grid{% endif %}" id="main">
     <div id="content">
-
-{% include glossary.html %}
-
     {{ content }}
     </div>
 <!-- TODO: Remove this div when we dump the gradient. -->
@@ -22,6 +19,7 @@
 {% endunless %}
 </div>
 {% include footer.html %}
+{% include glossary.html %}
 {% comment %}
 `page.init` is used for the legacy pages.
 `page.bundle` is used for the non-legacy pages.

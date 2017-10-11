@@ -39,8 +39,6 @@ navigation:
   secondary:
     - href: /news.html
       title: News
-    - href: /glossary.html
-      title: Glossary
     - href: /faq.html
       title: FAQs
     - href: /index-es.html
