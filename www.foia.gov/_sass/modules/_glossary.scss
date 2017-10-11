@@ -98,33 +98,7 @@ $z-glossary: 9000; // uswds navigation
 
 
 // Term classes
-//
-// Wrap glossary terms with these classes
-
-.term {
-  @include transition(background-color, .2s, box-shadow, .2s, color, .2s);
-  background-color: transparent;
-  background-position: 100% 50%;
-  background-size: .6em;
-  border-bottom: 0;
-  box-shadow: 0 0 0 4px transparent;
+[data-term] {
   cursor: pointer;
-  margin-right: 2px;
-  padding-right: .9em;
-
-
-  &:focus,
-  &:hover {
-    background-color: rgba($color-gray-light, .7);
-    box-shadow: 0 0 0 4px rgba($color-gray-light, .7);
-    color: $color-primary;
-  }
-}
-
-@media print {
-  .term {
-    background-image: none;
-    margin-right: 0;
-    padding-right: 0;
-  }
+  text-decoration: underline dotted;
 }
