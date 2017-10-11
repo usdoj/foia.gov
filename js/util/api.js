@@ -1,15 +1,11 @@
 import axios from 'axios';
-import JsonApi from './json_api_params';
+import settings from 'settings';
 
 class Api {
   constructor(baseURL) {
     this._api = axios.create({
-      baseURL,
+      baseURL: baseURL || settings.api.baseURL,
     });
-  }
-
-  params() {
-    return new JsonApi(this._api);
   }
 
   get(...args) {
@@ -18,4 +14,9 @@ class Api {
   }
 }
 
-export default Api;
+const api = new Api();
+export default api;
+
+export {
+  Api,
+};

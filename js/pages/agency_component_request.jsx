@@ -1,23 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Dispatcher } from 'flux';
 import { Container } from 'flux/utils';
 
-import { RequestActions } from 'actions';
+import { requestActions } from 'actions';
 import Tabs from 'components/tabs';
 import FOIARequestForm from 'components/foia_request_form';
-import settings from 'settings';
-import AgencyComponentStore from 'stores/agency_component';
-import Api from 'util/api';
-
-const api = new Api(settings.api.baseURL);
-const jsonapi = new Api(settings.api.jsonApiBaseURL);
-
-
-const dispatcher = new Dispatcher();
-const agencyComponentStore = new AgencyComponentStore(dispatcher);
-
-const requestActions = RequestActions({ dispatcher, api, jsonapi });
+import agencyComponentStore from 'stores/agency_component';
 
 
 class AgencyComponentRequestPage extends Component {
@@ -26,10 +14,9 @@ class AgencyComponentRequestPage extends Component {
   }
 
   static calculateState() {
-    const { agency, selectedAgency } = agencyComponentStore.getState();
+    const { agency } = agencyComponentStore.getState();
     return {
       agency,
-      selectedAgency,
     };
   }
 
