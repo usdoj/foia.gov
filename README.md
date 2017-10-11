@@ -6,6 +6,11 @@ New FOIA beta site + national portal. The site is based off of
 [18F recommendations](https://github.com/18F/foia-recommendations) from our
 discovery sprint with the Department of Justice.
 
+## Content
+
+Site content lives the pages in `www.foia.gov/`. Glossary terms should be edited in
+[/js/util/glossary/terms.js](/tree/master/js/util/glossary/terms.js).
+
 
 ## Development
 
