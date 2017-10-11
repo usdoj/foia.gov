@@ -8,7 +8,6 @@
 import assert from 'assert';
 
 import { buildQueryString as serialize } from 'd8-jsonapi-querystring';
-import { parse } from 'jsonapi-parse';
 
 
 function defaults() {
@@ -19,25 +18,13 @@ function defaults() {
 
 class JsonApiParams {
   constructor(api) {
-    if (!api) {
-      throw new Error('You must provide and api instance to JsonApiParams');
-    }
-
     this._params = defaults();
     this._api = api;
     this._groupId = 0;
   }
 
-  // TODO move this to a JsonApi class that extends the methods of JsonApiParams for convenience
-  // A convenience method to hook back to the Api so that you can construct
-  // params and then call `get` to execute.
-  get(path, options) {
-    return this._api.get(path, options || {
-      params: this._params,
-      paramsSerializer: serialize,
-      transformResponse: [parse, response => response.data],
-    })
-      .then(response => response.data);
+  get(...args) {
+    return this._api.get(...args);
   }
 
   include(entity) {
