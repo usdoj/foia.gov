@@ -9,7 +9,7 @@ discovery sprint with the Department of Justice.
 ## Content
 
 Site content lives the pages in `www.foia.gov/`. Glossary terms should be edited in
-[/js/util/glossary/terms.js](/tree/master/js/util/glossary/terms.js).
+[/js/util/glossary/terms.js](js/util/glossary/terms.js).
 
 
 ## Development
