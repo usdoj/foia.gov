@@ -2,6 +2,8 @@ import { Map, List } from 'immutable';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import tokenizers from '../util/tokenizers';
+
 
 // Only load typeahead in the browser (avoid loading it for tests)
 let Bloodhound;
@@ -41,8 +43,13 @@ class AgencyComponentSelector extends Component {
             // For agency components
             []
               .concat(Bloodhound.tokenizers.nonword(datum.title))
-              .concat(Bloodhound.tokenizers.whitespace(datum.abbreviation))
+              .concat(
+                datum.abbreviation ?
+                  Bloodhound.tokenizers.whitespace(datum.abbreviation) :
+                  tokenizers.firstLetterOfEachCapitalizedWord(datum.title),
+              )
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.name))
+              .concat(Bloodhound.tokenizers.whitespace(datum.agency.abbreviation))
           )
       ),
     });
