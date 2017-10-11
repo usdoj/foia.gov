@@ -5,9 +5,17 @@ import terms from './terms';
 const selectors = {};
 const classes = {};
 
-const glossary = new Glossary(terms, selectors, classes);
+let glossary;
+function getGlossary() {
+  return glossary;
+}
 
-export default glossary;
+// Wait for DOM to be loaded before initializing the glossary
+document.addEventListener('DOMContentLoaded', () => {
+  glossary = new Glossary(terms, selectors, classes);
+});
+
+export default getGlossary;
 
 export {
   Glossary,

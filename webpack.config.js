@@ -6,6 +6,7 @@ assert(['local', 'cloud-gov', 'development', 'staging', 'production'].includes(e
 
 module.exports = {
   entry: {
+    glossary: './js/glossary.js',
     request: './js/request.jsx',
     uswds: './js/uswds.js',
   },

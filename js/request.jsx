@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
-import './util/glossary';
 
 import RequestLandingPage from './pages/request_landing';
 import AgencyComponentRequestPage from './pages/agency_component_request';
