@@ -4,6 +4,7 @@ import { Dispatcher } from 'flux';
 import { Container } from 'flux/utils';
 
 import { RequestActions } from 'actions';
+import Tabs from 'components/tabs';
 import FOIARequestForm from 'components/foia_request_form';
 import settings from 'settings';
 import AgencyComponentStore from 'stores/agency_component';
@@ -48,7 +49,16 @@ class AgencyComponentRequestPage extends Component {
   }
 
   render() {
-    return this.state.agency && <FOIARequestForm agency={this.state.agency} />;
+    return (
+      <div className="usa-grid-full grid-left">
+        <aside className="usa-width-five-twelfths sidebar" id="react-tabs">
+          <Tabs />
+        </aside>
+        <div className="usa-width-seven-twelfths sidebar_content">
+          {this.state.agency && <FOIARequestForm agency={this.state.agency} /> }
+        </div>
+      </div>
+    );
   }
 }
 
