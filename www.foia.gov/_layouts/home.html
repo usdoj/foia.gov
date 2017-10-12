@@ -20,7 +20,7 @@
 </section>
 <section class="usa-grid three-column-summary">
   <h2>{{ page.section_one.hed }}</h2>
-  <p class="secondary-text">If you know you’re ready to submit a request, continue below</p>
+  <p class="secondary-text">If you know you’re ready to submit a request, <a href="#agency-search">continue below</a></p>
   {% for col in page.section_one.cols %}
   <div class="usa-width-one-third">
     <h4>{{ col.title }}</h4>
@@ -28,20 +28,20 @@
   </div>
   {% endfor %}
 </section>
-<section class="usa-grid agency-component-search">
+<section class="usa-grid agency-component-search" id="agency-search">
   <h2>{{ page.section_two.hed }}</h2>
   <!-- TODO: Replace with actual search. -->
   <form class="usa-search usa-search-big">
       <div role="search">
         <label class="usa-sr-only" for="search-field-big">Search big</label>
         <input id="search-field-big" type="search" name="search">
-        <button type="submit">
+        <button type="submit" class="usa-button usa-button-primary">
           <span class="usa-search-submit-text">Search</span>
         </button>
       </div>
     </form>
     <p class="secondary-text"><a>See full list of agencies</a></p>
-    <h3>{{ page.section_three.hed }}</h3>
+    <h3 class="sans">{{ page.section_three.hed }}</h3>
     {% for col in page.section_three.cols %}
       <div class="usa-width-one-half">
         <h4>{{ col.title }}</h4>
