@@ -2,7 +2,7 @@
   margin: $space-4x auto;
   .secondary-text:after {
     content: "";
-    @extend .text-divider;
+    @include text-divider;
   }
   .usa-width-one-third {
     h4 {
