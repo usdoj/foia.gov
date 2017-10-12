@@ -9,7 +9,13 @@
     line-height: 1.5;
     &:after {
       content: "";
-      @extend .text-divider;
+      width: 80px;
+      height: 5px;
+      background-color: $color-primary-alt-light;
+      border-radius: 20px;
+      display: block;
+      margin-top: $space-3x;
+      margin-bottom: $space-3x;
     }
   }
   p {

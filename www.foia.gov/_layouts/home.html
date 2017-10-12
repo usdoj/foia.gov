@@ -18,6 +18,16 @@
     </div>
   </div>
 </section>
+<div class="usa-grid three-column-summary">
+  <h3>{{ page.section_one.hed }}</h3>
+  <p class="secondary-text">If you know you’re ready to submit a request, continue below</p>
+  {% for col in page.section_one.cols %}
+  <div class="usa-width-one-third">
+    <h4>{{ col.title }}</h4>
+    <p>{{ col.text }}</p>
+  </div>
+  {% endfor %}
+</div>
 <div class="usa-grid" id="main">
     <div id="content">
     {{ content }}
