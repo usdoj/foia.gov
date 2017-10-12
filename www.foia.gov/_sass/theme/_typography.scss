@@ -8,6 +8,7 @@ $p-leading:  1.5;
 
 // Heading 1
 h1 {
+  font-size: $h1-font-size;
   font-family: $font-serif;
   line-height: $h1-leading;
   color: $color-primary-darkest;
@@ -15,6 +16,7 @@ h1 {
 
 // Subhead 1
 h2 {
+  font-size: $h2-font-size;
   font-family: $font-sans;
   font-weight: normal;
   line-height: $h2-leading;
@@ -23,13 +25,20 @@ h2 {
 
 // Heading 2
 h3 {
+  font-size: $h3-font-size;
   font-family: $font-serif;
   line-height: $h3-leading;
   color: $color-primary-darkest;
+  &.sans {
+    font-size: $h3-font-size-sans;
+    font-family: $font-sans;
+    font-weight: normal;
+  }
 }
 
 // Subhead 2
 h4 {
+  font-size: $h4-font-size;
   font-family: $font-serif;
   line-height: $h4-leading;
   color: $color-primary-darkest;
@@ -37,6 +46,7 @@ h4 {
 
 // Form labels/menu items
 h5 {
+  font-size: $h5-font-size;
   font-family: $font-sans;
   line-height: $h5-leading;
   font-weight: 500;
@@ -51,3 +61,19 @@ p {
   }
 }
 
+a {
+  color: $color-primary-darkest;
+  text-decoration: none;
+  border-bottom: 1px solid $color-primary-alt;
+  &:hover,
+  &:active {
+    color: $color-primary;
+  }
+  &:visited {
+    color: $color-primary-darkest;
+    &:hover,
+    &:active {
+      color: $color-primary;
+    }
+  }
+}
