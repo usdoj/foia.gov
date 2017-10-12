@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
-import requestFormToJsonSchema from 'util/request_form_to_json_schema';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
+import formSections from '../util/form_sections';
 
 function FOIARequestForm({ agencyComponent }) {
   const widgets = {
@@ -11,7 +11,8 @@ function FOIARequestForm({ agencyComponent }) {
     RadioWidget: USWDSRadioWidget,
   };
 
-  const { jsonSchema, uiSchema } = requestFormToJsonSchema(agencyComponent.toJS());
+  // Split into sections
+  const { jsonSchema, uiSchema } = formSections.sectionedFormFromAgencyComponent(agencyComponent.toJS());
   return (
     <div>
       <Form

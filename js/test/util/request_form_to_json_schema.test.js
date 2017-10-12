@@ -1,25 +1,27 @@
 import { expect } from 'chai';
 
-import requestFormToJsonSchema from '../../util/request_form_to_json_schema';
+import rfjs from '../../util/request_form_to_json_schema';
 
 
-describe('requestFormToJsonSchema()', () => {
-  describe('given agencyComponent with no fields', () => {
-    let agencyComponent;
+describe('webformFieldsToJsonSchema()', () => {
+  describe('given no formFields', () => {
+    let formFields;
+    let section;
     let result;
 
     beforeEach(() => {
-      agencyComponent = {
-        abbreviation: 'GSA',
-        title: 'Headquarters',
+      formFields = [];
+      section = {
+        title: 'Requester info',
+        description: 'Enter your contact information.',
       };
 
-      result = requestFormToJsonSchema(agencyComponent);
+      result = rfjs.webformFieldsToJsonSchema(formFields, section);
     });
 
     describe('jsonSchema', () => {
       it('has a title', () => {
-        expect(result.jsonSchema).to.have.property('title', 'Headquarters');
+        expect(result.jsonSchema).to.have.property('title', section.title);
       });
 
       it('has a type', () => {
@@ -42,33 +44,34 @@ describe('requestFormToJsonSchema()', () => {
     });
   });
 
-  describe('given agencyComponent with form fields', () => {
-    let agencyComponent;
+  describe('given simple form fields', () => {
+    let formFields;
+    let section;
     let result;
 
     beforeEach(() => {
-      agencyComponent = {
-        abbreviation: 'GSA',
-        title: 'Headquarters',
-        formFields: [
-          {
-            name: 'contract_number',
-            title: 'GS- Contract number',
-            description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
-          }, {
-            name: 'region',
-            title: 'GSA Region',
-            description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
-          },
-        ],
+      section = {
+        title: 'Ageny info',
+        description: 'Additional information that is helpful for agencies.',
       };
+      formFields = [
+        {
+          name: 'contract_number',
+          title: 'GS- Contract number',
+          description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
+        }, {
+          name: 'region',
+          title: 'GSA Region',
+          description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
+        },
+      ];
 
-      result = requestFormToJsonSchema(agencyComponent);
+      result = rfjs.webformFieldsToJsonSchema(formFields, section);
     });
 
     describe('jsonSchema', () => {
       it('has a title', () => {
-        expect(result.jsonSchema).to.have.property('title', 'Headquarters');
+        expect(result.jsonSchema).to.have.property('title', section.title);
       });
 
       it('has a type', () => {
@@ -105,44 +108,36 @@ describe('requestFormToJsonSchema()', () => {
     });
   });
 
-  describe('given agencyComponent with required fields', () => {
-    let agencyComponent;
+  describe('given required fields', () => {
+    let formFields;
     let result;
 
     beforeEach(() => {
-      agencyComponent = {
-        abbreviation: 'GSA',
-        title: 'Headquarters',
-        formFields: [{
-          name: 'contract_number',
-          title: 'GS- Contract number',
-          description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
-        }, {
-          name: 'region',
-          title: 'GSA Region',
-          description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
-        }, {
-          name: 'request_origin',
-          title: 'Request Origin',
-          regs_url: null,
-          description: 'Company',
-          required: true,
-          options: {
-            company: 'Company',
-            individual: 'Individual/Self',
-            organization: 'Organization',
-          },
-        }],
-      };
+      formFields = [{
+        name: 'contract_number',
+        title: 'GS- Contract number',
+        description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
+      }, {
+        name: 'region',
+        title: 'GSA Region',
+        description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
+      }, {
+        name: 'request_origin',
+        title: 'Request Origin',
+        regs_url: null,
+        description: 'Company',
+        required: true,
+        options: {
+          company: 'Company',
+          individual: 'Individual/Self',
+          organization: 'Organization',
+        },
+      }];
 
-      result = requestFormToJsonSchema(agencyComponent);
+      result = rfjs.webformFieldsToJsonSchema(formFields);
     });
 
     describe('jsonSchema', () => {
-      it('has a title', () => {
-        expect(result.jsonSchema).to.have.property('title', 'Headquarters');
-      });
-
       it('has a type', () => {
         expect(result.jsonSchema).to.have.property('type', 'object');
       });
@@ -187,48 +182,19 @@ describe('requestFormToJsonSchema()', () => {
     });
   });
 
-  describe('given nonexistent department', () => {
-    let agencyComponent;
-    let result;
-
-    beforeEach(() => {
-      agencyComponent = {
-        abbreviation: 'GSA',
-        title: 'General Services Administration',
-        formFields: [],
-      };
-
-      result = requestFormToJsonSchema(agencyComponent);
-    });
-
-    describe('jsonSchema', () => {
-      it('title falls back to agency title', () => {
-        expect(result.jsonSchema).to.have.property('title', 'General Services Administration');
-      });
-
-      it('has a type', () => {
-        expect(result.jsonSchema).to.have.property('type', 'object');
-      });
-    });
-  });
-
-  describe('agencyComponent field properties', () => {
-    let agencyComponent;
+  describe('formField properties', () => {
+    let formFields;
     let result;
 
     describe('given "default_value" property', () => {
       beforeEach(() => {
-        agencyComponent = {
-          abbreviation: 'GSA',
-          title: 'Headquarters',
-          formFields: [{
-            name: 'widget',
-            title: 'Widget',
-            default_value: '1234',
-          }],
-        };
+        formFields = [{
+          name: 'widget',
+          title: 'Widget',
+          default_value: '1234',
+        }];
 
-        result = requestFormToJsonSchema(agencyComponent);
+        result = rfjs.webformFieldsToJsonSchema(formFields);
       });
 
       describe('uiSchema property', () => {
@@ -250,17 +216,13 @@ describe('requestFormToJsonSchema()', () => {
     describe('given "type" property', () => {
       describe('given type:checkbox', () => {
         beforeEach(() => {
-          agencyComponent = {
-            abbreviation: 'GSA',
-            title: 'Headquarters',
-            formFields: [{
-              name: 'widget',
-              title: 'Widget',
-              type: 'checkbox',
-            }],
-          };
+          formFields = [{
+            name: 'widget',
+            title: 'Widget',
+            type: 'checkbox',
+          }];
 
-          result = requestFormToJsonSchema(agencyComponent);
+          result = rfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -298,17 +260,13 @@ describe('requestFormToJsonSchema()', () => {
 
       describe('given type:textarea', () => {
         beforeEach(() => {
-          agencyComponent = {
-            abbreviation: 'GSA',
-            title: 'Headquarters',
-            formFields: [{
-              name: 'widget',
-              title: 'Widget',
-              type: 'textarea',
-            }],
-          };
+          formFields = [{
+            name: 'widget',
+            title: 'Widget',
+            type: 'textarea',
+          }];
 
-          result = requestFormToJsonSchema(agencyComponent);
+          result = rfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -346,17 +304,13 @@ describe('requestFormToJsonSchema()', () => {
 
       describe('given type:tel', () => {
         beforeEach(() => {
-          agencyComponent = {
-            abbreviation: 'GSA',
-            title: 'Headquarters',
-            formFields: [{
-              name: 'widget',
-              title: 'Widget',
-              type: 'tel',
-            }],
-          };
+          formFields = [{
+            name: 'widget',
+            title: 'Widget',
+            type: 'tel',
+          }];
 
-          result = requestFormToJsonSchema(agencyComponent);
+          result = rfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -394,17 +348,13 @@ describe('requestFormToJsonSchema()', () => {
 
       describe('given type:managed_file', () => {
         beforeEach(() => {
-          agencyComponent = {
-            abbreviation: 'GSA',
-            title: 'Headquarters',
-            formFields: [{
-              name: 'widget',
-              title: 'Widget',
-              type: 'managed_file',
-            }],
-          };
+          formFields = [{
+            name: 'widget',
+            title: 'Widget',
+            type: 'managed_file',
+          }];
 
-          result = requestFormToJsonSchema(agencyComponent);
+          result = rfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -438,6 +388,54 @@ describe('requestFormToJsonSchema()', () => {
             expect(uiSchemaProperty).to.have.property('ui:widget', 'file');
           });
         });
+      });
+    });
+  });
+
+  describe('section', () => {
+    describe('given no section', () => {
+      let result;
+
+      beforeEach(() => {
+        result = rfjs.webformFieldsToJsonSchema([]);
+      });
+
+      it('has a type', () => {
+        expect(result.jsonSchema).to.have.property('type', 'object');
+      });
+
+      it('has properties', () => {
+        expect(result.jsonSchema).to.have.property('properties');
+      });
+    });
+
+    describe('given section with title and description', () => {
+      let section;
+      let result;
+
+      beforeEach(() => {
+        section = {
+          title: 'Requester info',
+          description: 'Enter your contact information.',
+        };
+
+        result = rfjs.webformFieldsToJsonSchema([], section);
+      });
+
+      it('has a title', () => {
+        expect(result.jsonSchema).to.have.property('title', section.title);
+      });
+
+      it('has a description', () => {
+        expect(result.jsonSchema).to.have.property('description', section.description);
+      });
+
+      it('has a type', () => {
+        expect(result.jsonSchema).to.have.property('type', 'object');
+      });
+
+      it('has properties', () => {
+        expect(result.jsonSchema).to.have.property('properties');
       });
     });
   });
