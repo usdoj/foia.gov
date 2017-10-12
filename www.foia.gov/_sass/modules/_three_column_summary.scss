@@ -1,9 +1,5 @@
 .three-column-summary {
   margin: $space-4x auto;
-  h3 {
-    @extend h2;
-    font-weight: normal;
-  }
   .secondary-text:after {
     content: "";
     @extend .text-divider;
@@ -13,6 +9,5 @@
       font-size: $base-font-size;
       font-family: $font-sans;
     }
-    p { }
   }
 }

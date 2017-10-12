@@ -1,0 +1,20 @@
+.agency-component-search {
+  background-color: $color-primary-alt-light;
+  border-top: $space-2x solid $color-primary-alt;
+  padding-top: $space-4x;
+  padding-bottom: $space-4x;
+  h3 {
+    font-family: $font-sans;
+    font-weight: normal;
+  }
+  h4 {
+    font-size: $base-font-size;
+    font-family: $font-sans;
+  }
+  .usa-width-one-half {
+    border-right: 1px solid $color-primary-alt;
+    &:last-child {
+      border: none;
+    }
+  }
+}
