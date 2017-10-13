@@ -10,6 +10,20 @@
   h4 {
     font-size: $base-font-size;
     font-family: $font-sans;
+    &:before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background-color: $color-primary-darkest;
+      display: block;
+      float: left;
+      border-radius: 100px;
+      margin-right: 10px;
+      margin-top: 1px;
+    }
+    + p {
+      margin-left: 30px; // size of bubble + margin
+    }
   }
   .usa-width-one-half {
     @media all and (min-width: $medium-screen) {
@@ -25,5 +39,8 @@
   form + .secondary-text:after {
     @include text-divider($color-primary-alt);
     content: "";
+  }
+  input[type='search'] {
+    border: none;
   }
 }

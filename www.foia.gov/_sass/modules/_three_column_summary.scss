@@ -5,9 +5,44 @@
     @include text-divider;
   }
   .usa-width-one-third {
+    p {
+      @media screen and (max-width: $medium-screen) {
+        margin-left: 50px; // the width of the bubble at this screen size + margin
+      }
+      @media screen and (min-width: $medium-screen) {
+        padding-right: 1rem;
+      }
+    }
     h4 {
       font-size: $base-font-size;
       font-family: $font-sans;
+      // separate the headlines from preceding grafs when they're stacked
+      @media screen and (max-width: $medium-screen) {
+        margin-top: $space-5x;
+      }
+      &:before {
+        content: "";
+        background-color: $color-white;
+        display: inline-block;
+        float: left;
+        border-radius: 100px;
+        border: 2px solid $color-primary-alt;
+        width: $space-5x;
+        height: $space-5x;
+        margin-top: -8px;
+        margin-right: 10px;
+        @media screen and (min-width: $medium-screen) and (max-width: $medium-large-screen) {
+          width: $space-4x;
+          height: $space-4x;
+          margin-top: 5px;
+        }
+        @media screen and (min-width: $large-screen) {
+          width: $space-1x * 8; // 64px
+          height: $space-1x * 8;
+          margin-top: -7px;
+          margin-right: 15px;
+        }
+      }
     }
   }
 }
