@@ -34,7 +34,7 @@ acquia-cloud-deploy-steps: &acquia-cloud-deploy-steps
       at: .
   - deploy:
       name: Push to Acquia Cloud
-      command: bin/git-deploy.sh _site $NODE_ENV
+      command: bin/git-deploy.sh _site $APP_ENV
 
 
 version: 2
@@ -69,7 +69,8 @@ jobs:
     docker:
       - image: circleci/ruby:2.4.1-node
         environment:
-          NODE_ENV: cloud-gov
+          NODE_ENV: production
+          APP_ENV: cloud-gov
     steps: *build-steps
 
   deploy-cloud-gov:
@@ -94,7 +95,8 @@ jobs:
     docker:
       - image: circleci/ruby:2.4.1-node
         environment:
-          NODE_ENV: development
+          NODE_ENV: production
+          APP_ENV: development
     steps: *build-steps
 
   # Deploy job for the Acquia Cloud development environment
@@ -102,7 +104,8 @@ jobs:
     docker:
       - image: circleci/ruby:2.4.1-node
         environment:
-          NODE_ENV: development
+          NODE_ENV: production
+          APP_ENV: development
     steps: *acquia-cloud-deploy-steps
 
   # Build for the Acquia Cloud staging environment
@@ -110,7 +113,8 @@ jobs:
     docker:
       - image: circleci/ruby:2.4.1-node
         environment:
-          NODE_ENV: staging
+          NODE_ENV: production
+          APP_ENV: staging
     steps: *build-steps
 
   # Deploy job for the Acquia Cloud staging environment
@@ -118,7 +122,8 @@ jobs:
     docker:
       - image: circleci/ruby:2.4.1-node
         environment:
-          NODE_ENV: staging
+          NODE_ENV: production
+          APP_ENV: staging
     steps: *acquia-cloud-deploy-steps
 
 
