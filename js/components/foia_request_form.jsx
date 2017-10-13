@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
+import ObjectFieldTemplate from './object_field_template';
 
 
 function FOIARequestForm({ requestForm }) {
@@ -19,6 +20,7 @@ function FOIARequestForm({ requestForm }) {
         schema={jsonSchema}
         uiSchema={uiSchema}
         widgets={widgets}
+        ObjectFieldTemplate={ObjectFieldTemplate}
       />
     </div>
   );
