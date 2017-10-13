@@ -104,10 +104,10 @@ class Tabs extends Component {
                       foiarequest@ic.fbi.gov
                     </a>
                   </p>
-                  <p>You can ask <span data-term="foia">FOIA</span> personnel about anything related to your
-                  request, including whether what you’re asking for is clear.
-                  You can also reach out to follow up on your request after
-                  it’s been submitted.</p>
+                  <p>You can ask <span data-term="foia">FOIA</span> personnel
+                    about anything related to your request, including whether
+                    what you’re asking for is clear.  You can also reach out to
+                    follow up on your request after it’s been submitted.</p>
                 </li>
                 <li>
                   <h5>The description of records you are requesting is
