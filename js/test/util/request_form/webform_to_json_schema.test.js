@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import rfjs from '../../util/request_form_to_json_schema';
+import wfjs from '../../../util/request_form/webform_to_json_schema';
 
 
 describe('webformFieldsToJsonSchema()', () => {
@@ -16,7 +16,7 @@ describe('webformFieldsToJsonSchema()', () => {
         description: 'Enter your contact information.',
       };
 
-      result = rfjs.webformFieldsToJsonSchema(formFields, section);
+      result = wfjs.webformFieldsToJsonSchema(formFields, section);
     });
 
     describe('jsonSchema', () => {
@@ -66,7 +66,7 @@ describe('webformFieldsToJsonSchema()', () => {
         },
       ];
 
-      result = rfjs.webformFieldsToJsonSchema(formFields, section);
+      result = wfjs.webformFieldsToJsonSchema(formFields, section);
     });
 
     describe('jsonSchema', () => {
@@ -134,7 +134,7 @@ describe('webformFieldsToJsonSchema()', () => {
         },
       }];
 
-      result = rfjs.webformFieldsToJsonSchema(formFields);
+      result = wfjs.webformFieldsToJsonSchema(formFields);
     });
 
     describe('jsonSchema', () => {
@@ -194,7 +194,7 @@ describe('webformFieldsToJsonSchema()', () => {
           default_value: '1234',
         }];
 
-        result = rfjs.webformFieldsToJsonSchema(formFields);
+        result = wfjs.webformFieldsToJsonSchema(formFields);
       });
 
       describe('uiSchema property', () => {
@@ -222,7 +222,7 @@ describe('webformFieldsToJsonSchema()', () => {
             type: 'checkbox',
           }];
 
-          result = rfjs.webformFieldsToJsonSchema(formFields);
+          result = wfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -266,7 +266,7 @@ describe('webformFieldsToJsonSchema()', () => {
             type: 'textarea',
           }];
 
-          result = rfjs.webformFieldsToJsonSchema(formFields);
+          result = wfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -310,7 +310,7 @@ describe('webformFieldsToJsonSchema()', () => {
             type: 'tel',
           }];
 
-          result = rfjs.webformFieldsToJsonSchema(formFields);
+          result = wfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -354,7 +354,7 @@ describe('webformFieldsToJsonSchema()', () => {
             type: 'managed_file',
           }];
 
-          result = rfjs.webformFieldsToJsonSchema(formFields);
+          result = wfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -397,7 +397,7 @@ describe('webformFieldsToJsonSchema()', () => {
       let result;
 
       beforeEach(() => {
-        result = rfjs.webformFieldsToJsonSchema([]);
+        result = wfjs.webformFieldsToJsonSchema([]);
       });
 
       it('has a type', () => {
@@ -419,7 +419,7 @@ describe('webformFieldsToJsonSchema()', () => {
           description: 'Enter your contact information.',
         };
 
-        result = rfjs.webformFieldsToJsonSchema([], section);
+        result = wfjs.webformFieldsToJsonSchema([], section);
       });
 
       it('has a title', () => {

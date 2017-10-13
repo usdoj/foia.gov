@@ -1,4 +1,4 @@
-import rfjs from './request_form_to_json_schema';
+import wfjs from './webform_to_json_schema';
 
 const FORM_SECTIONS = [
   {
@@ -111,7 +111,7 @@ function sectionedFormFromAgencyComponent(agencyComponent) {
       // Use only the form fields in this section
       const formFields = fieldsBySection[section.id];
 
-      const { jsonSchema, uiSchema } = rfjs.webformFieldsToJsonSchema(formFields, section);
+      const { jsonSchema, uiSchema } = wfjs.webformFieldsToJsonSchema(formFields, section);
 
       // Pass a triplet for processing
       return [section.id, jsonSchema, uiSchema];
