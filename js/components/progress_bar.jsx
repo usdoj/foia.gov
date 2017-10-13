@@ -18,6 +18,11 @@ function ProgressBar({ sections }) {
           </li>
         ))
       }
+      <li key="submit">
+        <a href="#foia-request-form_submit">
+          <span>Submit</span>
+        </a>
+      </li>
     </ul>
   );
 }

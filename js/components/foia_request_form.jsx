@@ -21,7 +21,12 @@ function FOIARequestForm({ requestForm }) {
         uiSchema={uiSchema}
         widgets={widgets}
         ObjectFieldTemplate={ObjectFieldTemplate}
-      />
+      >
+        <div id="foia-request-form_submit" className="foia-request-form_submit">
+          <p>Please review the information you’ve entered and submit.</p>
+          <button>Submit</button>
+        </div>
+      </Form>
     </div>
   );
 }
