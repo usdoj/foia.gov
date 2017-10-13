@@ -14,8 +14,10 @@ class AgencyComponentRequestPage extends Component {
     return [agencyComponentStore];
   }
 
-  static calculateState() {
-    const { agencyComponent } = agencyComponentStore.getState();
+  static calculateState(prevState, props) {
+    const agencyComponentId = props.match.params.agencyComponentId;
+    const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
+
     return {
       agencyComponent,
     };
@@ -29,8 +31,8 @@ class AgencyComponentRequestPage extends Component {
     const agencyComponentId = this.props.match.params.agencyComponentId;
 
     // Check agency component exists in store
-    const { agencyComponent } = agencyComponentStore.getState();
-    if (!agencyComponent.id) {
+    const { agencyComponent } = this.state;
+    if (!agencyComponent || !agencyComponent.formFields) {
       requestActions.fetchAgencyComponent(agencyComponentId)
         .then(requestActions.receiveAgencyComponent)
         .catch((error) => {
@@ -62,11 +64,11 @@ class AgencyComponentRequestPage extends Component {
     return (
       <div className="usa-grid-full grid-left">
         <aside className="usa-width-five-twelfths sidebar" id="react-tabs">
-          { agencyComponent.id ? <Tabs agencyComponent={agencyComponent} /> : null }
+          { agencyComponent ? <Tabs agencyComponent={agencyComponent} /> : null }
         </aside>
         <div className="usa-width-seven-twelfths sidebar_content">
           {
-            agencyComponent.id ?
+            agencyComponent ?
               <FOIARequestForm agencyComponent={this.state.agencyComponent} /> :
               <div>Loading…</div>
           }
@@ -80,4 +82,4 @@ AgencyComponentRequestPage.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-export default Container.create(AgencyComponentRequestPage);
+export default Container.create(AgencyComponentRequestPage, { withProps: true });
