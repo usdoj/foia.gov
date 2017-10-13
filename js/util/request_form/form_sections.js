@@ -23,7 +23,7 @@ const FORM_SECTIONS = [
       'company_organization',
       'email',
 
-       // deprecated names https://github.com/18F/beta.foia.gov/issues/188
+      // deprecated names https://github.com/18F/beta.foia.gov/issues/188
       'prefix_title',
       'first_name',
       'last_name',
@@ -73,11 +73,13 @@ const ADDITIONAL_FIELDS_SECTION = {
 };
 
 const fieldToSectionMap = FORM_SECTIONS
-  .reduce((memo, section) =>
-    section
-      .fieldNames
-      .reduce((map, fieldName) => Object.assign(map, { [fieldName]: section }), memo)
-  , {});
+  .reduce(
+    (memo, section) =>
+      section
+        .fieldNames
+        .reduce((map, fieldName) => Object.assign(map, { [fieldName]: section }), memo),
+    {},
+  );
 
 
 function findSection(field) {
