@@ -12,6 +12,10 @@ function FOIARequestForm({ requestForm }) {
     RadioWidget: USWDSRadioWidget,
   };
 
+  // Map these to react-jsonschema-form Ids
+  const steps = (requestForm.sections || []).map(section => `root_${section.id}`);
+
+  const formContext = { steps };
   const { jsonSchema, uiSchema } = requestForm;
   return (
     <div>
@@ -20,6 +24,7 @@ function FOIARequestForm({ requestForm }) {
         schema={jsonSchema}
         uiSchema={uiSchema}
         widgets={widgets}
+        formContext={formContext}
         ObjectFieldTemplate={ObjectFieldTemplate}
       >
         <div id="foia-request-form_submit" className="foia-request-form_submit">
