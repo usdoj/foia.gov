@@ -2,8 +2,8 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import chaiSinon from 'sinon-chai';
 
-import rfjs from '../../util/request_form_to_json_schema';
-import formSections from '../../util/form_sections';
+import wfjs from '../../../util/request_form/webform_to_json_schema';
+import formSections from '../../../util/request_form/form_sections';
 
 
 chai.use(chaiSinon);
@@ -15,7 +15,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
-    spy = sandbox.spy(rfjs, 'webformFieldsToJsonSchema');
+    spy = sandbox.spy(wfjs, 'webformFieldsToJsonSchema');
   });
 
   afterEach(() => {
