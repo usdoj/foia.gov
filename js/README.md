@@ -11,6 +11,12 @@ This will start the Jekyll server and webpack in watch mode.
 
     $ make serve
 
+By default, `$APP_ENV` is set to `development` which will use the development
+foia-api in the Acquia Cloud environment. If you need to develop against a local
+foia-api, set `APP_ENV=local`.
+
+    $ APP_ENV=local make serve
+
 
 ## Tests
 

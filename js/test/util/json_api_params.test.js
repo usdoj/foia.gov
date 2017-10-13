@@ -2,14 +2,12 @@ import chai, { expect } from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import Api from '../../util/api';
 import JsonApiParams from '../../util/json_api_params';
 
 chai.use(sinonChai);
 
 
 describe('JsonApiParams', () => {
-  let api = {};
   let sandbox;
 
   beforeEach(() => {
@@ -25,7 +23,7 @@ describe('JsonApiParams', () => {
     let query;
 
     beforeEach(() => {
-      params = new JsonApiParams(api);
+      params = new JsonApiParams();
       query = params.serialize();
     });
 
@@ -34,48 +32,12 @@ describe('JsonApiParams', () => {
     });
   });
 
-  describe('::get', () => {
-    let sentinal;
-    let params;
-    let result;
-
-    beforeEach(() => {
-      sentinal = {}; // sentinal
-      api = new Api('http://api.example.com');
-      sandbox.stub(api, 'get').returns(Promise.resolve({ data: sentinal }));
-
-      params = new JsonApiParams(api);
-      return params.get('/path')
-        .then((_result) => { result = _result; });
-    });
-
-    it('calls get on the api instance', () => {
-      expect(api.get).to.have.been.calledOnce;
-    });
-
-    it('calls get on the api instance', () => {
-      expect(api.get).to.have.been.calledWith('/path');
-    });
-
-    it('calls get with config', () => {
-      expect(api.get).to.have.been.calledWith(sinon.match.any, sinon.match({
-        params: { _format: 'api_json' },
-        paramsSerializer: sinon.match.func,
-        transformResponse: [sinon.match.func, sinon.match.func],
-      }));
-    });
-
-    it('returns the data part of the response', () => {
-      expect(result).to.equal(sentinal);
-    });
-  });
-
   describe('::include', () => {
     let params;
     let query;
 
     beforeEach(() => {
-      params = new JsonApiParams(api);
+      params = new JsonApiParams();
       params.include('agency');
       query = params.serialize();
     });
@@ -105,7 +67,7 @@ describe('JsonApiParams', () => {
     let query;
 
     beforeEach(() => {
-      params = new JsonApiParams(api);
+      params = new JsonApiParams();
       params.fields('agency', ['id', 'name']);
       query = params.serialize();
     });
@@ -125,7 +87,7 @@ describe('JsonApiParams', () => {
       let query;
 
       beforeEach(() => {
-        params = new JsonApiParams(api);
+        params = new JsonApiParams();
         params.offset(10);
         query = params.serialize();
       });
@@ -144,7 +106,7 @@ describe('JsonApiParams', () => {
       let query;
 
       beforeEach(() => {
-        params = new JsonApiParams(api);
+        params = new JsonApiParams();
         params.limit(10);
         query = params.serialize();
       });
@@ -163,7 +125,7 @@ describe('JsonApiParams', () => {
       let query;
 
       beforeEach(() => {
-        params = new JsonApiParams(api);
+        params = new JsonApiParams();
         params.offset(20).limit(10);
         query = params.serialize();
       });
@@ -184,7 +146,7 @@ describe('JsonApiParams', () => {
       let query;
 
       beforeEach(() => {
-        params = new JsonApiParams(api);
+        params = new JsonApiParams();
         params.filter('id', 'gsa');
         query = params.serialize();
       });
@@ -203,7 +165,7 @@ describe('JsonApiParams', () => {
       let query;
 
       beforeEach(() => {
-        params = new JsonApiParams(api);
+        params = new JsonApiParams();
         params.filter('id-filter', 'id', 'gsa');
         query = params.serialize();
       });
@@ -232,7 +194,7 @@ describe('JsonApiParams', () => {
     let query;
 
     beforeEach(() => {
-      params = new JsonApiParams(api);
+      params = new JsonApiParams();
       params
         .filter('id-filter', 'id', 'gsa')
         .filter('title-filter', 'title', 'general')
@@ -277,7 +239,7 @@ describe('JsonApiParams', () => {
     let query;
 
     beforeEach(() => {
-      params = new JsonApiParams(api);
+      params = new JsonApiParams();
       params
         .filter('id-filter', 'id', 'gsa')
         .filter('title-filter', 'title', 'general')
@@ -322,7 +284,7 @@ describe('JsonApiParams', () => {
     let query;
 
     beforeEach(() => {
-      params = new JsonApiParams(api);
+      params = new JsonApiParams();
       params.contains('title', 'general');
       query = params.serialize();
     });
