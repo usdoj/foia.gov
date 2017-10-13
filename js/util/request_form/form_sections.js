@@ -45,25 +45,42 @@ const FORM_SECTIONS = [
     description: 'Describe the records you are requesting. Be as specific as possible.',
     fieldNames: [
       'request_description',
-      'request_category',
+    ],
+  },
+
+  {
+    id: 'supporting_docs',
+    title: 'Supporting documentation',
+    description: 'Include any supporting documentation related to your request.',
+    fieldNames: [
       'attachments_supporting_documentation',
     ],
   },
 
   {
-    id: 'delivery_method',
-    title: 'Delivery method',
-    description: 'How would you like to receive your request? Under certain circumstances you may need to pay for processing fees.',
+    id: 'processing_fees',
+    title: 'Processing fees',
+    description: 'Under certain circumstances you may need to pay for processing fees.',
     fieldNames: [
       'request_processing_fees',
       'processing_fees',
-      'delivery_method',
       'request_fee_waiver',
       'fee_waiver_explanation',
+    ],
+  },
+
+
+  {
+    id: 'delivery_method',
+    title: 'Delivery method',
+    description: 'How would you like to receive your request?',
+    fieldNames: [
+      'delivery_method',
       'request_expedited_processing',
       'expedited_processing_explanation',
     ],
   },
+
 ];
 
 const ADDITIONAL_FIELDS_SECTION = {
