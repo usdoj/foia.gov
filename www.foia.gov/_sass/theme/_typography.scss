@@ -8,40 +8,54 @@ $p-leading:  1.5;
 
 // Heading 1
 h1 {
-  font-size: $h1-font-size;
+  font-size: $h1-font-size-mobile;
   font-family: $font-serif;
   line-height: $h1-leading;
   color: $color-primary-darkest;
+  @media all and (min-width: $small-screen) {
+    font-size: $h1-font-size;
+  }
 }
 
 // Subhead 1
 h2 {
-  font-size: $h2-font-size;
+  font-size: $h2-font-size-mobile;
   font-family: $font-sans;
   font-weight: normal;
   line-height: $h2-leading;
   color: $color-primary-darkest;
+  @media all and (min-width: $small-screen) {
+    font-size: $h2-font-size;
+  }
 }
 
 // Heading 2
 h3 {
-  font-size: $h3-font-size;
+  font-size: $h3-font-size-mobile;
   font-family: $font-serif;
   line-height: $h3-leading;
   color: $color-primary-darkest;
   &.sans {
-    font-size: $h3-font-size-sans;
+    @media all and (min-width: $small-screen) {
+      font-size: $h3-font-size-sans;
+    }
     font-family: $font-sans;
     font-weight: normal;
+  }
+  @media all and (min-width: $small-screen) {
+    font-size: $h3-font-size;
   }
 }
 
 // Subhead 2
 h4 {
-  font-size: $h4-font-size;
+  font-size: $h4-font-size-mobile;
   font-family: $font-serif;
   line-height: $h4-leading;
   color: $color-primary-darkest;
+  @media all and (min-width: $small-screen) {
+    font-size: $h4-font-size;
+  }
 }
 
 // Form labels/menu items

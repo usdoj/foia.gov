@@ -4,7 +4,6 @@
 $h1-font-size: 3.5rem; // heading 1
 $h2-font-size: 3rem;   // subhead 1
 $h3-font-size: 2rem;   // heading 2
-$h3-font-size-sans: 2.5rem; // alternative heading style
 $h4-font-size: 2.2rem; // subhead 2
 $h5-font-size: 1.7rem; // menu/label items
 $base-font-size: 1.7rem;
@@ -16,11 +15,18 @@ $small-font-size: 1.5rem;
 // $color-gray-light: #AEB0B5;
 $color-primary-alt: #5EAFF8;
 $color-primary-alt-light: #92C8F6;
-$color-gray-dark: #212121; // same as USWDS $color-base
 $color-primary-darkest: #122E51;
+$color-gray-dark: #212121; // same as USWDS $color-base
 $color-gray: #5B616A;
 $color-gray-lightest: #F8F8F8;
 $color-focus: $color-primary-alt-light;
+
+// Mobile First breakpoints
+ $small-screen: 481px;
+ $medium-screen: 600px;
+ $large-screen: 1201px;
+
+$nav-width: 800px;
 
 // Relative font and image file paths
 $font-path:   '/assets/fonts' !default;
@@ -29,11 +35,21 @@ $image-path:  '/assets/img' !default;
 /***********************************
  * New variable declarations
  * ********************************/
+// alternative heading styles
+$h3-font-size-sans: 2.5rem;
+$h1-font-size-mobile: 3.2rem;
+$h2-font-size-mobile: 2.7rem;
+$h3-font-size-mobile: 2rem;
+$h4-font-size-mobile: 1.9rem;
+
 //Spacing vars
 $space-1x: 0.8rem;
 $space-2x: 1.6rem;
 $space-3x: 2.4rem;
 $space-4x: 3.2rem;
 $space-5x: 4.0rem;
+
+// WDS's breakpoints just aren't flexible enough
+$medium-large-screen: 800px;
 
 @import '../../node_modules/uswds/src/stylesheets/uswds';
