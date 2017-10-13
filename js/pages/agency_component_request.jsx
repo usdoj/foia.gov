@@ -6,33 +6,43 @@ import { requestActions } from 'actions';
 import Tabs from 'components/tabs';
 import FOIARequestForm from 'components/foia_request_form';
 import agencyComponentStore from 'stores/agency_component';
+import requestFormStore from 'stores/request_form';
 import NotFound from './not_found';
 
 
 class AgencyComponentRequestPage extends Component {
   static getStores() {
-    return [agencyComponentStore];
+    return [agencyComponentStore, requestFormStore];
   }
 
   static calculateState(prevState, props) {
     const agencyComponentId = props.match.params.agencyComponentId;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
+    const requestForm = requestFormStore.getAgencyComponentForm(agencyComponentId);
 
     return {
       agencyComponent,
+      requestForm,
     };
   }
 
   componentDidMount() {
-    this.init();
+    this.init(this.props);
   }
 
-  init() {
+  componentWillReceiveProps(nextProps) {
     const agencyComponentId = this.props.match.params.agencyComponentId;
+    if (nextProps.match.params.agencyComponentId !== agencyComponentId) {
+      this.init(nextProps);
+    }
+  }
+
+  init(props) {
+    const agencyComponentId = props.match.params.agencyComponentId;
 
     // Check agency component exists in store
     const { agencyComponent } = this.state;
-    if (!agencyComponent || !agencyComponent.formFields) {
+    if (!agencyComponent || !agencyComponent.formFields.length) {
       requestActions.fetchAgencyComponent(agencyComponentId)
         .then(requestActions.receiveAgencyComponent)
         .catch((error) => {
@@ -60,7 +70,7 @@ class AgencyComponentRequestPage extends Component {
     }
 
     // TODO show a loading indicator?
-    const { agencyComponent } = this.state;
+    const { agencyComponent, requestForm } = this.state;
     return (
       <div className="usa-grid-full grid-left">
         <aside className="usa-width-five-twelfths sidebar" id="react-tabs">
@@ -68,8 +78,10 @@ class AgencyComponentRequestPage extends Component {
         </aside>
         <div className="usa-width-seven-twelfths sidebar_content">
           {
-            agencyComponent ?
-              <FOIARequestForm agencyComponent={this.state.agencyComponent} /> :
+            requestForm ?
+              <FOIARequestForm
+                requestForm={requestForm}
+              /> :
               <div>Loading…</div>
           }
         </div>

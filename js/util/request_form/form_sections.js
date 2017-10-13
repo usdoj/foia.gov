@@ -103,10 +103,12 @@ function bucketFieldsBySection(formFields) {
 function sectionedFormFromAgencyComponent(agencyComponent) {
   const fieldsBySection = bucketFieldsBySection(agencyComponent.formFields || []);
 
-  const result = FORM_SECTIONS
+  // Grab a list of sections, skipping empty sections
+  const sections = FORM_SECTIONS
     .concat([ADDITIONAL_FIELDS_SECTION])
-    // Skip empty sections
-    .filter(section => section.id in fieldsBySection)
+    .filter(section => section.id in fieldsBySection);
+
+  const result = sections
     .map((section) => {
       // Use only the form fields in this section
       const formFields = fieldsBySection[section.id];
@@ -129,6 +131,7 @@ function sectionedFormFromAgencyComponent(agencyComponent) {
       properties: result.properties,
     },
     uiSchema: result.uiSchema,
+    sections,
   };
 }
 
