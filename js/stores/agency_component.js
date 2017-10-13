@@ -80,8 +80,7 @@ class AgencyComponentStore extends Store {
               payload.agencyComponent,
               // Avoid resetting formFields just because they weren't included in the request
               { formFields: formFields.length ? formFields : agencyComponent.formFields },
-            ),
-          ),
+            )),
         });
         this.__emitChange();
         break;
