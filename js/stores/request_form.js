@@ -32,6 +32,9 @@ class RequestFormStore extends Store {
         const agencyComponent = agencyComponentStore.getAgencyComponent(payload.agencyComponent.id);
         const requestForm = rf.sectionedFormFromAgencyComponent(agencyComponent.toJS());
 
+        // Set the form id for submission
+        requestForm.id = payload.agencyComponent.request_form.formId;
+
         Object.assign(this.state, {
           requestForms: requestForms.set(agencyComponent.id, requestForm),
         });

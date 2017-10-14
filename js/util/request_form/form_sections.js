@@ -154,6 +154,16 @@ function sectionedFormFromAgencyComponent(agencyComponent) {
   };
 }
 
+function mergeSectionFormData(formData) {
+  return Object.keys(formData)
+    .reduce(
+      (form, sectionId) => Object.assign(form, formData[sectionId]),
+      {},
+    );
+}
+
+
 export default {
+  mergeSectionFormData,
   sectionedFormFromAgencyComponent,
 };

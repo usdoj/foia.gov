@@ -2,17 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
 
-import { requestActions } from '../actions';
-import { SubmissionResult } from '../models';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
+import { requestActions } from '../actions';
+import { SubmissionResult } from '../models';
 import ObjectFieldTemplate from './object_field_template';
+import rf from '../util/request_form';
+
 
 
 function FOIARequestForm({ isSubmitting, requestForm, submissionResult }) {
-  function onSubmit({ formData }) {
-    // Add the form Id so the API knows what form we're submitting for
-    requestActions.submitRequest(Object.assign({ id: agencyComponent.request_form.get('formId') }, formData));
+  function onSubmit({ formData: data }) {
+    requestActions.submitRequest(
+      Object.assign(
+        // Merge the sections into a single payload
+        rf.mergeSectionFormData(data),
+        // Add the form Id so the API knows what form we're submitting for
+        { id: requestForm.id },
+      ),
+    );
   }
 
   const widgets = {
