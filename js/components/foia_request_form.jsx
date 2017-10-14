@@ -16,7 +16,7 @@ function FOIARequestForm({ formData, isSubmitting, requestForm, submissionResult
   }
 
   function onSubmit({ formData: data }) {
-    requestActions.submitRequest(
+    requestActions.submitRequestForm(
       Object.assign(
         // Merge the sections into a single payload
         rf.mergeSectionFormData(data),

@@ -39,7 +39,7 @@ class RequestStore extends Store {
         break;
       }
 
-      case types.REQUEST_SUBMIT: {
+      case types.REQUEST_FORM_SUBMIT: {
         if (this.state.isSubmitting) {
           break;
         }
@@ -55,7 +55,7 @@ class RequestStore extends Store {
         break;
       }
 
-      case types.REQUEST_SUBMIT_COMPLETE: {
+      case types.REQUEST_FORM_SUBMIT_COMPLETE: {
         const { submissionResult } = this.state;
         Object.assign(this.state, {
           submissionResult: submissionResult.clear().merge(payload.submissionResult),

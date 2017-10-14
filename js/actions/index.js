@@ -12,8 +12,8 @@ export const types = {
   AGENCY_COMPONENT_FETCH: 'AGENCY_COMPONENT_FETCH',
   AGENCY_COMPONENT_RECEIVE: 'AGENCY_COMPONENT_RECEIVE',
   REQUEST_FORM_UPDATE: 'REQUEST_FORM_UPDATE',
-  REQUEST_SUBMIT: 'REQUEST_SUBMIT',
-  REQUEST_SUBMIT_COMPLETE: 'REQUEST_SUBMIT_COMPLETE',
+  REQUEST_FORM_SUBMIT: 'REQUEST_FORM_SUBMIT',
+  REQUEST_FORM_SUBMIT_COMPLETE: 'REQUEST_FORM_SUBMIT_COMPLETE',
 };
 
 // Action creators, to dispatch actions
@@ -76,9 +76,9 @@ export const requestActions = {
     return Promise.resolve();
   },
 
-  submitRequest(formData) {
+  submitRequestForm(formData) {
     dispatcher.dispatch({
-      type: types.REQUEST_SUBMIT,
+      type: types.REQUEST_FORM_SUBMIT,
       formData,
     });
 
@@ -94,12 +94,13 @@ export const requestActions = {
 
         return Promise.resolve(submissionResult);
       })
-      .then(requestActions.completeSubmitRequest);
+      .then(requestActions.completeSubmitRequestForm);
   },
 
-  completeSubmitRequest(submissionResult) {
+  completeSubmitRequestForm(submissionResult) {
+    debugger;
     dispatcher.dispatch({
-      type: types.REQUEST_SUBMIT_COMPLETE,
+      type: types.REQUEST_FORM_SUBMIT_COMPLETE,
       submissionResult,
     });
 
