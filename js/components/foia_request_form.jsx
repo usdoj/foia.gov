@@ -16,7 +16,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
   }
 
   function onFormSubmit({ formData: data }) {
-    requestActions
+    return requestActions
       .submitRequestForm(
         Object.assign(
           // Merge the sections into a single payload
@@ -56,7 +56,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
     >
       <div id="foia-request-form_submit" className="foia-request-form_submit">
         <p>Please review the information you’ve entered and submit.</p>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
         { submissionResult.errorMessage &&
           <div>
             <span className="usa-input-error-message" role="alert">
