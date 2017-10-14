@@ -32,7 +32,7 @@ class ConfirmationPage extends React.Component {
 
   render() {
     const { agencyComponent, formData, submissionResult } = this.state;
-    const { submissionId } = submissionResult;
+    const { submission_id } = submissionResult;
 
     if (!agencyComponent) {
       // This shouldn't happen, since we're coming from the request form and
@@ -80,7 +80,7 @@ class ConfirmationPage extends React.Component {
         </section>
         <section>
           <p>
-            The record ID for your request is <strong>{submissionId}</strong>.
+            The record ID for your request is <strong>{submission_id}</strong>.
             The record ID is only for identifying your request on FOIA.gov.
             This number can help you resolve issues submitting your request to
             an agency. In case there is an issue submitting your request to the

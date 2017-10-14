@@ -3,7 +3,7 @@ import { Map, Record } from 'immutable';
 const defaults = {
   errors: new Map(),
   errorMessage: null,
-  submissionId: null,
+  submission_id: null,
 };
 
 

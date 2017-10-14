@@ -47,7 +47,7 @@ class RequestStore extends Store {
         Object.assign(this.state, {
           isSubmitting: true,
           // Reset the previous submission results
-          submissionId: null,
+          submission_id: null,
           errorMessage: null,
           errors: null,
         });
