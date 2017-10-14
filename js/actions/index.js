@@ -1,14 +1,15 @@
-import api from '../util/api';
+import assert from 'assert';
+
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
+
 
 // Action types to identify an action
 export const types = {
   AGENCY_FINDER_DATA_FETCH: 'AGENCY_FINDER_DATA_FETCH',
   AGENCY_FINDER_DATA_RECEIVE: 'AGENCY_FINDER_DATA_RECEIVE',
-  REQUEST_AGENCY_CHANGE: 'REQUEST_AGENCY_CHANGE',
-  REQUEST_AGENCY_FETCH: 'REQUEST_AGENCY_FETCH',
-  REQUEST_RECEIVE_AGENCY: 'REQUEST_RECEIVE_AGENCY',
+  AGENCY_COMPONENT_FETCH: 'AGENCY_COMPONENT_FETCH',
+  AGENCY_COMPONENT_RECEIVE: 'AGENCY_COMPONENT_RECEIVE',
 };
 
 // Action creators, to dispatch actions
@@ -35,35 +36,30 @@ export const requestActions = {
     return Promise.resolve(agencyComponents);
   },
 
-  agencyChange(agency) {
+  fetchAgencyComponent(agencyComponentId) {
+    assert(agencyComponentId, 'You must provide an agencyComponentId to fetchAgencyComponent.');
     dispatcher.dispatch({
-      type: types.REQUEST_AGENCY_CHANGE,
-      agency,
+      type: types.AGENCY_COMPONENT_FETCH,
+      agencyComponentId,
     });
 
-    return Promise.resolve(agency);
+    return jsonapi.params()
+      .include('agency')
+      .include('field_misc')
+      .include('foia_officers')
+      .include('paper_receiver')
+      .include('public_liaisons')
+      .include('request_form')
+      .include('service_centers')
+      .get(`/agency_components/${agencyComponentId}`);
   },
 
-  fetchAgency(agencyId) {
+  receiveAgencyComponent(agencyComponent) {
     dispatcher.dispatch({
-      type: types.REQUEST_AGENCY_FETCH,
-      agencyId,
+      type: types.AGENCY_COMPONENT_RECEIVE,
+      agencyComponent,
     });
 
-    if (!agencyId) {
-      return Promise.reject(new Error('You must provide an agencyId to fetch.'));
-    }
-
-    // TODO this should be in a fetch action, results cached
-    return api.get(`/agencies/${agencyId}.json`);
-  },
-
-  receiveAgency(agency) {
-    dispatcher.dispatch({
-      type: types.REQUEST_RECEIVE_AGENCY,
-      agency,
-    });
-
-    return Promise.resolve(agency);
+    return Promise.resolve(agencyComponent);
   },
 };
