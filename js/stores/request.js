@@ -1,3 +1,9 @@
+/*
+ * RequestStore
+ *
+ * Stores a single request and manages the FOIA request form.
+ */
+
 import { Map } from 'immutable';
 import { Store } from 'flux/utils';
 
@@ -23,15 +29,23 @@ class RequestStore extends Store {
 
   __onDispatch(payload) {
     switch (payload.type) {
+      case types.REQUEST_FORM_UPDATE: {
+        const { formData } = this.state;
+
+        Object.assign(this.state, {
+          formData: formData.merge(payload.formData),
+        });
+        this.__emitChange();
+        break;
+      }
+
       case types.REQUEST_SUBMIT: {
         if (this.state.isSubmitting) {
           break;
         }
 
-        const { formData } = this.state;
         Object.assign(this.state, {
           isSubmitting: true,
-          formData: formData.merge(payload.formData),
           // Reset the previous submission results
           submissionId: null,
           errorMessage: null,

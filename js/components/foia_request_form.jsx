@@ -10,8 +10,11 @@ import ObjectFieldTemplate from './object_field_template';
 import rf from '../util/request_form';
 
 
+function FOIARequestForm({ formData, isSubmitting, requestForm, submissionResult }) {
+  function onChange({ formData: data }) {
+    requestActions.updateRequestForm(data);
+  }
 
-function FOIARequestForm({ isSubmitting, requestForm, submissionResult }) {
   function onSubmit({ formData: data }) {
     requestActions.submitRequest(
       Object.assign(
@@ -37,29 +40,32 @@ function FOIARequestForm({ isSubmitting, requestForm, submissionResult }) {
     <Form
       className="foia-request-form"
       disabled={isSubmitting}
+      formContext={formContext}
+      formData={formData.toJS()}
+      ObjectFieldTemplate={ObjectFieldTemplate}
+      onChange={onChange}
       onSubmit={onSubmit}
       schema={jsonSchema}
       uiSchema={uiSchema}
       widgets={widgets}
-      formContext={formContext}
-      ObjectFieldTemplate={ObjectFieldTemplate}
     >
       <div id="foia-request-form_submit" className="foia-request-form_submit">
-	<p>Please review the information you’ve entered and submit.</p>
-	<button>Submit</button>
-	{ submissionResult.errorMessage &&
-	  <div>
-	    <span className="usa-input-error-message" role="alert">
-	      {submissionResult.errorMessage}
-	    </span>
-	  </div>
-	}
+        <p>Please review the information you’ve entered and submit.</p>
+        <button>Submit</button>
+        { submissionResult.errorMessage &&
+          <div>
+            <span className="usa-input-error-message" role="alert">
+              {submissionResult.errorMessage}
+            </span>
+          </div>
+        }
       </div>
     </Form>
   );
 }
 
 FOIARequestForm.propTypes = {
+  formData: PropTypes.object.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
   requestForm: PropTypes.object.isRequired,
   submissionResult: PropTypes.instanceOf(SubmissionResult).isRequired,

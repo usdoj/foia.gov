@@ -11,6 +11,7 @@ export const types = {
   AGENCY_FINDER_DATA_RECEIVE: 'AGENCY_FINDER_DATA_RECEIVE',
   AGENCY_COMPONENT_FETCH: 'AGENCY_COMPONENT_FETCH',
   AGENCY_COMPONENT_RECEIVE: 'AGENCY_COMPONENT_RECEIVE',
+  REQUEST_FORM_UPDATE: 'REQUEST_FORM_UPDATE',
   REQUEST_SUBMIT: 'REQUEST_SUBMIT',
   REQUEST_SUBMIT_COMPLETE: 'REQUEST_SUBMIT_COMPLETE',
 };
@@ -64,6 +65,15 @@ export const requestActions = {
     });
 
     return Promise.resolve(agencyComponent);
+  },
+
+  updateRequestForm(formData) {
+    dispatcher.dispatch({
+      type: types.REQUEST_FORM_UPDATE,
+      formData,
+    });
+
+    return Promise.resolve();
   },
 
   submitRequest(formData) {

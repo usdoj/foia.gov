@@ -20,12 +20,13 @@ class AgencyComponentRequestPage extends Component {
     const agencyComponentId = props.match.params.agencyComponentId;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
     const requestForm = requestFormStore.getAgencyComponentForm(agencyComponentId);
-    const { isSubmitting, submissionResult } = requestStore.getState();
+    const { formData, isSubmitting, submissionResult } = requestStore.getState();
 
     return {
+      agencyComponent,
+      formData,
       isSubmitting,
       submissionResult,
-      agencyComponent,
       requestForm,
     };
   }
@@ -91,8 +92,9 @@ class AgencyComponentRequestPage extends Component {
           {
             requestForm ?
               <FOIARequestForm
-                requestForm={requestForm}
+                formData={this.state.formData}
                 isSubmitting={this.state.isSubmitting}
+                requestForm={requestForm}
                 submissionResult={this.state.submissionResult}
               /> :
               <div>Loading…</div>
