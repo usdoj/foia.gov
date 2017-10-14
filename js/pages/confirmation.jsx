@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 
 import { requestActions } from '../actions';
 import agencyComponentStore from '../stores/agency_component';
-import requestStore from '../stores/request';
+import foiaRequestStore from '../stores/foia_request';
 
 
 class ConfirmationPage extends React.Component {
   static getStores() {
-    return [agencyComponentStore, requestStore];
+    return [agencyComponentStore, foiaRequestStore];
   }
 
   static calculateState(prevState, props) {
     const agencyComponentId = props.match.params.agencyComponentId;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
-    const { formData, submissionResult } = requestStore.getState();
+    const { formData, submissionResult } = foiaRequestStore.getState();
 
     return {
       agencyComponent,

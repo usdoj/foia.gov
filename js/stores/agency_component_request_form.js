@@ -7,7 +7,7 @@ import rf from '../util/request_form';
 import agencyComponentStore from './agency_component';
 
 
-class RequestFormStore extends Store {
+class AgencyComponentRequestFormStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
 
@@ -47,9 +47,9 @@ class RequestFormStore extends Store {
   }
 }
 
-const requestFormStore = new RequestFormStore(dispatcher);
-export default requestFormStore;
+const agencyComponentRequestFormStore = new AgencyComponentRequestFormStore(dispatcher);
+export default agencyComponentRequestFormStore;
 
 export {
-  RequestFormStore,
+  AgencyComponentRequestFormStore,
 };

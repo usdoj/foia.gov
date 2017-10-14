@@ -4,23 +4,23 @@ import { Container } from 'flux/utils';
 
 import { requestActions } from 'actions';
 import Tabs from 'components/tabs';
-import FOIARequestForm from 'components/foia_request_form';
+import FoiaRequestForm from 'components/foia_request_form';
 import agencyComponentStore from 'stores/agency_component';
-import requestFormStore from 'stores/request_form';
-import requestStore from 'stores/request';
+import agencyComponentRequestFormStore from 'stores/agency_component_request_form';
+import foiaRequestStore from 'stores/foia_request';
 import NotFound from './not_found';
 
 
 class AgencyComponentRequestPage extends Component {
   static getStores() {
-    return [agencyComponentStore, requestStore, requestFormStore];
+    return [agencyComponentStore, foiaRequestStore, agencyComponentRequestFormStore];
   }
 
   static calculateState(prevState, props) {
     const agencyComponentId = props.match.params.agencyComponentId;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
-    const requestForm = requestFormStore.getAgencyComponentForm(agencyComponentId);
-    const { formData, isSubmitting, submissionResult } = requestStore.getState();
+    const requestForm = agencyComponentRequestFormStore.getAgencyComponentForm(agencyComponentId);
+    const { formData, isSubmitting, submissionResult } = foiaRequestStore.getState();
 
     return {
       agencyComponent,
@@ -98,7 +98,7 @@ class AgencyComponentRequestPage extends Component {
         <div className="usa-width-seven-twelfths sidebar_content">
           {
             requestForm ?
-              <FOIARequestForm
+              <FoiaRequestForm
                 formData={this.state.formData}
                 isSubmitting={this.state.isSubmitting}
                 onSubmit={onSubmit}

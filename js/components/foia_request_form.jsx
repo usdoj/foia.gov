@@ -10,7 +10,7 @@ import ObjectFieldTemplate from './object_field_template';
 import rf from '../util/request_form';
 
 
-function FOIARequestForm({ formData, isSubmitting, onSubmit, requestForm, submissionResult }) {
+function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submissionResult }) {
   function onChange({ formData: data }) {
     requestActions.updateRequestForm(data);
   }
@@ -69,7 +69,7 @@ function FOIARequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
   );
 }
 
-FOIARequestForm.propTypes = {
+FoiaRequestForm.propTypes = {
   formData: PropTypes.object.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func,
@@ -77,9 +77,9 @@ FOIARequestForm.propTypes = {
   submissionResult: PropTypes.instanceOf(SubmissionResult).isRequired,
 };
 
-FOIARequestForm.defaultProps = {
+FoiaRequestForm.defaultProps = {
   onSubmit: () => {},
 };
 
 
-export default FOIARequestForm;
+export default FoiaRequestForm;

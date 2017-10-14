@@ -1,7 +1,7 @@
 /*
- * RequestStore
+ * FoiaRequestStore
  *
- * Stores a single request and manages the FOIA request form.
+ * Stores a single FOIA request and manages the FOIA request form.
  */
 
 import { Map } from 'immutable';
@@ -12,7 +12,7 @@ import { SubmissionResult } from '../models';
 import dispatcher from '../util/dispatcher';
 
 
-class RequestStore extends Store {
+class FoiaRequestStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
 
@@ -70,9 +70,9 @@ class RequestStore extends Store {
   }
 }
 
-const requestStore = new RequestStore(dispatcher);
-export default requestStore;
+const foiaRequestStore = new FoiaRequestStore(dispatcher);
+export default foiaRequestStore;
 
 export {
-  RequestStore,
+  FoiaRequestStore,
 };
