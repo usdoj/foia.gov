@@ -74,6 +74,13 @@ class AgencyComponentRequestPage extends Component {
       return <NotFound />;
     }
 
+    const { agencyComponentId } = this.props.match.params;
+    function onSubmit() {
+      // Submit successful, navigate to confirmation page
+      const { history } = window.app;
+      history.push(`/agency-component/${agencyComponentId}/confirmation/`);
+    }
+
     // TODO show a loading indicator?
     const { agencyComponent, requestForm } = this.state;
     return (
@@ -94,6 +101,7 @@ class AgencyComponentRequestPage extends Component {
               <FOIARequestForm
                 formData={this.state.formData}
                 isSubmitting={this.state.isSubmitting}
+                onSubmit={onSubmit}
                 requestForm={requestForm}
                 submissionResult={this.state.submissionResult}
               /> :

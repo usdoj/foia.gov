@@ -10,20 +10,25 @@ import ObjectFieldTemplate from './object_field_template';
 import rf from '../util/request_form';
 
 
-function FOIARequestForm({ formData, isSubmitting, requestForm, submissionResult }) {
+function FOIARequestForm({ formData, isSubmitting, onSubmit, requestForm, submissionResult }) {
   function onChange({ formData: data }) {
     requestActions.updateRequestForm(data);
   }
 
-  function onSubmit({ formData: data }) {
-    requestActions.submitRequestForm(
-      Object.assign(
-        // Merge the sections into a single payload
-        rf.mergeSectionFormData(data),
-        // Add the form Id so the API knows what form we're submitting for
-        { id: requestForm.id },
-      ),
-    );
+  function onFormSubmit({ formData: data }) {
+    requestActions
+      .submitRequestForm(
+        Object.assign(
+          // Merge the sections into a single payload
+          rf.mergeSectionFormData(data),
+          // Add the form Id so the API knows what form we're submitting for
+          { id: requestForm.id },
+        ),
+      )
+      .then(() => {
+        // Submission successful
+        onSubmit();
+      });
   }
 
   const widgets = {
@@ -44,7 +49,7 @@ function FOIARequestForm({ formData, isSubmitting, requestForm, submissionResult
       formData={formData.toJS()}
       ObjectFieldTemplate={ObjectFieldTemplate}
       onChange={onChange}
-      onSubmit={onSubmit}
+      onSubmit={onFormSubmit}
       schema={jsonSchema}
       uiSchema={uiSchema}
       widgets={widgets}
@@ -67,8 +72,14 @@ function FOIARequestForm({ formData, isSubmitting, requestForm, submissionResult
 FOIARequestForm.propTypes = {
   formData: PropTypes.object.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func,
   requestForm: PropTypes.object.isRequired,
   submissionResult: PropTypes.instanceOf(SubmissionResult).isRequired,
 };
+
+FOIARequestForm.defaultProps = {
+  onSubmit: () => {},
+};
+
 
 export default FOIARequestForm;
