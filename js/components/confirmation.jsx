@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { Map } from 'immutable';
 
 import { AgencyComponent, SubmissionResult } from '../models';
-import rf from '../util/request_form';
+import RequestSummary from './request_summary';
 
 
-function Confirmation({ agencyComponent, formData, submissionResult }) {
+function Confirmation({ agencyComponent, formData, requestForm, submissionResult }) {
   const { submission_id } = submissionResult;
-  const flattenedFormData = rf.mergeSectionFormData(formData.toJS());
 
   return (
     <div className="confirmation">
@@ -40,21 +39,7 @@ function Confirmation({ agencyComponent, formData, submissionResult }) {
       </section>
       <section className="confirmation_request-summary">
         <p>Below is a summary of your request.</p>
-        <table>
-          <tbody>
-            { Object.keys(flattenedFormData)
-                .map((fieldName) => {
-                  const value = flattenedFormData[fieldName];
-                  return (
-                    <tr>
-                      <td><strong>{fieldName}</strong></td>
-                      <td>{value}</td>
-                    </tr>
-                  );
-                })
-            }
-          </tbody>
-        </table>
+        <RequestSummary formData={formData.toJS()} requestForm={requestForm} />
       </section>
       <section className="confirmation_record-id">
         <p>
@@ -72,6 +57,7 @@ function Confirmation({ agencyComponent, formData, submissionResult }) {
 Confirmation.propTypes = {
   agencyComponent: PropTypes.instanceOf(AgencyComponent).isRequired,
   formData: PropTypes.instanceOf(Map),
+  requestForm: PropTypes.object.isRequired,
   submissionResult: PropTypes.instanceOf(SubmissionResult).isRequired,
 };
 

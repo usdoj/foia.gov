@@ -60,6 +60,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.2.1",
     "express": "^4.16.0",
+    "faker": "^4.1.0",
     "mocha": "^3.5.0",
     "mocha-webpack": "^0.7.0",
     "npm-run-all": "^4.0.2",
