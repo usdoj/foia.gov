@@ -125,28 +125,63 @@ JSON payload that contains the form fields.
 **Required:** | yes
 **Example:** | `"Office of Information Policy"`
 
-**Field:** | `requester_name`
+**Field:** | `name_first`
 :--- |:---
-**Type:** | object
-**Description:** | Full name of the requester.
-**Required:** | yes
-**Example:** | `{"first": "George", "last": "Washington"}`
+**Type:** | text
+**Description:** | First name of the requester.
+**Required:** | no
+**Example:** | `"George"`
 
-**Field:** | `requester_address`
+**Field:** | `name_last`
 :--- |:---
-**Type:** | object
-**Description:** | Mailing address of the requester.
-**Required:** | yes
-**Example:** | `{"address1": "1800 F Street", "address2": "Suite 400", "city": "Mount Vernon", "state": "Virginia", "zip": "98273"}`
+**Type:** | text
+**Description:** | Last name of the requester.
+**Required:** | no
+**Example:** | `"Washington"`
 
-**Field:** | `description`
+**Field:** | `address_line1`
+:--- |:---
+**Type:** | text
+**Description:** | Requester’s street mailing address.
+**Required:** | no
+**Example:** | `"1800 F Street"`
+
+**Field:** | `address_line2`
+:--- |:---
+**Type:** | text
+**Description:** | Line 2 for requester’s mailing address.
+**Required:** | no
+**Example:** | `"Suite 400"`
+
+**Field:** | `address_city`
+:--- |:---
+**Type:** | text
+**Description:** | City for requester’s mailing address.
+**Required:** | no
+**Example:** | `"Mount Vernon"`
+
+**Field:** | `address_state_province`
+:--- |:---
+**Type:** | text
+**Description:** | State or province for requester’s mailing address.
+**Required:** | no
+**Example:** | `"Virginia"`
+
+**Field:** | `address_zip_postal_code`
+:--- |:---
+**Type:** | text
+**Description:** | Zip code or postal code for requester’s mailing address.
+**Required:** | no
+**Example:** | `"98273"`
+
+**Field:** | `request_description`
 :--- |:---
 **Type:** | string
 **Description:** | Description of the records the requester is seeking.
 **Required:** | yes
 **Example:** | `"I am seeking records pertaining to ..."`
 
-**Field:** | `max_fee`
+**Field:** | `processing_fees`
 :--- |:---
 **Type:** | money
 **Description:** | The amount in USD that a requester is willing to pay in order to cover costs related to this request.
