@@ -1,10 +1,30 @@
 const assert = require('assert');
 const path = require('path');
+const webpack = require('webpack');
 
-const env = process.env.NODE_ENV || 'local';
+const env = process.env.APP_ENV || 'development';
 assert(['local', 'cloud-gov', 'development', 'staging', 'production'].includes(env), `${env} is not an acceptable environment.`);
 
+let plugins = [];
+const isProduction = process.env.NODE_ENV === 'production';
+
+if (isProduction) {
+  plugins = plugins.concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+    }),
+  ]);
+}
+
+
 module.exports = {
+  devtool: isProduction ? 'source-map' : 'eval-source-map',
+  plugins,
   entry: {
     request: './js/request.jsx',
     uswds: './js/uswds.js',
@@ -25,6 +45,12 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: [path.join(__dirname, 'js'), 'node_modules'],

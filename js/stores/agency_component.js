@@ -1,17 +1,20 @@
+import { List, Map } from 'immutable';
 import { Store } from 'flux/utils';
 
 import { types } from '../actions';
+import { Agency, AgencyComponent } from '../models';
+import dispatcher from '../util/dispatcher';
 
-class AgencyStore extends Store {
-  constructor(dispatcher) {
-    super(dispatcher);
+
+class AgencyComponentStore extends Store {
+  constructor(_dispatcher) {
+    super(_dispatcher);
 
     // [string] The selected agency to submit the FOIA request to
     this.state = {
-      agencies: {},
-      agencyComponents: [],
-      agency: null,
-      selectedAgency: null,
+      agencies: new Map(),
+      agencyComponents: new List(),
+      agencyComponent: new AgencyComponent(),
     };
   }
 
@@ -22,37 +25,48 @@ class AgencyStore extends Store {
   __onDispatch(payload) {
     switch (payload.type) {
       case types.AGENCY_FINDER_DATA_RECEIVE: {
-        const { agencyComponents } = payload;
+        const { agencyComponents: receivedAgencyComponents } = payload;
+        const { agencies, agencyComponents } = this.state;
 
         // Pull out agencies, keyed by it's abbreviation
-        this.state.agencies = agencyComponents
+        const receivedAgencies = receivedAgencyComponents
           .map(agencyComponent => agencyComponent.agency)
-          .reduce((agencies, agency) => {
-            if (agency.abbreviation in agencies) {
-              return agencies;
+          .reduce((memo, agency) => {
+            if (agency.abbreviation in memo) {
+              return memo;
             }
 
-            // We add a type so we can distinguish them from agency_components.
-            // It's a shame because this info is included in the original
-            // jsonapi response, but the parser looses it.
+            // We add a type (in the model) so we can distinguish them from
+            // agency_components.  It's a shame because this info is included
+            // in the original jsonapi response, but the parser looses it.
             // https://github.com/mysidewalk/jsonapi-parse/issues/2
-            agencies[agency.abbreviation] = Object.assign({}, agency, { type: 'agency' });
-            return agencies;
+            return Object.assign(memo, { [agency.abbreviation]: new Agency(agency) });
           }, {});
 
-        this.state.agencyComponents = agencyComponents;
+        // Merge state
+        Object.assign(this.state, {
+          agencies: agencies.merge(receivedAgencies),
+          agencyComponents: agencyComponents.concat(
+            receivedAgencyComponents.map(agencyComponent => new AgencyComponent(agencyComponent)),
+          ),
+        });
         this.__emitChange();
         break;
       }
 
-      case types.REQUEST_AGENCY_CHANGE: {
-        this.state.selectedAgency = payload.agency || null;
-        this.__emitChange();
-        break;
-      }
+      case types.AGENCY_COMPONENT_RECEIVE: {
+        const { agencyComponent } = this.state;
+        let formFields = [];
+        if (payload.agencyComponent.request_form) {
+          formFields = AgencyComponent.parseWebformElements(payload.agencyComponent.request_form);
+        }
 
-      case types.REQUEST_RECEIVE_AGENCY: {
-        this.state.agency = payload.agency;
+        Object.assign(this.state, {
+          agencyComponent: agencyComponent.merge(
+            payload.agencyComponent,
+            { formFields },
+          ),
+        });
         this.__emitChange();
         break;
       }
@@ -63,4 +77,10 @@ class AgencyStore extends Store {
   }
 }
 
-export default AgencyStore;
+const agencyComponentStore = new AgencyComponentStore(dispatcher);
+
+export default agencyComponentStore;
+
+export {
+  AgencyComponentStore,
+};
