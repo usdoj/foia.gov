@@ -3,11 +3,10 @@ layout: default
 ---
 <a name="top" id="top"></a>
 <div id="subLeft">
-  <img src="{{ site.baseurl }}/images/{{ page.subnav | default:'about' }}-title.gif" alt="{{ page.title | defualt:'About' }}" class="subTitle" />
+  <img src="{{ site.baseurl }}/images/{{ page.subnav | default:'about' }}-title.gif" alt="{{ page.title | default:'About' }}" class="subTitle" />
   {% include legacy/about-subnav.html %}
 </div>
 <div id="subRight">
   {{ content }}
-  <p align="right"><a href="#top">Return to Top</a></p>
 </div>
 <div class="clear"></div>
