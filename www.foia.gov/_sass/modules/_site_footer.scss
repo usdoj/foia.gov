@@ -1,4 +1,35 @@
 .usa-footer {
-  min-height: 6rem;
-  background-color: $color-primary;
+  padding: 2rem 0;
+  background-color: $color-primary-darkest;
+  color: $color-gray-lightest;
+  font-size: $small-font-size;
+  .footer-logo {
+    max-width: 15rem;
+  }
+  h6 {
+    font-size: $h5-font-size;
+    font-weight: bold;
+    color: $color-primary-alt-light;
+  }
+  a {
+    color: $color-gray-lightest;
+    border-bottom: none;
+    border-left: 2px solid $color-primary-alt-light;
+    padding-left: 4px;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    display: block;
+    &:hover,
+    &:active {
+      color: $color-primary-alt-light;
+    }
+  }
+  .footer-links li {
+    margin: $space-2x 0;
+    line-height: 1;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 }
