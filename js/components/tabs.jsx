@@ -67,7 +67,6 @@ class Tabs extends Component {
       tabControls
     );
   }
-
   render() {
     const agencyComponent = this.props.agencyComponent.toJS();
     const personnel = this.props.agencyComponent.foiaPersonnel().toJS();

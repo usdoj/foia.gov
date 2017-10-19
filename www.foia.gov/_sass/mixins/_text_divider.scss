@@ -1,0 +1,9 @@
+@mixin text-divider($background-color: $color-primary-alt-light) {
+  width: 80px;
+  height: 5px;
+  background-color: $background-color;
+  border-radius: 20px;
+  display: block;
+  margin-top: $space-3x;
+  margin-bottom: $space-3x;
+}
