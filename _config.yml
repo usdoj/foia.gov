@@ -26,29 +26,20 @@ navigation:
   primary:
     - href: /
       title: Home
-    - href: /request/
-      title: Request
-    - href: /data.html
-      title: Data
-    - href: /reports.html
-      title: Reports
-    - href: /search.html
-      title: Find
     - href: /about.html
-      title: Learn
+      title: Learn about FOIA
+    - href: /
+      title: Before you request
+    - href: /request/
+      title: Create a request
+    - href: /data.html
+      title: Agency FOIA data
+
   secondary:
-    - href: /news.html
-      title: News
-    - href: /glossary.html
-      title: Glossary
-    - href: /faq.html
-      title: FAQs
-    - href: /index-es.html
-      title: en Espa&ntilde;ol
-    - href: /feedback.html
-      title: Feedback
-    - href: /report-makerequest.html
-      title: FOIA Contacts
+    - href: /
+      title: Resources for agencies
+    - href: /
+      title: FOIA API
 
 collections:
   api:
