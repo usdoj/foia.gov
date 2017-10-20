@@ -18,13 +18,18 @@ class AgencyComponentStore extends Store {
     this.state = {
       agencies: new Map(),
       agencyComponents: new List(),
-      agencyComponent: new AgencyComponent(),
     };
   }
 
   getState() {
     return this.state;
   }
+
+  getAgencyComponent(agencyComponentId) {
+    return this.state.agencyComponents
+      .find(agencyComponent => agencyComponent.id === agencyComponentId);
+  }
+
 
   __onDispatch(payload) {
     switch (payload.type) {
@@ -59,24 +64,34 @@ class AgencyComponentStore extends Store {
       }
 
       case types.AGENCY_COMPONENT_RECEIVE: {
-        const { agencyComponent } = this.state;
+        // Grab existing component from the store, or a new one
+        const [index, agencyComponent] = this.state.agencyComponents.findEntry(
+          component => component.id === payload.agencyComponent.id,
+          null,
+          [undefined, new AgencyComponent()], // Entry does not exist
+        );
+
+        // Parse formFields if they exist
         let formFields = [];
         if (defaultWebform) {
           formFields = AgencyComponent.parseWebformElements(defaultWebform);
         }
 
         Object.assign(this.state, {
-          agencyComponent: agencyComponent.merge(
-            payload.agencyComponent,
-            { formFields },
-          ),
+          agencyComponents: this.state.agencyComponents
+            .delete(index) // remove the existing component
+            .push(agencyComponent.merge(
+              payload.agencyComponent,
+              // Avoid resetting formFields just because they weren't included in the request
+              { formFields: formFields.length ? formFields : agencyComponent.formFields },
+            )),
         });
         this.__emitChange();
         break;
       }
 
-
       default:
+        break;
     }
   }
 }
