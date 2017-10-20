@@ -4,6 +4,7 @@
 .sass-cache
 .tmp/
 _site
+/deploy/
 node_modules/
 npm-debug.log*
 /www.foia.gov/assets/

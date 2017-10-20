@@ -2,7 +2,6 @@
 
 set -o errexit
 set -o pipefail
-set -x
 
 deploy_dir=deploy
 docroot_dir=docroot
@@ -39,9 +38,7 @@ rm -rf "$docroot_dir"
 # Copy build files
 mv "../$build_dir" "$docroot_dir"
 git add .
-git commit -m "CI deploy to Acquia Cloud"
 # Force push from the current repo's master branch to the remote
 # repo's target branch. (All previous history on the target branch
 # will be lost, since we are overwriting it.) We redirect any output to
 # /dev/null to hide any sensitive credential data that might otherwise be exposed.
-echo git push --quiet "$destination_repo" ${target} > /dev/null 2>&1

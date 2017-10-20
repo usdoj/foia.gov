@@ -1,17 +1,25 @@
+import { Map, List } from 'immutable';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import 'typeahead.js/dist/typeahead.jquery';
-import Bloodhound from 'typeahead.js/dist/bloodhound';
-import $ from 'jquery';
+
+import tokenizers from '../util/tokenizers';
 
 
-function datums(props) {
-  const { agencies, agencyComponents } = props;
-  return Object.values(agencies)
+// Only load typeahead in the browser (avoid loading it for tests)
+let Bloodhound;
+if (typeof window !== 'undefined') {
+  Bloodhound = require('typeahead.js/dist/bloodhound'); // eslint-disable-line global-require
+  require('typeahead.js/dist/typeahead.jquery'); // eslint-disable-line global-require
+}
+
+
+// Expects agencies as a sequence type
+function datums({ agencies, agencyComponents }) {
+  return agencies.toJS()
     // Add a title property for common displayKey
     .map(agency => Object.assign({}, agency, { title: agency.name }))
     // Include agency components in typeahead
-    .concat(agencyComponents);
+    .concat(agencyComponents.toJS());
 }
 
 function firstLetterOfEachCapitalizedWord(text = '') {
@@ -22,8 +30,12 @@ function firstLetterOfEachCapitalizedWord(text = '') {
 
 class AgencyComponentSelector extends Component {
   componentDidMount() {
+    const { agencies, agencyComponents } = this.props;
     this.bloodhound = new Bloodhound({
-      local: datums(this.props),
+      local: datums({
+        agencies: agencies.valueSeq(), // Pull the values, convert to sequence
+        agencyComponents,
+      }),
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       datumTokenizer: datum => (
         datum.type === 'agency' ?
@@ -39,7 +51,7 @@ class AgencyComponentSelector extends Component {
               .concat(
                 datum.abbreviation ?
                   Bloodhound.tokenizers.whitespace(datum.abbreviation) :
-                  firstLetterOfEachCapitalizedWord(datum.title),
+                  tokenizers.firstLetterOfEachCapitalizedWord(datum.title),
               )
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.name))
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.abbreviation))
@@ -62,9 +74,19 @@ class AgencyComponentSelector extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // TODO check nextProps against current props first
-    this.bloodhound.clear();
-    this.bloodhound.add(datums(nextProps));
+    if (this.props.agencies.equals(nextProps.agencies)
+        && this.props.agencyComponents.equals(nextProps.agencyComponents)) {
+      return;
+    }
+
+    const differenceAgencies = nextProps.agencies.toSet().subtract(this.props.agencies.toSet());
+    const differenceAgencyComponents =
+      nextProps.agencyComponents.toSet().subtract(this.props.agencyComponents.toSet());
+
+    this.bloodhound.add(datums({
+      agencies: differenceAgencies,
+      agencyComponents: differenceAgencyComponents,
+    }));
   }
 
   render() {
@@ -78,16 +100,15 @@ class AgencyComponentSelector extends Component {
 
 AgencyComponentSelector.propTypes = {
   /* eslint-disable react/no-unused-prop-types */
-  agencies: PropTypes.object,
-  agencyComponents: PropTypes.arrayOf(PropTypes.object),
+  agencies: PropTypes.instanceOf(Map),
+  agencyComponents: PropTypes.instanceOf(List),
   /* eslint-enable react/no-unused-prop-types */
   onAgencyChange: PropTypes.func.isRequired,
 };
 
 AgencyComponentSelector.defaultProps = {
-  agencies: {},
-  agencyComponents: [],
-  selectedAgency: null,
+  agencies: new Map(),
+  agencyComponents: new List(),
 };
 
 export default AgencyComponentSelector;

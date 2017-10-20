@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Dispatcher } from 'flux';
 import { Container } from 'flux/utils';
 
-import { RequestActions } from 'actions';
+import { requestActions } from 'actions';
 import Tabs from 'components/tabs';
 import FOIARequestForm from 'components/foia_request_form';
-import settings from 'settings';
-import AgencyComponentStore from 'stores/agency_component';
-import Api from 'util/api';
-
-const api = new Api(settings.api.baseURL);
-const jsonapi = new Api(settings.api.jsonApiBaseURL);
-
-
-const dispatcher = new Dispatcher();
-const agencyComponentStore = new AgencyComponentStore(dispatcher);
-
-const requestActions = RequestActions({ dispatcher, api, jsonapi });
+import agencyComponentStore from 'stores/agency_component';
+import NotFound from './not_found';
 
 
 class AgencyComponentRequestPage extends Component {
@@ -26,10 +15,9 @@ class AgencyComponentRequestPage extends Component {
   }
 
   static calculateState() {
-    const { agency, selectedAgency } = agencyComponentStore.getState();
+    const { agencyComponent } = agencyComponentStore.getState();
     return {
-      agency,
-      selectedAgency,
+      agencyComponent,
     };
   }
 
@@ -40,22 +28,48 @@ class AgencyComponentRequestPage extends Component {
   init() {
     const agencyComponentId = this.props.match.params.agencyComponentId;
 
-    // Check agency exists in store
-    const { agency } = agencyComponentStore.getState();
-    if (!agency) {
-      requestActions.fetchAgency(agencyComponentId)
-        .then(requestActions.receiveAgency);
+    // Check agency component exists in store
+    const { agencyComponent } = agencyComponentStore.getState();
+    if (!agencyComponent.id) {
+      requestActions.fetchAgencyComponent(agencyComponentId)
+        .then(requestActions.receiveAgencyComponent)
+        .catch((error) => {
+          if (!error.response) {
+            // Non-axios error, rethrow
+            throw error;
+          }
+
+          if (error.response.status !== 404) {
+            // API error other than 404, rethrow
+            throw error;
+          }
+
+          this.setState({
+            agencyComponentNotFound: true,
+          });
+        });
     }
   }
 
   render() {
+    if (this.state.agencyComponentNotFound) {
+      // The api returned a 404, we should do the same
+      return <NotFound />;
+    }
+
+    // TODO show a loading indicator?
+    const { agencyComponent } = this.state;
     return (
       <div className="usa-grid-full grid-left">
         <aside className="usa-width-five-twelfths sidebar" id="react-tabs">
-          <Tabs />
+          { agencyComponent.id ? <Tabs agencyComponent={agencyComponent} /> : null }
         </aside>
         <div className="usa-width-seven-twelfths sidebar_content">
-          {this.state.agency && <FOIARequestForm agency={this.state.agency} /> }
+          {
+            agencyComponent.id ?
+              <FOIARequestForm agencyComponent={this.state.agencyComponent} /> :
+              <div>Loading…</div>
+          }
         </div>
       </div>
     );

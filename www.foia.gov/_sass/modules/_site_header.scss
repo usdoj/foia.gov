@@ -26,11 +26,34 @@
     display: flex;
   }
   img {
-    width: 70px;
-    height: 70px;
-    margin-right: 1.5rem;
+    width: 34px;
+    height: 34px;
+    margin-top: 3px;
+    margin-right: 0.5rem;
+
+    @media screen and (min-width: $medium-large-screen) {
+      width: 70px;
+      height: 70px;
+      margin-right: 1.5rem;
+    }
   }
   h1 {
     margin: 1rem 0;
+  }
+}
+
+h1.usa-header-title {
+  @media screen and (max-width: $medium-large-screen) {
+    font-size: $base-font-size;
+  }
+}
+
+@media screen and (min-width: $small-screen) and (max-width: $medium-screen) {
+  .usa-hero {
+    padding-bottom: 0;
+    padding-top: 400px; //show hero image above callout
+    .usa-grid {
+      padding: 0;
+    }
   }
 }

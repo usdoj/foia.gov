@@ -3,6 +3,9 @@ settings:
   import/resolver: webpack
 env:
   browser: yes
+globals:
+  $: true
+  jQuery: true
 rules:
   camelcase: 0
   no-plusplus: 0
@@ -13,4 +16,5 @@ rules:
     - 2
     - allowAfterThis: true
   'react/forbid-prop-types': 0
+  'react/jsx-no-bind': 0
   semi: ["error", "always"]

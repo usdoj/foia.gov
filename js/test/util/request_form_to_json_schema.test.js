@@ -1,21 +1,20 @@
 import { expect } from 'chai';
 
-import metadataToJsonSchema from '../../util/metadata_to_json_schema';
+import requestFormToJsonSchema from '../../util/request_form_to_json_schema';
 
-describe('metadataToJsonSchema()', () => {
-  describe('given metadata with no fields', () => {
-    let metadata;
+
+describe('requestFormToJsonSchema()', () => {
+  describe('given agencyComponent with no fields', () => {
+    let agencyComponent;
     let result;
 
     beforeEach(() => {
-      metadata = {
+      agencyComponent = {
         abbreviation: 'GSA',
-        components: [{
-          name: 'Headquarters',
-        }],
+        title: 'Headquarters',
       };
 
-      result = metadataToJsonSchema(metadata, 'Headquarters');
+      result = requestFormToJsonSchema(agencyComponent);
     });
 
     describe('jsonSchema', () => {
@@ -43,28 +42,28 @@ describe('metadataToJsonSchema()', () => {
     });
   });
 
-  describe('given metadata with form fields', () => {
-    let metadata;
+  describe('given agencyComponent with form fields', () => {
+    let agencyComponent;
     let result;
 
     beforeEach(() => {
-      metadata = {
+      agencyComponent = {
         abbreviation: 'GSA',
-        components: [{
-          name: 'Headquarters',
-          form_fields: [{
+        title: 'Headquarters',
+        formFields: [
+          {
             name: 'contract_number',
-            label: 'GS- Contract number',
-            help_text: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
+            title: 'GS- Contract number',
+            description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
           }, {
             name: 'region',
-            label: 'GSA Region',
-            help_text: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
-          }],
-        }],
+            title: 'GSA Region',
+            description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
+          },
+        ],
       };
 
-      result = metadataToJsonSchema(metadata, 'Headquarters');
+      result = requestFormToJsonSchema(agencyComponent);
     });
 
     describe('jsonSchema', () => {
@@ -106,39 +105,37 @@ describe('metadataToJsonSchema()', () => {
     });
   });
 
-  describe('given metadata with required fields', () => {
-    let metadata;
+  describe('given agencyComponent with required fields', () => {
+    let agencyComponent;
     let result;
 
     beforeEach(() => {
-      metadata = {
+      agencyComponent = {
         abbreviation: 'GSA',
-        components: [{
-          name: 'Headquarters',
-          form_fields: [{
-            name: 'contract_number',
-            label: 'GS- Contract number',
-            help_text: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
-          }, {
-            name: 'region',
-            label: 'GSA Region',
-            help_text: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
-          }, {
-            name: 'request_origin',
-            label: 'Request Origin',
-            regs_url: null,
-            help_text: 'Company',
-            required: true,
-            enum: [
-              'Company',
-              'Individual/Self',
-              'Organization',
-            ],
-          }],
+        title: 'Headquarters',
+        formFields: [{
+          name: 'contract_number',
+          title: 'GS- Contract number',
+          description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
+        }, {
+          name: 'region',
+          title: 'GSA Region',
+          description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
+        }, {
+          name: 'request_origin',
+          title: 'Request Origin',
+          regs_url: null,
+          description: 'Company',
+          required: true,
+          options: {
+            company: 'Company',
+            individual: 'Individual/Self',
+            organization: 'Organization',
+          },
         }],
       };
 
-      result = metadataToJsonSchema(metadata, 'Headquarters');
+      result = requestFormToJsonSchema(agencyComponent);
     });
 
     describe('jsonSchema', () => {
@@ -154,7 +151,11 @@ describe('metadataToJsonSchema()', () => {
         expect(result.jsonSchema.properties).to.deep.equal({
           region: { type: 'string' },
           contract_number: { type: 'string' },
-          request_origin: { type: 'string', enum: ['Company', 'Individual/Self', 'Organization'] },
+          request_origin: {
+            type: 'string',
+            enumNames: ['Company', 'Individual/Self', 'Organization'],
+            enum: ['company', 'individual', 'organization'],
+          },
         });
       });
 
@@ -187,21 +188,21 @@ describe('metadataToJsonSchema()', () => {
   });
 
   describe('given nonexistent department', () => {
-    let metadata;
+    let agencyComponent;
     let result;
 
     beforeEach(() => {
-      metadata = {
+      agencyComponent = {
         abbreviation: 'GSA',
-        name: 'General Services Administration',
-        components: [],
+        title: 'General Services Administration',
+        formFields: [],
       };
 
-      result = metadataToJsonSchema(metadata, 'nonexistent');
+      result = requestFormToJsonSchema(agencyComponent);
     });
 
     describe('jsonSchema', () => {
-      it('title falls back to agency name', () => {
+      it('title falls back to agency title', () => {
         expect(result.jsonSchema).to.have.property('title', 'General Services Administration');
       });
 
@@ -211,25 +212,23 @@ describe('metadataToJsonSchema()', () => {
     });
   });
 
-  describe('metadata field properties', () => {
-    let metadata;
+  describe('agencyComponent field properties', () => {
+    let agencyComponent;
     let result;
 
-    describe('given "example" property', () => {
+    describe('given "default_value" property', () => {
       beforeEach(() => {
-        metadata = {
+        agencyComponent = {
           abbreviation: 'GSA',
-          components: [{
-            name: 'Headquarters',
-            form_fields: [{
-              name: 'widget',
-              label: 'Widget',
-              example: '1234',
-            }],
+          title: 'Headquarters',
+          formFields: [{
+            name: 'widget',
+            title: 'Widget',
+            default_value: '1234',
           }],
         };
 
-        result = metadataToJsonSchema(metadata, 'Headquarters');
+        result = requestFormToJsonSchema(agencyComponent);
       });
 
       describe('uiSchema property', () => {
@@ -251,19 +250,17 @@ describe('metadataToJsonSchema()', () => {
     describe('given "type" property', () => {
       describe('given type:checkbox', () => {
         beforeEach(() => {
-          metadata = {
+          agencyComponent = {
             abbreviation: 'GSA',
-            components: [{
-              name: 'Headquarters',
-              form_fields: [{
-                name: 'widget',
-                label: 'Widget',
-                type: 'checkbox',
-              }],
+            title: 'Headquarters',
+            formFields: [{
+              name: 'widget',
+              title: 'Widget',
+              type: 'checkbox',
             }],
           };
 
-          result = metadataToJsonSchema(metadata, 'Headquarters');
+          result = requestFormToJsonSchema(agencyComponent);
         });
 
         describe('jsonSchema property', () => {
@@ -301,19 +298,17 @@ describe('metadataToJsonSchema()', () => {
 
       describe('given type:textarea', () => {
         beforeEach(() => {
-          metadata = {
+          agencyComponent = {
             abbreviation: 'GSA',
-            components: [{
-              name: 'Headquarters',
-              form_fields: [{
-                name: 'widget',
-                label: 'Widget',
-                type: 'textarea',
-              }],
+            title: 'Headquarters',
+            formFields: [{
+              name: 'widget',
+              title: 'Widget',
+              type: 'textarea',
             }],
           };
 
-          result = metadataToJsonSchema(metadata, 'Headquarters');
+          result = requestFormToJsonSchema(agencyComponent);
         });
 
         describe('jsonSchema property', () => {
@@ -351,19 +346,17 @@ describe('metadataToJsonSchema()', () => {
 
       describe('given type:tel', () => {
         beforeEach(() => {
-          metadata = {
+          agencyComponent = {
             abbreviation: 'GSA',
-            components: [{
-              name: 'Headquarters',
-              form_fields: [{
-                name: 'widget',
-                label: 'Widget',
-                type: 'tel',
-              }],
+            title: 'Headquarters',
+            formFields: [{
+              name: 'widget',
+              title: 'Widget',
+              type: 'tel',
             }],
           };
 
-          result = metadataToJsonSchema(metadata, 'Headquarters');
+          result = requestFormToJsonSchema(agencyComponent);
         });
 
         describe('jsonSchema property', () => {
@@ -399,21 +392,19 @@ describe('metadataToJsonSchema()', () => {
         });
       });
 
-      describe('given type:file', () => {
+      describe('given type:managed_file', () => {
         beforeEach(() => {
-          metadata = {
+          agencyComponent = {
             abbreviation: 'GSA',
-            components: [{
-              name: 'Headquarters',
-              form_fields: [{
-                name: 'widget',
-                label: 'Widget',
-                type: 'file',
-              }],
+            title: 'Headquarters',
+            formFields: [{
+              name: 'widget',
+              title: 'Widget',
+              type: 'managed_file',
             }],
           };
 
-          result = metadataToJsonSchema(metadata, 'Headquarters');
+          result = requestFormToJsonSchema(agencyComponent);
         });
 
         describe('jsonSchema property', () => {

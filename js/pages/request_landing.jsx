@@ -1,34 +1,19 @@
 import React, { Component } from 'react';
-import { Dispatcher } from 'flux';
 import { Container } from 'flux/utils';
 
-import { RequestActions } from 'actions';
+import { requestActions } from 'actions';
 import AgencyComponentSelector from 'components/agency_component_selector';
-import settings from 'settings';
-import AgencyComponentStore from 'stores/agency_component';
-import Api from 'util/api';
+import agencyComponentStore from '../stores/agency_component';
 
-const api = new Api(settings.api.baseURL);
-const jsonapi = new Api(settings.api.jsonApiBaseURL);
 
-const dispatcher = new Dispatcher();
-const agencyComponentStore = new AgencyComponentStore(dispatcher);
+function agencyChange(agencyComponent) {
+  if (agencyComponent.type === 'agency') {
+    // TODO we probably want to make top-level agencies un-selectable?
+    return;
+  }
 
-const requestActions = RequestActions({ dispatcher, api, jsonapi });
-
-function init() {
-  // Pre-fetch the list of agencies and components for typeahead
-  requestActions.fetchAgencyFinderData()
-    .then(requestActions.receiveAgencyFinderData);
-}
-
-function agencyChange(agency) {
   const { history } = window.app;
-  requestActions.agencyChange(agency.id)
-    .then(() => {
-      //history.push(`/agency-component/${agency.id}/`);
-      history.push(`/agency-component/gsa/`);
-    });
+  history.push(`/agency-component/${agencyComponent.id}/`);
 }
 
 
@@ -38,17 +23,21 @@ class RequestLandingPage extends Component {
   }
 
   static calculateState() {
-    const { agency, selectedAgency, agencyComponents, agencies } = agencyComponentStore.getState();
+    const { agencyComponents, agencies } = agencyComponentStore.getState();
     return {
       agencies,
-      agency,
       agencyComponents,
-      selectedAgency,
     };
   }
 
   componentDidMount() {
-    init();
+    // If there is any agency data, assume all the data is fetched.
+    if (this.state.agencies.size) {
+      return;
+    }
+
+    // Pre-fetch the list of agencies and components for typeahead
+    requestActions.fetchAgencyFinderData();
   }
 
   render() {
