@@ -91,3 +91,17 @@ a {
     }
   }
 }
+
+.usa-section-dark {
+  a {
+
+    &:active,
+    &:hover {
+      color: $color-gray-light;
+    }
+
+    &:visited {
+      color: $color-white;
+    }
+  }
+}

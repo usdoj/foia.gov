@@ -1,4 +1,12 @@
 .usa-button {
+  &.usa-button-primary-alt {
+    background-color: $color-primary-alt;
+
+    &:active,
+    &:hover {
+      background-color: $color-primary-alt-light !important;
+    }
+  }
   &.usa-button-primary {
     background-color: $color-primary-darkest;
     &:hover {

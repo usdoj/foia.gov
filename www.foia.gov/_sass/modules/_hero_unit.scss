@@ -2,7 +2,7 @@
   background-image: none;
   padding: 0;
   @media screen and (min-width: $small-screen) {
-    background-image: url('../assets/Usdepartmentofjustice-1.jpg');
+    background-image: url('../assets/img/Usdepartmentofjustice-1.jpg');
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
@@ -44,11 +44,14 @@
       font-size: $h4-font-size;
     }
   }
-  .usa-button.usa-button-outline {
+  .usa-button {
     padding: $space-2x;
     font-size: 1.9rem;
     font-weight: normal;
     margin-right: 0;
+  }
+  .usa-button.usa-button-outline {
+    color: $color-white;
   }
 }
 
