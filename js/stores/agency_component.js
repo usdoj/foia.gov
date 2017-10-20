@@ -1,9 +1,13 @@
 import { List, Map } from 'immutable';
 import { Store } from 'flux/utils';
+import { parse } from 'jsonapi-parse';
 
 import { types } from '../actions';
 import { Agency, AgencyComponent } from '../models';
 import dispatcher from '../util/dispatcher';
+import stubWebform from '../webform.json';
+
+const defaultWebform = parse({ data: stubWebform }).data;
 
 
 class AgencyComponentStore extends Store {
@@ -57,8 +61,8 @@ class AgencyComponentStore extends Store {
       case types.AGENCY_COMPONENT_RECEIVE: {
         const { agencyComponent } = this.state;
         let formFields = [];
-        if (payload.agencyComponent.request_form) {
-          formFields = AgencyComponent.parseWebformElements(payload.agencyComponent.request_form);
+        if (defaultWebform) {
+          formFields = AgencyComponent.parseWebformElements(defaultWebform);
         }
 
         Object.assign(this.state, {
