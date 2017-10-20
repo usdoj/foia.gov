@@ -5,6 +5,7 @@
     &:active,
     &:hover {
       background-color: $color-primary-alt-light !important;
+      color: $color-primary-darkest;
     }
   }
   &.usa-button-primary {
