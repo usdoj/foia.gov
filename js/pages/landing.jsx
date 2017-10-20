@@ -3,6 +3,7 @@ import { Container } from 'flux/utils';
 
 import { requestActions } from 'actions';
 import AgencyComponentSelector from 'components/agency_component_selector';
+import AgencyComponentPreview from 'components/agency_component_preview';
 import agencyComponentStore from '../stores/agency_component';
 
 
@@ -12,9 +13,10 @@ class LandingPage extends Component {
   }
 
   static calculateState() {
-    const { agencyComponents, agencies } = agencyComponentStore.getState();
+    const { agencyComponent, agencyComponents, agencies } = agencyComponentStore.getState();
     return {
       agencies,
+      agencyComponent,
       agencyComponents,
     };
   }
@@ -37,9 +39,8 @@ class LandingPage extends Component {
         return;
       }
 
-      this.setState({
-        choosenAgencyComponent: agencyComponent,
-      });
+      requestActions.fetchAgencyComponent(agencyComponent.id)
+        .then(requestActions.receiveAgencyComponent);
     };
 
     const { agencies, agencyComponents } = this.state;
@@ -51,10 +52,9 @@ class LandingPage extends Component {
           agencyComponents={agencyComponents}
           onAgencyChange={agencyChange}
         />
-        { this.state.choosenAgencyComponent &&
-          (
-            <div>{this.state.choosenAgencyComponent.title}</div>
-          )
+        {
+          this.state.agencyComponent.id &&
+          <AgencyComponentPreview agencyComponent={this.state.agencyComponent.toJS()} />
         }
       </div>
     );
