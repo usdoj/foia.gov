@@ -30,6 +30,15 @@
 </section>
 <section class="agency-component-search" id="agency-search">
   <div id="landing-react-app"></div>
+  <div class="usa-grid">
+    <h3 class="sans">{{ page.section_three.hed }}</h3>
+    {% for col in page.section_three.cols %}
+      <div class="usa-width-one-half">
+        <h4>{{ col.title }}</h4>
+        <p>{{ col.text }}</p>
+      </div>
+    {% endfor %}
+  </div>
 </section>
 <div class="usa-grid" id="main">
     <div id="content">

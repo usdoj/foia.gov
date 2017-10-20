@@ -21,7 +21,8 @@ export const requestActions = {
 
     return Promise.resolve(allAgencies)
       .then(response => parse(response))
-      .then(response => response.data);
+      .then(response => response.data)
+      .then(requestActions.receiveAgencyFinderData);
   },
 
   receiveAgencyFinderData(agencyComponents) {

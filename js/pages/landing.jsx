@@ -37,9 +37,7 @@ class LandingPage extends Component {
         return;
       }
 
-      this.setState({
-        choosenAgencyComponent: agencyComponent,
-      });
+      window.document.location = `/request/agency-component/${agencyComponent.id}/`;
     };
 
     const { agencies, agencyComponents } = this.state;
@@ -51,11 +49,6 @@ class LandingPage extends Component {
           agencyComponents={agencyComponents}
           onAgencyChange={agencyChange}
         />
-        { this.state.choosenAgencyComponent &&
-          (
-            <div>{this.state.choosenAgencyComponent.title}</div>
-          )
-        }
       </div>
     );
   }

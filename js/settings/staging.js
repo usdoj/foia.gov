@@ -1,5 +1,5 @@
 const api = {
-  jsonApiBaseURL: 'http://foiastg.prod.acquia-sites.com/jsonapi',
+  jsonApiBaseURL: 'https://api.data.gov/TEST/18f-foia/staging/jsonapi',
 };
 
 export default {
