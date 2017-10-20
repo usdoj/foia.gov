@@ -3,8 +3,17 @@ import { List, Map, Record } from 'immutable';
 const defaults = {
   abbreviation: null,
   agency: null, // An Agency model
+  request_data_complex_average_days: null,
+  request_data_complex_highest_days: null,
+  request_data_complex_lowest_days: null,
+  request_data_complex_median_days: null,
   description: new Map(),
   email: null,
+  request_data_expedited_average_days: null,
+  request_data_expedited_highest_days: null,
+  request_data_expedited_lowest_days: null,
+  request_data_expedited_median_days: null,
+  request_data_year: null,
   field_misc: new List(), // foia_personnel
   foia_officers: new List(), // foia_personnel
   formFields: new List(),
@@ -15,9 +24,11 @@ const defaults = {
   public_liaisons: new List(), // foia_personnel
   reading_rooms: new List(),
   request_form: null,
-  // TODO request_time_stats does not exist in the API, but exists in the 2015 scraper data
-  request_time_stats: null,
   service_centers: new List(), // foia_personnel
+  request_data_simple_average_days: null,
+  request_data_simple_highest_days: null,
+  request_data_simple_lowest_days: null,
+  request_data_simple_median_days: null,
   submission_address: new Map(),
   submission_api: null,
   submission_email: null,

@@ -144,11 +144,9 @@ class Tabs extends Component {
           <section className={this.state.selectedTab === 1 ? 'tab_active' : ''}>
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
-            { agencyComponent.request_time_stats &&
+            { agencyComponent.request_data_year &&
               <section className="submission-help_processing-time">
-                <AgencyComponentProcessingTime
-                  requestTimeStats={agencyComponent.request_time_stats}
-                />
+                <AgencyComponentProcessingTime agencyComponent={agencyComponent} />
               </section>
             }
             <section className="submission-help_agency-mission">
