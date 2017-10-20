@@ -1,130 +1,203 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-
+<meta charset="utf-8" />
 <meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="dc.title" content="FOIA.gov (Freedom of Information Act) Glossary" />
+<meta name="dc.description" content="The Freedom of Information Act (FOIA) is a law that gives you the right to access information from the federal government. It is often described as the law that keeps citizens in the know about their government." />
+<meta name="dc.creator" content="Freedom of Information Act (FOIA)" />
+<meta name="dc.language" scheme="ISO639" content="en-us" />
+<meta name="dc.date.created" content="2011-03-14" />
 
-<meta http-equiv="PRAGMA" content="NO-CACHE" />
+<link rel="stylesheet" type="text/css" href="/foia-style.css" />
 
-<link rel="stylesheet" type="text/css" href="foia-style.css" />
-
-<style>
-
-/*Change class to Indicate Current Active Page*/
-
-#tabnav li a.about {background: url(images/tab-about_on.png) 0 0 no-repeat; color: #121b26; }
-
-/*Change to Indicate Current Active About Page*/
-
-/*#subNav li.subNav03 a {background: #fff; color: #336699;}*/
-
-</style>
-
-<script type="text/javascript" src="qtip/jquery-1.3.2.min.js"></script>
-
-<script type="text/javascript" src="qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
-
+<script type="text/javascript" src="/qtip/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.1/swfobject.js"></script>
+<script type="text/javascript" src="/tipVideo.js"></script>
+<script type="text/javascript" src="/foiareport.js"></script>
+<script type="text/javascript" src="/FusionCharts.js"></script>
 
-<script type="text/javascript" src="tipVideo.js"></script>
 
-<script type="text/javascript" src="foiareport.js"></script>
 
-<script type="text/javascript" src="FusionCharts.js"></script>
-
+<script src="/assets/js/uswds.bundle.js"></script>
 <title>FOIA.gov - Freedom of Information Act: Glossary</title>
-
 </head>
 
 <body>
-
-
-
-<!-- Start FOIA Template -->
-
-<div id="background">
-
-<div id="container">
-
 <!-- Start Header -->
-
 <script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOJ"></script>
-<script type="text/javascript" src="scripts/breakout.js"></script>
-<div id="header">
-  <div class="skip"><a id="skip-link" href="glossary.html#mainContent">Skip to Main Content</a>|<a id="skip-link" href="glossary.html#footerLinks">Skip to Footer</a></div>
-  <div id="doj"><img src="images/doj-top-logo.jpg" alt="United States Department of Justice" width="360" height="35" class="headerDOJ" /></div>
-  <div id="headNav">
-    <div><a href="index.html"><img src="images/foia-title-final.jpg" alt="Foia.gov" width="330" height="80" class="foiaTitle" /></a></div>
-    <div class="right">
-      <ul>
-        <li><a href="news.html">News</a></li>
-		<li><a href="glossary.html">Glossary</a></li>
-		<li><a href="faq.html">FAQs</a></li>
-		<li><a href="index-es.html">en Espa&ntilde;ol</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-		<li><a href="report-makerequest.html">FOIA Contacts</a></li>
-      </ul>
+<script type="text/javascript" src="/scripts/breakout.js"></script>
+<a class="usa-skipnav" href="#main">Skip to main content</a>
+<header class="usa-header usa-header-extended" role="banner" style="background-color: white;">
+<!-- Gov banner BEGIN -->
+<div class="usa-banner">
+  <div class="usa-accordion">
+    <div class="usa-banner-header">
+      <div class="usa-grid usa-banner-inner">
+        <img src="/assets/img/favicons/favicon-57.png" alt="U.S. flag">
+        <p>An official website of the United States government</p>
+        <button class="usa-accordion-button usa-banner-button"
+          aria-expanded="false" aria-controls="gov-banner">
+          <span class="usa-banner-button-text">Here's how you know</span>
+        </button>
+      </div>
     </div>
-  </div>
-  <div class="clear"></div>
-  <div id="tabs">
-    <div id="tabnav">
-      <ul>
-       <li><a href="index.html" class="home"><p>Home</p></a></li>
-       <li><a href="data.html" class="data"><p>Data</p></a></li>
-       <li><a href="reports.html" class="reports"><p>Reports</p></a></li>
-	   <li><a href="search.html" class="find"><p>Find</p></a></li>
-       <li><a href="about.html" class="about"><p>Learn</p></a></li>
-      </ul>
+    <div class="usa-banner-content usa-grid usa-accordion-content" id="gov-banner">
+      <div class="usa-banner-guidance-gov usa-width-one-half">
+        <img class="usa-banner-icon usa-media_block-img" src="/assets/img/icon-dot-gov.svg" alt="Dot gov">
+        <div class="usa-media_block-body">
+          <p>
+            <strong>The .gov means it’s official.</strong>
+            <br>
+            Federal government websites always use a .gov or .mil domain. Before sharing sensitive information online, make sure you’re on a .gov or .mil site by inspecting your browser’s address (or “location”) bar.
+          </p>
+        </div>
+      </div>
+      <div class="usa-banner-guidance-ssl usa-width-one-half">
+        <img class="usa-banner-icon usa-media_block-img" src="/assets/img/icon-https.svg" alt="SSL">
+        <div class="usa-media_block-body">
+          <p>This site is also protected by an SSL (Secure Sockets Layer) certificate that’s been signed by the U.S. government. The <strong>https://</strong> means all transmitted data is encrypted  — in other words, any information or browsing history that you provide is transmitted securely.</p>
+        </div>
+      </div>
     </div>
-    
-	<a id="mainContent"></a>
   </div>
 </div>
+<!-- Gov banner END -->
 
+<!-- DOJ banner BEGIN -->
+<div class="doj-banner">
+  <div class="usa-grid">
+    <img src="/images/doj-top-logo.jpg" alt="United States Department of Justice logo" />
+  </div>
+</div>
+<!-- DOJ banner END -->
+
+  <div class="usa-navbar">
+    <button class="usa-menu-btn">Menu</button>
+    <div class="usa-logo" id="logo">
+      <em class="usa-logo-text">
+        <a href="/" accesskey="1" title="Home">
+          <img src="/images/legacylogoonwhite.png" alt="Foia.gov">
+          <h1 class="usa-header-title">FOIA.gov</h1>
+        </a>
+      </em>
+    </div>
+  </div>
+  <nav role="navigation" class="usa-nav">
+    <div class="usa-nav-inner">
+      <button class="usa-nav-close">
+        <img src="/assets/img/close.svg" alt="close">
+      </button>
+      <ul class="usa-nav-primary usa-accordion">
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/"><span>Home</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/request/"><span>Request</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/data.html"><span>Data</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/reports.html"><span>Reports</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/search.html"><span>Find</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/about.html"><span>Learn</span></a>
+          </li>
+        
+      
+      </ul>
+      <div class="usa-nav-secondary">
+        <!-- TODO: Uncomment this when we lose the Search page -->
+        <!-- <form class="usa-search usa-search-small js-search-form" action="/search/">
+          <div role="search">
+            <label class="usa-sr-only" for="search-field-small">Search site</label>
+            <input id="search-field-small" type="search" name="q">
+            <button type="submit">
+              <span class="usa-sr-only">Search</span>
+            </button>
+          </div>
+        </form>-->
+        <ul class="usa-unstyled-list usa-nav-secondary-links">
+          <!-- TODO: Uncomment this when we lose the Search page -->
+          <!--<li class="js-search-button-container">
+            <button class="usa-header-search-button js-search-button">Search</button>
+          </li>-->
+          
+          <li>
+            <a href="/news.html"><span>News</span></a>
+          </li>
+          
+          <li>
+            <a href="/glossary.html"><span>Glossary</span></a>
+          </li>
+          
+          <li>
+            <a href="/faq.html"><span>FAQs</span></a>
+          </li>
+          
+          <li>
+            <a href="/index-es.html"><span>en Espa&ntilde;ol</span></a>
+          </li>
+          
+          <li>
+            <a href="/feedback.html"><span>Feedback</span></a>
+          </li>
+          
+          <li>
+            <a href="/report-makerequest.html"><span>FOIA Contacts</span></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="usa-overlay"></div>
 
 <!-- End Header -->
 
-
-
-<!-- Start Main Page -->
-
-<div id="main">
-
-<!-- Start Content -->
-
-<div id="content">
-
-  <div id="subLeft">
-
-  <img src="images/help-title.gif" alt="Help"class="subTitle" />
-
-  <!-- Start SubNav Menu -->
-
+<div class="usa-grid" id="main">
+    <div id="content">
+    <a name="top" id="top"></a>
+<div id="subLeft">
+  <img src="/images/help-title.gif" alt="Glossary" class="subTitle" />
   <ul id="subNav">
-<li class="subNav01"><a href="about.html">What is FOIA?</a></li>
-<li class="subNav03"><a href="how-to.html">How to Make a FOIA Request</a></li>
-<li class="subNav02"><a href="report-makerequest.html">Where to Make a FOIA Request</a></li>
-<li class="subNav05"><a href="opengov.html">Additional Government Resources</a></li>
-<li class="subNav04"><a href="faq.html">Frequently Asked Questions</a></li>
-<li class="subNav08"><a href="index-es.html">FOIA en Espa&ntilde;ol</a></li>
+  
+  <li class="about"><a href="/about.html">What is FOIA?</a></li>
+  <li class="how-to"><a href="/how-to.html">How to Make a FOIA Request</a></li>
+  <li class="make-request"><a href="/report-makerequest.html">Where to Make a FOIA Request</a></li>
+  <li class="opengov"><a href="/opengov.html">Additional Government Resources</a></li>
+  <li class="faq"><a href="/faq.html">Frequently Asked Questions</a></li>
+  <li class="es"><a href="/index-es.html">FOIA en Espa&ntilde;ol</a></li>
 </ul>
 
-  <!-- End SubNav Menu -->
-
-  </div>
-
-  <div id="subRight">
-
-
-
-    <span style="display:none;"><h1>FOIA Glossary and Help</h1></span>
-
-    <p><a name="top" id="top"></a></p>
-
-    <div id="alphabet">
+</div>
+<div id="subRight">
+      <div id="alphabet">
 
     <ul>
 
@@ -186,19 +259,17 @@
 
     <div class="clear"></div>
 
-    <div class="lineshadow" style="margin: 15px 0 0 0;"></div>
-
     <h2><a name="terms" id="terms"></a></h2>
 
     <p><strong><a name="a" id="a"></a>Administrative FOIA Appeal</strong> &ndash; An independent review of the initial  determination made in response to a FOIA request. Requesters who are  dissatisfied with the response made on their initial request have a statutory  right to appeal that initial determination to an office within the agency which  will then conduct an independent review.</p>
 
     <p><strong>Annual FOIA Report</strong> &ndash; A report required to be filed each year with the  Department of Justice by all federal agencies detailing the agency&rsquo;s  administration of the FOIA. Annual FOIA Reports contained detailed statistics  on the number of FOIA requests and appeals received, processed, and pending at  each agency.</p>
 
-    <p><strong>Annual FOIA Report Handbook</strong> � A <a href="http://www.justice.gov/sites/default/files/oip/pages/attachments/2014/11/04/department_of_justice_handbook_for_agency_annual_freedom_of_information_act_reports.pdf">comprehensive handbook</a> published by the Department of Justice that includes all of the legal, procedural, and technical requirements concerning agency Annual FOIA Reports.  The Handbook contains definitions for the various reporting metrics found on FOIA.gov.</p>
+    <p><strong>Annual FOIA Report Handbook</strong> &ndash; A <a href="http://www.justice.gov/sites/default/files/oip/pages/attachments/2014/11/04/department_of_justice_handbook_for_agency_annual_freedom_of_information_act_reports.pdf">comprehensive handbook</a> published by the Department of Justice that includes all of the legal, procedural, and technical requirements concerning agency Annual FOIA Reports.  The Handbook contains definitions for the various reporting metrics found on FOIA.gov.</p>
 
     <p><strong><a name="b" id="b"></a>Backlog</strong>  &ndash; The number of requests or administrative appeals that are pending beyond the
 
-      statutory time period for a response. <a href="glossary.html#" class="video15"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: Help - Backlog" /></a> </p>
+      statutory time period for a response. <a href="glossary.html#" class="video15"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: Help - Backlog"></a> </p>
 
     <p><strong><a name="c" id="c"></a>Certification of Identity</strong> &ndash;To ensure that one person&rsquo;s records are not  inadvertently disclosed to another person, individuals requesting records on  themselves are asked to certify their identity by signing a sworn statement  certifying that they are who they say they are.</p>
 
@@ -216,13 +287,13 @@
 
     <p><strong>Complex Request</strong> &ndash; Complex requests typically seek a high volume of material or require additional steps to process such as the need to search for records in multiple locations.</p>
 
-<p><strong><a name="component" id="component"></a>Component</strong> &ndash; For agencies that process requests on a decentralized basis, a "component" is an entity, also sometimes referred to as an Office, Division, Bureau, Center, or Directorate, within the agency that processes FOIA requests.</p>
+<p><strong><a name="component" id="component"></a>Component</strong> &ndash; For agencies that process requests on a decentralized basis, a &quot;component&quot; is an entity, also sometimes referred to as an Office, Division, Bureau, Center, or Directorate, within the agency that processes FOIA requests.</p>
 
     <p><strong>Consultation</strong>  &ndash; When an agency locates a record that contains information of interest to
 
       another agency, it will ask for the views of that other agency on the disclosablity of the
 
-      records before any final determination is made. This process is called a &ldquo;consultation.&rdquo; <a href="glossary.html#" class="video16"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: Help - Consultation" /></a></p>
+      records before any final determination is made. This process is called a &ldquo;consultation.&rdquo; <a href="glossary.html#" class="video16"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: Help - Consultation"></a></p>
 
     <p><strong><a name="d" id="d"></a>Decentralized Agencies or Decentralized FOIA Process</strong> &ndash; When an agency is
 
@@ -236,9 +307,9 @@
 
       and that component handles the request.</p>
 
-    <p><strong>Equivalent Full-Time  FOIA Employees</strong> &ndash; An "equivalent full-time FOIA employee" is created by adding together the percentages of time dedicated to FOIA duties by employees performing less than full-time FOIA work.</p>
+    <p><strong>Equivalent Full-Time  FOIA Employees</strong> &ndash; An &quot;equivalent full-time FOIA employee&quot; is created by adding together the percentages of time dedicated to FOIA duties by employees performing less than full-time FOIA work.</p>
 
-<p><strong>Exemptions</strong> - Congress established nine categories of information that are not required to be released in response to a FOIA request because release would be harmful to a government or private interest.  These categories are called "exemptions" from disclosures.</p>
+<p><strong>Exemptions</strong> - Congress established nine categories of information that are not required to be released in response to a FOIA request because release would be harmful to a government or private interest.  These categories are called &quot;exemptions&quot; from disclosures.</p>
 
 <p><strong>Exemption 3 Statute</strong> &ndash; A federal statute that provides protection from disclosure for
 
@@ -252,7 +323,7 @@
 
       regulations of each federal agency.</p>
 
-    <p><strong><a name="f" id="f"></a>Fee Waiver</strong> &ndash; You may request a fee waiver when making your request. Under the FOIA, fee waivers are limited to situations in which a requester can show that the disclosure of the requested information is in the public interest because it is likely to contribute significantly to public understanding of the operations and activities of the government and is not primarily in the commercial interest of the requester. Requests for fee waivers from individuals who are seeking records pertaining to themselves usually do not meet this standard. In addition, a requester's inability to pay fees is not a legal basis for granting a fee waiver.</p>
+    <p><strong><a name="f" id="f"></a>Fee Waiver</strong> &ndash; You may request a fee waiver when making your request. Under the FOIA, fee waivers are limited to situations in which a requester can show that the disclosure of the requested information is in the public interest because it is likely to contribute significantly to public understanding of the operations and activities of the government and is not primarily in the commercial interest of the requester. Requests for fee waivers from individuals who are seeking records pertaining to themselves usually do not meet this standard. In addition, a requester&apos;s inability to pay fees is not a legal basis for granting a fee waiver.</p>
 
     <p><strong>FOIA</strong> &ndash; Since 1967, the <a href="http://www.justice.gov/sites/default/files/oip/legacy/2014/07/23/amended-foia-redlined-2010.pdf">Freedom  of Information Act</a> (FOIA) has provided the public the right to request  access to records from any federal agency.&nbsp;  It is often described as the law that keeps citizens in the know about  their government. Federal agencies are required to disclose any information  requested under the FOIA unless it falls under one of nine exemptions which  protect interests such as personal privacy, national security, and law  enforcement. </p>
 
@@ -260,11 +331,11 @@
 
 <p><strong>FOIA.gov</strong> &ndash; FOIA.gov serves as the government&rsquo;s  comprehensive FOIA website for all information on the FOIA.&nbsp;&nbsp; Among many other features, FOIA.gov provides  a central resource for the public to understand the FOIA, to locate records  that are already available online, and to learn how to make a request for  information that is not yet publicly available.&nbsp;  FOIA.gov also promotes agency accountability for the administration of  the FOIA by graphically displaying the detailed statistics contained in Annual  FOIA Reports, so that they can be compared by agency and over time.</p>
 
-    <p><strong>FOIA Contact</strong> � The name, address and phone number at each agency or office where you can make a FOIA request</p>
+    <p><strong>FOIA Contact</strong> &ndash; The name, address and phone number at each agency or office where you can make a FOIA request</p>
 
     <p><strong>FOIA Library</strong> &ndash; A page (sometimes called an &quot;electronic  Reading Room&rdquo;), typically on the agency&rsquo;s FOIA website, where certain  categories of records are <a href="http://www.foia.gov/glossary.html#proactivedisclosures"><em>proactively disclosed</em></a>. &nbsp;These FOIA Libraries contain  both operational documents about the agency as well as records that have been  frequently requested under the FOIA..</p>
 
-    <p><strong>FOIA Public Liaison</strong> � The agency FOIA Public Liaison is an official who supervises the FOIA Requester Service Center.</p>
+    <p><strong>FOIA Public Liaison</strong> &ndash; The agency FOIA Public Liaison is an official who supervises the FOIA Requester Service Center.</p>
 
     <p><strong>FOIA Request</strong> &ndash; A request submitted to a federal agency asking for agency records on any topic.  A FOIA request can generally be made by any person and to any federal agency.</p>
 
@@ -298,15 +369,15 @@
 
     <p><strong><a name="p" id="p"></a>Partial Grant/Partial Denial</strong> &ndash; When an agency is able to disclose portions of the records in response to a FOIA request, but must deny other portions of the request.</p>
 
-<p><strong>Pending Request or Pending Appeal</strong> &ndash; A FOIA request or administrative appeal for which an agency has not yet taken final action in all respects. This statistic is different from the number of backlogged requests or appeals, because it captures anything that is open at a given time including requests that are well within the statutory response time. <a href="glossary.html#" class="video14a"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: How are FOIA requests categorized?" /></a></p>
+<p><strong>Pending Request or Pending Appeal</strong> &ndash; A FOIA request or administrative appeal for which an agency has not yet taken final action in all respects. This statistic is different from the number of backlogged requests or appeals, because it captures anything that is open at a given time including requests that are well within the statutory response time. <a href="glossary.html#" class="video14a"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: How are FOIA requests categorized?"></a></p>
 
-    <p><strong>Perfected Request</strong> &ndash; A FOIA request which reasonably describes the records sought and is made in accordance with the agency's regulations.</p>
+    <p><strong>Perfected Request</strong> &ndash; A FOIA request which reasonably describes the records sought and is made in accordance with the agency&apos;s regulations.</p>
 
     <p><a name="proactivedisclosures"></a><strong>Proactive Disclosures</strong> &ndash; Records made publicly available by agencies without waiting for a specific FOIA request. Agencies now post on their websites a vast amount of material concerning their functions and mission. The FOIA itself requires agencies to make available certain categories of information, including final opinions and orders, specific policy statements, certain administrative staff manuals and frequently requested records.</p>
 
-    <p><strong>Processed Request or Processed Appeal</strong> &ndash; The number of requests or appeals where the agency has completed its work and sent a final response to the requester. <a href="glossary.html#" class="video14b"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: How are FOIA requests categorized?" /></a></p>
+    <p><strong>Processed Request or Processed Appeal</strong> &ndash; The number of requests or appeals where the agency has completed its work and sent a final response to the requester. <a href="glossary.html#" class="video14b"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: How are FOIA requests categorized?"></a></p>
 
-    <p><strong>Received Request or Received Appeal &ndash; </strong>A FOIA request or administrative appeal that  an agency has received within a fiscal year. <a href="glossary.html#" class="video14c"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: How are FOIA requests categorized?" /></a></p>
+    <p><strong>Received Request or Received Appeal &ndash; </strong>A FOIA request or administrative appeal that  an agency has received within a fiscal year. <a href="glossary.html#" class="video14c"><img src="images/video-icon.gif" width="12" height="12" alt="Play FOIA.gov Video: How are FOIA requests categorized?"></a></p>
 
    
 
@@ -336,1626 +407,57 @@
 
   <div class="clear"></div>
 
-</div>
 
-<!-- End Content -->
 
 </div>
+<div class="clear"></div>
 
-<!-- End Main Page -->
-
-
-
+    </div>
+</div>
 <!-- Start Footer -->
 
-<div id="footer"><a href="index.html"><img src="images/foia-footer.gif" alt="foia.gov" /><span>Foia.gov</span></a>
-  <div id="footerNav">   
+<div class="footer usa-grid-full">
+  <a href="/"><img src="/images/foia-footer.gif" alt="FOIA.gov" /><span>Foia.gov</span></a>
+  <div id="footerNav">
 	<a id="footerLinks"></a>
   <ul>
-    <li><a href="sitemap.html">Site Map</a></li>
-	<li><a href="https://www.justice.gov/accessibility/accessibility-information">Accessibility</a></li>
-	<li><a href="foia-info.html">FOIA</a></li>
-	<li><a href="https://www.justice.gov/doj/privacy-policy">Privacy Policy</a></li>
-	<li><a href="https://www.justice.gov/legalpolicies">Policies &amp; Disclaimers</a></li>
-	<li><a href="quality.html">Information Quality</a></li>
-	<li><a href="developer.html">Developer Resources</a></li>
-	<li><a href="http://www.justice.gov">Justice.gov</a></li>
-	<li><a href="http://www.usa.gov">USA.gov</a></li>
+    <li><a href="/sitemap.html">Site Map</a></li>
+    <li><a href="https://www.justice.gov/accessibility/accessibility-information">Accessibility</a></li>
+    <li><a href="/foia-info.html">FOIA</a></li>
+    <li><a href="https://www.justice.gov/doj/privacy-policy">Privacy Policy</a></li>
+    <li><a href="https://www.justice.gov/legalpolicies">Policies &amp; Disclaimers</a></li>
+    <li><a href="/quality.html">Information Quality</a></li>
+    <li><a href="/developer.html">Developer Resources</a></li>
+    <li><a href="http://www.justice.gov">Justice.gov</a></li>
+    <li><a href="http://www.usa.gov">USA.gov</a></li>
   </ul>
   </div>
   <div class="clear">&nbsp;</div>
   <div align="center">
-    <a href="http://www.data.gov/"><img src="images/datagov-footer.gif" alt="data.gov" /><span>Data.gov</span></a>
-	<a href="http://www.whitehouse.gov/open"><img src="images/opengov-footer.gif" alt="whitehouse.gov/open" /><span>Whitehouse.gov/open</span></a>
-	<a href="http://www.usaspending.gov/"><img src="images/usaspending-footer.gif" alt="usaspending.gov" /><span>USASpending.gov</span></a>
-    <a href="http://www.recovery.gov/"><img src="images/recoverygov-footer.gif" alt="recovery.gov" /><span>Recovery.gov</span></a>
+    <a href="http://www.data.gov/"><img src="/images/datagov-footer.gif" alt="data.gov" /><span>Data.gov</span></a>
+	<a href="http://www.whitehouse.gov/open"><img src="/images/opengov-footer.gif" alt="whitehouse.gov/open" /><span>Whitehouse.gov/open</span></a>
+	<a href="http://www.usaspending.gov/"><img src="/images/usaspending-footer.gif" alt="usaspending.gov" /><span>USASpending.gov</span></a>
+    <a href="http://www.recovery.gov/"><img src="/images/recoverygov-footer.gif" alt="recovery.gov" /><span>Recovery.gov</span></a>
   </div>
+
 </div>
 
 <!-- End Footer -->
 
+<div id="shadowFilter" class="blockout" style="display:none;"></div>
+<div id="exitMsg" class="exitMsg" style="display:none;"></div>
+<!-- Start Popup Window -->
+<div id="popupMsg" class="popupWindow" style="display:none;">
+       <div class="popupClose"><a href="javascript:popupCloseToData();">close</a><a href="javascript:popupCloseToData();"><img src="/images/popup-close.gif" alt="Close Window" /></a></div>
+       <div class="clear"></div>
+       <div class="popupBody" id="popupMsgBody">
+               <!-- Popup Body -->
+       </div>
 </div>
+<!-- End Popup Window -->
 
-</div>
 
-<!-- End FOIA Template -->
-
-<script language="javascript">
-
-$('a[title]').qtip({ style: { name: 'dark', tip: true } })
-
-//Video 1a
-
-$('a.video1a').qtip({
-
-    content: '<div id="vid1a">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false', FlashVars: 'flvPath=foia/foia1a.flv&captionUrl=video/1a-cap.xml&previewUrl=images/1a.png' };
-
-               var attrs = { id: 'vid1a' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/DOJVideoPlayer16to9.swf', 'vid1a', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid1a').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 1b
-
-$('a.video1b').qtip({
-
-    content: '<div id="vid1b">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid1b' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/1b.swf', 'vid1b', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid1b').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 2
-
-$('a.video2').qtip({
-
-    content: '<div id="vid2">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid2' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/2.swf', 'vid2', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid2').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 3
-
-$('a.video3').qtip({
-
-    content: '<div id="vid3">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid3' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/3.swf', 'vid3', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid3').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 4
-
-$('a.video4').qtip({
-
-    content: '<div id="vid4">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid4' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/4.swf', 'vid4', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid4').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 5
-
-$('a.video5').qtip({
-
-    content: '<div id="vid5">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid5' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/5.swf', 'vid5', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid5').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 6
-
-$('a.video6').qtip({
-
-    content: '<div id="vid6">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid6' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/6.swf', 'vid6', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid6').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 7
-
-$('a.video7').qtip({
-
-    content: '<div id="vid7">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid7' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/7.swf', 'vid7', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid7').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 8
-
-$('a.video8').qtip({
-
-    content: '<div id="vid8">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid8' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/8.swf', 'vid8', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid8').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 9
-
-$('a.video9').qtip({
-
-    content: '<div id="vid9">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid9' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/9.swf', 'vid9', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid9').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 10
-
-$('a.video10').qtip({
-
-    content: '<div id="vid10">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid10' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/10.swf', 'vid10', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid10').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 11
-
-$('a.video11').qtip({
-
-    content: '<div id="vid11">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid11' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/11.swf', 'vid11', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid11').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 12
-
-$('a.video12').qtip({
-
-    content: '<div id="vid12">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-			  var params = { FlashVars: 'flvPath=foia/foia12.flv&captionUrl=video/12-cap.xml&previewUrl=images/12.png' };
-
-			  var attrs = { id: 'vid12' };
-
-
-
-			  // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/DOJVideoPlayer16to9.swf', 'vid12', '640', '398', '10', '#333333', '', params ,attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid12').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#component');
-
-//Video 13
-
-$('a.video13').qtip({
-
-    content: '<div id="vid13">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { allowScriptAccess: 'always', allowfullScreen: 'false' };
-
-               var attrs = { id: 'vid13' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/13.swf', 'vid13', '640', '398', '8', '#333333', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid13').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 14a
-
-$('a.video14a').qtip({
-
-    content: '<div id="vid14a">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { FlashVars: 'flvPath=foia/foia14.flv&captionUrl=video/14-cap.xml&previewUrl=images/14.png' };
-
-               var attrs = { id: 'vid14a' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/DOJVideoPlayer16to9.swf', 'vid14a', '640', '398', '10', '#333333', '', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid14a').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#pending');
-
-//Video 14b
-
-$('a.video14b').qtip({
-
-    content: '<div id="vid14b">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { FlashVars: 'flvPath=foia/foia14.flv&captionUrl=video/14-cap.xml&previewUrl=images/14.png' };
-
-               var attrs = { id: 'vid14b' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/DOJVideoPlayer16to9.swf', 'vid14b', '640', '398', '10', '#333333', '', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid14b').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#processed');
-
-//Video 14
-
-$('a.video14c').qtip({
-
-    content: '<div id="vid14c">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { FlashVars: 'flvPath=foia/foia14.flv&captionUrl=video/14-cap.xml&previewUrl=images/14.png' };
-
-               var attrs = { id: 'vid14c' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/DOJVideoPlayer16to9.swf', 'vid14c', '640', '398', '10', '#333333', '', params, attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid14c').get(0);
-
-               if(playerAPI && playerAPI.pauseVideo) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#received');	  	  
-
-	  
-
-	  
-
-	  
-
-	  
-
-//Video 15
-
-$('a.video15').qtip({
-
-    content: '<div id="vid15">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-               var params = { FlashVars: 'flvPath=foia/foia15.flv&captionUrl=video/15-cap.xml&previewUrl=images/15.png' };
-
-               var attrs = { id: 'vid15' };
-
-
-
-               // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/DOJVideoPlayer16to9.swf', 'vid15', '640', '398', '10', '#333333', '', params ,attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the vide when hidden
-
-               var playerAPI = this.elements.content.find('vid15').get(0);
-
-               if(playerAPI) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#');
-
-//Video 16
-
-$('a.video16').qtip({
-
-    content: '<div id="vid16">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
-
-         position: {
-
-            corner: {
-
-               tooltip: 'bottomMiddle', // ...and position it center of the screen
-
-               target: 'topMiddle' // ...and position it center of the screen
-
-            }
-
-         },
-
-         show: {
-
-            when: 'click', // Show it on click...
-
-            solo: true // ...and hide all others when its shown
-
-         },
-
-         hide: 'unfocus', // Hide it when inactive...
-
-         style: {
-
-            width: 640,
-
-            height: 398,
-
-            padding: 0,
-
-            tip: true,
-
-            name: 'dark'
-
-         },
-
-         api: {
-
-            onRender: function()
-
-            {
-
-               // Setup video paramters
-
-			  var params = { FlashVars: 'flvPath=foia/foia16.flv&captionUrl=video/16-cap.xml&previewUrl=images/16.png' };
-
-			  var attrs = { id: 'vid16' };
-
-
-
-			  // Embed the youtube video using SWFObject script
-
-               swfobject.embedSWF('video/DOJVideoPlayer16to9.swf', 'vid16', '640', '398', '10', '#333333', '', params ,attrs);
-
-            },
-
-
-
-            onHide: function(){
-
-               // Pause the video when hidden
-
-               var playerAPI = this.elements.content.find('vid16').get(0);
-
-               if(playerAPI) playerAPI.pauseVideo();
-
-            }
-
-         }
-
-      }
-
-      ).attr('href', '#consultation');
-
-
-
-$('a.chartHelp').qtip({
-
-	content: 'Click on the Question Mark Icon to go to the "Exemptions" section of the Frequently Asked Questions page.<br /><br />There you can see a full list of the FOIA exemptions, and how and when they are applied.',
-
-	style: { padding: 5, color: '#ffffff', background: '#577493', border:{width:7, radius: 5, color: '#577493'}, tip: 'topLeft'},
-
-	position: {
-
-      corner: {
-
-         target: 'bottomRight',
-
-         tooltip: 'topLeft'
-
-      }
-
-   }
-
-});
-
-$('a.chartHelp2').qtip({
-
-	content: 'Click on the Question Mark Icon to go to the "Exclusions" section of the Frequently Asked Questions page.<br /><br />There you can see a full explanation of the FOIA exclusions, and how and when they are applied.',
-
-	style: { padding: 5, color: '#ffffff', background: '#577493', border:{width:7, radius: 5, color: '#577493'}, tip: 'topLeft'},
-
-	position: {
-
-      corner: {
-
-         target: 'bottomRight',
-
-         tooltip: 'topLeft'
-
-      }
-
-   }
-
-});
-
-</script>
+<script type="text/javascript" src="/about.js"></script>
 
 </body>
-
 </html>
