@@ -28,8 +28,7 @@
       },
       "first_name": {
         "#type": "textfield",
-        "#title": "First Name",
-        "#required": true
+        "#title": "First Name"
       },
       "middle_initial_middle_name": {
         "#type": "textfield",
@@ -37,8 +36,7 @@
       },
       "last_name": {
         "#type": "textfield",
-        "#title": "Last name",
-        "#required": true
+        "#title": "Last name"
       },
       "suffix": {
         "#type": "select",
@@ -61,8 +59,7 @@
       },
       "email": {
         "#type": "email",
-        "#title": "Email",
-        "#required": true
+        "#title": "Email"
       },
       "phone_number": {
         "#type": "tel",
@@ -464,8 +461,7 @@
         "#options": {
           "yes": "Yes",
           "no": "No"
-        },
-        "#required": true
+        }
       },
       "fee_waiver_explanation": {
         "#type": "textarea",
@@ -484,8 +480,7 @@
         "#options": {
           "yes": "Yes",
           "no": "No"
-        },
-        "#required": true
+        }
       },
       "expedited_processing_explanation": {
         "#type": "textarea",
