@@ -26,6 +26,7 @@ module.exports = {
   devtool: isProduction ? 'source-map' : 'eval-source-map',
   plugins,
   entry: {
+    landing: './js/landing.jsx',
     request: './js/request.jsx',
     uswds: './js/uswds.js',
   },
