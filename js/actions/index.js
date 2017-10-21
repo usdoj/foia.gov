@@ -98,7 +98,6 @@ export const requestActions = {
   },
 
   completeSubmitRequestForm(submissionResult) {
-    debugger;
     dispatcher.dispatch({
       type: types.REQUEST_FORM_SUBMIT_COMPLETE,
       submissionResult,

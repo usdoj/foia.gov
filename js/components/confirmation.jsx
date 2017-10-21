@@ -11,6 +11,9 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
 
   return (
     <div className="confirmation">
+      <div className="print-only confirmation_print-submission-id">
+        <p><strong>Submission ID:</strong> {submission_id}</p>
+      </div>
       <h1 className="confirmation_title">Success!</h1>
       <section className="confirmation_contact">
         <p>
@@ -41,13 +44,18 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
         <p>Below is a summary of your request.</p>
         <RequestSummary formData={formData.toJS()} requestForm={requestForm} />
       </section>
-      <section className="confirmation_record-id">
+      <section className="confirmation_submission-id">
         <p>
-          The record ID for your request is <strong>{submission_id}</strong>.
-          The record ID is only for identifying your request on FOIA.gov.
-          This number can help you resolve issues submitting your request to
-          an agency. In case there is an issue submitting your request to the
-          agency you selected, you can use this number to help.
+          The submission ID for your request is <strong>{submission_id}</strong>.
+        </p>
+        <p>
+          The submission ID is only for identifying your request on FOIA.gov and
+          acts as a receipt to show that you submitted a request using
+          FOIA.gov. This number does not replace the information you’ll receive
+          from the agency to track your request. This number can help you resolve
+          issues submitting your request to an agency.  In case there is an issue
+          submitting your request to the agency you selected, you can use this
+          number to help.
         </p>
       </section>
     </div>

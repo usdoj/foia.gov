@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Container } from 'flux/utils';
 
 import { requestActions } from 'actions';
-import Tabs from 'components/tabs';
+import Confirmation from 'components/confirmation';
 import FoiaRequestForm from 'components/foia_request_form';
+import Tabs from 'components/tabs';
 import agencyComponentStore from 'stores/agency_component';
 import agencyComponentRequestFormStore from 'stores/agency_component_request_form';
 import foiaRequestStore from 'stores/foia_request';
@@ -69,6 +70,7 @@ class AgencyComponentRequestPage extends Component {
   }
 
   render() {
+    const { agencyComponent, formData, requestForm, submissionResult } = this.state;
     if (this.state.agencyComponentNotFound) {
       // The api returned a 404, we should do the same
       return <NotFound />;
@@ -76,16 +78,36 @@ class AgencyComponentRequestPage extends Component {
 
     const { agencyComponentId } = this.props.match.params;
     function onSubmit() {
-      // Submit successful, navigate to confirmation page
-      const { history } = window.app;
-      history.push(`/agency-component/${agencyComponentId}/confirmation/`);
     }
 
-    // TODO show a loading indicator?
-    const { agencyComponent, requestForm } = this.state;
+    let mainContent;
+    if (submissionResult && submissionResult.submission_id) {
+      mainContent = (
+        <Confirmation
+          agencyComponent={agencyComponent}
+          formData={formData}
+          requestForm={requestForm}
+          submissionResult={submissionResult}
+        />
+      );
+    } else if (requestForm) {
+      mainContent = (
+        <FoiaRequestForm
+          formData={this.state.formData}
+          isSubmitting={this.state.isSubmitting}
+          onSubmit={onSubmit}
+          requestForm={requestForm}
+          submissionResult={this.state.submissionResult}
+        />
+      );
+    } else {
+      // TODO show a loading indicator?
+      mainContent = <div>Loading…</div>;
+    }
+
     return (
       <div className="usa-grid-full grid-left">
-        <aside className="usa-width-five-twelfths sidebar" id="react-tabs">
+        <aside className="usa-width-five-twelfths sidebar print-hide" id="react-tabs">
           {
             agencyComponent && requestForm ?
               <Tabs
@@ -96,17 +118,7 @@ class AgencyComponentRequestPage extends Component {
           }
         </aside>
         <div className="usa-width-seven-twelfths sidebar_content">
-          {
-            requestForm ?
-              <FoiaRequestForm
-                formData={this.state.formData}
-                isSubmitting={this.state.isSubmitting}
-                onSubmit={onSubmit}
-                requestForm={requestForm}
-                submissionResult={this.state.submissionResult}
-              /> :
-              <div>Loading…</div>
-          }
+          { mainContent }
         </div>
       </div>
     );

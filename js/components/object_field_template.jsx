@@ -5,7 +5,6 @@ import React from 'react';
 // having to copy/paste it.
 // https://github.com/mozilla-services/react-jsonschema-form/blob/8e9aec57dd2421f37073ec0eac917e0840dde0b3/src/components/fields/ObjectField.js#L10
 function ObjectFieldTemplate(props) {
-  debugger;
   const { TitleField, DescriptionField, formContext = {}} = props;
   const steps = formContext.steps || [];
   const step = steps.indexOf(props.idSchema.$id) + 1;
