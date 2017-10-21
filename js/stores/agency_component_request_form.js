@@ -28,6 +28,10 @@ class AgencyComponentRequestFormStore extends Store {
     switch (payload.type) {
       case types.AGENCY_COMPONENT_RECEIVE: {
         dispatcher.waitFor([agencyComponentStore.getDispatchToken()]);
+        if (!payload.agencyComponent.request_form) {
+          break;
+        }
+
         const { requestForms } = this.state;
         const agencyComponent = agencyComponentStore.getAgencyComponent(payload.agencyComponent.id);
         const requestForm = rf.sectionedFormFromAgencyComponent(agencyComponent.toJS());
