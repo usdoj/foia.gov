@@ -3,27 +3,15 @@
   border-top: $space-2x solid $color-primary-alt;
   padding-top: $space-4x;
   padding-bottom: $space-4x;
+
   h3 {
+    font-size: $h2-font-size;
     margin-top: $space-1x;
     margin-bottom: $space-5x;
   }
   h4 {
     font-size: $base-font-size;
     font-family: $font-sans;
-    &:before {
-      content: "";
-      width: 20px;
-      height: 20px;
-      background-color: $color-primary-darkest;
-      display: block;
-      float: left;
-      border-radius: 100px;
-      margin-right: 10px;
-      margin-top: 1px;
-    }
-    + p {
-      margin-left: 30px; // size of bubble + margin
-    }
   }
   .usa-width-one-half {
     @media all and (min-width: $medium-screen) {
@@ -42,5 +30,14 @@
   }
   input[type='search'] {
     border: none;
+  }
+}
+
+.agency-preview {
+  margin-top: $space-2x;
+  h2 {
+    font-size: $h3-font-size;
+    font-family: $font-serif;
+    font-weight: $font-bold;
   }
 }

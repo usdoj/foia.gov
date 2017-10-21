@@ -1,19 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import AgencyComponentProcessingTime from './agency_component_processing_time';
+import FoiaPersonnel from './foia_personnel';
+import FoiaSubmissionAddress from './foia_submission_address';
 import PrettyUrl from './pretty_url';
-import {AgencyComponent} from '../models';
+import { AgencyComponent } from '../models';
 
 
 function AgencyComponentPreview({ agencyComponent }) {
-  debugger;
   const description = AgencyComponent.agencyMission(agencyComponent);
   return (
-    <div>
-      <h2>{agencyComponent.agency.name}</h2>
-      <h3>{agencyComponent.title}</h3>
-      <p>{description}</p>
-      <PrettyUrl href={agencyComponent.website.uri} />
+    <div className="agency-preview usa-grid-full">
+      <div className="usa-width-one-whole">
+        <h2>{agencyComponent.agency.name}</h2>
+        <h3>{agencyComponent.title}</h3>
+      </div>
+      <div className="usa-width-one-half">
+        { description &&
+          <div>
+            <h4>Agency mission</h4>
+            <p>{description}</p>
+          </div>
+        }
+
+        { agencyComponent.request_time_stats &&
+          <div>
+            <h4>Median processing time (estimates)</h4>
+            <AgencyComponentProcessingTime
+              requestTimeStats={agencyComponent.request_time_stats}
+            />
+          </div>
+        }
+
+        <h4>
+          The records or information you&apos;re looking for may already be public.
+        </h4>
+        <p>You can find out by reaching out to the agency or by visiting
+        their <a href={agencyComponent.website.uri}>website</a> or
+        FOIA <a href={agencyComponent.reading_rooms[0].uri}>reading room</a>.</p>
+      </div>
+      <div className="usa-width-one-half">
+        <h4>Contact</h4>
+        <PrettyUrl href={agencyComponent.website.uri} />
+        <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
+        <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
+      </div>
     </div>
   );
 }
