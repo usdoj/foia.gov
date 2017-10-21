@@ -29,7 +29,11 @@ function RequestSummarySection({ section, formData, requestForm }) {
   return (
     <table className="request-summary_section">
       <tbody>
-        { Object.keys(sectionFields)
+        {
+          // Maintain field ordering as much as possible
+          (section.fieldNames || Object.keys(sectionFields))
+            // Only include fields that actually exist in this form
+            .filter(fieldName => fieldName in sectionFields)
             .map((fieldName) => {
               const label = fieldLabel(requestForm, section.id, fieldName);
               const value = sectionFields[fieldName];

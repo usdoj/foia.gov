@@ -6,6 +6,19 @@ const FORM_SECTIONS = [
     title: 'Requester contact',
     description: 'Complete the information describing yourself and how the agency can contact you about your request.',
     fieldNames: [
+      // deprecated names https://github.com/18F/beta.foia.gov/issues/188
+      'prefix_title',
+      'first_name',
+      'last_name',
+      'middle_initial_middle_name',
+      'suffix',
+      'mailing_address_line_1',
+      'mailing_address_line_2',
+      'city',
+      'country',
+      'state_province',
+      'zip_postal_code',
+
       'name_prefix_title',
       'name_first',
       'name_middle_initial_middle',
@@ -22,20 +35,6 @@ const FORM_SECTIONS = [
       'suffix',
       'company_organization',
       'email',
-
-      // deprecated names https://github.com/18F/beta.foia.gov/issues/188
-      'prefix_title',
-      'first_name',
-      'last_name',
-      'middle_initial_middle_name',
-      'suffix',
-      'mailing_address_line_1',
-      'mailing_address_line_2',
-      'city',
-      'country',
-      'state_province',
-      'zip_postal_code',
-
     ],
   },
 
