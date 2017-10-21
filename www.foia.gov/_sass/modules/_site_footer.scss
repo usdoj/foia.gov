@@ -1,21 +1,32 @@
 .usa-footer {
-  padding: 2rem 0;
+  padding: $space-5x 0;
   background-color: $color-primary-darkest;
   color: $color-gray-lightest;
   font-size: $small-font-size;
   .footer-logo {
-    max-width: 15rem;
+    max-width: 8rem;
+    display: inline-block;
+    float: left;
+  }
+  h2 {
+    color: $color-white;
+    font-family: $font-serif;
+    display: inline-block;
+    font-weight: $font-bold;
+    margin-top: $space-3x;
+    margin-left: $space-1x;
   }
   h6 {
     font-size: $h5-font-size;
-    font-weight: bold;
+    font-weight: $font-bold;
     color: $color-primary-alt-light;
   }
   a {
+    letter-spacing: 0.065rem;
     color: $color-gray-lightest;
     border-bottom: none;
     border-left: 2px solid $color-primary-alt-light;
-    padding-left: 4px;
+    padding-left: 6px;
     line-height: 1;
     text-transform: uppercase;
     font-size: 1.3rem;
@@ -23,6 +34,9 @@
     &:hover,
     &:active {
       color: $color-primary-alt-light;
+    }
+    &:visited {
+      color: $color-gray-lightest;
     }
   }
   .footer-links li {
