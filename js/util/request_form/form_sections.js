@@ -32,7 +32,6 @@ const FORM_SECTIONS = [
       'address_zip_postal_code',
       'phone_number',
       'fax_number',
-      'suffix',
       'company_organization',
       'email',
     ],
