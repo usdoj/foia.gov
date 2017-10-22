@@ -10,6 +10,7 @@ import { AgencyComponent } from '../models';
 
 function AgencyComponentPreview({ agencyComponent }) {
   const description = AgencyComponent.agencyMission(agencyComponent);
+  const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
   debugger;
   return (
     <div className="agency-preview usa-grid-full">
@@ -46,7 +47,7 @@ function AgencyComponentPreview({ agencyComponent }) {
         <PrettyUrl href={agencyComponent.website.uri} />
         <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
         <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
-        <a className="usa-button usa-button-primary" href="">Start FOIA request</a>
+        <a className="usa-button usa-button-primary" href={ requestUrl }>Start FOIA request</a>
       </div>
     </div>
   );
