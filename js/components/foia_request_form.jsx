@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
-import requestFormToJsonSchema from 'util/request_form_to_json_schema';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
+import ObjectFieldTemplate from './object_field_template';
 
-function FOIARequestForm({ agencyComponent }) {
+
+function FOIARequestForm({ requestForm }) {
   const widgets = {
     CheckboxWidget: USWDSCheckboxWidget,
     RadioWidget: USWDSRadioWidget,
   };
 
-  const { jsonSchema, uiSchema } = requestFormToJsonSchema(agencyComponent.toJS());
+  // Map these to react-jsonschema-form Ids
+  const steps = (requestForm.sections || []).map(section => `root_${section.id}`);
+
+  const formContext = { steps };
+  const { jsonSchema, uiSchema } = requestForm;
   return (
     <div>
       <Form
@@ -19,13 +24,20 @@ function FOIARequestForm({ agencyComponent }) {
         schema={jsonSchema}
         uiSchema={uiSchema}
         widgets={widgets}
-      />
+        formContext={formContext}
+        ObjectFieldTemplate={ObjectFieldTemplate}
+      >
+        <div id="foia-request-form_submit" className="foia-request-form_submit">
+          <p>Please review the information you’ve entered and submit.</p>
+          <button>Submit</button>
+        </div>
+      </Form>
     </div>
   );
 }
 
 FOIARequestForm.propTypes = {
-  agencyComponent: PropTypes.object.isRequired,
+  requestForm: PropTypes.object.isRequired,
 };
 
 export default FOIARequestForm;

@@ -25,6 +25,7 @@
 <script type="text/javascript" src="tablehover.js"></script>
 
 <script src="/assets/js/uswds.bundle.js"></script>
+<script src="/assets/js/glossary.bundle.js"></script>
 
 <script type="text/javascript" src="/qtip/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
@@ -160,10 +161,6 @@
           </li>
           
           <li>
-            <a href="/glossary.html"><span>Glossary</span></a>
-          </li>
-          
-          <li>
             <a href="/faq.html"><span>FAQs</span></a>
           </li>
           
@@ -218,7 +215,7 @@
       </div>
       </div>
       <div class="reportText">
-        <p><strong>Instructions:</strong> You can   explore the FOIA data that makes up an agency&rsquo;s annual FOIA report.   Search for data from a single agency or compare data from multiple   agencies. Just follow these steps:</p>
+        <p><strong>Instructions:</strong> You can   explore the <span data-term="foia">FOIA</span> data that makes up an agency&rsquo;s annual FOIA report.   Search for data from a single agency or compare data from multiple   agencies. Just follow these steps:</p>
         <ol>
           <li>At   the &ldquo;Select Report&rdquo; column, click on a category, such as &ldquo;Requests&rdquo; or   &ldquo;Administration&rdquo;&nbsp; to select the type of report you would like to run.   Learn more about these categories in the<a href="glossary.html">Glossary</a>. </li>
           <li>Use   the (+) or (-) signs appearing next to the text box to select the   agency/agencies you want to look up, selecting up to four at a time. </li>
@@ -881,6 +878,17 @@ function toggleDiv(section){
 </div>
 
 <!-- End Footer -->
+
+<button class="js-glossary-toggle glossary-toggle">Glossary</button>
+<div id="glossary" class="glossary" aria-describedby="glossary-title" aria-hidden="true">
+  <button title="Close glossary" class="js-glossary-close glossary-close">
+    <span class="usa-sr-only">Hide glossary</span>
+  </button>
+  <h2 id="glossary-title">Glossary</h2>
+  <label class="glossary-search-label" for="glossary-search">Filter glossary terms</label>
+  <input id="glossary-search" class="js-glossary-search glossary-search" type="search" placeholder="e.g. agency component">
+  <ul class="js-glossary-list usa-unstyled-list"></ul>
+</div>
 
 
 

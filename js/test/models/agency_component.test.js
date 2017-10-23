@@ -41,7 +41,7 @@ describe('AgencyComponent', () => {
       });
     });
 
-    it('has city form field', () => {
+    it('has delivery_method form field', () => {
       const formField = result[1];
       expect(formField).to.deep.equal({
         name: 'delivery_method',
