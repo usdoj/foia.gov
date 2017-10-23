@@ -33,10 +33,8 @@ describe('RequestSummarySection', () => {
       };
 
       requestForm = factory.requestForm.fromFormData(formData);
-      console.log(requestForm);
       requestForm.jsonSchema.properties.requester_contact_section.properties.name.title = 'Full name';
       requestForm.jsonSchema.properties.additional_fields_section.properties.agency_question.title = 'Agency question';
-
     });
 
     describe('given the first section', () => {

@@ -7,7 +7,6 @@ import Form from 'react-jsonschema-form';
 
 import FoiaRequestForm from '../../components/foia_request_form';
 import SubmissionResult from '../../models/submission_result';
-import agencyComponentRequestFormStore from '../../stores/agency_component_request_form';
 import { requestActions } from '../../actions';
 
 // TODO create a proper factory
@@ -89,8 +88,6 @@ describe('FoiaRequestForm', () => {
       });
 
       describe('submit', () => {
-        let onSubmit;
-
         beforeEach(() => {
           element = render(
             <FoiaRequestForm
@@ -110,8 +107,8 @@ describe('FoiaRequestForm', () => {
       describe('when the onSubmit is called', () => {
         let onSubmit;
 
-        function callSubmit(element) {
-          return element.prop('onSubmit')({
+        function callSubmit(elem) {
+          return elem.prop('onSubmit')({
             formData: {
               addtional_fields: {
                 agency_question: 'a requester response',

@@ -9,7 +9,7 @@ function RequestSummary({ formData, requestForm }) {
     <div>
       {
         requestForm.sections.map(
-          section =>
+          section => (
             <div key={section.id}>
               <h3>{section.title}</h3>
               <RequestSummarySection
@@ -17,7 +17,8 @@ function RequestSummary({ formData, requestForm }) {
                 requestForm={requestForm}
                 section={section}
               />
-            </div>,
+            </div>
+          ),
         )
       }
     </div>

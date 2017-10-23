@@ -76,9 +76,7 @@ class AgencyComponentRequestPage extends Component {
       return <NotFound />;
     }
 
-    const { agencyComponentId } = this.props.match.params;
-    function onSubmit() {
-    }
+    function onSubmit() {}
 
     let mainContent;
     if (submissionResult && submissionResult.submission_id) {
