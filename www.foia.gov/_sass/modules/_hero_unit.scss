@@ -1,0 +1,78 @@
+.usa-hero {
+  background-image: none;
+  padding: 0;
+  @media screen and (min-width: $small-screen) {
+    background-image: url('../assets/Usdepartmentofjustice-1.jpg');
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  @media screen and (max-width: $small-screen) {
+    .usa-grid {
+      padding: 0;
+    }
+  }
+}
+.usa-hero-callout {
+  min-width: 100%;
+  @media screen and (min-width: $medium-large-screen){
+    min-width: 55%;
+  }
+  h2 {
+    font-size: 2.2rem;
+    font-family: $font-serif;
+    font-weight: bold;
+    line-height: 1.5;
+
+    @media screen and (min-width: $small-screen) {
+      font-size: 2.5rem;
+    }
+    &:after {
+      content: "";
+      width: 80px;
+      height: 5px;
+      background-color: $color-primary-alt-light;
+      border-radius: 20px;
+      display: block;
+      margin-top: $space-3x;
+      margin-bottom: $space-3x;
+    }
+  }
+  p {
+    font-size: 1.9rem;
+    line-height: 1.5;
+    @media screen and (min-width: $small-screen) {
+      font-size: $h4-font-size;
+    }
+  }
+  .usa-button.usa-button-outline {
+    padding: $space-2x;
+    font-size: 1.9rem;
+    font-weight: normal;
+    margin-right: 0;
+  }
+}
+
+.hero-unit_button-group {
+  @media screen and (min-width: 515px) {
+    display: flex;
+  }
+  font-size: 1.9rem;
+  .usa-button {
+    @media screen and (min-width: 515px) {
+      flex-grow: 1;
+      display: inline;
+      width: auto;
+      margin-top: 0;
+    }
+    margin-top: 1rem;
+  }
+  span {
+    flex-grow: 1;
+    line-height: 1;
+    text-align: center;
+    padding: $space-2x;
+    @media screen and (max-width: 515px) {
+      display: none;
+    }
+  }
+}

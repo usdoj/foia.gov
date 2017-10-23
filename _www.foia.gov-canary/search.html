@@ -26,15 +26,12 @@
 </head>
 
 <body>
-<!-- TODO: Remove this div when we dump the gradient. -->
-
-<div id="background">
-
 <!-- Start Header -->
 <script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOJ"></script>
 <script type="text/javascript" src="/scripts/breakout.js"></script>
-
-  <!-- Gov banner BEGIN -->
+<a class="usa-skipnav" href="#main">Skip to main content</a>
+<header class="usa-header usa-header-extended" role="banner" style="background-color: white;">
+<!-- Gov banner BEGIN -->
 <div class="usa-banner">
   <div class="usa-accordion">
     <div class="usa-banner-header">
@@ -77,33 +74,108 @@
 </div>
 <!-- DOJ banner END -->
 
-    <div class="skip"><a href="#main">Skip to Main Content</a>|<a href="#footerLinks">Skip to Footer</a></div>
-  <div id="headNav" class="usa-grid-full">
-    <div class="usa-width-one-third"><a href="/"><img src="/images/foia-title-final.jpg" alt="FOIA.gov" width="330" height="80" class="foiaTitle" /></a></div>
-    <div class="usa-width-two-thirds">
-       <ul class="usa-unstyled-list">
-         <li><a href="/news.html">News</a></li>
-         <li><a href="/faq.html">FAQs</a></li>
-         <li><a href="/index-es.html">en Espa&ntilde;ol</a></li>
-         <li><a href="/feedback.html">Feedback</a></li>
-         <li><a href="/report-makerequest.html">FOIA Contacts</a></li>
-      </ul>
+  <div class="usa-navbar">
+    <button class="usa-menu-btn">Menu</button>
+    <div class="usa-logo" id="logo">
+      <em class="usa-logo-text">
+        <a href="/" accesskey="1" title="Home">
+          <img src="/images/legacylogoonwhite.png" alt="Foia.gov">
+          <h1 class="usa-header-title">FOIA.gov</h1>
+        </a>
+      </em>
     </div>
   </div>
-  <div id="tabs" class="usa-grid-full">
-    <div id="tabnav">
-      <ul>
-        <li><a href="/" class="home"><p>Home</p></a></li>
-        <li><a href="/request/" class="request"><p>Request</p></a></li>
-        <li><a href="/data.html" class="data"><p>Data</p></a></li>
-        <li><a href="/reports.html" class="reports"><p>Reports</p></a></li>
-        <li><a href="/search.html" class="find selected"><p>Find</p></a></li>
-        <li><a href="/about.html" class="about"><p>Learn</p></a></li>
+  <nav role="navigation" class="usa-nav">
+    <div class="usa-nav-inner">
+      <button class="usa-nav-close">
+        <img src="/assets/img/close.svg" alt="close">
+      </button>
+      <ul class="usa-nav-primary usa-accordion">
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/"><span>Home</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/request/"><span>Request</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/data.html"><span>Data</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/reports.html"><span>Reports</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/search.html"><span>Find</span></a>
+          </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/about.html"><span>Learn</span></a>
+          </li>
+        
+      
       </ul>
+      <div class="usa-nav-secondary">
+        <!-- TODO: Uncomment this when we lose the Search page -->
+        <!-- <form class="usa-search usa-search-small js-search-form" action="/search/">
+          <div role="search">
+            <label class="usa-sr-only" for="search-field-small">Search site</label>
+            <input id="search-field-small" type="search" name="q">
+            <button type="submit">
+              <span class="usa-sr-only">Search</span>
+            </button>
+          </div>
+        </form>-->
+        <ul class="usa-unstyled-list usa-nav-secondary-links">
+          <!-- TODO: Uncomment this when we lose the Search page -->
+          <!--<li class="js-search-button-container">
+            <button class="usa-header-search-button js-search-button">Search</button>
+          </li>-->
+          
+          <li>
+            <a href="/news.html"><span>News</span></a>
+          </li>
+          
+          <li>
+            <a href="/glossary.html"><span>Glossary</span></a>
+          </li>
+          
+          <li>
+            <a href="/faq.html"><span>FAQs</span></a>
+          </li>
+          
+          <li>
+            <a href="/index-es.html"><span>en Espa&ntilde;ol</span></a>
+          </li>
+          
+          <li>
+            <a href="/feedback.html"><span>Feedback</span></a>
+          </li>
+          
+          <li>
+            <a href="/report-makerequest.html"><span>FOIA Contacts</span></a>
+          </li>
+          
+        </ul>
+      </div>
     </div>
-  </div>
-
-
+  </nav>
+</header>
+<div class="usa-overlay"></div>
 
 <!-- End Header -->
 
@@ -167,10 +239,6 @@
 <div class="clear"></div>
 
     </div>
-<!-- TODO: Remove this div when we dump the gradient. -->
-
-</div>
-
 </div>
 <!-- Start Footer -->
 

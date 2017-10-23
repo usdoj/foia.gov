@@ -14,8 +14,7 @@ class AgencyComponentStore extends Store {
     this.state = {
       agencies: new Map(),
       agencyComponents: new List(),
-      agency: null,
-      selectedAgency: null,
+      agencyComponent: new AgencyComponent(),
     };
   }
 
@@ -55,14 +54,19 @@ class AgencyComponentStore extends Store {
         break;
       }
 
-      case types.REQUEST_AGENCY_CHANGE: {
-        this.state.selectedAgency = payload.agency || null;
-        this.__emitChange();
-        break;
-      }
+      case types.AGENCY_COMPONENT_RECEIVE: {
+        const { agencyComponent } = this.state;
+        let formFields = [];
+        if (payload.agencyComponent.request_form) {
+          formFields = AgencyComponent.parseWebformElements(payload.agencyComponent.request_form);
+        }
 
-      case types.REQUEST_RECEIVE_AGENCY: {
-        this.state.agency = payload.agency;
+        Object.assign(this.state, {
+          agencyComponent: agencyComponent.merge(
+            payload.agencyComponent,
+            { formFields },
+          ),
+        });
         this.__emitChange();
         break;
       }
