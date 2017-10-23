@@ -76,6 +76,7 @@ describe('JsonApi', () => {
         data: [
           {
             id: '1',
+            type: 'agency_component',
             attributes: {
               name: 'General Services Administration',
             },
@@ -109,6 +110,7 @@ describe('JsonApi', () => {
     it('parses the result', () => {
       expect(result).to.deep.equal([{
         id: '1',
+        type: 'agency_component',
         name: 'General Services Administration',
         links: {
           self: 'https://example.com/jsonapi/1',
@@ -136,7 +138,7 @@ describe('JsonApi', () => {
       beforeEach(() => {
         jsonapi.get
           .returns(jsonApiResponse({
-            data: [{ id: '1', attributes: { name: 'gsa' }, links: {} }],
+            data: [{ id: '1', type: 'agency_component', attributes: { name: 'gsa' }, links: {} }],
             links: {},
           }));
 
@@ -151,7 +153,7 @@ describe('JsonApi', () => {
       it('calls calls progress spy with the parsed page', () => {
         expect(progressSpy).to.have.been.calledOnce;
         expect(progressSpy).to.have.been.calledWith([
-          { id: '1', name: 'gsa', links: {} },
+          { id: '1', type: 'agency_component', name: 'gsa', links: {} },
         ]);
       });
     });
@@ -160,13 +162,13 @@ describe('JsonApi', () => {
       beforeEach(() => {
         jsonapi.get
           .onFirstCall().returns(jsonApiResponse({
-            data: [{ id: '1', attributes: { name: 'gsa' }, links: {} }],
+            data: [{ id: '1', type: 'agency', attributes: { name: 'gsa' }, links: {} }],
             links: {
               next: '/path?offset=1',
             },
           }))
           .onSecondCall().returns(jsonApiResponse({
-            data: [{ id: '2', attributes: { name: 'doj' }, links: {} }],
+            data: [{ id: '2', type: 'agency', attributes: { name: 'doj' }, links: {} }],
             links: {
               prev: '/path?offset=0',
             },
@@ -184,10 +186,10 @@ describe('JsonApi', () => {
       it('calls calls progress spy with each parsed page', () => {
         expect(progressSpy).to.have.been.calledTwice;
         expect(progressSpy).to.have.been.calledWith([
-          { id: '1', name: 'gsa', links: {} },
+          { id: '1', type: 'agency', name: 'gsa', links: {} },
         ]);
         expect(progressSpy).to.have.been.calledWith([
-          { id: '2', name: 'doj', links: {} },
+          { id: '2', type: 'agency', name: 'doj', links: {} },
         ]);
       });
     });
