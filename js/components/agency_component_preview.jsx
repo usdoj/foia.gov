@@ -11,6 +11,7 @@ import { AgencyComponent } from '../models';
 function AgencyComponentPreview({ agencyComponent }) {
   const description = AgencyComponent.agencyMission(agencyComponent);
   const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
+
   debugger;
   return (
     <div className="agency-preview usa-grid-full">
@@ -36,11 +37,16 @@ function AgencyComponentPreview({ agencyComponent }) {
         }
 
         <h4>
-          The records or information you&apos;re looking for may already be public.
+          The records or information you&rsquo;re looking for may already be public.
         </h4>
-        <p>You can find out by reaching out to the agency or by visiting
-        their <a href={agencyComponent.website.uri}>website</a> or
-        FOIA <a href={agencyComponent.reading_rooms[0].uri}>reading room</a>.</p>
+        <p>You can find out by reaching out to the agency
+        { agencyComponent.website.uri &&
+          <span>or by visiting their <a href={agencyComponent.website.uri}>website</a></span>
+        }
+        { agencyComponent.reading_rooms[0].uri &&
+          <span>or by visiting their FOIA <a href={agencyComponent.reading_rooms[0].uri}>reading room</a></span>
+        }
+        .</p>
       </div>
       <div className="usa-width-one-half">
         <h4>Contact</h4>
