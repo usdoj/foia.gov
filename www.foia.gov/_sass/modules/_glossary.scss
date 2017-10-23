@@ -1,0 +1,104 @@
+// Borrowed from FEC
+$background-color: $color-primary-darkest;
+$z-glossary: 9000; // uswds navigation
+
+.glossary {
+  @include transition(right, .3s);
+  background-color: $background-color;
+  bottom: 0;
+  color: $color-gray-lightest;
+  max-width: 30rem;
+  overflow-y: scroll;
+  padding: 3rem;
+  position: fixed;
+  top: 0;
+  width: 75%;
+  z-index: $z-glossary;
+
+  &[aria-hidden='true'] {
+    display: block !important;
+    right: -100%;
+  }
+
+  &[aria-hidden='false'] {
+    @include transition(right, .3s);
+    right: 0;
+  }
+
+  .glossary-close {
+    background-color: $background-color;
+    background-image: url('data:image/svg+xml;charset=utf8, %3Csvg%20%20fill%3D%27%23ffffff%27%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.053%205.856a1.234%201.234%200%200%200-1.747-1.745l-3.9%203.895h.353L5.857%204.11a1.234%201.234%200%200%200-1.746%201.745l3.9%203.896v-.353l-3.9%203.895a1.234%201.234%200%200%200%201.746%201.745l3.9-3.895h-.353l3.9%203.895c.23.23.543.36.874.36a1.234%201.234%200%200%200%20.873-2.105l-3.9-3.895v.354l3.9-3.894z%22%2F%3E%3C%2Fsvg%3E');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    border: 0;
+    color: $color-white;
+    height: 4rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 4rem;
+
+    &:active,
+    &:hover {
+      background-color: $background-color;
+      color: $color-white;
+    }
+  }
+
+  h2 {
+    color: $color-gray-lightest;
+  }
+
+  .label {
+    color: $color-gray-lightest;
+  }
+}
+
+.glossary__term {
+  background-color: $background-color;
+  background-image: url('data:image/svg+xml;charset=utf8, %3Csvg%20%20fill%3D%27%23ffffff%27%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%2020c5.523%200%2010-4.477%2010-10S15.523%200%2010%200%200%204.477%200%2010s4.477%2010%2010%2010zm4.208-9.063h-3.175v3.126a.945.945%200%200%201-.953.937.945.945%200%200%201-.952-.938v-3.124H5.953A.945.945%200%200%201%205%2010c0-.518.426-.938.953-.938h3.175V5.938c0-.518.426-.938.952-.938s.953.42.953.938v3.125h3.175c.526%200%20.952.42.952.937a.945.945%200%200%201-.952.938z%22%2F%3E%3C%2Fsvg%3E');
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+  border-color: $color-white;
+  color: $color-white;
+  padding-left: 0;
+  text-align: left;
+  width: 100%;
+
+  &[aria-expanded=true] {
+    background-image: url('data:image/svg+xml;charset=utf8, %3Csvg%20%20fill%3D%27%23ffffff%27%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%2020c5.523%200%2010-4.477%2010-10S15.523%200%2010%200%200%204.477%200%2010s4.477%2010%2010%2010zm1.033-9.125h-5.08A.945.945%200%200%201%205%209.937C5%209.42%205.426%209%205.953%209H14.208c.526%200%20.952.42.952.938a.945.945%200%200%201-.952.937h-3.175z%22%2F%3E%3C%2Fsvg%3E');
+  }
+
+  &:active,
+  &:hover {
+    background-color: $background-color;
+    color: $color-white;
+  }
+}
+
+.glossary-toggle {
+  border-radius: 0;
+  bottom: 0;
+  margin: 0;
+  position: fixed;
+  right: 2rem;
+}
+
+.glossary-search {
+  font-size: 1.4rem;
+  height: 3.3rem;
+  padding: 0 .7em;
+  width: calc(100% - 1.4em);
+}
+
+.glossary-search-label {
+  font-size: 1.4rem;
+}
+
+
+// Term classes
+[data-term] {
+  cursor: pointer;
+  text-decoration: underline dotted;
+}

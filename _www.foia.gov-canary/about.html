@@ -23,6 +23,7 @@
 <script type="text/javascript" src="/scripts/breakout.js"></script>
 
 <script src="/assets/js/uswds.bundle.js"></script>
+<script src="/assets/js/glossary.bundle.js"></script>
 
 <script type="text/javascript" src="/qtip/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
@@ -158,10 +159,6 @@
           </li>
           
           <li>
-            <a href="/glossary.html"><span>Glossary</span></a>
-          </li>
-          
-          <li>
             <a href="/faq.html"><span>FAQs</span></a>
           </li>
           
@@ -270,6 +267,17 @@
 </div>
 
 <!-- End Footer -->
+
+<button class="js-glossary-toggle glossary-toggle">Glossary</button>
+<div id="glossary" class="glossary" aria-describedby="glossary-title" aria-hidden="true">
+  <button title="Close glossary" class="js-glossary-close glossary-close">
+    <span class="usa-sr-only">Hide glossary</span>
+  </button>
+  <h2 id="glossary-title">Glossary</h2>
+  <label class="glossary-search-label" for="glossary-search">Filter glossary terms</label>
+  <input id="glossary-search" class="js-glossary-search glossary-search" type="search" placeholder="e.g. agency component">
+  <ul class="js-glossary-list usa-unstyled-list"></ul>
+</div>
 
 
 <script type="text/javascript" src="/about.js"></script>
