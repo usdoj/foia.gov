@@ -87,7 +87,11 @@ class AgencyComponentSelector extends Component {
   render() {
     return (
       <form>
-        <input type="text" ref={(input) => { this.typeaheadInput = input; }} />
+        <input
+          type="text"
+          placeholder="Type agency name"
+          ref={(input) => { this.typeaheadInput = input; }}
+        />
       </form>
     );
   }
