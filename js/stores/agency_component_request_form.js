@@ -7,7 +7,7 @@ import rf from '../util/request_form';
 import agencyComponentStore from './agency_component';
 
 
-class RequestFormStore extends Store {
+class AgencyComponentRequestFormStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
 
@@ -28,9 +28,16 @@ class RequestFormStore extends Store {
     switch (payload.type) {
       case types.AGENCY_COMPONENT_RECEIVE: {
         dispatcher.waitFor([agencyComponentStore.getDispatchToken()]);
+        if (!payload.agencyComponent.request_form) {
+          break;
+        }
+
         const { requestForms } = this.state;
         const agencyComponent = agencyComponentStore.getAgencyComponent(payload.agencyComponent.id);
         const requestForm = rf.sectionedFormFromAgencyComponent(agencyComponent.toJS());
+
+        // Set the form id for submission
+        requestForm.id = payload.agencyComponent.request_form.formId;
 
         Object.assign(this.state, {
           requestForms: requestForms.set(agencyComponent.id, requestForm),
@@ -44,9 +51,9 @@ class RequestFormStore extends Store {
   }
 }
 
-const requestFormStore = new RequestFormStore(dispatcher);
-export default requestFormStore;
+const agencyComponentRequestFormStore = new AgencyComponentRequestFormStore(dispatcher);
+export default agencyComponentRequestFormStore;
 
 export {
-  RequestFormStore,
+  AgencyComponentRequestFormStore,
 };

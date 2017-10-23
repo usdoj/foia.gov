@@ -6,23 +6,6 @@ const FORM_SECTIONS = [
     title: 'Requester contact',
     description: 'Complete the information describing yourself and how the agency can contact you about your request.',
     fieldNames: [
-      'name_prefix_title',
-      'name_first',
-      'name_middle_initial_middle',
-      'name_last',
-      'name_suffix',
-      'address_line1',
-      'address_line2',
-      'address_city',
-      'address_state_province',
-      'address_country',
-      'address_zip_postal_code',
-      'phone_number',
-      'fax_number',
-      'suffix',
-      'company_organization',
-      'email',
-
       // deprecated names https://github.com/18F/beta.foia.gov/issues/188
       'prefix_title',
       'first_name',
@@ -36,6 +19,21 @@ const FORM_SECTIONS = [
       'state_province',
       'zip_postal_code',
 
+      'name_prefix_title',
+      'name_first',
+      'name_middle_initial_middle',
+      'name_last',
+      'name_suffix',
+      'address_line1',
+      'address_line2',
+      'address_city',
+      'address_state_province',
+      'address_country',
+      'address_zip_postal_code',
+      'phone_number',
+      'fax_number',
+      'company_organization',
+      'email',
     ],
   },
 
@@ -154,6 +152,16 @@ function sectionedFormFromAgencyComponent(agencyComponent) {
   };
 }
 
+function mergeSectionFormData(formData) {
+  return Object.keys(formData)
+    .reduce(
+      (form, sectionId) => Object.assign(form, formData[sectionId]),
+      {},
+    );
+}
+
+
 export default {
+  mergeSectionFormData,
   sectionedFormFromAgencyComponent,
 };
