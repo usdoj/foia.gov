@@ -5,7 +5,7 @@ layout: default
 <div id="subLeft">
   {% if page.subnav == "es" %}
   <img src="{{ site.baseurl }}/images/faq-title-es.png" alt="{{ page.title | default:'About' }}" class="subTitle" />
-  {% else if page.subnav == "opengov" %}
+  {% elsif page.subnav == "opengov" %}
   <img src="{{ site.baseurl }}/images/about-title.gif" alt="{{ page.title | default:'About' }}" class="subTitle" />
   {% else %}
   <img src="{{ site.baseurl }}/images/{{ page.subnav | default:'about' }}-title.gif" alt="{{ page.title | default:'About' }}" class="subTitle" />
