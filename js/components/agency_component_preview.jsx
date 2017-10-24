@@ -12,7 +12,6 @@ function AgencyComponentPreview({ agencyComponent }) {
   const description = AgencyComponent.agencyMission(agencyComponent);
   const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
 
-  debugger;
   return (
     <div className="agency-preview usa-grid-full">
       <div className="usa-width-one-whole">
@@ -27,11 +26,11 @@ function AgencyComponentPreview({ agencyComponent }) {
           </div>
         }
 
-        { agencyComponent.request_time_stats &&
+        { agencyComponent.request_data_year &&
           <div>
             <h4>Median processing time (estimates)</h4>
             <AgencyComponentProcessingTime
-              requestTimeStats={agencyComponent.request_time_stats}
+              agencyComponent={agencyComponent}
             />
           </div>
         }
@@ -43,7 +42,7 @@ function AgencyComponentPreview({ agencyComponent }) {
         { agencyComponent.website.uri &&
           <span>or by visiting their <a href={agencyComponent.website.uri}>website</a></span>
         }
-        { agencyComponent.reading_rooms[0].uri &&
+        { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length &&
           <span>or by visiting their FOIA <a href={agencyComponent.reading_rooms[0].uri}>reading room</a></span>
         }
         .</p>
