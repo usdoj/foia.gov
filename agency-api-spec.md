@@ -357,7 +357,13 @@ these fields might appear for GSA.
 ```
 
 
-### Success Response
+### Responses
+
+Responses should be in `application/json` format and include an appropriate HTTP
+status code.
+
+
+#### Success Response
 
 **Code:** | 200 OK
 :--- |:---
@@ -365,7 +371,7 @@ these fields might appear for GSA.
 **Meaning:** | Confirm that the request was created and return an `id` that can uniquely identify the request in the case management system. The status tracking number (required) will be sent to the requester and used to track a request in your case management system.
 
 
-### Error Response
+#### Error Response
 
 **Code:** | 404 NOT FOUND
 :--- |:---
