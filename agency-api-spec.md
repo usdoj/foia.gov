@@ -73,6 +73,13 @@ JSON payload that contains the form fields.
 
 #### Request fields
 
+**Field:** | `request_id`
+:--- |:---
+**Type:** | integer
+**Description:** | A unique identifier for the request within the Portal.
+**Required:** | yes
+**Example:** | `1543`
+
 **Field:** | `agency_name`
 :--- |:---
 **Type:** | text
