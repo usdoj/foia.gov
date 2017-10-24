@@ -183,26 +183,26 @@ JSON payload that contains the form fields.
 
 **Field:** | `processing_fees`
 :--- |:---
-**Type:** | money
+**Type:** | string
 **Description:** | The amount in USD that a requester is willing to pay in order to cover costs related to this request.
 **Required:** | no
-**Example:** | `25.00`
+**Example:** | `"25.00"`
 
-**Field:** | `fee_waiver`
+**Field:** | `request_fee_waiver`
 :--- |:---
 **Type:** | string
 **Description:** | The requester would like to request that fees associated with the request be waived.
 **Required:** | no, defaults to `"no"`
 **Example:** | `"no"`
 
-**Field:** | `expedited`
+**Field:** | `request_expedited_processing`
 :--- |:---
 **Type:** | string
 **Description:** | The requester would like this request to be processed on an expedited basis.
 **Required:** | no, defaults to `"no"`
 **Example:** | `"no"`
 
-**Field:** | `organization`
+**Field:** | `company_organization`
 :--- |:---
 **Type:** | string
 **Description:** | Name of the organization or company on which the requester is making a request on behalf of.
@@ -216,24 +216,24 @@ JSON payload that contains the form fields.
 **Required:** | yes
 **Example:** | `"george.washington@example.com"`
 
-**Field:** | `phone`
+**Field:** | `phone_number`
 :--- |:---
 **Type:** | string
 **Description:** | Phone number of the requester.
 **Required:** | no
 **Example:** | `"+15551234567"`
 
-**Field:** | `fax`
+**Field:** | `fax_number`
 :--- |:---
 **Type:** | string
 **Description:** | Fax number of the requester.
 **Required:** | no
 **Example:** | `"+15551234589"`
 
-**Field:** | `attachments`
+**Field:** | `attachments_supporting_documentation`
 :--- |:---
 **Type:** | array<object>
-**Description:** | Documents or attachments supporting the request provided by the requester.
+**Description:** | Documents or attachments supporting the request provided by the requester. The file data is base64 encoded. Most programming languages include in their standard library a method to decode base64 messages.
 **Required:** | no
 **Example:** | `[{"filename": "letter.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}]`
 
@@ -249,9 +249,10 @@ JSON payload that contains the form fields.
 
 ```
 {
+    "request_id": 1534,
     "agency": "Department of Justice",
     "agency_component_name": "Office of Information Policy",
-    "attachments": [
+    "attachments_supporting_documentation": [
         {
             "content_type": "application/pdf",
             "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg==",
@@ -259,25 +260,22 @@ JSON payload that contains the form fields.
             "filesize": 27556
         }
     ],
-    "description": "I am seeking records pertaining to ...",
+    "request_description": "I am seeking records pertaining to ...",
     "email": "george.washington@example.com",
-    "expedited": false,
-    "fax": "+15551234589",
-    "fee_waiver": false,
-    "max_fee": 25.0,
-    "organization": "Newspaper Inc",
-    "phone": "+15551234567",
-    "requester_address": {
-        "address1": "1800 F Street",
-        "address2": "Suite 400",
-        "city": "Mount Vernon",
-        "state": "Virginia",
-        "zip": "98273"
-    },
-    "requester_name": {
-        "first": "George",
-        "last": "Washington"
-    }
+    "request_expedited_processing": "no",
+    "fax_number": "+15551234589",
+    "request_fee_waiver": "no",
+    "processing_fees": 25.0,
+    "company_organization": "Newspaper Inc",
+    "phone_number": "+15551234567",
+    "address_line1": "1800 F Street",
+    "address_line2": "Suite 400",
+    "address_city": "Mount Vernon",
+    "address_state_province": "Virginia",
+    "address_country": "United States",
+    "address_zip_postal_code": "98273",
+    "name_first": "George",
+    "name_last": "Washington"
 }
 ```
 
@@ -298,7 +296,7 @@ endpoint.
 ##### Example
 
 Consider this sample [agency metadata
-file](https://github.com/18F/foia/blob/master/GSA.json). A truncated version is
+file](https://github.com/18F/beta.foia.gov/blob/master/GSA.json). A truncated version is
 provided below.
 
 ```
@@ -347,10 +345,8 @@ these fields might appear for GSA.
 
 ```
 {
-    "requester_name": {
-        "first": "George",
-        "last": "Washington"
-    },
+    "name_first": "George",
+    "name_last": "Washington"
     // ... standard request fields ...
 
     // agency component specific fields appear within payload
@@ -387,9 +383,10 @@ these fields might appear for GSA.
 ```
 $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency.gov/components/234/requests <<EOF
 {
+    "request_id": 1534,
     "agency": "General Services Administration",
     "agency_component_name": "General Services Administration (General)",
-    "attachments": [
+    "attachments_supporting_documentation": [
         {
             "content_type": "application/pdf",
             "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg==",
@@ -398,27 +395,23 @@ $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency
         }
     ],
     "contract_number": "5547",
-    "description": "I am seeking records pertaining to ...",
+    "request_description": "I am seeking records pertaining to ...",
     "email": "george.washington@example.com",
-    "expedited": false,
-    "fax": "+15551234589",
-    "fee_waiver": false,
-    "max_fee": 25.0,
-    "organization": "Newspaper Inc",
-    "phone": "+15551234567",
+    "request_expedited_processing": "no",
+    "fax_number": "+15551234589",
+    "request_fee_waiver": false,
+    "processing_fees": 25.0,
+    "company_organization": "Newspaper Inc",
+    "phone_number": "+15551234567",
     "region": "9",
     "request_origin": "Individual/Self",
-    "requester_address": {
-        "address1": "1800 F Street",
-        "address2": "Suite 400",
-        "city": "Mount Vernon",
-        "state": "Virginia",
-        "zip": "98273"
-    },
-    "requester_name": {
-        "first": "George",
-        "last": "Washington"
-    }
+    "address_line1": "1800 F Street",
+    "address_line2": "Suite 400",
+    "address_city": "Mount Vernon",
+    "address_state_province": "Virginia",
+    "address_zip_postal_code": "98273",
+    "name_first": "George",
+    "name_last": "Washington"
 }
 EOF
 ```
