@@ -127,49 +127,49 @@ JSON payload that contains the form fields.
 
 **Field:** | `name_first`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | First name of the requester.
 **Required:** | no
 **Example:** | `"George"`
 
 **Field:** | `name_last`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Last name of the requester.
 **Required:** | no
 **Example:** | `"Washington"`
 
 **Field:** | `address_line1`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Requester’s street mailing address.
 **Required:** | no
 **Example:** | `"1800 F Street"`
 
 **Field:** | `address_line2`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Line 2 for requester’s mailing address.
 **Required:** | no
 **Example:** | `"Suite 400"`
 
 **Field:** | `address_city`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | City for requester’s mailing address.
 **Required:** | no
 **Example:** | `"Mount Vernon"`
 
 **Field:** | `address_state_province`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | State or province for requester’s mailing address.
 **Required:** | no
 **Example:** | `"Virginia"`
 
 **Field:** | `address_zip_postal_code`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Zip code or postal code for requester’s mailing address.
 **Required:** | no
 **Example:** | `"98273"`
@@ -190,17 +190,17 @@ JSON payload that contains the form fields.
 
 **Field:** | `fee_waiver`
 :--- |:---
-**Type:** | boolean
+**Type:** | string
 **Description:** | The requester would like to request that fees associated with the request be waived.
-**Required:** | no, defaults to `false`
-**Example:** | `false`
+**Required:** | no, defaults to `"no"`
+**Example:** | `"no"`
 
 **Field:** | `expedited`
 :--- |:---
-**Type:** | boolean
+**Type:** | string
 **Description:** | The requester would like this request to be processed on an expedited basis.
-**Required:** | no, defaults to `false`
-**Example:** | `false`
+**Required:** | no, defaults to `"no"`
+**Example:** | `"no"`
 
 **Field:** | `organization`
 :--- |:---
