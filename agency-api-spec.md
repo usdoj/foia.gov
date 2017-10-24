@@ -362,7 +362,7 @@ these fields might appear for GSA.
 **Code:** | 200 OK
 :--- |:---
 **Content:** | `{ "id" : 33, "status_tracking_number": "doj-1234" }`
-**Meaning:** | Confirm that the request was created and return an `id` that can uniquely identify the request in the case management system. The (optional) status tracking number can be used by a requester to track a request.
+**Meaning:** | Confirm that the request was created and return an `id` that can uniquely identify the request in the case management system. The status tracking number (required) will be sent to the requester and used to track a request in your case management system.
 
 
 ### Error Response
