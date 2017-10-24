@@ -1,75 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head>
-<meta http-equiv="cache-control" content="no-cache" />
-<meta http-equiv="PRAGMA" content="NO-CACHE" />
-<link rel="stylesheet" type="text/css" href="foia-style.css" />
-<style>
-/*Change class to Indicate Current Active Page*/
-#tabnav li a.about {background: url(images/tab-about_on.png) 0 0 no-repeat; color: #121b26; }
-.spotlight {float:left; margin: 0 30px 30px 0;}
-.spotText {width: 270px; float: right; padding: 0; margin: -20px 0 0 0;}
-#subPlain a {font-style:normal;}
+---
+title: "News"
+navigation: about
+layout: default
+grid: 'grid-legacy'
+use-uswds: false
+use-legacy-scripts: true
+---
 
-.spotlight1 {float:left; margin: 0 30px 30px 0;}
-.articlaimageborder {height:130px;width:140px;float:left;}
-</style>
-<script type="text/javascript" src="foiareport.js"></script>
-<script type="text/javascript" src="FusionCharts.js"></script>
-<title>FOIA.gov - Freedom of Information Act: News</title>
-</head>
-<body>
-
-<!-- Start FOIA Template -->
-<div id="background">
-<div id="container">
-<!-- Start Header -->
-<script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOJ"></script>
-<script type="text/javascript" src="scripts/breakout.js"></script>
-<div id="header">
-  <div class="skip"><a id="skip-link" href="news.html#mainContent">Skip to Main Content</a>|<a id="skip-link" href="news.html#footerLinks">Skip to Footer</a></div>
-  <div id="doj"><img src="images/doj-top-logo.jpg" alt="United States Department of Justice" width="360" height="35" class="headerDOJ" /></div>
-  <div id="headNav">
-    <div><a href="index.html"><img src="images/foia-title-final.jpg" alt="Foia.gov" width="330" height="80" class="foiaTitle" /></a></div>
-    <div class="right">
-      <ul>
-        <li><a href="news.html">News</a></li>
-		<li><a href="glossary.html">Glossary</a></li>
-		<li><a href="faq.html">FAQs</a></li>
-		<li><a href="index-es.html">en Espa&ntilde;ol</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-		<li><a href="report-makerequest.html">FOIA Contacts</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="clear"></div>
-  <div id="tabs">
-    <div id="tabnav">
-      <ul>
-       <li><a href="index.html" class="home"><p>Home</p></a></li>
-       <li><a href="data.html" class="data"><p>Data</p></a></li>
-       <li><a href="reports.html" class="reports"><p>Reports</p></a></li>
-	   <li><a href="search.html" class="find"><p>Find</p></a></li>
-       <li><a href="about.html" class="about"><p>Learn</p></a></li>
-      </ul>
-    </div>
-    
-	<a id="mainContent"></a>
-  </div>
-</div>
-
-<!-- End Header -->
-
-<!-- Start Main Page -->
-<div id="main">
-<!-- Start Content -->
-<div id="content">
   <div id="subPlain">
-   <img src="images/news-title.gif" alt="FOIA News" /><div class="rssFeed"><a href="iso/opa/foia/foiarss.xml"><span>RSS Feed</span></a></div>
+   <img src="images/news-title.gif" alt="FOIA News"><div class="rssFeed"><a href="iso/opa/foia/foiarss.xml"><span>RSS Feed</span></a></div>
    <a name="top" id="top"></a><h1><a href="news-spotlight.html">FOIA Spotlight</a></h1>
 
     <div style="width: 440px; float: left;">
-   <a href="news-spotlight.html#cfpbupdatedatabase"><img src="images/logo-cfpb.jpg" alt="CFPB agency seal" width="140" height="100" class="spotlight1" /></a><a href="news-spotlight.html#notablefigures"></a>
+   <a href="news-spotlight.html#cfpbupdatedatabase"><img src="images/logo-cfpb.jpg" alt="CFPB agency seal" width="140" height="100" class="spotlight1"></a><a href="news-spotlight.html#notablefigures"></a>
     <div class="spotText">
       <h3><a href="news-spotlight.html#cfpbupdatedatabase">CFPB Continues to Update Consumer Complaint Database</a></h3>
       <p>Database now contains over 176,000 entries of consumer complaints regarding products and services handled by the agency.</p>
@@ -78,7 +21,7 @@
     </div>
     <div class="clear"></div>
 
-    <a href="news-spotlight.html#fsispublicyoutube"><img src="images/logo-usda.jpg" alt="USDA agency seal" class="spotlight1" width="140" /></a><a href="news-spotlight.html#stevejobs"></a>
+    <a href="news-spotlight.html#fsispublicyoutube"><img src="images/logo-usda.jpg" alt="USDA agency seal" class="spotlight1" width="140"></a><a href="news-spotlight.html#stevejobs"></a>
     <div class="spotText">
       <h3><a href="news-spotlight.html#fsispublicyoutube">FSIS Releases Public Service YouTube Series</a></h3>
        <p>The series on food safety details practical steps to reduce the risk of food poisoning.</p>
@@ -88,14 +31,14 @@
     </div>
 
     <div style="float:right; width: 440px;">
-    <a href="news-spotlight.html#usaidfinancialdata"><img src="images/logo-usaid.jpg" alt="USAID agency Seal" width="140" height="119" class="spotlight1"  /></a><a href="news-spotlight.html#flight812"></a>
+    <a href="news-spotlight.html#usaidfinancialdata"><img src="images/logo-usaid.jpg" alt="USAID agency Seal" width="140" height="119" class="spotlight1"></a><a href="news-spotlight.html#flight812"></a>
     <div class="spotText">
       <h3><a href="news-spotlight.html#usaidfinancialdata">USAID Releases Transaction-Level Financial Data for First Time</a></h3>
       <p>Public can download and search data on investment recipients.</p>
       <p><a href="news-spotlight.html#usaidfinancialdata" class="viewmore">Learn more</a></p>
     </div>
     <div class="clear"></div>
-    <a href="news-spotlight.html#boemrenewableenergy"><img src="images/logo-doi.jpg" alt="Interior agency seal" class="spotlight1"  width="140px" /></a><a href="news-spotlight.html#whitehousebrew"></a>
+    <a href="news-spotlight.html#boemrenewableenergy"><img src="images/logo-doi.jpg" alt="Interior agency seal" class="spotlight1" width="140px"></a><a href="news-spotlight.html#whitehousebrew"></a>
     <div class="spotText">
       <h3><a href="news-spotlight.html#boemrenewableenergy">BOEM Launches Interactive Renewable Energy Activity Map</a></h3>
       <p>Site displays and describes information on activities across the United States.</p>
@@ -104,7 +47,7 @@
   </div>
     </div>
 	<div class="clear"></div>
-    <p align="right"><a href="news-spotlight.html" class="viewmore">View more FOIA Spotlight stories &raquo;</a></p>
+    <p align="right"><a href="news-spotlight.html" class="viewmore">View more FOIA Spotlight stories &rsquo;</a></p>
     <div class="clear"></div>
     <div class="lineshadow"></div>
     <div class="clear">&nbsp;</div>
@@ -112,43 +55,7 @@
     <h2><a name="Aug2016"></a>August 2016</h2>
 <h3><a href="https://www.justice.gov/oip/blog/second-meeting-chief-foia-officers-council">Second Meeting of the Chief FOIA Officers Council </a></h3><p>Posted: August 18, 2016</p><h3><a href="https://www.justice.gov/oip/blog/launch-new-chief-foia-officer-council-page">Launch of New Chief FOIA Officer Council Page</a></h3><p>Posted: August 17, 2016</p><h3><a href="https://www.justice.gov/oip/blog/foia-summer-program-continues-foia-public-liaison-and-foia-requester-service-center">FOIA Summer Program Continues with FOIA Public Liaison and FOIA Requester Service Center Training</a></h3><p>Posted: August 1, 2016</p><h2><a name="July2016"></a>July 2016</h2>
 <h3><a href="https://www.justice.gov/oip/blog/cfo-council-holds-first-meeting-white-house">CFO Council Holds First Meeting at the White House </a></h3><p>Posted: July 27, 2016</p><h3><a href="https://www.justice.gov/oip/blog/inaugural-chief-foia-officers-council-meeting">Inaugural Chief FOIA Officers Council Meeting </a></h3><p>Posted: July 22, 2016</p><h3><a href="https://www.justice.gov/oip/blog/oip-releases-guidance-new-requirements-foia-response-letters">OIP Releases Guidance on the New Requirements for FOIA Response Letters</a></h3><p>Posted: July 18, 2016</p>
-    <p align="right"><a href="news-archive.html" class="viewmore" style="margin: 0 0 0 30px;">View the full archive of FOIA News &raquo;</a></p>
+    <p align="right"><a href="news-archive.html" class="viewmore" style="margin: 0 0 0 30px;">View the full archive of FOIA News &rsquo;</a></p>
     <div class="clear">&nbsp;</div>
     </div>
-  </div>
-  <div class="clear"></div>
-
-<!-- End Content -->
-</div>
-<!-- End Main Page -->
-
-<!-- Start Footer -->
-<div id="footer"><a href="index.html"><img src="images/foia-footer.gif" alt="foia.gov" /><span>Foia.gov</span></a>
-  <div id="footerNav">   
-	<a id="footerLinks"></a>
-  <ul>
-    <li><a href="sitemap.html">Site Map</a></li>
-	<li><a href="https://www.justice.gov/accessibility/accessibility-information">Accessibility</a></li>
-	<li><a href="foia-info.html">FOIA</a></li>
-	<li><a href="https://www.justice.gov/doj/privacy-policy">Privacy Policy</a></li>
-	<li><a href="https://www.justice.gov/legalpolicies">Policies &amp; Disclaimers</a></li>
-	<li><a href="quality.html">Information Quality</a></li>
-	<li><a href="developer.html">Developer Resources</a></li>
-	<li><a href="http://www.justice.gov">Justice.gov</a></li>
-	<li><a href="http://www.usa.gov">USA.gov</a></li>
-  </ul>
-  </div>
-  <div class="clear">&nbsp;</div>
-  <div align="center">
-    <a href="http://www.data.gov/"><img src="images/datagov-footer.gif" alt="data.gov" /><span>Data.gov</span></a>
-	<a href="http://www.whitehouse.gov/open"><img src="images/opengov-footer.gif" alt="whitehouse.gov/open" /><span>Whitehouse.gov/open</span></a>
-	<a href="http://www.usaspending.gov/"><img src="images/usaspending-footer.gif" alt="usaspending.gov" /><span>USASpending.gov</span></a>
-    <a href="http://www.recovery.gov/"><img src="images/recoverygov-footer.gif" alt="recovery.gov" /><span>Recovery.gov</span></a>
-  </div>
-</div>
-<!-- End Footer -->
-</div>
-</div>
-<!-- End FOIA Template -->
-</body>
-</html>
+  
