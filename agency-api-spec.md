@@ -26,6 +26,37 @@ This draft does not address:
 * size or rate limits
 * error message/status code related to exceeded the rate limit
 * any subsequent calls to the internal FOIA.gov API (to capture info needed to subsequently retrieve status, for example)
+* detailed security controls
+
+
+### Security controls
+
+Once we have confidence in our data models and the touch points for
+interoperability, we will be working with the security team at DOJ to ensure the
+Portal meets the federal requirements for security controls. For now, we include
+only some preliminary ideas based on the agency feedback we’ve received.
+
+Each agency will be responsible for implementing security controls on their own
+end as per their agency regulations and authority to operate. This may include
+configuration of a web application firewall, anti-virus scanning of
+file attachments, and validation of HTTP headers.
+
+
+#### HTTPS
+
+Agency endpoints should be restricted to HTTPS only with valid TLS certificates.
+The Portal will validate your certificate as part of the HTTPS request.
+
+
+#### Authentication
+
+To ensure that your API and case management system aren't publicly writable, we
+recommend restricting your API access to the FOIA.gov Portal. This can be done
+via a shared secret HTTP header token. You will provide this secret token to the
+Portal though configuration. Every request from the Portal will include this
+token, and your API should validate that it is the correct token.
+
+Services like [api.data.gov](https://api.data.gov/about/) provide this authentication for you.
 
 
 ### URL
@@ -314,13 +345,6 @@ these fields might appear for GSA.
 :--- |:---
 **Content:** | `{ "code" : "500", "message" : "internal error", "description": "description of the error that is specific to the case management system"}`
 **Meaning:** | The case management system encountered an internal error when trying to create the FOIA request (error payload includes a place for a system-specific message, to make it easier to track down problems)
-
-
-### Authentication
-
-To ensure that your API and case management system aren't publicly exposed, we recommend restricting your API access to the FOIA.gov portal. This is done via a secret HTTP header token. You will provide this secret token to the portal though configuration. Every request from the portal will include this token, and your API should validate that it is the correct token.
-
-Services like [api.data.gov](https://api.data.gov/about/) provide this authentication for you.
 
 
 ### Sample request
