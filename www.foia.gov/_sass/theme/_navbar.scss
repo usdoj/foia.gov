@@ -1,0 +1,17 @@
+.usa-nav-submenu {
+  a,
+  a:visited {
+    color: $color-white;
+    &:hover,
+    &:active {
+      text-decoration: none;
+      color: $color-primary-darkest;
+      background-color: $color-primary-alt-light;
+    }
+  }
+}
+
+.usa-nav-primary button {
+  font-weight: $font-normal;
+  color: $color-primary-darkest;
+}
