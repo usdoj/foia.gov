@@ -1,12 +1,13 @@
 .usa-nav-submenu {
+  margin-left: 1.5rem; // to match the padding on the parent element
+  background-color: $color-white;
   a,
   a:visited {
-    color: $color-white;
     &:hover,
     &:active {
       text-decoration: none;
       color: $color-primary-darkest;
-      background-color: $color-primary-alt-light;
+      background-color: $color-primary-alt-lightest;
     }
   }
 }
@@ -15,3 +16,34 @@
   font-weight: $font-normal;
   color: $color-primary-darkest;
 }
+
+.usa-nav-secondary {
+  font-size: $small-font-size;
+  font-weight: $font-normal;
+  a {
+
+  }
+}
+
+
+.usa-nav-primary a,
+.usa-nav-primary > li > a,
+.usa-nav-primary button,
+.usa-nav-secondary-links a {
+  color: $color-primary-darkest;
+  font-weight: $font-normal;
+  -moz-osx-font-smoothing: grayscale; // to match .usa-nav-link styles sans hover
+  -webkit-font-smoothing: antialiased;
+  &:hover,
+  &:active,
+  &:visited,
+  &:visited:active,
+  &:visited:hover {
+    color: $color-primary-darkest;
+    span {
+      border-color: $color-primary-alt-light;
+    }
+  }
+}
+
+
