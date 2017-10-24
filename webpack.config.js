@@ -27,6 +27,7 @@ module.exports = {
   plugins,
   entry: {
     landing: './js/landing.jsx',
+    glossary: './js/glossary.js',
     request: './js/request.jsx',
     uswds: './js/uswds.js',
   },

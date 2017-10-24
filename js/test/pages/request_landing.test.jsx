@@ -1,8 +1,8 @@
+import 'test/setup';
+
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { Map } from 'immutable';
-import sinon from 'sinon';
 
 import RequestLandingPage from '../../pages/request_landing';
 import agencyComponentStore from '../../stores/agency_component';

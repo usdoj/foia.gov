@@ -6,6 +6,7 @@ import AgencyComponentProcessingTime from './agency_component_processing_time';
 import FoiaPersonnel from './foia_personnel';
 import FoiaSubmissionAddress from './foia_submission_address';
 import PrettyUrl from './pretty_url';
+import ProgressBar from './progress_bar';
 
 
 class Tabs extends Component {
@@ -56,6 +57,7 @@ class Tabs extends Component {
   }
   render() {
     const agencyComponent = this.props.agencyComponent.toJS();
+    const requestForm = this.props.requestForm;
     const personnel = this.props.agencyComponent.foiaPersonnel().toJS();
 
     return (
@@ -68,38 +70,7 @@ class Tabs extends Component {
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
             <section>
-              <ul className="sidebar_progress-bar">
-                <li>
-                  <a className="step_active" href="">
-                    <span>Requester contact</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Request description</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Supporting documentation</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Processing fees</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Delivery method</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Submission and confirmation</span>
-                  </a>
-                </li>
-              </ul>
+              <ProgressBar sections={requestForm.sections} />
             </section>
             <section>
               <h2>Tips for submitting</h2>
@@ -107,10 +78,10 @@ class Tabs extends Component {
                 <li>
                   <h5>The person to reach out to about your FOIA request is:</h5>
                   <FoiaPersonnel foiaPersonnel={personnel[0]} />
-                  <p>You can ask FOIA personnel about anything related to your
-                  request, including whether what you’re asking for is clear.
-                  You can also reach out to follow up on your request after
-                  it’s been submitted.</p>
+                  <p>You can ask <span data-term="foia">FOIA</span> personnel
+                    about anything related to your request, including whether
+                    what you’re asking for is clear.  You can also reach out to
+                    follow up on your request after it’s been submitted.</p>
                 </li>
                 <li>
                   <h5>The description of records you are requesting is
@@ -131,11 +102,9 @@ class Tabs extends Component {
           <section className={this.state.selectedTab === 1 ? 'tab_active' : ''}>
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
-            { agencyComponent.request_time_stats &&
+            { agencyComponent.request_data_year &&
               <section className="submission-help_processing-time">
-                <AgencyComponentProcessingTime
-                  requestTimeStats={agencyComponent.request_time_stats}
-                />
+                <AgencyComponentProcessingTime agencyComponent={agencyComponent} />
               </section>
             }
             <section className="submission-help_agency-mission">
@@ -173,6 +142,7 @@ class Tabs extends Component {
 
 Tabs.propTypes = {
   agencyComponent: PropTypes.instanceOf(AgencyComponent).isRequired,
+  requestForm: PropTypes.object.isRequired,
 };
 
 export default Tabs;

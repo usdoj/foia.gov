@@ -11,14 +11,14 @@
       <h2><span class="usa-hero-callout-alt">{{ page.hero.hed }}</span></h2>
       <p>{{ page.hero.text }}</p>
       <div class="hero-unit_button-group">
-        <a class="usa-button usa-button-outline" href="#">Start your request</a>
+        <a class="usa-button usa-button-outline" href="#agency-search">Start your request</a>
         <span>or</span>
-        <a class="usa-button usa-button-outline" href="#">Learn more about FOIA</a>
+        <a class="usa-button usa-button-outline" href="#learn-more">Learn more about FOIA</a>
       </div>
     </div>
   </div>
 </section>
-<section class="usa-grid three-column-summary">
+<section id="learn-more" class="usa-grid three-column-summary">
   <h2>{{ page.section_one.hed }}</h2>
   <p class="secondary-text">If you know you’re ready to submit a request, <a href="#agency-search">continue below</a></p>
   {% for col in page.section_one.cols %}
@@ -37,6 +37,7 @@
     </div>
 </div>
 {% include footer.html %}
+{% include glossary.html %}
 {% comment %}
 `page.init` is used for the legacy pages.
 `page.bundle` is used for the non-legacy pages.

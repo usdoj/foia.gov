@@ -23,3 +23,21 @@
     color: $color-primary-darkest;
   }
 }
+
+.foia-request-form_inline-progress {
+  color: $color-gray-light;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.foia-request-form_nav-top {
+  max-width: 46rem; // Align with input elements
+  text-align: right;
+
+  // Total hack, if we're following a field-object it is probably a section.
+  // Each section already has it's own return to top link, so this is probably
+  // a duplicate link at the very bottom of the form.
+  .field-object + & {
+    display: none;
+  }
+}

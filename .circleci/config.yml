@@ -168,10 +168,10 @@ workflows:
             - test
           filters:
             branches:
-              only: /^release-/
+              only: /release-.*/
       - deploy-staging:
           requires:
             - build-staging
           filters:
             branches:
-              only: /^release-/
+              only: /release-.*/
