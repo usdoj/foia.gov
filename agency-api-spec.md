@@ -213,7 +213,7 @@ JSON payload that contains the form fields.
 :--- |:---
 **Type:** | string
 **Description:** | Email address of the requester.
-**Required:** | yes
+**Required:** | no
 **Example:** | `"george.washington@example.com"`
 
 **Field:** | `phone_number`
