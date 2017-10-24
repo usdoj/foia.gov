@@ -24,14 +24,21 @@ timezone: America/New_York
 
 navigation:
   primary:
-    - href: /
-      title: Home
     - href: /about.html
       title: Learn about FOIA
+      children:
+        - href: /about.html
+          title: What is FOIA?
+        - href: /how-to.html
+          title: How to make a FOIA request
+        - href: /report-makerequest.html
+          title: Where to make a FOIA request
+        - href: /opengov.html
+          title: Additional government resources
+        - href: /faq.html
+          title: Frequently asked questions
     - href: /
       title: Before you request
-    - href: /request/
-      title: Create a request
     - href: /data.html
       title: Agency FOIA data
 
