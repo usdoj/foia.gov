@@ -78,7 +78,7 @@ function processFile(filepath) {
 
   stream.write(`navigation: ${navigation}\n`);
   stream.write(`layout: default
-grid: ''
+grid: 'grid-legacy'
 use-uswds: false
 use-legacy-scripts: true
 ---\n`);
