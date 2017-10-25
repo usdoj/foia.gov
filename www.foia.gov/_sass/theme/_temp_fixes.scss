@@ -112,4 +112,11 @@ input.deleteAgency:hover{
   width: calc(1040px - 6rem); // We want a fixed grid because the legacy content is not responsive. Chose 980px because it almost matches usa-grid on large screen sizes (1040 - padding)
 }
 
+/* qtip for glance.html */
+.qtip .qtip-content{
+   padding: 15px;
+   overflow: hidden;
+}
+.qtip .qtip-content .qtip-title,.qtip-cream .qtip-content .qtip-title{background-color: #f8f8f8;}
+
 /* end temp styles */
