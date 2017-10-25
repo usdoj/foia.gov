@@ -1,14 +1,21 @@
 .panel_reverse-color {
   background-color: $color-primary-alt-light;
   a {
-    border-bottom: none;
-    font-weight: bold;
+    font-weight: $font-normal;
+    border-bottom: 1px solid $color-primary-darkest;
     &:hover,
     &:active,
     &:visited:hover,
     &:visited:active {
       color: $color-primary-darkest;
       border-bottom: 1px solid $color-primary-darkest;
+    }
+    &.usa-button {
+      &:hover,
+      &:active,
+      &:visited {
+        color: $color-white;
+      }
     }
   }
 }
