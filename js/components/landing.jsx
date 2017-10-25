@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { requestActions } from 'actions';
 import AgencyComponentSelector from 'components/agency_component_selector';
@@ -25,7 +26,7 @@ class LandingComponent extends Component {
         .then(requestActions.receiveAgencyComponent)
         .then(() => {
           const component = agencyComponentStore.getAgencyComponent(agencyComponent.id);
-          this.setState({agencyComponent: component});
+          this.setState({ agencyComponent: component });
         });
     };
 
@@ -40,7 +41,9 @@ class LandingComponent extends Component {
         />
         {
           !this.state.agencyComponent &&
-          <p>Not all agencies can receive FOIA requests created on FOIA.gov. The information for where to submit a request to those agencies will be available after you select an agency above.</p>
+          <p>Not all agencies can receive FOIA requests created on FOIA.gov.
+            The information for where to submit a request to those agencies
+             will be available after you select an agency above.</p>
         }
         {
           this.state.agencyComponent &&
@@ -50,5 +53,10 @@ class LandingComponent extends Component {
     );
   }
 }
+
+LandingComponent.propTypes = {
+  agencyComponents: PropTypes.object.isRequired,
+  agencies: PropTypes.object.isRequired,
+};
 
 export default LandingComponent;

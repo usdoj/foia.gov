@@ -39,12 +39,13 @@ function AgencyComponentPreview({ agencyComponent }) {
           The records or information you&rsquo;re looking for may already be public.
         </h4>
         <p>You can find out by reaching out to the agency
-        { agencyComponent.website.uri &&
-          <span> or by visiting their <a href={agencyComponent.website.uri}>website</a></span>
-        }
-        { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length &&
-          <span> or by visiting their FOIA <a href={agencyComponent.reading_rooms[0].uri}>reading room</a></span>
-        }
+          { agencyComponent.website.uri &&
+            <span> or by visiting their <a href={agencyComponent.website.uri}>website</a></span>
+          }
+          { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length &&
+            <span> or by visiting their FOIA
+              <a href={agencyComponent.reading_rooms[0].uri}> reading room</a></span>
+          }
         .</p>
       </div>
       <div className="usa-width-one-half">
@@ -52,7 +53,7 @@ function AgencyComponentPreview({ agencyComponent }) {
         <PrettyUrl href={agencyComponent.website.uri} />
         <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
         <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
-        <a className="usa-button usa-button-primary" href={ requestUrl }>Start FOIA request</a>
+        <a className="usa-button usa-button-primary" href={requestUrl}>Start FOIA request</a>
       </div>
     </div>
   );

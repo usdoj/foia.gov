@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
-import LandingComponent from '../components/landing';
 import { requestActions } from 'actions';
+import LandingComponent from '../components/landing';
 import agencyComponentStore from '../stores/agency_component';
 
 
