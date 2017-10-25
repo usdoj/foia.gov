@@ -18,7 +18,7 @@ h1 {
 }
 
 // Subhead 1
-h2 {
+%heading-2 {
   font-size: $h2-font-size-mobile;
   font-family: $font-sans;
   font-weight: normal;
@@ -27,6 +27,14 @@ h2 {
   @media all and (min-width: $small-screen) {
     font-size: $h2-font-size;
   }
+}
+
+h2 {
+  @extend %heading-2;
+}
+
+.heading-2 {
+  @extend %heading-2;
 }
 
 // Heading 2
@@ -63,7 +71,7 @@ h5 {
   font-size: $h5-font-size;
   font-family: $font-sans;
   line-height: $h5-leading;
-  font-weight: 500;
+  font-weight: $font-weight-4;
   color: $color-primary-darkest;
 }
 

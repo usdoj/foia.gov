@@ -1,3 +1,13 @@
 .agency-preview_components {
   list-style: none;
 }
+
+.agency-preview_component {
+  cursor: pointer;
+  font-size: $small-font-size;
+
+  &:hover {
+    font-weight: $font-weight-3;
+    border-bottom: 1px solid $color-primary-alt;
+  }
+}
