@@ -17,6 +17,7 @@ build:
 
 clean:
 	rm -rf www.foia.gov/assets
+	rm -rf _site
 
 serve:
 	npm run watch &
