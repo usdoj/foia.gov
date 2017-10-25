@@ -109,7 +109,7 @@ input.deleteAgency:hover{
 
 .grid-legacy {
   margin: auto;
-  width: 980px;
+  width: calc(1040px - 6rem); // We want a fixed grid because the legacy content is not responsive. Chose 980px because it almost matches usa-grid on large screen sizes (1040 - padding)
 }
 
 /* end temp styles */
