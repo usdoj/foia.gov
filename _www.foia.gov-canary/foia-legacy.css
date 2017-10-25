@@ -520,11 +520,3 @@ input.checkBox {height:15px; width: 15px; border: 1px solid #d9d6d6;}
     width:200px;
     float:left;
 }
-
-
-/* qtip for glance.html */
-.qtip .qtip-content{
-   padding: 15px;
-   overflow: hidden;
-}
-.qtip .qtip-content .qtip-title,.qtip-cream .qtip-content .qtip-title{background-color: #f8f8f8;}
