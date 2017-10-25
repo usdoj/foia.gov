@@ -39,6 +39,10 @@ class LandingComponent extends Component {
           onAgencyChange={agencyChange}
         />
         {
+          !this.state.agencyComponent &&
+          <p>Not all agencies can receive FOIA requests created on FOIA.gov. The information for where to submit a request to those agencies will be available after you select an agency above.</p>
+        }
+        {
           this.state.agencyComponent &&
           <AgencyComponentPreview agencyComponent={this.state.agencyComponent.toJS()} />
         }
