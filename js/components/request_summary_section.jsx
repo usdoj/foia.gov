@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import RequestSummaryContactSection from './request_summary_contact_section';
 import RequestSummaryDescriptionSection from './request_summary_description_section';
+import RequestSummarySupportingDocumentationSection from './request_summary_supporting_documentation_section';
 
 
 // Returns the field label from the requestForm for human readable display
@@ -40,6 +41,14 @@ function RequestSummarySection({ section, formData, requestForm }) {
   if (section.id === 'request_description') {
     return (
       <RequestSummaryDescriptionSection
+        formData={formData}
+      />
+    );
+  }
+
+  if (section.id === 'supporting_docs') {
+    return (
+      <RequestSummarySupportingDocumentationSection
         formData={formData}
       />
     );
