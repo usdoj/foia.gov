@@ -204,6 +204,13 @@ JSON payload that contains the form fields.
 **Required:** | no, defaults to `"no"`
 **Example:** | `"no"`
 
+**Field:** | `request_category`
+:--- |:---
+**Type:** | string
+**Description:** | The claimed category of the requester.
+**Required:** | no
+**Example:** | `"individual"`
+
 **Field:** | `request_expedited_processing`
 :--- |:---
 **Type:** | string
