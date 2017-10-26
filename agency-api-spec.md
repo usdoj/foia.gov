@@ -158,7 +158,7 @@ JSON payload that contains the form fields.
 **Field:** | `address_line2`
 :--- |:---
 **Type:** | string
-**Description:** | Line 2 for requester’s mailing address.
+**Description:** | Apartment, suite, or additional information for requester’s mailing address.
 **Required:** | no
 **Example:** | `"Suite 400"`
 
@@ -166,6 +166,13 @@ JSON payload that contains the form fields.
 :--- |:---
 **Type:** | string
 **Description:** | City for requester’s mailing address.
+**Required:** | no
+**Example:** | `"Mount Vernon"`
+
+**Field:** | `address_country`
+:--- |:---
+**Type:** | string
+**Description:** | Country for requester’s mailing address.
 **Required:** | no
 **Example:** | `"Mount Vernon"`
 
@@ -432,6 +439,7 @@ $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency
     "address_line1": "1800 F Street",
     "address_line2": "Suite 400",
     "address_city": "Mount Vernon",
+    "address_country": "United States",
     "address_state_province": "Virginia",
     "address_zip_postal_code": "98273",
     "name_first": "George",
