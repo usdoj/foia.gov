@@ -59,7 +59,7 @@ data:
       label: Request description
       type: textarea
       required: true
-    - name: request_fee_waiver
+    - name: fee_waiver
       label: Request fee waiver
       type: radio
     - name: request_expedited_processing

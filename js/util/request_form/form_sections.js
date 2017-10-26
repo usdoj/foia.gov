@@ -60,9 +60,8 @@ const FORM_SECTIONS = [
     title: 'Processing fees',
     description: 'Under certain circumstances you may need to pay for processing fees.',
     fieldNames: [
-      'request_processing_fees',
+      'fee_waiver',
       'fee_willing_amount',
-      'request_fee_waiver',
       'fee_waiver_explanation',
     ],
   },

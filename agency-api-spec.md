@@ -197,7 +197,7 @@ JSON payload that contains the form fields.
 **Required:** | no
 **Example:** | `"25.00"`
 
-**Field:** | `request_fee_waiver`
+**Field:** | `fee_waiver`
 :--- |:---
 **Type:** | string
 **Description:** | The requester would like to request that fees associated with the request be waived.
@@ -274,7 +274,7 @@ JSON payload that contains the form fields.
     "email": "george.washington@example.com",
     "request_expedited_processing": "no",
     "fax_number": "+15551234589",
-    "request_fee_waiver": "no",
+    "fee_waiver": "no",
     "fee_willing_amount": 25.0,
     "company_organization": "Newspaper Inc",
     "phone_number": "+15551234567",
@@ -416,7 +416,7 @@ $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency
     "email": "george.washington@example.com",
     "request_expedited_processing": "no",
     "fax_number": "+15551234589",
-    "request_fee_waiver": false,
+    "fee_waiver": "no",
     "fee_willing_amount": 25.0,
     "company_organization": "Newspaper Inc",
     "phone_number": "+15551234567",
