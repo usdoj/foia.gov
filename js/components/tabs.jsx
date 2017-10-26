@@ -9,19 +9,6 @@ import PrettyUrl from './pretty_url';
 import ProgressBar from './progress_bar';
 
 
-function agencyMission(agencyComponent) {
-  if (agencyComponent.description) {
-    return agencyComponent.description.value;
-  }
-
-  if (agencyComponent.agency.description) {
-    return agencyComponent.agency.description.value;
-  }
-
-  return '';
-}
-
-
 class Tabs extends Component {
   constructor(props) {
     super(props);
@@ -122,7 +109,7 @@ class Tabs extends Component {
             }
             <section className="submission-help_agency-mission">
               <h5>Agency mission</h5>
-              <p>{ agencyMission(agencyComponent) }</p>
+              <p>{ AgencyComponent.agencyMission(agencyComponent) }</p>
             </section>
             <section>
               <h5 className="submission-help_first-party-requests">

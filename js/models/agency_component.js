@@ -71,6 +71,18 @@ class AgencyComponent extends Record(defaults) {
       personnel(this.public_liaisons, 'Public Liaison'),
     );
   }
+
+  static agencyMission(agencyComponent) {
+    if (agencyComponent.description) {
+      return agencyComponent.description.value;
+    }
+
+    if (agencyComponent.agency.description) {
+      return agencyComponent.agency.description.value;
+    }
+
+    return '';
+  }
 }
 
 export default AgencyComponent;
