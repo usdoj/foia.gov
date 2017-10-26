@@ -211,6 +211,13 @@ JSON payload that contains the form fields.
 **Required:** | no, defaults to `"no"`
 **Example:** | `"no"`
 
+**Field:** | `fee_waiver_explanation`
+:--- |:---
+**Type:** | string
+**Description:** | The justification for the fee waiver.
+**Required:** | no
+**Example:** | `"As a journalist organization, I am requesting these records on behalf of the public and intend to make these records accesible to the public."`
+
 **Field:** | `request_category`
 :--- |:---
 **Type:** | string
