@@ -76,9 +76,11 @@ class AgencyComponentStore extends Store {
           agencyComponents: this.state.agencyComponents
             .delete(index) // remove the existing component
             .push(agencyComponent.merge(
-              new AgencyComponent(payload.agencyComponent),
-              // Avoid resetting formFields just because they weren't included in the request
-              { formFields: formFields.length ? formFields : agencyComponent.formFields },
+              new AgencyComponent(Object.assign(
+                // Avoid resetting formFields just because they weren't included in the request
+                { formFields: formFields.length ? formFields : agencyComponent.formFields },
+                payload.agencyComponent,
+              )),
             )),
         });
         this.__emitChange();

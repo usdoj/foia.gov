@@ -58,7 +58,7 @@ class Tabs extends Component {
   render() {
     const agencyComponent = this.props.agencyComponent.toJS();
     const requestForm = this.props.requestForm;
-    const personnel = this.props.agencyComponent.foiaPersonnel().toJS();
+    const personnel = this.props.agencyComponent.foiaPersonnel();
 
     return (
       <div className="sidebar">
