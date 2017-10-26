@@ -54,9 +54,11 @@ To ensure that your API and case management system aren't publicly writable, we
 recommend restricting your API access to the FOIA.gov Portal. This can be done
 via a shared secret HTTP header token. You will provide this secret token to the
 Portal though configuration. Every request from the Portal will include this
-token, and your API should validate that it is the correct token.
+token in the HTTP header `FOIA-API-SECRET`, and your API should validate that it
+is the correct token.
 
-Services like [api.data.gov](https://api.data.gov/about/) provide this authentication for you.
+Services like [api.data.gov](https://api.data.gov/about/) provide this
+authentication for you and give you additional optoins.
 
 
 ### URL
