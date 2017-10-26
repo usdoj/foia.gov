@@ -8,15 +8,17 @@
 <meta name="dc.creator" content="Freedom of Information Act (FOIA)" />
 <meta name="dc.language" scheme="ISO639" content="en-us" />
 <meta name="dc.date.created" content="2011-03-14" />
-{% for css in page.stylesheets %}<link rel="stylesheet" type="text/css" href="{{ css }}.css" />{% endfor %}
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/foia-style.css" />
+{% for css in page.stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/{{ css }}.css" />
+{% endfor %}
+{% if page.use-legacy-scripts %}
+{% include legacy/head.html %}
+{% endif %}
 {% for script in page.scripts %}
 <script type="text/javascript" src="{{ script }}"></script>
 {% endfor %}
 <script src="{{ site.baseurl }}/assets/js/uswds.bundle.js"></script>
 <script src="{{ site.baseurl }}/assets/js/glossary.bundle.js"></script>
-{% unless page.use-uswds %}
-{% include legacy/head.html %}
-{% endunless %}
-<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/foia-style.css" />
 <title>FOIA.gov - Freedom of Information Act{% if page.title %}: {{ page.title }}{% endif %}</title>
 </head>

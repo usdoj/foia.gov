@@ -10,15 +10,23 @@
 <meta name="dc.creator" content="Freedom of Information Act (FOIA)" />
 <meta name="dc.language" scheme="ISO639" content="en-us" />
 <meta name="dc.date.created" content="2011-03-14" />
-<link rel="stylesheet" type="text/css" href="reports.css" />
+<link rel="stylesheet" type="text/css" href="/foia-style.css" />
+
+<link rel="stylesheet" type="text/css" href="/reports.css" />
+
+
+<script type="text/javascript" src="/qtip/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.1/swfobject.js"></script>
+<script type="text/javascript" src="/tipVideo.js"></script>
+<script type="text/javascript" src="/foiareport.js"></script>
+<script type="text/javascript" src="/FusionCharts.js"></script>
+
+
 
 <script type="text/javascript" src="foiaFunctions.js"></script>
 
 <script type="text/javascript" src="agencyWork.js"></script>
-
-<script type="text/javascript" src="foiareport.js"></script>
-
-<script type="text/javascript" src="FusionCharts.js"></script>
 
 <script type="text/javascript" src="foiaAjax.js"></script>
 
@@ -26,12 +34,6 @@
 
 <script src="/assets/js/uswds.bundle.js"></script>
 <script src="/assets/js/glossary.bundle.js"></script>
-
-<script type="text/javascript" src="/qtip/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="/qtip/jquery.qtip-1.0.0-rc3.min.js"></script>
-
-
-<link rel="stylesheet" type="text/css" href="/foia-style.css" />
 <title>FOIA.gov - Freedom of Information Act: Data</title>
 </head>
 
@@ -187,17 +189,7 @@
 
 <div class="usa-grid" id="main">
     <div id="content">
-    <!-- Start Popup Window -->
-<div id="popupMsg" class="popupWindow" style="display:none;">
-	<div class="popupClose"><a href="javascript:popupCloseToData();">close</a><a href="javascript:popupCloseToData();"><img src="images/popup-close.gif" alt="Close Window" /></a></div>
-	<div class="clear"></div>
-	<div class="popupBody" id="popupMsgBody">
-		<!-- Popup Body -->
-	</div>
-</div>
-<!-- End Popup Window -->
-
-  <div id="dataTable">
+      <div id="dataTable">
     <div class="topWindow" >
     <!-- Create Report Box -->
     <div id="createReport">
@@ -217,7 +209,7 @@
       <div class="reportText">
         <p><strong>Instructions:</strong> You can   explore the <span data-term="foia">FOIA</span> data that makes up an agency&rsquo;s annual FOIA report.   Search for data from a single agency or compare data from multiple   agencies. Just follow these steps:</p>
         <ol>
-          <li>At   the &ldquo;Select Report&rdquo; column, click on a category, such as &ldquo;Requests&rdquo; or   &ldquo;Administration&rdquo;&nbsp; to select the type of report you would like to run.   Learn more about these categories in the<a href="glossary.html">Glossary</a>. </li>
+          <li>At   the &ldquo;Select Report&rdquo; column, click on a category, such as &ldquo;Requests&rdquo; or   &ldquo;Administration&rdquo;&nbsp; to select the type of report you would like to run.   Learn more about these categories in the <a href="glossary.html">glossary</a>. </li>
           <li>Use   the (+) or (-) signs appearing next to the text box to select the   agency/agencies you want to look up, selecting up to four at a time. </li>
           <li>Choose the year you would like to see data from. </li>
           <li>Click &ldquo;Create Report.&rdquo;&nbsp; Scroll down to see your customized report. </li>
@@ -847,8 +839,6 @@ function toggleDiv(section){
 </div>
 <!-- Start Footer -->
 
-<div id="shadowFilter" class="blockout" style="display:none;"></div>
-<div id="exitMsg" class="exitMsg" style="display:none;"></div>
 <div class="footer usa-grid-full">
   <a href="/"><img src="/images/foia-footer.gif" alt="FOIA.gov" /><span>Foia.gov</span></a>
   <div id="footerNav">
@@ -887,6 +877,20 @@ function toggleDiv(section){
   <input id="glossary-search" class="js-glossary-search glossary-search" type="search" placeholder="e.g. agency component">
   <ul class="js-glossary-list usa-unstyled-list"></ul>
 </div>
+
+
+<div id="shadowFilter" class="blockout" style="display:none;"></div>
+<div id="exitMsg" class="exitMsg" style="display:none;"></div>
+<!-- Start Popup Window -->
+<div id="popupMsg" class="popupWindow" style="display:none;">
+       <div class="popupClose"><a href="javascript:popupCloseToData();">close</a><a href="javascript:popupCloseToData();"><img src="/images/popup-close.gif" alt="Close Window" /></a></div>
+       <div class="clear"></div>
+       <div class="popupBody" id="popupMsgBody">
+               <!-- Popup Body -->
+               
+       </div>
+</div>
+<!-- End Popup Window -->
 
 
 
