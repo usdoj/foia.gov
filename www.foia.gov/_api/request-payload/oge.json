@@ -20,7 +20,7 @@
   "name_prefix_title":"Mr",
   "name_suffix":"Jr",
   "phone_number":"1231234567",
-  "processing_fees":"",
+  "fee_willing_amount":"25",
   "request_id": 1534,
   "request_category":"individual",
   "request_description":"I would like information about...",

@@ -190,7 +190,7 @@ JSON payload that contains the form fields.
 **Required:** | yes
 **Example:** | `"I am seeking records pertaining to ..."`
 
-**Field:** | `processing_fees`
+**Field:** | `fee_willing_amount`
 :--- |:---
 **Type:** | string
 **Description:** | The amount in USD that a requester is willing to pay in order to cover costs related to this request.
@@ -275,7 +275,7 @@ JSON payload that contains the form fields.
     "request_expedited_processing": "no",
     "fax_number": "+15551234589",
     "request_fee_waiver": "no",
-    "processing_fees": 25.0,
+    "fee_willing_amount": 25.0,
     "company_organization": "Newspaper Inc",
     "phone_number": "+15551234567",
     "address_line1": "1800 F Street",
@@ -417,7 +417,7 @@ $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency
     "request_expedited_processing": "no",
     "fax_number": "+15551234589",
     "request_fee_waiver": false,
-    "processing_fees": 25.0,
+    "fee_willing_amount": 25.0,
     "company_organization": "Newspaper Inc",
     "phone_number": "+15551234567",
     "region": "9",

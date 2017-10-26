@@ -45,7 +45,7 @@ data:
       label: State
     - name: zip
       label: Zipcode
-    - name: processing_fees
+    - name: fee_willing_amount
       label: Processing fees
       help_text: What amount in fees are you willing to pay for this request?
       example: 25
