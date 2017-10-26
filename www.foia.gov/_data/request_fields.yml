@@ -1,4 +1,11 @@
 ---
+version:
+  name: version
+  type: string
+  description: The version of the API used for determining compatibility. Reserved for future use.
+  required: yes
+  example: '"1.0.0"'
+
 request_id:
   name: request_id
   type: integer
@@ -83,26 +90,47 @@ request_description:
   required: yes
   example: '"I am seeking records pertaining to ..."'
 
-processing_fees:
-  name: processing_fees
+fee_willing_amount:
+  name: fee_willing_amount
   type: string
   description: The amount in USD that a requester is willing to pay in order to cover costs related to this request.
   required: no
   example: '"25"'
 
-request_fee_waiver:
-  name: request_fee_waiver
+fee_waiver:
+  name: fee_waiver
   type: string
   description: The requester would like to request that fees associated with the request be waived.
   required: no, defaults to "no"
   example: '"no"'
 
-request_expedited_processing:
-  name: request_expedited_processing
+fee_waiver_explanation:
+  name: fee_waiver_explanation
+  type: string
+  description: The justification for the fee waiver.
+  required: no
+  example: '"As a journalist organization, I am requesting these records on behalf of the public and intend to make these records accesible to the public."'
+
+request_category:
+  name: request_category
+  type: string
+  description: The claimed category of the requester.
+  required: no
+  example: '"individual"'
+
+expedited_processing:
+  name: expedited_processing
   type: string
   description: The requester would like this request to be processed on an expedited basis.
   required: no, defaults to "no"
   example: '"no"'
+
+expedited_processing_explanation:
+  name: expedited_processing_explanation
+  type: string
+  description: The justification for why expedited processing should be granted.
+  required: no
+  example: '"The request should be given expedited processing because…"'
 
 company_organization:
   name: company_organization
