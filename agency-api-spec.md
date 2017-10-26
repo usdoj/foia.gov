@@ -232,6 +232,13 @@ JSON payload that contains the form fields.
 **Required:** | no, defaults to `"no"`
 **Example:** | `"no"`
 
+**Field:** | `expedited_processing_explanation`
+:--- |:---
+**Type:** | string
+**Description:** | The justification for why expedited processing should be granted.
+**Required:** | no
+**Example:** | `"The request should be given expedited processing because…"`
+
 **Field:** | `company_organization`
 :--- |:---
 **Type:** | string
