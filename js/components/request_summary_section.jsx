@@ -24,29 +24,27 @@ function fieldLabel(requestForm, sectionId, fieldName) {
 
 
 function RequestSummarySection({ section, formData, requestForm }) {
-  const sectionFields = formData[section.id];
+  const sectionFields = formData[section.id] || {};
 
   return (
-    <table className="request-summary_section">
-      <tbody>
-        {
-          // Maintain field ordering as much as possible
-          (section.fieldNames || Object.keys(sectionFields))
-            // Only include fields that actually exist in this form
-            .filter(fieldName => fieldName in sectionFields)
-            .map((fieldName) => {
-              const label = fieldLabel(requestForm, section.id, fieldName);
-              const value = sectionFields[fieldName];
-              return (
-                <tr key={`${section.id}-${fieldName}`}>
-                  <td className="request-summary_label"><strong>{label}</strong></td>
-                  <td>{value}</td>
-                </tr>
-              );
-            })
-        }
-      </tbody>
-    </table>
+    <div className="request-summary_section">
+      {
+        // Maintain field ordering as much as possible
+        (section.fieldNames || Object.keys(sectionFields))
+          // Only include fields that actually exist in this form
+          .filter(fieldName => fieldName in sectionFields && !!sectionFields[fieldName])
+          .map((fieldName) => {
+            const label = fieldLabel(requestForm, section.id, fieldName);
+            const value = sectionFields[fieldName];
+            return (
+              <div key={`${section.id}-${fieldName}`}>
+                <h5 className="request-summary_label">{label}</h5>
+                <div>{value}</div>
+              </div>
+            );
+          })
+      }
+    </div>
   );
 }
 
