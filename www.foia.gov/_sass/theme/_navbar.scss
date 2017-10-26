@@ -18,10 +18,12 @@
 }
 
 .usa-nav-secondary {
-  font-size: $small-font-size;
   font-weight: $font-normal;
   a {
-
+    font-size: $small-font-size;
+  }
+  @media screen and (min-width: $medium-large-screen) {
+    top: -7.3rem;
   }
 }
 

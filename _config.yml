@@ -39,6 +39,8 @@ navigation:
           title: Frequently asked questions
     - href: /
       title: Before you request
+    - href: /
+      title: Create a request
     - href: /data.html
       title: Agency FOIA data
 

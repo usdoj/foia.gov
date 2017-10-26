@@ -44,11 +44,13 @@
       font-size: $h4-font-size;
     }
   }
-  .usa-button.usa-button-outline {
+  a {
+    color: $color-white;
+  }
+  .usa-button.usa-button-primary-alt {
     padding: $space-2x;
-    font-size: 1.9rem;
-    font-weight: normal;
     margin-right: 0;
+    font-size: 1.9rem;
   }
 }
 
@@ -57,6 +59,10 @@
     display: flex;
   }
   font-size: 1.9rem;
+  a {
+    padding-top: $space-2x;
+    margin-bottom: $space-2x;
+  }
   .usa-button {
     @media screen and (min-width: 515px) {
       flex-grow: 1;
