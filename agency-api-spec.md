@@ -106,6 +106,13 @@ JSON payload that contains the form fields.
 
 #### Request fields
 
+**Field:** | `version`
+:--- |:---
+**Type:** | string
+**Description:** | The version of the API used for determining compatibility. Reserved for future use.
+**Required:** | yes
+**Example:** | `"1.0.0"`
+
 **Field:** | `request_id`
 :--- |:---
 **Type:** | integer
@@ -251,6 +258,7 @@ JSON payload that contains the form fields.
 
 ```
 {
+    "version": "1.0.0",
     "request_id": 1534,
     "agency": "Department of Justice",
     "agency_component_name": "Office of Information Policy",
@@ -391,6 +399,7 @@ status code.
 ```
 $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency.gov/components/234/requests <<EOF
 {
+    "version": "1.0.0",
     "request_id": 1534,
     "agency": "General Services Administration",
     "agency_component_name": "General Services Administration (General)",
