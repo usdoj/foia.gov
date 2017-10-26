@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
 
 module.exports = {
   target: 'node',
@@ -16,8 +17,17 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: [path.join(__dirname, 'js'), 'node_modules'],
+    alias: {
+      settings$: path.join(__dirname, 'js', 'settings', 'development.js'),
+    },
   },
 };

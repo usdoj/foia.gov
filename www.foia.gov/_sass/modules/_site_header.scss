@@ -39,6 +39,7 @@
 h1.usa-header-title {
   @media screen and (max-width: $medium-large-screen) {
     font-size: $base-font-size;
+    margin-bottom: 0;
   }
 }
 

@@ -1,26 +1,27 @@
 import { expect } from 'chai';
 
-import metadataToJsonSchema from '../../util/metadata_to_json_schema';
+import wfjs from '../../../util/request_form/webform_to_json_schema';
 
-describe('metadataToJsonSchema()', () => {
-  describe('given metadata with no fields', () => {
-    let metadata;
+
+describe('webformFieldsToJsonSchema()', () => {
+  describe('given no formFields', () => {
+    let formFields;
+    let section;
     let result;
 
     beforeEach(() => {
-      metadata = {
-        abbreviation: 'GSA',
-        components: [{
-          name: 'Headquarters',
-        }],
+      formFields = [];
+      section = {
+        title: 'Requester info',
+        description: 'Enter your contact information.',
       };
 
-      result = metadataToJsonSchema(metadata, 'Headquarters');
+      result = wfjs.webformFieldsToJsonSchema(formFields, section);
     });
 
     describe('jsonSchema', () => {
       it('has a title', () => {
-        expect(result.jsonSchema).to.have.property('title', 'Headquarters');
+        expect(result.jsonSchema).to.have.property('title', section.title);
       });
 
       it('has a type', () => {
@@ -43,33 +44,34 @@ describe('metadataToJsonSchema()', () => {
     });
   });
 
-  describe('given metadata with form fields', () => {
-    let metadata;
+  describe('given simple form fields', () => {
+    let formFields;
+    let section;
     let result;
 
     beforeEach(() => {
-      metadata = {
-        abbreviation: 'GSA',
-        components: [{
-          name: 'Headquarters',
-          form_fields: [{
-            name: 'contract_number',
-            label: 'GS- Contract number',
-            help_text: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
-          }, {
-            name: 'region',
-            label: 'GSA Region',
-            help_text: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
-          }],
-        }],
+      section = {
+        title: 'Ageny info',
+        description: 'Additional information that is helpful for agencies.',
       };
+      formFields = [
+        {
+          name: 'contract_number',
+          title: 'GS- Contract number',
+          description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
+        }, {
+          name: 'region',
+          title: 'GSA Region',
+          description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
+        },
+      ];
 
-      result = metadataToJsonSchema(metadata, 'Headquarters');
+      result = wfjs.webformFieldsToJsonSchema(formFields, section);
     });
 
     describe('jsonSchema', () => {
       it('has a title', () => {
-        expect(result.jsonSchema).to.have.property('title', 'Headquarters');
+        expect(result.jsonSchema).to.have.property('title', section.title);
       });
 
       it('has a type', () => {
@@ -106,46 +108,36 @@ describe('metadataToJsonSchema()', () => {
     });
   });
 
-  describe('given metadata with required fields', () => {
-    let metadata;
+  describe('given required fields', () => {
+    let formFields;
     let result;
 
     beforeEach(() => {
-      metadata = {
-        abbreviation: 'GSA',
-        components: [{
-          name: 'Headquarters',
-          form_fields: [{
-            name: 'contract_number',
-            label: 'GS- Contract number',
-            help_text: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
-          }, {
-            name: 'region',
-            label: 'GSA Region',
-            help_text: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
-          }, {
-            name: 'request_origin',
-            label: 'Request Origin',
-            regs_url: null,
-            help_text: 'Company',
-            required: true,
-            enum: [
-              'Company',
-              'Individual/Self',
-              'Organization',
-            ],
-          }],
-        }],
-      };
+      formFields = [{
+        name: 'contract_number',
+        title: 'GS- Contract number',
+        description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
+      }, {
+        name: 'region',
+        title: 'GSA Region',
+        description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
+      }, {
+        name: 'request_origin',
+        title: 'Request Origin',
+        regs_url: null,
+        description: 'Company',
+        required: true,
+        options: {
+          company: 'Company',
+          individual: 'Individual/Self',
+          organization: 'Organization',
+        },
+      }];
 
-      result = metadataToJsonSchema(metadata, 'Headquarters');
+      result = wfjs.webformFieldsToJsonSchema(formFields);
     });
 
     describe('jsonSchema', () => {
-      it('has a title', () => {
-        expect(result.jsonSchema).to.have.property('title', 'Headquarters');
-      });
-
       it('has a type', () => {
         expect(result.jsonSchema).to.have.property('type', 'object');
       });
@@ -154,7 +146,11 @@ describe('metadataToJsonSchema()', () => {
         expect(result.jsonSchema.properties).to.deep.equal({
           region: { type: 'string' },
           contract_number: { type: 'string' },
-          request_origin: { type: 'string', enum: ['Company', 'Individual/Self', 'Organization'] },
+          request_origin: {
+            type: 'string',
+            enumNames: ['Company', 'Individual/Self', 'Organization'],
+            enum: ['company', 'individual', 'organization'],
+          },
         });
       });
 
@@ -186,50 +182,19 @@ describe('metadataToJsonSchema()', () => {
     });
   });
 
-  describe('given nonexistent department', () => {
-    let metadata;
+  describe('formField properties', () => {
+    let formFields;
     let result;
 
-    beforeEach(() => {
-      metadata = {
-        abbreviation: 'GSA',
-        name: 'General Services Administration',
-        components: [],
-      };
-
-      result = metadataToJsonSchema(metadata, 'nonexistent');
-    });
-
-    describe('jsonSchema', () => {
-      it('title falls back to agency name', () => {
-        expect(result.jsonSchema).to.have.property('title', 'General Services Administration');
-      });
-
-      it('has a type', () => {
-        expect(result.jsonSchema).to.have.property('type', 'object');
-      });
-    });
-  });
-
-  describe('metadata field properties', () => {
-    let metadata;
-    let result;
-
-    describe('given "example" property', () => {
+    describe('given "default_value" property', () => {
       beforeEach(() => {
-        metadata = {
-          abbreviation: 'GSA',
-          components: [{
-            name: 'Headquarters',
-            form_fields: [{
-              name: 'widget',
-              label: 'Widget',
-              example: '1234',
-            }],
-          }],
-        };
+        formFields = [{
+          name: 'widget',
+          title: 'Widget',
+          default_value: '1234',
+        }];
 
-        result = metadataToJsonSchema(metadata, 'Headquarters');
+        result = wfjs.webformFieldsToJsonSchema(formFields);
       });
 
       describe('uiSchema property', () => {
@@ -251,19 +216,13 @@ describe('metadataToJsonSchema()', () => {
     describe('given "type" property', () => {
       describe('given type:checkbox', () => {
         beforeEach(() => {
-          metadata = {
-            abbreviation: 'GSA',
-            components: [{
-              name: 'Headquarters',
-              form_fields: [{
-                name: 'widget',
-                label: 'Widget',
-                type: 'checkbox',
-              }],
-            }],
-          };
+          formFields = [{
+            name: 'widget',
+            title: 'Widget',
+            type: 'checkbox',
+          }];
 
-          result = metadataToJsonSchema(metadata, 'Headquarters');
+          result = wfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -301,19 +260,13 @@ describe('metadataToJsonSchema()', () => {
 
       describe('given type:textarea', () => {
         beforeEach(() => {
-          metadata = {
-            abbreviation: 'GSA',
-            components: [{
-              name: 'Headquarters',
-              form_fields: [{
-                name: 'widget',
-                label: 'Widget',
-                type: 'textarea',
-              }],
-            }],
-          };
+          formFields = [{
+            name: 'widget',
+            title: 'Widget',
+            type: 'textarea',
+          }];
 
-          result = metadataToJsonSchema(metadata, 'Headquarters');
+          result = wfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -351,19 +304,13 @@ describe('metadataToJsonSchema()', () => {
 
       describe('given type:tel', () => {
         beforeEach(() => {
-          metadata = {
-            abbreviation: 'GSA',
-            components: [{
-              name: 'Headquarters',
-              form_fields: [{
-                name: 'widget',
-                label: 'Widget',
-                type: 'tel',
-              }],
-            }],
-          };
+          formFields = [{
+            name: 'widget',
+            title: 'Widget',
+            type: 'tel',
+          }];
 
-          result = metadataToJsonSchema(metadata, 'Headquarters');
+          result = wfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -399,21 +346,15 @@ describe('metadataToJsonSchema()', () => {
         });
       });
 
-      describe('given type:file', () => {
+      describe('given type:managed_file', () => {
         beforeEach(() => {
-          metadata = {
-            abbreviation: 'GSA',
-            components: [{
-              name: 'Headquarters',
-              form_fields: [{
-                name: 'widget',
-                label: 'Widget',
-                type: 'file',
-              }],
-            }],
-          };
+          formFields = [{
+            name: 'widget',
+            title: 'Widget',
+            type: 'managed_file',
+          }];
 
-          result = metadataToJsonSchema(metadata, 'Headquarters');
+          result = wfjs.webformFieldsToJsonSchema(formFields);
         });
 
         describe('jsonSchema property', () => {
@@ -447,6 +388,54 @@ describe('metadataToJsonSchema()', () => {
             expect(uiSchemaProperty).to.have.property('ui:widget', 'file');
           });
         });
+      });
+    });
+  });
+
+  describe('section', () => {
+    describe('given no section', () => {
+      let result;
+
+      beforeEach(() => {
+        result = wfjs.webformFieldsToJsonSchema([]);
+      });
+
+      it('has a type', () => {
+        expect(result.jsonSchema).to.have.property('type', 'object');
+      });
+
+      it('has properties', () => {
+        expect(result.jsonSchema).to.have.property('properties');
+      });
+    });
+
+    describe('given section with title and description', () => {
+      let section;
+      let result;
+
+      beforeEach(() => {
+        section = {
+          title: 'Requester info',
+          description: 'Enter your contact information.',
+        };
+
+        result = wfjs.webformFieldsToJsonSchema([], section);
+      });
+
+      it('has a title', () => {
+        expect(result.jsonSchema).to.have.property('title', section.title);
+      });
+
+      it('has a description', () => {
+        expect(result.jsonSchema).to.have.property('description', section.description);
+      });
+
+      it('has a type', () => {
+        expect(result.jsonSchema).to.have.property('type', 'object');
+      });
+
+      it('has properties', () => {
+        expect(result.jsonSchema).to.have.property('properties');
       });
     });
   });

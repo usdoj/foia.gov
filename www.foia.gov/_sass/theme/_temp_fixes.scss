@@ -107,4 +107,24 @@ input.deleteAgency:hover{
   display: none; // this isn't accessible and the whole point is to be accessible
 }
 
+.grid-legacy {
+  margin: $space-2x auto;
+  width: calc(1040px - 6rem); // We want a fixed grid because the legacy content is not responsive. Chose 980px because it almost matches usa-grid on large screen sizes (1040 - padding)
+  @media screen and (max-width: $medium-large-screen) {
+    margin-left: $space-2x;
+  }
+}
+
+/* qtip for glance.html */
+.qtip .qtip-content{
+   padding: 15px;
+   overflow: hidden;
+}
+.qtip .qtip-content .qtip-title,.qtip-cream .qtip-content .qtip-title{background-color: #f8f8f8;}
+
+/* For the grid-legacy to work */
+body {
+  overflow-x: auto;
+}
+
 /* end temp styles */

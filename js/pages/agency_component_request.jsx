@@ -1,61 +1,122 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Dispatcher } from 'flux';
 import { Container } from 'flux/utils';
 
-import { RequestActions } from 'actions';
+import { requestActions } from 'actions';
+import Confirmation from 'components/confirmation';
+import FoiaRequestForm from 'components/foia_request_form';
 import Tabs from 'components/tabs';
-import FOIARequestForm from 'components/foia_request_form';
-import settings from 'settings';
-import AgencyComponentStore from 'stores/agency_component';
-import Api from 'util/api';
-
-const api = new Api(settings.api.baseURL);
-const jsonapi = new Api(settings.api.jsonApiBaseURL);
-
-
-const dispatcher = new Dispatcher();
-const agencyComponentStore = new AgencyComponentStore(dispatcher);
-
-const requestActions = RequestActions({ dispatcher, api, jsonapi });
+import agencyComponentStore from 'stores/agency_component';
+import agencyComponentRequestFormStore from 'stores/agency_component_request_form';
+import foiaRequestStore from 'stores/foia_request';
+import NotFound from './not_found';
 
 
 class AgencyComponentRequestPage extends Component {
   static getStores() {
-    return [agencyComponentStore];
+    return [agencyComponentStore, foiaRequestStore, agencyComponentRequestFormStore];
   }
 
-  static calculateState() {
-    const { agency, selectedAgency } = agencyComponentStore.getState();
+  static calculateState(prevState, props) {
+    const agencyComponentId = props.match.params.agencyComponentId;
+    const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
+    const requestForm = agencyComponentRequestFormStore.getAgencyComponentForm(agencyComponentId);
+    const { formData, isSubmitting, submissionResult } = foiaRequestStore.getState();
+
     return {
-      agency,
-      selectedAgency,
+      agencyComponent,
+      formData,
+      isSubmitting,
+      submissionResult,
+      requestForm,
     };
   }
 
   componentDidMount() {
-    this.init();
+    this.init(this.props);
   }
 
-  init() {
+  componentWillReceiveProps(nextProps) {
     const agencyComponentId = this.props.match.params.agencyComponentId;
+    if (nextProps.match.params.agencyComponentId !== agencyComponentId) {
+      this.init(nextProps);
+    }
+  }
 
-    // Check agency exists in store
-    const { agency } = agencyComponentStore.getState();
-    if (!agency) {
-      requestActions.fetchAgency(agencyComponentId)
-        .then(requestActions.receiveAgency);
+  init(props) {
+    const agencyComponentId = props.match.params.agencyComponentId;
+
+    // Check agency component exists in store
+    const { agencyComponent } = this.state;
+    if (!agencyComponent || !agencyComponent.formFields.length) {
+      requestActions.fetchAgencyComponent(agencyComponentId)
+        .then(requestActions.receiveAgencyComponent)
+        .catch((error) => {
+          if (!error.response) {
+            // Non-axios error, rethrow
+            throw error;
+          }
+
+          if (error.response.status !== 404) {
+            // API error other than 404, rethrow
+            throw error;
+          }
+
+          this.setState({
+            agencyComponentNotFound: true,
+          });
+        });
     }
   }
 
   render() {
+    const { agencyComponent, formData, requestForm, submissionResult } = this.state;
+    if (this.state.agencyComponentNotFound) {
+      // The api returned a 404, we should do the same
+      return <NotFound />;
+    }
+
+    function onSubmit() {}
+
+    let mainContent;
+    if (submissionResult && submissionResult.submission_id) {
+      mainContent = (
+        <Confirmation
+          agencyComponent={agencyComponent}
+          formData={formData}
+          requestForm={requestForm}
+          submissionResult={submissionResult}
+        />
+      );
+    } else if (requestForm) {
+      mainContent = (
+        <FoiaRequestForm
+          formData={this.state.formData}
+          isSubmitting={this.state.isSubmitting}
+          onSubmit={onSubmit}
+          requestForm={requestForm}
+          submissionResult={this.state.submissionResult}
+        />
+      );
+    } else {
+      // TODO show a loading indicator?
+      mainContent = <div>Loading…</div>;
+    }
+
     return (
       <div className="usa-grid-full grid-left">
-        <aside className="usa-width-five-twelfths sidebar" id="react-tabs">
-          <Tabs />
+        <aside className="usa-width-five-twelfths sidebar print-hide" id="react-tabs">
+          {
+            agencyComponent && requestForm ?
+              <Tabs
+                agencyComponent={agencyComponent}
+                requestForm={requestForm}
+              /> :
+              null
+          }
         </aside>
         <div className="usa-width-seven-twelfths sidebar_content">
-          {this.state.agency && <FOIARequestForm agency={this.state.agency} /> }
+          { mainContent }
         </div>
       </div>
     );
@@ -66,4 +127,4 @@ AgencyComponentRequestPage.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-export default Container.create(AgencyComponentRequestPage);
+export default Container.create(AgencyComponentRequestPage, { withProps: true });

@@ -19,8 +19,8 @@ window.app = {
 render(
   <Router history={history}>
     <Switch>
-      <Route exact path="/" component={RequestLandingPage} />
       <Route path="/agency-component/:agencyComponentId" component={AgencyComponentRequestPage} />
+      <Route path="/" component={RequestLandingPage} />
       <Route component={NotFoundPage} />
     </Switch>
   </Router>,

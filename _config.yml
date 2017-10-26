@@ -47,7 +47,6 @@ navigation:
       title: Resources for agencies
     - href: /
       title: FOIA API
-
 collections:
   api:
     output: true

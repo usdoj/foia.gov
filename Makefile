@@ -1,5 +1,5 @@
 
-DIFFOPTS=-u -b -B -r -X .canaryignore
+DIFFOPTS=-u -i -E -Z -b -w -B -r -X .canaryignore
 
 ifneq ($(DEBUG), 1)
   DIFFOPTS+=-q
@@ -17,6 +17,7 @@ build:
 
 clean:
 	rm -rf www.foia.gov/assets
+	rm -rf _site
 
 serve:
 	npm run watch &

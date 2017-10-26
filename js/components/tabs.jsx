@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import { AgencyComponent } from '../models';
+import AgencyComponentProcessingTime from './agency_component_processing_time';
+import FoiaPersonnel from './foia_personnel';
+import FoiaSubmissionAddress from './foia_submission_address';
+import PrettyUrl from './pretty_url';
+import ProgressBar from './progress_bar';
 
 
 class Tabs extends Component {
@@ -48,6 +56,10 @@ class Tabs extends Component {
     );
   }
   render() {
+    const agencyComponent = this.props.agencyComponent.toJS();
+    const requestForm = this.props.requestForm;
+    const personnel = this.props.agencyComponent.foiaPersonnel().toJS();
+
     return (
       <div className="sidebar">
         <ul className="sidebar_tab-controls">
@@ -55,58 +67,21 @@ class Tabs extends Component {
         </ul>
         <div className="sidebar_tabs">
           <section className={this.state.selectedTab === 0 ? 'tab_active' : ''}>
-            <h3>Department of Justice</h3>
-            <h2>Federal Bureau of Investigation</h2>
+            <h3>{ agencyComponent.agency.name }</h3>
+            <h2>{ agencyComponent.title }</h2>
             <section>
-              <ul className="sidebar_progress-bar">
-                <li>
-                  <a className="step_active" href="">
-                    <span>Requester contact</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Request description</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Supporting documentation</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Processing fees</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Delivery method</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="">
-                    <span>Submission and confirmation</span>
-                  </a>
-                </li>
-              </ul>
+              <ProgressBar sections={requestForm.sections} />
             </section>
             <section>
               <h2>Tips for submitting</h2>
               <ul className="submission-help_tips">
                 <li>
                   <h5>The person to reach out to about your FOIA request is:</h5>
-                  <p className="submission-help_poc">Dennis Argall, Public Liason</p>
-                  <p className="submission-help_phone">540-868-4516</p>
-                  <p className="submission-help_email">
-                    <a href="mailto:foiarequest@ic.fbi.gov">
-                      foiarequest@ic.fbi.gov
-                    </a>
-                  </p>
-                  <p>You can ask FOIA personnel about anything related to your
-                  request, including whether what you’re asking for is clear.
-                  You can also reach out to follow up on your request after
-                  it’s been submitted.</p>
+                  <FoiaPersonnel foiaPersonnel={personnel[0]} />
+                  <p>You can ask <span data-term="foia">FOIA</span> personnel
+                    about anything related to your request, including whether
+                    what you’re asking for is clear.  You can also reach out to
+                    follow up on your request after it’s been submitted.</p>
                 </li>
                 <li>
                   <h5>The description of records you are requesting is
@@ -125,23 +100,16 @@ class Tabs extends Component {
             </section>
           </section>
           <section className={this.state.selectedTab === 1 ? 'tab_active' : ''}>
-            <h3>Department of Justice</h3>
-            <h2>Federal Bureau of Investigation</h2>
-            <section className="submission-help_processing-time">
-              <h5>Median processing time</h5>
-              <p>15 working days for simple requests</p>
-              <p>187 working days for complex requests</p>
-            </section>
+            <h3>{ agencyComponent.agency.name }</h3>
+            <h2>{ agencyComponent.title }</h2>
+            { agencyComponent.request_data_year &&
+              <section className="submission-help_processing-time">
+                <AgencyComponentProcessingTime agencyComponent={agencyComponent} />
+              </section>
+            }
             <section className="submission-help_agency-mission">
               <h5>Agency mission</h5>
-              <p>As an intelligence-driven and a threat-focused national
-                security organization with both intelligence and law enforcement
-                responsibilities, the mission of the FBI is to protect and
-                defend the United States against terrorist and foreign
-                intelligence threats, to uphold and enforce the criminal laws of
-                the United States, and to provide leadership and criminal justice
-                services to federal, state, municipal, and international agencies
-                and partners.</p>
+              <p>{ AgencyComponent.agencyMission(agencyComponent) }</p>
             </section>
             <section>
               <h5 className="submission-help_first-party-requests">
@@ -159,19 +127,11 @@ class Tabs extends Component {
             </section>
             <section className="submission-help_contact">
               <h5>Contact</h5>
-              <p className="submission-help_website">fbi.gov</p>
-              <p className="submission-help_poc">Dennis Argall, Public Liason</p>
-              <p className="submission-help_phone">540-868-4516</p>
-              <p className="submission-help_email">
-                <a href="mailto:foiarequest@ic.fbi.gov">foiarequest@ic.fbi.gov</a>
+              <p className="submission-help_website">
+                <PrettyUrl href={agencyComponent.website.uri} />
               </p>
-              <address className="submission-help_mailing">
-                <p>David M. Hardy</p>
-                <p>Chief, Record/Information Dissemination Section,
-                  Records Management Division</p>
-                <p>170 Marcel Drive</p>
-                <p>Winchester, VA 22602-4843</p>
-              </address>
+              <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
+              <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
             </section>
           </section>
         </div>
@@ -179,5 +139,10 @@ class Tabs extends Component {
     );
   }
 }
+
+Tabs.propTypes = {
+  agencyComponent: PropTypes.instanceOf(AgencyComponent).isRequired,
+  requestForm: PropTypes.object.isRequired,
+};
 
 export default Tabs;

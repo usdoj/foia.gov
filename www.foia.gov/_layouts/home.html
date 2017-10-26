@@ -11,14 +11,14 @@
       <h2><span class="usa-hero-callout-alt">{{ page.hero.hed }}</span></h2>
       <p>{{ page.hero.text }}</p>
       <div class="hero-unit_button-group">
-        <a class="usa-button usa-button-outline" href="#">Start your request</a>
+        <a class="usa-button usa-button-outline" href="#agency-search">Start your request</a>
         <span>or</span>
-        <a class="usa-button usa-button-outline" href="#">Learn more about FOIA</a>
+        <a class="usa-button usa-button-outline" href="#learn-more">Learn more about FOIA</a>
       </div>
     </div>
   </div>
 </section>
-<section class="usa-grid three-column-summary">
+<section id="learn-more" class="usa-grid three-column-summary">
   <h2>{{ page.section_one.hed }}</h2>
   <p class="secondary-text">If you know you’re ready to submit a request, <a href="#agency-search">continue below</a></p>
   {% for col in page.section_one.cols %}
@@ -29,27 +29,7 @@
   {% endfor %}
 </section>
 <section class="agency-component-search" id="agency-search">
-  <div class="usa-grid">
-    <h2>{{ page.section_two.hed }}</h2>
-    <!-- TODO: Replace with actual search. -->
-    <form class="usa-search usa-search-big">
-        <div role="search">
-          <label class="usa-sr-only" for="search-field-big">Search big</label>
-          <input id="search-field-big" type="search" name="search">
-          <button type="submit" class="usa-button usa-button-primary">
-            <span class="usa-search-submit-text">Search</span>
-          </button>
-        </div>
-      </form>
-      <p class="secondary-text"><a>See full list of agencies</a></p>
-      <h3 class="sans">{{ page.section_three.hed }}</h3>
-      {% for col in page.section_three.cols %}
-        <div class="usa-width-one-half">
-          <h4>{{ col.title }}</h4>
-          <p>{{ col.text }}</p>
-        </div>
-      {% endfor %}
-    </div>
+  <div id="landing-react-app"></div>
 </section>
 <div class="usa-grid" id="main">
     <div id="content">
@@ -57,6 +37,7 @@
     </div>
 </div>
 {% include footer.html %}
+{% include glossary.html %}
 {% comment %}
 `page.init` is used for the legacy pages.
 `page.bundle` is used for the non-legacy pages.

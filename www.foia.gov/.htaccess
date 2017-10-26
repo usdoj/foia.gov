@@ -1,6 +1,7 @@
 DirectoryIndex index.php index.html index.htm index.json
-
 ErrorDocument 404 /404.html
+FileETag All
+Header set Cache-Control "max-age=0, public, must-revalidate"
 
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
