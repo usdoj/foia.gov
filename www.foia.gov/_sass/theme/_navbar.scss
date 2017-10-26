@@ -26,7 +26,16 @@
     top: -7.3rem;
   }
 }
-
+.usa-nav-primary button[aria-expanded=true] {
+  background-color: $color-white;
+  color: $color-primary-darkest;
+  &:hover {
+    background-color: $color-white;
+  }
+  span {
+    border-bottom-color: $color-primary-alt-light;
+  }
+}
 
 .usa-nav-primary a,
 .usa-nav-primary > li > a,

@@ -1,1 +1,1 @@
-import 'uswds';
+import 'uswds/dist/js/uswds';

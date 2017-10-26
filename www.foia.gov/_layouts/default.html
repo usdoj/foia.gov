@@ -1,23 +1,8 @@
 ---
+layout: base
 ---
-<!DOCTYPE html>
-<html>
-{% include head.html %}
-<body>
-{% include header.html %}
 <div class="{% if page.grid %}{{ page.grid }}{% else %}usa-grid{% endif %}" id="main">
     <div id="content">
     {{ content }}
     </div>
 </div>
-{% include footer.html %}
-{% include glossary.html %}
-{% include legacy/popup.html %}
-{% comment %}
-`page.init` is used for the legacy pages.
-`page.bundle` is used for the non-legacy pages.
-{% endcomment %}
-{% if page.init %}<script type="text/javascript" src="{{ page.init | prepend: "/" | prepend: site.baseurl }}"></script>{% endif %}
-{% if page.bundle %}<script type="text/javascript" src="{{ page.bundle | append: ".bundle.js" | prepend: "/assets/js/" | prepend: site.baseurl }}" ></script>{% endif %}
-</body>
-</html>
