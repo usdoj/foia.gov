@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import RequestSummaryContactSection from './request_summary_contact_section';
+import RequestSummaryDescriptionSection from './request_summary_description_section';
 
 
 // Returns the field label from the requestForm for human readable display
@@ -31,6 +32,14 @@ function RequestSummarySection({ section, formData, requestForm }) {
   if (section.id === 'requester_contact') {
     return (
       <RequestSummaryContactSection
+        formData={formData}
+      />
+    );
+  }
+
+  if (section.id === 'request_description') {
+    return (
+      <RequestSummaryDescriptionSection
         formData={formData}
       />
     );
