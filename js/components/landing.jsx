@@ -20,6 +20,9 @@ class LandingComponent extends Component {
 
   render() {
     const agencyChange = (agencyComponent) => {
+      // Note that the agencyComponent comes from two different sources, so the
+      // properties might not be consistent.
+
       if (agencyComponent.type === 'agency') {
         const agency = agencyComponentStore.getAgency(agencyComponent.abbreviation);
         const agencyComponentsForAgency =
