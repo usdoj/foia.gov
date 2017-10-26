@@ -73,7 +73,7 @@ const FORM_SECTIONS = [
     description: 'How would you like to receive your request?',
     fieldNames: [
       'delivery_method',
-      'request_expedited_processing',
+      'expedited_processing',
       'expedited_processing_explanation',
     ],
   },

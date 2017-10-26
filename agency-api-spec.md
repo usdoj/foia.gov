@@ -218,7 +218,7 @@ JSON payload that contains the form fields.
 **Required:** | no
 **Example:** | `"individual"`
 
-**Field:** | `request_expedited_processing`
+**Field:** | `expedited_processing`
 :--- |:---
 **Type:** | string
 **Description:** | The requester would like this request to be processed on an expedited basis.
@@ -286,7 +286,7 @@ JSON payload that contains the form fields.
     ],
     "request_description": "I am seeking records pertaining to ...",
     "email": "george.washington@example.com",
-    "request_expedited_processing": "no",
+    "expedited_processing": "no",
     "fax_number": "+15551234589",
     "fee_waiver": "no",
     "fee_willing_amount": 25.0,
@@ -428,7 +428,7 @@ $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency
     "contract_number": "5547",
     "request_description": "I am seeking records pertaining to ...",
     "email": "george.washington@example.com",
-    "request_expedited_processing": "no",
+    "expedited_processing": "no",
     "fax_number": "+15551234589",
     "fee_waiver": "no",
     "fee_willing_amount": 25.0,

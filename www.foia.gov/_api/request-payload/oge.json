@@ -24,7 +24,7 @@
   "request_id": 1534,
   "request_category":"individual",
   "request_description":"I would like information about...",
-  "request_expedited_processing":"no",
+  "expedited_processing":"no",
   "fee_waiver":"no",
   "attachments_supporting_documentation":[{
     "content_type":"application\/pdf",

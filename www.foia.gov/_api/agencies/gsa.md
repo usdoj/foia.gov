@@ -62,7 +62,7 @@ data:
     - name: fee_waiver
       label: Request fee waiver
       type: radio
-    - name: request_expedited_processing
+    - name: expedited_processing
       label: Request expedited processing
       type: radio
     - name: attachement
