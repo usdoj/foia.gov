@@ -1,3 +1,5 @@
+$icon-circumference: 6.4rem;
+$icon-circumference-tablet: $space-4x;
 .three-column-summary {
   margin: $space-4x auto;
   .secondary-text:after {
@@ -7,7 +9,7 @@
   .usa-width-one-third {
     p {
       @media screen and (max-width: $medium-screen) {
-        margin-left: 50px; // the width of the bubble at this screen size + margin
+        margin-left: $icon-circumference + 1rem; // the width of the bubble at this screen size + margin
       }
       @media screen and (min-width: $medium-screen) {
         padding-right: 1rem;
@@ -27,13 +29,13 @@
         float: left;
         border-radius: 100px;
         border: 2px solid $color-primary-alt;
-        width: $space-5x;
-        height: $space-5x;
+        width: $icon-circumference;
+        height: $icon-circumference;
         margin-top: -8px;
         margin-right: 10px;
         @media screen and (min-width: $medium-screen) and (max-width: $medium-large-screen) {
-          width: $space-4x;
-          height: $space-4x;
+          width: $icon-circumference-tablet;
+          height: $icon-circumference-tablet;
           margin-top: 5px;
         }
         @media screen and (min-width: $large-screen) {
