@@ -197,7 +197,7 @@ JSON payload that contains the form fields.
 **Required:** | yes
 **Example:** | `"I am seeking records pertaining to ..."`
 
-**Field:** | `fee_willing_amount`
+**Field:** | `fee_amount_willing`
 :--- |:---
 **Type:** | string
 **Description:** | The amount in USD that a requester is willing to pay in order to cover costs related to this request.
