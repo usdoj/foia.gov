@@ -6,6 +6,8 @@
 import domify from './domify';
 
 
+// Order of sections is significant, this is the order they are rendered in
+// the form.
 export const FORM_SECTIONS = [
   {
     id: 'requester_contact',
@@ -15,35 +17,35 @@ export const FORM_SECTIONS = [
       your request for  information. Please note that not all of these fields
       are required.
     `,
+    // Ordering is significant
     fieldNames: [
-      // deprecated names https://github.com/18F/beta.foia.gov/issues/188
-      'prefix_title',
-      'first_name',
-      'last_name',
-      'middle_initial_middle_name',
-      'suffix',
-      'mailing_address_line_1',
-      'mailing_address_line_2',
-      'city',
-      'country',
-      'state_province',
-      'zip_postal_code',
-
-      'name_prefix_title',
+      // deprecated names refer to https://github.com/18F/beta.foia.gov/issues/188
+      'name_prefix_title', // deprecated
+      'prefix_title', // deprecated
       'name_first',
+      'first_name', // deprecated
       'name_middle_initial_middle',
+      'middle_initial_middle_name', // deprecated
       'name_last',
-      'name_suffix',
-      'address_line1',
-      'address_line2',
-      'address_city',
-      'address_state_province',
-      'address_country',
-      'address_zip_postal_code',
-      'phone_number',
-      'fax_number',
-      'company_organization',
+      'last_name', // deprecated
+      'name_suffix', // deprecated
+      'suffix', // deprecated
       'email',
+      'address_line1',
+      'mailing_address_line_1', // deprecated
+      'address_line2',
+      'mailing_address_line_2', // deprecated
+      'address_city',
+      'city', // deprecated
+      'address_state_province',
+      'state_province', // deprecated
+      'address_zip_postal_code',
+      'zip_postal_code', // deprecated
+      'address_country',
+      'country', // deprecated
+      'phone_number',
+      'company_organization',
+      'fax_number',
     ],
   },
 
@@ -59,6 +61,7 @@ export const FORM_SECTIONS = [
       determine exactly which records are being requested and where to locate
       them.
     `),
+    // Ordering is significant
     fieldNames: [
       'request_description',
     ],
@@ -75,6 +78,7 @@ export const FORM_SECTIONS = [
       also use this tool to upload documents providing context for your request
       to help FOIA personnel process your FOIA request.
     `),
+    // Ordering is significant
     fieldNames: [
       'attachments_supporting_documentation',
     ],
@@ -94,6 +98,7 @@ export const FORM_SECTIONS = [
       operations and activities of the government, and is not primarily in the
       commercial interest of the requester.
     `),
+    // Ordering is significant
     fieldNames: [
       'request_category',
       'fee_waiver',
@@ -121,6 +126,7 @@ export const FORM_SECTIONS = [
       government activity.  You should consult the agency’s FOIA regulations
       for any additional standards that may qualify for expedited processing.
     `),
+    // Ordering is significant
     fieldNames: [
       'expedited_processing',
       'expedited_processing_explanation',
