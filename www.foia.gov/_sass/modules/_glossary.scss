@@ -53,6 +53,17 @@ $z-glossary: 9000; // uswds navigation
   .label {
     color: $color-gray-lightest;
   }
+
+  p {
+    color: $color-white;
+  }
+}
+
+.glossary__item {
+  ol,
+  ul {
+    margin-left: $space-2x;
+  }
 }
 
 .glossary__term {

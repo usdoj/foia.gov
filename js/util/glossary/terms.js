@@ -131,7 +131,17 @@ const terms = [
   {
     term: 'Exemptions',
     definition: `
-      Congress established nine categories of information that are not required to be released in response to a FOIA request because release would be harmful to a government or private interest. These categories are called "exemptions" from disclosures.`,
+      Congress established nine categories of information that are not required to be released in response to a FOIA request because release would be harmful to a government or private interest. These categories are called "exemptions" from disclosures.
+      <ul>
+        <li>
+        <p><strong>Exemption 1</strong></p>
+        <p>Protects information that is specifically authorized, and properly classified, under criteria established by an Executive order to be kept secret in the interest of national defense or foreign policy.</p>
+        </li>
+        <li>
+        <p><strong>Exemption 2</strong></p>
+        <p>Protects information related solely to the internal personnel rules and practices of an agency.</p>
+        </li>
+      </ul>`,
   },
   
   {
