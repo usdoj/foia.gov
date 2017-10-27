@@ -42,9 +42,9 @@ navigation:
       children:
         - href: /search.html
           title: Search government websites
-        - href: "#learn-more"
+        - href: /#learn-more
           title: Resources for research
-    - href: "#agency-search"
+    - href: /#agency-search
       title: Create a request
     - href: /data.html
       title: Agency FOIA data
