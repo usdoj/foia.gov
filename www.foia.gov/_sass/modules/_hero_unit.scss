@@ -53,6 +53,9 @@ $hero-h2: 2.2rem;
     &:visited {
       color: $color-white;
     }
+    span {
+      border-bottom: 2px solid $color-primary-alt-light;
+    }
   }
   .usa-button.usa-button-primary-alt {
     padding: $space-2x;
@@ -80,7 +83,7 @@ $hero-h2: 2.2rem;
     margin-top: 1rem;
     font-size: $hero-text-size;
   }
-  span {
+  > span {
     flex-grow: 1;
     line-height: 1;
     text-align: center;
