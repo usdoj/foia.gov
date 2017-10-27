@@ -50,6 +50,9 @@ $hero-h2: 2.2rem;
   }
   a {
     color: $color-white;
+    &:visited {
+      color: $color-white;
+    }
   }
   .usa-button.usa-button-primary-alt {
     padding: $space-2x;
