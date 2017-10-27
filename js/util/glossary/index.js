@@ -1,5 +1,5 @@
 import Glossary from 'glossary-panel';
-import terms from './terms';
+import localApi from '../local_api';
 
 // Optional configurion objects
 const selectors = {};
@@ -12,7 +12,10 @@ function getGlossary() {
 
 // Wait for DOM to be loaded before initializing the glossary
 document.addEventListener('DOMContentLoaded', () => {
-  glossary = new Glossary(terms, selectors, classes);
+  localApi.glossary()
+    .then((terms) => {
+      glossary = new Glossary(terms, selectors, classes);
+    });
 });
 
 export default getGlossary;
