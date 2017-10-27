@@ -55,8 +55,8 @@ navigation:
           title: Quarterly data
 
   secondary:
-    - href: /developer.html
-      title: Resources for agencies
+    - href: /developer.html #should go to max.gov link
+      title: Agency login
     - href: /developer.html
       title: FOIA API
 collections:

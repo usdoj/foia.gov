@@ -2,7 +2,7 @@ $icon-circumference: 6.4rem;
 $icon-circumference-tablet: $space-4x;
 .three-column-summary {
   margin: $space-4x auto;
-  .secondary-text:after {
+  h2:after {
     content: "";
     @include text-divider;
   }
