@@ -55,9 +55,9 @@ navigation:
           title: Quarterly data
 
   secondary:
-    - href: /
+    - href: /developer.html
       title: Resources for agencies
-    - href: /
+    - href: /developer.html
       title: FOIA API
 collections:
   api:
