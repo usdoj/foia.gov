@@ -15,11 +15,11 @@
  * the individual sections' jsonSchema and uiSchema into a unified one.
  */
 
-import formSections from './form_sections';
+import sectionedForm from './sectioned_form';
 import wfjs from './webform_to_json_schema';
 
 export default {
-  mergeSectionFormData: formSections.mergeSectionFormData,
-  sectionedFormFromAgencyComponent: formSections.sectionedFormFromAgencyComponent,
+  mergeSectionFormData: sectionedForm.mergeSectionFormData,
+  sectionedFormFromAgencyComponent: sectionedForm.sectionedFormFromAgencyComponent,
   webformFieldsToJsonSchema: wfjs.webformFieldsToJsonSchema,
 };
