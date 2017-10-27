@@ -11,7 +11,7 @@
     "expedited_processing_explanation": {{ site.data.request_fields.expedited_processing_explanation.example }},
     "fax_number": {{ site.data.request_fields.fax_number.example }},
     "fee_waiver": {{ site.data.request_fields.fee_waiver.example }},
-    "fee_willing_amount": {{ site.data.request_fields.fee_willing_amount.example }},
+    "fee_amount_willing": {{ site.data.request_fields.fee_amount_willing.example }},
     "fee_waiver_explanation": {{ site.data.request_fields.fee_waiver_explanation.example }},
     "company_organization": {{ site.data.request_fields.company_organization.example }},
     "phone_number": {{ site.data.request_fields.phone_number.example }},

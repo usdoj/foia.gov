@@ -90,8 +90,8 @@ request_description:
   required: yes
   example: '"I am seeking records pertaining to ..."'
 
-fee_willing_amount:
-  name: fee_willing_amount
+fee_amount_willing:
+  name: fee_amount_willing
   type: string
   description: The amount in USD that a requester is willing to pay in order to cover costs related to this request.
   required: no
