@@ -33,7 +33,9 @@ class LandingComponent extends Component {
     const { agencies, agencyComponents } = this.props;
     return (
       <div className="usa-grid">
-        <h2>Select an agency to start your request or to see an agency&rsquo;s contact information:</h2>
+        <h2>
+          Select an agency to start your request or to see an agency’s contact information:
+        </h2>
         <AgencyComponentSelector
           agencies={agencies}
           agencyComponents={agencyComponents}

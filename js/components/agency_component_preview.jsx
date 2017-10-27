@@ -38,13 +38,15 @@ function AgencyComponentPreview({ agencyComponent }) {
         <h4>
           The records or information you&rsquo;re looking for may already be public.
         </h4>
-          { agencyComponent.website.uri &&
-            <p>Visit the agency’s <a href={agencyComponent.website.uri}>website</a> to learn more.</p>
-          }
-          { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length &&
-            <p>To see what’s been made available, you can visit an agency’s
-              <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
-          }
+        { agencyComponent.website.uri &&
+          <p>
+            Visit the agency’s <a href={agencyComponent.website.uri}>website</a> to learn more.
+          </p>
+        }
+        { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length &&
+          <p>To see what’s been made available, you can visit an agency’s
+            <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
+        }
       </div>
       <div className="usa-width-one-half">
         <h4>Contact</h4>
