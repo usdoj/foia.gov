@@ -1,5 +1,5 @@
 
-DIFFOPTS=-u -i -E -Z -b -w -B -r -X .canaryignore
+DIFFOPTS=-u -i -b -w -B -r -X .canaryignore
 
 ifneq ($(DEBUG), 1)
   DIFFOPTS+=-q

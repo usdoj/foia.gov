@@ -15,10 +15,8 @@
   }
 }
 
-.usa-nav-primary a,
-.usa-nav-primary > li > a,
-.usa-nav-secondary-links a {
-  color: $color-primary-darkest;
+.usa-header-extended .usa-logo {
+  margin-bottom: 1rem; // WDS override
 }
 
 .usa-logo {

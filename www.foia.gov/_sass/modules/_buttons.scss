@@ -7,6 +7,18 @@
     }
     border-bottom: none;
   }
+  &.usa-button-primary-alt {
+    &:visited {
+      background-color: $color-primary-alt;
+    }
+    &:hover {
+      background-color: $color-primary-alt-light!important;
+    }
+    &:active,
+    &:focus {
+      background-color: $color-primary-alt!important;
+    }
+  }
   &.usa-button-outline {
     background-color: transparent;
     box-shadow: inset 0 0 0 2px $color-primary-alt-light;

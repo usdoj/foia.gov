@@ -33,7 +33,9 @@ class LandingComponent extends Component {
     const { agencies, agencyComponents } = this.props;
     return (
       <div className="usa-grid">
-        <h2>Select the agency that you’d like to send a FOIA request to</h2>
+        <h2>
+          Select an agency to start your request or to see an agency’s contact information:
+        </h2>
         <AgencyComponentSelector
           agencies={agencies}
           agencyComponents={agencyComponents}
@@ -42,8 +44,8 @@ class LandingComponent extends Component {
         {
           !this.state.agencyComponent &&
           <p>Not all agencies can receive FOIA requests created on FOIA.gov.
-            The information for where to submit a request to those agencies
-             will be available after you select an agency above.</p>
+             Where to submit a request for those agencies
+             will be available after you make a selection above.</p>
         }
         {
           this.state.agencyComponent &&

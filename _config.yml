@@ -24,30 +24,41 @@ timezone: America/New_York
 
 navigation:
   primary:
-    - href: /
-      title: Home
-    - href: /request/
-      title: Request
-    - href: /data.html
-      title: Data
-    - href: /reports.html
-      title: Reports
-    - href: /search.html
-      title: Find
     - href: /about.html
-      title: Learn
-  secondary:
-    - href: /news.html
-      title: News
-    - href: /faq.html
-      title: FAQs
-    - href: /index-es.html
-      title: en Espa&ntilde;ol
-    - href: /feedback.html
-      title: Feedback
-    - href: /report-makerequest.html
-      title: FOIA Contacts
+      title: Learn about FOIA
+      children:
+        - href: /about.html
+          title: What is FOIA?
+        - href: /how-to.html
+          title: How to make a FOIA request
+        - href: /report-makerequest.html
+          title: Where to make a FOIA request
+        - href: /opengov.html
+          title: Additional government resources
+        - href: /faq.html
+          title: Frequently asked questions
+    - href: /
+      title: Before you request
+      children:
+        - href: /search.html
+          title: Search government websites
+        - href: /#learn-more
+          title: Resources for research
+    - href: /#agency-search
+      title: Create a request
+    - href: /data.html
+      title: Agency FOIA data
+      children:
+        - href: /reports.html
+          title: Annual data
+        - href: /data.html
+          title: Quarterly data
 
+  secondary:
+    - href: /developer.html #should go to max.gov link
+      title: Agency login
+    - href: /developer.html
+      title: FOIA API
 collections:
   api:
     output: true

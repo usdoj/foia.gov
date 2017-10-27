@@ -22,7 +22,6 @@
 
 
 
-<script src="/assets/js/uswds.bundle.js"></script>
 <script src="/assets/js/glossary.bundle.js"></script>
 <title>FOIA.gov - Freedom of Information Act: Frequently Asked Questions (FAQ)</title>
 </head>
@@ -96,76 +95,89 @@
       
         
           <li>
-            <a class="usa-nav-link" href="/"><span>Home</span></a>
+          <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-1">
+            <span>Learn about FOIA</span>
+          </button>
+          <ul id="sidenav-1" class="usa-nav-submenu usa-unstyled-list" aria-hidden="true">
+          
+            <li>
+              <a href="/about.html">What is FOIA?</a>
+            </li>
+          
+            <li>
+              <a href="/how-to.html">How to make a FOIA request</a>
+            </li>
+          
+            <li>
+              <a href="/report-makerequest.html">Where to make a FOIA request</a>
+            </li>
+          
+            <li>
+              <a href="/opengov.html">Additional government resources</a>
+            </li>
+          
+            <li>
+              <a href="/faq.html">Frequently asked questions</a>
+            </li>
+          
+          </ul>
+        </li>
+        
+      
+        
+          <li>
+          <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-2">
+            <span>Before you request</span>
+          </button>
+          <ul id="sidenav-2" class="usa-nav-submenu usa-unstyled-list" aria-hidden="true">
+          
+            <li>
+              <a href="/search.html">Search government websites</a>
+            </li>
+          
+            <li>
+              <a href="/#learn-more">Resources for research</a>
+            </li>
+          
+          </ul>
+        </li>
+        
+      
+        
+          <li>
+            <a class="usa-nav-link" href="/#agency-search"><span>Create a request</span></a>
           </li>
         
       
         
           <li>
-            <a class="usa-nav-link" href="/request/"><span>Request</span></a>
-          </li>
-        
-      
-        
-          <li>
-            <a class="usa-nav-link" href="/data.html"><span>Data</span></a>
-          </li>
-        
-      
-        
-          <li>
-            <a class="usa-nav-link" href="/reports.html"><span>Reports</span></a>
-          </li>
-        
-      
-        
-          <li>
-            <a class="usa-nav-link" href="/search.html"><span>Find</span></a>
-          </li>
-        
-      
-        
-          <li>
-            <a class="usa-nav-link" href="/about.html"><span>Learn</span></a>
-          </li>
+          <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-4">
+            <span>Agency FOIA data</span>
+          </button>
+          <ul id="sidenav-4" class="usa-nav-submenu usa-unstyled-list" aria-hidden="true">
+          
+            <li>
+              <a href="/reports.html">Annual data</a>
+            </li>
+          
+            <li>
+              <a href="/data.html">Quarterly data</a>
+            </li>
+          
+          </ul>
+        </li>
         
       
       </ul>
       <div class="usa-nav-secondary">
-        <!-- TODO: Uncomment this when we lose the Search page -->
-        <!-- <form class="usa-search usa-search-small js-search-form" action="/search/">
-          <div role="search">
-            <label class="usa-sr-only" for="search-field-small">Search site</label>
-            <input id="search-field-small" type="search" name="q">
-            <button type="submit">
-              <span class="usa-sr-only">Search</span>
-            </button>
-          </div>
-        </form>-->
         <ul class="usa-unstyled-list usa-nav-secondary-links">
-          <!-- TODO: Uncomment this when we lose the Search page -->
-          <!--<li class="js-search-button-container">
-            <button class="usa-header-search-button js-search-button">Search</button>
-          </li>-->
-          
+        
           <li>
-            <a href="/news.html"><span>News</span></a>
+            <a href="/developer.html"><span>Agency login</span></a>
           </li>
           
           <li>
-            <a href="/faq.html"><span>FAQs</span></a>
-          </li>
-          
-          <li>
-            <a href="/index-es.html"><span>en Espa&ntilde;ol</span></a>
-          </li>
-          
-          <li>
-            <a href="/feedback.html"><span>Feedback</span></a>
-          </li>
-          
-          <li>
-            <a href="/report-makerequest.html"><span>FOIA Contacts</span></a>
+            <a href="/developer.html"><span>FOIA API</span></a>
           </li>
           
         </ul>
@@ -788,35 +800,48 @@ The nine exemptions are described below.</p>
 
     </div>
 </div>
+
 <!-- Start Footer -->
-
-<div class="footer usa-grid-full">
-  <a href="/"><img src="/images/foia-footer.gif" alt="FOIA.gov" /><span>Foia.gov</span></a>
-  <div id="footerNav">
-	<a id="footerLinks"></a>
-  <ul>
-    <li><a href="/sitemap.html">Site Map</a></li>
-    <li><a href="https://www.justice.gov/accessibility/accessibility-information">Accessibility</a></li>
-    <li><a href="/foia-info.html">FOIA</a></li>
-    <li><a href="https://www.justice.gov/doj/privacy-policy">Privacy Policy</a></li>
-    <li><a href="https://www.justice.gov/legalpolicies">Policies &amp; Disclaimers</a></li>
-    <li><a href="/quality.html">Information Quality</a></li>
-    <li><a href="/developer.html">Developer Resources</a></li>
-    <li><a href="http://www.justice.gov">Justice.gov</a></li>
-    <li><a href="http://www.usa.gov">USA.gov</a></li>
-  </ul>
+<footer class="usa-footer">
+  <div class="usa-grid-full">
+    <div class="usa-width-two-thirds">
+      <div class="usa-grid">
+        <div class="usa-width-one-half">
+            <img class="footer-logo" src="/images/legacylogoonwhite.png" alt="Foia.gov">
+            <h2>FOIA.gov</h2>
+        </div>
+        <div class="usa-width-one-half">
+          <h6>Contact</h6>
+          <ul class="usa-unstyled-list">
+            <li>Office of Information Policy (OIP)</li>
+            <li>U.S. Department of Justice</li>
+            <li>Suite 11050</li>
+            <li>1425 New York Avenue, N.W.</li>
+            <li>Washington, D.C. 20530</li>
+            <li>Fax: (202) 514-1009</li>
+            <li>E-mail: <a href="mailto:National.FOIAPortal@usdoj.gov">National.FOIAPortal@usdoj.gov</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="usa-width-one-third">
+      <div class="usa-grid-full">
+        <ul class="usa-unstyled-list footer-links usa-width-one-half">
+          <li><a href="/sitemap.html">Site map</a></li>
+          <li><a href="/quality.html">Information quality</a></li>
+          <li><a href="/developer.html">Developer resources</a></li>
+        </ul>
+        <ul class="usa-unstyled-list footer-links usa-width-one-half">
+          <li><a href="https://www.justice.gov/accessibility/accessibility-information">Accessibility</a></li>
+          <li><a href="https://www.justice.gov/doj/privacy-policy">Privacy policy</a></li>
+          <li><a href="https://www.justice.gov/legalpolicies">Policies &amp; disclaimers</a></li>
+          <li><a href="http://www.justice.gov">Justice.gov</a></li>
+          <li><a href="http://www.usa.gov">USA.gov</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="clear">&nbsp;</div>
-  <div align="center">
-    <a href="http://www.data.gov/"><img src="/images/datagov-footer.gif" alt="data.gov" /><span>Data.gov</span></a>
-	<a href="http://www.whitehouse.gov/open"><img src="/images/opengov-footer.gif" alt="whitehouse.gov/open" /><span>Whitehouse.gov/open</span></a>
-	<a href="http://www.usaspending.gov/"><img src="/images/usaspending-footer.gif" alt="usaspending.gov" /><span>USASpending.gov</span></a>
-    <a href="http://www.recovery.gov/"><img src="/images/recoverygov-footer.gif" alt="recovery.gov" /><span>Recovery.gov</span></a>
-  </div>
-
-</div>
-
-<!-- End Footer -->
+</footer>
 
 <button class="js-glossary-toggle glossary-toggle">Glossary</button>
 <div id="glossary" class="glossary" aria-describedby="glossary-title" aria-hidden="true">
@@ -844,6 +869,7 @@ The nine exemptions are described below.</p>
 <!-- End Popup Window -->
 
 
+<script src="/assets/js/uswds.bundle.js"></script>
 <script type="text/javascript" src="/about.js"></script>
 
 </body>

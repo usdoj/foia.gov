@@ -27,7 +27,7 @@
           <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-{{ forloop.index }}">
             <span>{{ link.title }}</span>
           </button>
-          <ul id="sidenav-{{ forloop.index }}" class="usa-nav-submenu usa-unstyled-list">
+          <ul id="sidenav-{{ forloop.index }}" class="usa-nav-submenu usa-unstyled-list" aria-hidden="true">
           {% for child in link.children %}
             <li>
               <a href="{{ child.href | prepend: site.baseurl }}">{{ child.title }}</a>
@@ -43,22 +43,8 @@
       {% endfor %}
       </ul>
       <div class="usa-nav-secondary">
-        <!-- TODO: Uncomment this when we lose the Search page -->
-        <!-- <form class="usa-search usa-search-small js-search-form" action="{{ site.baseurl }}/search/">
-          <div role="search">
-            <label class="usa-sr-only" for="search-field-small">Search site</label>
-            <input id="search-field-small" type="search" name="q">
-            <button type="submit">
-              <span class="usa-sr-only">Search</span>
-            </button>
-          </div>
-        </form>-->
         <ul class="usa-unstyled-list usa-nav-secondary-links">
-          <!-- TODO: Uncomment this when we lose the Search page -->
-          <!--<li class="js-search-button-container">
-            <button class="usa-header-search-button js-search-button">Search</button>
-          </li>-->
-          {% for link in site.navigation.secondary %}
+        {% for link in site.navigation.secondary %}
           <li>
             <a href="{{ link.href | prepend: site.baseurl }}"><span>{{ link.title }}</span></a>
           </li>
