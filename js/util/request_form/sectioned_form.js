@@ -58,7 +58,7 @@ function sectionedFormFromAgencyComponent(agencyComponent) {
 
   return {
     jsonSchema: {
-      title: agencyComponent.title,
+      title: 'Make your request',
       type: 'object',
       properties: result.properties,
     },
