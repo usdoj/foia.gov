@@ -27,7 +27,7 @@
           <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-{{ forloop.index }}">
             <span>{{ link.title }}</span>
           </button>
-          <ul id="sidenav-{{ forloop.index }}" class="usa-nav-submenu usa-unstyled-list">
+          <ul id="sidenav-{{ forloop.index }}" class="usa-nav-submenu usa-unstyled-list" aria-hidden="true">
           {% for child in link.children %}
             <li>
               <a href="{{ child.href | prepend: site.baseurl }}">{{ child.title }}</a>
