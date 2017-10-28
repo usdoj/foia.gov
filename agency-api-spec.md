@@ -453,8 +453,6 @@ $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency
     "fee_waiver_explanation": "I request a fee waiver...",
     "company_organization": "Newspaper Inc",
     "phone_number": "+15551234567",
-    "region": "9",
-    "request_category": "individual",
     "address_line1": "1800 F Street",
     "address_line2": "Suite 400",
     "address_city": "Mount Vernon",
