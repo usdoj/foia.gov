@@ -86,12 +86,20 @@ class AgencyComponentSelector extends Component {
 
   render() {
     return (
-      <form>
-        <input
-          type="text"
-          placeholder="Type agency name"
-          ref={(input) => { this.typeaheadInput = input; }}
-        />
+      <form className="usa-search usa-search-big">
+        <div role="search">
+          <label className="usa-sr-only" for="search-field-big">Search for an agency</label>
+          <input
+            type="text"
+            id="search-field-big"
+            name="search"
+            placeholder="Type agency name"
+            ref={(input) => { this.typeaheadInput = input; }}
+          />
+          <div className="usa-button usa-button-primary usa-sr-hidden">
+            <span className="usa-search-submit-text">Search</span>
+          </div>
+        </div>
       </form>
     );
   }
