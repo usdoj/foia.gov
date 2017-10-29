@@ -9,6 +9,11 @@ Header setifempty Cache-Control "max-age=300, public, must-revalidate"
 Header setifempty Cache-Control "max-age=0, public, must-revalidate"
 {% endif %}
 
+# Longer cache time for static assets
+<FilesMatch "\.(eot|gif|ico|jpe?g|json|pdf|png|svg|swf|ttf|txt|woff2?|xls|xml|zip)$">
+Header set Cache-Control "max-age=86400, public, must-revalidate"
+</FilesMatch>
+
 RewriteEngine on
 
 # Proxy any /foia requests to the reporting back end
