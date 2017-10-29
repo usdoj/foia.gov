@@ -4,7 +4,8 @@ FileETag All
 Header set Cache-Control "max-age=0, public, must-revalidate"
 
 RewriteEngine on
+RewriteRule ^developer.html$ /developer/ [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^request/([a-z0-9_-]+/)*$ request/index.html
-RewriteRule ^([a-z-]+)\.html$ $1/index.html [R=302,L]
