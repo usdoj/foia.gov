@@ -1,8 +1,16 @@
+JEKYLL_ENV=$(NODE_ENV)
+JEKYLL_OPTS=
 
-DIFFOPTS=-u -i -b -w -B -r -X .canaryignore
+ifeq ($(APP_ENV), development)
+  JEKYLL_OPTS+=--config _config.yml,_config.development.yml
+endif
 
-ifneq ($(DEBUG), 1)
-  DIFFOPTS+=-q
+ifeq ($(APP_ENV), staging)
+  JEKYLL_OPTS+=--config _config.yml,_config.staging.yml
+endif
+
+ifeq ($(APP_ENV), production)
+  JEKYLL_OPTS+=--config _config.yml,_config.production.yml
 endif
 
 all: build test
@@ -11,7 +19,7 @@ build:
 	npm run build
 	mkdir -p www.foia.gov/assets
 	cp -R node_modules/uswds/dist/fonts node_modules/uswds/dist/img www.foia.gov/assets
-	bundle exec jekyll build
+	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS)
 
 clean:
 	rm -rf www.foia.gov/assets
@@ -19,7 +27,7 @@ clean:
 
 serve:
 	npm run watch &
-	bundle exec jekyll build --watch &
+	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build --watch $(JEKYLL_OPTS) &
 	node js/dev-server.js
 
 test:

@@ -1,7 +1,13 @@
+---
+---
 DirectoryIndex index.php index.html index.htm index.json
 ErrorDocument 404 /404.html
 FileETag All
+{% if site.app_env == 'production' %}
+Header setifempty Cache-Control "max-age=300, public, must-revalidate"
+{% else %}
 Header setifempty Cache-Control "max-age=0, public, must-revalidate"
+{% endif %}
 
 RewriteEngine on
 
