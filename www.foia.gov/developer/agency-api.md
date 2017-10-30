@@ -1,7 +1,7 @@
 ---
 layout: default
 use-uswds: true
-permalink: /developer/agencies/
+permalink: /developer/agency-api/
 ---
 # FOIA.gov Draft RESTful HTTPS API Spec
 
