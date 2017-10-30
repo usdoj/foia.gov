@@ -9,14 +9,14 @@ function AgencyComponentProcessingTime({ agencyComponent }) {
   }
 
   const {
-    request_data_complex_median_days: complex_median_days,
-    request_data_simple_median_days: simple_median_days,
+    request_data_complex_average_days: complex_average_days,
+    request_data_simple_average_days: simple_average_days,
   } = agencyComponent;
   return (
     <div>
-      <h5>Median processing time for {agencyComponent.request_data_year}</h5>
-      { simple_median_days && <p>{simple_median_days} working days for simple requests</p> }
-      { complex_median_days && <p>{complex_median_days} working days for complex requests</p> }
+      <h5>Average processing time for {agencyComponent.request_data_year}</h5>
+      { simple_average_days && <p>{simple_average_days} working days for simple requests</p> }
+      { complex_average_days && <p>{complex_average_days} working days for complex requests</p> }
     </div>
   );
 }

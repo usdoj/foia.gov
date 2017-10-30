@@ -19,8 +19,9 @@ function FoiaPersonnel({ foiaPersonnel }) {
   return (
     <div>
       <p className="submission-help_poc">{ displayName(foiaPersonnel) }</p>
-      { foiaPersonnel.phone
-        .map(phone => <p className="submission-help_phone" key={phone} >{ phone }</p>)
+      {
+        (foiaPersonnel.phone || [])
+          .map(phone => <p className="submission-help_phone" key={phone} >{ phone }</p>)
       }
       { foiaPersonnel.email &&
         <p className="submission-help_email">

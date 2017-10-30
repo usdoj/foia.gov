@@ -55,7 +55,7 @@ function toJsonSchemaProperty(webformField) {
 function toUiSchemaProperty(webformField) {
   const uiSchemaProperty = {
     'ui:title': webformField.title,
-    'ui:description': webformField.description,
+    'ui:description': webformField.help,
   };
 
   if (webformField.default_value) {
