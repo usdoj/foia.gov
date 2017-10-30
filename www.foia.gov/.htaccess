@@ -4,8 +4,14 @@ FileETag All
 Header set Cache-Control "max-age=0, public, must-revalidate"
 
 RewriteEngine on
+
+# Proxy any /foia requests to the reporting back end
+RewriteRule "^foia/(.*)$" "foia-proxy.php?u=foia/$1" [QSA,L]
+
+# Legacy page redirects
 RewriteRule ^developer.html$ /developer/ [R=301,L]
 
+# Portal request single page app
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^request/([a-z0-9_-]+/)*$ request/index.html
