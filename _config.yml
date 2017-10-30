@@ -63,6 +63,7 @@ navigation:
 collections:
   api:
     output: true
+  glossary_terms: {}
 
 defaults:
   - scope:
