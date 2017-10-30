@@ -26,6 +26,13 @@ function AgencyComponentPreview({ agencyComponent }) {
           </div>
         }
 
+        <h4>Contact</h4>
+        <PrettyUrl href={agencyComponent.website.uri} />
+        <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
+        <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
+
+      </div>
+      <div className="usa-width-one-half">
         { agencyComponent.request_data_year &&
           <div>
             <h4>Average processing time</h4>
@@ -47,13 +54,12 @@ function AgencyComponentPreview({ agencyComponent }) {
           <p>To see what’s been made available, you can visit an agency’s
             <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
         }
-      </div>
-      <div className="usa-width-one-half">
-        <h4>Contact</h4>
-        <PrettyUrl href={agencyComponent.website.uri} />
-        <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
-        <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
-        <a className="usa-button usa-button-primary" href={requestUrl}>Start FOIA request</a>
+        <a
+          className="usa-button usa-button-primary start-request"
+          href={requestUrl}
+        >
+          Start FOIA request
+        </a>
       </div>
     </div>
   );
