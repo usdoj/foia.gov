@@ -10,10 +10,11 @@ $base-font-size: 1.7rem;
 $small-font-size: 1.5rem;
 
 // Colors in use (USWDS defaults in use are included as comments for reference):
-// $color-primary: #0071bc;
 // $color-primary-darker: #205493;
 // $color-gray-light: #AEB0B5;
+// $color-primary: #0071bc;
 $color-primary-alt: #5EAFF8;
+$color-primary: $color-primary-alt;
 $color-primary-alt-light: #92C8F6;
 $color-primary-alt-lightest: #DEF0FF;
 $color-primary-darkest: #122E51;
