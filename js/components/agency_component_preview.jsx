@@ -54,7 +54,12 @@ function AgencyComponentPreview({ agencyComponent }) {
           <p>To see what’s been made available, you can visit an agency’s
             <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
         }
-        <a className="usa-button usa-button-primary start-request" href={requestUrl}>Start FOIA request</a>
+        <a
+          className="usa-button usa-button-primary start-request"
+          href={requestUrl}
+        >
+          Start FOIA request
+        </a>
       </div>
     </div>
   );
