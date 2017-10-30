@@ -20,11 +20,20 @@ class AgencyComponentStore extends Store {
     return this.state;
   }
 
+  getAgency(abbreviation) {
+    // TODO we should probably key this on id instead of abbreviation
+    return this.state.agencies.get(abbreviation, null);
+  }
+
   getAgencyComponent(agencyComponentId) {
     return this.state.agencyComponents
       .find(agencyComponent => agencyComponent.id === agencyComponentId);
   }
 
+  getAgencyComponentsForAgency(agencyId) {
+    return this.state.agencyComponents
+      .filter(agencyComponent => agencyComponent.agency.id === agencyId);
+  }
 
   __onDispatch(payload) {
     switch (payload.type) {
