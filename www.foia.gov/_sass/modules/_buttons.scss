@@ -1,9 +1,22 @@
 .usa-button {
+  font-weight: $font-bold;
   &.usa-button-primary {
     background-color: $color-primary-darkest;
     &:hover {
       background-color: $color-primary-darker;
       color: $color-white;
+    }
+  }
+  &.usa-button-primary-alt {
+    &:visited {
+      background-color: $color-primary-alt;
+    }
+    &:hover {
+      background-color: $color-primary-alt-light!important;
+    }
+    &:active,
+    &:focus {
+      background-color: $color-primary-alt!important;
     }
   }
   &.usa-button-outline {

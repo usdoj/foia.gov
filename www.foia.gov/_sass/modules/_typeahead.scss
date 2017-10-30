@@ -20,16 +20,20 @@
     margin: 0;
   }
 
+  .tt-input {
+    border: none;
+  }
+
   .tt-suggestion {
-    border-bottom: 0.0625rem solid $color-gray-light;
-    font-size: $h4-font-size;
+    font-size: $base-font-size;
     padding: $space-1x $space-2x;
+    color: $color-primary-darkest;
 
     &.tt-cursor,
     &:focus,
     &:hover {
-      background-color: $color-primary;
-      color: $color-white;
+      background-color: $color-primary-alt-lightest;
+      color: $color-primary-darkest;
     }
 
     p {

@@ -2,13 +2,11 @@
 title: Reports
 layout: default
 navigation: reports
+use-legacy-scripts: true
 stylesheets:
 - foia-search
 scripts:
-  - https://ajax.googleapis.com/ajax/libs/swfobject/2.1/swfobject.js
   - foiaFunctions.js
-  - foiareport.js
-  - FusionCharts.js
   - foiaAjax.js
   - tablehover.js
 init: reports.js
@@ -17,7 +15,7 @@ init: reports.js
  <a name="top" id="top"></a><img src="images/explore-title.gif" alt="Explore the Data from Different Reports" class="subTitle" />
   <div class="clear"></div>
 <!-- div id="foia-title">EXPLORE THE DATA FROM DIFFERENT FOIA REPORTS</div -->
-  <div class="reportText" style="margin: 0 15px 0 30px;">
+  <div class="reportText">
     <div>Snapshot Reports provide detailed data on each agency's FOIA activities. These reports include metrics from:</div>
     <div>&nbsp;</div>
     <div style="margin-left:15px;">&bull; Annual FOIA Reports - popular statistics and facts from each agency's most recent Annual FOIA Report that is available on FOIA.gov, and</div>

@@ -60,11 +60,11 @@ class AgencyComponent extends Record(defaults) {
   foiaPersonnel() {
     function personnel(persons, title) {
       // Set a default title if none exists
-      return (persons || []).map(person => person.update('title', value => value || title));
+      return (persons || []).map(person => Object.assign({ title: person.title || title }, person));
     }
 
     // List of all FOIA personnel in preferred order
-    return (new List()).concat(
+    return [].concat(
       personnel(this.foia_officers, 'FOIA Officer'),
       personnel(this.field_misc, null),
       personnel(this.service_centers, 'FOIA Service Center'),

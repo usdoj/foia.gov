@@ -1,0 +1,60 @@
+.usa-nav-submenu {
+  margin-left: 1.5rem; // to match the padding on the parent element
+  background-color: $color-white;
+  a,
+  a:visited {
+    &:hover,
+    &:active {
+      text-decoration: none;
+      color: $color-primary-darkest;
+      background-color: $color-primary-alt-lightest;
+    }
+  }
+}
+
+.usa-nav-primary button {
+  font-weight: $font-normal;
+  color: $color-primary-darkest;
+}
+
+.usa-nav-secondary {
+  font-weight: $font-normal;
+  a {
+    font-size: $small-font-size;
+  }
+  @media screen and (min-width: $medium-large-screen) {
+    top: -7.3rem;
+  }
+}
+.usa-nav-primary button[aria-expanded=true] {
+  background-color: $color-white;
+  color: $color-primary-darkest;
+  &:hover {
+    background-color: $color-white;
+  }
+  span {
+    border-bottom-color: $color-primary-alt-light;
+  }
+}
+
+.usa-nav-primary a,
+.usa-nav-primary > li > a,
+.usa-nav-primary button,
+.usa-nav-secondary-links a {
+  color: $color-primary-darkest;
+  font-weight: $font-normal;
+  -moz-osx-font-smoothing: grayscale; // to match .usa-nav-link styles sans hover
+  -webkit-font-smoothing: antialiased;
+  &:hover,
+  &:active,
+  &:visited,
+  &:visited:active,
+  &:visited:hover {
+    color: $color-primary-darkest;
+    span {
+      border-color: $color-primary-alt-light;
+    }
+  }
+}
+
+

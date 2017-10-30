@@ -15,10 +15,8 @@
   }
 }
 
-.usa-nav-primary a,
-.usa-nav-primary > li > a,
-.usa-nav-secondary-links a {
-  color: $color-primary-darkest;
+.usa-header-extended .usa-logo {
+  margin-bottom: 1rem; // WDS override
 }
 
 .usa-logo {
@@ -45,6 +43,7 @@
 h1.usa-header-title {
   @media screen and (max-width: $medium-large-screen) {
     font-size: $base-font-size;
+    margin-bottom: 0;
   }
 }
 

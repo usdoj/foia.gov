@@ -1,3 +1,7 @@
+$hero-fullscreen-breakpoint: 515px;
+$hero-text-size: 1.9rem;
+$hero-h2: 2.2rem;
+
 .usa-hero {
   background-image: none;
   padding: 0;
@@ -18,7 +22,7 @@
     min-width: 55%;
   }
   h2 {
-    font-size: 2.2rem;
+    font-size: $hero-h2;
     font-family: $font-serif;
     font-weight: bold;
     line-height: 1.5;
@@ -38,40 +42,53 @@
     }
   }
   p {
-    font-size: 1.9rem;
+    font-size: $hero-text-size;
     line-height: 1.5;
     @media screen and (min-width: $small-screen) {
       font-size: $h4-font-size;
     }
   }
-  .usa-button.usa-button-outline {
+  a {
+    color: $color-white;
+    &:visited {
+      color: $color-white;
+    }
+    span {
+      border-bottom: 2px solid $color-primary-alt-light;
+    }
+  }
+  .usa-button.usa-button-primary-alt {
     padding: $space-2x;
-    font-size: 1.9rem;
-    font-weight: normal;
     margin-right: 0;
+    font-size: $hero-text-size;
   }
 }
 
 .hero-unit_button-group {
-  @media screen and (min-width: 515px) {
+  @media screen and (min-width: $hero-fullscreen-breakpoint) {
     display: flex;
   }
-  font-size: 1.9rem;
+  font-size: $hero-text-size;
+  a {
+    padding-top: $space-2x;
+    margin-bottom: $space-2x;
+  }
   .usa-button {
-    @media screen and (min-width: 515px) {
+    @media screen and (min-width: $hero-fullscreen-breakpoint) {
       flex-grow: 1;
       display: inline;
       width: auto;
       margin-top: 0;
     }
     margin-top: 1rem;
+    font-size: $hero-text-size;
   }
-  span {
+  > span {
     flex-grow: 1;
     line-height: 1;
     text-align: center;
     padding: $space-2x;
-    @media screen and (max-width: 515px) {
+    @media screen and (max-width: $hero-fullscreen-breakpoint) {
       display: none;
     }
   }

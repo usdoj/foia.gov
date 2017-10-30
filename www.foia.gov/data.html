@@ -3,27 +3,15 @@ title: Data
 layout: default
 navigation: data
 cache_control: no-store,no-cache
+use-legacy-scripts: true
 stylesheets:
   - reports
 scripts:
   - foiaFunctions.js
   - agencyWork.js
-  - foiareport.js
-  - FusionCharts.js
   - foiaAjax.js
   - tablehover.js
 ---
-
-<!-- Start Popup Window -->
-<div id="popupMsg" class="popupWindow" style="display:none;">
-	<div class="popupClose"><a href="javascript:popupCloseToData();">close</a><a href="javascript:popupCloseToData();"><img src="images/popup-close.gif" alt="Close Window" /></a></div>
-	<div class="clear"></div>
-	<div class="popupBody" id="popupMsgBody">
-		<!-- Popup Body -->
-	</div>
-</div>
-<!-- End Popup Window -->
-
   <div id="dataTable">
     <div class="topWindow" >
     <!-- Create Report Box -->
@@ -44,7 +32,7 @@ scripts:
       <div class="reportText">
         <p><strong>Instructions:</strong> You can   explore the <span data-term="foia">FOIA</span> data that makes up an agency&rsquo;s annual FOIA report.   Search for data from a single agency or compare data from multiple   agencies. Just follow these steps:</p>
         <ol>
-          <li>At   the &ldquo;Select Report&rdquo; column, click on a category, such as &ldquo;Requests&rdquo; or   &ldquo;Administration&rdquo;&nbsp; to select the type of report you would like to run.   Learn more about these categories in the<a href="glossary.html">Glossary</a>. </li>
+          <li>At   the &ldquo;Select Report&rdquo; column, click on a category, such as &ldquo;Requests&rdquo; or   &ldquo;Administration&rdquo;&nbsp; to select the type of report you would like to run.   Learn more about these categories in the <a href="glossary.html">glossary</a>. </li>
           <li>Use   the (+) or (-) signs appearing next to the text box to select the   agency/agencies you want to look up, selecting up to four at a time. </li>
           <li>Choose the year you would like to see data from. </li>
           <li>Click &ldquo;Create Report.&rdquo;&nbsp; Scroll down to see your customized report. </li>
