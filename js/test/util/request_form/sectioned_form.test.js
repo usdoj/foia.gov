@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import chaiSinon from 'sinon-chai';
 
 import wfjs from '../../../util/request_form/webform_to_json_schema';
-import formSections from '../../../util/request_form/form_sections';
+import sectionedForm from '../../../util/request_form/sectioned_form';
 
 
 chai.use(chaiSinon);
@@ -32,7 +32,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
         formFields: [],
       };
 
-      result = formSections.sectionedFormFromAgencyComponent(agencyComponent);
+      result = sectionedForm.sectionedFormFromAgencyComponent(agencyComponent);
     });
 
     it('does not call webformFieldsToJsonSchema', () => {
@@ -53,8 +53,8 @@ describe('sectionedFormFromAgencyComponent()', () => {
         jsonSchema = result.jsonSchema;
       });
 
-      it('has a title matching agency component', () => {
-        expect(jsonSchema).to.have.property('title', agencyComponent.title);
+      it('has a title "Make your request"', () => {
+        expect(jsonSchema).to.have.property('title', 'Make your request');
       });
 
       it('has a type', () => {
@@ -85,7 +85,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
           ],
         };
 
-        result = formSections.sectionedFormFromAgencyComponent(agencyComponent);
+        result = sectionedForm.sectionedFormFromAgencyComponent(agencyComponent);
       });
 
       it('calls webformFieldsToJsonSchema', () => {
@@ -127,8 +127,8 @@ describe('sectionedFormFromAgencyComponent()', () => {
           expect(jsonSchema).to.be.ok;
         });
 
-        it('has a title matching agency component', () => {
-          expect(jsonSchema).to.have.property('title', agencyComponent.title);
+        it('has a title "Make your request"', () => {
+          expect(jsonSchema).to.have.property('title', 'Make your request');
         });
 
         it('has a type', () => {
@@ -175,7 +175,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
 
             it('sets title as section title', () => {
               // TODO this is hardcoded, would be nice to feed it stub data
-              expect(additionalFields).to.have.property('title', 'Additional fields');
+              expect(additionalFields).to.have.property('title', 'Additional information');
             });
 
             it('sets description as section description', () => {
@@ -217,7 +217,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
           ],
         };
 
-        result = formSections.sectionedFormFromAgencyComponent(agencyComponent);
+        result = sectionedForm.sectionedFormFromAgencyComponent(agencyComponent);
       });
 
       it('calls webformFieldsToJsonSchema once', () => {
@@ -294,7 +294,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
           ],
         };
 
-        result = formSections.sectionedFormFromAgencyComponent(agencyComponent);
+        result = sectionedForm.sectionedFormFromAgencyComponent(agencyComponent);
       });
 
       it('calls webformFieldsToJsonSchema for each section', () => {
