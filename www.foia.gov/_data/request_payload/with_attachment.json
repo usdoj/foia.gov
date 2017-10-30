@@ -21,7 +21,7 @@
   "name_suffix":"Jr",
   "phone_number":"1231234567",
   "fee_amount_willing":"25",
-  "processing_fees":"",
+  "request_id": 1534,
   "request_category":"individual",
   "request_description":"I would like information about...",
   "expedited_processing":"no",
