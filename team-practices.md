@@ -6,15 +6,23 @@ see the [CONTRIBUTING](CONTRIBUTING.md) file.
 
 ## Sprints
 
-We do one-week sprints, with a retro and planning meeting every Monday, and a sprint review
-every Friday. We have daily standups with our 18F team, and daily standups with the DOJ team.
+We do two-week sprints, with a sprint review and retro every other Tuesday and
+planning meeting every other Monday. We have daily standups with our 18F team
+and daily standups with the DOJ team.
+
 
 ## Issues
 
-We use Github + [Zenhub](https://chrome.google.com/webstore/detail/zenhub-for-github/ogcgkffhplmphkaahpmffcafajaocjbd)
-for issue tracking. We create issues as necessary to capture stories
-and articulate requirements for specific tasks. Our kanban categories for describing the state of
-issues are:
+We use Github
++ [Zenhub](https://chrome.google.com/webstore/detail/zenhub-for-github/ogcgkffhplmphkaahpmffcafajaocjbd)
+for issue tracking. We create issues as necessary to capture stories and
+articulate requirements for specific tasks. Kanban tasks move through the
+columns from left to right. Each task represents a complete feature; each with
+design, implementation, and usability validation. Some issues might skip one or
+more of the "in progress" columns if there is no acceptance criteria for the
+column, like in the case of a bug. Our kanban categories for describing the
+state of issues are:
+
 
 ### New
 
@@ -42,29 +50,53 @@ other things with higher priority.
 
 ### Backlog
 
-Groomed and ready to be pulled into "In Progress" for the current/upcoming
-sprint.
+Groomed and ready to be pulled into the "in progress" columns for the
+current/upcoming sprint.
 
 
 #### Exit criteria
 
-- Item has defined acceptance criteria reviewed by the Product Owner.
+- Item has defined design, development, and UX review acceptance criteria reviewed by the Product Owner.
 - Item is groomed and shovel-ready.
 - Item has been prioritized against other work in the Backlog.
 - When a team member is ready to take on new work, they pull the first
   unassigned item from the top of the Backlog.
 
 
-### In Progress
+### Design
 
-Currently being worked on. Limit 2 per assignee.
+The work is started or ready to be started by the design team. Limit 2 per assignee.
 
 
 #### Exit criteria
 
-- Acceptance criteria has been met.
-- For feature code, automated tests have been written.
-- Any artifacts, documents, or code is shared and available for the team.
+- Design acceptance criteria has been met.
+- Design review has been performed.
+- Any artifacts, documents, assets, or code is included in the issue and available for the team.
+
+
+### Dev
+
+The work is started or ready to be started by the development team. Limit 2 per assignee.
+
+
+#### Exit criteria
+
+- Development acceptance criteria has been met.
+- PRs have been peer reviewed, "Approved", and merged.
+- Design review has been performed.
+- Any artifacts, documents, assets, or code is included in the issue and available for the team.
+
+
+### UX review
+
+The work is started or ready to be started by the UX team. Limit 2 per assignee.
+
+
+#### Exit criteria
+
+- UX review acceptance criteria has been met.
+- Any outcomes from usability sessions are documented and any new issues are created.
 
 
 ### Review / QA
@@ -74,7 +106,6 @@ PR opened and/or task ready for team feedback.
 
 #### Exit criteria
 
-- PRs have been peer reviewed, "Approved", and merged.
 - Work has been peer reviewed and acceptance criteria is confirmed to have been
   met.
 
