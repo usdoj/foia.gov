@@ -58,11 +58,11 @@ describe('webformFieldsToJsonSchema()', () => {
         {
           name: 'contract_number',
           title: 'GS- Contract number',
-          description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
+          help: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
         }, {
           name: 'region',
           title: 'GSA Region',
-          description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
+          help: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
         },
       ];
 
@@ -116,16 +116,16 @@ describe('webformFieldsToJsonSchema()', () => {
       formFields = [{
         name: 'contract_number',
         title: 'GS- Contract number',
-        description: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
+        help: 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
       }, {
         name: 'region',
         title: 'GSA Region',
-        description: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
+        help: '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
       }, {
         name: 'request_origin',
         title: 'Request Origin',
         regs_url: null,
-        description: 'Company',
+        help: 'Company',
         required: true,
         options: {
           company: 'Company',
