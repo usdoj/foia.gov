@@ -8,7 +8,7 @@ import domify from './domify';
 
 // Order of sections is significant, this is the order they are rendered in
 // the form.
-export const FORM_SECTIONS = [
+const FORM_SECTIONS = [
   {
     id: 'requester_contact',
     title: 'Contact information',
@@ -70,6 +70,8 @@ export const FORM_SECTIONS = [
   {
     id: 'supporting_docs',
     title: 'Additional information',
+    // This section is where the agency-component-specific fields go
+    isAgencySpecificFieldSection: true,
     description: domify(`
       If you are submitting a <span data-term="first party request">first party request</span>,
       use this tool to upload any required documentation (see the agency’s FOIA Reference
@@ -135,8 +137,4 @@ export const FORM_SECTIONS = [
 
 ];
 
-export const ADDITIONAL_FIELDS_SECTION = {
-  id: 'additional_fields',
-  title: 'Additional information',
-  description: 'This addtional information may be helpful for the agency to fulfill your FOIA request.',
-};
+export default FORM_SECTIONS;

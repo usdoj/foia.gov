@@ -1,6 +1,9 @@
 import wfjs from './webform_to_json_schema';
-import { FORM_SECTIONS, ADDITIONAL_FIELDS_SECTION } from './form_sections';
+import FORM_SECTIONS from './form_sections';
 
+
+const ADDITIONAL_FIELDS_SECTION = FORM_SECTIONS
+  .find(section => section.isAgencySpecificFieldSection);
 
 const fieldToSectionMap = FORM_SECTIONS
   .reduce(
@@ -37,7 +40,6 @@ function sectionedFormFromAgencyComponent(agencyComponent) {
 
   // Grab a list of sections, skipping empty sections
   const sections = FORM_SECTIONS
-    .concat([ADDITIONAL_FIELDS_SECTION])
     .filter(section => section.id in fieldsBySection);
 
   const result = sections
