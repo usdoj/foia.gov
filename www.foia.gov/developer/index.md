@@ -31,7 +31,11 @@ permalink: /developer/
   <p>The following file is the complete listing of all FOIA contacts across federal departments and agencies.</p>
 
   <a href="{{ site.baseurl }}/full-foia-contacts.xls">Download the full FOIA contacts list</a> (updated as of May 24, 2017)
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p align="right">Last Updated: 7/2011</p>
-  <p align="right"><a href="#top">Return to Top</a></p>
+
+
+## Agency resources
+
+If your agency is interested in receiving requests from the Portal via an API, please check out
+our [API spec](/developer/agency-api/) and [get in touch with us](mailto:{{ site.email }}).
+
+<p align="right"><a href="#top">Return to Top</a></p>
