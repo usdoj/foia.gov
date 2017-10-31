@@ -5,6 +5,7 @@ class RequestApi {
   constructor(baseURL) {
     this._api = axios.create({
       baseURL: baseURL || settings.api.requestApiBaseURL,
+      headers: { 'X-Api-Key': settings.api.jsonApiKey },
     });
   }
 
