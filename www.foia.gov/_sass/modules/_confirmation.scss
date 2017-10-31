@@ -1,0 +1,17 @@
+.confirmation {
+  section {
+    border-bottom: 2px solid $color-primary-alt-light;
+    margin: $space-4x 0;
+    padding-bottom: $space-4x;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  h2 {
+    font-family: $font-serif;
+    font-weight: $font-bold;
+  }
+  h3 {
+    font-family: $font-sans;
+  }
+}

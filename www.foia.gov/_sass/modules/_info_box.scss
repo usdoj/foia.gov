@@ -1,0 +1,14 @@
+.info-box {
+  background-color: $color-primary-alt-lightest;
+  padding: 0 $space-2x $space-3x $space-2x;
+  &:before {
+    width: 0;
+    height: 0;
+    content: "";
+    display: block;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid $color-primary-alt;
+    transform: translate(-2.4rem, -0.16rem) rotate(-45deg);
+  }
+}
