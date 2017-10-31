@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 function RequestSummaryContactSection({ formData }) {
   const data = formData.requester_contact;
-
   return (
     <div className="request-summary_section">
       <h5>Name</h5>
-      <div>{[data.name_first, data.name_middle_initial_middle, data.name_last].join(' ')}</div>
+      <div>{[data.first_name, data.last_name].join(' ')}</div>
     </div>
   );
 }
