@@ -55,9 +55,9 @@ navigation:
           title: Quarterly data
 
   secondary:
-    - href: /developer.html #should go to max.gov link
+    - href: https://admin.foia.gov/user/login
       title: Agency login
-    - href: /developer.html
+    - href: /developer/
       title: FOIA API
 collections:
   api:
