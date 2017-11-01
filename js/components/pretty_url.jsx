@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import url from 'url';
 
 function parseDomain(href) {
-  return url.parse(href).host;
+  return `${url.parse(href).host}/…`;
 }
 
 function PrettyUrl({ className, href, children }) {
