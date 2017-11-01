@@ -36,6 +36,13 @@ class LandingComponent extends Component {
   }
 
   render() {
+    // Recursively traverse up the DOM to figure out the scroll offset
+    function scrollOffset(element) {
+      return element.offsetParent ?
+        element.offsetTop + scrollOffset(element.offsetParent) :
+        element.offsetTop;
+    }
+
     // Note that the agencyComponent comes from two different sources, so the
     // properties might not be consistent.
     const agencyChange = (agencyComponent) => {
@@ -44,6 +51,9 @@ class LandingComponent extends Component {
           .then(requestActions.receiveAgencyComponent)
           .then(() => agencyComponentStore.getAgencyComponent(agencyComponentId));
       }
+
+      // Scroll to back to the agency finder
+      window.scrollTo(0, scrollOffset(this.agencyFinderElement));
 
       if (agencyComponent.type === 'agency_component') {
         fetchAgencyComponent(agencyComponent.id)
@@ -75,12 +85,14 @@ class LandingComponent extends Component {
         <h2>
           Select an agency to start your request or to see an agency’s contact information:
         </h2>
-        <AgencyComponentFinder
-          agencies={agencies}
-          agencyComponents={agencyComponents}
-          agencyFinderDataComplete={agencyFinderDataComplete}
-          onAgencyChange={agencyChange}
-        />
+        <div ref={(e) => { this.agencyFinderElement = e; }}>
+          <AgencyComponentFinder
+            agencies={agencies}
+            agencyComponents={agencyComponents}
+            agencyFinderDataComplete={agencyFinderDataComplete}
+            onAgencyChange={agencyChange}
+          />
+        </div>
         {
           !this.state.agencyComponent && !this.state.agency &&
           <p>Remember that some agencies have existing FOIA portals and will
