@@ -18,33 +18,55 @@ class LandingComponent extends Component {
     };
   }
 
-  render() {
-    const agencyChange = (agencyComponent) => {
-      // Note that the agencyComponent comes from two different sources, so the
-      // properties might not be consistent.
+  setStateForAgency(agency, agencyComponentsForAgency) {
+    this.setState({
+      agency,
+      agencyComponent: null,
+      agencyComponentsForAgency,
+    });
+  }
 
-      if (agencyComponent.type === 'agency') {
-        const agency = agencyComponentStore.getAgency(agencyComponent.id);
-        const agencyComponentsForAgency =
-          agencyComponentStore.getAgencyComponentsForAgency(agency.id);
-        this.setState({
-          agency,
-          agencyComponent: null,
-          agencyComponentsForAgency,
-        });
+  setStateForComponent(agencyComponent, isCentralized = false) {
+    this.setState({
+      agency: null,
+      agencyComponent,
+      agencyComponentsForAgency: null,
+      isCentralized,
+    });
+  }
+
+  render() {
+    // Note that the agencyComponent comes from two different sources, so the
+    // properties might not be consistent.
+    const agencyChange = (agencyComponent) => {
+      function fetchAgencyComponent(agencyComponentId) {
+        return requestActions.fetchAgencyComponent(agencyComponentId)
+          .then(requestActions.receiveAgencyComponent)
+          .then(() => agencyComponentStore.getAgencyComponent(agencyComponentId));
+      }
+
+      if (agencyComponent.type === 'agency_component') {
+        fetchAgencyComponent(agencyComponent.id)
+          .then(component => this.setStateForComponent(component, false));
         return;
       }
 
-      requestActions.fetchAgencyComponent(agencyComponent.id)
-        .then(requestActions.receiveAgencyComponent)
-        .then(() => {
-          const component = agencyComponentStore.getAgencyComponent(agencyComponent.id);
-          this.setState({
-            agency: null,
-            agencyComponent: component,
-            agencyComponentsForAgency: null,
-          });
-        });
+      const agency = agencyComponentStore.getAgency(agencyComponent.id);
+
+      // Treat centralized agencies as components
+      if (agency.isCentralized()) {
+        const component = agencyComponentStore
+          .getState()
+          .agencyComponents
+          .find(c => c.agency.id === agency.id);
+        fetchAgencyComponent(component.id)
+          .then(c => this.setStateForComponent(c, true));
+        return;
+      }
+
+      const agencyComponentsForAgency =
+        agencyComponentStore.getAgencyComponentsForAgency(agency.id);
+      this.setStateForAgency(agency, agencyComponentsForAgency);
     };
 
     const { agencies, agencyComponents, agencyFinderDataComplete } = this.props;
@@ -69,7 +91,10 @@ class LandingComponent extends Component {
         }
         {
           this.state.agencyComponent &&
-          <AgencyComponentPreview agencyComponent={this.state.agencyComponent.toJS()} />
+          <AgencyComponentPreview
+            agencyComponent={this.state.agencyComponent.toJS()}
+            isCentralized={this.state.isCentralized}
+          />
         }
         {
           this.state.agency &&

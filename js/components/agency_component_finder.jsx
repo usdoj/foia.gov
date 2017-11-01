@@ -83,12 +83,20 @@ class AgencyComponentFinder extends Component {
       return;
     }
 
+    function display(datum) {
+      return datum.agency ? `${datum.title} (${datum.agency.name})` : datum.title;
+    }
+
     this.typeahead = $(this.typeaheadInput).typeahead({
       highlight: true,
     }, {
       name: 'agencies',
-      display: (datum => (datum.agency ? `${datum.title} (${datum.agency.name})` : datum.title)),
+      display,
       source: this.bloodhound.ttAdapter(),
+      templates: {
+        suggestion: datum =>
+          $('<div>').addClass(datum.type).text(display(datum)),
+      },
     })
       .bind('typeahead:select', (e, suggestion) => this.props.onAgencyChange(suggestion));
   }

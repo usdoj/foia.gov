@@ -8,15 +8,15 @@ import PrettyUrl from './pretty_url';
 import { AgencyComponent } from '../models';
 
 
-function AgencyComponentPreview({ agencyComponent }) {
+function AgencyComponentPreview({ agencyComponent, isCentralized }) {
   const description = AgencyComponent.agencyMission(agencyComponent);
   const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
 
   return (
     <div className="agency-preview usa-grid-full">
       <div className="usa-width-one-whole">
-        <h2>{agencyComponent.agency.name}</h2>
-        <h3>{agencyComponent.title}</h3>
+        { !isCentralized && <h2>{agencyComponent.agency.name}</h2> }
+        <h3>{isCentralized ? agencyComponent.agency.name : agencyComponent.title }</h3>
       </div>
       <div className="usa-width-one-half">
         { description &&
@@ -67,6 +67,7 @@ function AgencyComponentPreview({ agencyComponent }) {
 
 AgencyComponentPreview.propTypes = {
   agencyComponent: PropTypes.object.isRequired,
+  isCentralized: PropTypes.bool.isRequired,
 };
 
 

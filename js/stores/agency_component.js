@@ -50,7 +50,10 @@ class AgencyComponentStore extends Store {
                 new Agency(), // not set value
                 (existingAgency) => {
                   const { component_count } = existingAgency;
-                  return existingAgency.merge(agency, { component_count: component_count + 1 });
+                  return existingAgency.merge(
+                    new Agency(agency),
+                    { component_count: component_count + 1 },
+                  );
                 },
               );
             });
