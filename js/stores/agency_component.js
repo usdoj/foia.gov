@@ -21,9 +21,8 @@ class AgencyComponentStore extends Store {
     return this.state;
   }
 
-  getAgency(abbreviation) {
-    // TODO we should probably key this on id instead of abbreviation
-    return this.state.agencies.get(abbreviation, null);
+  getAgency(agencyId) {
+    return this.state.agencies.get(agencyId, null);
   }
 
   getAgencyComponent(agencyComponentId) {
@@ -47,7 +46,7 @@ class AgencyComponentStore extends Store {
             .map(agencyComponent => agencyComponent.agency)
             .forEach((agency) => {
               mutableAgencies.update(
-                agency.abbreviation,
+                agency.id,
                 new Agency(), // not set value
                 (existingAgency) => {
                   const { component_count } = existingAgency;

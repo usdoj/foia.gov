@@ -24,7 +24,7 @@ class LandingComponent extends Component {
       // properties might not be consistent.
 
       if (agencyComponent.type === 'agency') {
-        const agency = agencyComponentStore.getAgency(agencyComponent.abbreviation);
+        const agency = agencyComponentStore.getAgency(agencyComponent.id);
         const agencyComponentsForAgency =
           agencyComponentStore.getAgencyComponentsForAgency(agency.id);
         this.setState({
