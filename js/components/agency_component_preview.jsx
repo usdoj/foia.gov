@@ -42,9 +42,15 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         }
 
         <h4>Contact</h4>
-        <PrettyUrl href={agencyComponent.website.uri} />
-        <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
-        <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
+        <div className="agency-preview_contact-section">
+          { agencyComponent.website && <PrettyUrl href={agencyComponent.website.uri} /> }
+        </div>
+        <div className="agency-preview_contact-section">
+          <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
+        </div>
+        <div className="agency-preview_contact-section">
+          <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
+        </div>
 
       </div>
       <div className="usa-width-one-half">

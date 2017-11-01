@@ -27,6 +27,10 @@
   list-style: none;
 }
 
+.agency-preview_contact-section {
+  margin-bottom: $space-2x;
+}
+
 .agency-preview_list-hed {
   @extend %h2;
 }
