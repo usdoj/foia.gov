@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { requestActions } from 'actions';
-import AgencyComponentSelector from 'components/agency_component_selector';
+import AgencyComponentFinder from 'components/agency_component_finder';
 import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
 import agencyComponentStore from '../stores/agency_component';
@@ -53,7 +53,7 @@ class LandingComponent extends Component {
         <h2>
           Select an agency to start your request or to see an agency’s contact information:
         </h2>
-        <AgencyComponentSelector
+        <AgencyComponentFinder
           agencies={agencies}
           agencyComponents={agencyComponents}
           onAgencyChange={agencyChange}

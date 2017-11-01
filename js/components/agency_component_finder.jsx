@@ -23,7 +23,7 @@ function datums({ agencies, agencyComponents }) {
 }
 
 
-class AgencyComponentSelector extends Component {
+class AgencyComponentFinder extends Component {
   componentDidMount() {
     const { agencies, agencyComponents } = this.props;
     this.bloodhound = new Bloodhound({
@@ -117,7 +117,7 @@ class AgencyComponentSelector extends Component {
   }
 }
 
-AgencyComponentSelector.propTypes = {
+AgencyComponentFinder.propTypes = {
   /* eslint-disable react/no-unused-prop-types */
   agencies: PropTypes.instanceOf(Map),
   agencyComponents: PropTypes.instanceOf(List),
@@ -125,9 +125,9 @@ AgencyComponentSelector.propTypes = {
   onAgencyChange: PropTypes.func.isRequired,
 };
 
-AgencyComponentSelector.defaultProps = {
+AgencyComponentFinder.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
 };
 
-export default AgencyComponentSelector;
+export default AgencyComponentFinder;
