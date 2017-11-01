@@ -82,7 +82,7 @@ class LandingComponent extends Component {
     const { agencies, agencyComponents, agencyFinderDataComplete } = this.props;
     return (
       <div className="usa-grid">
-        <h2>
+        <h2 className="agency-component-search_hed">
           Select an agency to start your request or to see an agency’s contact information:
         </h2>
         <div ref={(e) => { this.agencyFinderElement = e; }}>
@@ -95,11 +95,14 @@ class LandingComponent extends Component {
         </div>
         {
           !this.state.agencyComponent && !this.state.agency &&
-          <p>Remember that some agencies have existing FOIA portals and will
-          continue to receive requests through their current portals. All
-          agencies are working towards becoming interoperable with FOIA.gov.
-          The information for where to submit a request to those agencies
-          will be available after you select an agency above.</p>
+            <div>
+              <h3 className="agency-component-search_hed">When choosing an agency</h3>
+	      <p>Remember that some agencies have existing FOIA portals and will
+	      continue to receive requests through their current portals. All
+	      agencies are working towards becoming interoperable with FOIA.gov.
+	      The information for where to submit a request to those agencies
+	      will be available after you select an agency above.</p>
+            </div>
         }
         {
           this.state.agencyComponent &&

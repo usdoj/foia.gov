@@ -120,10 +120,8 @@ p {
   }
 }
 
-p a {
+%a-colors {
   color: $color-primary-darkest;
-  text-decoration: none;
-  border-bottom: 1px solid $color-primary-alt;
   &:hover,
   &:active {
     color: $color-primary;
@@ -139,4 +137,10 @@ p a {
 
 address p {
   margin: 0;
+}
+
+p a {
+  @extend %a-colors;
+  text-decoration: none;
+  border-bottom: 1px solid $color-primary-alt;
 }
