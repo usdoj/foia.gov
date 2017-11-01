@@ -8,14 +8,29 @@ import PrettyUrl from './pretty_url';
 import { AgencyComponent } from '../models';
 
 
-function AgencyComponentPreview({ agencyComponent, isCentralized }) {
+function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized }) {
   const description = AgencyComponent.agencyMission(agencyComponent);
   const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
+  const onSelect = () => onAgencySelect(agencyComponent.agency);
 
   return (
     <div className="agency-preview usa-grid-full">
       <div className="usa-width-one-whole">
-        { !isCentralized && <h2>{agencyComponent.agency.name}</h2> }
+        {
+          !isCentralized && (
+            <h2>
+              <span // eslint-disable-line jsx-a11y/no-static-element-interactions
+                className="agency-preview_agency-back"
+                onClick={onSelect}
+                onKeyPress={onSelect}
+                role="button"
+                tabIndex="0"
+              >
+                {agencyComponent.agency.name}
+              </span>
+            </h2>
+          )
+        }
         <h3>{isCentralized ? agencyComponent.agency.name : agencyComponent.title }</h3>
       </div>
       <div className="usa-width-one-half">
@@ -66,6 +81,7 @@ function AgencyComponentPreview({ agencyComponent, isCentralized }) {
 }
 
 AgencyComponentPreview.propTypes = {
+  onAgencySelect: PropTypes.func.isRequired,
   agencyComponent: PropTypes.object.isRequired,
   isCentralized: PropTypes.bool.isRequired,
 };

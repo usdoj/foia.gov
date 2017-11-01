@@ -94,6 +94,7 @@ class LandingComponent extends Component {
           <AgencyComponentPreview
             agencyComponent={this.state.agencyComponent.toJS()}
             isCentralized={this.state.isCentralized}
+            onAgencySelect={agencyChange}
           />
         }
         {
