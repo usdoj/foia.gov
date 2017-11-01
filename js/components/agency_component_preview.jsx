@@ -66,7 +66,7 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         <h4>
           The records or information you&rsquo;re looking for may already be public.
         </h4>
-        { agencyComponent.website.uri &&
+        { agencyComponent.website &&
           <p>
             Visit the agency’s <a href={agencyComponent.website.uri}>website</a> to learn more.
           </p>
