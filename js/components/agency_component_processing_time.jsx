@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+function tryRoundInt(string) {
+  const number = Math.ceil(parseFloat(string, 10));
+  return Number.isNaN(number) ? string : number;
+}
+
 
 function AgencyComponentProcessingTime({ agencyComponent }) {
   if (!agencyComponent.request_data_year) {
@@ -8,10 +13,8 @@ function AgencyComponentProcessingTime({ agencyComponent }) {
     return null;
   }
 
-  const {
-    request_data_complex_average_days: complex_average_days,
-    request_data_simple_average_days: simple_average_days,
-  } = agencyComponent;
+  const complex_average_days = tryRoundInt(agencyComponent.request_data_complex_average_days);
+  const simple_average_days = tryRoundInt(agencyComponent.request_data_simple_average_days);
   return (
     <div>
       <h5>Average processing time for {agencyComponent.request_data_year}</h5>
