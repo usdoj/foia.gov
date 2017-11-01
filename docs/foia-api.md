@@ -35,7 +35,8 @@ front stage as an API consumer with special rate limiting. Each environment
 (development, staging, production) has a unique embedded API key. These API keys
 are not secrets, since they must be sent to the browser for the static web
 application to work with the API. If we move the app to a dynamic back end, we
-can re-evaluate how the API keys are managed.
+can re-evaluate how the API keys are managed. The API keys live in the
+environment specific [settings directory](../js/settings).
 
 All environments are configured the same with one exception. The `dev`
 environment is configured without requiring an API key to make debugging
