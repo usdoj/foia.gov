@@ -47,7 +47,7 @@ class LandingComponent extends Component {
         });
     };
 
-    const { agencies, agencyComponents } = this.props;
+    const { agencies, agencyComponents, agencyFinderDataComplete } = this.props;
     return (
       <div className="usa-grid">
         <h2>
@@ -56,6 +56,7 @@ class LandingComponent extends Component {
         <AgencyComponentFinder
           agencies={agencies}
           agencyComponents={agencyComponents}
+          agencyFinderDataComplete={agencyFinderDataComplete}
           onAgencyChange={agencyChange}
         />
         {
@@ -84,8 +85,9 @@ class LandingComponent extends Component {
 }
 
 LandingComponent.propTypes = {
-  agencyComponents: PropTypes.object.isRequired,
   agencies: PropTypes.object.isRequired,
+  agencyComponents: PropTypes.object.isRequired,
+  agencyFinderDataComplete: PropTypes.bool.isRequired,
 };
 
 export default LandingComponent;

@@ -9,6 +9,7 @@ import requestapi from '../util/request_api';
 export const types = {
   AGENCY_FINDER_DATA_FETCH: 'AGENCY_FINDER_DATA_FETCH',
   AGENCY_FINDER_DATA_RECEIVE: 'AGENCY_FINDER_DATA_RECEIVE',
+  AGENCY_FINDER_DATA_COMPLETE: 'AGENCY_FINDER_DATA_COMPLETE',
   AGENCY_COMPONENT_FETCH: 'AGENCY_COMPONENT_FETCH',
   AGENCY_COMPONENT_RECEIVE: 'AGENCY_COMPONENT_RECEIVE',
   REQUEST_FORM_UPDATE: 'REQUEST_FORM_UPDATE',
@@ -28,7 +29,8 @@ export const requestActions = {
       .fields('agency', ['name', 'abbreviation', 'description'])
       .fields('agency_component', ['title', 'abbreviation', 'agency'])
       .limit(50) // Maximum allowed by drupal
-      .paginate('/agency_components', requestActions.receiveAgencyFinderData);
+      .paginate('/agency_components', requestActions.receiveAgencyFinderData)
+      .then(requestActions.completeAgencyFinderData);
   },
 
   receiveAgencyFinderData(agencyComponents) {
@@ -38,6 +40,14 @@ export const requestActions = {
     });
 
     return Promise.resolve(agencyComponents);
+  },
+
+  completeAgencyFinderData() {
+    dispatcher.dispatch({
+      type: types.AGENCY_FINDER_DATA_COMPLETE,
+    });
+
+    return Promise.resolve();
   },
 
   fetchAgencyComponent(agencyComponentId) {
