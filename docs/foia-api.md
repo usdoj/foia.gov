@@ -26,9 +26,9 @@ We use [api.data.gov](https://api.data.gov/about/), a free API management
 service for federal agencies. api.data.gov sits in front of the back end and
 manages rate limiting and API keys. Admins can refer to [this
 document](https://docs.google.com/document/d/1TlNBg44N4J2AOBK00Mo5MGl37ZweTeEQ1pYJzUpOegA/edit#)
-for details on how we’ve configured api.data.gov. Refer to the [api.data.gov
-manual](https://github.com/18F/api.data.gov/wiki/User-Manual:-Agencies) for
-general configuration.
+for details on how we’ve configured api.data.gov for our application. Refer to
+the [api.data.gov manual](https://github.com/18F/api.data.gov/wiki/User-Manual:-Agencies)
+for general configuration.
 
 The front stage has dedicated embedded API keys. This allows us to treat the
 front stage as an API consumer with special rate limiting. Each environment
