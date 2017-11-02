@@ -53,7 +53,7 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         </div>
 
       </div>
-      <div className="usa-width-one-half">
+      <div className="usa-width-one-half start-request-container">
         { agencyComponent.request_data_year &&
           <div>
             <h4>Average processing time</h4>
