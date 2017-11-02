@@ -9,12 +9,12 @@ import RequestSummary from './request_summary';
 function Confirmation({ agencyComponent, formData, requestForm, submissionResult }) {
   const { submission_id } = submissionResult;
   const getDate = () => {
-    const months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+    const months = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
     const today = new Date();
-    const submission_date = `${ months[today.getMonth()] } ${ today.getDate() }, ${ today.getFullYear() }`;
+    const submission_date = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
 
     return submission_date;
-  }
+  };
 
   return (
     <div className="confirmation">
@@ -30,7 +30,12 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
         <p>
           Please save this page for your records.
         </p>
-        <button className="usa-button usa-button-outline" onClick={() => window.print()}>Print page</button>
+        <button
+          className="usa-button usa-button-outline"
+          onClick={() => window.print()}
+        >
+          Print page
+        </button>
         <p>
           You’ll hear back from the agency confirming receipt in coming weeks
           using the contact information you provided. If you have questions

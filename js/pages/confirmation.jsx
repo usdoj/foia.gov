@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
+/* eslint-disable import/first */
 import { Container } from 'flux/utils';
 import PropTypes from 'prop-types';
 import { Map } from 'immutable';
 
 import { requestActions } from 'actions';
-import LandingComponent from '../components/landing';
-import agencyComponentStore from '../stores/agency_component';
 import { SubmissionResult } from 'models';
+import agencyComponentStore from '../stores/agency_component';
 
 import Confirmation from 'components/confirmation';
 import FoiaRequestForm from 'components/foia_request_form';
 import Tabs from 'components/tabs';
 import agencyComponentRequestFormStore from 'stores/agency_component_request_form';
 import foiaRequestStore from 'stores/foia_request';
+import faker from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
 import NotFound from './not_found';
-import faker from 'faker';
-
 
 class ConfirmationPage extends Component {
   static getStores() {
@@ -97,7 +96,10 @@ class ConfirmationPage extends Component {
     function onSubmit() {}
 
     let mainContent;
-    if (agencyComponent && agencyComponent.title && submissionResult && submissionResult.submission_id) {
+    if (agencyComponent &&
+        agencyComponent.title &&
+        submissionResult &&
+        submissionResult.submission_id) {
       mainContent = (
         <Confirmation
           agencyComponent={agencyComponent}

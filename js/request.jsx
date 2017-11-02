@@ -20,7 +20,10 @@ window.app = {
 render(
   <Router history={history}>
     <Switch>
-      <Route path="/agency-component/:agencyComponentId/confirmation" component={ConfirmationPage} />
+      <Route
+        path="/agency-component/:agencyComponentId/confirmation"
+        component={ConfirmationPage}
+      />
       <Route path="/agency-component/:agencyComponentId" component={AgencyComponentRequestPage} />
       <Route path="/" component={RequestLandingPage} />
       <Route component={NotFoundPage} />
