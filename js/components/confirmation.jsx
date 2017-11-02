@@ -8,6 +8,13 @@ import RequestSummary from './request_summary';
 
 function Confirmation({ agencyComponent, formData, requestForm, submissionResult }) {
   const { submission_id } = submissionResult;
+  const getDate = () => {
+    const months = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+    const today = new Date();
+    const submission_date = `${ months[today.getMonth()] } ${ today.getDate() }, ${ today.getFullYear() }`;
+
+    return submission_date;
+  }
 
   return (
     <div className="confirmation">
@@ -16,13 +23,14 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
       </div>
       <h1 className="confirmation_title">Success!</h1>
       <section className="confirmation_contact">
-        <p className="usa-lead">
-          <strong>Your FOIA request has been created and is being sent to
-          the {agencyComponent.title}.</strong>
-        </p>
+        <h3>
+          Your FOIA request has been created and is being sent to
+          the {agencyComponent.title}.
+        </h3>
         <p>
           Please save this page for your records.
         </p>
+        <button className="usa-button usa-button-outline" onClick={() => window.print()}>Print page</button>
         <p>
           You’ll hear back from the agency confirming receipt in coming weeks
           using the contact information you provided. If you have questions
@@ -48,6 +56,7 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
 
       <section className="confirmation_request-summary">
         <h2>Request summary</h2>
+        <p>Request submitted on <strong>{ getDate() }</strong>.</p>
         <p className="confirmation_submission-id">
           The submission ID for your request is <strong>{submission_id}</strong>.
         </p>
