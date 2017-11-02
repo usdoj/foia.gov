@@ -1,6 +1,6 @@
 .info-box {
   background-color: $color-primary-alt-lightest;
-  padding: 0 $space-2x $space-3x $space-2x;
+  padding: 0.8rem 1.6rem 2.4rem 1.6rem;
   &:before {
     width: 0;
     height: 0;
@@ -9,6 +9,9 @@
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
     border-bottom: 12px solid $color-primary-alt;
-    transform: translate(-2.4rem, -0.16rem) rotate(-45deg);
+    transform: translate(-2.4rem, -.95rem) rotate(-45deg);
+  }
+  p {
+    margin: 0;
   }
 }
