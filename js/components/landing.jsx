@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { requestActions } from 'actions';
 import AgencyComponentSelector from 'components/agency_component_selector';
 import AgencyComponentPreview from 'components/agency_component_preview';
+import AgencyPreview from 'components/agency_preview';
 import agencyComponentStore from '../stores/agency_component';
 
 
@@ -11,14 +12,26 @@ class LandingComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      agency: null,
       agencyComponent: null,
+      agencyComponentsForAgency: null,
     };
   }
 
   render() {
     const agencyChange = (agencyComponent) => {
+      // Note that the agencyComponent comes from two different sources, so the
+      // properties might not be consistent.
+
       if (agencyComponent.type === 'agency') {
-        // TODO we probably want to make top-level agencies un-selectable?
+        const agency = agencyComponentStore.getAgency(agencyComponent.abbreviation);
+        const agencyComponentsForAgency =
+          agencyComponentStore.getAgencyComponentsForAgency(agency.id);
+        this.setState({
+          agency,
+          agencyComponent: null,
+          agencyComponentsForAgency,
+        });
         return;
       }
 
@@ -26,7 +39,11 @@ class LandingComponent extends Component {
         .then(requestActions.receiveAgencyComponent)
         .then(() => {
           const component = agencyComponentStore.getAgencyComponent(agencyComponent.id);
-          this.setState({ agencyComponent: component });
+          this.setState({
+            agency: null,
+            agencyComponent: component,
+            agencyComponentsForAgency: null,
+          });
         });
     };
 
@@ -42,7 +59,7 @@ class LandingComponent extends Component {
           onAgencyChange={agencyChange}
         />
         {
-          !this.state.agencyComponent &&
+          !this.state.agencyComponent && !this.state.agency &&
           <p>Not all agencies can receive FOIA requests created on FOIA.gov.
              Where to submit a request for those agencies
              will be available after you make a selection above.</p>
@@ -50,6 +67,14 @@ class LandingComponent extends Component {
         {
           this.state.agencyComponent &&
           <AgencyComponentPreview agencyComponent={this.state.agencyComponent.toJS()} />
+        }
+        {
+          this.state.agency &&
+          <AgencyPreview
+            agency={this.state.agency}
+            agencyComponentsForAgency={this.state.agencyComponentsForAgency}
+            onAgencySelect={agencyChange}
+          />
         }
       </div>
     );

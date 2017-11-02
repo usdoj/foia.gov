@@ -10,6 +10,9 @@ const defaults = {
 };
 
 class Agency extends Record(defaults) {
+  mission() {
+    return this.description && this.description.value;
+  }
 }
 
 export default Agency;

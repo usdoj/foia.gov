@@ -52,8 +52,8 @@ useful and we can remove it at that point for better tests.
 This project is deployed automatically through [continuous
 integration](https://circleci.com/gh/18F/beta.foia.gov) (CI) as a static
 application to [Acquia Cloud](https://cloud.acquia.com/). Any changes merged to
-the `master` branch will be vetted by our automated tests and then deployed
-automatically.
+the `develop`, `master`, and staging branches will be vetted by our automated
+tests and then deployed automatically.
 
 In the [CI settings](https://circleci.com/gh/18F/beta.foia.gov/edit#env-vars),
 you must configure the Acquia Cloud git repo as `$GIT_REPO`. The CI config runs
@@ -73,8 +73,9 @@ Each environment is deployed separately based on the git configuration based on
 
 | environment | hostname | git |
 | ---         | ---      | --- |
-| development | [foiafrontdev.prod.acquia-sites.com](http://foiafrontdev.prod.acquia-sites.com/) | `master` branch |
+| development | [foiafrontdev.prod.acquia-sites.com](http://foiafrontdev.prod.acquia-sites.com/) | `develop` branch |
 | staging | [foiafrontstg.prod.acquia-sites.com](http://foiafrontstg.prod.acquia-sites.com/) | `release-*` branches |
+| production | [foiafront.prod.acquia-sites.com](http://foiafront.prod.acquia-sites.com/) | `master` branches |
 
 
 ## Reporting API and foia-proxy
