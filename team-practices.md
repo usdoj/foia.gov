@@ -86,7 +86,8 @@ Issue completed.
 
 ## Pull Requests
 
-All code changes should happen through pull requests (PRs).
+All code changes should happen through pull requests (PRs) to the `develop`
+branch.
 
 New PRs should be assigned to the person who opens the PR.
 If a PR is not ready for review and merge, add the `WIP` label to it,
@@ -97,6 +98,4 @@ As a reviewer, you are not expected to review `WIP` PRs unless specifically requ
 Prioritize PR reviews over other work, so that PRs do not block other team members.
 
 When a PR has an accepted review, either the reviewer or the owner (assignee)
-may merge the PR using either the `Squash and merge` or the `Rebase and merge`
-Github big green button. Each PR should result in exactly 1 commit to the `master`
-branch.
+may merge the PR.

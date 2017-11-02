@@ -1,12 +1,4 @@
 @import 'mixins/text_divider';
-.print-hide {
-  @media print {
-    display: none;
-  }
-}
 
-.print-only {
-  @media screen {
-    display: none;
-  }
-}
+@import 'base/print';
+@import 'base/typography';

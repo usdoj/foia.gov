@@ -142,26 +142,26 @@ workflows:
             - test
           filters:
             branches:
-              only: master
+              only: develop
       - deploy-cloud-gov:
           requires:
             - build-cloud-gov
           filters:
             branches:
-              only: master
+              only: develop
 
       - build-development:
           requires:
             - test
           filters:
             branches:
-              only: master
+              only: develop
       - deploy-development:
           requires:
             - build-development
           filters:
             branches:
-              only: master
+              only: develop
 
       - build-staging:
           requires:

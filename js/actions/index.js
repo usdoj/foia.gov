@@ -25,7 +25,7 @@ export const requestActions = {
 
     return jsonapi.params()
       .include('agency')
-      .fields('agency', ['name', 'abbreviation'])
+      .fields('agency', ['name', 'abbreviation', 'description'])
       .fields('agency_component', ['title', 'abbreviation', 'agency'])
       .limit(50) // Maximum allowed by drupal
       .paginate('/agency_components', requestActions.receiveAgencyFinderData);

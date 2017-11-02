@@ -83,6 +83,10 @@ class AgencyComponent extends Record(defaults) {
 
     return '';
   }
+
+  requestUrl() {
+    return `/request/agency-component/${this.id}/`;
+  }
 }
 
 export default AgencyComponent;
