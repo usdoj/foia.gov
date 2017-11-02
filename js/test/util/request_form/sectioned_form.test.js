@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import chaiSinon from 'sinon-chai';
 
 import wfjs from '../../../util/request_form/webform_to_json_schema';
-import formSections from '../../../util/request_form/form_sections';
+import sectionedForm from '../../../util/request_form/sectioned_form';
 
 
 chai.use(chaiSinon);
@@ -32,7 +32,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
         formFields: [],
       };
 
-      result = formSections.sectionedFormFromAgencyComponent(agencyComponent);
+      result = sectionedForm.sectionedFormFromAgencyComponent(agencyComponent);
     });
 
     it('does not call webformFieldsToJsonSchema', () => {
@@ -53,8 +53,8 @@ describe('sectionedFormFromAgencyComponent()', () => {
         jsonSchema = result.jsonSchema;
       });
 
-      it('has a title matching agency component', () => {
-        expect(jsonSchema).to.have.property('title', agencyComponent.title);
+      it('has a title "Make your request"', () => {
+        expect(jsonSchema).to.have.property('title', 'Make your request');
       });
 
       it('has a type', () => {
@@ -69,8 +69,9 @@ describe('sectionedFormFromAgencyComponent()', () => {
   });
 
   describe('given an agencyComponent with formFields', () => {
-    describe('given "additional section" fields', () => {
-      // These are fields not matching any of the other fields
+    describe('given agency-component-specific fields', () => {
+      // These are fields not matching any of the other fields. The section
+      // selected is based on the isAgencySpecificFieldSection, currently hard-coded
       let agencyComponent;
       let result;
 
@@ -85,7 +86,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
           ],
         };
 
-        result = formSections.sectionedFormFromAgencyComponent(agencyComponent);
+        result = sectionedForm.sectionedFormFromAgencyComponent(agencyComponent);
       });
 
       it('calls webformFieldsToJsonSchema', () => {
@@ -104,7 +105,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
 
         it('has a single section with uiSchema', () => {
           expect(uiSchema).to.deep.equal({
-            additional_fields: {
+            supporting_docs: {
               agency_specific_field: {
                 'ui:title': 'An agency specific field',
                 'ui:description': undefined,
@@ -127,8 +128,8 @@ describe('sectionedFormFromAgencyComponent()', () => {
           expect(jsonSchema).to.be.ok;
         });
 
-        it('has a title matching agency component', () => {
-          expect(jsonSchema).to.have.property('title', agencyComponent.title);
+        it('has a title "Make your request"', () => {
+          expect(jsonSchema).to.have.property('title', 'Make your request');
         });
 
         it('has a type', () => {
@@ -145,14 +146,14 @@ describe('sectionedFormFromAgencyComponent()', () => {
             expect(jsonSchemaProperties).to.be.ok;
           });
 
-          it('has an additional fields property', () => {
-            expect(jsonSchemaProperties).to.have.property('additional_fields');
+          it('has an additional fields section property', () => {
+            expect(jsonSchemaProperties).to.have.property('supporting_docs');
           });
 
-          describe('additional_fields', () => {
+          describe('supporting_docs', () => {
             let additionalFields;
             beforeEach(() => {
-              additionalFields = jsonSchemaProperties.additional_fields;
+              additionalFields = jsonSchemaProperties.supporting_docs;
             });
 
             it('exists', () => {
@@ -175,12 +176,12 @@ describe('sectionedFormFromAgencyComponent()', () => {
 
             it('sets title as section title', () => {
               // TODO this is hardcoded, would be nice to feed it stub data
-              expect(additionalFields).to.have.property('title', 'Additional fields');
+              expect(additionalFields).to.have.property('title', 'Additional information');
             });
 
             it('sets description as section description', () => {
               // TODO this is hardcoded, would be nice to feed it stub data
-              expect(additionalFields).to.have.property('description', 'This addtional information may be helpful for the agency to fulfill your FOIA request.');
+              expect(additionalFields).to.have.property('description');
             });
 
             it('has the single field as a property', () => {
@@ -197,8 +198,9 @@ describe('sectionedFormFromAgencyComponent()', () => {
       });
     });
 
-    describe('given two "additional section" fields', () => {
-      // These are fields not matching any of the other fields
+    describe('given two agency-component-specific fields', () => {
+      // These are fields not matching any of the other fields. The section
+      // selected is based on the isAgencySpecificFieldSection, currently hard-coded
       let agencyComponent;
       let result;
 
@@ -217,7 +219,7 @@ describe('sectionedFormFromAgencyComponent()', () => {
           ],
         };
 
-        result = formSections.sectionedFormFromAgencyComponent(agencyComponent);
+        result = sectionedForm.sectionedFormFromAgencyComponent(agencyComponent);
       });
 
       it('calls webformFieldsToJsonSchema once', () => {
@@ -235,8 +237,8 @@ describe('sectionedFormFromAgencyComponent()', () => {
         });
 
         it('has a single section with two fields and uiSchema properties', () => {
-          expect(uiSchema).to.have.property('additional_fields');
-          expect(uiSchema.additional_fields).to.have.all.keys([
+          expect(uiSchema).to.have.property('supporting_docs');
+          expect(uiSchema.supporting_docs).to.have.all.keys([
             'agency_specific_field1',
             'agency_specific_field2',
             'ui:order',
@@ -265,8 +267,8 @@ describe('sectionedFormFromAgencyComponent()', () => {
           });
 
           it('has a section property with its own jsonSchema properties with two fields', () => {
-            expect(jsonSchemaProperties.additional_fields).to.have.property('properties');
-            expect(jsonSchemaProperties.additional_fields.properties).to.have.all.keys([
+            expect(jsonSchemaProperties.supporting_docs).to.have.property('properties');
+            expect(jsonSchemaProperties.supporting_docs.properties).to.have.all.keys([
               'agency_specific_field1',
               'agency_specific_field2',
             ]);
@@ -294,13 +296,13 @@ describe('sectionedFormFromAgencyComponent()', () => {
           ],
         };
 
-        result = formSections.sectionedFormFromAgencyComponent(agencyComponent);
+        result = sectionedForm.sectionedFormFromAgencyComponent(agencyComponent);
       });
 
       it('calls webformFieldsToJsonSchema for each section', () => {
         expect(spy).to.have.been.calledTwice;
         expect(spy).to.have.been.calledWith(sinon.match.array, sinon.match({ id: 'requester_contact' }));
-        expect(spy).to.have.been.calledWith(sinon.match.array, sinon.match({ id: 'additional_fields' }));
+        expect(spy).to.have.been.calledWith(sinon.match.array, sinon.match({ id: 'supporting_docs' }));
       });
 
       describe('uiSchema', () => {
@@ -314,9 +316,9 @@ describe('sectionedFormFromAgencyComponent()', () => {
         });
 
         it('has two sections', () => {
-          expect(uiSchema).to.have.property('additional_fields');
+          expect(uiSchema).to.have.property('supporting_docs');
           expect(uiSchema).to.have.property('requester_contact');
-          expect(uiSchema.additional_fields).to.have.all.keys([
+          expect(uiSchema.supporting_docs).to.have.all.keys([
             'ui:order',
             'agency_specific_field',
           ]);
@@ -348,10 +350,10 @@ describe('sectionedFormFromAgencyComponent()', () => {
           });
 
           it('has two sections', () => {
-            expect(jsonSchemaProperties).to.have.property('additional_fields');
+            expect(jsonSchemaProperties).to.have.property('supporting_docs');
             expect(jsonSchemaProperties).to.have.property('requester_contact');
 
-            expect(jsonSchemaProperties.additional_fields.properties).to.have.all.keys([
+            expect(jsonSchemaProperties.supporting_docs.properties).to.have.all.keys([
               'agency_specific_field',
             ]);
             expect(jsonSchemaProperties.requester_contact.properties).to.have.all.keys([

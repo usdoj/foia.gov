@@ -78,10 +78,12 @@ class Tabs extends Component {
                 <li>
                   <h5>The person to reach out to about your FOIA request is:</h5>
                   <FoiaPersonnel foiaPersonnel={personnel[0]} />
-                  <p>You can ask <span data-term="foia">FOIA</span> personnel
-                    about anything related to your request, including whether
-                    what you’re asking for is clear.  You can also reach out to
-                    follow up on your request after it’s been submitted.</p>
+                  <p>
+                    You can ask FOIA personnel about anything related to your
+                    request, including whether what you’re asking for is clear.
+                    You can also reach out to follow up on your request after
+                    it’s been submitted.
+                  </p>
                 </li>
                 <li>
                   <h5>The description of records you are requesting is
