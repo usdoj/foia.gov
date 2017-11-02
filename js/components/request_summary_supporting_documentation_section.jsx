@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function RequestSummarySupportingDocumentationSection({ formData }) {
-  const attachment = formData.supporting_docs.attachments_supporting_documentation;
+  const attachment = (formData.supporting_docs || {}).attachments_supporting_documentation;
+  if (!attachment) {
+    return null;
+  }
+
   return (
     <div className="request-summary_section">
       <p>{attachment.filename}</p>
