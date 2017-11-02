@@ -1,7 +1,9 @@
 *.gif
 *.jpeg
 *.jpg
+*.js
 *.pdf
+*.php
 *.png
 *.swf
 *.sw?
@@ -21,5 +23,7 @@ iepd
 images
 img
 index.html
+qtip
 request
+scripts
 video
