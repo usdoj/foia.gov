@@ -9,6 +9,9 @@
         display: inline-block;
         width: 100%;
       }
+      &.tab_active a {
+        padding: 1rem 2.8rem; // magic number to keep the tab from changing size when the text is bold
+      }
     }
   }
 }
