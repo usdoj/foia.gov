@@ -3,8 +3,12 @@
     list-style: none;
     &.sidebar_tab-controls li {
       display: inline-block;
-      padding: 1rem $space-4x;
       margin-bottom: 0;
+      a {
+        padding: 1rem $space-4x;
+        display: inline-block;
+        width: 100%;
+      }
     }
   }
 }
