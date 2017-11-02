@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 /* eslint-disable import/first */
+import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import PropTypes from 'prop-types';
 import { Map } from 'immutable';
