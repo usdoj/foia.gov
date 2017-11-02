@@ -85,13 +85,33 @@ class AgencyComponentSelector extends Component {
   }
 
   render() {
+    const onSubmit = (e) => {
+      e.preventDefault();
+      this.bloodhound.search(this.typeahead.typeahead('val'), (suggestions) => {
+        if (suggestions.length) {
+          // Trigger the selection event on the first suggestion and close the
+          // typeahead
+          this.typeahead.trigger('typeahead:select', suggestions[0]);
+          this.typeahead.typeahead('close');
+        }
+      });
+    };
+
     return (
-      <form>
-        <input
-          type="text"
-          placeholder="Type agency name"
-          ref={(input) => { this.typeaheadInput = input; }}
-        />
+      <form className="usa-search usa-search-big" onSubmit={onSubmit}>
+        <div role="search">
+          <label className="usa-sr-only" htmlFor="search-field-big">Search for an agency</label>
+          <input
+            type="text"
+            id="search-field-big"
+            name="search"
+            placeholder="Type agency name"
+            ref={(input) => { this.typeaheadInput = input; }}
+          />
+          <button className="usa-button usa-button-primary usa-sr-hidden" type="submit">
+            <span className="usa-search-submit-text">Search</span>
+          </button>
+        </div>
       </form>
     );
   }
