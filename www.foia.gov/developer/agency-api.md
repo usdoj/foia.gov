@@ -63,7 +63,7 @@ token in the HTTP header `FOIA-API-SECRET`, and your API should validate that it
 is the correct token.
 
 Services like [api.data.gov](https://api.data.gov/about/) provide this
-authentication for you and give you additional optoins.
+authentication for you and give you additional options.
 
 
 ### URL
@@ -97,14 +97,14 @@ endpoints for future development and features.
   `POST`
 
 
-###  URL Params
+###  URL parameters
 
 **Required:**
 
 `id=[integer]`, where `id` is the unique identifier of the agency component that should receive the request.
 
 
-### Data Params
+### Data parameters
 
 JSON payload that contains the form fields.
 
