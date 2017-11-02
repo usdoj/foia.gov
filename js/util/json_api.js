@@ -44,6 +44,7 @@ class JsonApi {
   constructor(baseURL) {
     this._api = axios.create({
       baseURL: baseURL || settings.api.jsonApiBaseURL,
+      headers: { 'X-Api-Key': settings.api.jsonApiKey },
     });
   }
 

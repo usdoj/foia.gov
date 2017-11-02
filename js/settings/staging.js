@@ -1,6 +1,8 @@
 const api = {
-  jsonApiBaseURL: 'http://foiastg.prod.acquia-sites.com/jsonapi',
-  requestApiBaseURL: 'http://foiastg.prod.acquia-sites.com/api',
+  jsonApiBaseURL: 'https://stg-api.foia.gov/jsonapi',
+  requestApiBaseURL: 'https://stg-api.foia.gov/api',
+  // These are not secret, refer to https://github.com/18F/beta.foia.gov/tree/develop/docs/foia-api.md
+  jsonApiKey: 'Ear1funbgPVsgIAvRDZQK4yHq1XrLnrgfUBJM0Su',
 };
 
 export default {
