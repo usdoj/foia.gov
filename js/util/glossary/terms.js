@@ -12,7 +12,20 @@ const terms = [
     definition: `
       Any record that is created or obtained by a federal agency, and under agency control when the request is received.`,
   },
-  
+
+  {
+    term: 'Agency component',
+    definition: `
+      This is a catch-all term used to refer to departments, bureaus, and offices that receive FOIA
+      requests.`,
+  },
+
+   {
+    term: 'Agency',
+    definition: `
+      Before making a request it’s important that you identify the correct agency where your request should be sent. The Freedom of Information Act (FOIA) is administered on a decentralized basis, meaning each of over 100 agencies is responsible for receiving, processing, and responding to its own FOIA requests. The resources on this website are designed to assist you in this process. Please note that FOIA only applies to Federal Executive Branch Agencies.  It does not apply to the Judicial Branch (Courts) or the Legislative Branch (Congress).`,
+  },
+
   {
     term: 'Annual FOIA report',
     definition: `
@@ -439,19 +452,19 @@ The FOIA also requires agencies to proactively post online certain categories of
   },
 
   {
-    term: 'portal',
+    term: 'Portal',
     definition: `
       A gateway to other systems or information but may not have any functionality or
       information on its own.`,
   },
 
   {
-    term: 'proactive disclosure',
+    term: 'Proactive disclosure',
     definition: '',
   },
 
   {
-    term: 'release to three, release to all',
+    term: 'Release to three, release to all',
     definition: `
       Per the FOIA 1996 amendment, if a set of records is requested three times, the
       FOIA indicates the documents should be made permanently public, which forms the
@@ -460,18 +473,23 @@ The FOIA also requires agencies to proactively post online certain categories of
   },
 
   {
-    term: 'requester',
+    term: 'Requester',
     definition: `
       A person or organization making or about to make a FOIA request.`,
   },
 
   {
-    term: 'response',
+    term: 'Response',
     definition: `
       A completed FOIA request which may contain a letter describing the contents of
       the response, documents related to the request, and instructions for appeal.`,
   },
 
+  {
+    term: 'Systems of records notices (SORN)',
+    definition: `
+      Systems of Records Notices can help you know the types of records an agency maintains and the way they are maintained to help you identifying which agency to send your request to. It can also help you tailor your request in order to get the precise records you are looking for quickly.  There are several resources to assist you in doing this research.  First, each agency has a FOIA Reference Guide which has a wealth information about making requests to that agency, including a description of the agency’s major information and record locator systems. Additionally, under the Privacy Act of 1974, agencies must publish in the Federal Register certain systems of records that they maintain.`,
+  },
   {
     term: 'responsive document',
     definition: '',
