@@ -14,7 +14,7 @@ const FORM_SECTIONS = [
     title: 'Contact information',
     description: `
       The information you supply here will be used to provide a response for
-      your request for  information. Please note that not all of these fields
+      your request for information. Please note that not all of these fields
       are required.
     `,
     // Ordering is significant
@@ -55,7 +55,7 @@ const FORM_SECTIONS = [
     description: domify(`
       The description of the records you are requesting is important. The scope
       of your request can impact how quickly an agency could respond to your
-      request. Your description should be as  clear and specific as possible
+      request. Your description should be as clear and specific as possible
       and must give agency <span data-term="full-time foia employees">FOIA
       personnel</span> enough detail so that they are able to reasonably
       determine exactly which records are being requested and where to locate
@@ -92,7 +92,7 @@ const FORM_SECTIONS = [
     description: domify(`
       There is no initial <span data-term="fee waiver">fee</span> required to
       submit a FOIA request, but the FOIA does allow people requesting records
-      to be charged certain types of fees in some instances. If fees will be at
+      to be charged certain types of fees in some instances. If fees will be an
       issue in your request, you may request a waiver of those fees. Fee
       waivers are limited to situations in which a requester can show that the
       disclosure of the requested information is in the public interest because
