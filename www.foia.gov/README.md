@@ -78,26 +78,34 @@ Each environment is deployed separately based on the git configuration based on
 | production | [foiafront.prod.acquia-sites.com](http://foiafront.prod.acquia-sites.com/) | `master` branches |
 
 
-## Reporting API and foia-proxy
+## Reporting back end and foia-proxy
 
-To run this site locally on a Mac, you need to:
+The reporting back end provided by the legacy www.foia.gov is still in use. We need
+to proxy requests to it, maintaining session cookies. We've created
+a transparent proxy at
+[foia-proxy.php](/18F/beta.foia.gov/blob/master/www.foia.gov/foia-proxy.php) to
+accomplish this.
 
-* enable a web server configured to handle PHP
-* point the web server at the root of this directory
+Because Jekyll does not handle PHP code, this proxy must be run on a PHP-enabled
+web server like Apache. We've created a [vagrant virtual
+machine](https://www.vagrantup.com/) specifically for this. The vagrant VM is
+not needed for general development, only for testing the interactions with the
+reporting back end on the legacy pages.
 
-On a Mac, Apache with PHP support is typically already installed,
-but may need to be configured. You should verify that this line:
+Refer to [www.vagrantup.com](https://www.vagrantup.com/) for getting vagrant
+installed.
 
-    LoadModule php5_module libexec/apache2/libphp5.so
+To run the VM:
 
-is not commented out in `/etc/apache2/httpd.conf`. Once that line
-is enabled, you can start Apache with:
+    $ vagrant up
 
-    % apachectl start
+And open your web browser to [localhost:8080](http://localhost:8080/).
 
-Then, you should create a symlink to wherever you have
-this repository checked out.
+If you need to debug anything or check the logs, you can connect to the VM over
+ssh:
 
-    % ln -s path/to/your/repo /Library/WebServer/Documents/www.foia.gov
+    $ vagrant ssh
 
-And then your site should be available at http://localhost/www.foia.gov
+To stop the VM:
+
+    $ vagrant halt

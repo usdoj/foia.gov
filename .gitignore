@@ -3,6 +3,7 @@
 .jekyll-metadata
 .sass-cache
 .tmp/
+.vagrant/
 _site
 /deploy/
 node_modules/
