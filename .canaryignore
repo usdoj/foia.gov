@@ -1,7 +1,9 @@
 *.gif
 *.jpeg
 *.jpg
+*.js
 *.pdf
+*.php
 *.png
 *.swf
 *.sw?
@@ -13,11 +15,15 @@
 agency-info-updater.html
 api
 assets
+developer
 FusionCharts
+foia-legacy.css
 foia-style.css
 iepd
 images
 img
 index.html
+qtip
 request
+scripts
 video

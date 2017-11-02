@@ -349,10 +349,6 @@ ul.tabs li a.active {background: url(images/hrtab-on.gif) 0 0 no-repeat; text-de
 #dataTable {padding: 0;}
 #tableContainer {padding: 0 30px 30px 30px;}
 #tableTitle {margin: 30px 0 0 0;}
-table, th, tr, td {border: 1px solid #e7e7e7; border-collapse: collapse; background: #fff; }
-th {background: url(images/table-th-bg.jpg) bottom left repeat-x; font: bold 12px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; padding: 5px;}
-td {padding: 6px 6px 6px 12px;}
-
 tr.odd td.highlite, tr.even td.highlite {background:#e8f3b2;color:#000;}
 
 tr.even td{background:#f3f3f3;}

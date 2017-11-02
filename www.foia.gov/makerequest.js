@@ -97,10 +97,10 @@ var requestString="foia/FoiaMakeRequest?agency="+param;
 	popupWinClose();
 }
 
-var FOIA_PROXY = './foia-proxy.php?u=';
+var FOIA_PROXY = '';
 
 function startFoiaRequest(foiaDataURL){
-    if (!foiaDataURL.match(/^https:/)) {
+    if (!/^https:/.test(foiaDataURL)) {
         foiaDataURL = FOIA_PROXY + foiaDataURL;
         console.log("new URL:", foiaDataURL);
     }
