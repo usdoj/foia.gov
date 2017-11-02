@@ -17,8 +17,8 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
       <h1 className="confirmation_title">Success!</h1>
       <section className="confirmation_contact">
         <p className="usa-lead">
-          Your FOIA request has been created and is being sent to
-          the {agencyComponent.title}.
+          <strong>Your FOIA request has been created and is being sent to
+          the {agencyComponent.title}.</strong>
         </p>
         <p>
           Please save this page for your records.
@@ -31,18 +31,18 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
         </p>
         <div className="confirmation_agency-contact">
           <h5 tabIndex="-1">Contact the agency</h5>
-          <div className="confirmation_agency-contact-title">
+          <p className="confirmation_agency-contact-title">
             {agencyComponent.title}
-          </div>
-          <div className="confirmation_agency-contact-website">
+          </p>
+          <p className="confirmation_agency-contact-website">
             {agencyComponent.website.uri}
-          </div>
-          <div className="confirmation_agency-contact-email">
+          </p>
+          <p className="confirmation_agency-contact-email">
             {agencyComponent.email}
-          </div>
-          <div className="confirmation_agency-contact-phone">
+          </p>
+          <p className="confirmation_agency-contact-phone">
             {agencyComponent.telephone}
-          </div>
+          </p>
         </div>
       </section>
 

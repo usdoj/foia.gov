@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 function RequestSummaryContactSection({ formData }) {
   const data = formData.requester_contact;
-  debugger;
   return (
     <div className="request-summary_section">
       <h5>Name</h5>
