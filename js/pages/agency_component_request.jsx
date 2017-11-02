@@ -115,7 +115,7 @@ class AgencyComponentRequestPage extends Component {
               null
           }
         </aside>
-        <div className="usa-width-seven-twelfths sidebar_content">
+        <div className="usa-width-one-half usa-offset-one-twelfth sidebar_content">
           { mainContent }
         </div>
       </div>
