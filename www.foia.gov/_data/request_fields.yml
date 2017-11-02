@@ -1,0 +1,175 @@
+---
+version:
+  name: version
+  type: string
+  description: The version of the API used for determining compatibility. Reserved for future use.
+  required: yes
+  example: '"1.0.0"'
+
+request_id:
+  name: request_id
+  type: integer
+  description: A unique identifier for the request within the Portal.
+  required: yes
+  example: '1534'
+
+agency:
+  name: agency
+  type: string
+  description: Name of the tier 1 agency.
+  required: yes
+  example: '"Department of Justice"'
+
+agency_component_name:
+  name: agency_component_name
+  type: string
+  description: Name of the department, bureau, or office.
+  required: yes
+  example: '"Office of Information Policy"'
+
+name_first:
+  name: name_first
+  Type: string
+  description: First name of the requester.
+  required: no
+  example: '"George"'
+
+name_last:
+  name: name_last
+  type: string
+  description: Last name of the requester.
+  required: no
+  example: '"Washington"'
+
+address_line1:
+  name: address_line1
+  type: string
+  description: Requester’s street mailing address.
+  required: no
+  example: '"1800 F Street"'
+
+address_line2:
+  name: address_line2
+  type: string
+  description: Line 2 for requester’s mailing address.
+  required: no
+  example: '"Suite 400"'
+
+address_city:
+  name: address_city
+  type: string
+  description: City for requester’s mailing address.
+  required: no
+  example: '"Mount Vernon"'
+
+address_country:
+  name: address_country
+  type: string
+  description: Country for requester’s mailing address.
+  required: no
+  example: '"United States"'
+
+address_state_province:
+  name: address_state_province
+  type: string
+  description: State or province for requester’s mailing address.
+  required: no
+  example: '"Virginia"'
+
+address_zip_postal_code:
+  name: address_zip_postal_code
+  type: string
+  description: Zip code or postal code for requester’s mailing address.
+  required: no
+  example: '"98273"'
+
+request_description:
+  name: request_description
+  type: string
+  description: Description of the records the requester is seeking.
+  required: yes
+  example: '"I am seeking records pertaining to ..."'
+
+fee_amount_willing:
+  name: fee_amount_willing
+  type: string
+  description: The amount in USD that a requester is willing to pay in order to cover costs related to this request.
+  required: no
+  example: '"25"'
+
+fee_waiver:
+  name: fee_waiver
+  type: string
+  description: The requester would like to request that fees associated with the request be waived.
+  required: no, defaults to "no"
+  example: '"no"'
+
+fee_waiver_explanation:
+  name: fee_waiver_explanation
+  type: string
+  description: The justification for the fee waiver.
+  required: no
+  example: '"As a journalist organization, I am requesting these records on behalf of the public and intend to make these records accesible to the public."'
+
+request_category:
+  name: request_category
+  type: string
+  description: The claimed category of the requester.
+  required: no
+  example: '"individual"'
+
+expedited_processing:
+  name: expedited_processing
+  type: string
+  description: The requester would like this request to be processed on an expedited basis.
+  required: no, defaults to "no"
+  example: '"no"'
+
+expedited_processing_explanation:
+  name: expedited_processing_explanation
+  type: string
+  description: The justification for why expedited processing should be granted.
+  required: no
+  example: '"The request should be given expedited processing because…"'
+
+company_organization:
+  name: company_organization
+  type: string
+  description: Name of the organization or company on which the requester is making a request on behalf of.
+  required: no
+  example: '"Newspaper Inc"'
+
+email:
+  name: email
+  type: string
+  description: Email address of the requester.
+  required: no
+  example: '"george.washington@example.com"'
+
+phone_number:
+  name: phone_number
+  type: string
+  description: Phone number of the requester.
+  required: no
+  example: '"+15551234567"'
+
+fax_number:
+  name: fax_number
+  type: string
+  description: Fax number of the requester.
+  required: no
+  example: '"+15551234589"'
+
+attachments_supporting_documentation:
+  name: attachments_supporting_documentation
+  type: [object]
+  description: Documents or attachments supporting the request provided by the requester.
+  required: no
+  example: '[{"filename": "letter.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}]'
+
+'*':
+  name: '*'
+  type: Determined by the [agency metadata file][agency-metadata-file-schema]. See [agency component specific form fields](#agency-component-specific-form-fields) below.
+  description: Agency component specific request form field as specified in your [agency's metadata file][agency-metadata-file-schema].
+  required: if applicable
+  example: See <a href="#agency-form-fields-example">below</a>.
