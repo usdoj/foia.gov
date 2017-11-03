@@ -24,17 +24,17 @@ describe('RequestSummarySection', () => {
 
     beforeEach(() => {
       formData = {
-        requester_contact_section: {
+        fake_requester_contact_section: {
           name: 'Mr. Rogers',
         },
-        additional_fields_section: {
+        fake_supporting_docs: {
           agency_question: 'a response',
         },
       };
 
       requestForm = factory.requestForm.fromFormData(formData);
-      requestForm.jsonSchema.properties.requester_contact_section.properties.name.title = 'Full name';
-      requestForm.jsonSchema.properties.additional_fields_section.properties.agency_question.title = 'Agency question';
+      requestForm.jsonSchema.properties.fake_requester_contact_section.properties.name.title = 'Full name';
+      requestForm.jsonSchema.properties.fake_supporting_docs.properties.agency_question.title = 'Agency question';
     });
 
     describe('given the first section', () => {
@@ -52,13 +52,13 @@ describe('RequestSummarySection', () => {
       });
 
       it('contains field labels of only the first section', () => {
-        expect(element.contains(<strong>Full name</strong>)).to.equal(true);
-        expect(element.contains(<strong>Agency question</strong>)).to.equal(false);
+        expect(element.contains('Full name')).to.equal(true);
+        expect(element.contains('Agency question')).to.equal(false);
       });
 
       it('contains field responses of only the first section', () => {
-        expect(element.contains(<td>Mr. Rogers</td>)).to.equal(true);
-        expect(element.contains(<td>a response</td>)).to.equal(false);
+        expect(element.contains(<div>Mr. Rogers</div>)).to.equal(true);
+        expect(element.contains(<div>a response</div>)).to.equal(false);
       });
     });
 
@@ -77,13 +77,13 @@ describe('RequestSummarySection', () => {
       });
 
       it('contains field labels of only the second section', () => {
-        expect(element.contains(<strong>Full name</strong>)).to.equal(false);
-        expect(element.contains(<strong>Agency question</strong>)).to.equal(true);
+        expect(element.contains('Full name')).to.equal(false);
+        expect(element.contains('Agency question')).to.equal(true);
       });
 
       it('contains field responses of only the second section', () => {
-        expect(element.contains(<td>Mr. Rogers</td>)).to.equal(false);
-        expect(element.contains(<td>a response</td>)).to.equal(true);
+        expect(element.contains(<div>Mr. Rogers</div>)).to.equal(false);
+        expect(element.contains(<div>a response</div>)).to.equal(true);
       });
     });
   });

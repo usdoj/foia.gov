@@ -49,6 +49,13 @@ ul.tabs li {
   max-width: none;
 }
 
+// was #content h2
+.grid-legacy h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0 25px 0;
+}
+
 #hero {
   background-repeat: no-repeat;
   h1 {

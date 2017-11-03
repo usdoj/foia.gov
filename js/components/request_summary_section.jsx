@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import RequestSummaryContactSection from './request_summary_contact_section';
+import RequestSummaryDescriptionSection from './request_summary_description_section';
+import RequestSummarySupportingDocumentationSection from './request_summary_supporting_documentation_section';
+
 
 // Returns the field label from the requestForm for human readable display
 function fieldLabel(requestForm, sectionId, fieldName) {
@@ -24,29 +28,51 @@ function fieldLabel(requestForm, sectionId, fieldName) {
 
 
 function RequestSummarySection({ section, formData, requestForm }) {
-  const sectionFields = formData[section.id];
+  const sectionFields = formData[section.id] || {};
+
+  if (section.id === 'requester_contact') {
+    return (
+      <RequestSummaryContactSection
+        formData={formData}
+      />
+    );
+  }
+
+  if (section.id === 'request_description') {
+    return (
+      <RequestSummaryDescriptionSection
+        formData={formData}
+      />
+    );
+  }
+
+  if (section.id === 'supporting_docs') {
+    return (
+      <RequestSummarySupportingDocumentationSection
+        formData={formData}
+      />
+    );
+  }
 
   return (
-    <table className="request-summary_section">
-      <tbody>
-        {
-          // Maintain field ordering as much as possible
-          (section.fieldNames || Object.keys(sectionFields))
-            // Only include fields that actually exist in this form
-            .filter(fieldName => fieldName in sectionFields)
-            .map((fieldName) => {
-              const label = fieldLabel(requestForm, section.id, fieldName);
-              const value = sectionFields[fieldName];
-              return (
-                <tr key={`${section.id}-${fieldName}`}>
-                  <td className="request-summary_label"><strong>{label}</strong></td>
-                  <td>{value}</td>
-                </tr>
-              );
-            })
-        }
-      </tbody>
-    </table>
+    <div className="request-summary_section">
+      {
+        // Maintain field ordering as much as possible
+        (section.fieldNames || Object.keys(sectionFields))
+          // Only include fields that actually exist in this form
+          .filter(fieldName => fieldName in sectionFields && !!sectionFields[fieldName])
+          .map((fieldName) => {
+            const label = fieldLabel(requestForm, section.id, fieldName);
+            const value = sectionFields[fieldName];
+            return (
+              <div key={`${section.id}-${fieldName}`}>
+                <h5 className="request-summary_label">{label}</h5>
+                <div>{value}</div>
+              </div>
+            );
+          })
+      }
+    </div>
   );
 }
 
