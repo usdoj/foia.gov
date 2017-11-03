@@ -8,18 +8,20 @@ function RequestSummary({ formData, requestForm }) {
   return (
     <div>
       {
-        requestForm.sections.map(
-          section => (
-            <div key={section.id}>
-              <h3>{section.title}</h3>
-              <RequestSummarySection
-                formData={formData}
-                requestForm={requestForm}
-                section={section}
-              />
-            </div>
-          ),
-        )
+        requestForm.sections
+          .filter(section => (section.fieldNames))
+          .map(
+            section => (
+              <section key={section.id}>
+                <h3>{section.title}</h3>
+                <RequestSummarySection
+                  formData={formData}
+                  requestForm={requestForm}
+                  section={section}
+                />
+              </section>
+            ),
+          )
       }
     </div>
   );

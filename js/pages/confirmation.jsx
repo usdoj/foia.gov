@@ -1,18 +1,22 @@
+/* eslint-disable import/first */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Container } from 'flux/utils';
+import PropTypes from 'prop-types';
+import { Map } from 'immutable';
 
 import { requestActions } from 'actions';
+import { SubmissionResult } from 'models';
+import agencyComponentStore from '../stores/agency_component';
+
 import Confirmation from 'components/confirmation';
 import FoiaRequestForm from 'components/foia_request_form';
 import Tabs from 'components/tabs';
-import agencyComponentStore from 'stores/agency_component';
 import agencyComponentRequestFormStore from 'stores/agency_component_request_form';
 import foiaRequestStore from 'stores/foia_request';
+import faker from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
 import NotFound from './not_found';
 
-
-class AgencyComponentRequestPage extends Component {
+class ConfirmationPage extends Component {
   static getStores() {
     return [agencyComponentStore, foiaRequestStore, agencyComponentRequestFormStore];
   }
@@ -21,12 +25,25 @@ class AgencyComponentRequestPage extends Component {
     const agencyComponentId = props.match.params.agencyComponentId;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
     const requestForm = agencyComponentRequestFormStore.getAgencyComponentForm(agencyComponentId);
-    const { formData, isSubmitting, submissionResult } = foiaRequestStore.getState();
+    const submissionResult = new SubmissionResult({
+      submission_id: '1534',
+    });
+
+    const formData = new Map({
+      requester_contact: {
+        name_first: 'Aaron',
+        name_middle_initial_middle: 'D',
+        name_last: 'Borden',
+      },
+      request_description: {
+        request_description: faker.lorem.paragraphs(3),
+      },
+    });
 
     return {
       agencyComponent,
       formData,
-      isSubmitting,
+      isSubmitting: false,
       submissionResult,
       requestForm,
     };
@@ -79,7 +96,10 @@ class AgencyComponentRequestPage extends Component {
     function onSubmit() {}
 
     let mainContent;
-    if (submissionResult && submissionResult.submission_id) {
+    if (agencyComponent &&
+        agencyComponent.title &&
+        submissionResult &&
+        submissionResult.submission_id) {
       mainContent = (
         <Confirmation
           agencyComponent={agencyComponent}
@@ -115,7 +135,7 @@ class AgencyComponentRequestPage extends Component {
               null
           }
         </aside>
-        <div className="usa-width-one-half usa-offset-one-twelfth sidebar_content">
+        <div className="usa-width-seven-twelfths sidebar_content">
           { mainContent }
         </div>
       </div>
@@ -123,8 +143,8 @@ class AgencyComponentRequestPage extends Component {
   }
 }
 
-AgencyComponentRequestPage.propTypes = {
+ConfirmationPage.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-export default Container.create(AgencyComponentRequestPage, { withProps: true });
+export default Container.create(ConfirmationPage, { withProps: true });

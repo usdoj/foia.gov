@@ -3,8 +3,15 @@
     list-style: none;
     &.sidebar_tab-controls li {
       display: inline-block;
-      padding: 1rem $space-4x;
       margin-bottom: 0;
+      a {
+        padding: 1rem $space-4x;
+        display: inline-block;
+        width: 100%;
+      }
+      &.tab_active a {
+        padding: 1rem 2.8rem; // magic number to keep the tab from changing size when the text is bold
+      }
     }
   }
 }
