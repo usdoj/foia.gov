@@ -9,7 +9,7 @@ import RequestSummary from './request_summary';
 function Confirmation({ agencyComponent, formData, requestForm, submissionResult }) {
   const { submission_id } = submissionResult;
   const getDate = () => {
-    const months = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const today = new Date();
     const submission_date = `${months[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
 
@@ -47,15 +47,21 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
           <p className="confirmation_agency-contact-title">
             {agencyComponent.title}
           </p>
-          <p className="confirmation_agency-contact-website">
-            {agencyComponent.website.uri}
-          </p>
-          <p className="confirmation_agency-contact-email">
-            {agencyComponent.email}
-          </p>
-          <p className="confirmation_agency-contact-phone">
-            {agencyComponent.telephone}
-          </p>
+          { agencyComponent.website &&
+            <p className="confirmation_agency-contact-website">
+              {agencyComponent.website.uri}
+            </p>
+          }
+          { agencyComponent.email &&
+            <p className="confirmation_agency-contact-email">
+              {agencyComponent.email}
+            </p>
+          }
+          { agencyComponent.telephone &&
+            <p className="confirmation_agency-contact-phone">
+              {agencyComponent.telephone}
+            </p>
+          }
         </div>
       </section>
 
