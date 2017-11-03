@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
 
+import CustomFieldTemplate from 'components/request_custom_field_template';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
 import { requestActions } from '../actions';
@@ -45,6 +46,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
     <Form
       className="foia-request-form"
       disabled={isSubmitting}
+      FieldTemplate={CustomFieldTemplate}
       formContext={formContext}
       formData={formData.toJS()}
       ObjectFieldTemplate={ObjectFieldTemplate}

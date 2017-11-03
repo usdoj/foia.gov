@@ -4,3 +4,14 @@
   @extend .usa-form-hint;
   margin-top: 0; // override `p` styling
 }
+
+.foia-request-form {
+  legend {
+    font-size: 2.2rem;
+    font-family: $font-serif;
+  }
+
+  fieldset fieldset legend {
+    font-size: 2.2rem;
+  }
+}
