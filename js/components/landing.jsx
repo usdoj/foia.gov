@@ -60,9 +60,11 @@ class LandingComponent extends Component {
         />
         {
           !this.state.agencyComponent && !this.state.agency &&
-          <p>Not all agencies can receive FOIA requests created on FOIA.gov.
-             Where to submit a request for those agencies
-             will be available after you make a selection above.</p>
+          <p>Remember that some agencies have existing FOIA portals and will
+          continue to receive requests through their current portals. All
+          agencies are working towards becoming interoperable with FOIA.gov.
+          The information for where to submit a request to those agencies
+          will be available after you select an agency above.</p>
         }
         {
           this.state.agencyComponent &&
