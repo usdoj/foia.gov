@@ -55,12 +55,11 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
       widgets={widgets}
     >
       <div id="foia-request-form_submit" className="foia-request-form_submit">
-        <p>Please review the information you’ve entered and submit.</p>
-        <p>
-          You should hear from the agency you’ve submitted a records request to
-          within 10 days. If you don’t hear from the agency, please reach out
-          using the contact information provided to you on this site.
-        </p>
+        <h3>Review and submit</h3>
+        <p>Please review the information you entered above before submitting to
+        an agency. You should hear from the agency within 10 days of submitting
+        your request.  If you don’t hear from the agency, please reach out
+        using the contact information provided to you on this site.</p>
         <button type="submit">Submit</button>
         { submissionResult.errorMessage &&
           <div>
