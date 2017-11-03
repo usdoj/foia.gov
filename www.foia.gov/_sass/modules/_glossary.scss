@@ -1,6 +1,5 @@
 // Borrowed from FEC
 $background-color: $color-primary-darkest;
-$z-glossary: 9000; // uswds navigation
 
 .glossary {
   @include transition(right, .3s);
