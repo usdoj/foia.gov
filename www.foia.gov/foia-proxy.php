@@ -91,7 +91,9 @@ function curl_get_contents($url, $query, $headers) {
     // Proxy a limited set of headers. The back end relies on session cookies.
     $response_headers = array_filter($response_headers, function ($header) {
       return preg_match('/^content-type:/i', $header)
+	|| preg_match('/^content-disposition:/i', $header)
 	|| preg_match('/^cache-control:/i', $header)
+	|| preg_match('/^pragma:/i', $header)
 	|| preg_match('/^set-cookie:/i', $header);
     });
 
