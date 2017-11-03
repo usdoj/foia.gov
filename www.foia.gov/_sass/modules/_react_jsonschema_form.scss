@@ -1,8 +1,9 @@
 // Customization of the form elements generated from react-jsonschema-form
 
-.field-description {
-  @extend .usa-form-hint;
-  margin-top: 0; // override `p` styling
+// This is the section-level description
+div.field-description,
+legend + .field-description {
+  @extend .info-box;
 }
 
 .foia-request-form {

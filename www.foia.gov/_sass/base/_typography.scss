@@ -10,6 +10,12 @@ $h4-leading: $base-line-height;
 $h5-leading: $heading-line-height;
 $p-leading:  1.5;
 
+body {
+  color: $color-primary-darkest;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
 // Heading 1
 %h1 {
   font-size: $h1-font-size-mobile;
@@ -82,8 +88,6 @@ h5 {
 p {
   line-height: $p-leading;
   color: $color-primary-darkest;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   &.secondary-text {
     font-size: 1.5rem;
   }
