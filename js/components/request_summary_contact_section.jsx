@@ -6,14 +6,15 @@ function RequestSummaryContactSection({ formData }) {
   return (
     <div className="request-summary_section">
       <h5>Name</h5>
-      <p>{[data.first_name, data.last_name].join(' ')}</p>
+      <p>{[data.name_first, data.name_last].join(' ')}</p>
       { data.mailing_address_line_1 &&
         <div>
           <h5>Mailing address</h5>
           <address>
-            <p>{ data.mailing_address_line_1 }</p>
-            <p>{ data.mailing_address_line_2}</p>
-            <p>{ data.city }, { data.state_province } { data.zip_postal_code }</p>
+            <p>{ data.address_line_1 }</p>
+            <p>{ data.address_line_2}</p>
+            <p>{ data.address_city }, { data.address_state_province } { data.address_zip_postal_code }</p>
+            <p>{ data.address_country }</p>
           </address>
         </div>
       }
