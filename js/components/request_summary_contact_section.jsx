@@ -13,7 +13,13 @@ function RequestSummaryContactSection({ formData }) {
           <address>
             <p>{ data.address_line_1 }</p>
             <p>{ data.address_line_2}</p>
-            <p>{ data.address_city }, { data.address_state_province } { data.address_zip_postal_code }</p>
+            <p>
+              { data.address_city },
+              {' '}
+              { data.address_state_province }
+              {' '}
+              { data.address_zip_postal_code }
+            </p>
             <p>{ data.address_country }</p>
           </address>
         </div>
