@@ -9,6 +9,8 @@ import { requestActions } from '../actions';
 import { SubmissionResult } from '../models';
 import ObjectFieldTemplate from './object_field_template';
 import rf from '../util/request_form';
+import FoiaFileWidget from './foia_file_widget';
+import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 
 
 function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submissionResult }) {
@@ -17,11 +19,22 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
   }
 
   function onFormSubmit({ formData: data }) {
+    // Merge the sections into a single payload
+    const payload = rf.mergeSectionFormData(data);
+
+    // Transform file fields to attachments
+    findFileFields(requestForm)
+      .filter(fileFieldName => fileFieldName in payload)
+      .forEach((fileFieldName) => {
+        payload[fileFieldName] = dataUrlToAttachment(payload[fileFieldName]);
+      });
+
+    // Submit the request
     return requestActions
       .submitRequestForm(
         Object.assign(
           // Merge the sections into a single payload
-          rf.mergeSectionFormData(data),
+          payload,
           // Add the form Id so the API knows what form we're submitting for
           { id: requestForm.id },
         ),
@@ -35,6 +48,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
   const widgets = {
     CheckboxWidget: USWDSCheckboxWidget,
     RadioWidget: USWDSRadioWidget,
+    FileWidget: FoiaFileWidget,
   };
 
   // Map these to react-jsonschema-form Ids
@@ -74,11 +88,11 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
           Submit request
         </button>
         { submissionResult.errorMessage &&
-          <div>
+          <p>
             <span className="usa-input-error-message" role="alert">
               {submissionResult.errorMessage}
             </span>
-          </div>
+          </p>
         }
       </div>
     </Form>
