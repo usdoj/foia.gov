@@ -15,6 +15,7 @@ export const types = {
   REQUEST_FORM_UPDATE: 'REQUEST_FORM_UPDATE',
   REQUEST_FORM_SUBMIT: 'REQUEST_FORM_SUBMIT',
   REQUEST_FORM_SUBMIT_COMPLETE: 'REQUEST_FORM_SUBMIT_COMPLETE',
+  REQUEST_FORM_SUBMIT_PROGRESS: 'REQUEST_FORM_SUBMIT_PROGRESS',
 };
 
 // Action creators, to dispatch actions
@@ -92,7 +93,11 @@ export const requestActions = {
       formData,
     });
 
-    return requestapi.post('/webform/submit', formData)
+    const options = {
+      onUploadProgress: requestActions.submitRequestFormProgress,
+    };
+
+    return requestapi.post('/webform/submit', formData, options)
       .catch((error) => {
         const submissionResult = {
           errorMessage: 'There was a problem submitting your form.',
@@ -105,6 +110,15 @@ export const requestActions = {
         return Promise.resolve(submissionResult);
       })
       .then(requestActions.completeSubmitRequestForm);
+  },
+
+  submitRequestFormProgress(progress) {
+    dispatcher.dispatch({
+      type: types.REQUEST_FORM_SUBMIT_PROGRESS,
+      progress,
+    });
+
+    return Promise.resolve();
   },
 
   completeSubmitRequestForm(submissionResult) {

@@ -21,12 +21,12 @@ class AgencyComponentRequestPage extends Component {
     const agencyComponentId = props.match.params.agencyComponentId;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
     const requestForm = agencyComponentRequestFormStore.getAgencyComponentForm(agencyComponentId);
-    const { formData, isSubmitting, submissionResult } = foiaRequestStore.getState();
+    const { formData, upload, submissionResult } = foiaRequestStore.getState();
 
     return {
       agencyComponent,
       formData,
-      isSubmitting,
+      upload,
       submissionResult,
       requestForm,
     };
@@ -92,7 +92,7 @@ class AgencyComponentRequestPage extends Component {
       mainContent = (
         <FoiaRequestForm
           formData={this.state.formData}
-          isSubmitting={this.state.isSubmitting}
+          upload={this.state.upload}
           onSubmit={onSubmit}
           requestForm={requestForm}
           submissionResult={this.state.submissionResult}
