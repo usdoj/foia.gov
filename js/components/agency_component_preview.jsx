@@ -55,14 +55,8 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
       </div>
       <div className="usa-width-one-half start-request-container">
         { agencyComponent.request_data_year &&
-          <div>
-            <h4>Average processing time</h4>
-            <AgencyComponentProcessingTime
-              agencyComponent={agencyComponent}
-            />
-          </div>
+          <AgencyComponentProcessingTime agencyComponent={agencyComponent} />
         }
-
         <h4>
           The records or information you&rsquo;re looking for may already be public.
         </h4>
