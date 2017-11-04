@@ -7,6 +7,11 @@ legend + .field-description {
   margin: 0; //override p tag margin
 }
 
+// This is a single input's help text
+label + .field-description {
+  font-size: $small-font-size;
+}
+
 .foia-request-form {
   legend {
     @extend %h1;
