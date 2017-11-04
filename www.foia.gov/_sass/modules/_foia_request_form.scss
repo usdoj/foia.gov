@@ -27,13 +27,19 @@
 .foia-request-form_inline-progress {
   color: $color-gray;
   font-size: $base-font-size;
-  margin-bottom: $space-3x;
+  margin-bottom: $space-2x;
 }
 
 .foia-request-form_nav-top {
   max-width: 46rem; // Align with input elements
   text-align: right;
+  margin-top: $space-3x;
+  margin-bottom: $space-2x;
 
+  a {
+    @extend .usa-button;
+    @extend .usa-button-outline;
+  }
   // Total hack, if we're following a field-object it is probably a section.
   // Each section already has it's own return to top link, so this is probably
   // a duplicate link at the very bottom of the form.

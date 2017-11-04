@@ -4,6 +4,7 @@
 div.field-description,
 legend + .field-description {
   @extend .info-box;
+  margin: 0; //override p tag margin
 }
 
 .foia-request-form {
