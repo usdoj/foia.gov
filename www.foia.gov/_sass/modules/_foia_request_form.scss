@@ -41,3 +41,11 @@
     display: none;
   }
 }
+
+.foia-request-form_is-required {
+  float: right;
+  font-weight: $font-normal;
+  font-size: $small-font-size;
+  font-style: italic;
+  color: $color-gray;
+}

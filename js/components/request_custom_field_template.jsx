@@ -7,7 +7,7 @@ function CustomFieldTemplate(props) {
       { displayLabel &&
         <div>
           <label htmlFor={id}>{label}
-            <span className="foia-request-form_is-required">{required ? "(required)" : null}</span>
+            <span className="foia-request-form_is-required">{required ? "Required" : null}</span>
           </label>
           {description}
         </div>
