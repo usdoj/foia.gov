@@ -39,6 +39,9 @@
   a {
     @extend .usa-button;
     @extend .usa-button-outline;
+    &:visited {
+      color: $color-primary-darkest;
+    }
   }
   // Total hack, if we're following a field-object it is probably a section.
   // Each section already has it's own return to top link, so this is probably
