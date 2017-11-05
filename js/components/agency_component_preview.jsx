@@ -5,6 +5,7 @@ import AgencyComponentProcessingTime from './agency_component_processing_time';
 import FoiaPersonnel from './foia_personnel';
 import FoiaSubmissionAddress from './foia_submission_address';
 import PrettyUrl from './pretty_url';
+import NonInteroperableInfo from './non_interoperable_info';
 import { AgencyComponent } from '../models';
 
 
@@ -69,12 +70,15 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
           <p>To see what’s been made available, you can visit an agency’s
             <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
         }
-        <a
-          className="usa-button usa-button-primary start-request"
-          href={requestUrl}
-        >
-          Start FOIA request
-        </a>
+        { agencyComponent.request_form ?
+          <a
+            className="usa-button usa-button-primary start-request"
+            href={requestUrl}
+          >
+            Start FOIA request
+          </a> :
+          <NonInteroperableInfo agencyComponent={agencyComponent} />
+        }
       </div>
     </div>
   );
