@@ -104,18 +104,16 @@ class AgencyComponentRequestPage extends Component {
     }
 
     return (
-      <div className="usa-grid-full grid-left">
-        <aside className="usa-width-five-twelfths sidebar print-hide" id="react-tabs">
-          {
-            agencyComponent && requestForm ?
-              <Tabs
-                agencyComponent={agencyComponent}
-                requestForm={requestForm}
-              /> :
-              null
-          }
-        </aside>
-        <div className="usa-width-one-half usa-offset-one-twelfth sidebar_content">
+      <div className="usa-grid-full grid-flex grid-left">
+        {
+          agencyComponent && requestForm ?
+            <Tabs
+              agencyComponent={agencyComponent}
+              requestForm={requestForm}
+            /> :
+            null
+        }
+        <div className="sidebar_content">
           { mainContent }
         </div>
       </div>

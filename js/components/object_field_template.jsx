@@ -13,7 +13,7 @@ function ObjectFieldTemplate(props) {
     <div>
       { step > 0 &&
         <div className="foia-request-form_inline-progress">
-          Step {step} of {steps.length}
+          Step {step} of {steps.length + 1}
         </div>
       }
       <fieldset>
