@@ -60,8 +60,10 @@
 
 .sidebar_tabs {
   margin-top: 0;
+  height: 100%;
   .tab_active {
     padding: $space-5x $space-3x $space-3x $space-3x;
+    height: 100%;
   }
 }
 
