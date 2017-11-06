@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 
 import { requestActions } from 'actions';
-import AgencyComponentSelector from 'components/agency_component_selector';
+import AgencyComponentFinder from 'components/agency_component_finder';
 import agencyComponentStore from '../stores/agency_component';
 
 
@@ -47,7 +47,7 @@ class RequestLandingPage extends Component {
       <div id="request-landing-page" className="usa-grid">
         <div className="usa-width-one-whole">
           <h1>Select an agency to make a FOIA request</h1>
-          <AgencyComponentSelector
+          <AgencyComponentFinder
             agencies={agencies}
             agencyComponents={agencyComponents}
             onAgencyChange={agencyChange}
