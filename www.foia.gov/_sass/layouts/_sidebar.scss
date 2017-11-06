@@ -75,3 +75,20 @@
     margin-left: 8%;
   }
 }
+
+/* We aren't using this as a progress bar right now, so don't style it like one.
+ * Styles for the progress bar look are in modules/sidebar_timeline. */
+.sidebar_progress-bar {
+  margin: 0;
+  li {
+    border-left: 3px solid $color-primary-alt-light;
+    padding-left: $space-2x;
+    margin-bottom: $space-2x;
+    a {
+      &:hover,
+      &:active {
+        border-bottom: 1px solid $color-white;
+      }
+    }
+  }
+}
