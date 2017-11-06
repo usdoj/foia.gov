@@ -3,23 +3,23 @@
   &.usa-button-primary {
     background-color: $color-primary-darkest;
     &:hover {
-      background-color: $color-primary-darker;
+      background-color: $color-primary-alt-darker;
       color: $color-white;
     }
   }
   &.usa-button-primary-alt {
     &:visited {
-      background-color: $color-primary-alt;
+      background-color: $color-primary-alt-light;
     }
     &:hover,
     &:visited:hover {
-      background-color: $color-primary-alt-light!important;
+      background-color: $color-primary-alt!important;
     }
     &:active,
     &:focus,
     &:visited:active,
     &:visited:focus {
-      background-color: $color-primary-alt!important;
+      background-color: $color-primary-alt-light!important;
     }
   }
   &.usa-button-outline {
