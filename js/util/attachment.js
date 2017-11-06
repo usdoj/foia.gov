@@ -1,13 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 export function dataUrlToAttachment(dataUrl) {
   if (!dataUrl || !dataUrl.length) {
-    return null;
+    return [];
   }
 
   const [propertiesString, filedata] = dataUrl.split(':', 2)[1].split(',');
   const properties = propertiesString.split(';');
   const content_type = properties.shift();
-  return properties.reduce((attachment, property) => {
+
+  // Return an array of a single attachment
+  return [properties.reduce((attachment, property) => {
     const [key, value] = property.split('=');
     if (key === 'filename') {
       attachment[key] = decodeURIComponent(value);
@@ -18,7 +20,7 @@ export function dataUrlToAttachment(dataUrl) {
     }
 
     return attachment;
-  }, { content_type, filedata });
+  }, { content_type, filedata })];
 }
 
 // Returns a list of field names that are file fields.

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { dataUrlToAttachment } from '../util/attachment';
 
 function dataUrlToFileInfo(dataUrl) {
-  const attachment = dataUrlToAttachment(dataUrl);
+  const [attachment] = dataUrlToAttachment(dataUrl);
   if (!attachment) {
     return null;
   }
@@ -58,7 +58,7 @@ class FoiaFileWidget extends React.Component {
         .then((dataUrl) => {
           this.setState({
             value: dataUrl,
-            attachment: dataUrlToFileInfo(dataUrl),
+            fileInfo: dataUrlToFileInfo(dataUrl),
           }, () => {
             this.props.onChange(dataUrl);
           });
@@ -71,7 +71,7 @@ class FoiaFileWidget extends React.Component {
       readonly,
     } = this.props;
 
-    const { name, type, size } = this.state.attachment || {};
+    const { name, type, size } = this.state.fileInfo || {};
     return (
       <div>
         <input
@@ -81,7 +81,7 @@ class FoiaFileWidget extends React.Component {
           onChange={onChange}
           defaultValue=""
         />
-        { this.state.attachment &&
+        { this.state.fileInfo &&
           <div><strong>{name}</strong> ({type}, {size} bytes)</div>
         }
       </div>
