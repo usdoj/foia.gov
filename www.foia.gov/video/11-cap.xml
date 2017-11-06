@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000400" end="00:00:04.964">Once the agency has processed your request and any fee issues have been resolved,   </p>
+<p begin="00:00:04.964" end="00:00:07.878">the agency will send you a written response   </p>
+<p begin="00:00:07.878" end="00:00:10.832">including all the documents that can be released to you.   </p>
+<p begin="00:00:10.832" end="00:00:14.991">The response letter will advise you whether any information is being withheld   </p>
+<p begin="00:00:14.991" end="00:00:10.915">because of the exemptions allowed by the FOIA.   </p>
+<p begin="00:00:10.915" end="00:00:14.875">The response letter will advise you whether any information is being withheld   </p>
+<p begin="00:00:14.875" end="00:00:18.076">because of the exemptions allowed by the FOIA.   </p>
+<p begin="00:00:18.076" end="00:00:22.548">The letter will also give an estimate of the amount of material that has been withheld.   </p>
+<p begin="00:00:22.548" end="00:00:26.436">When a portion of a record has been withheld, typically the page will be marked    </p>
+<p begin="00:00:26.436" end="00:00:29.708">to let you know what exemptions have been applied.   </p>
+<p begin="00:00:29.708" end="00:00:33.379">At this same time, the agency will also advise you what you can do    </p>
+<p begin="00:00:33.379" end="00:00:36.275">if you aren't satisfied with the response.   </p>
+<p begin="00:00:36.275" end="00:00:37.222">    </p>
+<p begin="00:00:37.222" end="00:00:38.087">    </p>
+</div>
+</body>
+</tt>
+

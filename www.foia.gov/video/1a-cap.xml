@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000923" end="00:00:04.177">The Freedom of Information Act, commonly known as the "FOIA,"</p>
+<p begin="00:00:04.177" end="00:00:08.982">is a law that gives you the right to access information from the federal government.   </p>
+<p begin="00:00:08.982" end="00:00:12.169">It is often described as the law that keeps citizens in the know    </p>
+<p begin="00:00:12.169" end="00:00:14.521">about what their government is doing.   </p>
+<p begin="00:00:14.521" end="00:00:18.610">Under the FOIA, agencies must release any information that is requested   </p>
+<p begin="00:00:18.610" end="00:00:22.405">unless that information is protected from disclosure by law.   </p>
+<p begin="00:00:22.405" end="00:00:26.881">The FOIA also requires that agencies automatically disclose certain information,   </p>
+<p begin="00:00:26.881" end="00:00:29.844">including frequently requested records.   </p>
+<p begin="00:00:29.844" end="00:00:33.433">As Congress, the President, and the Supreme Court have all recognized,   </p>
+<p begin="00:00:33.433" end="00:00:36.964">the FOIA is a vital part of our democracy.   </p>
+<p begin="00:00:36.964" end="00:00:37.737"></p>
+<p begin="00:00:37.737" end="00:00:38.428"></p>
+</div>
+</body>
+</tt>
+

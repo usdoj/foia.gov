@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000679" end="00:00:04.018">There is no central office in the government that handles FOIA requests    </p>
+<p begin="00:00:04.018" end="00:00:06.873">for all federal departments and agencies.    </p>
+<p begin="00:00:06.873" end="00:00:11.701">Each federal agency processes its own records in response to FOIA requests.    </p>
+<p begin="00:00:11.701" end="00:00:14.062">There are many different officials at these agencies    </p>
+<p begin="00:00:14.062" end="00:00:18.249">who work hard every day to make sure that the FOIA works.    </p>
+<p begin="00:00:18.249" end="00:00:23.730">There are the FOIA professionals who search for and process records in response to FOIA requests,    </p>
+<p begin="00:00:23.730" end="00:00:28.705">there are FOIA Public Liaisons and FOIA Contacts who work with FOIA requesters    </p>
+<p begin="00:00:28.705" end="00:00:31.376">to answer questions and resolve concerns,    </p>
+<p begin="00:00:31.376" end="00:00:36.850">and there are Chief FOIA Officers who oversee their agency's compliance with the FOIA.    </p>
+<p begin="00:00:36.850" end="00:00:37.758">    </p>
+<p begin="00:00:37.758" end="00:00:38.938">    </p>
+</div>
+</body>
+</tt>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000920" end="00:00:06.431">The time it takes to respond to each request varies depending on the complexity of the request itself   </p>
+<p begin="00:00:06.431" end="00:00:09.956">and the backlog of requests already pending at the agency.   </p>
+<p begin="00:00:09.956" end="00:00:13.608">In some circumstances, the agency will be able to respond to the request   </p>
+<p begin="00:00:13.608" end="00:00:18.781">within the standard time limit established by the FOIA - approximately one month.   </p>
+<p begin="00:00:18.781" end="00:00:23.313">In other instances more time may be needed before the request can be completed.   </p>
+<p begin="00:00:23.313" end="00:00:27.452">When an agency requires an extension of time, it will notify you in writing   </p>
+<p begin="00:00:27.452" end="00:00:31.744">and provide you with an opportunity to modify or limit the scope of your request.   </p>
+<p begin="00:00:31.744" end="00:00:37.031">Alternatively, you may agree to a different timetable for the processing of your request.   </p>
+<p begin="00:00:37.031" end="00:00:42.198">Under certain conditions, you may be entitled to have your request processed on an expedited basis.   </p>
+<p begin="00:00:42.198" end="00:00:47.046">The websites for each agency can provide more information on this process.   </p>
+<p begin="00:00:47.046" end="00:00:48.047">    </p>
+<p begin="00:00:48.047" end="00:00:48.816">    </p>
+</div>
+</body>
+</tt>
+
