@@ -69,7 +69,12 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
             using the contact information provided to you on this site.
           </p>
         </div>
-        <button className="usa-button usa-button-big usa-button-primary-alt" type="submit">Submit request</button>
+        <button
+          className="usa-button usa-button-big usa-button-primary-alt"
+          type="submit"
+        >
+          Submit request
+        </button>
         { submissionResult.errorMessage &&
           <div>
             <span className="usa-input-error-message" role="alert">

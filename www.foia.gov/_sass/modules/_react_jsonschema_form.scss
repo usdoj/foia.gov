@@ -10,6 +10,7 @@ legend + .field-description {
 // This is a single input's help text
 label + .field-description {
   font-size: $small-font-size;
+  max-width: 46rem; // match max-width of inputs from WDS
 }
 
 .foia-request-form {
