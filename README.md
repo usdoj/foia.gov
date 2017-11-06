@@ -6,10 +6,32 @@ New FOIA beta site + national portal. The site is based off of
 [18F recommendations](https://github.com/18F/foia-recommendations) from our
 discovery sprint with the Department of Justice.
 
+
 ## Content
 
-Site content lives the pages in `www.foia.gov/`. Glossary terms should be edited in
-[/js/util/glossary/terms.js](js/util/glossary/terms.js).
+
+### Web content
+
+Site content lives in the markdown pages under the [www.foia.gov
+directory](/18F/beta.foia.gov/tree/develop/www.foia.gov).
+
+[Glossary terms](/18F/beta.foia.gov/tree/develop/www.foia.gov/api/_glossary_terms)
+should be edited in markdown, one term per file.
+
+
+### FOIA request forms
+
+Individual agency FOIA request forms live in the [back
+stage][foia-back-stage] an are owned by OIP. However, the per-section
+help text (blue box content) can be edited [one section per-file in
+markdown](/18F/beta.foia.gov/tree/develop/www.foia.gov/api/_request_form_sections).
+The files should be numbered so they appear in the correct order.
+
+
+### Agency contact information
+
+Contact information lives in the [back stage][foia-back-stage] but this
+information should be updated individually by agency FOIA personnel.
 
 
 ## Development
@@ -54,3 +76,6 @@ See more in the [README.md](www.foia.gov/README.md).
 To build for production, set the `NODE_ENV` environment variable.
 
     $ NODE_ENV=production make build
+
+
+[foia-back-stage]: https://admin.foia.gov/
