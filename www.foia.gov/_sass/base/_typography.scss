@@ -10,11 +10,14 @@ $h4-leading: $base-line-height;
 $h5-leading: $heading-line-height;
 $p-leading:  1.5;
 
+$body-copy-max-width: $space-1x * 78;
+
 body {
   color: $color-primary-darkest;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
+
 
 // Heading 1
 %h1 {
@@ -93,10 +96,40 @@ p {
   }
 }
 
-p a {
+// Body copy max-width
+h1,
+h2,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  max-width: $body-copy-max-width;
+}
+
+%external-url {
+  margin-right: 2rem;
+  position: relative;
+
+  &:after {
+    content: '\01F517'; // TODO This should be a background image, waiting for glyphs from design
+    display: inline-block;
+    height: 1rem;
+    position: absolute;
+    width: 1rem;
+  }
+}
+
+#main {
+  a:not([href*='foia.gov/']):not([href^='#']):not([href^='/']):not([href^='mailto:']),
+  a[target=_blank] {
+    @extend %external-url;
+  }
+}
+
+%a-colors {
   color: $color-primary-darkest;
-  text-decoration: none;
-  border-bottom: 1px solid $color-primary-alt;
   &:hover,
   &:active {
     color: $color-primary;
@@ -112,4 +145,10 @@ p a {
 
 address p {
   margin: 0;
+}
+
+p a {
+  @extend %a-colors;
+  text-decoration: none;
+  border-bottom: 1px solid $color-primary-alt;
 }

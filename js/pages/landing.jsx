@@ -12,10 +12,16 @@ class LandingPage extends Component {
   }
 
   static calculateState() {
-    const { agencyComponents, agencies } = agencyComponentStore.getState();
+    const {
+      agencies,
+      agencyComponents,
+      agencyFinderDataComplete,
+    } = agencyComponentStore.getState();
+
     return {
       agencies,
       agencyComponents,
+      agencyFinderDataComplete,
     };
   }
 
@@ -31,9 +37,13 @@ class LandingPage extends Component {
 
 
   render() {
-    const { agencies, agencyComponents } = this.state;
+    const { agencies, agencyComponents, agencyFinderDataComplete } = this.state;
     return (
-      <LandingComponent agencies={agencies} agencyComponents={agencyComponents} />
+      <LandingComponent
+        agencies={agencies}
+        agencyComponents={agencyComponents}
+        agencyFinderDataComplete={agencyFinderDataComplete}
+      />
     );
   }
 }
