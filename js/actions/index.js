@@ -2,6 +2,7 @@ import assert from 'assert';
 
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
+import localapi from '../util/local_api';
 import requestapi from '../util/request_api';
 
 
@@ -15,6 +16,8 @@ export const types = {
   REQUEST_FORM_UPDATE: 'REQUEST_FORM_UPDATE',
   REQUEST_FORM_SUBMIT: 'REQUEST_FORM_SUBMIT',
   REQUEST_FORM_SUBMIT_COMPLETE: 'REQUEST_FORM_SUBMIT_COMPLETE',
+  REQUEST_FORM_SECTIONS_FETCH: 'REQUEST_FORM_SECTIONS_FETCH',
+  REQUEST_FORM_SECTIONS_RECEIVE: 'REQUEST_FORM_SECTIONS_RECEIVE',
 };
 
 // Action creators, to dispatch actions
@@ -111,6 +114,24 @@ export const requestActions = {
     dispatcher.dispatch({
       type: types.REQUEST_FORM_SUBMIT_COMPLETE,
       submissionResult,
+    });
+
+    return Promise.resolve();
+  },
+
+  fetchRequestFormSections() {
+    dispatcher.dispatch({
+      type: types.REQUEST_FORM_SECTIONS_FETCH,
+    });
+
+    return localapi.requestFormSections()
+      .then(requestActions.receiveRequestFormSections);
+  },
+
+  receiveRequestFormSections(formSections) {
+    dispatcher.dispatch({
+      type: types.REQUEST_FORM_SECTIONS_RECEIVE,
+      formSections,
     });
 
     return Promise.resolve();

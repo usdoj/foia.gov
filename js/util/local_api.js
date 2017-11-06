@@ -22,6 +22,10 @@ class LocalApi {
   glossary() {
     return this.get('/glossary/terms.json');
   }
+
+  requestFormSections() {
+    return this.get('/request-form/sections.json');
+  }
 }
 
 const localApi = new LocalApi();

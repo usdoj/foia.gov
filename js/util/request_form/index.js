@@ -20,6 +20,6 @@ import wfjs from './webform_to_json_schema';
 
 export default {
   mergeSectionFormData: sectionedForm.mergeSectionFormData,
-  sectionedFormFromAgencyComponent: sectionedForm.sectionedFormFromAgencyComponent,
+  SectionedFormBuilder: sectionedForm.SectionedFormBuilder,
   webformFieldsToJsonSchema: wfjs.webformFieldsToJsonSchema,
 };
