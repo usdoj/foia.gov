@@ -83,17 +83,17 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
           your request.  If you don’t hear from the agency, please reach out
           using the contact information provided to you on this site.</p>
         </div>
-        <button
-          className="usa-button usa-button-big usa-button-primary-alt"
-          type="submit"
-        >
-          Submit request
-        </button>
-        { upload.get('inProgress') &&
+        { upload.get('inProgress') ?
           <UploadProgress
             progressTotal={upload.get('progressTotal')}
             progressLoaded={upload.get('progressLoaded')}
-          />
+          /> :
+	  <button
+	    className="usa-button usa-button-big usa-button-primary-alt"
+	    type="submit"
+	  >
+	    Submit request
+	  </button>
         }
         { submissionResult.errorMessage &&
           <p>

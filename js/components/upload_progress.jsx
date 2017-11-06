@@ -4,18 +4,13 @@ import PropTypes from 'prop-types';
 
 function UploadProgress({ progressLoaded, progressTotal }) {
   const percentage = Math.floor(progressLoaded / progressTotal * 100);
+  // Use a fallback in case we're not receiving progress events. In that case
+  // the requester will just see "Uploading…" until the request is complete.
+  const content = progressLoaded ? `${percentage}% uploaded…` : 'Uploading…';
   return (
-    <div>
-      { progressLoaded &&
-        <progress
-          value={progressLoaded}
-          max={progressTotal}
-        >
-          {percentage}% uploaded…
-        </progress>
-      }
-      <p>Please be patient while we upload your request.</p>
-    </div>
+    <button disabled>
+      { content }
+    </button>
   );
 }
 
