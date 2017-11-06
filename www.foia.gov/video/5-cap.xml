@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000925" end="00:00:04.405">On FOIA.gov, you'll find the data contained in the annual reports   </p>
+<p begin="00:00:04.405" end="00:00:08.243">submitted by federal departments and agencies to the Department of Justice.   </p>
+<p begin="00:00:08.243" end="00:00:12.515">These reports contain a detailed look at the numbers of requests received,   </p>
+<p begin="00:00:12.515" end="00:00:17.332">how they were handled by the agency, as well as information on processing times,   </p>
+<p begin="00:00:17.332" end="00:00:21.926">backlogs, fees and the personnel needs to comply with the FOIA.   </p>
+<p begin="00:00:21.926" end="00:00:27.243">Within each of these categories, there are different data sets that can be explored through FOIA.gov.   </p>
+<p begin="00:00:27.243" end="00:00:33.355">For example, you can run reports to find out how many FOIA requests were received by a particular agency,   </p>
+<p begin="00:00:33.355" end="00:00:38.151">to learn how many times different agencies used a particular FOIA exemption,   </p>
+<p begin="00:00:38.151" end="00:00:43.300">or to compare the average processing times for FOIA requests across multiple agencies.   </p>
+<p begin="00:00:43.300" end="00:00:45.746">You can use the available FOIA data can to generate   </p>
+<p begin="00:00:45.746" end="00:00:51.124">new reports and comparisons across agencies and over time.   </p>
+<p begin="00:00:51.124" end="00:00:52.228">    </p>
+<p begin="00:00:52.228" end="00:00:53.197">    </p>
+</div>
+</body>
+</tt>
+
