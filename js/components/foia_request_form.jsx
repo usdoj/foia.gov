@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
+import { Map } from 'immutable';
 
 import CustomFieldTemplate from 'components/request_custom_field_template';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
@@ -9,19 +10,33 @@ import { requestActions } from '../actions';
 import { SubmissionResult } from '../models';
 import ObjectFieldTemplate from './object_field_template';
 import rf from '../util/request_form';
+import FoiaFileWidget from './foia_file_widget';
+import { dataUrlToAttachment, findFileFields } from '../util/attachment';
+import UploadProgress from './upload_progress';
 
 
-function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submissionResult }) {
+function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionResult }) {
   function onChange({ formData: data }) {
     requestActions.updateRequestForm(data);
   }
 
   function onFormSubmit({ formData: data }) {
+    // Merge the sections into a single payload
+    const payload = rf.mergeSectionFormData(data);
+
+    // Transform file fields to attachments
+    findFileFields(requestForm)
+      .filter(fileFieldName => fileFieldName in payload)
+      .forEach((fileFieldName) => {
+        payload[fileFieldName] = dataUrlToAttachment(payload[fileFieldName]);
+      });
+
+    // Submit the request
     return requestActions
       .submitRequestForm(
         Object.assign(
           // Merge the sections into a single payload
-          rf.mergeSectionFormData(data),
+          payload,
           // Add the form Id so the API knows what form we're submitting for
           { id: requestForm.id },
         ),
@@ -35,6 +50,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
   const widgets = {
     CheckboxWidget: USWDSCheckboxWidget,
     RadioWidget: USWDSRadioWidget,
+    FileWidget: FoiaFileWidget,
   };
 
   // Map these to react-jsonschema-form Ids
@@ -45,7 +61,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
   return (
     <Form
       className="foia-request-form"
-      disabled={isSubmitting}
+      disabled={upload.get('inProgress')}
       FieldTemplate={CustomFieldTemplate}
       formContext={formContext}
       formData={formData.toJS()}
@@ -67,18 +83,24 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
           your request.  If you don’t hear from the agency, please reach out
           using the contact information provided to you on this site.</p>
         </div>
-        <button
-          className="usa-button usa-button-big usa-button-primary-alt"
-          type="submit"
-        >
-          Submit request
-        </button>
+        { upload.get('inProgress') ?
+          <UploadProgress
+            progressTotal={upload.get('progressTotal')}
+            progressLoaded={upload.get('progressLoaded')}
+          /> :
+          <button
+            className="usa-button usa-button-big usa-button-primary-alt"
+            type="submit"
+          >
+            Submit request
+          </button>
+        }
         { submissionResult.errorMessage &&
-          <div>
+          <p>
             <span className="usa-input-error-message" role="alert">
               {submissionResult.errorMessage}
             </span>
-          </div>
+          </p>
         }
       </div>
     </Form>
@@ -87,7 +109,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
 
 FoiaRequestForm.propTypes = {
   formData: PropTypes.object.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
+  upload: PropTypes.instanceOf(Map).isRequired,
   onSubmit: PropTypes.func,
   requestForm: PropTypes.object.isRequired,
   submissionResult: PropTypes.instanceOf(SubmissionResult).isRequired,

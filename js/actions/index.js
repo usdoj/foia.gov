@@ -15,6 +15,7 @@ export const types = {
   REQUEST_FORM_UPDATE: 'REQUEST_FORM_UPDATE',
   REQUEST_FORM_SUBMIT: 'REQUEST_FORM_SUBMIT',
   REQUEST_FORM_SUBMIT_COMPLETE: 'REQUEST_FORM_SUBMIT_COMPLETE',
+  REQUEST_FORM_SUBMIT_PROGRESS: 'REQUEST_FORM_SUBMIT_PROGRESS',
 };
 
 // Action creators, to dispatch actions
@@ -92,11 +93,26 @@ export const requestActions = {
       formData,
     });
 
-    return requestapi.post('/webform/submit', formData)
+    const options = {
+      onUploadProgress: requestActions.submitRequestFormProgress,
+    };
+
+    return requestapi.post('/webform/submit', formData, options)
       .catch((error) => {
+        const defaultErrorMessage = 'Sorry, something went wrong and your request could not be submitted.';
         const submissionResult = {
-          errorMessage: 'There was a problem submitting your form.',
+          errorMessage: error.message || defaultErrorMessage,
         };
+
+        if (error.message === 'Network Error') {
+          // Network Error isn't any more helpful than our default message
+          submissionResult.errorMessage = 'The connection failed and your request could not be submitted. Please try again later.';
+        }
+
+        if (error.code === 'ECONNABORTED') {
+          submissionResult.errorMessage =
+            'The connection timed out and your request could not be submitted. Please try again.';
+        }
 
         if (error.response && error.response.data && error.response.data.errors) {
           submissionResult.errors = error.response.data.errors;
@@ -107,12 +123,21 @@ export const requestActions = {
       .then(requestActions.completeSubmitRequestForm);
   },
 
+  submitRequestFormProgress(progress) {
+    dispatcher.dispatch({
+      type: types.REQUEST_FORM_SUBMIT_PROGRESS,
+      progress,
+    });
+
+    return Promise.resolve();
+  },
+
   completeSubmitRequestForm(submissionResult) {
     dispatcher.dispatch({
       type: types.REQUEST_FORM_SUBMIT_COMPLETE,
       submissionResult,
     });
 
-    return Promise.resolve();
+    return submissionResult.errorMessage ? Promise.reject() : Promise.resolve();
   },
 };

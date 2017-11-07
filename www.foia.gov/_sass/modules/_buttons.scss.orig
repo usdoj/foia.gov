@@ -2,8 +2,12 @@
   font-weight: $font-semibold;
   &.usa-button-primary {
     background-color: $color-primary-darkest;
+<<<<<<< HEAD
     &:hover,
     &:focus {
+=======
+    &:hover {
+>>>>>>> develop
       background-color: $color-primary-alt-darker;
       color: $color-white;
     }
@@ -25,7 +29,10 @@
     &:visited:active,
     &:visited:focus {
       background-color: $color-primary-alt-light!important;
+<<<<<<< HEAD
       color: $color-primary-darkest;
+=======
+>>>>>>> develop
     }
   }
   &.usa-button-outline {

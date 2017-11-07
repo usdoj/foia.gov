@@ -57,5 +57,9 @@ $medium-large-screen: 800px;
 
 $font-semibold: 500;
 
+<<<<<<< HEAD
 $form-max-width: 46rem;
+
+=======
+>>>>>>> develop
 @import '../../node_modules/uswds/src/stylesheets/uswds';
