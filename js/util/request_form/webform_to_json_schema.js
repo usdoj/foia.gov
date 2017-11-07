@@ -62,7 +62,7 @@ function toJsonSchemaProperty(webformField) {
 function toUiSchemaProperty(webformField) {
   const uiSchemaProperty = {
     'ui:title': webformField.title,
-    'ui:description': webformField.help,
+    'ui:description': webformField.help && domify(webformField.help),
   };
 
   if (webformField.placeholder) {
