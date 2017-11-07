@@ -63,9 +63,11 @@ describe('FoiaRequestForm', () => {
       let requestForm;
       let submissionResult;
       let element;
+      let upload;
 
       beforeEach(() => {
         formData = new Map();
+        upload = new Map();
         submissionResult = new SubmissionResult();
         requestForm = simpleSingleSectionRequestForm();
       });
@@ -75,7 +77,7 @@ describe('FoiaRequestForm', () => {
           element = shallow(
             <FoiaRequestForm
               formData={formData}
-              isSubmitting={false}
+              upload={upload}
               requestForm={requestForm}
               submissionResult={submissionResult}
             />,
@@ -92,7 +94,7 @@ describe('FoiaRequestForm', () => {
           element = render(
             <FoiaRequestForm
               formData={formData}
-              isSubmitting={false}
+              upload={upload}
               requestForm={requestForm}
               submissionResult={submissionResult}
             />,
@@ -122,7 +124,7 @@ describe('FoiaRequestForm', () => {
           element = shallow(
             <FoiaRequestForm
               formData={formData}
-              isSubmitting={false}
+              upload={upload}
               onSubmit={onSubmit}
               requestForm={requestForm}
               submissionResult={submissionResult}
@@ -174,7 +176,7 @@ describe('FoiaRequestForm', () => {
           element = render(
             <FoiaRequestForm
               formData={formData}
-              isSubmitting={false}
+              upload={upload}
               requestForm={requestForm}
               submissionResult={submissionResult}
             />,
