@@ -12,18 +12,20 @@
     }
   }
   &.usa-button-primary-alt {
+    color: $color-primary-darkest;
     &:visited {
       background-color: $color-primary-alt-light;
     }
     &:hover,
     &:visited:hover {
-      background-color: $color-primary-alt!important;
+      background-color: $color-primary-alt-light!important;
     }
     &:active,
     &:focus,
     &:visited:active,
     &:visited:focus {
       background-color: $color-primary-alt-light!important;
+      color: $color-primary-darkest;
     }
   }
   &.usa-button-outline {
