@@ -24,13 +24,13 @@ function parseFile(file) {
       const [properties, filedata] = reader.result.split(',');
 
       // Add filename and size to data-url
-      const augementedProperites = [
+      const augmentedProperties = [
         properties,
         `filename=${encodeURIComponent(file.name)}`,
         `filesize=${file.size}`,
       ].join(';');
 
-      resolve([augementedProperites, filedata].join(','));
+      resolve([augmentedProperties, filedata].join(','));
     });
 
     reader.addEventListener('error', () => {

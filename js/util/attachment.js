@@ -4,6 +4,11 @@ export function dataUrlToAttachment(dataUrl) {
     return [];
   }
 
+  // We augment the data url to include properties we need for the API. It
+  // should look like this:
+  // data:text/plain;filename=foo.txt;filesize=445;base64,AAAAA=
+  // We add these properties. Out of the box, react-jsonschema-form also uses a
+  // data url but they only include a `name` attribute.
   const [propertiesString, filedata] = dataUrl.split(':', 2)[1].split(',');
   const properties = propertiesString.split(';');
   const content_type = properties.shift();

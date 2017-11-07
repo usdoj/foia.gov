@@ -88,12 +88,12 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
             progressTotal={upload.get('progressTotal')}
             progressLoaded={upload.get('progressLoaded')}
           /> :
-	  <button
-	    className="usa-button usa-button-big usa-button-primary-alt"
-	    type="submit"
-	  >
-	    Submit request
-	  </button>
+          <button
+            className="usa-button usa-button-big usa-button-primary-alt"
+            type="submit"
+          >
+            Submit request
+          </button>
         }
         { submissionResult.errorMessage &&
           <p>
