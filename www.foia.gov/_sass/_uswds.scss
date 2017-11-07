@@ -17,6 +17,7 @@ $color-primary-alt: #5EAFF8;
 $color-primary: $color-primary-alt;
 $color-primary-alt-light: #92C8F6;
 $color-primary-alt-lightest: #DEF0FF;
+$color-primary-alt-darker: #306092;
 $color-primary-darkest: #122E51;
 $color-gray-dark: #212121; // same as USWDS $color-base
 $color-gray: #5B616A;
@@ -53,5 +54,7 @@ $space-5x: 4.0rem;
 
 // WDS's breakpoints just aren't flexible enough
 $medium-large-screen: 800px;
+
+$font-semibold: 500;
 
 @import '../../node_modules/uswds/src/stylesheets/uswds';

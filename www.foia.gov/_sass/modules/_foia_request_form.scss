@@ -1,20 +1,14 @@
 // TODO Temporary foia-legacy overrides
 .foia-request-form {
+  margin-top: 3rem;
   label,
   legend {
     display: block !important;
   }
-
   label {
+    font-weight: $font-semibold;
     font-size: inherit !important;
     margin-bottom: $space-1x!important;
-  }
-}
-
-.foia-request-form {
-  margin-top: 3rem;
-  label {
-    font-weight: bold;
     color: $color-primary-darkest;
   }
   input {

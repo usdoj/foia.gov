@@ -12,11 +12,20 @@ $p-leading:  1.5;
 
 $body-copy-max-width: $space-1x * 78;
 
+@include font-face(
+  'Source Sans Pro',
+  '#{$font-path}/sourcesanspro-semibold-webfont',
+  $font-weight-4,
+  normal,
+  $file-formats: woff2 woff ttf
+);
+
 body {
   color: $color-primary-darkest;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
+
 
 // Heading 1
 %h1 {
@@ -83,7 +92,7 @@ h5 {
   font-size: $h5-font-size;
   font-family: $font-sans;
   line-height: $h5-leading;
-  font-weight: $font-weight-2; // was 500; should probably be semibold
+  font-weight: $font-weight-4;
   color: $color-primary-darkest;
 }
 
