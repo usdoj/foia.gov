@@ -60,14 +60,12 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
         <div className="foia-request-form_inline-progress">
           Step 6 of 6
         </div>
-        <h4>Submission and confirmation</h4>
+        <h3>Review and submit</h3>
         <div className="info-box">
-          <p>Please review the information you’ve entered and submit.</p>
-          <p>
-            You should hear from the agency you’ve submitted a records request to
-            within 10 days. If you don’t hear from the agency, please reach out
-            using the contact information provided to you on this site.
-          </p>
+          <p>Please review the information you entered above before submitting to
+          an agency. You should hear from the agency within 10 days of submitting
+          your request.  If you don’t hear from the agency, please reach out
+          using the contact information provided to you on this site.</p>
         </div>
         <button
           className="usa-button usa-button-big usa-button-primary-alt"

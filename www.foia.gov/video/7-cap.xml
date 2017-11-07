@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:01.104" end="00:00:03.681">There is no one place to send all FOIA requests.   </p>
+<p begin="00:00:03.681" end="00:00:07.948">Each federal agency handles its own records in response to requests.   </p>
+<p begin="00:00:07.948" end="00:00:10.735">Your request will receive the quickest possible response    </p>
+<p begin="00:00:10.735" end="00:00:13.674">if it is addressed directly to the agency and office    </p>
+<p begin="00:00:13.674" end="00:00:17.200">that you believe has the records you are seeking.   </p>
+<p begin="00:00:17.200" end="00:00:18.415">    </p>
+<p begin="00:00:18.415" end="00:00:19.338">    </p>
+</div>
+</body>
+</tt>
+

@@ -13,9 +13,9 @@ const FORM_SECTIONS = [
     id: 'requester_contact',
     title: 'Contact information',
     description: `
-      The information you supply here will be used to provide a response for
-      your request for information. Please note that not all of these fields
-      are required.
+      This information is needed so the agency knows where to send the response
+      to your records request. Please note that not all of these fields are
+      required.
     `,
     // Ordering is significant
     fieldNames: [
@@ -54,8 +54,8 @@ const FORM_SECTIONS = [
     title: 'Your request',
     description: domify(`
       The description of the records you are requesting is important. The scope
-      of your request can impact how quickly an agency could respond to your
-      request. Your description should be as clear and specific as possible
+      of your request can impact how quickly an agency can respond to your
+      request. Your description should be as  clear and specific as possible
       and must give agency <span data-term="full-time foia employees">FOIA
       personnel</span> enough detail so that they are able to reasonably
       determine exactly which records are being requested and where to locate
@@ -73,12 +73,13 @@ const FORM_SECTIONS = [
     // This section is where the agency-component-specific fields go
     isAgencySpecificFieldSection: true,
     description: domify(`
-      If you are submitting a <span data-term="first party request">first party request</span>,
-      use this tool to upload any required documentation (see the agency’s FOIA Reference
-      Guide or FOIA regulations) to verify your identity <span data-term="certification of identity">
-      Certification of Identity</span> with the agency you are requesting information from. You can
-      also use this tool to upload documents providing context for your request
-      to help FOIA personnel process your FOIA request.
+      If you are submitting a request for records on yourself
+      (a “<span data-term="first party request">first
+      party</span>” request), use this tool to upload any
+      required documentation  to verify your identity.
+      You can also use this tool to upload any documents
+      that provide context for your request or that could
+      help FOIA personnel process your FOIA request.
     `),
     // Ordering is significant
     fieldNames: [
@@ -90,15 +91,20 @@ const FORM_SECTIONS = [
     id: 'processing_fees',
     title: 'Fee waiver',
     description: domify(`
-      There is no initial <span data-term="fee waiver">fee</span> required to
-      submit a FOIA request, but the FOIA does allow people requesting records
-      to be charged certain types of fees in some instances. If fees will be an
-      issue in your request, you may request a waiver of those fees. Fee
-      waivers are limited to situations in which a requester can show that the
+      Most FOIA requests do not involve any fees.  However, if an agency
+      informs you that there are fees associated with your request, you may
+      request a <span data-term="fee waiver">fee</span> under the standard
+      provided in the FOIA.  You may request a fee waiver at any time during
+      the processing of your request.  The agency will grant a fee waiver when
       disclosure of the requested information is in the public interest because
       it is likely to contribute significantly to public understanding of the
-      operations and activities of the government, and is not primarily in the
-      commercial interest of the requester.
+      operations and activities of the government and is not primarily in the
+      commercial interest of the requester.  Requests for fee waivers from
+      individuals who are seeking records pertaining to themselves usually do
+      not meet this standard.  Additionally, a requester’s inability to pay
+      fees is not a legal basis for granting a fee waiver.  When making a
+      request for a fee waiver you must explain how your request meets the
+      standard described above.
     `),
     // Ordering is significant
     fieldNames: [
@@ -115,18 +121,26 @@ const FORM_SECTIONS = [
     id: 'expedited_processing',
     title: 'Request expedited processing',
     description: domify(`
-      You may be entitled to have your request processed on an <span
-      data-term="expedited processing">expedited basis</span> if you demonstrate a
-      <span data-term="compelling need">“compelling need”</span> or satisfy
-      any additional standards that may be included in the regulations of the
-      agency to which you are submitting your request.  A compelling need
-      exists only if you can establish: (1) that failure to
-      obtain records quickly could reasonably be expected to pose an imminent
-      threat to the life and safety of an individual, or (2) that you are a
-      person primarily engaged in disseminating information and there is an
-      urgency to inform the public concerning actual or alleged federal
-      government activity.  You should consult the agency’s FOIA regulations
-      for any additional standards that may qualify for expedited processing.
+      Agencies generally process requests on a first-in, first-out basis.  Most
+      agencies also utilize separate tracks to process simple and complex
+      requests.  Under certain circumstances, your request may qualify for
+      placement into a separate, expedited track where the agency will
+      process it as soon as practicable.  The standards for <span
+      data-term="expedited processing">expedited processing</span> are set
+      out in the FOIA and in the regulations of each federal agency.  Under the
+      FOIA, a requester may qualify for expedited processing if they can
+      demonstrate a <span data-term="compelling need">“compelling
+      need”</span> for the records.  A “compelling need” can be shown  by:  (1)
+      establishing that the  failure to obtain the records on an expedited
+      basis “could reasonably be expected to pose an imminent threat to the
+      life or physical safety of an individual;” or, (2) if the requester is a
+      “person primarily engaged in  disseminating information,” by
+      demonstrating that there exists an “urgency to inform the public
+      concerning actual or alleged Federal Government activity.”  Agencies may
+      also establish additional criteria for granting expedited processing,
+      which they describe in their FOIA regulations.  Requesters must
+      demonstrate how they meet one of the standards in order to have their
+      request processed on an expedited basis.
     `),
     // Ordering is significant
     fieldNames: [
