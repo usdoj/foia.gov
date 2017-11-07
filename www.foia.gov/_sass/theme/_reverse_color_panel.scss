@@ -1,7 +1,7 @@
 .panel_reverse-color {
   background-color: $color-primary-alt-light;
   a,
-  span[role='button']{
+  div > span[role='button'] {
     font-weight: $font-normal;
     color: $color-primary-darkest;
     &:hover,
