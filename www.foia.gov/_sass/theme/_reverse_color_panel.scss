@@ -1,8 +1,9 @@
 .panel_reverse-color {
   background-color: $color-primary-alt-light;
-  a {
+  a,
+  span[role='button']{
     font-weight: $font-normal;
-    border-bottom: 1px solid $color-primary-darkest;
+    color: $color-primary-darkest;
     &:hover,
     &:active,
     &:visited:hover,
@@ -12,12 +13,16 @@
     }
     &.usa-button {
       border-bottom-color: $color-primary-darkest;
+      color: $color-white;
       &:hover,
       &:active,
       &:visited {
         color: $color-white;
       }
     }
+  }
+  a {
+    border-bottom: 1px solid $color-primary-darkest;
   }
   .usa-button .usa-button-outline {
     color: $color-white;
