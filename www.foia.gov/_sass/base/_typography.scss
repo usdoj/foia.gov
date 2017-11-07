@@ -69,7 +69,7 @@ h3 {
       font-size: $h3-font-size-sans;
     }
     font-family: $font-sans;
-    font-weight: normal;
+    font-weight: $font-semibold;
   }
   @media all and (min-width: $small-screen) {
     font-size: $h3-font-size;

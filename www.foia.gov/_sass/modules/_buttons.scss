@@ -30,7 +30,7 @@
     &:visited:hover {
       background-color: $color-primary-alt-light;
       color: $color-primary-darkest;
-      box-shadow: inset 0 0 0 2px $color-primary-darkest;
+      box-shadow: inset 0 0 0 2px $color-primary-alt-light;
     }
   }
 }
