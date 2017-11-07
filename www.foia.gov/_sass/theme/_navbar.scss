@@ -36,15 +36,27 @@
     top: -7.3rem;
   }
 }
-.usa-nav-primary button[aria-expanded=true] {
-  background-color: $color-white;
-  color: $color-primary-darkest;
-  &:hover {
-    background-color: $color-white;
+.usa-nav-primary {
+  button,
+  .usa-nav-link {
+    &:focus {
+      span {
+        // match WDS
+        padding-bottom: 0.9rem;
+        border-bottom: 0.7rem solid $color-primary-alt-light;
+      }
+    }
   }
-  span {
-    border-bottom-color: $color-primary-alt-light;
+  button[aria-expanded=true] {
+    background-color: $color-white;
     color: $color-primary-darkest;
+    &:hover {
+      background-color: $color-white;
+    }
+    span {
+      border-bottom-color: $color-primary-alt-light;
+      color: $color-primary-darkest;
+    }
   }
 }
 
