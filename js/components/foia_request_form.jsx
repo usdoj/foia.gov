@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-jsonschema-form';
 
+import CustomFieldTemplate from 'components/request_custom_field_template';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
 import { requestActions } from '../actions';
@@ -45,6 +46,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
     <Form
       className="foia-request-form"
       disabled={isSubmitting}
+      FieldTemplate={CustomFieldTemplate}
       formContext={formContext}
       formData={formData.toJS()}
       ObjectFieldTemplate={ObjectFieldTemplate}
@@ -55,12 +57,22 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
       widgets={widgets}
     >
       <div id="foia-request-form_submit" className="foia-request-form_submit">
+        <div className="foia-request-form_inline-progress">
+          Step 6 of 6
+        </div>
         <h3>Review and submit</h3>
-        <p>Please review the information you entered above before submitting to
-        an agency. You should hear from the agency within 10 days of submitting
-        your request.  If you don’t hear from the agency, please reach out
-        using the contact information provided to you on this site.</p>
-        <button type="submit">Submit</button>
+        <div className="info-box">
+          <p>Please review the information you entered above before submitting to
+          an agency. You should hear from the agency within 10 days of submitting
+          your request.  If you don’t hear from the agency, please reach out
+          using the contact information provided to you on this site.</p>
+        </div>
+        <button
+          className="usa-button usa-button-big usa-button-primary-alt"
+          type="submit"
+        >
+          Submit request
+        </button>
         { submissionResult.errorMessage &&
           <div>
             <span className="usa-input-error-message" role="alert">

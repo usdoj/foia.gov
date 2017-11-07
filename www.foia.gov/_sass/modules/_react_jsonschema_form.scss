@@ -1,6 +1,31 @@
 // Customization of the form elements generated from react-jsonschema-form
 
-.field-description {
-  @extend .usa-form-hint;
-  margin-top: 0; // override `p` styling
+// This is the section-level description
+div.field-description,
+legend + .field-description {
+  @extend .info-box;
+  margin: 0; //override p tag margin
+}
+
+// This is a single input's help text
+label + .field-description {
+  font-size: $small-font-size;
+  max-width: 46rem; // match max-width of inputs from WDS
+}
+
+.foia-request-form {
+  legend {
+    @extend %h1;
+  }
+
+  fieldset fieldset legend,
+  #foia-request-form_submit h4 {
+    font-size: $h3-font-size-sans;
+    font-family: $font-sans;
+    border-bottom: 1px solid $color-primary-alt-light;
+    margin-top: 0;
+    margin-bottom: $space-3x;
+    padding-bottom: $space-3x;
+    width: 100%;
+  }
 }

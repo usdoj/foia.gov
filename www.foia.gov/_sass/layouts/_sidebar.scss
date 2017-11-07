@@ -1,16 +1,30 @@
+.grid-flex {
+  display: flex;
+  justify-content: space-between;
+}
 .sidebar {
+  flex-basis: auto;
+  flex-grow: 5;
+  background-color: $color-primary-darkest; // TODO: Make this $color-primary-alt-lightest when the second tab is active
+  border-bottom: $space-4x solid $color-white;
+  @media screen and (min-width: $medium-screen) {
+    min-width: 420px; //min-width from visual design
+  }
   ul {
     list-style: none;
-    &.sidebar_tab-controls li {
-      display: inline-block;
-      margin-bottom: 0;
-      a {
-        padding: 1rem $space-4x;
+    &.sidebar_tab-controls {
+      margin: 0;
+      li {
         display: inline-block;
-        width: 100%;
-      }
-      &.tab_active a {
-        padding: 1rem 2.8rem; // magic number to keep the tab from changing size when the text is bold
+        margin-bottom: 0;
+        a {
+          padding: 1rem $space-4x;
+          display: inline-block;
+          width: 100%;
+        }
+        &.tab_active a {
+          padding: 1rem 2.8rem; // magic number to keep the tab from changing size when the text is bold
+        }
       }
     }
   }
@@ -21,6 +35,10 @@
 }
 
 .sidebar section {
+  h2 {
+    font-weight: $font-bold;
+    margin-top: 0;
+  }
   h5 {
     margin-top: 0;
     line-height: 1.5;
@@ -42,7 +60,35 @@
 
 .sidebar_tabs {
   margin-top: 0;
+  height: 100%;
   .tab_active {
     padding: $space-5x $space-3x $space-3x $space-3x;
+    height: 100%;
+  }
+}
+
+.sidebar_content {
+  flex-basis: auto;
+  flex-grow: 6;
+  //approx 1 column + gutter in WDS grid at size
+  @media screen and (min-width: $medium-screen) {
+    margin-left: 8%;
+  }
+}
+
+/* We aren't using this as a progress bar right now, so don't style it like one.
+ * Styles for the progress bar look are in modules/sidebar_timeline. */
+.sidebar_progress-bar {
+  margin: 0;
+  li {
+    border-left: 3px solid $color-primary-alt-light;
+    padding-left: $space-2x;
+    margin-bottom: $space-2x;
+    a {
+      &:hover,
+      &:active {
+        border-bottom: 1px solid $color-white;
+      }
+    }
   }
 }

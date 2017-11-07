@@ -12,9 +12,14 @@ $p-leading:  1.5;
 
 $body-copy-max-width: $space-1x * 78;
 
+body {
+  color: $color-primary-darkest;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
 
 // Heading 1
-h1 {
+%h1 {
   font-size: $h1-font-size-mobile;
   font-family: $font-serif;
   line-height: $h1-leading;
@@ -22,6 +27,10 @@ h1 {
   @media all and (min-width: $small-screen) {
     font-size: $h1-font-size;
   }
+}
+
+h1 {
+  @extend %h1
 }
 
 // Subhead 1
@@ -81,8 +90,6 @@ h5 {
 p {
   line-height: $p-leading;
   color: $color-primary-darkest;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
   &.secondary-text {
     font-size: 1.5rem;
   }

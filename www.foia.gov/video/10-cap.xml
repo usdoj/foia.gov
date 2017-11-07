@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000923" end="00:00:03.189">There is no charge to submit a FOIA request -   </p>
+<p begin="00:00:03.189" end="00:00:08.101">but in certain instances, full FOIA processing may require a modest charge.   </p>
+<p begin="00:00:08.101" end="00:00:11.849">Although there is usually no charge for the first two hours of search time   </p>
+<p begin="00:00:11.849" end="00:00:15.122">and the first 100 pages of duplication,   </p>
+<p begin="00:00:15.122" end="00:00:19.245">agencies typically can charge for the time it takes to search for records   </p>
+<p begin="00:00:19.245" end="00:00:23.694">or for duplication of those records after the initial allotment runs out.   </p>
+<p begin="00:00:23.694" end="00:00:28.298">If you are seeking records for commercial use, you will be charged additional fees.   </p>
+<p begin="00:00:28.298" end="00:00:31.977">That said, you may always include in your request letter a statement   </p>
+<p begin="00:00:31.977" end="00:00:34.976">limiting the amount that you are willing to pay in fees.   </p>
+<p begin="00:00:34.976" end="00:00:37.899">Or you may request a waiver of fees.   </p>
+<p begin="00:00:37.899" end="00:00:41.831">Fee waivers are limited to situations in which you can show that   </p>
+<p begin="00:00:41.831" end="00:00:45.351">the disclosure of the requested information is in the public interest.   </p>
+<p begin="00:00:45.351" end="00:00:48.992">That means it is likely to contribute significantly to public understanding   </p>
+<p begin="00:00:48.992" end="00:00:52.834">of the operations and activities of the government.   </p>
+<p begin="00:00:52.834" end="00:00:53.905">    </p>
+<p begin="00:00:53.905" end="00:00:54.805">    </p>
+</div>
+</body>
+</tt>
+

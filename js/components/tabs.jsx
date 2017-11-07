@@ -61,7 +61,7 @@ class Tabs extends Component {
     const personnel = this.props.agencyComponent.foiaPersonnel();
 
     return (
-      <div className="sidebar">
+      <aside className="sidebar print-hide">
         <ul className="sidebar_tab-controls">
           { this.renderTabControls() }
         </ul>
@@ -137,7 +137,7 @@ class Tabs extends Component {
             </section>
           </section>
         </div>
-      </div>
+      </aside>
     );
   }
 }
