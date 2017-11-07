@@ -2,9 +2,13 @@
   font-weight: $font-semibold;
   &.usa-button-primary {
     background-color: $color-primary-darkest;
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $color-primary-alt-darker;
       color: $color-white;
+    }
+    &:visited {
+      color: $color-white!important;
     }
   }
   &.usa-button-primary-alt {
