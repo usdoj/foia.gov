@@ -59,6 +59,6 @@
 .agency-preview_component {
   @extend %link-caret;
   &:hover {
-    border-bottom: 1px solid $color-primary-alt-darkest;
+    border-bottom: 1px solid $color-primary-darkest;
   }
 }
