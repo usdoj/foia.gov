@@ -1,9 +1,9 @@
 .usa-footer {
   padding: $space-5x 0;
-  margin-top: $space-5x;
   background-color: $color-primary-darkest;
   color: $color-gray-lightest;
   font-size: $small-font-size;
+  border-top: 3px solid $color-white;
   .footer-logo {
     max-width: 8rem;
     display: inline-block;
@@ -32,29 +32,33 @@
       border-bottom-color: $color-primary-alt-light;
     }
   }
-  .footer-links a {
-    letter-spacing: 0.065rem;
-    color: $color-gray-lightest;
-    border-bottom: none;
-    border-left: 2px solid $color-primary-alt-light;
-    padding-left: 6px;
-    line-height: 1;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    display: block;
-    &:hover,
-    &:active {
-      color: $color-primary-alt-light;
-    }
-    &:visited {
+  .footer-links {
+    padding-right: 4px;
+    a {
+      letter-spacing: 0.065rem;
       color: $color-gray-lightest;
+      border-bottom: none;
+      border-left: 2px solid $color-primary-alt-light;
+      padding-left: 6px;
+      line-height: 1;
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      display: block;
+      &:hover,
+      &:visited:hover,
+      &:active {
+        color: $color-primary-alt-light;
+      }
+      &:visited {
+        color: $color-gray-lightest;
+      }
     }
-  }
-  .footer-links li {
-    margin: $space-2x 0;
-    line-height: 1;
-    &:first-child {
-      margin-top: 0;
+    li {
+      margin: $space-2x 0;
+      line-height: 1;
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
 }

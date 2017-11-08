@@ -6,9 +6,6 @@
     a {
       color: $color-primary-darkest;
     }
-    &.tab_active {
-      font-weight: bold;
-    }
     &:first-child {
       background-color: $color-primary-darkest;
       a {
@@ -27,8 +24,10 @@
 .sidebar_tabs {
   > section {
     display: none;
-    h5 {
+    h4 {
       font-weight: bold;
+      font-size: $h5-font-size;
+      font-family: $font-sans;
     }
   }
   .tab_active {
@@ -43,13 +42,12 @@
     h1,
     h2,
     h3,
-    h4,
     p,
     a {
       color: $color-white;
     }
 
-    h5 {
+    h4 {
       color: $color-primary-alt-light;
     }
   }

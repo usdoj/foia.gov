@@ -1,6 +1,7 @@
 // TODO Temporary foia-legacy overrides
 .foia-request-form {
-  margin-top: 3rem;
+  margin-top: $space-4x;
+  max-width: $form-max-width;
   label,
   legend {
     display: block !important;
@@ -21,11 +22,11 @@
 .foia-request-form_inline-progress {
   color: $color-gray;
   font-size: $base-font-size;
-  margin-bottom: $space-2x;
+  margin-bottom: $space-1x;
 }
 
 .foia-request-form_nav-top {
-  max-width: 46rem; // Align with input elements
+  max-width: $form-max-width; // Align with input elements
   text-align: right;
   margin-top: $space-3x;
   margin-bottom: $space-2x;

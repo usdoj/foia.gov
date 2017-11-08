@@ -58,6 +58,8 @@ $medium-large-screen: 800px;
 // WDS doesn't ship with semibold source sans pro
 $font-semibold: 500;
 
+$form-max-width: 46rem;
+
 // Icons
 $icon-arrow-thick: '/img/icon-arrow-thick.svg';
 $icon-arrow-thin: '/img/icon-arrow-thin.svg';
@@ -72,6 +74,5 @@ $icon-person: '/img/icon-person.svg';
 $icon-phone: '/img/icon-phone.svg';
 $icon-print: '/img/icon-print.svg';
 $icon-spyglass: '/img/icon-spyglass.svg';
-
 
 @import '../../node_modules/uswds/src/stylesheets/uswds';

@@ -1,0 +1,14 @@
+.old-content-banner {
+  margin: auto;
+  padding: ($space-1x * 6) 0;
+  text-align: center;
+
+  p {
+    margin: auto;
+    max-width: none;
+  }
+}
+
+.old-content-banner_hed {
+  font-weight: $font-weight-3;
+}

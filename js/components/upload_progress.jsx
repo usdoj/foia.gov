@@ -8,7 +8,10 @@ function UploadProgress({ progressLoaded, progressTotal }) {
   // the requester will just see "Uploading…" until the request is complete.
   const content = progressLoaded ? `${percentage}% uploaded…` : 'Uploading…';
   return (
-    <button disabled>
+    <button
+      disabled
+      className="usa-button usa-button-big usa-button-primary-alt"
+    >
       { content }
     </button>
   );

@@ -1,0 +1,13 @@
+{% capture secondary %}
+{% if page.old-content-banner-secondary-text %}
+{{ page.old-content-banner-secondary-text }}
+{% else %}
+Visit the new <a href="{{ site.baseurl }}/">www.FOIA.gov</a> homepage to find the updated version of the information you looking for.
+{% endif %}
+{% endcapture %}
+<div class="old-content-banner panel_reverse-color">
+  <div class="usa-grid">
+    <p class="old-content-banner_hed">We’re sorry! This page is no longer being updated.</p>
+    <p>{{ secondary }}</p>
+  </div>
+</div>

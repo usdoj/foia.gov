@@ -1,5 +1,8 @@
 <head>
 <meta charset="utf-8" />
+{% unless page.grid contains 'grid-legacy' %}
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% endunless %}
 <meta http-equiv="cache-control" content="{{ page.cache_control | default: 'no-cache' }}" />
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="x-ua-compatible" content="ie=edge">
