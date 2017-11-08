@@ -16,7 +16,8 @@
 }
 
 .usa-header-extended .usa-logo {
-  margin-bottom: 1rem; // WDS override
+  margin-top: $space-1x; // WDS override
+  margin-bottom: $space-1x; // WDS override
 }
 
 .usa-logo {
@@ -26,7 +27,7 @@
   img {
     width: 34px;
     height: 34px;
-    margin-top: 3px;
+    margin-top: 0;
     margin-right: 0.5rem;
 
     @media screen and (min-width: $medium-large-screen) {
