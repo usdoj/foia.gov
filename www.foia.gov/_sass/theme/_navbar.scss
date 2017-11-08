@@ -1,3 +1,12 @@
+.usa-navbar {
+  height: auto;
+}
+
+.usa-menu-btn {
+  @extend .usa-button;
+  @extend .usa-button-outline;
+}
+
 .usa-nav-submenu {
   margin-left: 1.5rem; // to match the padding on the parent element
   background-color: $color-white;
