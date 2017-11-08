@@ -1,0 +1,9 @@
+@mixin has-icon($icon, $width: 2.4rem, $height: 2.4rem, $float: left, $margins: 0 $space-1x 0 0) {
+  width: $width;
+  height: $height;
+  background-image: url($icon);
+  margin: $margins;
+  content: "";
+  float: left;
+  display: block;
+}
