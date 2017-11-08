@@ -103,8 +103,8 @@ function popupCloseToData(){
 }
 
 
-$('span[title]').qtip({ style: { name: 'dark', tip: true } })
-$('a[title]').qtip({
+$('#main span[title]').qtip({ style: { name: 'dark', tip: true } })
+$('#main a[title]').qtip({
 	content: {
       text: false // Use each elements title attribute
       },

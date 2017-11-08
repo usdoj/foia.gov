@@ -30,10 +30,11 @@ ul.tabs li {
   }
 }
 
-/* this is necessary because the markup in the HTML doesn't match the markup WDS expects, so it hides the whole thing */
-// TODO https://github.com/18F/beta.foia.gov/issues/178 
-#componentSelectionData, // This markup comes from the Tomcat backend, it is **not** a temporary fix.
-#selectFY {
+// This is necessary because the markup in the HTML doesn't match the markup
+// WDS expects, so it hides the whole thing.  Some of This markup comes from
+// the Tomcat backend, so we can't fix it all in this repo.
+.popupWindow,
+.grid-legacy {
   [type=checkbox],
   [type=radio] {
     display: inline-block;
