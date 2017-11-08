@@ -69,7 +69,7 @@ h3 {
       font-size: $h3-font-size-sans;
     }
     font-family: $font-sans;
-    font-weight: normal;
+    font-weight: $font-semibold;
   }
   @media all and (min-width: $small-screen) {
     font-size: $h3-font-size;
@@ -158,5 +158,5 @@ address p {
 p a {
   @extend %a-colors;
   text-decoration: none;
-  border-bottom: 1px solid $color-primary-alt;
+  border-bottom: 2px solid $color-primary-alt;
 }

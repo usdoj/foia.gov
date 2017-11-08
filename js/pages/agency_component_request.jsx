@@ -47,26 +47,39 @@ class AgencyComponentRequestPage extends Component {
   init(props) {
     const agencyComponentId = props.match.params.agencyComponentId;
 
+    // Check the form sections were fetched
+    const { formSections } = agencyComponentRequestFormStore.getState();
+    const formSectionsFetch = formSections.size ?
+      Promise.resolve() :
+      requestActions.fetchRequestFormSections();
+
     // Check agency component exists in store
     const { agencyComponent } = this.state;
     if (!agencyComponent || !agencyComponent.formFields.length) {
-      requestActions.fetchAgencyComponent(agencyComponentId)
-        .then(requestActions.receiveAgencyComponent)
-        .catch((error) => {
-          if (!error.response) {
-            // Non-axios error, rethrow
-            throw error;
-          }
+      formSectionsFetch.then(() => {
+        // TODO this isn't very intuitive
+        // We chain the requests sequentially, since computing the agency
+        // request form depends on having the form sections fetched. We make
+        // sure to only start the agency component request _after_ we've
+        // received the form sections.
+        requestActions.fetchAgencyComponent(agencyComponentId)
+          .then(requestActions.receiveAgencyComponent)
+          .catch((error) => {
+            if (!error.response) {
+              // Non-axios error, rethrow
+              throw error;
+            }
 
-          if (error.response.status !== 404) {
-            // API error other than 404, rethrow
-            throw error;
-          }
+            if (error.response.status !== 404) {
+              // API error other than 404, rethrow
+              throw error;
+            }
 
-          this.setState({
-            agencyComponentNotFound: true,
+            this.setState({
+              agencyComponentNotFound: true,
+            });
           });
-        });
+      });
     }
   }
 

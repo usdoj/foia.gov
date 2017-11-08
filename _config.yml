@@ -63,6 +63,8 @@ navigation:
 collections:
   api:
     output: true
+  glossary_terms: {}
+  request_form_sections: {}
 
 defaults:
   - scope:

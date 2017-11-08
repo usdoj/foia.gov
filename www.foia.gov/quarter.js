@@ -76,7 +76,6 @@ function popupOpenToData(popupWindow){
   }
   var filter=document.getElementById("shadowFilter");
   if(filter != null){
-	filter.style.height= document.body.clientHeight +"px";
 	filter.style.display='block';
 	filter.style.filter = "alpha(opacity=60)";
 	filter.onclick=function(){
@@ -103,8 +102,8 @@ function popupCloseToData(){
   window.open("reports.html","_self");
 }
 
-$('span[title]').qtip({ style: { name: 'dark', tip: true } })
-$('a[title]').qtip({
+$('#main span[title]').qtip({ style: { name: 'dark', tip: true } })
+$('#main a[title]').qtip({
 	content: {
       text: false // Use each elements title attribute
       },

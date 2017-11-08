@@ -7,6 +7,7 @@ import FoiaSubmissionAddress from './foia_submission_address';
 import PrettyUrl from './pretty_url';
 import NonInteroperableInfo from './non_interoperable_info';
 import { AgencyComponent } from '../models';
+import domify from '../util/request_form/domify';
 
 
 function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized }) {
@@ -38,7 +39,7 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         { description &&
           <div>
             <h4>Agency mission</h4>
-            <p>{description}</p>
+            <p>{domify(description)}</p>
           </div>
         }
 

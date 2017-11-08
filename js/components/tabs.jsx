@@ -76,7 +76,7 @@ class Tabs extends Component {
               <h2>Tips for submitting</h2>
               <ul className="submission-help_tips">
                 <li>
-                  <h5>The person to reach out to about your FOIA request is:</h5>
+                  <h4>The person to reach out to about your FOIA request is:</h4>
                   <FoiaPersonnel foiaPersonnel={personnel[0]} />
                   <p>
                     You can ask FOIA personnel about anything related to your
@@ -86,22 +86,22 @@ class Tabs extends Component {
                   </p>
                 </li>
                 <li>
-                  <h5>The description of records you are requesting is
-                    very important.</h5>
+                  <h4>The description of records you are requesting is
+                    very important.</h4>
                   <p className="submission-help_description">Be sure your
                     request is clear and as specific as as possible.</p>
                 </li>
                 <li>
-                  <h5>Do research before you file.</h5>
+                  <h4>Do research before you file.</h4>
                   <p className="submission-help_research">Sometime records and
                     information you’re looking for  is already public. You can
                     find out by reaching out to the agency you’re interested in
-                    or by visiting their website or their FOIA reading room.</p>
+                    or by visiting their website or their FOIA library.</p>
                 </li>
               </ul>
             </section>
           </section>
-          <section className={this.state.selectedTab === 1 ? 'tab_active' : ''}>
+          <section className={this.state.selectedTab === 1 ? 'tab_active panel_reverse-color' : 'panel_reverse-color'}>
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
             { agencyComponent.request_data_year &&
@@ -110,25 +110,25 @@ class Tabs extends Component {
               </section>
             }
             <section className="submission-help_agency-mission">
-              <h5>Agency mission</h5>
+              <h4>Agency mission</h4>
               <p>{ AgencyComponent.agencyMission(agencyComponent) }</p>
             </section>
             <section>
-              <h5 className="submission-help_first-party-requests">
+              <h4 className="submission-help_first-party-requests">
                 First party requests
-              </h5>
+              </h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur
                 adipiscing elit, sed do eiusmod tempor.</p>
-              <h5 className="submission-help_expedited processing">
+              <h4 className="submission-help_expedited processing">
                 Expedited processing
-              </h5>
+              </h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                 do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur
                 adipiscing elit, sed do eiusmod tempor.</p>
             </section>
             <section className="submission-help_contact">
-              <h5>Contact</h5>
+              <h4>Contact</h4>
               <p className="submission-help_website">
                 <PrettyUrl href={agencyComponent.website.uri} />
               </p>

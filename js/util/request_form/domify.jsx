@@ -7,7 +7,7 @@ import React from 'react';
 
 function domify(content) {
   /* eslint-disable react/no-danger */
-  return <div dangerouslySetInnerHTML={{ __html: content }} />;
+  return <span dangerouslySetInnerHTML={{ __html: content }} />;
   /* eslint-enable react/no-danger */
 }
 

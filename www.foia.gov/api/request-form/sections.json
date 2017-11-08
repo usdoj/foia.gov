@@ -1,0 +1,13 @@
+---
+---
+[
+  {%- for section in site.request_form_sections -%}
+    {
+      "id": {{ section._id | jsonify }},
+      "title": {{ section.title | jsonify }},
+      "fieldNames": {{ section.fieldNames | jsonify }},
+      "isAgencySpecificFieldSection": {{ section.isAgencySpecificFieldSection | default:false | jsonify }},
+      "description": {{ section.output | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}
+]

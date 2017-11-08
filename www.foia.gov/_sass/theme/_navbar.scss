@@ -14,33 +14,47 @@ $hide-secondary-nav-breakpoint: 900px;
 
 .usa-nav-submenu {
   margin-left: 1.5rem; // to match the padding on the parent element
-  background-color: $color-white;
+  background-color: $color-primary-alt-lightest;
   a,
   a:visited {
     &:hover,
     &:active {
       text-decoration: none;
       color: $color-primary-darkest;
-      background-color: $color-primary-alt-lightest;
+      background-color: $color-primary-alt-light;
     }
   }
 }
 
 .usa-nav-primary {
   display: inline;
-  button {
-    font-weight: $font-normal;
+}
+
+.usa-nav-primary button {
+  &[aria-expanded=true] {
+    background-color: $color-white;
     color: $color-primary-darkest;
-    &[aria-expanded=true] {
+    &:hover {
       background-color: $color-white;
-      color: $color-primary-darkest;
-      &:hover {
-        background-color: $color-white;
-      }
-      span {
-        border-bottom-color: $color-primary-alt-light;
-      }
     }
+    span {
+      border-bottom-color: $color-primary-alt-light;
+    }
+  }
+}
+
+.usa-nav-primary button,
+.usa-nav-primary .usa-nav-link,
+.usa-header-extended .usa-nav-link {
+  font-weight: $font-normal;
+  color: $color-primary-darkest;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:hover,
+  &:hover span {
+    border-bottom-color: $color-primary-alt-light;
   }
 }
 
@@ -53,8 +67,22 @@ $hide-secondary-nav-breakpoint: 900px;
     padding: 1.5rem 0;
     font-size: $small-font-size;
   }
+
   @media screen and (min-width: $nav-width) and (max-width: $hide-secondary-nav-breakpoint) {
     display: none;
+  }
+}
+
+.usa-nav-primary {
+  button,
+  .usa-nav-link {
+    &:focus {
+      span {
+        // match WDS
+        padding-bottom: 0.9rem;
+        border-bottom: 0.7rem solid $color-primary-alt-light;
+      }
+    }
   }
 }
 .usa-nav-primary a,
@@ -76,5 +104,4 @@ $hide-secondary-nav-breakpoint: 900px;
     }
   }
 }
-
 

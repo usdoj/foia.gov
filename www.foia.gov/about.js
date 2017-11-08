@@ -1,4 +1,4 @@
-$('a[title]').qtip({ style: { name: 'dark', tip: true } })
+$('#main a[title]').qtip({ style: { name: 'dark', tip: true } })
 
 //Video 1a
 
