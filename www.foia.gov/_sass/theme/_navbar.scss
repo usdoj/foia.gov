@@ -49,6 +49,7 @@
   }
   button[aria-expanded=true] {
     background-color: $color-white;
+    background-image: url('/assets/img/angle-arrow-down-primary.svg');
     color: $color-primary-darkest;
     &:hover {
       background-color: $color-white;
