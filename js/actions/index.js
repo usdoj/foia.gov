@@ -121,6 +121,11 @@ export const requestActions = {
           submissionResult.errors = error.response.data.errors;
         }
 
+        if (error.response && error.response.status === 422) {
+          submissionResult.errorMessage =
+            'Sorry, there was a problem with the information you provided, please check the form and correct any errors.';
+        }
+
         return Promise.resolve(submissionResult);
       })
       .then(requestActions.completeSubmitRequestForm);
