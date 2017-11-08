@@ -118,4 +118,14 @@ $background-color: $color-primary-darkest;
 [data-term] {
   cursor: pointer;
   text-decoration: underline dotted;
+  &:after {
+    content: "";
+    width: 1em;
+    height: 0.7em;
+    background-image: url('/img/icon-glossary.svg');
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-left: 0.3rem;
+    margin-right: 0.5rem;
+  }
 }
