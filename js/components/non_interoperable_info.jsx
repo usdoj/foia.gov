@@ -12,7 +12,7 @@ function NonInteroperableInfo({ agencyComponent }) {
       </span>
     ) : (
       <span>
-        Use the information to the left in order to submit a FOIA request to this agency.
+        Use the information below in order to submit a FOIA request to this agency.
       </span>
     );
 
