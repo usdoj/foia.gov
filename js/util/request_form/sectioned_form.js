@@ -25,9 +25,9 @@ class SectionedFormBuilder {
 
   // Find the section this field belongs to. If it doesn't belong to any
   // section (a 10% field perhaps) it falls in the addtional fields section.
-  findSection(field) {
-    return field.name in this.fieldToSectionMap ?
-      this.fieldToSectionMap[field.name] :
+  findSection(fieldName) {
+    return fieldName in this.fieldToSectionMap ?
+      this.fieldToSectionMap[fieldName] :
       this.additionalFieldsSection;
   }
 
@@ -35,7 +35,7 @@ class SectionedFormBuilder {
     // Make sure to maintain the order by processing these in formFields order
     return formFields
       .reduce((form, field) => {
-        const section = this.findSection(field);
+        const section = this.findSection(field.name);
         const sectionFields = form[section.id] || [];
 
         sectionFields.push(field);
@@ -76,6 +76,18 @@ class SectionedFormBuilder {
       uiSchema: result.uiSchema,
       sections,
     };
+  }
+
+  sectionedErrorsFromWebformErrors(webformErrors = {}) {
+    return Object.keys(webformErrors)
+      .reduce((errors, fieldName) => {
+        const section = this.findSection(fieldName);
+        const sectionErrors = errors[section.id] || {};
+
+        sectionErrors[fieldName] = webformErrors[fieldName];
+        errors[section.id] = sectionErrors;
+        return errors;
+      }, {});
   }
 }
 

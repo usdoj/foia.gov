@@ -10,6 +10,8 @@ import { Store } from 'flux/utils';
 import { types } from '../actions';
 import { SubmissionResult } from '../models';
 import dispatcher from '../util/dispatcher';
+import agencyComponentRequestFormStore from './agency_component_request_form';
+import rf from '../util/request_form';
 
 
 class FoiaRequestStore extends Store {
@@ -47,18 +49,26 @@ class FoiaRequestStore extends Store {
         Object.assign(this.state, {
           isSubmitting: true,
           // Reset the previous submission results
-          submission_id: null,
-          errorMessage: null,
-          errors: null,
+          submissionResult: this.state.submissionResult.clear(),
         });
         this.__emitChange();
         break;
       }
 
       case types.REQUEST_FORM_SUBMIT_COMPLETE: {
+        dispatcher.waitFor([agencyComponentRequestFormStore.getDispatchToken()]);
+        let errors = {};
+        if (payload.submissionResult.errors) {
+          // Convert webform errors from the API to sectioned errors we can pass
+          // to the Form
+          const { formSections } = agencyComponentRequestFormStore.getState();
+          const builder = rf.SectionedFormBuilder(formSections.toJS());
+          errors = builder.sectionedErrorsFromWebformErrors(payload.submissionResult.errors);
+        }
+
         const { submissionResult } = this.state;
         Object.assign(this.state, {
-          submissionResult: submissionResult.clear().merge(payload.submissionResult),
+          submissionResult: submissionResult.clear().merge(payload.submissionResult, { errors }),
           isSubmitting: false,
         });
         this.__emitChange();

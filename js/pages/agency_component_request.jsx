@@ -21,11 +21,13 @@ class AgencyComponentRequestPage extends Component {
     const agencyComponentId = props.match.params.agencyComponentId;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
     const requestForm = agencyComponentRequestFormStore.getAgencyComponentForm(agencyComponentId);
+    const { formSections } = agencyComponentRequestFormStore.getState();
     const { formData, isSubmitting, submissionResult } = foiaRequestStore.getState();
 
     return {
       agencyComponent,
       formData,
+      formSections,
       isSubmitting,
       submissionResult,
       requestForm,
@@ -47,7 +49,7 @@ class AgencyComponentRequestPage extends Component {
     const agencyComponentId = props.match.params.agencyComponentId;
 
     // Check the form sections were fetched
-    const { formSections } = agencyComponentRequestFormStore.getState();
+    const { formSections } = this.state;
     const formSectionsFetch = formSections.size ?
       Promise.resolve() :
       requestActions.fetchRequestFormSections();
@@ -83,7 +85,15 @@ class AgencyComponentRequestPage extends Component {
   }
 
   render() {
-    const { agencyComponent, formData, requestForm, submissionResult } = this.state;
+    const {
+      agencyComponent,
+      formData,
+      formSections,
+      isSubmitting,
+      requestForm,
+      submissionResult,
+    } = this.state;
+
     if (this.state.agencyComponentNotFound) {
       // The api returned a 404, we should do the same
       return <NotFound />;
@@ -104,11 +114,12 @@ class AgencyComponentRequestPage extends Component {
     } else if (requestForm) {
       mainContent = (
         <FoiaRequestForm
-          formData={this.state.formData}
-          isSubmitting={this.state.isSubmitting}
+          formData={formData}
+          formSections={formSections}
+          isSubmitting={isSubmitting}
           onSubmit={onSubmit}
           requestForm={requestForm}
-          submissionResult={this.state.submissionResult}
+          submissionResult={submissionResult}
         />
       );
     } else {

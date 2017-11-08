@@ -380,4 +380,41 @@ describe('SectionedFormBuilder', () => {
       });
     });
   });
+
+  describe('sectionedErrorsFromWebformErrors()', () => {
+    let webformErrors;
+    let errors;
+
+    describe('given field error for section', () => {
+      beforeEach(() => {
+        webformErrors = {
+          email: 'This is not a valid email address.',
+        };
+
+        errors = builder.sectionedErrorsFromWebformErrors(webformErrors);
+      });
+
+      it('returns an error with a section', () => {
+        expect(errors).to.deep.equal({
+          contact_section: { email: webformErrors.email },
+        });
+      });
+    });
+
+    describe('given field error for additional fields section', () => {
+      beforeEach(() => {
+        webformErrors = {
+          agency_field: 'Agency specific field is not valid.',
+        };
+
+        errors = builder.sectionedErrorsFromWebformErrors(webformErrors);
+      });
+
+      it('returns an error in the additional fields section', () => {
+        expect(errors).to.deep.equal({
+          additional_section: { agency_field: webformErrors.agency_field },
+        });
+      });
+    });
+  });
 });
