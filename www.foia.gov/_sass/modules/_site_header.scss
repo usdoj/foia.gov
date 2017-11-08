@@ -16,8 +16,12 @@
 }
 
 .usa-header-extended .usa-logo {
-  margin-top: $space-1x; // WDS override
-  margin-bottom: $space-1x; // WDS override
+  margin-top: $space-1x * 0.5;
+
+  @media screen and (min-width: $medium-large-screen) {
+    margin-top: $space-1x; // WDS override
+    margin-bottom: $space-1x; // WDS override
+  }
 }
 
 .usa-logo {
@@ -42,7 +46,7 @@
 }
 
 h1.usa-header-title {
-  @media screen and (max-width: $medium-large-screen) {
+  @media screen and (max-width: $medium-large-screen - 1) {
     font-size: $base-font-size;
     margin-bottom: 0;
   }

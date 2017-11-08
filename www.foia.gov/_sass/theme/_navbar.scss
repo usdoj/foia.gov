@@ -1,3 +1,8 @@
+// TODO With the secondary nav inline with the primary, the text collides at a
+// pretty wide breakpoint. We should think about different options for the
+// secondary nav.
+$hide-secondary-nav-breakpoint: 900px;
+
 .usa-navbar {
   height: auto;
 }
@@ -48,7 +53,8 @@
     padding: 1.5rem 0;
     font-size: $small-font-size;
   }
-  @media screen and (min-width: $medium-large-screen) {
+  @media screen and (min-width: $nav-width) and (max-width: $hide-secondary-nav-breakpoint) {
+    display: none;
   }
 }
 .usa-nav-primary a,
