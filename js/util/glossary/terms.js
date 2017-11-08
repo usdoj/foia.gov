@@ -17,8 +17,7 @@ const terms = [
   {
     term: 'Agency component',
     definition: `
-      This is a catch-all term used to refer to departments, bureaus, and offices that receive FOIA
-      requests.`,
+      For agencies that process requests on a decentralized basis, a “component” is an entity, also sometimes referred to as an Office, Division, Bureau, Center, or Directorate, within the agency that processes FOIA requests.`,
   },
 
    {
@@ -84,13 +83,6 @@ const terms = [
   },
   
   {
-    term: 'Component',
-    definition: `
-      For agencies that process requests on a decentralized basis, a “component” is an entity, also sometimes referred to as an Office, Division, Bureau, Center, or Directorate, within the agency that processes FOIA requests.
-`,
-  },
-  
-  {
     term: 'Commercial-use requester',
     definition: `
       A request made by or on behalf of someone who seeks information for a use or purpose that furthers the commercial, trade, or profit interests of the requester.
@@ -100,11 +92,7 @@ const terms = [
   {
     term: 'Case management system',
     definition: `
-      A system (usually electronic) to track the workflow of individual FOIA
-      requests (cases). Each agency can have their own case management system
-      they use to triage, assign, track, and fulfill requests. Agencies may use
-      case management systems for as much or as little of the FOIA fulfillment
-      process as they wish.`,
+      A system (usually electronic) or tool to track and manage the workflow of individual FOIA requests.`,
   },
 
   {
@@ -124,9 +112,7 @@ const terms = [
   {
     term: 'Disclosability',
     definition: `
-      The degree to which a piece of information is disclosable. Often used
-      when evaluating what information in a record is disclosable or what must
-      be redacted.`,
+      Prior to responding to your request, the agency will review the records to make disclosure decisions.  Agencies will only withhold information that falls within one of the nine exemptions that protect for example, personal privacy and law enforcement interests. If information is withheld, the agency will identify the applicable exemption(s).`,
   },
   
    {
@@ -425,6 +411,13 @@ const terms = [
 `,
   },
   
+  {
+    term: 'Redaction',
+    definition: `
+      When agencies review records for disclosability, they will protect information that falls within one of the FOIA’s nine exemptions.  This is typically done by “blacking out” or placing a box over the protected information with a citation to the applicable exemption marked on the document.”
+`,
+  },
+  
    {
     term: 'Referral',
     definition: `
@@ -510,29 +503,13 @@ Examples of factors that determine whether your request is complex or simple inc
   {
     term: 'PII',
     definition: `
-      Personally Identifiable Information. Information that can be used to distinguish or trace an individual’s identity,
-      either alone or when combined with other personal or identifying information
-      that is linked or linkable to a specific individual.
-
-      The definition of PII is often context specific and requires a case-by-case
-      assessment. Sometimes when combined with other information, non-PII can become
-      PII.`,
+      Personally Identifiable Information. Information that can be used on its own or with other information to identify a single person.`,
   },
 
   {
-    term: 'Portal',
+    term: 'Processing',
     definition: `
-      A gateway to other systems or information but may not have any functionality or
-      information on its own.`,
-  },
-
-  {
-    term: 'Release to three, release to all',
-    definition: `
-      Per the FOIA 1996 amendment, if a set of records is requested three times, the
-      FOIA indicates the documents should be made permanently public, which forms the
-      basis of the “reading room”
-      provision.`,
+      The steps necessary to respond to a request, including searching for the records and reviewing them for disclosability.`,
   },
 
   {
