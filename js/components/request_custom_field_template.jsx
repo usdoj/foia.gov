@@ -49,13 +49,13 @@ CustomFieldTemplate.propTypes = {
   children: PropTypes.object,
   classNames: PropTypes.string,
   description: PropTypes.object,
-  displayLabel: PropTypes.boolean,
+  displayLabel: PropTypes.bool,
   errors: PropTypes.object,
   formContext: PropTypes.object,
   help: PropTypes.object,
   id: PropTypes.string,
   label: PropTypes.string,
-  required: PropTypes.boolean,
+  required: PropTypes.bool,
 };
 
 CustomFieldTemplate.defaultProps = {
