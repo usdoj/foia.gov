@@ -96,7 +96,7 @@ class Tabs extends Component {
                   <p className="submission-help_research">Sometime records and
                     information you’re looking for  is already public. You can
                     find out by reaching out to the agency you’re interested in
-                    or by visiting their website or their FOIA reading room.</p>
+                    or by visiting their website or their FOIA library.</p>
                 </li>
               </ul>
             </section>
