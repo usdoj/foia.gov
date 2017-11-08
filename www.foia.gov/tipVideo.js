@@ -1,5 +1,5 @@
 // JavaScript Document - qTip Video Archives
-$('a[title]').qtip({ style: { name: 'dark', tip: true } })
+$('#main a[title]').qtip({ style: { name: 'dark', tip: true } })
 //Video 1a
 $('a.video1a').qtip({
     content: '<div id="vid1a">To view the FOIA.gov videos, you must enable Javascript and install the Adobe Flash player.</div>',
