@@ -1,7 +1,6 @@
 // Customization of the form elements generated from react-jsonschema-form
 
 // This is the section-level description
-div.field-description,
 legend + .field-description {
   @extend .info-box;
   margin: 0; //override p tag margin
@@ -10,6 +9,8 @@ legend + .field-description {
 // This is a single input's help text
 label + .field-description {
   font-size: $small-font-size;
+  margin-bottom: 1em; // match p tag
+  margin-top: 1em; // match p tag
   max-width: 46rem; // match max-width of inputs from WDS
 }
 

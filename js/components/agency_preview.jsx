@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import { List } from 'immutable';
 
 import { Agency } from '../models';
+import domify from '../util/request_form/domify';
+
 
 function AgencyPreview({ agency, agencyComponentsForAgency, onAgencySelect }) {
   const description = agency.mission();
@@ -52,7 +54,7 @@ function AgencyPreview({ agency, agencyComponentsForAgency, onAgencySelect }) {
         { description &&
           <div>
             <h4>Agency mission</h4>
-            <p>{description}</p>
+            <p>{domify(description)}</p>
           </div>
         }
       </div>

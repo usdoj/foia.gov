@@ -91,20 +91,16 @@ describe('webformFieldsToJsonSchema()', () => {
     });
 
     it('returns an uiSchema', () => {
-      expect(result.uiSchema).to.deep.equal({
-        'ui:order': [
-          'contract_number',
-          'region',
-        ],
-        contract_number: {
-          'ui:title': 'GS- Contract number',
-          'ui:description': 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
-        },
-        region: {
-          'ui:title': 'GSA Region',
-          'ui:description': '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
-        },
-      });
+      expect(result.uiSchema['ui:order']).to.deep.equal([
+        'contract_number',
+        'region',
+      ]);
+
+      // TODO better test for description, dom element
+      expect(result.uiSchema.contract_number).to.have.property('ui:title', 'GS- Contract number');
+      expect(result.uiSchema.contract_number).to.have.property('ui:description');
+      expect(result.uiSchema.region).to.have.property('ui:title', 'GSA Region');
+      expect(result.uiSchema.region).to.have.property('ui:description');
     });
   });
 
@@ -160,25 +156,19 @@ describe('webformFieldsToJsonSchema()', () => {
     });
 
     it('returns an uiSchema', () => {
-      expect(result.uiSchema).to.deep.equal({
-        'ui:order': [
-          'contract_number',
-          'region',
-          'request_origin',
-        ],
-        contract_number: {
-          'ui:title': 'GS- Contract number',
-          'ui:description': 'If your request relates to a GSA contract, please provide the contract number (which starts with "GS-")',
-        },
-        region: {
-          'ui:title': 'GSA Region',
-          'ui:description': '(i.e. New England Region (1A) - States Served: CT, MA, ME, NH, RI, VT',
-        },
-        request_origin: {
-          'ui:title': 'Request Origin',
-          'ui:description': 'Company',
-        },
-      });
+      expect(result.uiSchema['ui:order']).to.deep.equal([
+        'contract_number',
+        'region',
+        'request_origin',
+      ]);
+
+      // TODO better test for description, dom element
+      expect(result.uiSchema.contract_number).to.have.property('ui:title', 'GS- Contract number');
+      expect(result.uiSchema.contract_number).to.have.property('ui:description');
+      expect(result.uiSchema.region).to.have.property('ui:title', 'GSA Region');
+      expect(result.uiSchema.region).to.have.property('ui:description');
+      expect(result.uiSchema.request_origin).to.have.property('ui:title', 'Request Origin');
+      expect(result.uiSchema.request_origin).to.have.property('ui:description');
     });
   });
 
@@ -191,7 +181,35 @@ describe('webformFieldsToJsonSchema()', () => {
         formFields = [{
           name: 'widget',
           title: 'Widget',
-          default_value: '1234',
+          type: 'number',
+          default_value: 1234,
+        }];
+
+        result = wfjs.webformFieldsToJsonSchema(formFields);
+      });
+
+      describe('jsonSchema property', () => {
+        let jsonSchemaProperty;
+        beforeEach(() => {
+          jsonSchemaProperty = result.jsonSchema.properties.widget;
+        });
+
+        it('exists', () => {
+          expect(jsonSchemaProperty).to.be.ok;
+        });
+
+        it('has a default property', () => {
+          expect(jsonSchemaProperty).to.have.property('default', 1234);
+        });
+      });
+    });
+
+    describe('given "placeholder" property', () => {
+      beforeEach(() => {
+        formFields = [{
+          name: 'widget',
+          title: 'Widget',
+          placeholder: '1234',
         }];
 
         result = wfjs.webformFieldsToJsonSchema(formFields);
