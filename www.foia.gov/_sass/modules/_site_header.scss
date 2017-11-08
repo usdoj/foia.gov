@@ -16,7 +16,19 @@
 }
 
 .usa-header-extended .usa-logo {
-  margin-bottom: 1rem; // WDS override
+  margin-top: $space-1x * 0.5;
+
+  @media screen and (min-width: $medium-large-screen) {
+    margin-top: $space-1x; // WDS override
+    margin-bottom: $space-1x; // WDS override
+  }
+}
+
+// Apply a light border for legacy pages to help the division of content
+.body--grid-legacy {
+  .usa-header-extended {
+    border-bottom: 1px solid $color-primary-alt-lightest;
+  }
 }
 
 .usa-logo {
@@ -26,7 +38,7 @@
   img {
     width: 34px;
     height: 34px;
-    margin-top: 3px;
+    margin-top: 0;
     margin-right: 0.5rem;
 
     @media screen and (min-width: $medium-large-screen) {
@@ -41,7 +53,7 @@
 }
 
 h1.usa-header-title {
-  @media screen and (max-width: $medium-large-screen) {
+  @media screen and (max-width: $medium-large-screen - 1) {
     font-size: $base-font-size;
     margin-bottom: 0;
   }

@@ -1,7 +1,7 @@
 # FOIA.gov Draft RESTful HTTPS API Spec
 
 _This draft is transitioning to a new home. Please refer to
-[beta.foia.gov/developer/agency-api/](http://foiafrontdev.prod.acquia-sites.com/developer/agency-api/)
+[beta.foia.gov/developer/agency-api/](https://dev-www.foia.gov/developer/agency-api/)
 for the most up to date version._
 
 This is [a draft spec](https://github.com/18F/beta.foia.gov/issues/32) for integrating
