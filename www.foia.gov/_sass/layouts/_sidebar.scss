@@ -5,10 +5,10 @@
 .sidebar {
   flex-basis: auto;
   flex-grow: 5;
-  background-color: $color-primary-darkest; // TODO: Make this $color-primary-alt-lightest when the second tab is active
-  border-bottom: $space-4x solid $color-white;
+  overflow: hidden; //the tabs are set to height: 100%, which overflows into the footer slightly
   @media screen and (min-width: $medium-screen) {
-    min-width: 420px; //min-width from visual design
+    min-width: 400px; // small as it can go without breaking tabs
+    max-width: 420px; //width from visual design
   }
   ul {
     list-style: none;
@@ -21,9 +21,6 @@
           padding: 1rem $space-4x;
           display: inline-block;
           width: 100%;
-        }
-        &.tab_active a {
-          padding: 1rem 2.8rem; // magic number to keep the tab from changing size when the text is bold
         }
       }
     }
@@ -91,4 +88,8 @@
       }
     }
   }
+}
+
+.has_sidebar {
+  background-color: $color-gray-lightest;
 }

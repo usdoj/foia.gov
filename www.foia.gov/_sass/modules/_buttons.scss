@@ -2,12 +2,17 @@
   font-weight: $font-semibold;
   &.usa-button-primary {
     background-color: $color-primary-darkest;
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $color-primary-alt-darker;
       color: $color-white;
     }
+    &:visited {
+      color: $color-white!important;
+    }
   }
   &.usa-button-primary-alt {
+    color: $color-primary-darkest;
     &:visited {
       background-color: $color-primary-alt-light;
     }
@@ -20,6 +25,7 @@
     &:visited:active,
     &:visited:focus {
       background-color: $color-primary-alt-light!important;
+      color: $color-primary-darkest;
     }
   }
   &.usa-button-outline {
@@ -30,7 +36,7 @@
     &:visited:hover {
       background-color: $color-primary-alt-light;
       color: $color-primary-darkest;
-      box-shadow: inset 0 0 0 2px $color-primary-darkest;
+      box-shadow: inset 0 0 0 2px $color-primary-alt-light;
     }
   }
 }
