@@ -43,7 +43,7 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         }
 
         <h4>Contact</h4>
-        <div className="agency-preview_contact-section">
+        <div className="agency-preview_contact-section agency-info_website">
           { agencyComponent.website && <PrettyUrl href={agencyComponent.website.uri} /> }
         </div>
         <div className="agency-preview_contact-section">

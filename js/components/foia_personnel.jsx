@@ -18,15 +18,15 @@ function FoiaPersonnel({ foiaPersonnel }) {
   const email = (foiaPersonnel.email || '').toLowerCase();
   return (
     <div>
-      <div className="submission-help_poc">{ displayName(foiaPersonnel) }</div>
+      <p className="agency-info_personnel">{ displayName(foiaPersonnel) }</p>
       {
         (foiaPersonnel.phone || [])
-          .map(phone => <div className="submission-help_phone" key={phone}>{ phone }</div>)
+          .map(phone => <p className="agency-info_phone" key={phone}>{ phone }</p>)
       }
       { foiaPersonnel.email &&
-        <div className="submission-help_email">
+        <p className="agency-info_email">
           <a href={`mailto:${email}`}>{ email }</a>
-        </div>
+        </p>
       }
     </div>
   );

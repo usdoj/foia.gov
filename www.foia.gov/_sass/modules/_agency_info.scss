@@ -1,0 +1,50 @@
+.agency-info_processing-time {
+  padding-left: $space-4x;
+  h5 {
+    display: inline-block;
+    margin-left: $space-4x * -1;
+    &:before {
+      @include has-icon($icon-clock);
+    }
+  }
+}
+
+.agency-info_mailing-address {
+  padding-left: $space-4x;
+  // no icon for address
+}
+
+
+.agency-info_personnel {
+  padding-left: $space-4x;
+  margin-left: $space-4x * -1;
+  &:before {
+    @include has-icon($icon-person);
+  }
+}
+
+.agency-info_phone {
+  display: inline-block;
+  padding-left: $space-4x;
+  margin-left: $space-4x * -1;
+  &:before {
+    @include has-icon($icon-phone);
+  }
+}
+
+.agency-info_email {
+  display: inline-block;
+  padding-left: $space-4x;
+  margin-left: $space-4x * -1;
+  &:before {
+    @include has-icon($icon-email);
+  }
+}
+.agency-info_website{
+  display: inline-block;
+  padding-left: $space-4x;
+  margin-left: $space-4x * -1;
+  &:before {
+    @include has-icon($icon-laptop);
+  }
+}
