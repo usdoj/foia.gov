@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 {% include head.html %}
-<body>
+<body {% if page.grid contains 'grid-legacy' %}class="body--grid-legacy"{% endif %}>
 {% include header.html %}
 {{ content }}
 {% include footer.html %}
