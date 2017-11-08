@@ -10,6 +10,7 @@ import agencyComponentStore from 'stores/agency_component';
 import agencyComponentRequestFormStore from 'stores/agency_component_request_form';
 import foiaRequestStore from 'stores/foia_request';
 import NotFound from './not_found';
+import { scrollOffset } from '../util/dom';
 
 
 class AgencyComponentRequestPage extends Component {
@@ -22,13 +23,13 @@ class AgencyComponentRequestPage extends Component {
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
     const requestForm = agencyComponentRequestFormStore.getAgencyComponentForm(agencyComponentId);
     const { formSections } = agencyComponentRequestFormStore.getState();
-    const { formData, isSubmitting, submissionResult } = foiaRequestStore.getState();
+    const { formData, upload, submissionResult } = foiaRequestStore.getState();
 
     return {
       agencyComponent,
       formData,
       formSections,
-      isSubmitting,
+      upload,
       submissionResult,
       requestForm,
     };
@@ -89,7 +90,6 @@ class AgencyComponentRequestPage extends Component {
       agencyComponent,
       formData,
       formSections,
-      isSubmitting,
       requestForm,
       submissionResult,
     } = this.state;
@@ -99,7 +99,10 @@ class AgencyComponentRequestPage extends Component {
       return <NotFound />;
     }
 
-    function onSubmit() {}
+    const onSubmit = () => {
+      // Scroll to the top of the page.
+      window.scrollTo(0, scrollOffset(this.element));
+    };
 
     let mainContent;
     if (submissionResult && submissionResult.submission_id) {
@@ -116,7 +119,7 @@ class AgencyComponentRequestPage extends Component {
         <FoiaRequestForm
           formData={formData}
           formSections={formSections}
-          isSubmitting={isSubmitting}
+          upload={this.state.upload}
           onSubmit={onSubmit}
           requestForm={requestForm}
           submissionResult={submissionResult}
@@ -128,18 +131,16 @@ class AgencyComponentRequestPage extends Component {
     }
 
     return (
-      <div className="usa-grid-full grid-left">
-        <aside className="usa-width-five-twelfths sidebar print-hide" id="react-tabs">
-          {
-            agencyComponent && requestForm ?
-              <Tabs
-                agencyComponent={agencyComponent}
-                requestForm={requestForm}
-              /> :
-              null
-          }
-        </aside>
-        <div className="usa-width-one-half usa-offset-one-twelfth sidebar_content">
+      <div className="usa-grid-full grid-flex grid-left" ref={(ref) => { this.element = ref; }}>
+        {
+          agencyComponent && requestForm ?
+            <Tabs
+              agencyComponent={agencyComponent}
+              requestForm={requestForm}
+            /> :
+            null
+        }
+        <div className="sidebar_content">
           { mainContent }
         </div>
       </div>

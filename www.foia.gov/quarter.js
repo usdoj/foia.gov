@@ -76,7 +76,6 @@ function popupOpenToData(popupWindow){
   }
   var filter=document.getElementById("shadowFilter");
   if(filter != null){
-	filter.style.height= document.body.clientHeight +"px";
 	filter.style.display='block';
 	filter.style.filter = "alpha(opacity=60)";
 	filter.onclick=function(){

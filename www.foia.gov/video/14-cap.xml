@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:01.344" end="00:00:05.981">On FOIA.gov, you can compare the number of FOIA requests handled by agencies each year.   </p>
+<p begin="00:00:05.981" end="00:00:09.592">The data available to you includes the number of FOIA requests   </p>
+<p begin="00:00:09.592" end="00:00:14.505">"received," "processed," and "pending" at the beginning or end of the fiscal year.   </p>
+<p begin="00:00:14.505" end="00:00:17.883">The number of requests "received" during a given year is very simple:   </p>
+<p begin="00:00:17.883" end="00:00:21.982">it includes every request that was sent in to the agency that year.   </p>
+<p begin="00:00:21.982" end="00:00:24.776">The number of requests "processed" is a little different:   </p>
+<p begin="00:00:24.776" end="00:00:28.343">it includes the requests the agency has finished processing.   </p>
+<p begin="00:00:28.343" end="00:00:31.892">In other words, if an agency receives a request during the year   </p>
+<p begin="00:00:31.892" end="00:00:35.326">but does not finish all of its work on it during that same year,   </p>
+<p begin="00:00:35.326" end="00:00:38.687">the request will count as "received" but not as "processed"   </p>
+<p begin="00:00:38.687" end="00:00:41.751">because the agency has not yet taken final action.   </p>
+<p begin="00:00:41.751" end="00:00:45.908">Any request which an agency is still working on is considered "pending."   </p>
+<p begin="00:00:45.908" end="00:00:46.844">    </p>
+<p begin="00:00:46.844" end="00:00:47.632">    </p>
+</div>
+</body>
+</tt>
+

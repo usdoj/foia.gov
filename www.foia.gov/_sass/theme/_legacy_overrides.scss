@@ -138,4 +138,17 @@ body {
   overflow-x: auto;
 }
 
+/* legacy overlay shadow */
+.blockout {
+  z-index: $z-shadow;
+}
+
+.popupWindow {
+  bottom: 2rem;
+  // Allow modal to scroll, the size of the content is bigger than it used to
+  // be but the layout just lets it run off the page, unaccessible.
+  overflow-y: auto;
+  z-index: $z-popup;
+}
+
 /* end temp styles */

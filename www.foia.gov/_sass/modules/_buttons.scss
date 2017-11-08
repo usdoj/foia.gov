@@ -1,32 +1,40 @@
 .usa-button {
-  font-weight: $font-bold;
+  font-weight: $font-semibold;
   &.usa-button-primary {
     background-color: $color-primary-darkest;
     &:hover {
-      background-color: $color-primary-darker;
+      background-color: $color-primary-alt-darker;
       color: $color-white;
     }
   }
   &.usa-button-primary-alt {
     &:visited {
-      background-color: $color-primary-alt;
+      background-color: $color-primary-alt-light;
     }
-    &:hover {
-      background-color: $color-primary-alt-light!important;
+    &:hover,
+    &:visited:hover {
+      background-color: $color-primary-alt!important;
     }
     &:active,
-    &:focus {
-      background-color: $color-primary-alt!important;
+    &:focus,
+    &:visited:active,
+    &:visited:focus {
+      background-color: $color-primary-alt-light!important;
     }
   }
   &.usa-button-outline {
     background-color: transparent;
     box-shadow: inset 0 0 0 2px $color-primary-alt-light;
     color: $color-primary-darkest;
-    &:hover {
+    &:hover,
+    &:visited:hover {
       background-color: $color-primary-alt-light;
       color: $color-primary-darkest;
       box-shadow: inset 0 0 0 2px $color-primary-darkest;
     }
   }
+}
+
+form [type=submit] {
+  margin: $space-4x 0;
 }

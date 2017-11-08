@@ -126,6 +126,24 @@ jobs:
           APP_ENV: staging
     steps: *acquia-cloud-deploy-steps
 
+  # Build for the Acquia Cloud production environment
+  build-production:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: production
+          APP_ENV: production
+    steps: *build-steps
+
+  # Deploy job for the Acquia Cloud production environment
+  deploy-production:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: production
+          APP_ENV: production
+    steps: *acquia-cloud-deploy-steps
+
 
 workflows:
   version: 2
@@ -175,3 +193,16 @@ workflows:
           filters:
             branches:
               only: /release-.*/
+
+      - build-production:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - deploy-production:
+          requires:
+            - build-production
+          filters:
+            branches:
+              only: master

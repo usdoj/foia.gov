@@ -16,8 +16,8 @@ $section-padding-bottom: $space-1x * 11;
       padding-bottom: 5rem;
 
       .start-request {
-	bottom: 0;
-	position: absolute;
+        bottom: 0;
+        position: absolute;
       }
     }
   }
@@ -36,12 +36,9 @@ $section-padding-bottom: $space-1x * 11;
       margin-top: 0;
     }
   }
-  form + .secondary-text:after {
-    @include text-divider($color-primary-alt);
-    content: "";
-  }
   input[type='search'] {
     border: none;
+
   }
   .usa-search {
     .twitter-typeahead {
@@ -58,6 +55,12 @@ $section-padding-bottom: $space-1x * 11;
 .agency-component-search_hed {
   font-family: $font-sans;
 }
+
 h3.agency-component-search_hed {
   font-weight: normal;
+  font-size: $h4-font-size;
+  &:before {
+    @include text-divider($color-primary-alt);
+    content: "";
+  }
 }

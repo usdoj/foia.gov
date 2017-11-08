@@ -50,10 +50,10 @@ navigation:
     - href: /data.html
       title: Agency FOIA data
       children:
-        - href: /reports.html
-          title: Annual data
         - href: /data.html
-          title: Quarterly data
+          title: Annual data
+        - href: /reports.html
+          title: At-a-glance &amp; quarterly data
 
   secondary:
     - href: https://admin.foia.gov/user/login

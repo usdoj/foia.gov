@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:01.083" end="00:00:04.714">The general rule is that any person - citizen or not - can make a FOIA request.   </p>
+<p begin="00:00:04.714" end="00:00:06.854">It's easy to do so.   </p>
+<p begin="00:00:06.854" end="00:00:09.947">There is no specific form that must be used to make a request.   </p>
+<p begin="00:00:09.947" end="00:00:14.551">The request simply must be in writing, reasonably describe the information sought,   </p>
+<p begin="00:00:14.551" end="00:00:18.187">and comply with specific agency requirements.   </p>
+<p begin="00:00:18.187" end="00:00:24.790">Most federal agencies now accept FOIA requests electronically, including by web form, e-mail or fax.   </p>
+<p begin="00:00:24.790" end="00:00:29.485">If you wantrecords about yourself, you will be required to provide proof of your identity   </p>
+<p begin="00:00:29.485" end="00:00:31.834">in order to protect your privacy    </p>
+<p begin="00:00:31.834" end="00:00:36.748">and to ensure that private information about you is not disclosed to someone else.   </p>
+<p begin="00:00:36.748" end="00:00:37.390">    </p>
+<p begin="00:00:37.390" end="00:00:38.130">    </p>
+</div>
+</body>
+</tt>
+

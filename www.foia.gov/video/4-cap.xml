@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000800" end="00:00:04.627">FOIA.gov is a government-wide portal for the Freedom of Information Act   </p>
+<p begin="00:00:04.627" end="00:00:09.016">that was developed as part of the Department of Justice's Open Government plan.   </p>
+<p begin="00:00:09.016" end="00:00:12.321">At FOIA.gov, the public has access to all the FOIA data   </p>
+<p begin="00:00:12.321" end="00:00:16.142">collected by the Department of Justice on behalf of the federal government.   </p>
+<p begin="00:00:16.142" end="00:00:19.897">You can view, sort, and search through the FOIA data.   </p>
+<p begin="00:00:19.897" end="00:00:23.055">You can generate new or comparative reports.   </p>
+<p begin="00:00:23.055" end="00:00:28.268">You can learn about how the FOIA works and how to make FOIA requests to federal agencies.   </p>
+<p begin="00:00:28.268" end="00:00:34.014">Finally, you can explore significant FOIA releases that have been made as a result of past requests.   </p>
+<p begin="00:00:34.014" end="00:00:34.889">    </p>
+<p begin="00:00:34.889" end="00:00:35.731">    </p>
+</div>
+</body>
+</tt>
+

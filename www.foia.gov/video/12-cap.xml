@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000701" end="00:00:03.438">Congress established certain categories of information   </p>
+<p begin="00:00:03.438" end="00:00:07.124">that are not required to be released in response to a FOIA request    </p>
+<p begin="00:00:07.124" end="00:00:10.620">when release would be harmful to governmental or private interests.   </p>
+<p begin="00:00:10.620" end="00:00:13.252">These categories are called "exemptions."   </p>
+<p begin="00:00:13.252" end="00:00:16.559">There are nine categories of exempt information,    </p>
+<p begin="00:00:16.559" end="00:00:19.585">and they cover information such as classified documents,   </p>
+<p begin="00:00:19.585" end="00:00:22.603">personal privacy information, trade secrets,    </p>
+<p begin="00:00:22.603" end="00:00:26.235">privileged communications, and law enforcement interests.   </p>
+<p begin="00:00:26.235" end="00:00:30.967">Even if an exemption applies, the Attorney General has encouraged all agencies    </p>
+<p begin="00:00:30.967" end="00:00:34.054">to use their discretion and release information   </p>
+<p begin="00:00:34.054" end="00:00:36.605">if there is no foreseeable harm in doing so    </p>
+<p begin="00:00:36.605" end="00:00:40.173">and disclosure is not otherwise prohibited by law.   </p>
+<p begin="00:00:40.173" end="00:00:41.179">    </p>
+<p begin="00:00:41.179" end="00:00:41.961">    </p>
+</div>
+</body>
+</tt>
+
