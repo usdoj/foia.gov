@@ -34,6 +34,7 @@
     display: block;
   }
   > section:first-child {
+    @extend .use-light-icons;
     background-color: $color-primary-darkest;
     section {
       border-top: 1px solid $color-primary-alt-light;
@@ -53,6 +54,7 @@
   }
 
   > section:last-child {
+    @extend .use-dark-icons;
     background-color: $color-primary-alt-light;
     section {
       border-top: 1px solid $color-primary-darkest;
@@ -66,4 +68,8 @@
   h3 {
     font-size: $h5-font-size;
   }
+}
+
+.submission-help_tips p {
+  padding-left: $space-4x;
 }

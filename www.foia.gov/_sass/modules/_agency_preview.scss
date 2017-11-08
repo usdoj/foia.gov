@@ -1,4 +1,5 @@
 .agency-preview {
+  @extend .use-dark-icons;
   margin-top: $space-4x;
 
   h2 {

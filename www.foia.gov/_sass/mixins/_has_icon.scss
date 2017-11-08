@@ -1,4 +1,4 @@
-@mixin has-icon($icon, $width: 2.4rem, $height: 2.4rem, $float: left, $margins: 0 $space-1x 0 0, $display: block) {
+@mixin has-icon($icon, $width: 2.4rem, $height: 2.4rem, $float: left, $margins: 0 $space-1x 0 $space-4x * -1, $display: block) {
   width: $width;
   height: $height;
   float: $float;

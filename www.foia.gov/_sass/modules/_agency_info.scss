@@ -1,11 +1,9 @@
-.agency-info_processing-time {
+.agency-info_processing-time,
+.agency-info_reading-rooms {
   padding-left: $space-4x;
   h4 {
-    display: inline-block;
-    margin-left: $space-4x * -1;
-    &:before {
-      @include has-icon($icon-clock);
-    }
+    /*display: inline-block;*/
+    /*margin-left: $space-4x * -1;*/
   }
 }
 
@@ -14,49 +12,12 @@
   // no icon for address
 }
 
-
-.agency-info_personnel {
+.agency-info_personnel,
+.agency-info_phone,
+.agency-info_email,
+.agency-info_website,
+.submission-help_research {
+  /*display: inline-block;*/
   padding-left: $space-4x;
-  margin-left: $space-4x * -1;
-  &:before {
-    @include has-icon($icon-person);
-  }
-}
-
-.agency-info_phone {
-  display: inline-block;
-  padding-left: $space-4x;
-  margin-left: $space-4x * -1;
-  &:before {
-    @include has-icon($icon-phone);
-  }
-}
-
-.agency-info_email {
-  display: inline-block;
-  padding-left: $space-4x;
-  margin-left: $space-4x * -1;
-  &:before {
-    @include has-icon($icon-email);
-  }
-}
-
-.agency-info_website{
-  display: inline-block;
-  padding-left: $space-4x;
-  margin-left: $space-4x * -1;
-  &:before {
-    @include has-icon($icon-laptop);
-  }
-}
-
-.agency-info_reading-rooms {
-  padding-left: $space-4x;
-  h4 {
-    display: inline-block;
-    margin-left: $space-4x * -1;
-    &:before {
-      @include has-icon($icon-book, $height: $space-4x);
-    }
-  }
+  /*margin-left: $space-4x * -1;*/
 }
