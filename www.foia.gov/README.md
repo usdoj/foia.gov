@@ -73,9 +73,12 @@ Each environment is deployed separately based on the git configuration based on
 
 | environment | hostname | git |
 | ---         | ---      | --- |
-| development | [foiafrontdev.prod.acquia-sites.com](http://foiafrontdev.prod.acquia-sites.com/) | `develop` branch |
-| staging | [foiafrontstg.prod.acquia-sites.com](http://foiafrontstg.prod.acquia-sites.com/) | `release-*` branches |
-| production | [foiafront.prod.acquia-sites.com](http://foiafront.prod.acquia-sites.com/) | `master` branches |
+| development | [dev-www.foia.gov](https://dev-www.foia.gov/) | `develop` branch |
+| staging | [stg-www.foia.gov](https://stg-www.foia.gov/) | `release-*` branches |
+| production | [beta.foia.gov](https://beta.foia.gov/) | `master` branches |
+
+_Note: once DOJ's ATO is complete, the beta.foia.gov domain will be moved to
+www.foia.gov._
 
 
 ## Reporting back end and foia-proxy
