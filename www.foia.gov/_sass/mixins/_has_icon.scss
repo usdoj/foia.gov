@@ -3,6 +3,7 @@
   height: $height;
   background-image: url($icon);
   margin: $margins;
+  background-repeat: no-repeat;
   content: "";
   float: left;
   display: block;

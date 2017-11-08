@@ -58,18 +58,20 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         { agencyComponent.request_data_year &&
           <AgencyComponentProcessingTime agencyComponent={agencyComponent} />
         }
-        <h4>
-          The records or information you&rsquo;re looking for may already be public.
-        </h4>
-        { agencyComponent.website &&
-          <p>
-            Visit the agency’s <a href={agencyComponent.website.uri}>website</a> to learn more.
-          </p>
-        }
-        { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length &&
-          <p>To see what’s been made available, you can visit an agency’s
-            <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
-        }
+        <div className="agency-info_reading-rooms">
+          <h4>
+            The records or information you&rsquo;re looking for may already be public.
+          </h4>
+          { agencyComponent.website &&
+            <p>
+              Visit the agency’s <a href={agencyComponent.website.uri}>website</a> to learn more.
+            </p>
+          }
+          { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length &&
+            <p>To see what’s been made available, you can visit an agency’s
+              <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
+          }
+        </div>
         { agencyComponent.request_form ?
           <a
             className="usa-button usa-button-primary start-request"

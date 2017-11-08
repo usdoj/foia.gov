@@ -1,6 +1,6 @@
 .agency-info_processing-time {
   padding-left: $space-4x;
-  h5 {
+  h4 {
     display: inline-block;
     margin-left: $space-4x * -1;
     &:before {
@@ -40,11 +40,23 @@
     @include has-icon($icon-email);
   }
 }
+
 .agency-info_website{
   display: inline-block;
   padding-left: $space-4x;
   margin-left: $space-4x * -1;
   &:before {
     @include has-icon($icon-laptop);
+  }
+}
+
+.agency-info_reading-rooms {
+  padding-left: $space-4x;
+  h4 {
+    display: inline-block;
+    margin-left: $space-4x * -1;
+    &:before {
+      @include has-icon($icon-book, $height: $space-4x);
+    }
   }
 }
