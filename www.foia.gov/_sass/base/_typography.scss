@@ -121,11 +121,12 @@ p {
   position: relative;
 
   &:after {
-    content: '\01F517'; // TODO This should be a background image, waiting for glyphs from design
+    content: url('/img/icon-external-link.svg');
     display: inline-block;
     height: 1rem;
     position: absolute;
     width: 1rem;
+    margin-left: 0.3rem;
   }
 }
 
