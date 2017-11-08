@@ -34,6 +34,9 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
           )
         }
         <h3>{isCentralized ? agencyComponent.agency.name : agencyComponent.title }</h3>
+        { !agencyComponent.request_form &&
+          <NonInteroperableInfo agencyComponent={agencyComponent} />
+        }
       </div>
       <div className="usa-width-one-half">
         { description &&
@@ -73,14 +76,13 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
               <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
           }
         </div>
-        { agencyComponent.request_form ?
+        { agencyComponent.request_form &&
           <a
             className="usa-button usa-button-primary start-request"
             href={requestUrl}
           >
             Start FOIA request
-          </a> :
-          <NonInteroperableInfo agencyComponent={agencyComponent} />
+          </a>
         }
       </div>
     </div>

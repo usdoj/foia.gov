@@ -1,4 +1,5 @@
-.info-box {
+.info-box,
+.info-box_reverse {
   background-color: $color-primary-alt-lightest;
   padding: 0.8rem 1.6rem 2.4rem 1.6rem;
   &:before {
@@ -8,10 +9,25 @@
     display: block;
     border-left: 12px solid transparent;
     border-right: 12px solid transparent;
-    border-bottom: 12px solid $color-primary-alt;
     transform: translate(-2.4rem, -.95rem) rotate(-45deg);
+  }
+}
+
+.info-box {
+  &:before {
+    border-bottom: 12px solid $color-primary-alt;
   }
   p {
     margin: 0;
+  }
+}
+
+.info-box_reverse {
+  &:before {
+    border-bottom: 12px solid $color-primary-darkest;
+  }
+  p {
+    margin: $space-1x $space-4x;
+    max-width: none;
   }
 }
