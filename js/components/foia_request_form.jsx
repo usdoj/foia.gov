@@ -13,6 +13,7 @@ import rf from '../util/request_form';
 import FoiaFileWidget from './foia_file_widget';
 import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 import UploadProgress from './upload_progress';
+import { scrollOffset } from '../util/dom';
 
 
 function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionResult }) {
@@ -63,6 +64,15 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
       .then(() => {
         // Submission successful
         onSubmit();
+      })
+      .catch((error) => {
+        const fieldErrors = document.getElementsByClassName('usa-input-error');
+        const firstError = fieldErrors.length && fieldErrors[0];
+        if (firstError) {
+          window.scrollTo(0, scrollOffset(firstError));
+        }
+
+        throw error;
       });
   }
 

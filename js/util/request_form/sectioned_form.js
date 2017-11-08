@@ -82,10 +82,9 @@ class SectionedFormBuilder {
     return Object.keys(webformErrors)
       .reduce((errors, fieldName) => {
         const section = this.findSection(fieldName);
-        const sectionErrors = errors[section.id] || {};
+        const path = `root_${section.id}_${fieldName}`;
 
-        sectionErrors[fieldName] = webformErrors[fieldName];
-        errors[section.id] = sectionErrors;
+        errors[path] = webformErrors[fieldName];
         return errors;
       }, {});
   }
