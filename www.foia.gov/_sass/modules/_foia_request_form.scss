@@ -34,6 +34,21 @@
   a {
     @extend .usa-button;
     @extend .usa-button-outline;
+    position: relative;
+    overflow: hidden;
+    padding-right: $space-4x!important;
+    &:after {
+      position: absolute;
+      right: 1.4rem;
+      height: 1.8rem;
+      width: 1rem;
+      content: "";
+      background-image: url($icon-arrow-thin);
+      background-repeat: no-repeat;
+      background-position: center right;
+      -webkit-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+    }
     &:visited {
       color: $color-primary-darkest;
     }
