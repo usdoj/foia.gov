@@ -62,7 +62,7 @@ class FoiaRequestStore extends Store {
           // Convert webform errors from the API to sectioned errors we can pass
           // to the Form
           const { formSections } = agencyComponentRequestFormStore.getState();
-          const builder = rf.SectionedFormBuilder(formSections.toJS());
+          const builder = new rf.SectionedFormBuilder(formSections.toJS());
           errors = builder.sectionedErrorsFromWebformErrors(payload.submissionResult.errors);
         }
 

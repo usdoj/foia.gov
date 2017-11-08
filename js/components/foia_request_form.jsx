@@ -16,6 +16,25 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
     requestActions.updateRequestForm(data);
   }
 
+  // Add errors from the submissionResult
+  function validate(data, errors) {
+    if (!submissionResult.errors.size) {
+      return errors;
+    }
+
+    submissionResult.errors
+      .entrySeq()
+      .forEach(([sectionId, sectionErrors]) => {
+        sectionErrors
+          .entrySeq()
+          .forEach(([fieldName, error]) => {
+            errors[sectionId][fieldName].addError(error);
+          });
+      });
+
+    return errors;
+  }
+
   function onFormSubmit({ formData: data }) {
     return requestActions
       .submitRequestForm(
@@ -40,7 +59,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
   // Map these to react-jsonschema-form Ids
   const steps = (requestForm.sections || []).map(section => `root_${section.id}`);
 
-  const formContext = { steps };
+  const formContext = { steps, errors: submissionResult.errors.toJS() };
   const { jsonSchema, uiSchema } = requestForm;
   return (
     <Form
@@ -53,6 +72,7 @@ function FoiaRequestForm({ formData, isSubmitting, onSubmit, requestForm, submis
       onSubmit={onFormSubmit}
       schema={jsonSchema}
       uiSchema={uiSchema}
+      validate={validate}
       widgets={widgets}
     >
       <div id="foia-request-form_submit" className="foia-request-form_submit">
