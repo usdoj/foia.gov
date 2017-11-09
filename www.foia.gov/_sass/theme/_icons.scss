@@ -1,5 +1,5 @@
 .use-dark-icons {
-  .agency-info_processing-time h4:before {
+  .agency-info_processing-time h4 + p:before {
       @include has-icon($icon-clock);
   }
   .agency-info_personnel:before {
@@ -14,13 +14,13 @@
   .agency-info_website:before {
     @include has-icon($icon-laptop);
   }
-  .agency-info_reading-rooms h4:before {
+  .agency-info_reading-rooms h4 + p:before {
     @include has-icon($icon-book, $height: $space-4x);
   }
 }
 
 .use-light-icons {
-  .agency-info_processing-time h4:before {
+  .agency-info_processing-time h4 + p:before {
       @include has-icon($icon-clock-light);
   }
   .agency-info_personnel:before {
@@ -35,8 +35,30 @@
   .agency-info_website:before {
     @include has-icon($icon-laptop-light);
   }
-  .agency-info_reading-rooms h4:before,
+  .agency-info_reading-rooms h4 + p:before,
   .submission-help_research:before {
     @include has-icon($icon-book-light, $height: $space-4x);
+  }
+  .submission-help_description:before {
+    @include has-icon($icon-pencil-light);
+  }
+}
+
+// no icon for address
+.agency-info_mailing-address,
+.agency-info_processing-time,
+.agency-info_reading-rooms,
+.agency-info_personnel,
+.agency-info_phone,
+.agency-info_email,
+.agency-info_website,
+.submission-help_research {
+  padding-left: $space-4x;
+}
+
+.agency-info_processing-time,
+.agency-info_reading-rooms {
+  h4 {
+    margin-left: $space-4x * -1;
   }
 }
