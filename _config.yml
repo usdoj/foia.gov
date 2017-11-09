@@ -22,6 +22,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 timezone: America/New_York
 email: National.FOIAPortal@usdoj.gov
+app_env: local
 
 navigation:
   primary:
