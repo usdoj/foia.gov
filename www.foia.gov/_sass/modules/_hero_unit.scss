@@ -1,4 +1,3 @@
-$hero-fullscreen-breakpoint: 515px;
 $hero-text-size: 1.9rem;
 $hero-h2: 2.2rem;
 
@@ -65,16 +64,23 @@ $hero-h2: 2.2rem;
 }
 
 .hero-unit_button-group {
-  @media screen and (min-width: $hero-fullscreen-breakpoint) {
+  text-align: center;
+  @media screen and (min-width: $medium-screen) {
     display: flex;
+    text-align: left;
   }
   font-size: $hero-text-size;
   a {
+    display: block;
     padding-top: $space-2x;
-    margin-bottom: $space-2x;
+    margin-bottom: $space-4x;
+    @media screen and (min-width: $medium-screen) {
+      display: inline;
+      margin-bottom: $space-2x;
+    }
   }
   .usa-button {
-    @media screen and (min-width: $hero-fullscreen-breakpoint) {
+    @media screen and (min-width: $medium-screen) {
       flex-grow: 1;
       display: inline;
       width: auto;
@@ -88,7 +94,7 @@ $hero-h2: 2.2rem;
     line-height: 1;
     text-align: center;
     padding: $space-2x;
-    @media screen and (max-width: $hero-fullscreen-breakpoint) {
+    @media screen and (max-width: $medium-screen) {
       display: none;
     }
   }

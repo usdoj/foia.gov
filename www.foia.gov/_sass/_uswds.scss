@@ -25,11 +25,9 @@ $color-gray-lightest: #F8F8F8;
 $color-focus: $color-primary-alt-light;
 
 // Mobile First breakpoints
- $small-screen: 481px;
- $medium-screen: 600px;
- $large-screen: 1201px;
-
-$nav-width: 800px;
+$small-screen: 481px;
+$medium-screen: 600px;
+$large-screen: 1201px;
 
 // Relative font and image file paths
 $font-path:   '/assets/fonts' !default;
@@ -54,6 +52,7 @@ $space-5x: 4.0rem;
 
 // WDS's breakpoints just aren't flexible enough
 $medium-large-screen: 800px;
+$nav-width: 800px;
 
 // WDS doesn't ship with semibold source sans pro
 $font-semibold: 500;
