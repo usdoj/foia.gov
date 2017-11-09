@@ -31,7 +31,7 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
           Please save this page for your records.
         </p>
         <button
-          className="usa-button usa-button-outline"
+          className="usa-button usa-button-outline print-button"
           onClick={() => window.print()}
         >
           Print page

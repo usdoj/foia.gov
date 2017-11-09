@@ -17,7 +17,7 @@ function FoiaSubmissionAddress({ submissionAddress }) {
   const [name, title, department, suite] = address_line1.split(',', 4);
 
   return (
-    <address className="submission-help_mailing">
+    <address className="agency-info_mailing-address">
       <div>{ additional_name }</div>
       <div>{ [name, title].join(',') }</div>
       <div>{ department }</div>

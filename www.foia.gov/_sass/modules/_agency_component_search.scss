@@ -10,13 +10,14 @@ $section-padding-bottom: $space-1x * 11;
   }
   .start-request-container {
     position: relative;
-
+    height: 100%;
     @media all and (min-width: $medium-screen) {
       // Make space for the start-request button
       padding-bottom: 5rem;
 
       .start-request {
         bottom: 0;
+        left: $space-4x;
         position: absolute;
       }
     }

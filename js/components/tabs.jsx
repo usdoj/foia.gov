@@ -113,23 +113,9 @@ class Tabs extends Component {
               <h4>Agency mission</h4>
               <p>{ AgencyComponent.agencyMission(agencyComponent) }</p>
             </section>
-            <section>
-              <h4 className="submission-help_first-party-requests">
-                First party requests
-              </h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor.</p>
-              <h4 className="submission-help_expedited processing">
-                Expedited processing
-              </h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                do eiusmod tempor. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor.</p>
-            </section>
             <section className="submission-help_contact">
               <h4>Contact</h4>
-              <p className="submission-help_website">
+              <p className="agency-info_website">
                 <PrettyUrl href={agencyComponent.website.uri} />
               </p>
               <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />

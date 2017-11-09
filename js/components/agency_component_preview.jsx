@@ -34,6 +34,9 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
           )
         }
         <h3>{isCentralized ? agencyComponent.agency.name : agencyComponent.title }</h3>
+        { !agencyComponent.request_form &&
+          <NonInteroperableInfo agencyComponent={agencyComponent} />
+        }
       </div>
       <div className="usa-width-one-half">
         { description &&
@@ -44,7 +47,7 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         }
 
         <h4>Contact</h4>
-        <div className="agency-preview_contact-section">
+        <div className="agency-preview_contact-section agency-info_website">
           { agencyComponent.website && <PrettyUrl href={agencyComponent.website.uri} /> }
         </div>
         <div className="agency-preview_contact-section">
@@ -59,26 +62,27 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         { agencyComponent.request_data_year &&
           <AgencyComponentProcessingTime agencyComponent={agencyComponent} />
         }
-        <h4>
-          The records or information you&rsquo;re looking for may already be public.
-        </h4>
-        { agencyComponent.website &&
-          <p>
-            Visit the agency’s <a href={agencyComponent.website.uri}>website</a> to learn more.
-          </p>
-        }
-        { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length &&
-          <p>To see what’s been made available, you can visit an agency’s
-            <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
-        }
-        { agencyComponent.request_form ?
+        <div className="agency-info_reading-rooms">
+          <h4>
+            The records or information you&rsquo;re looking for may already be public.
+          </h4>
+          { agencyComponent.website &&
+            <p>
+              Visit the agency’s <a href={agencyComponent.website.uri}>website</a> to learn more.
+            </p>
+          }
+          { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length &&
+            <p>To see what’s been made available, you can visit an agency’s
+              <a href={agencyComponent.reading_rooms[0].uri}> FOIA reading room</a>.</p>
+          }
+        </div>
+        { agencyComponent.request_form &&
           <a
             className="usa-button usa-button-primary start-request"
             href={requestUrl}
           >
             Start FOIA request
-          </a> :
-          <NonInteroperableInfo agencyComponent={agencyComponent} />
+          </a>
         }
       </div>
     </div>

@@ -55,7 +55,31 @@ $space-5x: 4.0rem;
 // WDS's breakpoints just aren't flexible enough
 $medium-large-screen: 800px;
 
+// WDS doesn't ship with semibold source sans pro
 $font-semibold: 500;
 
 $form-max-width: 46rem;
+
+// Icons
+$icon-arrow-thick: '/img/icon-arrow-thick.svg';
+$icon-arrow-thin: '/img/icon-arrow-thin.svg';
+$icon-book: '/img/icon-book.svg';
+$icon-caret: '/img/icon-caret.svg';
+$icon-clock: '/img/icon-clock.svg';
+$icon-email: '/img/icon-email.svg';
+$icon-external-link: '/img/icon-external-link.svg';
+$icon-glossary: '/img/icon-glossary.svg';
+$icon-laptop: '/img/icon-laptop.svg';
+$icon-person: '/img/icon-person.svg';
+$icon-phone: '/img/icon-phone.svg';
+$icon-print: '/img/icon-print.svg';
+$icon-spyglass: '/img/icon-spyglass.svg';
+
+$icon-book-light: '/img/icon-book-light.svg';
+$icon-clock-light: '/img/icon-clock-light.svg';
+$icon-email-light: '/img/icon-email-light.svg';
+$icon-laptop-light: '/img/icon-laptop-light.svg';
+$icon-person-light: '/img/icon-person-light.svg';
+$icon-phone-light: '/img/icon-phone-light.svg';
+
 @import '../../node_modules/uswds/src/stylesheets/uswds';

@@ -12,15 +12,19 @@ function NonInteroperableInfo({ agencyComponent }) {
       </span>
     ) : (
       <span>
-        Use the information to the left in order to submit a FOIA request to this agency.
+        Use the information below to submit a FOIA request to this agency.
       </span>
     );
 
   return (
-    <p>
-      Currently, this agency’s FOIA process is not linked to
-      FOIA.gov. {submissionInstructions}
-    </p>
+    <div className="info-box_reverse">
+      <p>
+        <strong>Currently, this agency’s FOIA process is not linked to
+        FOIA.gov.</strong>
+        <br />
+        { submissionInstructions }
+      </p>
+    </div>
   );
 }
 

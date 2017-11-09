@@ -32,3 +32,11 @@
     margin: 0;
   }
 }
+
+.print-button {
+  padding-left: $space-4x;
+  background-image: url('/img/icon-print.svg');
+  background-repeat: no-repeat;
+  background-position: center left $space-1x;
+  background-size: $space-2x;
+}
