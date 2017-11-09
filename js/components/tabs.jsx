@@ -80,7 +80,7 @@ class Tabs extends Component {
                   <FoiaPersonnel foiaPersonnel={personnel[0]} />
                   <p>
                     You can ask FOIA personnel about anything related to your
-                    request, including whether what you’re asking for is clear.
+                    request, including if what you’re asking for is clear.
                     You can also reach out to follow up on your request after
                     it’s been submitted.
                   </p>
