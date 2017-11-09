@@ -27,11 +27,11 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
           Your FOIA request has been created and is being sent to
           the {agencyComponent.title}.
         </h3>
-        <p>
+        <p className="print-hide">
           Please save this page for your records.
         </p>
         <button
-          className="usa-button usa-button-outline print-button"
+          className="usa-button usa-button-outline print-button print-hide"
           onClick={() => window.print()}
         >
           Print page
