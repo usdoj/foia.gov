@@ -128,6 +128,7 @@ $background-color: $color-primary-darkest;
 [data-term] {
   cursor: pointer;
   text-decoration: underline dotted;
+  white-space: nowrap; // prevent glossary icon from wrapping
   &:after {
     content: "";
     width: 1em;
