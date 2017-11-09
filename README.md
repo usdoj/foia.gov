@@ -15,7 +15,7 @@ discovery sprint with the Department of Justice.
 Site content lives in the markdown pages under the [www.foia.gov
 directory](/18F/beta.foia.gov/tree/develop/www.foia.gov).
 
-[Glossary terms](/18F/beta.foia.gov/tree/develop/www.foia.gov/api/_glossary_terms)
+[Glossary terms](/18F/beta.foia.gov/tree/develop/www.foia.gov/_glossary_terms)
 should be edited in markdown, one term per file.
 
 
