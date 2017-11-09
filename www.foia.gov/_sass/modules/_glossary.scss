@@ -139,3 +139,7 @@ $background-color: $color-primary-darkest;
     margin-right: 0.5rem;
   }
 }
+
+.glossary [data-term]:after {
+  background-image: url($icon-glossary-light);
+}

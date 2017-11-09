@@ -42,6 +42,9 @@
   .submission-help_description:before {
     @include has-icon($icon-pencil-light);
   }
+  [data-term]:after {
+    @include has-icon($icon-glossary-light);
+  }
 }
 
 // no icon for address
@@ -62,3 +65,4 @@
     margin-left: $space-4x * -1;
   }
 }
+
