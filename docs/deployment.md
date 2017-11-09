@@ -4,7 +4,8 @@ This project is deployed automatically through [continuous
 integration](https://circleci.com/gh/18F/beta.foia.gov) (CI) as a static
 application to [Acquia Cloud](https://cloud.acquia.com/). Any changes merged to
 the `develop`, `master`, and staging branches will be vetted by our automated
-tests and then deployed automatically.
+tests and then deployed automatically. We use
+[CircleCI](https://circleci.com/docs/) for our CI solution.
 
 In the [CI settings](https://circleci.com/gh/18F/beta.foia.gov/edit#env-vars),
 you must configure the Acquia Cloud git repo as `$GIT_REPO`. The CI config runs
@@ -30,5 +31,3 @@ Each environment is deployed separately based on the git configuration based on
 
 _Note: once DOJ's ATO is complete, the beta.foia.gov domain will be moved to
 www.foia.gov._
-
-

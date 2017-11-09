@@ -43,6 +43,9 @@ this:
 1. Merge the pull request.
 1. _The change will be automatically deployed to the [production environment](https://beta.foia.gov/)._
 
+For the nitty-gritty details of how automated deployment works, please see the
+[deployment
+documentation](https://github.com/18F/beta.foia.gov/tree/develop/docs/deployment.md).
 
 ### Web content
 
