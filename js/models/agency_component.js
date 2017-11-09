@@ -14,17 +14,17 @@ const defaults = {
   request_data_expedited_lowest_days: null,
   request_data_expedited_median_days: null,
   request_data_year: null,
-  field_misc: new List(), // foia_personnel
-  foia_officers: new List(), // foia_personnel
+  field_misc: [], // foia_personnel
+  foia_officers: [], // foia_personnel
   formFields: new List(),
   id: null,
   links: new Map(),
   paper_receiver: null,
   portal_submission_format: 'email',
-  public_liaisons: new List(), // foia_personnel
+  public_liaisons: [], // foia_personnel
   reading_rooms: new List(),
   request_form: null,
-  service_centers: new List(), // foia_personnel
+  service_centers: [], // foia_personnel
   request_data_simple_average_days: null,
   request_data_simple_highest_days: null,
   request_data_simple_lowest_days: null,
