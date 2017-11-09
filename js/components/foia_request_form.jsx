@@ -13,6 +13,7 @@ import rf from '../util/request_form';
 import FoiaFileWidget from './foia_file_widget';
 import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 import UploadProgress from './upload_progress';
+import { scrollOffset } from '../util/dom';
 
 
 function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionResult }) {
@@ -44,6 +45,15 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
       .then(() => {
         // Submission successful
         onSubmit();
+      })
+      .catch((error) => {
+        const fieldErrors = document.getElementsByClassName('usa-input-error');
+        const firstError = fieldErrors.length && fieldErrors[0];
+        if (firstError) {
+          window.scrollTo(0, scrollOffset(firstError));
+        }
+
+        throw error;
       });
   }
 
@@ -56,7 +66,7 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
   // Map these to react-jsonschema-form Ids
   const steps = (requestForm.sections || []).map(section => `root_${section.id}`);
 
-  const formContext = { steps };
+  const formContext = { steps, errors: submissionResult.errors.toJS() };
   const { jsonSchema, uiSchema } = requestForm;
   return (
     <Form
