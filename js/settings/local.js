@@ -7,4 +7,5 @@ const api = {
 
 export default {
   api,
+  appEnv: 'local',
 };

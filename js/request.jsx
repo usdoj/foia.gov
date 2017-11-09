@@ -4,9 +4,11 @@ import { render } from 'react-dom';
 import { Router, Route, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import RequestLandingPage from './pages/request_landing';
-import ConfirmationPage from './pages/confirmation';
+import ConfirmationTestPage from './pages/confirmation_test';
 import AgencyComponentRequestPage from './pages/agency_component_request';
 import NotFoundPage from './pages/not_found';
+import { appEnv } from 'settings';
+
 
 const history = createBrowserHistory({
   basename: '/request',
@@ -21,10 +23,13 @@ window.app = {
 render(
   <Router history={history}>
     <Switch>
-      <Route
-        path="/agency-component/:agencyComponentId/confirmation"
-        component={ConfirmationPage}
-      />
+      { appEnv !== 'production' &&
+        // This is a test page to help with styling and testing
+        <Route
+          path="/agency-component/:agencyComponentId/confirmation"
+          component={ConfirmationTestPage}
+        />
+      }
       <Route path="/agency-component/:agencyComponentId" component={AgencyComponentRequestPage} />
       <Route path="/" component={RequestLandingPage} />
       <Route component={NotFoundPage} />

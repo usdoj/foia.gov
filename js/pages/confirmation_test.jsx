@@ -1,4 +1,12 @@
-/* eslint-disable import/first */
+/* eslint-disable */
+
+/*
+ * This is a test page to make it easier to style things on the confirmation
+ * page. This page only appears in development. It uses stub data for the form
+ * data so it is not sufficient only to test changes here, you should do a
+ * complete submission to test.
+ */
+
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import PropTypes from 'prop-types';
@@ -31,12 +39,34 @@ class ConfirmationPage extends Component {
 
     const formData = new Map({
       requester_contact: {
-        name_first: 'Aaron',
-        name_middle_initial_middle: 'D',
-        name_last: 'Borden',
+        name_first: 'George',
+        name_last: 'Washington',
+        address_line1: '1800 F Street',
+        address_line2: 'Suite 202',
+        address_city: 'Mount Vernon',
+        address_state_province: 'Virginia',
+        address_zip_postal_code: '98273',
+        address_country: 'United States',
+        company_organization: 'Democracy',
+        email: 'washington@example.com',
+        fax_number: '555-4211',
+        phone_number: '555-5555',
       },
       request_description: {
         request_description: faker.lorem.paragraphs(3),
+      },
+      supporting_docs: {
+        attachments_supporting_documentation: 'data:text/plain;filename=a%20text%20file.txt;filesize=12;base64,SGVsbG8KV29ybGQK',
+      },
+      processing_fees: {
+        request_category: 'individual',
+        fee_amount_willing: '25',
+        fee_waiver: 'no',
+        fee_waiver_explanation: faker.lorem.paragraphs(3),
+      },
+      expedited_processing: {
+        expedited_processing: 'no',
+        expedited_processing_explanation: faker.lorem.paragraphs(3),
       },
     });
 
@@ -63,35 +93,13 @@ class ConfirmationPage extends Component {
   init(props) {
     const agencyComponentId = props.match.params.agencyComponentId;
 
-    // Check agency component exists in store
-    const { agencyComponent } = this.state;
-    if (!agencyComponent || !agencyComponent.formFields.length) {
-      requestActions.fetchAgencyComponent(agencyComponentId)
-        .then(requestActions.receiveAgencyComponent)
-        .catch((error) => {
-          if (!error.response) {
-            // Non-axios error, rethrow
-            throw error;
-          }
-
-          if (error.response.status !== 404) {
-            // API error other than 404, rethrow
-            throw error;
-          }
-
-          this.setState({
-            agencyComponentNotFound: true,
-          });
-        });
-    }
+    requestActions.fetchRequestFormSections()
+      .then(() => requestActions.fetchAgencyComponent(agencyComponentId))
+      .then(requestActions.receiveAgencyComponent);
   }
 
   render() {
     const { agencyComponent, formData, requestForm, submissionResult } = this.state;
-    if (this.state.agencyComponentNotFound) {
-      // The api returned a 404, we should do the same
-      return <NotFound />;
-    }
 
     function onSubmit() {}
 
@@ -108,19 +116,6 @@ class ConfirmationPage extends Component {
           submissionResult={submissionResult}
         />
       );
-    } else if (requestForm) {
-      mainContent = (
-        <FoiaRequestForm
-          formData={this.state.formData}
-          isSubmitting={this.state.isSubmitting}
-          onSubmit={onSubmit}
-          requestForm={requestForm}
-          submissionResult={this.state.submissionResult}
-        />
-      );
-    } else {
-      // TODO show a loading indicator?
-      mainContent = <div>Loading…</div>;
     }
 
     return (
