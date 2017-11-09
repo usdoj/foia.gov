@@ -1,7 +1,16 @@
-// TODO Temporary foia-legacy overrides
+$hide-tabs-width: 768px;
+
 .foia-request-form {
   margin-top: $space-4x;
   max-width: $form-max-width;
+  @media screen and (max-width: $medium-screen) {
+    margin: auto;
+    padding-left: $space-2x;
+    padding-right: $space-2x;
+  }
+  @media screen and (max-width: $hide-tabs-width) {
+    margin: auto;
+  }
   label,
   legend {
     display: block !important;
@@ -13,7 +22,6 @@
     color: $color-primary-darkest;
   }
   input {
-    font-weight: bold;
     color: $color-primary-darkest;
   }
 }
