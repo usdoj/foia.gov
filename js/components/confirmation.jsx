@@ -18,7 +18,7 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
   };
 
   return (
-    <div className="confirmation">
+    <div className="confirmation sidebar_content-inner">
       <div className="print-only confirmation_print-submission-id">
         <p><strong>Submission ID:</strong> {submission_id}</p>
       </div>
