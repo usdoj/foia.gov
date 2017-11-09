@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import RequestSummaryContactSection from './request_summary_contact_section';
 import RequestSummaryDescriptionSection from './request_summary_description_section';
-import RequestSummarySupportingDocumentationSection from './request_summary_supporting_documentation_section';
 import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 
 
@@ -27,11 +26,10 @@ function fieldLabel(requestForm, sectionId, fieldName) {
   return null;
 }
 
-function FileField({ fileField }) {
-  const [attachment] = dataUrlToAttachment(fileField);
+function fileField(value) {
+  const [attachment] = dataUrlToAttachment(value);
   return <div className="request-summary_file-field">{attachment.filename}</div>;
 }
-
 
 function RequestSummarySection({ section, formData, requestForm }) {
   if (section.id === 'requester_contact') {
@@ -78,10 +76,12 @@ function RequestSummarySection({ section, formData, requestForm }) {
 
               return (
                 <div key={`${section.id}-${fieldName}`}>
-                  <h5 className="request-summary_label">{label}</h5>
                   { isFileField ?
-                    <FileField fileField={value} /> :
-                    <div>{value}</div>
+                    fileField(value) :
+                    <div>
+                      <h5 className="request-summary_label">{label}</h5>
+                      <div>{value}</div>
+                    </div>
                   }
                 </div>
               );
