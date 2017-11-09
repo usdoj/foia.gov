@@ -1,0 +1,7 @@
+.request-summary_file-field {
+  padding-left: $space-4x;
+
+  &:before {
+    @include has-icon($icon-file-attachment);
+  }
+}
