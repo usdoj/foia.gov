@@ -14,6 +14,9 @@ $hide-tabs-width: 768px;
   }
   @media screen and (min-width: $medium-large-screen) {
     flex-grow: 5;
+  }
+  @media screen and (min-width: 1000px) {
+    min-width: 400px;
     max-width: 420px; //width from visual design
   }
   ul {
