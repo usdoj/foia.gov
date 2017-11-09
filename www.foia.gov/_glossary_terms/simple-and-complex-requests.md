@@ -2,7 +2,7 @@
 term: "Simple and complex requests"
 ---
 
-Many agencies classify FOIA requests as either simple or complex in order to more efficiently process them and respond to you through separate queues.  Agencies place requests in these tracks based on the amount of work or time involved in processing the request.  The factors that make a request complex may differ from agency to agency depending on the unique nature of that agency’s records and record systems, but you can reach out to FOIA personnel at the agency  to learn how your request might be classified. Agencies also provide average and median processing times for both types of requests. You can access that information on the “Reports” page of FOIA.gov or by calling the FOIA personnel at the agency your request is being sent to.  By tailoring your request to fit within an agency’s simple track you will be able to get a quicker response from the agency.  
+Many agencies classify FOIA requests as either simple or complex in order to more efficiently process them and respond to you through separate queues.  Agencies place requests in these tracks based on the amount of work or time involved in processing the request.  The factors that make a request complex may differ from agency to agency, but you can reach out to FOIA personnel at the agency  to learn how your request might be classified. You can find the agency’s average processing times on FOIA.gov when you select an agency.  By tailoring your request to fit within an agency’s simple track you will be able to get a quicker response from the agency.  
 Examples of factors that determine whether your request is complex or simple include:
 <ul>
 <li>The records requested are voluminous;</li> 
