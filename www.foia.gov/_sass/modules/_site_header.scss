@@ -1,3 +1,9 @@
+.usa-banner-button {
+  @media screen and (max-width: $small-screen) {
+    display: none;
+  }
+}
+
 .doj-banner {
   background-color: $color-black;
   img {
