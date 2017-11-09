@@ -24,6 +24,16 @@ $background-color: $color-primary-darkest;
     right: 0;
   }
 
+  p {
+    a,
+    a:active,
+    a:visited,
+    a:visited:hover,
+    a:hover {
+      color: $color-primary-alt;
+    }
+  }
+
   .glossary-close {
     background-color: $background-color;
     background-image: url('data:image/svg+xml;charset=utf8, %3Csvg%20%20fill%3D%27%23ffffff%27%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M15.053%205.856a1.234%201.234%200%200%200-1.747-1.745l-3.9%203.895h.353L5.857%204.11a1.234%201.234%200%200%200-1.746%201.745l3.9%203.896v-.353l-3.9%203.895a1.234%201.234%200%200%200%201.746%201.745l3.9-3.895h-.353l3.9%203.895c.23.23.543.36.874.36a1.234%201.234%200%200%200%20.873-2.105l-3.9-3.895v.354l3.9-3.894z%22%2F%3E%3C%2Fsvg%3E');

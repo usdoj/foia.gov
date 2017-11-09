@@ -112,7 +112,7 @@ class AgencyComponentRequestPage extends Component {
           upload={this.state.upload}
           onSubmit={onSubmit}
           requestForm={requestForm}
-          submissionResult={this.state.submissionResult}
+          submissionResult={submissionResult}
         />
       );
     } else {

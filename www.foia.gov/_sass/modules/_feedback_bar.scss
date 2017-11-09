@@ -1,0 +1,19 @@
+.feedback-bar {
+  background: $color-primary-alt-lightest;
+  clear: both;
+  padding: $space-2x;
+  margin: $space-2x auto 0;
+  font-size: $small-font-size;
+  p {
+    margin: 0;
+  }
+  a {
+    border-bottom: 1px solid $color-primary-darkest;
+  }
+  @media screen and (min-width: $nav-width) {
+    float: right;
+    clear: none;
+    width: 60%;
+    margin-top: 0;
+  }
+}
