@@ -43,6 +43,9 @@ this:
 1. Merge the pull request.
 1. _The change will be automatically deployed to the [production environment](https://beta.foia.gov/)._
 
+For the nitty-gritty details of how automated deployment works, please see the
+[deployment
+documentation](https://github.com/18F/beta.foia.gov/tree/develop/docs/deployment.md).
 
 ### Web content
 
@@ -85,46 +88,8 @@ information should be updated individually by agency FOIA personnel.
 
 ## Development
 
-
-### Prerequisites
-
-* [Ruby](https://www.ruby-lang.org/en/) 2.3.4
-* [Bundler](https://bundler.io/)
-
-You can use [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv) to manage
-multiple Ruby versions.
-
-Once you've got Ruby installed, install bundler.
-
-    $ gem install bundler
-
-
-### Setup
-
-Install the dependencies.
-
-    $ bundle install
-    $ npm install
-
-Build the site.
-
-    $ make build
-
-Run the tests.
-
-    $ make test
-
-Run the site locally.
-
-    $ make serve
-
-And open your browser to http://localhost:4000/.
-
-See more in the [README.md](www.foia.gov/README.md).
-
-To build for production, set the `NODE_ENV` environment variable.
-
-    $ NODE_ENV=production make build
+Please browse the [additional documentation
+topics](https://github.com/18F/beta.foia.gov/tree/develop/docs) on development.
 
 
 [foia-back-stage]: https://admin.foia.gov/
