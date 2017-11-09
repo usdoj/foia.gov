@@ -5,6 +5,10 @@
   font-size: $small-font-size;
   border-top: 3px solid $color-white;
   .footer-logo {
+    @extend .clearfix;
+    margin-bottom: $space-2x;
+  }
+  .footer-logo_img {
     max-width: 8rem;
     display: inline-block;
     float: left;
@@ -33,6 +37,10 @@
     }
   }
   .footer-links {
+    margin-top: $space-2x;
+  }
+
+  .footer-links_list {
     padding-right: 4px;
     a {
       letter-spacing: 0.065rem;
