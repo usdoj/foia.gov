@@ -3,11 +3,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
+import { appEnv } from 'settings';
 import RequestLandingPage from './pages/request_landing';
 import ConfirmationTestPage from './pages/confirmation_test';
 import AgencyComponentRequestPage from './pages/agency_component_request';
 import NotFoundPage from './pages/not_found';
-import { appEnv } from 'settings';
 
 
 const history = createBrowserHistory({
