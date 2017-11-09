@@ -40,5 +40,3 @@ See more in the [README.md](www.foia.gov/README.md).
 To build for production, set the `NODE_ENV` and `APP_ENV` environment variables.
 
     $ NODE_ENV=production APP_ENV=production make build
-
-
