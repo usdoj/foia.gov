@@ -1,3 +1,8 @@
+.sidebar {
+  @media screen and (max-width: $medium-screen) {
+    display: none;
+  }
+}
 .sidebar_tab-controls {
   display: flex;
   li {
