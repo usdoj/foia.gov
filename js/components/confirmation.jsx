@@ -37,7 +37,7 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
           Print page
         </button>
         <p>
-          You’ll hear back from the agency confirming receipt in coming weeks
+          You’ll hear back from the agency confirming receipt in the coming weeks
           using the contact information you provided. If you have questions
           about your request, feel free to reach out to the agency FOIA
           personnel using the information provided below.
