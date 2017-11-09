@@ -43,6 +43,8 @@ navigation:
           title: Search government websites
         - href: /#learn-more
           title: Research
+        - href: /opengov.html
+          title: Additional government resources
     - href: /#agency-search
       title: Create a request
     - href: /data.html
