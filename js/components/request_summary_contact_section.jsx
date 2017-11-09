@@ -16,8 +16,8 @@ function name(requester) {
 }
 
 function RequestSummaryContactSection({ formData, section }) {
-  const data = formData.requester_contact;
-  const fullName = name(data);
+  const requesterContact = formData.requester_contact;
+  const fullName = name(requesterContact);
 
   return (
     <section key={section.id}>
@@ -29,45 +29,45 @@ function RequestSummaryContactSection({ formData, section }) {
             <p>{fullName}</p>
           </div>
         }
-        { data.address_line1 &&
+        { requesterContact.address_line1 &&
           <div>
             <h5>Mailing address</h5>
             <address>
-              <p>{ data.address_line1 }</p>
-              <p>{ data.address_line2}</p>
+              <p>{ requesterContact.address_line1 }</p>
+              <p>{ requesterContact.address_line2}</p>
               <p>
-                { data.address_city },
+                { requesterContact.address_city && `${requesterContact.address_city},` }
                 {' '}
-                { data.address_state_province }
+                { requesterContact.address_state_province }
                 {' '}
-                { data.address_zip_postal_code }
+                { requesterContact.address_zip_postal_code }
               </p>
-              <p>{ data.address_country }</p>
+              <p>{ requesterContact.address_country }</p>
             </address>
           </div>
         }
-        { data.phone_number &&
+        { requesterContact.phone_number &&
           <div>
             <h5>Phone number</h5>
-            <p>{ data.phone_number }</p>
+            <p>{ requesterContact.phone_number }</p>
           </div>
         }
-        { data.fax_number &&
+        { requesterContact.fax_number &&
           <div>
             <h5>Fax number</h5>
-            <p>{ data.fax_number }</p>
+            <p>{ requesterContact.fax_number }</p>
           </div>
         }
-        { data.company_organization &&
+        { requesterContact.company_organization &&
           <div>
             <h5>Company/organization</h5>
-            <p>{ data.company_organization }</p>
+            <p>{ requesterContact.company_organization }</p>
           </div>
         }
-        { data.email &&
+        { requesterContact.email &&
           <div>
             <h5>Email</h5>
-            <p>{ data.email }</p>
+            <p>{ requesterContact.email }</p>
           </div>
         }
       </div>
