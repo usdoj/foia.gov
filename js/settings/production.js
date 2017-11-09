@@ -8,4 +8,5 @@ const api = {
 
 export default {
   api,
+  appEnv: 'production',
 };

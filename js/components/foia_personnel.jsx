@@ -16,9 +16,10 @@ function FoiaPersonnel({ foiaPersonnel }) {
   }
 
   const email = (foiaPersonnel.email || '').toLowerCase();
+  const name = displayName(foiaPersonnel);
   return (
     <div>
-      <p className="agency-info_personnel">{ displayName(foiaPersonnel) }</p>
+      { name && <p className="agency-info_personnel">{name}</p> }
       {
         (foiaPersonnel.phone || [])
           .map(phone => <p className="agency-info_phone" key={phone}>{ phone }</p>)

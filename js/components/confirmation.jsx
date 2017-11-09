@@ -4,6 +4,7 @@ import { Map } from 'immutable';
 
 import { AgencyComponent, SubmissionResult } from '../models';
 import RequestSummary from './request_summary';
+import FoiaPersonnel from './foia_personnel';
 
 
 function Confirmation({ agencyComponent, formData, requestForm, submissionResult }) {
@@ -27,11 +28,11 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
           Your FOIA request has been created and is being sent to
           the {agencyComponent.title}.
         </h3>
-        <p>
+        <p className="print-hide">
           Please save this page for your records.
         </p>
         <button
-          className="usa-button usa-button-outline print-button"
+          className="usa-button usa-button-outline print-button print-hide"
           onClick={() => window.print()}
         >
           Print page
@@ -44,23 +45,16 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
         </p>
         <div className="confirmation_agency-contact">
           <h5 tabIndex="-1">Contact the agency</h5>
-          <p className="confirmation_agency-contact-title">
-            {agencyComponent.title}
-          </p>
-          { agencyComponent.website &&
-            <p className="confirmation_agency-contact-website">
-              {agencyComponent.website.uri}
-            </p>
-          }
-          { agencyComponent.email &&
-            <p className="confirmation_agency-contact-email">
-              {agencyComponent.email}
-            </p>
-          }
-          { agencyComponent.telephone &&
-            <p className="confirmation_agency-contact-phone">
-              {agencyComponent.telephone}
-            </p>
+          {
+            agencyComponent.foiaPersonnel()
+              .map(personnel => (
+                <div
+                  key={`${personnel.name}-${personnel.title}`}
+                  className="confirmation_agency-contact-personnel"
+                >
+                  <FoiaPersonnel foiaPersonnel={personnel} />
+                </div>
+              ))
           }
         </div>
       </section>

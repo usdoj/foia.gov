@@ -12,14 +12,16 @@
   }
   h2 {
     font-family: $font-serif;
-    font-weight: $font-bold;
+    font-weight: $font-semibold;
     font-size: 2.2rem;
   }
   h3 {
     font-family: $font-sans;
     font-size: 2.2rem;
+    font-weight: $font-semibold;
   }
   h5 {
+    font-weight: $font-semibold;
     margin-bottom: 0;
     + p {
       margin-top: 0;
@@ -28,9 +30,11 @@
 }
 
 .confirmation_agency-contact {
-  p {
-    margin: 0;
-  }
+  @extend .use-dark-icons;
+}
+
+.confirmation_agency-contact-personnel {
+  margin: $space-4x 0;
 }
 
 .print-button {
