@@ -1,6 +1,6 @@
 ---
-term: "FOIA Public Liaison"
+term: "FOIA public liaison"
 ---
 
-The agency FOIA Public Liaison is an official who supervises the FOIA Requester Service Center.
+The agency FOIA public liaison is an official who supervises the FOIA requester service center.
 

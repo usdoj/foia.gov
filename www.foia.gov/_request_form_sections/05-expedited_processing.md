@@ -6,7 +6,7 @@ fieldNames:
 - expedited_processing_explanation
 ---
 Agencies generally process requests on a first-in, first-out basis.  Most
-agencies also utilize separate tracks to process simple and complex
+agencies also use separate tracks to process simple and complex
 requests.  Under certain circumstances, your request may qualify for
 placement into a separate, expedited track where the agency will
 process it as soon as practicable.  The standards for <span

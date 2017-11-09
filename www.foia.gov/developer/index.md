@@ -27,11 +27,6 @@ permalink: /developer/
     <li><a href="{{ site.baseurl }}/2008-FOIASetFull.zip">Download the full 2008 FOIA Data set</a> (.zip format)</li>
   </ul>
 
-  <h3>FOIA Contacts Download</h3>
-  <p>The following file is the complete listing of all FOIA contacts across federal departments and agencies.</p>
-
-  <a href="{{ site.baseurl }}/full-foia-contacts.xls">Download the full FOIA contacts list</a> (updated as of May 24, 2017)
-
 
 ## Agency resources
 

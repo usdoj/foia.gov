@@ -10,7 +10,7 @@ fieldNames:
 ---
 Most FOIA requests do not involve any fees.  However, if an agency
 informs you that there are fees associated with your request, you may
-request a <span data-term="fee waiver">fee</span> under the standard
+request a <span data-term="fee waiver">fee waiver</span> under the standard
 provided in the FOIA.  You may request a fee waiver at any time during
 the processing of your request.  The agency will grant a fee waiver when
 disclosure of the requested information is in the public interest because
