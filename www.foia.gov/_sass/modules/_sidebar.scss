@@ -1,3 +1,5 @@
+$hide-tabs-width: 768px;
+
 .sidebar {
   @media screen and (max-width: $medium-screen) {
     display: none;
@@ -77,4 +79,18 @@
 
 .submission-help_tips p {
   padding-left: $space-4x;
+}
+
+.sidebar_content-inner {
+  margin-top: $space-4x;
+  max-width: $form-max-width;
+
+  @media screen and (max-width: $medium-screen) {
+    margin: auto;
+    padding-left: $space-2x;
+    padding-right: $space-2x;
+  }
+  @media screen and (max-width: $hide-tabs-width) {
+    margin: auto;
+  }
 }

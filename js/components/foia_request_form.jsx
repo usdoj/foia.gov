@@ -70,7 +70,7 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
   const { jsonSchema, uiSchema } = requestForm;
   return (
     <Form
-      className="foia-request-form"
+      className="foia-request-form sidebar_content-inner"
       disabled={upload.get('inProgress')}
       FieldTemplate={CustomFieldTemplate}
       formContext={formContext}
