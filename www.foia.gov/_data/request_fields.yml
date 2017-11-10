@@ -29,7 +29,7 @@ agency_component_name:
 
 name_first:
   name: name_first
-  Type: string
+  type: string
   description: First name of the requester.
   required: no
   example: '"George"'
