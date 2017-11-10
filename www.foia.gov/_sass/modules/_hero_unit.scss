@@ -7,6 +7,7 @@ $hero-h2: 2.2rem;
   background-position: center top;
   @media screen and (min-width: $large-screen) {
     background-position: center top -14rem;
+    background-image: url('../img/Usdepartmentofjustice-high-res.jpg');
   }
   @media screen and (min-width: $small-screen) {
     background-image: url('../img/Usdepartmentofjustice-1.jpg');
