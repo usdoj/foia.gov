@@ -19,7 +19,7 @@ RewriteEngine on
 {% if jekyll.environment == 'production' %}
 # Redirect http -> https
 RewriteCond %{HTTPS} off
-RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=302]
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 {% endif %}
 
 # Proxy any /foia requests to the reporting back end
