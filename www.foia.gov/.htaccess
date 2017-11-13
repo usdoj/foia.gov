@@ -16,6 +16,14 @@ Header set Cache-Control "max-age=86400, public, must-revalidate"
 
 RewriteEngine on
 
+{% if jekyll.environment == 'production' %}
+# Redirect http -> https
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+# TODO test this with 302, then change it to 301 redirect
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [NE,L,R=302]
+{% endif %}
+
 # Proxy any /foia requests to the reporting back end
 RewriteRule "^foia/(.*)$" "foia-proxy.php?u=foia/$1" [QSA,L]
 
