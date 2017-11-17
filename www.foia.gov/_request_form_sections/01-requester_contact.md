@@ -30,5 +30,5 @@ fieldNames:
 - fax_number
 ---
 This information is needed so the agency knows where to send the response
-to your records request. Please note that not all of these fields are
+to your FOIA request. Please note that not all of these fields are
 required.
