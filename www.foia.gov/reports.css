@@ -1,7 +1,6 @@
 .foiaSection{padding: 6px 0 3px 0;}
 .FormTitle{padding: 2px 0 5px 0; color:rgb(32,64,192);}
 a, a:link, a:visited {text-decoration:none; }
-a:hover{text-decoration:underline; }
 a:active{text-decoration:none; }
 .warnmessage{color:rgb(0,224,224);}
 .errormessage{color:rgb(244,32,64);}

@@ -1,9 +1,136 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0;url=/#agency-search" />
-  </head>
-  <body>
-  </body>
-</html>
+---
+title: "Where to Make a FOIA request"
+layout: about
+navigation: about
+subnav: make-request
+grid: 'grid-legacy'
+use-uswds: false
+use-legacy-scripts: true
+old-content-banner: true
+old-content-banner-secondary-text: <a href="/#agency-search">Select an agency on the new homepage</a> to find the contact information you’re looking for or to create a FOIA request.
+stylesheets:
+- reports
+scripts:
+- /foiaFunctions.js
+- /agencyWork.js
+- /tablehover.js
+init: makerequest.js
+popup-close-action: popupWinClose
+popup: |
+  <h1>SELECT UNITED STATES FEDERAL DEPARTMENTS</h1>
+  <div style="width: 230px; float: left;">
+  <ul>
+    <li class="ag24"><a href="javascript:startRequest('USAID');">Agency for International Development</a></li>
+    <li class="ag01"><a href="javascript:startRequest('DOA');">Department of Agriculture</a></li>
+    <li class="ag05"><a href="javascript:startRequest('DOE');">Department of Energy</a></li>
+    <li class="ag04"><a href="javascript:startRequest('ED');">Department of Education</a></li>
+    <li class="ag02"><a href="javascript:startRequest('DOC');">Department of Commerce</a></li>
+    <li class="ag03"><a href="javascript:startRequest('DoD');">Department of Defense</a></li>
+    <li class="ag06"><a href="javascript:startRequest('HHS');">Department of Health and Human Services</a></li>
+    <li class="ag07"><a href="javascript:startRequest('DHS');">Department of Homeland Security</a></li>
+    <li class="ag08"><a href="javascript:startRequest('HUD');">Department of Housing and<br /> Urban Development</a></li>
+    <li class="ag09"><a href="javascript:startRequest('DOI');">Department of Interior</a></li>
+    <li class="ag10"><a href="javascript:startRequest('DOJ');">Department of Justice</a></li>
+  </ul>
+  </div>
+  <div style="width: 240px; float: left;">
+  <ul>
+    <li class="ag11"><a href="javascript:startRequest('U.S. DOL');">Department of Labor</a></li>
+    <li class="ag12"><a href="javascript:startRequest('State');">Department of State</a></li>
+    <li class="ag13"><a href="javascript:startRequest('DOT');">Department of Transportation</a></li>
+    <li class="ag14"><a href="javascript:startRequest('Treasury');">Department of the Treasury</a></li>
+    <li class="ag15"><a href="javascript:startRequest('VA');">Department of Veterans Affairs</a></li>
+    <li class="ag16"><a href="javascript:startRequest('EPA');">Environmental Protection Agency</a></li>
+    <li class="ag23"><a href="javascript:startRequest('GSA');">General Services Administration</a></li>
+    <li class="ag19"><a href="javascript:startRequest('NASA');">National Aeronautics and<br /> Space Administration</a></li>
+    <li class="ag25"><a href="javascript:startRequest('NSF');">National Science Foundation</a></li>
+    <li class="ag22"><a href="javascript:startRequest('NRC');">Nuclear Regulatory Commission</a></li>
+    <li class="ag26"><a href="javascript:startRequest('OPM');">Office of Personnel Management</a></li>
+  </ul>
+  </div>
+  <div style="width: 230px; float: left;">
+  <ul>
+    <li class="ag20"><a href="javascript:startRequest('SBA');">Small Business Administration</a></li>
+    <li class="ag27"><a href="javascript:startRequest('SSA');">Social Security Administration</a></li>
+    <li class="ag28"><a href="javascript:startRequest('CEQ');">Council on Environmental Quality</a></li>
+    <li class="ag28"><a href="javascript:startRequest('OMB');">Office of Management and Budget</a></li>
+    <li class="ag28"><a href="javascript:startRequest('ONDCP');">Office of National Drug Control Policy</a></li>
+    <li class="ag28"><a href="javascript:startRequest('OSTP');">Office of Science and Technology Policy</a></li>
+    <li class="ag28"><a href="javascript:startRequest('USTR');">Office of United States Trade Representative</a></li>
+  </ul>
+  </div>
+  <div class="clear">&nbsp;</div>
+  <div class="lineshadow"></div>
+  <p>&nbsp;</p>
+  <h1>SELECT UNITED STATES FEDERAL AGENCIES</h1>
+  <div style="width: 300px; float: left;">
+  <ul>
+    <li><a href="javascript:startRequest('ABMC');">American Battle Monuments Commission</a></li>
+    <li><a href="javascript:startRequest('AMTRAK');">AMTRAK</a></li>
+    <li><a href="javascript:startRequest('BBG');">Broadcasting Board of Governors</a></li>
+    <li><a href="javascript:startRequest('CIA');">Central Intelligence Agency</a></li>
+    <li><a href="javascript:startRequest('CSHIB');">Chemical Safety and Hazard Investigations Board</a></li>
+    <li><a href="javascript:startRequest('USCCR');">U.S. Commission on Civil Rights</a></li>
+    <li><a href="javascript:startRequest('CPPBSD');">Committee for Purchase from People who are Blind or Severely Disabled</a></li>
+    <li><a href="javascript:startRequest('CFTC');">Commodity Futures Trading Commission</a></li>
+  </ul>
+
+  </div>
+  <div class="clear"></div>
+---
+          <h1>I want to make a FOIA request to:</h1>
+          <div style="font-weight: normal; font-style: italic; margin: 0 0 10px 0;"><strong>Note:</strong> After you select an agency, to make another selection, please use the link on the left: &quot;Where to Make a FOIA Request.&quot; Your &quot;Back&quot; button will not take you to your previous search results. </div>
+          <div class="clear"></div>
+          <div id="agencyList">
+          <ul>
+            <li class="ag24"><a href="javascript:startRequest(&apos;USAID&apos;);">U.S. Agency for International Development</a></li>
+            <li class="ag01"><a href="javascript:startRequest(&apos;USDA&apos;);">Department of Agriculture</a></li>
+            <li class="ag05"><a href="javascript:startRequest(&apos;DOE&apos;);">Department of Energy</a></li>
+            <li class="ag04"><a href="javascript:startRequest(&apos;ED&apos;);">Department of Education</a></li>
+            <li class="ag02"><a href="javascript:startRequest(&apos;DOC&apos;);">Department of Commerce</a></li>
+            <li class="ag03"><a href="javascript:startRequest(&apos;DoD&apos;);">Department of Defense</a></li>
+            <li class="ag06"><a href="javascript:startRequest(&apos;HHS&apos;);">Department of Health and Human Services</a></li>
+            <li class="ag07"><a href="javascript:startRequest(&apos;DHS&apos;);">Department of Homeland Security</a></li>
+            <li class="ag08"><a href="javascript:startRequest(&apos;HUD&apos;);">Department of Housing and<br> Urban Development</a></li>
+            <li class="ag09"><a href="javascript:startRequest(&apos;DOI&apos;);">Department of Interior</a></li>
+            <li class="ag10"><a href="javascript:startRequest(&apos;DOJ&apos;);">Department of Justice</a></li>
+            <li class="ag11"><a href="javascript:startRequest(&apos;U.S. DOL&apos;);">Department of Labor</a></li>
+            <li class="ag12"><a href="javascript:startRequest(&apos;State&apos;);">Department of State</a></li>
+            <li class="ag13"><a href="javascript:startRequest(&apos;DOT&apos;);">Department of Transportation</a></li>
+            <li class="ag14"><a href="javascript:startRequest(&apos;Treasury&apos;);">Department of the Treasury</a></li>
+            <li class="ag15"><a href="javascript:startRequest(&apos;VA&apos;);">Department of Veterans Affairs</a></li>
+            <li class="ag16"><a href="javascript:startRequest(&apos;EPA&apos;);">Environmental Protection Agency</a></li>
+            <li class="ag23"><a href="javascript:startRequest(&apos;GSA&apos;);">General Services Administration</a></li>
+            <li class="ag19"><a href="javascript:startRequest(&apos;NASA&apos;);">National Aeronautics and<br> Space Administration</a></li>
+            <li class="ag25"><a href="javascript:startRequest(&apos;NSF&apos;);">National Science Foundation</a></li>
+            <li class="ag22"><a href="javascript:startRequest(&apos;USNRC&apos;);">Nuclear Regulatory Commission</a></li>
+            <li class="ag26"><a href="javascript:startRequest(&apos;OPM&apos;);">Office of Personnel Management</a></li>
+            <li class="ag20"><a href="javascript:startRequest(&apos;SBA&apos;);">Small Business Administration</a></li>
+            <li class="ag27"><a href="javascript:startRequest(&apos;SSA&apos;);">Social Security Administration</a></li>
+            <li class="ag28"><a href="javascript:startRequest(&apos;CEQ&apos;);">Council on Environmental Quality</a></li>
+            <li class="ag28"><a href="javascript:startRequest(&apos;OMB&apos;);">Office of Management and Budget</a></li>
+            <li class="ag28"><a href="javascript:startRequest(&apos;ONDCP&apos;);">Office of National Drug Control Policy</a></li>
+            <li class="ag28"><a href="javascript:startRequest(&apos;OSTP&apos;);">Office of Science and Technology Policy</a></li>
+            <li class="ag28"><a href="javascript:startRequest(&apos;USTR&apos;);">Office of United States<br> Trade Representative</a></li>
+          </ul>
+          </div>
+          <div class="clear"></div>
+          <p>&nbsp;</p>
+          <h1><a href="javascript:popupWinOpen();" style="font-style: normal;">View the full list of agencies for information on how to make a FOIA request</a>&nbsp;<a id="vid"></a><a href="report-makerequest.html#vid" class="video1b"><img src="images/video-icon.gif" width="12" height="12" alt="Watch a FOIA.gov video: Help - Making a FOIA Request"></a></h1>
+          <p align="right"><a href="report-makerequest.html#top">Return to Top</a></p>
+          <h2><a id="disclaimer"></a>The FOIA applies to all federal agencies,  which means it does not apply to:</h2>
+            <img src="images/supreme-court.jpg" alt="Judicial Branch" width="140" height="100" style="float:left; margin: 0 30px 0 0;">
+            <p><strong>The Judicial Branch and Federal Courts</strong></p>
+            <p><em>For records and more information on the  Federal Court System, please visit</em> <a href="http://www.uscourts.gov">www.uscourts.gov</a>  </p>
+       	    <div class="clear">&nbsp;</div>
+       	    <br>
+      	    <img src="images/capitol.jpg" alt="Legislative Branch" width="140" height="100" style="float:left; margin: 10px 30px 30px 0;">
+            <p><strong>The Legislative Branch and Congress</strong></p>
+            <p><em>For records and more information on both houses of Congress, please contact your local House Representative or Senator. You may also visit <a href="http://www.house.gov">www.house.gov</a>, <a href="http://www.senate.gov">www.senate.gov</a>, or <a href="http://www.congress.gov">www.congress.gov</a> for additional information on the legislative branch.</em></p>
+		  	<div class="clear">&nbsp;</div>
+   			<img src="images/states.jpg" alt="State Governments and Courts" width="140" height="100" style="float:left; margin: 0 30px 0 0;">
+            <p><strong>State Governments and Courts</strong></p>
+            <p><em>For records and more information on State or local agencies, and courts, please contact those entities directly.</em></p>
+            <div class="clear">&nbsp;</div>
+            <p align="right">Last Updated: 2/2011</p>
+            <p align="right"><a href="report-makerequest.html#top">Return to Top</a></p>
