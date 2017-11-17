@@ -2,5 +2,5 @@
 term: "Search"
 ---
 
-To examine, manually or by automated means, agency records in order to locate the records that are responsive to a request.
+The process of looking for and retrieving records or information responsive to a FOIA request.
 
