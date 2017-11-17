@@ -65,31 +65,6 @@ jobs:
           command: make test
 
 
-  build-cloud-gov:
-    docker:
-      - image: circleci/ruby:2.4.1-node
-        environment:
-          NODE_ENV: production
-          APP_ENV: cloud-gov
-    steps: *build-steps
-
-  deploy-cloud-gov:
-    docker:
-      - image: 18fgsa/cloud-foundry-cli
-        environment:
-          CF_API: https://api.fr.cloud.gov
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Generate htpasswd
-          command: bin/gen_htpasswd.sh _site/.htpasswd
-      - deploy:
-          name: cf push
-          command: cf_deploy.sh foia-dot-gov doj-foia-discovery staging
-
-
   # Build for the Acquia Cloud development environment
   build-development:
     docker:
@@ -153,20 +128,6 @@ workflows:
       - test:
           requires:
             - build-local
-
-      - build-cloud-gov:
-          requires:
-            - deploy-development # Avoid race condition with build dir
-            - test
-          filters:
-            branches:
-              only: develop
-      - deploy-cloud-gov:
-          requires:
-            - build-cloud-gov
-          filters:
-            branches:
-              only: develop
 
       - build-development:
           requires:
