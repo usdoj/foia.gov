@@ -89,7 +89,7 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
         <h3>Review and submit</h3>
         <div className="info-box">
           <p>Please review the information you entered above before submitting to
-          an agency. You should hear from the agency within the coming weeks.  
+          an agency. You should hear from the agency within the coming weeks.
           If you don’t hear from the agency, please reach out
           using the contact information provided to you on this site.</p>
         </div>
