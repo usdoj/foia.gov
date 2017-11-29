@@ -29,3 +29,24 @@ this deed makes no warranties about the work, and disclaims liability for
 all uses of the work, to the fullest extent permitted by applicable law.
 When using or citing the work, you should not imply endorsement by the
 author or the affirmer.
+
+## Parts of this project that are not in the public domain
+### Files licensed under the SIL Open Font License
+The icons in www.foia.gov/img/picons are from [Picons - Vector icons](http://picons.me) and copyright 2009-2017 Morphix Ltd. A special license for Picons icons, used in this project, has been granted and is reproduced below:
+
+**Conditions of use**
+
+You may:
+- Use the included icons as they are, only within the scope of this project
+- Attribute the icons in LICENSE files
+
+You may not:
+- Use the icons in other commercial, non-commercial or private projects not associated with this project
+- Modify the icons
+- Distribute, sell or rent out the icons individually or together with other icons
+
+Notes:
+- The icons and any other accompanying written or electronic materials are provided "as is" without warranty of any kind, expressed or implied. The authors do not warrant that the functions contained in the icons will meet the user's requirements.
+- The authors shall not be liable for any direct, indirect, consequential, or incidental damages (including damages from loss of business profits, business interruption, loss of business information, and the like) arising out of the use of or inability to use the icons.
+- For any questions or concerns regarding the use please contact: info@picons.me
+
