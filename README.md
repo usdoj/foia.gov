@@ -50,7 +50,7 @@ documentation](https://github.com/18F/beta.foia.gov/tree/develop/docs/deployment
 ### Web content
 
 Site content lives in the markdown pages under the [www.foia.gov
-directory](/usdoj/foia.gov/tree/develop/www.foia.gov).
+directory](https://github.com/usdoj/foia.gov/tree/develop/www.foia.gov).
 
 [Glossary terms](/18F/beta.foia.gov/tree/develop/www.foia.gov/_glossary_terms)
 should be edited in markdown, one term per file. The name of the file is not
