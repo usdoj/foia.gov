@@ -31,7 +31,7 @@ When using or citing the work, you should not imply endorsement by the
 author or the affirmer.
 
 ## Parts of this project that are not in the public domain
-### Files licensed under the SIL Open Font License
+### Files licensed under a custom license
 The icons in www.foia.gov/img/picons are from [Picons - Vector icons](http://picons.me) and copyright 2009-2017 Morphix Ltd. A special license for Picons icons, used in this project, has been granted and is reproduced below:
 
 **Conditions of use**
