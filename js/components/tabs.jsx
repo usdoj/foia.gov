@@ -111,7 +111,7 @@ class Tabs extends Component {
             }
             <section className="submission-help_agency-mission">
               <h4>Agency mission</h4>
-              <p>{ AgencyComponent.agencyMission(agencyComponent) }</p>
+              <p>{ domify(AgencyComponent.agencyMission(agencyComponent)) }</p>
             </section>
             <section className="submission-help_contact">
               <h4>Contact</h4>
