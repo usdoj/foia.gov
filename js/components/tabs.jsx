@@ -7,7 +7,7 @@ import FoiaPersonnel from './foia_personnel';
 import FoiaSubmissionAddress from './foia_submission_address';
 import PrettyUrl from './pretty_url';
 import ProgressBar from './progress_bar';
-
+import domify from '../util/request_form/domify';
 
 class Tabs extends Component {
   constructor(props) {
@@ -111,7 +111,7 @@ class Tabs extends Component {
             }
             <section className="submission-help_agency-mission">
               <h4>Agency mission</h4>
-              <p>{ AgencyComponent.agencyMission(agencyComponent) }</p>
+              <p>{ domify(AgencyComponent.agencyMission(agencyComponent)) }</p>
             </section>
             <section className="submission-help_contact">
               <h4>Contact</h4>
