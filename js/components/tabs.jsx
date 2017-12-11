@@ -7,7 +7,7 @@ import FoiaPersonnel from './foia_personnel';
 import FoiaSubmissionAddress from './foia_submission_address';
 import PrettyUrl from './pretty_url';
 import ProgressBar from './progress_bar';
-
+import domify from '../util/request_form/domify';
 
 class Tabs extends Component {
   constructor(props) {
