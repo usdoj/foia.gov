@@ -70,8 +70,7 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
             The submission ID is only for identifying your request on FOIA.gov and
             acts as a receipt to show that you submitted a request using
             FOIA.gov. This number does not replace the information you’ll receive
-            from the agency to track your request. This number can help you resolve
-            issues submitting your request to an agency.  In case there is an issue
+            from the agency to track your request. In case there is an issue
             submitting your request to the agency you selected, you can use this
             number to help.
           </p>
