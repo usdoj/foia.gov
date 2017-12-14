@@ -1,5 +1,5 @@
 ---
-title: "Fee waiver"
+title: "Fees"
 _id: processing_fees
 fieldNames:
 - request_category
