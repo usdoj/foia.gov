@@ -21,7 +21,7 @@ life or physical safety of an individual;” or, (2) if the requester is a
 “person primarily engaged in  disseminating information,” by
 demonstrating that there exists an “urgency to inform the public
 concerning actual or alleged Federal Government activity.”  Agencies may
-also establish additional criteria for granting expedited processing,
+also establish additional standards for granting expedited processing,
 which they describe in their FOIA regulations.  Requesters must
 demonstrate how they meet one of the standards in order to have their
 request processed on an expedited basis.
