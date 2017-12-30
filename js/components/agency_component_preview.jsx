@@ -46,11 +46,11 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
           </div>
         }
 
-        <h4 data-term="agency">FOIA Requester Service Center</h4>
+        <h4><span data-term="foia requester service center" >FOIA Requester Service Center</span></h4>
         <div className="agency-preview_contact-section">
           <FoiaPersonnel foiaPersonnel={agencyComponent.service_centers[0]} />
         </div>
-        <h4>FOIA Public Liaison</h4>
+        <h4><span data-term="foia public liaison" >FOIA Public Liaison</span></h4>
         <div className="agency-preview_contact-section">
           <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
         </div>
