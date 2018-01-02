@@ -112,9 +112,11 @@ class Tabs extends Component {
               <h4>Agency mission</h4>
               <p>{ domify(AgencyComponent.agencyMission(agencyComponent)) }</p>
             </section>
-            <section className="submission-help_contact">        
-              <h4>                
-                <span data-term="foia requester service center" >FOIA Requester Service Center</span>
+            <section className="submission-help_contact">
+              <h4>
+                <span data-term="foia requester service center" >
+                  FOIA Requester Service Center
+                </span>
               </h4>
               <div className="agency-preview_contact-section">
                 <FoiaPersonnel foiaPersonnel={agencyComponent.service_centers[0]} />
