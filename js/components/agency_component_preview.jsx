@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import AgencyComponentProcessingTime from './agency_component_processing_time';
 import FoiaPersonnel from './foia_personnel';
 import FoiaSubmissionAddress from './foia_submission_address';
-import PrettyUrl from './pretty_url';
 import NonInteroperableInfo from './non_interoperable_info';
 import { AgencyComponent } from '../models';
 import domify from '../util/request_form/domify';
@@ -46,7 +45,9 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
           </div>
         }
 
-        <h4><span data-term="foia requester service center" >FOIA Requester Service Center</span></h4>
+        <h4>
+          <span data-term="foia requester service center" >FOIA Requester Service Center</span>
+        </h4>
         <div className="agency-preview_contact-section">
           <FoiaPersonnel foiaPersonnel={agencyComponent.service_centers[0]} />
         </div>
