@@ -113,13 +113,19 @@ class Tabs extends Component {
               <h4>Agency mission</h4>
               <p>{ domify(AgencyComponent.agencyMission(agencyComponent)) }</p>
             </section>
-            <section className="submission-help_contact">
-              <h4>Contact</h4>
-              <p className="agency-info_website">
-                <PrettyUrl href={agencyComponent.website.uri} />
-              </p>
-              <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
-              <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
+            <section className="submission-help_contact">        
+              <h4><span data-term="foia requester service center" >FOIA Requester Service Center</span></h4>
+              <div className="agency-preview_contact-section">
+                <FoiaPersonnel foiaPersonnel={agencyComponent.service_centers[0]} />
+              </div>
+              <h4><span data-term="foia public liaison" >FOIA Public Liaison</span></h4>
+              <div className="agency-preview_contact-section">
+                <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
+              </div>
+              <div className="agency-preview_contact-section">
+                <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
+                <p className="agency-info_email">{agencyComponent.submission_email} </p>
+              </div>             
             </section>
           </section>
         </div>
