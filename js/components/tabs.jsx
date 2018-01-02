@@ -5,7 +5,6 @@ import { AgencyComponent } from '../models';
 import AgencyComponentProcessingTime from './agency_component_processing_time';
 import FoiaPersonnel from './foia_personnel';
 import FoiaSubmissionAddress from './foia_submission_address';
-import PrettyUrl from './pretty_url';
 import ProgressBar from './progress_bar';
 import domify from '../util/request_form/domify';
 
@@ -114,7 +113,9 @@ class Tabs extends Component {
               <p>{ domify(AgencyComponent.agencyMission(agencyComponent)) }</p>
             </section>
             <section className="submission-help_contact">        
-              <h4>                <span data-term="foia requester service center" >FOIA Requester Service Center</span>              </h4>
+              <h4>                
+                <span data-term="foia requester service center" >FOIA Requester Service Center</span>
+              </h4>
               <div className="agency-preview_contact-section">
                 <FoiaPersonnel foiaPersonnel={agencyComponent.service_centers[0]} />
               </div>
@@ -125,7 +126,7 @@ class Tabs extends Component {
               <div className="agency-preview_contact-section">
                 <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
                 <p className="agency-info_email">{agencyComponent.submission_email} </p>
-              </div>             
+              </div>
             </section>
           </section>
         </div>
