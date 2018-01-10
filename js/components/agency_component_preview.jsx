@@ -7,12 +7,17 @@ import FoiaSubmissionAddress from './foia_submission_address';
 import NonInteroperableInfo from './non_interoperable_info';
 import { AgencyComponent } from '../models';
 import domify from '../util/request_form/domify';
+import foiaPersonnel from '../util/foia_personnel';
 
 
 function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized }) {
   const description = AgencyComponent.agencyMission(agencyComponent);
   const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
   const onSelect = () => onAgencySelect(agencyComponent.agency);
+
+  // Grab contacts
+  const serviceCenterFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'service_centers')[0];
+  const publicLiaisonFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'public_liaisons')[0];
 
   return (
     <div className="agency-preview usa-grid-full">
@@ -53,11 +58,18 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         </div>
         <h4><span data-term="foia public liaison" >FOIA Public Liaison</span></h4>
         <div className="agency-preview_contact-section">
-          <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
+          <FoiaPersonnel foiaPersonnel={serviceCenterFoiaPersonnel} />
+        </div>
+        <div className="agency-preview_contact-section">
+          <FoiaPersonnel foiaPersonnel={publicLiaisonFoiaPersonnel} />
         </div>
         <div className="agency-preview_contact-section">
           <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
-          <p className="agency-info_email">{agencyComponent.submission_email} </p>
+          { agencyComponent.email &&
+            <p className="agency-info_email">
+              <a href={`mailto:${agencyComponent.email}`}>{ agencyComponent.email }</a>
+            </p>
+          }
         </div>
 
       </div>
