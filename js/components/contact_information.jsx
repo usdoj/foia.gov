@@ -7,11 +7,15 @@ import foiaPersonnel from '../util/foia_personnel';
 
 function ContactInformation({ agencyComponent }) {
   // Grab contacts
+  const foiaOfficerFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'foia_officers')[0];
   const serviceCenterFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'service_centers')[0];
   const publicLiaisonFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'public_liaisons')[0];
 
   return (
     <div className="contact-information">
+      <div className="contact-information_section">
+        <FoiaPersonnel foiaPersonnel={foiaOfficerFoiaPersonnel} />
+      </div>
       <div className="contact-information_section">
         <FoiaPersonnel foiaPersonnel={serviceCenterFoiaPersonnel} />
       </div>
