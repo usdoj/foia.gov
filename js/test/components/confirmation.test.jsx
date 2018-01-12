@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import { Map } from 'immutable';
 
 import Confirmation from 'components/confirmation';
-import FoiaPersonnel from 'components/foia_personnel';
+import ContactInformation from 'components/contact_information';
 import { AgencyComponent, SubmissionResult } from 'models';
 
 
@@ -23,10 +23,8 @@ describe('Confirmation', () => {
     let element;
     let agencyComponent;
     let foiaOfficer;
-    let foiaServiceCenterPhone;
 
     beforeEach(() => {
-      foiaServiceCenterPhone = '555-5555';
       foiaOfficer = {
         name: 'George',
         title: 'Captain',
@@ -40,9 +38,6 @@ describe('Confirmation', () => {
         email: 'example@oip.usdoj.gov',
         foia_officers: [
           foiaOfficer,
-        ],
-        service_centers: [
-          { phone: [foiaServiceCenterPhone] },
         ],
       });
       element = shallow(
@@ -58,21 +53,8 @@ describe('Confirmation', () => {
       expect(element.find('.confirmation_contact').text()).to.contain('Your FOIA request has been created');
     });
 
-    it('includes all foia personnel', () => {
-      expect(agencyComponent.foiaPersonnel()).to.have.length(2);
-      expect(element.find('.confirmation_agency-contact-personnel')).to.have.length(2);
-      expect(element.find(FoiaPersonnel)).to.have.length(2);
-    });
-
-    it('includes foia officer info', () => {
-      expect(element.find(FoiaPersonnel).get(0).props.foiaPersonnel).to.deep.equal(foiaOfficer);
-    });
-
-    it('includes service center info', () => {
-      expect(element.find(FoiaPersonnel).get(1).props.foiaPersonnel).to.deep.equal({
-        title: 'FOIA Service Center',
-        phone: [foiaServiceCenterPhone],
-      });
+    it('includes contact information', () => {
+      expect(element.find(ContactInformation)).to.have.length(1);
     });
   });
 });
