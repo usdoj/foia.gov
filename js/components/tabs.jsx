@@ -63,7 +63,7 @@ class Tabs extends Component {
           { this.renderTabControls() }
         </ul>
         <div className="sidebar_tabs">
-          <section className={this.state.selectedTab === 0 ? 'tab_active' : ''}>
+          <section className={this.state.selectedTab === 0 ? 'tab_active panel_dark-color' : 'panel_dark-color'}>
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
             <section>
@@ -98,7 +98,7 @@ class Tabs extends Component {
               </ul>
             </section>
           </section>
-          <section className={this.state.selectedTab === 1 ? 'tab_active panel_reverse-color' : 'panel_reverse-color'}>
+          <section className={this.state.selectedTab === 1 ? 'tab_active panel_light-color' : 'panel_light-color'}>
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
             { agencyComponent.request_data_year &&

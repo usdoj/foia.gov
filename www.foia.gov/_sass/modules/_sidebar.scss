@@ -41,28 +41,12 @@ $hide-tabs-width: 768px;
     display: block;
   }
   > section:first-child {
-    @extend .use-light-icons;
-    background-color: $color-primary-darkest;
     section {
       border-top: 1px solid $color-primary-alt-light;
-    }
-
-    h1,
-    h2,
-    h3,
-    p,
-    a {
-      color: $color-white;
-    }
-
-    h4 {
-      color: $color-primary-alt-light;
     }
   }
 
   > section:last-child {
-    @extend .use-dark-icons;
-    background-color: $color-primary-alt-light;
     section {
       border-top: 1px solid $color-primary-darkest;
     }
@@ -77,12 +61,8 @@ $hide-tabs-width: 768px;
   }
 }
 
-.submission-help_tips {
-  color:  $color-white;
-
-  p {
-    padding-left: $space-4x;
-  }
+.submission-help_tips p {
+  padding-left: $space-4x;
 }
 
 .sidebar_content-inner {
@@ -97,4 +77,10 @@ $hide-tabs-width: 768px;
   @media screen and (max-width: $hide-tabs-width) {
     margin: auto;
   }
+}
+
+.sidebar_progress-bar > li > a {
+  // Override and hide the underline for progress bar wayfinding links.
+  // Fallback to panel behavior for hover.
+  border-bottom: none;
 }
