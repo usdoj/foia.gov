@@ -43,7 +43,7 @@
     @include has-icon($icon-pencil-light);
   }
   [data-term]:after {
-    @include has-icon($icon-glossary-light);
+    background-image: url($icon-glossary-light);
   }
 }
 

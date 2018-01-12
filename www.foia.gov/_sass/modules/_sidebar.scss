@@ -77,8 +77,12 @@ $hide-tabs-width: 768px;
   }
 }
 
-.submission-help_tips p {
-  padding-left: $space-4x;
+.submission-help_tips {
+  color:  $color-white;
+
+  p {
+    padding-left: $space-4x;
+  }
 }
 
 .sidebar_content-inner {
