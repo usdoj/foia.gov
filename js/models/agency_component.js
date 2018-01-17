@@ -1,4 +1,6 @@
 import { List, Map, Record } from 'immutable';
+import foiaPersonnel from '../util/foia_personnel';
+
 
 const defaults = {
   abbreviation: null,
@@ -58,18 +60,12 @@ class AgencyComponent extends Record(defaults) {
 
   // Returns a list of all FOIA personnel
   foiaPersonnel() {
-    function personnel(persons, title) {
-      // Set a default title if none exists
-      return (persons || [])
-        .map(person => Object.assign({}, person, { title: person.title || title }));
-    }
-
     // List of all FOIA personnel in preferred order
     return [].concat(
-      personnel(this.foia_officers, 'FOIA Officer'),
-      personnel(this.field_misc, null),
-      personnel(this.service_centers, 'FOIA Service Center'),
-      personnel(this.public_liaisons, 'Public Liaison'),
+      foiaPersonnel.personnel(this, 'foia_officers'),
+      foiaPersonnel.personnel(this, 'field_misc'),
+      foiaPersonnel.personnel(this, 'service_centers'),
+      foiaPersonnel.personnel(this, 'public_liaisons'),
     );
   }
 

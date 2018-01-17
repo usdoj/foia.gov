@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 import { AgencyComponent } from '../models';
 import AgencyComponentProcessingTime from './agency_component_processing_time';
-import FoiaPersonnel from './foia_personnel';
-import FoiaSubmissionAddress from './foia_submission_address';
+import ContactInformation from './contact_information';
 import ProgressBar from './progress_bar';
 import domify from '../util/request_form/domify';
 
@@ -57,7 +56,6 @@ class Tabs extends Component {
   render() {
     const agencyComponent = this.props.agencyComponent.toJS();
     const requestForm = this.props.requestForm;
-    const personnel = this.props.agencyComponent.foiaPersonnel();
 
     return (
       <aside className="sidebar print-hide">
@@ -65,7 +63,7 @@ class Tabs extends Component {
           { this.renderTabControls() }
         </ul>
         <div className="sidebar_tabs">
-          <section className={this.state.selectedTab === 0 ? 'tab_active' : ''}>
+          <section className={this.state.selectedTab === 0 ? 'tab_active panel_dark-color' : 'panel_dark-color'}>
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
             <section>
@@ -76,7 +74,7 @@ class Tabs extends Component {
               <ul className="submission-help_tips">
                 <li>
                   <h4>The person to reach out to about your FOIA request is:</h4>
-                  <FoiaPersonnel foiaPersonnel={personnel[0]} />
+                  <ContactInformation agencyComponent={agencyComponent} />
                   <p>
                     You can ask FOIA personnel about anything related to your
                     request, including if what you’re asking for is clear.
@@ -100,7 +98,7 @@ class Tabs extends Component {
               </ul>
             </section>
           </section>
-          <section className={this.state.selectedTab === 1 ? 'tab_active panel_reverse-color' : 'panel_reverse-color'}>
+          <section className={this.state.selectedTab === 1 ? 'tab_active panel_light-color' : 'panel_light-color'}>
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
             { agencyComponent.request_data_year &&
@@ -113,22 +111,8 @@ class Tabs extends Component {
               <p>{ domify(AgencyComponent.agencyMission(agencyComponent)) }</p>
             </section>
             <section className="submission-help_contact">
-              <h4>
-                <span data-term="foia requester service center" >
-                  FOIA Requester Service Center
-                </span>
-              </h4>
-              <div className="agency-preview_contact-section">
-                <FoiaPersonnel foiaPersonnel={agencyComponent.service_centers[0]} />
-              </div>
-              <h4><span data-term="foia public liaison" >FOIA Public Liaison</span></h4>
-              <div className="agency-preview_contact-section">
-                <FoiaPersonnel foiaPersonnel={agencyComponent.public_liaisons[0]} />
-              </div>
-              <div className="agency-preview_contact-section">
-                <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
-                <p className="agency-info_email">{agencyComponent.submission_email} </p>
-              </div>
+              <h4>Contact</h4>
+              <ContactInformation agencyComponent={agencyComponent} />
             </section>
           </section>
         </div>

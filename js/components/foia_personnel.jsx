@@ -1,12 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Titles that are considered glossary terms and should be highlighted as such.
+const titleGlossaryTerms = [
+  'FOIA Requester Service Center',
+  'FOIA Public Liaison',
+];
+
+function titleIsGlossaryTerm(title) {
+  return titleGlossaryTerms.includes(title);
+}
+
 function displayName(foiaPersonnel) {
-  if (foiaPersonnel.name && foiaPersonnel.title) {
-    return `${foiaPersonnel.name}, ${foiaPersonnel.title}`;
+  const name = foiaPersonnel.name;
+  let title = foiaPersonnel.title;
+
+  if (titleIsGlossaryTerm(title)) {
+    // Highlight the title as a glossary term
+    title = <span data-term={title.toLowerCase()}>{title}</span>;
   }
 
-  return foiaPersonnel.name || foiaPersonnel.title;
+  if (name && title) {
+    return (
+      <span>
+        {name}, {title}
+      </span>
+    );
+  }
+
+  return name || title;
 }
 
 function FoiaPersonnel({ foiaPersonnel }) {

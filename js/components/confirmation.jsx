@@ -4,7 +4,7 @@ import { Map } from 'immutable';
 
 import { AgencyComponent, SubmissionResult } from '../models';
 import RequestSummary from './request_summary';
-import FoiaPersonnel from './foia_personnel';
+import ContactInformation from './contact_information';
 
 
 function Confirmation({ agencyComponent, formData, requestForm, submissionResult }) {
@@ -45,17 +45,7 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
         </p>
         <div className="confirmation_agency-contact">
           <h5 tabIndex="-1">Contact the agency</h5>
-          {
-            agencyComponent.foiaPersonnel()
-              .map(personnel => (
-                <div
-                  key={`${personnel.name}-${personnel.title}`}
-                  className="confirmation_agency-contact-personnel"
-                >
-                  <FoiaPersonnel foiaPersonnel={personnel} />
-                </div>
-              ))
-          }
+          <ContactInformation agencyComponent={agencyComponent} />
         </div>
       </section>
 

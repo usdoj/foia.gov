@@ -1,7 +1,7 @@
 $section-padding-bottom: $space-1x * 11;
 
 .agency-component-search {
-  @extend .panel_reverse-color;
+  @extend .panel_light-color;
   border-top: $space-2x solid $color-primary-alt;
   padding-top: $space-5x;
   padding-bottom: $section-padding-bottom;

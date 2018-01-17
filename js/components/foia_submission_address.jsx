@@ -10,11 +10,11 @@ function FoiaSubmissionAddress({ submissionAddress }) {
     locality, // city
     administrative_area, // state
     postal_code,
-  } = submissionAddress;
+  } = submissionAddress || {};
 
   // Address line seems to have been parsed wrong, it seems to be: name,
   // title, department, suite. And then address_line2 is actually line1.
-  const [name, title, department, suite] = address_line1.split(',', 4);
+  const [name, title, department, suite] = (address_line1 || '').split(',', 4);
 
   return (
     <address className="agency-info_mailing-address">
