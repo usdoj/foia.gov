@@ -45,17 +45,19 @@ class AgencyComponentStore extends Store {
           receivedAgencyComponents
             .map(agencyComponent => agencyComponent.agency)
             .forEach((agency) => {
-              mutableAgencies.update(
-                agency.id,
-                new Agency(), // not set value
-                (existingAgency) => {
-                  const { component_count } = existingAgency;
-                  return existingAgency.merge(
-                    new Agency(agency),
-                    { component_count: component_count + 1 },
-                  );
-                },
-              );
+              if (agency) {
+                mutableAgencies.update(
+                  agency.id,
+                  new Agency(), // not set value
+                  (existingAgency) => {
+                    const { component_count } = existingAgency;
+                    return existingAgency.merge(
+                      new Agency(agency),
+                      { component_count: component_count + 1 },
+                    );
+                  },
+                );
+              }
             });
         });
 
