@@ -1,4 +1,7 @@
-.request-summary_label {
-  vertical-align: top;
-  width: 20rem; // Limit column width
+.request-summary_file-field {
+  padding-left: $space-4x;
+
+  &:before {
+    @include has-icon($icon-file-attachment);
+  }
 }

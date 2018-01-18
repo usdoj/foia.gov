@@ -65,31 +65,6 @@ jobs:
           command: make test
 
 
-  build-cloud-gov:
-    docker:
-      - image: circleci/ruby:2.4.1-node
-        environment:
-          NODE_ENV: production
-          APP_ENV: cloud-gov
-    steps: *build-steps
-
-  deploy-cloud-gov:
-    docker:
-      - image: 18fgsa/cloud-foundry-cli
-        environment:
-          CF_API: https://api.fr.cloud.gov
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run:
-          name: Generate htpasswd
-          command: bin/gen_htpasswd.sh _site/.htpasswd
-      - deploy:
-          name: cf push
-          command: cf_deploy.sh foia-dot-gov doj-foia-discovery staging
-
-
   # Build for the Acquia Cloud development environment
   build-development:
     docker:
@@ -126,6 +101,24 @@ jobs:
           APP_ENV: staging
     steps: *acquia-cloud-deploy-steps
 
+  # Build for the Acquia Cloud production environment
+  build-production:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: production
+          APP_ENV: production
+    steps: *build-steps
+
+  # Deploy job for the Acquia Cloud production environment
+  deploy-production:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: production
+          APP_ENV: production
+    steps: *acquia-cloud-deploy-steps
+
 
 workflows:
   version: 2
@@ -136,32 +129,18 @@ workflows:
           requires:
             - build-local
 
-      - build-cloud-gov:
-          requires:
-            - deploy-development # Avoid race condition with build dir
-            - test
-          filters:
-            branches:
-              only: master
-      - deploy-cloud-gov:
-          requires:
-            - build-cloud-gov
-          filters:
-            branches:
-              only: master
-
       - build-development:
           requires:
             - test
           filters:
             branches:
-              only: master
+              only: develop
       - deploy-development:
           requires:
             - build-development
           filters:
             branches:
-              only: master
+              only: develop
 
       - build-staging:
           requires:
@@ -175,3 +154,16 @@ workflows:
           filters:
             branches:
               only: /release-.*/
+
+      - build-production:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - deploy-production:
+          requires:
+            - build-production
+          filters:
+            branches:
+              only: master

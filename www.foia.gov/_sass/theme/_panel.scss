@@ -1,0 +1,59 @@
+// Panels with a our light alt color background
+.panel_light-color {
+  @extend .use-dark-icons;
+  background-color: $color-primary-alt-light;
+  a,
+  div > span[role='button'] {
+    font-weight: $font-normal;
+    color: $color-primary-darkest;
+    &:hover,
+    &:active,
+    &:visited:hover,
+    &:visited:active {
+      color: $color-primary-darkest;
+      border-bottom: 1px solid $color-primary-darkest;
+    }
+    &.usa-button {
+      border-bottom-color: $color-primary-darkest;
+      color: $color-white;
+      &:hover,
+      &:active,
+      &:visited {
+        color: $color-white;
+      }
+    }
+  }
+  a {
+    border-bottom: 1px solid $color-primary-darkest;
+  }
+  .usa-button .usa-button-outline {
+    color: $color-white;
+  }
+}
+
+// Panels with a dark background and white text.
+.panel_dark-color {
+  @extend .use-light-icons;
+  background-color: $color-primary-darkest;
+  color: $color-white;
+
+  h1,
+  h2,
+  h3,
+  p {
+    color: $color-white;
+  }
+
+  h4 {
+    color: $color-primary-alt-light;
+  }
+
+  a,
+  a:hover,
+  a:active,
+  a:visited:hover,
+  a:visited:active {
+    color: $color-white;
+    border-bottom: 1px solid $color-white;
+  }
+}

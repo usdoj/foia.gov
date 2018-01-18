@@ -1,0 +1,68 @@
+.use-dark-icons {
+  .agency-info_processing-time h4 + p:before {
+      @include has-icon($icon-clock);
+  }
+  .agency-info_personnel:before {
+    @include has-icon($icon-person);
+  }
+  .agency-info_phone:before {
+    @include has-icon($icon-phone);
+  }
+  .agency-info_email:before {
+    @include has-icon($icon-email);
+  }
+  .agency-info_website:before {
+    @include has-icon($icon-laptop);
+  }
+  .agency-info_reading-rooms h4 + p:before {
+    @include has-icon($icon-book, $height: $space-4x);
+  }
+}
+
+.use-light-icons {
+  .agency-info_processing-time h4 + p:before {
+      @include has-icon($icon-clock-light);
+  }
+  .agency-info_personnel:before {
+    @include has-icon($icon-person-light);
+  }
+  .agency-info_phone:before {
+    @include has-icon($icon-phone-light);
+  }
+  .agency-info_email:before {
+    @include has-icon($icon-email-light);
+  }
+  .agency-info_website:before {
+    @include has-icon($icon-laptop-light);
+  }
+  .agency-info_reading-rooms h4 + p:before,
+  .submission-help_research:before {
+    @include has-icon($icon-book-light, $height: $space-4x);
+  }
+  .submission-help_description:before {
+    @include has-icon($icon-pencil-light);
+  }
+  [data-term]:after {
+    background-image: url($icon-glossary-light);
+  }
+}
+
+// no icon for address
+.agency-info_mailing-address,
+.agency-info_processing-time,
+.agency-info_reading-rooms,
+.agency-info_personnel,
+.agency-info_phone,
+.agency-info_email,
+.agency-info_website,
+.submission-help_research {
+  padding-left: $space-4x;
+}
+
+.agency-info_processing-time,
+.agency-info_reading-rooms {
+  h4 {
+    margin-left: $space-4x * -1;
+  }
+}
+

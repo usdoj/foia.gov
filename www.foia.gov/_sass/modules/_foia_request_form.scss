@@ -1,43 +1,65 @@
-// TODO Temporary foia-legacy overrides
 .foia-request-form {
   label,
   legend {
     display: block !important;
   }
-
   label {
+    font-weight: $font-semibold;
     font-size: inherit !important;
     margin-bottom: $space-1x!important;
-  }
-}
-
-.foia-request-form {
-  margin-top: 3rem;
-  label {
-    font-weight: bold;
     color: $color-primary-darkest;
   }
   input {
-    border-color: $color-gray;
-    font-weight: bold;
     color: $color-primary-darkest;
   }
 }
 
 .foia-request-form_inline-progress {
-  color: $color-gray-light;
-  font-size: 1.4rem;
-  font-weight: 700;
+  color: $color-gray;
+  font-size: $base-font-size;
+  margin-bottom: $space-1x;
 }
 
 .foia-request-form_nav-top {
-  max-width: 46rem; // Align with input elements
+  max-width: $form-max-width; // Align with input elements
   text-align: right;
+  margin-top: $space-3x;
+  margin-bottom: $space-2x;
 
+  a {
+    @extend .usa-button;
+    @extend .usa-button-outline;
+    position: relative;
+    overflow: hidden;
+    padding-right: $space-4x!important;
+    &:after {
+      position: absolute;
+      right: 1.4rem;
+      height: 1.8rem;
+      width: 1rem;
+      content: "";
+      background-image: url($icon-arrow-thin);
+      background-repeat: no-repeat;
+      background-position: center right;
+      -webkit-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+    }
+    &:visited {
+      color: $color-primary-darkest;
+    }
+  }
   // Total hack, if we're following a field-object it is probably a section.
   // Each section already has it's own return to top link, so this is probably
   // a duplicate link at the very bottom of the form.
   .field-object + & {
     display: none;
   }
+}
+
+.foia-request-form_is-required {
+  float: right;
+  font-weight: $font-normal;
+  font-size: $small-font-size;
+  font-style: italic;
+  color: $color-gray;
 }

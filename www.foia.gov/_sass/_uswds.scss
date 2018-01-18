@@ -10,12 +10,14 @@ $base-font-size: 1.7rem;
 $small-font-size: 1.5rem;
 
 // Colors in use (USWDS defaults in use are included as comments for reference):
-// $color-primary: #0071bc;
 // $color-primary-darker: #205493;
 // $color-gray-light: #AEB0B5;
+// $color-primary: #0071bc;
 $color-primary-alt: #5EAFF8;
+$color-primary: $color-primary-alt;
 $color-primary-alt-light: #92C8F6;
 $color-primary-alt-lightest: #DEF0FF;
+$color-primary-alt-darker: #306092;
 $color-primary-darkest: #122E51;
 $color-gray-dark: #212121; // same as USWDS $color-base
 $color-gray: #5B616A;
@@ -23,11 +25,9 @@ $color-gray-lightest: #F8F8F8;
 $color-focus: $color-primary-alt-light;
 
 // Mobile First breakpoints
- $small-screen: 481px;
- $medium-screen: 600px;
- $large-screen: 1201px;
-
-$nav-width: 800px;
+$small-screen: 481px;
+$medium-screen: 600px;
+$large-screen: 1201px;
 
 // Relative font and image file paths
 $font-path:   '/assets/fonts' !default;
@@ -37,7 +37,7 @@ $image-path:  '/assets/img' !default;
  * New variable declarations
  * ********************************/
 // alternative heading styles
-$h3-font-size-sans: 2.5rem;
+$h3-font-size-sans: 2.2rem;
 $h1-font-size-mobile: 3.2rem;
 $h2-font-size-mobile: 2.7rem;
 $h3-font-size-mobile: 2rem;
@@ -52,5 +52,37 @@ $space-5x: 4.0rem;
 
 // WDS's breakpoints just aren't flexible enough
 $medium-large-screen: 800px;
+$nav-width: 800px;
+
+// WDS doesn't ship with semibold source sans pro
+$font-semibold: 500;
+
+$form-max-width: 46rem;
+
+// Icons
+$icon-arrow-thick: '/img/icon-arrow-thick.svg';
+$icon-arrow-thin: '/img/icon-arrow-thin.svg';
+$icon-book: '/img/picons/icon-book.svg';
+$icon-caret: '/img/icon-caret.svg';
+$icon-clock: '/img/picons/icon-clock.svg';
+$icon-email: '/img/picons/icon-email.svg';
+$icon-external-link: '/img/icon-external-link.svg';
+$icon-file-attachment: '/img/picons/icon-file-attachment.svg';
+$icon-glossary: '/img/icon-glossary.svg';
+$icon-laptop: '/img/picons/icon-laptop.svg';
+$icon-pencil: '/img/picons/icon-pencil.svg';
+$icon-person: '/img/picons/icon-person.svg';
+$icon-phone: '/img/picons/icon-phone.svg';
+$icon-print: '/img/picons/icon-print.svg';
+$icon-spyglass: '/img/picons/icon-spyglass.svg';
+
+$icon-book-light: '/img/picons/icon-book-light.svg';
+$icon-clock-light: '/img/picons/icon-clock-light.svg';
+$icon-email-light: '/img/picons/icon-email-light.svg';
+$icon-glossary-light: '/img/icon-glossary-light.svg';
+$icon-laptop-light: '/img/picons/icon-laptop-light.svg';
+$icon-pencil-light: '/img/picons/icon-pencil-light.svg';
+$icon-person-light: '/img/picons/icon-person-light.svg';
+$icon-phone-light: '/img/picons/icon-phone-light.svg';
 
 @import '../../node_modules/uswds/src/stylesheets/uswds';

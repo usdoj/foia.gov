@@ -1,3 +1,6 @@
+import domify from './domify';
+
+
 /**
  * Converts a metadata field's type to a JSON Schema type.
  */
@@ -34,6 +37,10 @@ function toJsonSchemaProperty(webformField) {
     type,
   };
 
+  if (webformField.default_value) {
+    property.default = webformField.default_value;
+  }
+
   // If options is present, translate them to enums
   if (webformField.options && typeof webformField.options === 'object') {
     property.enum = [];
@@ -55,11 +62,11 @@ function toJsonSchemaProperty(webformField) {
 function toUiSchemaProperty(webformField) {
   const uiSchemaProperty = {
     'ui:title': webformField.title,
-    'ui:description': webformField.description,
+    'ui:description': webformField.help && domify(webformField.help),
   };
 
-  if (webformField.default_value) {
-    uiSchemaProperty['ui:placeholder'] = `${webformField.default_value}`; // Coerce to string
+  if (webformField.placeholder) {
+    uiSchemaProperty['ui:placeholder'] = `${webformField.placeholder}`; // Coerce to string
   }
 
   // Map metadata field type to ui:widget or ui:options

@@ -1,3 +1,10 @@
+$hide-tabs-width: 768px;
+
+.sidebar {
+  @media screen and (max-width: $medium-screen) {
+    display: none;
+  }
+}
 .sidebar_tab-controls {
   display: flex;
   li {
@@ -5,9 +12,6 @@
     cursor: pointer;
     a {
       color: $color-primary-darkest;
-    }
-    &.tab_active {
-      font-weight: bold;
     }
     &:first-child {
       background-color: $color-primary-darkest;
@@ -27,35 +31,22 @@
 .sidebar_tabs {
   > section {
     display: none;
-    h5 {
+    h4 {
       font-weight: bold;
+      font-size: $h5-font-size;
+      font-family: $font-sans;
     }
   }
   .tab_active {
     display: block;
   }
   > section:first-child {
-    background-color: $color-primary-darkest;
     section {
       border-top: 1px solid $color-primary-alt-light;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    p,
-    a {
-      color: $color-white;
-    }
-
-    h5 {
-      color: $color-primary-alt-light;
     }
   }
 
   > section:last-child {
-    background-color: $color-primary-alt-light;
     section {
       border-top: 1px solid $color-primary-darkest;
     }
@@ -68,4 +59,28 @@
   h3 {
     font-size: $h5-font-size;
   }
+}
+
+.submission-help_tips p {
+  padding-left: $space-4x;
+}
+
+.sidebar_content-inner {
+  margin-top: $space-4x;
+  max-width: $form-max-width;
+
+  @media screen and (max-width: $medium-screen) {
+    margin: auto;
+    padding-left: $space-2x;
+    padding-right: $space-2x;
+  }
+  @media screen and (max-width: $hide-tabs-width) {
+    margin: auto;
+  }
+}
+
+.sidebar_progress-bar > li > a {
+  // Override and hide the underline for progress bar wayfinding links.
+  // Fallback to panel behavior for hover.
+  border-bottom: none;
 }

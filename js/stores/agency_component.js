@@ -13,6 +13,7 @@ class AgencyComponentStore extends Store {
     this.state = {
       agencies: new Map(),
       agencyComponents: new List(),
+      agencyFinderDataComplete: false,
     };
   }
 
@@ -20,11 +21,19 @@ class AgencyComponentStore extends Store {
     return this.state;
   }
 
+  getAgency(agencyId) {
+    return this.state.agencies.get(agencyId, null);
+  }
+
   getAgencyComponent(agencyComponentId) {
     return this.state.agencyComponents
       .find(agencyComponent => agencyComponent.id === agencyComponentId);
   }
 
+  getAgencyComponentsForAgency(agencyId) {
+    return this.state.agencyComponents
+      .filter(agencyComponent => agencyComponent.agency.id === agencyId);
+  }
 
   __onDispatch(payload) {
     switch (payload.type) {
@@ -32,28 +41,37 @@ class AgencyComponentStore extends Store {
         const { agencyComponents: receivedAgencyComponents } = payload;
         const { agencies, agencyComponents } = this.state;
 
-        // Pull out agencies, keyed by it's abbreviation
-        const receivedAgencies = receivedAgencyComponents
-          .map(agencyComponent => agencyComponent.agency)
-          .reduce((memo, agency) => {
-            if (agency.abbreviation in memo) {
-              return memo;
-            }
-
-            // We add a type (in the model) so we can distinguish them from
-            // agency_components.  It's a shame because this info is included
-            // in the original jsonapi response, but the parser looses it.
-            // https://github.com/mysidewalk/jsonapi-parse/issues/2
-            return Object.assign(memo, { [agency.abbreviation]: new Agency(agency) });
-          }, {});
+        const updatedAgencies = agencies.withMutations((mutableAgencies) => {
+          receivedAgencyComponents
+            .map(agencyComponent => agencyComponent.agency)
+            .forEach((agency) => {
+              mutableAgencies.update(
+                agency.id,
+                new Agency(), // not set value
+                (existingAgency) => {
+                  const { component_count } = existingAgency;
+                  return existingAgency.merge(
+                    new Agency(agency),
+                    { component_count: component_count + 1 },
+                  );
+                },
+              );
+            });
+        });
 
         // Merge state
         Object.assign(this.state, {
-          agencies: agencies.merge(receivedAgencies),
+          agencies: updatedAgencies,
           agencyComponents: agencyComponents.concat(
             receivedAgencyComponents.map(agencyComponent => new AgencyComponent(agencyComponent)),
           ),
         });
+        this.__emitChange();
+        break;
+      }
+
+      case types.AGENCY_FINDER_DATA_COMPLETE: {
+        this.state.agencyFinderDataComplete = true;
         this.__emitChange();
         break;
       }

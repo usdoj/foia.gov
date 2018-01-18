@@ -20,7 +20,7 @@ function ProgressBar({ sections }) {
       }
       <li key="submit">
         <a href="#foia-request-form_submit">
-          <span>Submit</span>
+          <span>Review and submit</span>
         </a>
       </li>
     </ul>

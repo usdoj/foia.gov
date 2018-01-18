@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000600" end="00:00:04.277">When an agency locates a record as the result of a FOIA request,   </p>
+<p begin="00:00:04.277" end="00:00:07.506">that contains information of interest to another agency,   </p>
+<p begin="00:00:07.506" end="00:00:11.604">the other agency must review the record before it can be released.   </p>
+<p begin="00:00:11.604" end="00:00:17.983">This process where an agency sends a record to another agency for review is called a consultation.   </p>
+<p begin="00:00:17.983" end="00:00:22.540">Consultations are tracked in the same way that requests are on FOIA.Gov.   </p>
+<p begin="00:00:22.540" end="00:00:26.105">When running a report on consultations, you can see how many consultations   </p>
+<p begin="00:00:26.105" end="00:00:30.081">are currently in the backlog at an agency at the beginning of the fiscal year,   </p>
+<p begin="00:00:30.081" end="00:00:36.400">how many are received, how many are re-processed, and how many are pending at the end of the fiscal year.   </p>
+<p begin="00:00:36.400" end="00:00:37.500">    </p>
+<p begin="00:00:37.500" end="00:00:38.241">    </p>
+</div>
+</body>
+</tt>
+

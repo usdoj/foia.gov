@@ -1,0 +1,7 @@
+---
+---
+[
+  {%- for term in site.glossary_terms -%}
+  {"term":{{ term.term | jsonify }},"definition":{{ term.output | jsonify }}}{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}
+]

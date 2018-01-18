@@ -62,7 +62,6 @@ a.viewmore {font-weight: bold; text-transform:uppercase; font-style: normal; fon
 
 #mainbackground {margin: 0; padding: 0;}
 #main {background: #fff;}
-#content h2 {font-size: 18px; font-weight: bold; margin: 20px 0 25px 0;}
 #content h2 img {margin: 0 0 0 30px;}
 #content h2 span {display: none;}
 
@@ -311,19 +310,19 @@ ul.tabs li a.active {background: url(images/hrtab-on.gif) 0 0 no-repeat; text-de
 .aboutButton:hover {background: url(images/learn-foia-hover.png) 0 0 no-repeat;}
 .dataButton  {background: url(images/explore-foia.png) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 0; padding: 0;}
 .dataButton:hover {background: url(images/explore-foia-hover.png) 0 0 no-repeat;}
-.learnButton {background: url(https://www.foia.gov/images/learn-more.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
-.learnButton:hover {background: url(https://www.foia.gov/images/learn-more-hover.gif) 0 0 no-repeat;}
-.searchButton {background: url(https://www.foia.gov/images/find.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
-.searchButton:hover {background: url(https://www.foia.gov/images/find-hover.gif) 0 0 no-repeat;}
-.contactButton {background: url(https://www.foia.gov/images/foia-contacts.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
-.contactButton:hover {background: url(https://www.foia.gov/images/foia-contacts-hover.gif) 0 0 no-repeat;}
-.exploremoreButton {background: url(https://www.foia.gov/images/explore-more-data.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
-.exploremoreButton:hover {background: url(https://www.foia.gov/images/explore-more-data-hover.gif) 0 0 no-repeat;}
+.learnButton {background: url(/images/learn-more.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
+.learnButton:hover {background: url(/images/learn-more-hover.gif) 0 0 no-repeat;}
+.searchButton {background: url(/images/find.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
+.searchButton:hover {background: url(/images/find-hover.gif) 0 0 no-repeat;}
+.contactButton {background: url(/images/foia-contacts.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
+.contactButton:hover {background: url(/images/foia-contacts-hover.gif) 0 0 no-repeat;}
+.exploremoreButton {background: url(/images/explore-more-data.gif) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 10px 10px 20px 10px; padding: 0;}
+.exploremoreButton:hover {background: url(/images/explore-more-data-hover.gif) 0 0 no-repeat;}
 
 .herobuttons2 {padding: 13px 0 0 0;}
 .herobuttons2 span {display: none;}
-.aboutButton2 {background: url(https://www.foia.gov/images/learn-foia-es.png) 0 0 no-repeat; display: block; float: left; height: 47px; width: 207px; margin: 0 10px 0 0; padding: 0;}
-.aboutButton2:hover {background: url(https://www.foia.gov/images/learn-foia-hover-es.png) 0 0 no-repeat;}
+.aboutButton2 {background: url(/images/learn-foia-es.png) 0 0 no-repeat; display: block; float: left; height: 47px; width: 207px; margin: 0 10px 0 0; padding: 0;}
+.aboutButton2:hover {background: url(/images/learn-foia-hover-es.png) 0 0 no-repeat;}
 .dataButton2  {background: url(images/explore-foia-es.png) 0 0 no-repeat; display: block; float: left; height: 47px; width: 228px; margin: 0; padding: 0;}
 .dataButton2:hover {background: url(images/explore-foia-hover-es.png) 0 0 no-repeat;}
 
@@ -350,10 +349,6 @@ ul.tabs li a.active {background: url(images/hrtab-on.gif) 0 0 no-repeat; text-de
 #dataTable {padding: 0;}
 #tableContainer {padding: 0 30px 30px 30px;}
 #tableTitle {margin: 30px 0 0 0;}
-table, th, tr, td {border: 1px solid #e7e7e7; border-collapse: collapse; background: #fff; }
-th {background: url(images/table-th-bg.jpg) bottom left repeat-x; font: bold 12px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; padding: 5px;}
-td {padding: 6px 6px 6px 12px;}
-
 tr.odd td.highlite, tr.even td.highlite {background:#e8f3b2;color:#000;}
 
 tr.even td{background:#f3f3f3;}

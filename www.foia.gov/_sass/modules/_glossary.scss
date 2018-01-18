@@ -1,6 +1,5 @@
 // Borrowed from FEC
 $background-color: $color-primary-darkest;
-$z-glossary: 9000; // uswds navigation
 
 .glossary {
   @include transition(right, .3s);
@@ -23,6 +22,16 @@ $z-glossary: 9000; // uswds navigation
   &[aria-hidden='false'] {
     @include transition(right, .3s);
     right: 0;
+  }
+
+  p {
+    a,
+    a:active,
+    a:visited,
+    a:visited:hover,
+    a:hover {
+      color: $color-primary-alt;
+    }
   }
 
   .glossary-close {
@@ -53,6 +62,17 @@ $z-glossary: 9000; // uswds navigation
   .label {
     color: $color-gray-lightest;
   }
+
+  p {
+    color: $color-white;
+  }
+}
+
+.glossary__item {
+  ol,
+  ul {
+    margin-left: $space-2x;
+  }
 }
 
 .glossary__term {
@@ -82,7 +102,14 @@ $z-glossary: 9000; // uswds navigation
   bottom: 0;
   margin: 0;
   position: fixed;
-  right: 2rem;
+
+  @media all and (min-width: $small-screen) {
+    right: 2rem;
+  }
+
+  @media print {
+    display: none;
+  }
 }
 
 .glossary-search {
@@ -101,4 +128,19 @@ $z-glossary: 9000; // uswds navigation
 [data-term] {
   cursor: pointer;
   text-decoration: underline dotted;
+  white-space: nowrap; // prevent glossary icon from wrapping
+  &:after {
+    content: "";
+    width: 1em;
+    height: 0.7em;
+    background-image: url($icon-glossary);
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-left: 0.3rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.glossary [data-term]:after {
+  background-image: url($icon-glossary-light);
 }

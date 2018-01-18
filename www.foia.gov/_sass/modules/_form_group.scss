@@ -2,10 +2,9 @@ $form-description-font-size: 1.5rem;
 $form-description-leading: 1.4;
 
 .form-group {
-  margin-top: $site-margins; // 3rem
-  padding-bottom: $site-margins;
+  margin-top: $space-4x;
   label {
-    margin-bottom: 1rem;
+    margin-bottom: $space-1x;
   }
 }
 

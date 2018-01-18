@@ -1,0 +1,156 @@
+/* Temporary styles to make adjusting the existing styles easier. */
+
+footer,
+.footer {
+  background-color: #121B26; /* leave until we remove gradients */
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary-alt-darker;
+}
+
+ol,
+ul {
+  padding-left: 0;
+}
+
+ul.tabs li {
+  text-align: center;
+  a {
+    padding-left: 0px;
+  }
+}
+
+/* hide legacy labels and legends */
+#selectReport,
+#dataTable {
+  label,
+  legend {
+    @extend .usa-sr-only;
+  }
+}
+
+// This is necessary because the markup in the HTML doesn't match the markup
+// WDS expects, so it hides the whole thing.  Some of This markup comes from
+// the Tomcat backend, so we can't fix it all in this repo.
+.popupWindow,
+.grid-legacy {
+  [type=checkbox],
+  [type=radio] {
+    display: inline-block;
+    height: auto;
+    left: 0;
+    position: static;
+    width: auto;
+  }
+}
+
+/* home page temp overrides */
+#headNav img {
+  max-width: none;
+}
+
+// was #content h2
+.grid-legacy h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0 25px 0;
+}
+
+#hero {
+  background-repeat: no-repeat;
+  h1 {
+    font-size: 32px;
+    margin-top: 0;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  .herobuttons {
+    float: none;
+    display: inline-block;
+  }
+}
+.articleimageborder {
+  height: 200px;
+  + h3 {
+    clear: none;
+    font-size: 1.6rem;
+  }
+  + h3 + p {
+    font-size: 1.4rem;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+/* temp data page styles */
+.agencyTextbox {
+  float: left;
+}
+
+input.addAgency,
+input.addAgency:hover,
+input.deleteAgency,
+input.deleteAgency:hover{
+  background-color: transparent;
+  margin: 0;
+}
+
+/* search temp styles */
+.reportText {
+  margin-top: 0px !important;
+}
+
+/* page subnav temp styles */
+#subNav li a {
+  line-height: 1;
+  height: 40px;
+}
+/* footer temp styles */
+.footer a {
+  color: #718BA7;
+}
+
+.footer span {
+  display: none; // this isn't accessible and the whole point is to be accessible
+}
+
+.grid-legacy {
+  margin: $space-2x auto;
+  width: calc(1040px - 6rem); // We want a fixed grid because the legacy content is not responsive. Chose 980px because it almost matches usa-grid on large screen sizes (1040 - padding)
+  @media screen and (max-width: $medium-large-screen) {
+    margin-left: $space-2x;
+  }
+}
+
+/* qtip for glance.html */
+.qtip .qtip-content{
+   padding: 15px;
+   overflow: hidden;
+}
+.qtip .qtip-content .qtip-title,.qtip-cream .qtip-content .qtip-title{background-color: #f8f8f8;}
+
+/* For the grid-legacy to work */
+body {
+  overflow-x: auto;
+}
+
+/* legacy overlay shadow */
+.blockout {
+  z-index: $z-shadow;
+}
+
+.popupWindow {
+  bottom: 2rem;
+  // Allow modal to scroll, the size of the content is bigger than it used to
+  // be but the layout just lets it run off the page, unaccessible.
+  overflow-y: auto;
+  z-index: $z-popup;
+}
+
+/* end temp styles */

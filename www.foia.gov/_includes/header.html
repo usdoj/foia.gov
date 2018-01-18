@@ -9,13 +9,18 @@
     <div class="usa-logo" id="logo">
       <em class="usa-logo-text">
         <a href="{{ site.baseurl }}/" accesskey="1" title="Home">
-          <img src="{{ site.baseurl }}/images/legacylogoonwhite.png" alt="Foia.gov">
+          <img src="{{ site.baseurl }}/img/foia-doj-logo.svg" alt="Foia.gov">
           <h1 class="usa-header-title">FOIA.gov</h1>
         </a>
       </em>
     </div>
+    {% unless page.old-content-banner %}
+    <div class="feedback-bar">
+      <p><strong>Welcome to the first iteration of the new FOIA.gov.</strong> We’ll continue to improve upon this site in the future and look forward to your input. <a href="mailto:National.FOIAPortal@usdoj.gov">Submit feedback.</a></p>
+    </div>
+    {% endunless %}
   </div>
-  <nav role="navigation" class="usa-nav">
+  <nav role="navigation" class="usa-nav print-hide">
     <div class="usa-nav-inner">
       <button class="usa-nav-close">
         <img src="{{ site.baseurl }}/assets/img/close.svg" alt="close">
@@ -54,6 +59,6 @@
     </div>
   </nav>
 </header>
-<div class="usa-overlay"></div>
+<div class="usa-overlay print-hide"></div>
 
 <!-- End Header -->

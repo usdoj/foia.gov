@@ -21,6 +21,8 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 timezone: America/New_York
+email: National.FOIAPortal@usdoj.gov
+app_env: local
 
 navigation:
   primary:
@@ -31,10 +33,6 @@ navigation:
           title: What is FOIA?
         - href: /how-to.html
           title: How to make a FOIA request
-        - href: /report-makerequest.html
-          title: Where to make a FOIA request
-        - href: /opengov.html
-          title: Additional government resources
         - href: /faq.html
           title: Frequently asked questions
     - href: /
@@ -43,25 +41,29 @@ navigation:
         - href: /search.html
           title: Search government websites
         - href: /#learn-more
-          title: Resources for research
+          title: Research
+        - href: /opengov.html
+          title: Additional government resources
     - href: /#agency-search
       title: Create a request
     - href: /data.html
       title: Agency FOIA data
       children:
-        - href: /reports.html
-          title: Annual data
         - href: /data.html
-          title: Quarterly data
+          title: Annual data
+        - href: /reports.html
+          title: At-a-glance &amp; quarterly data
 
   secondary:
-    - href: /developer.html #should go to max.gov link
+    - href: https://admin.foia.gov/user/login
       title: Agency login
-    - href: /developer.html
+    - href: /developer/
       title: FOIA API
 collections:
   api:
     output: true
+  glossary_terms: {}
+  request_form_sections: {}
 
 defaults:
   - scope:

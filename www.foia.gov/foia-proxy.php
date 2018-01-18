@@ -1,44 +1,56 @@
 <?php
 
-define('FOIA_BASE_URL', 'https://www.foia.gov/');
+define('FOIA_BASE_URL', 'https://archive.foia.gov/');
 
 if (!isset($_GET['u'])) {
-    header('X-FOIA: missing u param', 400, false);
+    header('FOIA-Proxy: missing u param', 400, false);
     print "Missing 'u' param";
     exit;
 }
 
-// grab entire query string instead of using $_GET because
-// param value may be un-escaped and $_GET may mangle parsing.
-$path = preg_replace('/^u=/', '', $_SERVER['QUERY_STRING']);
-$path = urldecode($path);
-
-$resp = curl_get_contents(FOIA_BASE_URL . $path);
-
-// error_log("resp for $path: $resp");
-if (!$resp) {
-    header('X-FOIA: bad upstream response', 404, false);
+// http://www.electrictoolbox.com/php-get-headers-sent-from-browser/
+if(!function_exists('apache_request_headers')) {
+  function apache_request_headers() {
+    $headers = array();
+    foreach($_SERVER as $key => $value) {
+      if(substr($key, 0, 5) == 'HTTP_') {
+	$headers[str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))))] = $value;
+      }
+    }
+    return $headers;
+  }
 }
 
-$filtered = filter_response($resp);
-// error_log("filtered: $filtered");
-print $filtered;
+$path = $_GET['u'];
+
+// Proxy the request headers, back end relies on session cookies and other headers
+$headers = array_filter(apache_request_headers(), function ($header) {
+  // Remove the Host header
+  return !preg_match('/^host$/i', $header);
+}, ARRAY_FILTER_USE_KEY);
+
+$headers = array_map(function ($header, $value) {
+  return $header . ': ' . $value;
+}, array_keys($headers), $headers);
+
+// Proxy the query string
+$query = http_build_query(array_filter($_GET, function ($param) {
+  // Remove our internal `u` parameter
+  return $param !== 'u';
+}, ARRAY_FILTER_USE_KEY));
 
 
-/**
- *
- *
- * @param string  $resp
- * @return string
- */
-function filter_response($resp) {
-    $resp = preg_replace('/\/FusionCharts\//', './FusionCharts/', $resp);
-    $resp = preg_replace('/\/foia\/FormChart/', './foia-proxy.php?u=/foia/FormChart', $resp);
-    $resp = preg_replace('/href="\/quarter.html\?/', 'href="./quarter.html?', $resp);
-    $resp = preg_replace('/href="\/glance.html\?/', 'href="./glance.html?', $resp);
-    $resp = preg_replace('/src="\/images\//', 'src="./images/', $resp);
-    return $resp;
+list($headers, $body) = curl_get_contents(FOIA_BASE_URL . $path, $query, $headers);
+if (!$headers || !$body) {
+  header('FOIA-Proxy', 404, false);
 }
+
+// Proxy the response headers
+foreach ($headers as $header) {
+  header($header, false);
+}
+
+print $body;
 
 
 /**
@@ -47,13 +59,43 @@ function filter_response($resp) {
  * @param string  $url
  * @return string
  */
-function curl_get_contents($url) {
+function curl_get_contents($url, $query, $headers) {
+    if (strlen($query)) {
+      $url = $url . '?' . $query;
+    }
+
     $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_VERBOSE, 1);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($curl, CURLOPT_HEADER, 1);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
     $data = curl_exec($curl);
+    if($data === false) {
+        error_log(curl_error($curl));
+        curl_close($curl);
+        return array(array(), 'The reporting server returned an invalid response, please try again later.');
+    }
+
+    $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+    $response_headers = substr($data, 0, $header_size);
+    $response_body = substr($data, $header_size);
     curl_close($curl);
-    return $data;
+
+    // Split the headers into an array
+    $response_headers = explode("\r\n", $response_headers);
+    // Drop the HTTP line
+    array_shift($response_headers);
+
+    // Proxy a limited set of headers. The back end relies on session cookies.
+    $response_headers = array_filter($response_headers, function ($header) {
+      return preg_match('/^content-type:/i', $header)
+	|| preg_match('/^content-disposition:/i', $header)
+	|| preg_match('/^cache-control:/i', $header)
+	|| preg_match('/^pragma:/i', $header)
+	|| preg_match('/^set-cookie:/i', $header);
+    });
+
+    return array($response_headers, $response_body);
 }

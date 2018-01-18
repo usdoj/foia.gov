@@ -1,7 +1,7 @@
 $icon-circumference: 6.4rem;
 $icon-circumference-tablet: $space-4x;
 .three-column-summary {
-  margin: $space-4x auto;
+  margin: $space-5x auto $space-1x * 7;
   h2:after {
     content: "";
     @include text-divider;
@@ -24,7 +24,6 @@ $icon-circumference-tablet: $space-4x;
       }
       &:before {
         content: "";
-        background-color: $color-white;
         display: inline-block;
         float: left;
         border-radius: 100px;
@@ -33,6 +32,10 @@ $icon-circumference-tablet: $space-4x;
         height: $icon-circumference;
         margin-top: -8px;
         margin-right: 10px;
+        background-color: $color-white;
+        background-repeat: no-repeat;
+        background-size: 65%;
+        background-position: center center;
         @media screen and (min-width: $medium-screen) and (max-width: $medium-large-screen) {
           width: $icon-circumference-tablet;
           height: $icon-circumference-tablet;
@@ -45,6 +48,18 @@ $icon-circumference-tablet: $space-4x;
           margin-right: 15px;
         }
       }
+    }
+    &:nth-child(2) h4:before {
+      background-image: url('/img/landing-logo-research.svg');
+      background-position: 61% 54%;
+    }
+    &:nth-child(3) h4:before {
+      background-image: url('/img/landing-logo-agency.svg');
+      background-position: center 45%;
+    }
+    &:nth-child(4) h4:before {
+      background-image: url('/img/landing-logo-calendar.svg');
+      background-position: center 45%;
     }
   }
 }

@@ -10,6 +10,7 @@ import agencyComponentStore from 'stores/agency_component';
 import agencyComponentRequestFormStore from 'stores/agency_component_request_form';
 import foiaRequestStore from 'stores/foia_request';
 import NotFound from './not_found';
+import { scrollOffset } from '../util/dom';
 
 
 class AgencyComponentRequestPage extends Component {
@@ -21,12 +22,12 @@ class AgencyComponentRequestPage extends Component {
     const agencyComponentId = props.match.params.agencyComponentId;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
     const requestForm = agencyComponentRequestFormStore.getAgencyComponentForm(agencyComponentId);
-    const { formData, isSubmitting, submissionResult } = foiaRequestStore.getState();
+    const { formData, upload, submissionResult } = foiaRequestStore.getState();
 
     return {
       agencyComponent,
       formData,
-      isSubmitting,
+      upload,
       submissionResult,
       requestForm,
     };
@@ -46,26 +47,39 @@ class AgencyComponentRequestPage extends Component {
   init(props) {
     const agencyComponentId = props.match.params.agencyComponentId;
 
+    // Check the form sections were fetched
+    const { formSections } = agencyComponentRequestFormStore.getState();
+    const formSectionsFetch = formSections.size ?
+      Promise.resolve() :
+      requestActions.fetchRequestFormSections();
+
     // Check agency component exists in store
     const { agencyComponent } = this.state;
     if (!agencyComponent || !agencyComponent.formFields.length) {
-      requestActions.fetchAgencyComponent(agencyComponentId)
-        .then(requestActions.receiveAgencyComponent)
-        .catch((error) => {
-          if (!error.response) {
-            // Non-axios error, rethrow
-            throw error;
-          }
+      formSectionsFetch.then(() => {
+        // TODO this isn't very intuitive
+        // We chain the requests sequentially, since computing the agency
+        // request form depends on having the form sections fetched. We make
+        // sure to only start the agency component request _after_ we've
+        // received the form sections.
+        requestActions.fetchAgencyComponent(agencyComponentId)
+          .then(requestActions.receiveAgencyComponent)
+          .catch((error) => {
+            if (!error.response) {
+              // Non-axios error, rethrow
+              throw error;
+            }
 
-          if (error.response.status !== 404) {
-            // API error other than 404, rethrow
-            throw error;
-          }
+            if (error.response.status !== 404) {
+              // API error other than 404, rethrow
+              throw error;
+            }
 
-          this.setState({
-            agencyComponentNotFound: true,
+            this.setState({
+              agencyComponentNotFound: true,
+            });
           });
-        });
+      });
     }
   }
 
@@ -76,7 +90,10 @@ class AgencyComponentRequestPage extends Component {
       return <NotFound />;
     }
 
-    function onSubmit() {}
+    const onSubmit = () => {
+      // Scroll to the top of the page.
+      window.scrollTo(0, scrollOffset(this.element));
+    };
 
     let mainContent;
     if (submissionResult && submissionResult.submission_id) {
@@ -92,10 +109,10 @@ class AgencyComponentRequestPage extends Component {
       mainContent = (
         <FoiaRequestForm
           formData={this.state.formData}
-          isSubmitting={this.state.isSubmitting}
+          upload={this.state.upload}
           onSubmit={onSubmit}
           requestForm={requestForm}
-          submissionResult={this.state.submissionResult}
+          submissionResult={submissionResult}
         />
       );
     } else {
@@ -104,18 +121,16 @@ class AgencyComponentRequestPage extends Component {
     }
 
     return (
-      <div className="usa-grid-full grid-left">
-        <aside className="usa-width-five-twelfths sidebar print-hide" id="react-tabs">
-          {
-            agencyComponent && requestForm ?
-              <Tabs
-                agencyComponent={agencyComponent}
-                requestForm={requestForm}
-              /> :
-              null
-          }
-        </aside>
-        <div className="usa-width-seven-twelfths sidebar_content">
+      <div className="usa-grid-full grid-flex grid-left" ref={(ref) => { this.element = ref; }}>
+        {
+          agencyComponent && requestForm ?
+            <Tabs
+              agencyComponent={agencyComponent}
+              requestForm={requestForm}
+            /> :
+            null
+        }
+        <div className="sidebar_content">
           { mainContent }
         </div>
       </div>

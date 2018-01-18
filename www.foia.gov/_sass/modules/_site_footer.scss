@@ -3,7 +3,12 @@
   background-color: $color-primary-darkest;
   color: $color-gray-lightest;
   font-size: $small-font-size;
+  border-top: 3px solid $color-white;
   .footer-logo {
+    @extend .clearfix;
+    margin-bottom: $space-2x;
+  }
+  .footer-logo_img {
     max-width: 8rem;
     display: inline-block;
     float: left;
@@ -31,29 +36,40 @@
       border-bottom-color: $color-primary-alt-light;
     }
   }
-  .footer-links a {
-    letter-spacing: 0.065rem;
-    color: $color-gray-lightest;
-    border-bottom: none;
-    border-left: 2px solid $color-primary-alt-light;
-    padding-left: 6px;
-    line-height: 1;
-    text-transform: uppercase;
-    font-size: 1.3rem;
-    display: block;
-    &:hover,
-    &:active {
-      color: $color-primary-alt-light;
-    }
-    &:visited {
-      color: $color-gray-lightest;
-    }
+  p {
+    color: $color-white;
   }
-  .footer-links li {
-    margin: $space-2x 0;
-    line-height: 1;
-    &:first-child {
-      margin-top: 0;
+  .footer-links {
+    margin-top: $space-2x;
+  }
+
+  .footer-links_list {
+    padding-right: 4px;
+    a {
+      letter-spacing: 0.065rem;
+      color: $color-gray-lightest;
+      border-bottom: none;
+      border-left: 2px solid $color-primary-alt-light;
+      padding-left: 6px;
+      line-height: 1;
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      display: block;
+      &:hover,
+      &:visited:hover,
+      &:active {
+        color: $color-primary-alt-light;
+      }
+      &:visited {
+        color: $color-gray-lightest;
+      }
+    }
+    li {
+      margin: $space-2x 0;
+      line-height: 1;
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
 }

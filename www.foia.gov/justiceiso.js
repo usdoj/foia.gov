@@ -77,7 +77,6 @@ function exitWinOpen(redirectTo){
   }
   var f=document.getElementById("shadowFilter");
   if(f != null){
-	f.style.height= document.body.clientHeight +"px";
 	f.style.display='block';
 	f.style.filter = "alpha(opacity=60)";
 	f.onclick=function(){

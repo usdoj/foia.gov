@@ -1,12 +1,7 @@
 @import 'mixins/text_divider';
-.print-hide {
-  @media print {
-    display: none;
-  }
-}
+@import 'mixins/has_icon';
 
-.print-only {
-  @media screen {
-    display: none;
-  }
-}
+@import 'base/print';
+@import 'base/typography';
+@import 'base/utilities';
+@import 'base/z-index';

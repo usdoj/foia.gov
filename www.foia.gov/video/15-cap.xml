@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<tt xml:lang="en" xmlns="http://www.w3.org/2006/04/ttaf1" xmlns:tts="http://www.w3.org/2006/04/ttaf1#styling" >
+<head>
+<styling>
+<style id="b1" tts:fontWeight="bold" tts:color="#cccc00" tts:fontSize="14" tts:textAlign="left" />
+</styling>
+</head>
+<body>
+<div xml:lang="en" style="b1" >
+<p begin="00:00:00.0000749" end="00:00:05.195">Each fiscal year, agencies receive and process thousands of requests.   </p>
+<p begin="00:00:05.195" end="00:00:07.421">Sometimes, an agency will be able to respond    </p>
+<p begin="00:00:07.421" end="00:00:10.271">within the statuary time limit established by the FOIA,   </p>
+<p begin="00:00:10.271" end="00:00:11.982">which is about a month.   </p>
+<p begin="00:00:11.982" end="00:00:16.507">Although agencies make every effort to respond to FOIA requests as quickly as possible,   </p>
+<p begin="00:00:16.507" end="00:00:20.585">in some cases they simply cannot do so within the time allotted.   </p>
+<p begin="00:00:20.585" end="00:00:24.154">In this situation, the requests are considered "backlogged."   </p>
+<p begin="00:00:24.154" end="00:00:28.254">The "backlog" data on FOIA.gov will show you how many requests were pending   </p>
+<p begin="00:00:28.254" end="00:00:32.651">beyond the statutory time period at the end of the fiscal year.   </p>
+<p begin="00:00:32.651" end="00:00:33.553">    </p>
+<p begin="00:00:33.553" end="00:00:34.246">    </p>
+</div>
+</body>
+</tt>
+

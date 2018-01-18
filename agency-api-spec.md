@@ -1,14 +1,19 @@
 # FOIA.gov Draft RESTful HTTPS API Spec
 
+_This draft is transitioning to a new home. Please refer to
+[beta.foia.gov/developer/agency-api/](https://dev-www.foia.gov/developer/agency-api/)
+for the most up to date version._
+
 This is [a draft spec](https://github.com/18F/beta.foia.gov/issues/32) for integrating
 the FOIA.gov portal with existing FOIA case management systems (_e.g._,
-[FOIAonline](https://foiaonline.regulations.gov/foia/action/public/home)) in the
-federal government. This work stems from the interviews and research that led to
-our [FOIA Portal Discovery
-Recommendations](https://docs.google.com/document/d/1sRWq2vDAdoz97zdxgiOzU-9N7nBNEUiEeHzsa7J3j_A/edit).
+[FOIAonline](https://foiaonline.regulations.gov/foia/action/public/home))
+operated by individual agencies in the federal government. This work stems from
+the interviews and research that led to our [FOIA Portal Discovery
+Recommendations](https://github.com/18F/foia-recommendations/blob/master/recommendations.md).
 
-Once a case management system supports this specification, it can receive FOIA
-requests directly from the FOIA.gov portal, rather than having the request data sent via e-mail.
+Once an agency's case management system supports this specification, it can
+receive FOIA requests directly from the FOIA.gov portal, rather than having the
+request data sent to the agency via e-mail.
 
 To minimize agency effort, we've designed this spec so that some of
 the tedious bits of implementing an API can be handled by a service like
@@ -25,6 +30,39 @@ This draft does not address:
 * size or rate limits
 * error message/status code related to exceeded the rate limit
 * any subsequent calls to the internal FOIA.gov API (to capture info needed to subsequently retrieve status, for example)
+* detailed security controls
+
+
+### Security controls
+
+Once we have confidence in our data models and the touch points for
+interoperability, we will be working with the security team at DOJ to ensure the
+Portal meets the federal requirements for security controls. For now, we include
+only some preliminary ideas based on the agency feedback we’ve received.
+
+Each agency will be responsible for implementing security controls on their own
+end as per their agency regulations and authority to operate. This may include
+configuration of a web application firewall, anti-virus scanning of
+file attachments, and validation of HTTP headers.
+
+
+#### HTTPS
+
+Agency endpoints should be restricted to HTTPS only with valid TLS certificates.
+The Portal will validate your certificate as part of the HTTPS request.
+
+
+#### Authentication
+
+To ensure that your API and case management system aren't publicly writable, we
+recommend restricting your API access to the FOIA.gov Portal. This can be done
+via a shared secret HTTP header token. You will provide this secret token to the
+Portal though configuration. Every request from the Portal will include this
+token in the HTTP header `FOIA-API-SECRET`, and your API should validate that it
+is the correct token.
+
+Services like [api.data.gov](https://api.data.gov/about/) provide this
+authentication for you and give you additional options.
 
 
 ### URL
@@ -56,14 +94,14 @@ endpoints for future development and features.
   `POST`
 
 
-###  URL Params
+###  URL parameters
 
 **Required:**
 
 `id=[integer]`, where `id` is the unique identifier of the agency component that should receive the request.
 
 
-### Data Params
+### Data parameters
 
 JSON payload that contains the form fields.
 
@@ -72,94 +110,171 @@ JSON payload that contains the form fields.
 
 #### Request fields
 
+**Field:** | `version`
+:--- |:---
+**Type:** | string
+**Description:** | The version of the API used for determining compatibility. Reserved for future use.
+**Required:** | yes
+**Example:** | `"1.0.0"`
+
+**Field:** | `request_id`
+:--- |:---
+**Type:** | integer
+**Description:** | A unique identifier for the request within the Portal.
+**Required:** | yes
+**Example:** | `1543`
+
 **Field:** | `agency_name`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Name of the tier 1 agency.
 **Required:** | yes
 **Example:** | `"Department of Justice"`
 
 **Field:** | `agency_component_name`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Name of the department, bureau, or office.
 **Required:** | yes
 **Example:** | `"Office of Information Policy"`
 
-**Field:** | `requester_name`
+**Field:** | `name_first`
 :--- |:---
-**Type:** | object
-**Description:** | Full name of the requester.
-**Required:** | yes
-**Example:** | `{"first": "George", "last": "Washington"}`
+**Type:** | string
+**Description:** | First name of the requester.
+**Required:** | no
+**Example:** | `"George"`
 
-**Field:** | `requester_address`
+**Field:** | `name_last`
 :--- |:---
-**Type:** | object
-**Description:** | Mailing address of the requester.
-**Required:** | yes
-**Example:** | `{"address1": "1800 F Street", "address2": "Suite 400", "city": "Mount Vernon", "state": "Virginia", "zip": "98273"}`
+**Type:** | string
+**Description:** | Last name of the requester.
+**Required:** | no
+**Example:** | `"Washington"`
 
-**Field:** | `description`
+**Field:** | `address_line1`
 :--- |:---
-**Type:** | text
+**Type:** | string
+**Description:** | Requester’s street mailing address.
+**Required:** | no
+**Example:** | `"1800 F Street"`
+
+**Field:** | `address_line2`
+:--- |:---
+**Type:** | string
+**Description:** | Apartment, suite, or additional information for requester’s mailing address.
+**Required:** | no
+**Example:** | `"Suite 400"`
+
+**Field:** | `address_city`
+:--- |:---
+**Type:** | string
+**Description:** | City for requester’s mailing address.
+**Required:** | no
+**Example:** | `"Mount Vernon"`
+
+**Field:** | `address_country`
+:--- |:---
+**Type:** | string
+**Description:** | Country for requester’s mailing address.
+**Required:** | no
+**Example:** | `"Mount Vernon"`
+
+**Field:** | `address_state_province`
+:--- |:---
+**Type:** | string
+**Description:** | State or province for requester’s mailing address.
+**Required:** | no
+**Example:** | `"Virginia"`
+
+**Field:** | `address_zip_postal_code`
+:--- |:---
+**Type:** | string
+**Description:** | Zip code or postal code for requester’s mailing address.
+**Required:** | no
+**Example:** | `"98273"`
+
+**Field:** | `request_description`
+:--- |:---
+**Type:** | string
 **Description:** | Description of the records the requester is seeking.
 **Required:** | yes
 **Example:** | `"I am seeking records pertaining to ..."`
 
-**Field:** | `max_fee`
+**Field:** | `fee_amount_willing`
 :--- |:---
-**Type:** | money
+**Type:** | string
 **Description:** | The amount in USD that a requester is willing to pay in order to cover costs related to this request.
 **Required:** | no
-**Example:** | `25.00`
+**Example:** | `"25.00"`
 
 **Field:** | `fee_waiver`
 :--- |:---
-**Type:** | boolean
+**Type:** | string
 **Description:** | The requester would like to request that fees associated with the request be waived.
-**Required:** | no, defaults to `false`
-**Example:** | `false`
+**Required:** | no, defaults to `"no"`
+**Example:** | `"no"`
 
-**Field:** | `expedited`
+**Field:** | `fee_waiver_explanation`
 :--- |:---
-**Type:** | boolean
+**Type:** | string
+**Description:** | The justification for the fee waiver.
+**Required:** | no
+**Example:** | `"As a journalist organization, I am requesting these records on behalf of the public and intend to make these records accesible to the public."`
+
+**Field:** | `request_category`
+:--- |:---
+**Type:** | string
+**Description:** | The claimed category of the requester.
+**Required:** | no
+**Example:** | `"individual"`
+
+**Field:** | `expedited_processing`
+:--- |:---
+**Type:** | string
 **Description:** | The requester would like this request to be processed on an expedited basis.
-**Required:** | no, defaults to `false`
-**Example:** | `false`
+**Required:** | no, defaults to `"no"`
+**Example:** | `"no"`
 
-**Field:** | `organization`
+**Field:** | `expedited_processing_explanation`
 :--- |:---
-**Type:** | text
+**Type:** | string
+**Description:** | The justification for why expedited processing should be granted.
+**Required:** | no
+**Example:** | `"The request should be given expedited processing because…"`
+
+**Field:** | `company_organization`
+:--- |:---
+**Type:** | string
 **Description:** | Name of the organization or company on which the requester is making a request on behalf of.
 **Required:** | no
 **Example:** | `"Newspaper Inc"`
 
 **Field:** | `email`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Email address of the requester.
-**Required:** | yes
+**Required:** | no
 **Example:** | `"george.washington@example.com"`
 
-**Field:** | `phone`
+**Field:** | `phone_number`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Phone number of the requester.
 **Required:** | no
 **Example:** | `"+15551234567"`
 
-**Field:** | `fax`
+**Field:** | `fax_number`
 :--- |:---
-**Type:** | text
+**Type:** | string
 **Description:** | Fax number of the requester.
 **Required:** | no
 **Example:** | `"+15551234589"`
 
-**Field:** | `attachments`
+**Field:** | `attachments_supporting_documentation`
 :--- |:---
-**Type:** | [object]
-**Description:** | Documents or attachments supporting the request provided by the requester.
+**Type:** | array<object>
+**Description:** | Documents or attachments supporting the request provided by the requester. The file data is base64 encoded. Most programming languages include in their standard library a method to decode base64 messages.
 **Required:** | no
 **Example:** | `[{"filename": "letter.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}]`
 
@@ -175,9 +290,11 @@ JSON payload that contains the form fields.
 
 ```
 {
+    "version": "1.0.0",
+    "request_id": 1534,
     "agency": "Department of Justice",
     "agency_component_name": "Office of Information Policy",
-    "attachments": [
+    "attachments_supporting_documentation": [
         {
             "content_type": "application/pdf",
             "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg==",
@@ -185,25 +302,25 @@ JSON payload that contains the form fields.
             "filesize": 27556
         }
     ],
-    "description": "I am seeking records pertaining to ...",
+    "request_description": "I am seeking records pertaining to ...",
+    "request_category": "individual",
     "email": "george.washington@example.com",
-    "expedited": false,
-    "fax": "+15551234589",
-    "fee_waiver": false,
-    "max_fee": 25.0,
-    "organization": "Newspaper Inc",
-    "phone": "+15551234567",
-    "requester_address": {
-        "address1": "1800 F Street",
-        "address2": "Suite 400",
-        "city": "Mount Vernon",
-        "state": "Virginia",
-        "zip": "98273"
-    },
-    "requester_name": {
-        "first": "George",
-        "last": "Washington"
-    }
+    "expedited_processing": "no",
+    "expedited_processing_explanation": "",
+    "fax_number": "+15551234589",
+    "fee_waiver": "no",
+    "fee_waiver_explanation": "",
+    "fee_amount_willing": "25.0",
+    "company_organization": "Newspaper Inc",
+    "phone_number": "+15551234567",
+    "address_line1": "1800 F Street",
+    "address_line2": "Suite 400",
+    "address_city": "Mount Vernon",
+    "address_state_province": "Virginia",
+    "address_country": "United States",
+    "address_zip_postal_code": "98273",
+    "name_first": "George",
+    "name_last": "Washington"
 }
 ```
 
@@ -224,7 +341,7 @@ endpoint.
 ##### Example
 
 Consider this sample [agency metadata
-file](https://github.com/18F/foia/blob/master/GSA.json). A truncated version is
+file](https://github.com/18F/beta.foia.gov/blob/master/GSA.json). A truncated version is
 provided below.
 
 ```
@@ -273,10 +390,8 @@ these fields might appear for GSA.
 
 ```
 {
-    "requester_name": {
-        "first": "George",
-        "last": "Washington"
-    },
+    "name_first": "George",
+    "name_last": "Washington"
     // ... standard request fields ...
 
     // agency component specific fields appear within payload
@@ -287,15 +402,21 @@ these fields might appear for GSA.
 ```
 
 
-### Success Response
+### Responses
+
+Responses should be in `application/json` format and include an appropriate HTTP
+status code.
+
+
+#### Success Response
 
 **Code:** | 200 OK
 :--- |:---
 **Content:** | `{ "id" : 33, "status_tracking_number": "doj-1234" }`
-**Meaning:** | Confirm that the request was created and return an `id` that can uniquely identify the request in the case management system. The (optional) status tracking number can be used by a requester to track a request.
+**Meaning:** | Confirm that the request was created and return an `id` that can uniquely identify the request in the case management system. The status tracking number (required) will be sent to the requester and used to track a request in your case management system.
 
 
-### Error Response
+#### Error Response
 
 **Code:** | 404 NOT FOUND
 :--- |:---
@@ -308,21 +429,16 @@ these fields might appear for GSA.
 **Meaning:** | The case management system encountered an internal error when trying to create the FOIA request (error payload includes a place for a system-specific message, to make it easier to track down problems)
 
 
-### Authentication
-
-To ensure that your API and case management system aren't publicly exposed, we recommend restricting your API access to the FOIA.gov portal. This is done via a secret HTTP header token. You will provide this secret token to the portal though configuration. Every request from the portal will include this token, and your API should validate that it is the correct token.
-
-Services like [api.data.gov](https://api.data.gov/about/) provide this authentication for you.
-
-
 ### Sample request
 
 ```
 $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency.gov/components/234/requests <<EOF
 {
+    "version": "1.0.0",
+    "request_id": 1534,
     "agency": "General Services Administration",
     "agency_component_name": "General Services Administration (General)",
-    "attachments": [
+    "attachments_supporting_documentation": [
         {
             "content_type": "application/pdf",
             "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg==",
@@ -330,28 +446,25 @@ $ curl -X POST -H "Content-Type: application/json" -d @- https://foia-api.agency
             "filesize": 27556
         }
     ],
-    "contract_number": "5547",
-    "description": "I am seeking records pertaining to ...",
+    "request_description": "I am seeking records pertaining to ...",
+    "request_category": "individual",
     "email": "george.washington@example.com",
-    "expedited": false,
-    "fax": "+15551234589",
-    "fee_waiver": false,
-    "max_fee": 25.0,
-    "organization": "Newspaper Inc",
-    "phone": "+15551234567",
-    "region": "9",
-    "request_origin": "Individual/Self",
-    "requester_address": {
-        "address1": "1800 F Street",
-        "address2": "Suite 400",
-        "city": "Mount Vernon",
-        "state": "Virginia",
-        "zip": "98273"
-    },
-    "requester_name": {
-        "first": "George",
-        "last": "Washington"
-    }
+    "expedited_processing": "no",
+    "expedited_processing_explanation": "",
+    "fax_number": "+15551234589",
+    "fee_waiver": "no",
+    "fee_amount_willing": "25.0",
+    "fee_waiver_explanation": "I request a fee waiver...",
+    "company_organization": "Newspaper Inc",
+    "phone_number": "+15551234567",
+    "address_line1": "1800 F Street",
+    "address_line2": "Suite 400",
+    "address_city": "Mount Vernon",
+    "address_country": "United States",
+    "address_state_province": "Virginia",
+    "address_zip_postal_code": "98273",
+    "name_first": "George",
+    "name_last": "Washington"
 }
 EOF
 ```

@@ -1,4 +1,6 @@
 import { List, Map, Record } from 'immutable';
+import foiaPersonnel from '../util/foia_personnel';
+
 
 const defaults = {
   abbreviation: null,
@@ -14,17 +16,17 @@ const defaults = {
   request_data_expedited_lowest_days: null,
   request_data_expedited_median_days: null,
   request_data_year: null,
-  field_misc: new List(), // foia_personnel
-  foia_officers: new List(), // foia_personnel
+  field_misc: [], // foia_personnel
+  foia_officers: [], // foia_personnel
   formFields: new List(),
   id: null,
   links: new Map(),
   paper_receiver: null,
   portal_submission_format: 'email',
-  public_liaisons: new List(), // foia_personnel
+  public_liaisons: [], // foia_personnel
   reading_rooms: new List(),
   request_form: null,
-  service_centers: new List(), // foia_personnel
+  service_centers: [], // foia_personnel
   request_data_simple_average_days: null,
   request_data_simple_highest_days: null,
   request_data_simple_lowest_days: null,
@@ -58,17 +60,12 @@ class AgencyComponent extends Record(defaults) {
 
   // Returns a list of all FOIA personnel
   foiaPersonnel() {
-    function personnel(persons, title) {
-      // Set a default title if none exists
-      return (persons || []).map(person => Object.assign({ title: person.title || title }, person));
-    }
-
     // List of all FOIA personnel in preferred order
     return [].concat(
-      personnel(this.foia_officers, 'FOIA Officer'),
-      personnel(this.field_misc, null),
-      personnel(this.service_centers, 'FOIA Service Center'),
-      personnel(this.public_liaisons, 'Public Liaison'),
+      foiaPersonnel.personnel(this, 'foia_officers'),
+      foiaPersonnel.personnel(this, 'field_misc'),
+      foiaPersonnel.personnel(this, 'service_centers'),
+      foiaPersonnel.personnel(this, 'public_liaisons'),
     );
   }
 
@@ -82,6 +79,10 @@ class AgencyComponent extends Record(defaults) {
     }
 
     return '';
+  }
+
+  requestUrl() {
+    return `/request/agency-component/${this.id}/`;
   }
 }
 

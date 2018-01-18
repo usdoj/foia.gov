@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { requestActions } from 'actions';
-import AgencyComponentSelector from 'components/agency_component_selector';
+import AgencyComponentFinder from 'components/agency_component_finder';
 import AgencyComponentPreview from 'components/agency_component_preview';
+import AgencyPreview from 'components/agency_preview';
 import agencyComponentStore from '../stores/agency_component';
 
 
@@ -11,45 +12,112 @@ class LandingComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      agency: null,
       agencyComponent: null,
+      agencyComponentsForAgency: null,
     };
   }
 
+  setStateForAgency(agency, agencyComponentsForAgency) {
+    this.setState({
+      agency,
+      agencyComponent: null,
+      agencyComponentsForAgency,
+    });
+  }
+
+  setStateForComponent(agencyComponent, isCentralized = false) {
+    this.setState({
+      agency: null,
+      agencyComponent,
+      agencyComponentsForAgency: null,
+      isCentralized,
+    });
+  }
+
   render() {
+    // Recursively traverse up the DOM to figure out the scroll offset
+    function scrollOffset(element) {
+      return element.offsetParent ?
+        element.offsetTop + scrollOffset(element.offsetParent) :
+        element.offsetTop;
+    }
+
+    // Note that the agencyComponent comes from two different sources, so the
+    // properties might not be consistent.
     const agencyChange = (agencyComponent) => {
-      if (agencyComponent.type === 'agency') {
-        // TODO we probably want to make top-level agencies un-selectable?
+      function fetchAgencyComponent(agencyComponentId) {
+        return requestActions.fetchAgencyComponent(agencyComponentId)
+          .then(requestActions.receiveAgencyComponent)
+          .then(() => agencyComponentStore.getAgencyComponent(agencyComponentId));
+      }
+
+      // Scroll to back to the agency finder
+      window.scrollTo(0, scrollOffset(this.agencyFinderElement));
+
+      if (agencyComponent.type === 'agency_component') {
+        fetchAgencyComponent(agencyComponent.id)
+          .then(component => this.setStateForComponent(component, false));
         return;
       }
 
-      requestActions.fetchAgencyComponent(agencyComponent.id)
-        .then(requestActions.receiveAgencyComponent)
-        .then(() => {
-          const component = agencyComponentStore.getAgencyComponent(agencyComponent.id);
-          this.setState({ agencyComponent: component });
-        });
+      const agency = agencyComponentStore.getAgency(agencyComponent.id);
+
+      // Treat centralized agencies as components
+      if (agency.isCentralized()) {
+        const component = agencyComponentStore
+          .getState()
+          .agencyComponents
+          .find(c => c.agency.id === agency.id);
+        fetchAgencyComponent(component.id)
+          .then(c => this.setStateForComponent(c, true));
+        return;
+      }
+
+      const agencyComponentsForAgency =
+        agencyComponentStore.getAgencyComponentsForAgency(agency.id);
+      this.setStateForAgency(agency, agencyComponentsForAgency);
     };
 
-    const { agencies, agencyComponents } = this.props;
+    const { agencies, agencyComponents, agencyFinderDataComplete } = this.props;
     return (
       <div className="usa-grid">
-        <h2>
+        <h2 className="agency-component-search_hed">
           Select an agency to start your request or to see an agency’s contact information:
         </h2>
-        <AgencyComponentSelector
-          agencies={agencies}
-          agencyComponents={agencyComponents}
-          onAgencyChange={agencyChange}
-        />
+        <div ref={(e) => { this.agencyFinderElement = e; }}>
+          <AgencyComponentFinder
+            agencies={agencies}
+            agencyComponents={agencyComponents}
+            agencyFinderDataComplete={agencyFinderDataComplete}
+            onAgencyChange={agencyChange}
+          />
+        </div>
         {
-          !this.state.agencyComponent &&
-          <p>Not all agencies can receive FOIA requests created on FOIA.gov.
-             Where to submit a request for those agencies
-             will be available after you make a selection above.</p>
+          !this.state.agencyComponent && !this.state.agency &&
+            <div>
+              <h3 className="agency-component-search_hed">When choosing an agency</h3>
+              <p>Remember that some agencies can’t yet receive FOIA requests
+              through FOIA.gov. For those agencies, this site   will provide
+              you with the information you need to submit a request directly to
+              the agency.</p>
+            </div>
         }
         {
           this.state.agencyComponent &&
-          <AgencyComponentPreview agencyComponent={this.state.agencyComponent.toJS()} />
+          <AgencyComponentPreview
+            agencyComponent={this.state.agencyComponent.toJS()}
+            isCentralized={this.state.isCentralized}
+            onAgencySelect={agencyChange}
+          />
+        }
+        {
+          this.state.agency &&
+          <AgencyPreview
+            agency={this.state.agency}
+            agencyComponentsForAgency={this.state.agencyComponentsForAgency}
+            onAgencySelect={agencyChange}
+          />
         }
       </div>
     );
@@ -57,8 +125,9 @@ class LandingComponent extends Component {
 }
 
 LandingComponent.propTypes = {
-  agencyComponents: PropTypes.object.isRequired,
   agencies: PropTypes.object.isRequired,
+  agencyComponents: PropTypes.object.isRequired,
+  agencyFinderDataComplete: PropTypes.bool.isRequired,
 };
 
 export default LandingComponent;
