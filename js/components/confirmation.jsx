@@ -53,11 +53,11 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
         <h2>Request summary</h2>
         <p>Request submitted on <strong>{ getDate() }</strong>.</p>
         <p className="confirmation_submission-id">
-          The submission ID for your request is <strong>{submission_id}</strong>.
+          The confirmation ID for your request is <strong>{submission_id}</strong>.
         </p>
         <div className="info-box">
           <p>
-            The submission ID is only for identifying your request on FOIA.gov and
+            The confirmation ID is only for identifying your request on FOIA.gov and
             acts as a receipt to show that you submitted a request using
             FOIA.gov. This number does not replace the information you’ll receive
             from the agency to track your request. In case there is an issue
