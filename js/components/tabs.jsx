@@ -86,7 +86,7 @@ class Tabs extends Component {
                   <h4>The description of records you are requesting is
                     very important.</h4>
                   <p className="submission-help_description">Be sure your
-                    request is clear and as specific as as possible.</p>
+                    request is clear and as specific as possible.</p>
                 </li>
                 <li>
                   <h4>Do research before you file.</h4>
