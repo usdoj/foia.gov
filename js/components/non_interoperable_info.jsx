@@ -19,7 +19,7 @@ function NonInteroperableInfo({ agencyComponent }) {
   return (
     <div className="info-box_reverse">
       <p>
-        <strong>Currently, this agency’s FOIA process is not linked to
+        <strong>Currently, this agency’s FOIA system is not linked to
         FOIA.gov.</strong>
         <br />
         { submissionInstructions }
