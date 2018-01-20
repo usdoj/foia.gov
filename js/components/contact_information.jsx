@@ -23,7 +23,10 @@ function ContactInformation({ agencyComponent }) {
         <FoiaPersonnel foiaPersonnel={publicLiaisonFoiaPersonnel} />
       </div>
       <div className="contact-information_section">
-        <FoiaSubmissionAddress submissionAddress={agencyComponent.submission_address} />
+        <FoiaSubmissionAddress
+          submissionAddress={agencyComponent.submission_address}
+          paperReceiver={agencyComponent.paper_receiver}
+        />
       </div>
       { agencyComponent.email &&
         <div className="contact-information_section">
