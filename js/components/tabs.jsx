@@ -90,7 +90,7 @@ class Tabs extends Component {
                 </li>
                 <li>
                   <h4>Do research before you file.</h4>
-                  <p className="submission-help_research">Sometimes what you are 
+                  <p className="submission-help_research">Sometimes what you are
                     looking for  is already public. You can
                     find out by reaching out to the agency you’re interested in
                     or by visiting their website or their FOIA Library.</p>
