@@ -38,8 +38,12 @@ class AgencyComponentStore extends Store {
   __onDispatch(payload) {
     switch (payload.type) {
       case types.AGENCY_FINDER_DATA_RECEIVE: {
-        const { agencyComponents: receivedAgencyComponents } = payload;
         const { agencies, agencyComponents } = this.state;
+
+        // Remove agency components with no parent agency. The component was
+        // probably created unintentionally and should be ignored.
+        const receivedAgencyComponents = payload.agencyComponents
+          .filter(agencyComponent => !!agencyComponent.agency && !!agencyComponent.agency.id);
 
         const updatedAgencies = agencies.withMutations((mutableAgencies) => {
           receivedAgencyComponents

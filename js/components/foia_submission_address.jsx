@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-function FoiaSubmissionAddress({ submissionAddress }) {
+function FoiaSubmissionAddress({ submissionAddress, paperReceiver }) {
   const {
-    additional_name,
     address_line1,
     address_line2,
     locality, // city
@@ -12,27 +11,26 @@ function FoiaSubmissionAddress({ submissionAddress }) {
     postal_code,
   } = submissionAddress || {};
 
-  // Address line seems to have been parsed wrong, it seems to be: name,
-  // title, department, suite. And then address_line2 is actually line1.
-  const [name, title, department, suite] = (address_line1 || '').split(',', 4);
+  const { name, title } = paperReceiver || {};
 
   return (
     <address className="agency-info_mailing-address">
-      <div>{ additional_name }</div>
-      <div>{ [name, title].join(',') }</div>
-      <div>{ department }</div>
-      <div>{ suite }</div>
-      <div>{ address_line2 }</div>
-      <div>{ `${locality}, ${administrative_area} ${postal_code}` }</div>
+      { name && <span>{name}<br /></span> }
+      { title && <span>{title}<br /></span> }
+      { address_line1 && <span>{address_line1}<br /></span> }
+      { address_line2 && <span>{address_line2}<br /></span> }
+      <span>{ `${locality}, ${administrative_area} ${postal_code}` }</span>
     </address>
   );
 }
 
 FoiaSubmissionAddress.propTypes = {
+  paperReceiver: PropTypes.object,
   submissionAddress: PropTypes.object,
 };
 
 FoiaSubmissionAddress.defaultProps = {
+  paperReceiver: null,
   submissionAddress: null,
 };
 

@@ -2,4 +2,4 @@
 term: "Requester"
 ---
 
-A person or organization making or about to make a FOIA request.
+A person or entity that has submitted a FOIA request for agency records.  

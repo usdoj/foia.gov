@@ -7,6 +7,6 @@ Examples of factors that determine whether your request is complex or simple inc
 <ul>
 <li>The records requested are voluminous;</li> 
 <li>Separate offices or locations must be searched in order to locate the records;</li>
-<li>The records require consultations with other agencies or multiple components within an agency.  Agencies engage in consultations when the records involve or have the equities of other agencies or agency components.;</li> 
-<li>The records include commercial or financial records of an entity outside the government which requires providing that entity an opportunity to object to disclosure.</li>
+<li>The records require consultations with other agencies or multiple components within an agency.  Agencies engage in consultations when the records involve (or have the equities of) other agencies or agency components;</li> 
+<li>The records require consultation with an entity outside the government because they contain that entity’s commercial or financial information.</li>
 </ul>
