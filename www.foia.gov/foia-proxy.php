@@ -34,11 +34,15 @@ $headers = array_map(function ($header, $value) {
 }, array_keys($headers), $headers);
 
 // Proxy the query string
-$query = http_build_query(array_filter($_GET, function ($param) {
+error_log('GET in proxy request stream ' . print_r($_GET, true));
+$query = rm_array_to_url(array_filter($_GET, function ($param) {
   // Remove our internal `u` parameter
+  error_log('values in $_GET array: ' . $param);
   return $param !== 'u';
 }, ARRAY_FILTER_USE_KEY));
-
+error_log('request archive.foia.gov ' . $query);
+//$query = http_build_query($query);
+//error_log($query);
 
 list($headers, $body) = curl_get_contents(FOIA_BASE_URL . $path, $query, $headers);
 if (!$headers || !$body) {
@@ -56,6 +60,32 @@ print $body;
 /**
  *
  *
+ * @param array  $query
+ * @return string
+ */
+function rm_array_to_url($queries) {
+    $ret = '';
+    $first = true;
+    foreach ($queries as $key => $value) {
+      if (is_array($value)) {
+        foreach ($value as $val) {
+          $ret .= (!$first?'&':'') . $key . '=' . $val;
+          $first = false;
+        }
+      }
+      else {
+        $ret .= (!$first?'&':'') . $key . '=' . $value;
+        $first = false;
+      }
+    }
+    $ret = str_replace(" ", "%20", $ret);
+    return $ret;
+}
+
+
+/**
+ *
+ *
  * @param string  $url
  * @return string
  */
@@ -65,7 +95,7 @@ function curl_get_contents($url, $query, $headers) {
     }
 
     $curl = curl_init($url);
-    curl_setopt($curl, CURLOPT_VERBOSE, 1);
+    curl_setopt($curl, CURLOPT_VERBOSE, 0);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($curl, CURLOPT_HEADER, 1);
