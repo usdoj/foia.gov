@@ -122,7 +122,7 @@ ul.tabs li a.active {background: url(images/hrtab-on.gif) 0 0 no-repeat; text-de
 
 /* Report Page Styles */
 #reportsPopular {float: left; width: 260px; padding: 0 30px 30px 30px;}
-#reportsRecent {float: left; width: 260px; padding: 0 30px 30px 30px;}
+#reportsRecent {float: left; width: 560px; padding: 0 15px 30px 30px;}
 #reportsOfficial {float: right; width: 260px; padding: 0 30px 30px 30px;}
 #reportsGlance {float: left; width: 260px; padding: 0 30px 30px 30px;}
 .reportInfo {font-style: italic; font-size: 11px; color: #999; padding: 0 0 0 20px;}
@@ -371,7 +371,7 @@ td.selected, tr.even td.selected, tr.odd td.selected{background:#e8f3dd;color:#0
 #selectAgency ul li a {font-style: italic;}
 #selectAgency ul li a img {margin: 5px 0 0 0;}
 
-#selectFY {width: 170px; float:left; padding: 0 0 0 15px;}
+#selectFY {width: 170px; float:left; padding: 0 0 0 20px;}
 #selectFY p {font: bold 14px; margin: 0 0 15px 0;}
 
 #generateReport {float:right; width: 207px; height: 80px;}
@@ -397,7 +397,7 @@ td.selected, tr.even td.selected, tr.odd td.selected{background:#e8f3dd;color:#0
 #selectAgency ul {list-style-type: none; margin: 0 0 12px 0;}
 #selectAgency li {display: inline;}
 .agencyTextdrop {font: bold 16px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; width: 390px;}
-.agencyTextlist {font: bold 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 26px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; }
+.agencyTextlist {font: bold 14px Calibri, "Trebuchet MS", Arial, Helvetica, sans-serif; color: #4D8A10; background: #fff; height: 40px; border: 1px solid #dad7d7; margin: 0; padding-left: 7px; background: #fff; }
 .addAgency {background: url(images/add-agency-off.png) 0 0 no-repeat; width: 37px; height:26px;}
 .addAgency:hover {background: url(images/add-agency-on.png) 0 0 no-repeat;}
 .deleteAgency {background: url(images/delete-agency-off.png) 0 0 no-repeat; width: 37px; height:26px;}
