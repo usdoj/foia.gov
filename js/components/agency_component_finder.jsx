@@ -134,6 +134,7 @@ class AgencyComponentFinder extends Component {
   }
 
   render() {
+    const loading = !this.props.agencyFinderDataComplete;
     const onSubmit = (e) => {
       e.preventDefault();
       this.bloodhound.search(this.typeahead.typeahead('val'), (suggestions) => {
@@ -146,6 +147,13 @@ class AgencyComponentFinder extends Component {
       });
     };
 
+    const buttonClasses = ['usa-button', 'usa-sr-hidden'];
+    if (loading) {
+      buttonClasses.push('usa-button-disabled');
+    } else {
+      buttonClasses.push('usa-button-primary');
+    }
+
     return (
       <form className="usa-search usa-search-big" onSubmit={onSubmit}>
         <div role="search">
@@ -157,8 +165,14 @@ class AgencyComponentFinder extends Component {
             placeholder="Type agency name"
             ref={(input) => { this.typeaheadInput = input; }}
           />
-          <button className="usa-button usa-button-primary usa-sr-hidden" type="submit">
-            <span className="usa-search-submit-text">Search</span>
+          <button
+            className={buttonClasses.join(' ')}
+            disabled={loading}
+            type="submit"
+          >
+            <span className="usa-search-submit-text">
+              { loading ? 'Loading…' : 'Search' }
+            </span>
           </button>
         </div>
       </form>
