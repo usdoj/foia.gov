@@ -79,7 +79,13 @@ class LandingComponent extends Component {
       this.setStateForAgency(agency, agencyComponentsForAgency);
     };
 
-    const { agencies, agencyComponents, agencyFinderDataComplete } = this.props;
+    const {
+      agencies,
+      agencyComponents,
+      agencyFinderDataComplete,
+      agencyFinderDataProgress,
+    } = this.props;
+
     return (
       <div className="usa-grid">
         <h2 className="agency-component-search_hed">
@@ -90,6 +96,7 @@ class LandingComponent extends Component {
             agencies={agencies}
             agencyComponents={agencyComponents}
             agencyFinderDataComplete={agencyFinderDataComplete}
+            agencyFinderDataProgress={agencyFinderDataProgress}
             onAgencyChange={agencyChange}
           />
         </div>
@@ -128,6 +135,12 @@ LandingComponent.propTypes = {
   agencies: PropTypes.object.isRequired,
   agencyComponents: PropTypes.object.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
+  agencyFinderDataProgress: PropTypes.number,
 };
+
+LandingComponent.defaultProps = {
+  agencyFinderDataProgress: 0,
+};
+
 
 export default LandingComponent;
