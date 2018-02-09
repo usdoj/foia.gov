@@ -14,6 +14,23 @@
 `page.bundle` is used for the non-legacy pages.
 {% endcomment %}
 <script src="{{ site.baseurl }}/assets/js/uswds.bundle.js"></script>
+<script src="{{ site.baseurl }}/assets/js/exitscript.min.js"></script>
+<script type="text/javascript">
+  exitscript({
+    title: 'U.S. Department of Justice',
+    content: '' +
+      '<div class="usa-alert usa-alert-warning">' +
+      '  <div class="usa-alert-body">' +
+      '    <h3 class="usa-alert-heading">You are now leaving a Department of Justice web site.</h3>' +
+      '    <div class="usa-alert-text">' +
+      '      <p>You are about to access: {url}</p>' +
+      '      <p>The Department of Justice does not endorse the organizations or views represented by this site and takes no responsibility for, and exercises no control over, the accuracy, accessibility, copyright or trademark compliance or legality of the material contained on this site.</p>' +
+      '      <p>Thank you for visiting our site.</p>' +
+      '    </div>' +
+      '  </div>' +
+      '</div>'
+  });
+</script>
 {% if page.init %}<script type="text/javascript" src="{{ page.init | prepend: "/" | prepend: site.baseurl }}"></script>{% endif %}
 {% if page.bundle %}<script type="text/javascript" src="{{ page.bundle | append: ".bundle.js" | prepend: "/assets/js/" | prepend: site.baseurl }}" ></script>{% endif %}
 </body>
