@@ -134,6 +134,7 @@ class AgencyComponentFinder extends Component {
   }
 
   render() {
+    const { agencyFinderDataProgress } = this.props;
     const loading = !this.props.agencyFinderDataComplete;
     const onSubmit = (e) => {
       e.preventDefault();
@@ -171,7 +172,7 @@ class AgencyComponentFinder extends Component {
             type="submit"
           >
             <span className="usa-search-submit-text">
-              { loading ? 'Loading…' : 'Search' }
+              { loading ? `Loading… ${agencyFinderDataProgress}%` : 'Search' }
             </span>
           </button>
         </div>
@@ -187,11 +188,13 @@ AgencyComponentFinder.propTypes = {
   /* eslint-enable react/no-unused-prop-types */
   onAgencyChange: PropTypes.func.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
+  agencyFinderDataProgress: PropTypes.number,
 };
 
 AgencyComponentFinder.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
+  agencyFinderDataProgress: 0,
 };
 
 export default AgencyComponentFinder;

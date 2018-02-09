@@ -6,6 +6,14 @@ import { Agency, AgencyComponent } from '../models';
 import dispatcher from '../util/dispatcher';
 
 
+// In order to show progress of the agency finder, we need to know the total
+// number of agency components we're waiting for. We don't have that number, so
+// we hard-code a guess. It's not a huge deal if it's wrong as long as we clip
+// the progress to 100%. Worse case it jumps from x% to loaded e.g. 90% to
+// loaded or, it sits on 100% for longer than it should.
+const GUESS_TOTAL_AGENCY_COMPONENTS = 400;
+
+
 class AgencyComponentStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
@@ -14,6 +22,7 @@ class AgencyComponentStore extends Store {
       agencies: new Map(),
       agencyComponents: new List(),
       agencyFinderDataComplete: false,
+      agencyFinderDataProgress: 0,
     };
   }
 
@@ -63,12 +72,22 @@ class AgencyComponentStore extends Store {
             });
         });
 
+        const updatedAgencyComponents = agencyComponents.concat(
+          receivedAgencyComponents.map(agencyComponent => new AgencyComponent(agencyComponent)),
+        );
+
+        // Figure out the progress of our load. Cap it to 100 since we only
+        // have a guess at what the total count is.
+        const agencyFinderDataProgress = Math.min(
+          Math.floor(agencyComponents.size / GUESS_TOTAL_AGENCY_COMPONENTS * 100),
+          100,
+        );
+
         // Merge state
         Object.assign(this.state, {
           agencies: updatedAgencies,
-          agencyComponents: agencyComponents.concat(
-            receivedAgencyComponents.map(agencyComponent => new AgencyComponent(agencyComponent)),
-          ),
+          agencyComponents: updatedAgencyComponents,
+          agencyFinderDataProgress,
         });
         this.__emitChange();
         break;
