@@ -134,6 +134,8 @@ class AgencyComponentFinder extends Component {
   }
 
   render() {
+    const { agencyFinderDataProgress } = this.props;
+    const loading = !this.props.agencyFinderDataComplete;
     const onSubmit = (e) => {
       e.preventDefault();
       this.bloodhound.search(this.typeahead.typeahead('val'), (suggestions) => {
@@ -146,6 +148,13 @@ class AgencyComponentFinder extends Component {
       });
     };
 
+    const buttonClasses = ['usa-button', 'usa-sr-hidden'];
+    if (loading) {
+      buttonClasses.push('usa-button-disabled');
+    } else {
+      buttonClasses.push('usa-button-primary');
+    }
+
     return (
       <form className="usa-search usa-search-big" onSubmit={onSubmit}>
         <div role="search">
@@ -157,8 +166,14 @@ class AgencyComponentFinder extends Component {
             placeholder="Type agency name"
             ref={(input) => { this.typeaheadInput = input; }}
           />
-          <button className="usa-button usa-button-primary usa-sr-hidden" type="submit">
-            <span className="usa-search-submit-text">Search</span>
+          <button
+            className={buttonClasses.join(' ')}
+            disabled={loading}
+            type="submit"
+          >
+            <span className="usa-search-submit-text">
+              { loading ? `Loading… ${agencyFinderDataProgress}%` : 'Search' }
+            </span>
           </button>
         </div>
       </form>
@@ -173,11 +188,13 @@ AgencyComponentFinder.propTypes = {
   /* eslint-enable react/no-unused-prop-types */
   onAgencyChange: PropTypes.func.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
+  agencyFinderDataProgress: PropTypes.number,
 };
 
 AgencyComponentFinder.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
+  agencyFinderDataProgress: 0,
 };
 
 export default AgencyComponentFinder;

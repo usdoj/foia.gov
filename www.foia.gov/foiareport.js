@@ -537,7 +537,7 @@ var prefix="";
 		if(x != null){
 			if(x.checked){
 				if(fiscalYear != "") fiscalYear+="&";
-				fiscalYear+="requestYear="+i;
+				fiscalYear+="requestYear[]="+i;
 				//break;
 			}
 		}
@@ -546,7 +546,7 @@ var prefix="";
 	if(x != null){
 		if(x.checked){
       for(var i=2008;i<curYear;++i){
-            fiscalYear+="requestYear="+i+"&";
+            fiscalYear+="requestYear[]="+i+"&";
       }
 			//fiscalYear="requestYear=2008&requestYear=2009&requestYear=2010&requestYear=2011&requestYear=2012&requestYear=2013&requestYear=2014";
       //fiscalYear+="&requestYear=2015"
@@ -564,7 +564,7 @@ var agencyName="";
 		if(x != null){
 			if(x.selectedIndex>1){
 			strAgencies+="&";
-			strAgencies+="agencyName=";
+			strAgencies+="agencyName[]=";
 			strAgencies+=x.options[x.selectedIndex].value;
 			}
 
@@ -585,7 +585,7 @@ var agencyName="";
 				}
 				//if(i != 1) strAgencies+="&";
 				strAgencies+="&";
-				strAgencies+="agencyName=";
+				strAgencies+="agencyName[]=";
 				strAgencies+=agencyName;
 
 			}
@@ -645,8 +645,8 @@ var mapFoiaPs=[12,13,14,14,14,15,16];
 	for(var i=0;i<x.length;i++){
 	  if(x.elements[i].type == "checkbox"){
 	  	if(x.elements[i].checked){
-		  	ret+="&fyCompId=";
-		  	ret+=x.elements[i].name;
+        ret+="&fyCompId[]=";
+        ret+=x.elements[i].name;
 	  	}
 	  }
 	}
