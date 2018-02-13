@@ -1,7 +1,7 @@
 const api = {
   localApiBaseURL: '/api',
-  jsonApiBaseURL: 'http://local.dojfoia.gov/api',
-  requestApiBaseURL: 'http://local.dojfoia.gov/api',
+  jsonApiBaseURL: 'http://local-api.foia.doj.gov/api',
+  requestApiBaseURL: 'http://local-api.foia.doj.gov/api',
   jsonApiKey: 'x-local-key-not-used',
 };
 
