@@ -11,6 +11,7 @@ var searchCriteria="";	//advance search criteria string
 var advanceSearchEnable=false;
 var selectionPs=0;
 var jumpLocation="";
+var consolelog=true;
 
 //#### page initial works
 getListAgencyinPage("popupMsgBody",1);
