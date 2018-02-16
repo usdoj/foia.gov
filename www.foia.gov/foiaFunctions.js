@@ -7,8 +7,7 @@
 	Global variables
 */
 
-var curYear=2017;
-var consolelog=true;
+var curYear=2018;
 var aLink=["reportRequests","reportExemptions",
 		"reportAppeals","reportProcessingTime","reportFeeWaiver",
 		"reportPersonnel","reportBacklog","reportConsultations",

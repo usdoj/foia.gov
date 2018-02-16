@@ -13,6 +13,7 @@ var advanceSearchEnable=false;
 var selectionPs=0;
 var jumpLocation="";
 var compareSelected=0;
+var consolelog=true;
 
 //#### page initial works
 getListAgencyinPage();

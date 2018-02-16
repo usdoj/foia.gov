@@ -34,15 +34,12 @@ $headers = array_map(function ($header, $value) {
 }, array_keys($headers), $headers);
 
 // Proxy the query string
-error_log('GET in proxy request stream ' . print_r($_GET, true));
 $query = rm_array_to_url(array_filter($_GET, function ($param) {
   // Remove our internal `u` parameter
-  error_log('values in $_GET array: ' . $param);
+
   return $param !== 'u';
 }, ARRAY_FILTER_USE_KEY));
 error_log('request archive.foia.gov ' . $query);
-//$query = http_build_query($query);
-//error_log($query);
 
 list($headers, $body) = curl_get_contents(FOIA_BASE_URL . $path, $query, $headers);
 if (!$headers || !$body) {
