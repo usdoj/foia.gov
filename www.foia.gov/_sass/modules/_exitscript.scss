@@ -1,4 +1,8 @@
 .simple-modal-body {
-  min-width: 650px !important;
-  margin-left: -325px !important;
+  .usa-alert {
+    overflow: auto;
+    .usa-alert-body {
+      max-width: 48rem;
+    }
+  }
 }
