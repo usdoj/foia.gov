@@ -19,6 +19,7 @@ build:
 	npm run build
 	mkdir -p www.foia.gov/assets
 	cp -R node_modules/uswds/dist/fonts node_modules/uswds/dist/img www.foia.gov/assets
+	cp node_modules/exitscript/exitscript.min.js www.foia.gov/assets/js/
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS)
 
 clean:
