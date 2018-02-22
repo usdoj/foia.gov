@@ -1,6 +1,7 @@
 <?php
 
 define('FOIA_BASE_URL', 'https://archive.foia.gov/');
+ini_set("default_socket_timeout", 300);
 set_time_limit(300);
 
 if (!isset($_GET['u'])) {
