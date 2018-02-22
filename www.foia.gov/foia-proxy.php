@@ -1,6 +1,7 @@
 <?php
 
 define('FOIA_BASE_URL', 'https://archive.foia.gov/');
+set_time_limit(300);
 
 if (!isset($_GET['u'])) {
     header('FOIA-Proxy: missing u param', 400, false);
