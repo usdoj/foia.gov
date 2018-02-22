@@ -1,6 +1,8 @@
 <?php
 
 define('FOIA_BASE_URL', 'https://archive.foia.gov/');
+ini_set("default_socket_timeout", 300);
+set_time_limit(300);
 
 if (!isset($_GET['u'])) {
     header('FOIA-Proxy: missing u param', 400, false);
@@ -34,15 +36,12 @@ $headers = array_map(function ($header, $value) {
 }, array_keys($headers), $headers);
 
 // Proxy the query string
-error_log('GET in proxy request stream ' . print_r($_GET, true));
 $query = rm_array_to_url(array_filter($_GET, function ($param) {
   // Remove our internal `u` parameter
-  error_log('values in $_GET array: ' . $param);
+
   return $param !== 'u';
 }, ARRAY_FILTER_USE_KEY));
 error_log('request archive.foia.gov ' . $query);
-//$query = http_build_query($query);
-//error_log($query);
 
 list($headers, $body) = curl_get_contents(FOIA_BASE_URL . $path, $query, $headers);
 if (!$headers || !$body) {
@@ -100,6 +99,7 @@ function curl_get_contents($url, $query, $headers) {
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($curl, CURLOPT_HEADER, 1);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 300);
 
     $data = curl_exec($curl);
     if($data === false) {

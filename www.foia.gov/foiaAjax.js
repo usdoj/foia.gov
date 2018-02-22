@@ -60,7 +60,6 @@ function acceptRequest(){
 	skipRequest=0;
 }
 
-
 function showFoiaData(){
 var s;
 var area;
@@ -72,7 +71,7 @@ var tmp;
 		if(xmlHttp.status == 200){
 			s=xmlHttp.responseText;
 			area=document.getElementById(divAjaxData);
-			area.innerHTML=s;
+			area.innerHTML=filterMessage(s);
 			tablecloth();
 			//Initial();
 			try{
@@ -91,7 +90,7 @@ var tmp;
 		
 		}
 		else{
-			//alert("ready="+xmlHttp.status);
+			//console.log("ready: "+xmlHttp.status);
 			area=document.getElementById(divAjaxData);
 			area.innerHTML="Foia server is not available now...";
 			
@@ -104,8 +103,41 @@ var tmp;
 			area.innerHTML="Browser is rendering the content...";
 			inProcess=0;
 		}
-		//alert("status="+xmlHttp.readystate);
+		//console.log("status: "+xmlHttp.readystate);
 	}
+}
+
+function filterMessage(msg){
+var strpos=0, endpos;
+var checknum=3;
+var rest="", xmlReq, xmlMod;
+var strsta=0;
+var index, istart;
+
+  while (checknum>0){
+    strpos=msg.indexOf("&dataURL=/foia/FormChart?",strsta);
+    endpos=msg.indexOf("%26formName%3D",strpos+1);
+    if (strpos < 0 || endpos <= strpos) break;
+    rest+=msg.substring(strsta,strpos);
+    xmlReq=msg.substring(strpos,endpos);
+    //console.log("watch string("+(4-checknum)+"): "+msg.substring(strsta,strpos));
+    istart=-1;
+    xmlMod="";
+    do{
+      index=xmlReq.indexOf("%3D",istart+1);
+      if (index<0) break;
+      xmlMod+=(xmlReq.substring(istart,index)+"[]");
+      istart=index;
+    }while(true);
+    xmlMod+=xmlReq.substring(istart);
+    //console.log("param string: "+xmlMod);
+    rest+=xmlMod;
+    strsta=endpos;
+    --checknum;
+  }
+  rest+=msg.substring(strsta);
+  //console.log("watch string: "+msg.substring(strsta));
+  return(rest);
 }
 
 function jumpToElement(){
@@ -122,7 +154,7 @@ function IEAjaxRequest(url){
 	
 	url+="&Random=";
 	url+=Math.floor(Math.random()*200);
-	if(console.log) console.log(url);
+	if(consolelog) console.log(url);
 	startFoiaRequest(url);
 }
 
