@@ -97,6 +97,7 @@ function curl_get_contents($url, $query, $headers) {
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
     curl_setopt($curl, CURLOPT_HEADER, 1);
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 300);
 
     $data = curl_exec($curl);
     if($data === false) {
