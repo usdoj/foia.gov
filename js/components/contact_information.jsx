@@ -27,14 +27,12 @@ function ContactInformation({ agencyComponent }) {
           submissionAddress={agencyComponent.submission_address}
           paperReceiver={agencyComponent.paper_receiver}
         />
-      </div>
-      { agencyComponent.email &&
-        <div className="contact-information_section">
+        { agencyComponent.email &&
           <p className="agency-info_email">
             <a href={`mailto:${agencyComponent.email}`}>{ agencyComponent.email }</a>
           </p>
-        </div>
-      }
+        }
+      </div>
     </div>
   );
 }
