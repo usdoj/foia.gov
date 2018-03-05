@@ -63,7 +63,7 @@ describe('ContactInformation', () => {
     });
 
     it('contains five info sections', () => {
-      expect(element.find('.contact-information_section')).to.have.length(5);
+      expect(element.find('.contact-information_section')).to.have.length(4);
     });
 
     it('contains three contacts', () => {
