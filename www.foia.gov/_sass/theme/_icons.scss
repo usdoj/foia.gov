@@ -5,11 +5,8 @@
   .agency-info_personnel:before {
     @include has-icon($icon-person);
   }
-  .agency-info_phone:before {
-    @include has-icon($icon-phone);
-  }
-  .agency-info_email:before {
-    @include has-icon($icon-email);
+  .agency-info_mailing-address:before {
+    @include has-icon($icon-envelope);
   }
   .agency-info_website:before {
     @include has-icon($icon-laptop);
@@ -26,11 +23,8 @@
   .agency-info_personnel:before {
     @include has-icon($icon-person-light);
   }
-  .agency-info_phone:before {
-    @include has-icon($icon-phone-light);
-  }
-  .agency-info_email:before {
-    @include has-icon($icon-email-light);
+  .agency-info_mailing-address:before {
+    @include has-icon($icon-envelope-light);
   }
   .agency-info_website:before {
     @include has-icon($icon-laptop-light);
