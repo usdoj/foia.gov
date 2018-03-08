@@ -57,8 +57,6 @@ navigation:
   secondary:
     - href: https://admin.foia.gov/user/login
       title: Agency login
-    - href: /developer/
-      title: FOIA API
 collections:
   api:
     output: true

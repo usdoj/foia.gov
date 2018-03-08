@@ -19,7 +19,7 @@
 {% include legacy/head.html %}
 {% endif %}
 {% for script in page.scripts %}
-<script type="text/javascript" src="{{ script }}"></script>
+<script type="text/javascript" src="{{ script }}?{{site.time | date: '%s%N'}}"></script>
 {% endfor %}
 <script src="{{ site.baseurl }}/assets/js/glossary.bundle.js"></script>
 <title>FOIA.gov - Freedom of Information Act{% if page.title %}: {{ page.title }}{% endif %}</title>
