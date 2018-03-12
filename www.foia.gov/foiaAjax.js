@@ -92,7 +92,7 @@ var tmp;
 		else{
 			console.log("responsed not successful: "+xmlHttp.status);
 			if(xmlHttp.status == 504){
-				location.reload();
+				breadcrumRequest("1");
 			}
 			else{
 				area=document.getElementById(divAjaxData);
@@ -107,7 +107,6 @@ var tmp;
 			area.innerHTML="Browser is rendering the content...";
 			inProcess=0;
 		}
-		console.log("return status: "+xmlHttp.readystate);
 	}
 }
 
