@@ -92,7 +92,10 @@ var tmp;
 		else{
 			console.log("responsed not successful: "+xmlHttp.status);
 			if(xmlHttp.status == 504){
-				breadcrumRequest("1");
+				s=xmlHttp.responseText;
+				area=document.getElementById(divAjaxData);
+				area.innerHTML=filterMessage(s);
+				//breadcrumRequest("1");
 			}
 			else{
 				area=document.getElementById(divAjaxData);
