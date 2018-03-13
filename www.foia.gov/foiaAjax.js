@@ -90,10 +90,17 @@ var tmp;
 		
 		}
 		else{
-			//console.log("ready: "+xmlHttp.status);
-			area=document.getElementById(divAjaxData);
-			area.innerHTML="Foia server is not available now...";
-			
+			console.log("responsed not successful: "+xmlHttp.status);
+			if(xmlHttp.status == 504){
+				s=xmlHttp.responseText;
+				area=document.getElementById(divAjaxData);
+				area.innerHTML=filterMessage(s);
+				//breadcrumRequest("1");
+			}
+			else{
+				area=document.getElementById(divAjaxData);
+				area.innerHTML="Foia server is not available now...";
+			}
 		}
 	}
 	else{
@@ -103,7 +110,6 @@ var tmp;
 			area.innerHTML="Browser is rendering the content...";
 			inProcess=0;
 		}
-		//console.log("status: "+xmlHttp.readystate);
 	}
 }
 
