@@ -29,6 +29,8 @@ RewriteRule "^foia/(.*)$" "foia-proxy.php?u=foia/$1" [QSA,L]
 
 # Legacy page redirects
 RewriteRule ^developer.html$ /developer/ [R=301,L]
+RewriteRule ^xmlgen/(.*)$ https://archive.foia.gov/xmlgen/ [R=301,L]
+RewriteRule ^xmlgen$ https://archive.foia.gov/xmlgen/ [R=301,L]
 
 # Portal request single page app
 RewriteCond %{REQUEST_FILENAME} !-f
