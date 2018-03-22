@@ -63,7 +63,7 @@ curl -g -v -H 'X-API-Key: <your-api-key>' https://api.foia.gov/api/agency_compon
 
 You can submit a FOIA request using our API. The endpoint for the submission API:
 
-    https://api.foia.gov/api/webform/submit
+    https://api.foia.gov/api/webform/submit?_format=json
 
 You'll need to identify the request form you are submitting to using the Agency
 component API and provide any relevant data to Agency.
@@ -109,7 +109,7 @@ $ curl -H 'X-API-Key: <your-api-key>' https://api.foia.gov/api/agency_components
 Submit a request to the Office of Information Policy.
 
 ```
-curl -v -H 'X-Api-Key: <your-api-key>' https://api.foia.gov/api/webform/submit --data-binary @- <<EOF
+curl -v -H 'X-Api-Key: <your-api-key>' https://api.foia.gov/api/webform/submit?_format=json --data-binary @- <<EOF
 {
     "id": "test_form",
     "email": "george@example.com",
