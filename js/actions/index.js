@@ -23,15 +23,19 @@ export const types = {
 
 // Action creators, to dispatch actions
 export const requestActions = {
-  fetchAgencyFinderData() {
+  fetchAgencyFinderData(agencyComponentFields = null) {
     dispatcher.dispatch({
       type: types.AGENCY_FINDER_DATA_FETCH,
     });
 
+    if (!agencyComponentFields) {
+      agencyComponentFields = ['title', 'abbreviation', 'agency'];
+    }
+
     return jsonapi.params()
       .include('agency')
       .fields('agency', ['name', 'abbreviation', 'description'])
-      .fields('agency_component', ['title', 'abbreviation', 'agency'])
+      .fields('agency_component', agencyComponentFields)
       .limit(50) // Maximum allowed by drupal
       .paginate('/agency_components', requestActions.receiveAgencyFinderData)
       .then(requestActions.completeAgencyFinderData);
