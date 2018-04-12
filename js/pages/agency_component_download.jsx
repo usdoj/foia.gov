@@ -22,27 +22,36 @@ class AgencyComponentDownloadPage extends Component {
     }
 
     // Pre-fetch the list of agency components, re-purposing the "finder" code.
-    const agencyComponentFields = [
-      'title',
-      'agency'
-    ];
-    requestActions.fetchAgencyFinderData(agencyComponentFields);
+    const includeReferenceFields = {
+      agency_component: ['title', 'agency', 'foia_officers', 'submission_address'],
+      agency: ['name'],
+      foia_officers: ['name', 'title'],
+    };
+    requestActions.fetchAgencyFinderData(includeReferenceFields);
   }
 
   render() {
 
     const progress = agencyComponentStore.getState().agencyFinderDataProgress;
-    if (progress == 100) {
+    if (progress >= 100) {
 
       const {
         agencyComponents
       } = this.state;
 
-      const tableRows = agencyComponents.map(function(item) {
-        console.log(item.title);
-        console.log(item.agency.name);
-        return item;
+      let tableRows = [];
+      agencyComponents.forEach(function(agency_component) {
+        agency_component.foia_officers.forEach(function(foia_officer) {
+          tableRows.push({
+            'Component': agency_component.title,
+            'Department': agency_component.agency.name,
+            'Name': foia_officer.name,
+            'Title': foia_officer.title,
+          });
+        });
       });
+
+      console.log(tableRows);
     }
 
     return null;
