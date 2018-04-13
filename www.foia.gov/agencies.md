@@ -1,7 +1,7 @@
 ---
 title: "Government agencies"
 layout: default
-bundle: agency_info_download
+bundle: agency_component_download
 ---
 # Government agency information
 
