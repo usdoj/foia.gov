@@ -132,6 +132,7 @@ class AgencyComponentDownloadPage extends Component {
         }
         return 0;
       });
+      rows.unshift(header);
 
       this.myButton.innerHTML = 'Download to CSV';
       this.rows = rows;
