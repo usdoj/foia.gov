@@ -18,40 +18,38 @@ import { scrollOffset } from '../util/dom';
 
 function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionResult }) {
   function onChange({ formData: data }) {
-
     // Enforce contact information requirements,
     // one of email, phone, or address is provided (2018-04-10 jh)
     // $("#foia-request-form_submit_button")
     // .attr('class','usa-button usa-button-big usa-button-primary-alt');
-    $('#root_requester_contact_email').attr('required','true');
-    $('#root_requester_contact_phone_number').attr('required','true');
-    $('#root_requester_contact_address_line1').attr('required','true');
+    $('#root_requester_contact_email').attr('required', 'true');
+    $('#root_requester_contact_phone_number').attr('required', 'true');
+    $('#root_requester_contact_address_line1').attr('required', 'true');
     requestActions.updateRequestForm(data);
-    var satisfy = false;
+    let satisfy = false;
     if (data.requester_contact.address_line1) {
-      $('#root_requester_contact_address_city').attr('required','true');
-      $('#root_requester_contact_address_state_province').attr('required','true');
-      $('#root_requester_contact_address_zip_postal_code').attr('required','true');
+      $('#root_requester_contact_address_city').attr('required', 'true');
+      $('#root_requester_contact_address_state_province').attr('required', 'true');
+      $('#root_requester_contact_address_zip_postal_code').attr('required', 'true');
       $('#root_requester_contact_phone_number').removeAttr('required');
       $('#root_requester_contact_email').removeAttr('required');
-        satisfy = true;
+      satisfy = true;
     }
     if (data.requester_contact.email) {
       $('#root_requester_contact_address_line1').removeAttr('required');
       $('#root_requester_contact_phone_number').removeAttr('required');
-        satisfy = true;
+      satisfy = true;
     }
     if (data.requester_contact.phone_number) {
       $('#root_requester_contact_address_line1').removeAttr('required');
       $('#root_requester_contact_email').removeAttr('required');
-        satisfy = true;
+      satisfy = true;
     }
-    var fEmail = document.querySelector('#root_requester_contact_email');
+    const fEmail = document.querySelector('#root_requester_contact_email');
     if (!satisfy) {
       fEmail
         .setCustomValidity('Please provide one of these, email, phone, or addree to continue.');
-    }
-    else {
+    } else {
       fEmail.setCustomValidity('');
     }
   }
