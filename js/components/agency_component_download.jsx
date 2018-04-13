@@ -5,9 +5,9 @@ import { requestActions } from 'actions';
 import ExcellentExport from 'excellentexport';
 
 /**
- * A download page for getting all agency component contact information as CSV.
+ * A download button for getting all agency component contact information as CSV.
  */
-class AgencyComponentDownloadPage extends Component {
+class AgencyComponentDownloadButton extends Component {
   static getStores() {
     return [agencyComponentStore];
   }
@@ -147,4 +147,4 @@ class AgencyComponentDownloadPage extends Component {
   }
 }
 
-export default Container.create(AgencyComponentDownloadPage);
+export default Container.create(AgencyComponentDownloadButton);

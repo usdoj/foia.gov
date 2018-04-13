@@ -2,9 +2,9 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 
-import AgencyComponentDownloadPage from 'pages/agency_component_download';
+import AgencyComponentDownloadButton from 'components/agency_component_download';
 
 render(
-  <AgencyComponentDownloadPage />,
+  <AgencyComponentDownloadButton />,
   document.getElementById('agency-component-download-react-app'),
 );
