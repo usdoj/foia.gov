@@ -28,20 +28,18 @@ export const requestActions = {
       type: types.AGENCY_FINDER_DATA_FETCH,
     });
 
-    if (!includeReferenceFields) {
-      includeReferenceFields = {
-        agency_component: ['title', 'abbreviation', 'agency'],
-        agency: ['name', 'abbreviation', 'description']
-      };
-    }
+    const referenceFields = includeReferenceFields || {
+      agency_component: ['title', 'abbreviation', 'agency'],
+      agency: ['name', 'abbreviation', 'description'],
+    };
 
-    let request = jsonapi.params();
-    for (var field in includeReferenceFields) {
-      if ('agency_component' != field) {
+    const request = jsonapi.params();
+    Object.keys(referenceFields).forEach((field) => {
+      if (field !== 'agency_component') {
         request.include(field);
       }
-      request.fields(field, includeReferenceFields[field]);
-    }
+      request.fields(field, referenceFields[field]);
+    });
 
     return request
       .limit(50) // Maximum allowed by drupal
