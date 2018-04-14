@@ -19,6 +19,13 @@ class ContactDownloadButton extends Component {
     };
   }
 
+  /**
+   * Get the agency_component fields that contain contact information.
+   */
+  static getFoiaPersonnelFields() {
+    return ['foia_officers', 'public_liaisons', 'service_centers'];
+  }
+
   componentDidMount() {
     // If there is any agency data, assume all the data is fetched.
     if (this.state.agencyComponents.size) {
@@ -35,13 +42,6 @@ class ContactDownloadButton extends Component {
       includeReferenceFields[personnelField] = ['name', 'title', 'email', 'phone'];
     });
     requestActions.fetchAgencyFinderData(includeReferenceFields);
-  }
-
-  /**
-   * Get the agency_component fields that contain contact information.
-   */
-  static getFoiaPersonnelFields() {
-    return ['foia_officers', 'public_liaisons', 'service_centers'];
   }
 
   /**
@@ -151,7 +151,7 @@ class ContactDownloadButton extends Component {
     // Return the anchor link itself.
     return (
       <a
-        href="#"
+        href="download"
         role="button"
         tabIndex={0}
         className="usa-button"
