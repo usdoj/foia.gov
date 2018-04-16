@@ -13,9 +13,79 @@ class ContactDownloadButton extends Component {
   }
 
   static calculateState() {
-    const { agencyComponents } = agencyComponentStore.getState();
+    const {
+      agencyComponents,
+      agencyFinderDataProgress,
+      agencyFinderDataComplete,
+    } = agencyComponentStore.getState();
+
+    const rows = [];
+
+    // If the data is finished loading, create an array of rows for a CSV file.
+    if (agencyFinderDataComplete) {
+      // Construct a large array of all the FOIA personnel as rows (objects).
+      const header = [
+        'Component',
+        'Department',
+        'Name',
+        'Title',
+        'Email',
+        'Street Address 1',
+        'Street Address 2',
+        'City',
+        'State',
+        'Zip code',
+        'Telephone',
+        'Fax',
+      ];
+      agencyComponents.forEach((agencyComponent) => {
+        ContactDownloadButton.getFoiaPersonnelFields().forEach((personnelField) => {
+          agencyComponent[personnelField].forEach((foiaPersonnel) => {
+            rows.push([
+              agencyComponent.title,
+              agencyComponent.agency.name,
+              foiaPersonnel.name,
+              foiaPersonnel.title,
+              foiaPersonnel.email,
+              agencyComponent.submission_address.address_line1,
+              agencyComponent.submission_address.address_line2,
+              agencyComponent.submission_address.locality,
+              agencyComponent.submission_address.administrative_area,
+              agencyComponent.submission_address.postal_code,
+              (foiaPersonnel.phone) ? foiaPersonnel.phone.join(', ') : '',
+              agencyComponent.submission_fax,
+            ]);
+          });
+        });
+      });
+
+      // Sort the array of rows by the agency name, then component, then person name.
+      const orderPositions = [
+        header.indexOf('Department'),
+        header.indexOf('Component'),
+        header.indexOf('Name'),
+      ];
+      rows.sort((a, b) => {
+        let i;
+        for (i = 0; i < orderPositions.length; i++) {
+          const pos = orderPositions[i];
+          const aLower = (a[pos]) ? a[pos].toLowerCase() : '';
+          const bLower = (b[pos]) ? b[pos].toLowerCase() : '';
+          const compareAB = aLower.localeCompare(bLower);
+          if (compareAB !== 0) {
+            return compareAB;
+          }
+        }
+        return 0;
+      });
+      rows.unshift(header);
+    }
+
     return {
       agencyComponents,
+      agencyFinderDataProgress,
+      agencyFinderDataComplete,
+      rows,
     };
   }
 
@@ -55,7 +125,7 @@ class ContactDownloadButton extends Component {
     }, [{
       name: 'FOIA Agency Contacts',
       from: {
-        array: this.rows,
+        array: this.state.rows,
       },
     }]);
   }
@@ -64,88 +134,18 @@ class ContactDownloadButton extends Component {
    * Event handler for when the download button is triggered.
    */
   handleClick() {
-    return (this.rows) ? this.performDownload() : false;
+    return (this.state.rows) ? this.performDownload() : false;
   }
 
   /**
    * Called each time a batch of agency components finished loading.
    */
   render() {
-    const progress = agencyComponentStore.getState().agencyFinderDataProgress;
-
-    // If this is not the last batch, just update the button text.
-    if (progress < 100) {
-      if (this.downloadButton) {
-        this.downloadButton.innerHTML = `Please wait - ${progress}%`;
-      }
+    let buttonText = 'Please wait';
+    if (!this.state.agencyFinderDataComplete) {
+      buttonText = `Please wait - ${this.state.agencyFinderDataComplete}%`;
     } else {
-      // Otherwise, prepare the CSV data.
-      const { agencyComponents } = this.state;
-
-      // Construct a large array of all the FOIA personnel as rows (objects).
-      const header = [
-        'Component',
-        'Department',
-        'Name',
-        'Title',
-        'Email',
-        'Street Address 1',
-        'Street Address 2',
-        'City',
-        'State',
-        'Zip code',
-        'Telephone',
-        'Fax',
-      ];
-      const rows = [];
-      agencyComponents.forEach((agencyComponent) => {
-        ContactDownloadButton.getFoiaPersonnelFields().forEach((personnelField) => {
-          agencyComponent[personnelField].forEach((foiaPersonnel) => {
-            rows.push([
-              agencyComponent.title,
-              agencyComponent.agency.name,
-              foiaPersonnel.name,
-              foiaPersonnel.title,
-              foiaPersonnel.email,
-              agencyComponent.submission_address.address_line1,
-              agencyComponent.submission_address.address_line2,
-              agencyComponent.submission_address.locality,
-              agencyComponent.submission_address.administrative_area,
-              agencyComponent.submission_address.postal_code,
-              (foiaPersonnel.phone) ? foiaPersonnel.phone.join(', ') : '',
-              agencyComponent.submission_fax,
-            ]);
-          });
-        });
-      });
-
-      // Sort the array of rows by the agency name, then component, then person name.
-      const orderPositions = [
-        header.indexOf('Department'),
-        header.indexOf('Component'),
-        header.indexOf('Name'),
-      ];
-      rows.sort((a, b) => {
-        let i;
-        for (i = 0; i < orderPositions.length; i++) {
-          const pos = orderPositions[i];
-          const aLower = (a[pos]) ? a[pos].toLowerCase() : '';
-          const bLower = (b[pos]) ? b[pos].toLowerCase() : '';
-          if (aLower < bLower) {
-            return -1;
-          }
-          if (aLower > bLower) {
-            return 1;
-          }
-        }
-        return 0;
-      });
-      rows.unshift(header);
-
-      // Update the button text.
-      this.downloadButton.innerHTML = 'Download to CSV';
-      // Save the row data for whenever the user clicks the button.
-      this.rows = rows;
+      buttonText = 'Download as CSV';
     }
 
     // Return the anchor link itself.
@@ -157,7 +157,7 @@ class ContactDownloadButton extends Component {
         className="usa-button"
         ref={(c) => { this.downloadButton = c; }}
         onClick={this.handleClick.bind(this)}
-      >Please wait</a>
+      >{ buttonText }</a>
     );
   }
 }
