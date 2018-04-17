@@ -133,8 +133,13 @@ class ContactDownloadButton extends Component {
   /**
    * Event handler for when the download button is triggered.
    */
-  handleClick() {
-    return (this.state.rows.length) ? this.performDownload() : false;
+  handleClick(event) {
+    // Only do something if the array of rows exists.
+    if (this.state.rows.length) {
+      return this.performDownload();
+    }
+    event.preventDefault();
+    return false;
   }
 
   /**
