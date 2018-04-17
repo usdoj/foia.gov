@@ -4,6 +4,7 @@ layout: default
 use-uswds: true
 grid: usa-grid
 permalink: /developer/
+bundle: contact_download
 ---
 # Developer resources
 
@@ -146,5 +147,11 @@ EOF
 
 If your agency is interested in receiving requests from the Portal via an API, please check out
 our [API spec](/developer/agency-api/) and [get in touch with us](mailto:{{ site.email }}).
+
+## FOIA Contacts Download
+
+The following file is the complete listing of all FOIA contacts across federal departments and agencies.
+
+<div id="contact-download-react-app"></div>
 
 <p align="right"><a href="#top">Return to Top</a></p>
