@@ -24,7 +24,8 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
     // .attr('class','usa-button usa-button-big usa-button-primary-alt');
     requestActions.updateRequestForm(data);
     let satisfy = false;
-    if (!data.requester_contact.address_line1 && !data.requester_contact.email && !data.requester_contact.phone_number) {
+    if (!data.requester_contact.address_line1 && !data.requester_contact.email &&
+     !data.requester_contact.phone_number) {
       $('#root_requester_contact_email').attr('required', 'true');
       $('#root_requester_contact_phone_number').attr('required', 'true');
       $('#root_requester_contact_address_line1').attr('required', 'true');
