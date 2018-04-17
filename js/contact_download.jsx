@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 
-import ContactDownloadButton from 'components/contact_download';
+import ContactDownloadButton from 'pages/contact_download';
 
 render(
   <ContactDownloadButton />,

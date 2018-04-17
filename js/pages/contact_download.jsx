@@ -143,15 +143,16 @@ class ContactDownloadButton extends Component {
   render() {
     let buttonText = 'Please wait';
     if (!this.state.agencyFinderDataComplete) {
-      buttonText = `Please wait - ${this.state.agencyFinderDataComplete}%`;
+      const percentage = this.state.agencyFinderDataProgress || '0';
+      buttonText = `Please wait - ${percentage}%`;
     } else {
-      buttonText = 'Download as CSV';
+      buttonText = 'Download the full FOIA contacts list';
     }
 
     // Return the anchor link itself.
     return (
       <a
-        href="download"
+        href="?download"
         role="button"
         tabIndex={0}
         className="usa-button"
