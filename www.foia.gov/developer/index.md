@@ -4,6 +4,7 @@ layout: default
 use-uswds: true
 grid: usa-grid
 permalink: /developer/
+bundle: contact_download
 ---
 # Developer resources
 
