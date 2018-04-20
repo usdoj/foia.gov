@@ -36,6 +36,7 @@ module.exports = {
     glossary: './js/glossary.js',
     request: './js/request.jsx',
     uswds: './js/uswds.js',
+    contact_download: './js/contact_download.jsx',
   },
   output: {
     path: path.resolve(__dirname, 'www.foia.gov/assets/js'),

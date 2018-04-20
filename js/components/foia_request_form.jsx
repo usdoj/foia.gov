@@ -24,7 +24,6 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
   function onFormSubmit({ formData: data }) {
     // Merge the sections into a single payload
     const payload = rf.mergeSectionFormData(data);
-
     // Transform file fields to attachments
     findFileFields(requestForm)
       .filter(fileFieldName => fileFieldName in payload)

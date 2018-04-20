@@ -23,15 +23,25 @@ export const types = {
 
 // Action creators, to dispatch actions
 export const requestActions = {
-  fetchAgencyFinderData() {
+  fetchAgencyFinderData(includeReferenceFields = null) {
     dispatcher.dispatch({
       type: types.AGENCY_FINDER_DATA_FETCH,
     });
 
-    return jsonapi.params()
-      .include('agency')
-      .fields('agency', ['name', 'abbreviation', 'description'])
-      .fields('agency_component', ['title', 'abbreviation', 'agency'])
+    const referenceFields = includeReferenceFields || {
+      agency_component: ['title', 'abbreviation', 'agency'],
+      agency: ['name', 'abbreviation', 'description'],
+    };
+
+    const request = jsonapi.params();
+    Object.keys(referenceFields).forEach((field) => {
+      if (field !== 'agency_component') {
+        request.include(field);
+      }
+      request.fields(field, referenceFields[field]);
+    });
+
+    return request
       .limit(50) // Maximum allowed by drupal
       .paginate('/agency_components', requestActions.receiveAgencyFinderData)
       .then(requestActions.completeAgencyFinderData);
