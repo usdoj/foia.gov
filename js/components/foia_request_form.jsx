@@ -16,9 +16,44 @@ import UploadProgress from './upload_progress';
 import { scrollOffset } from '../util/dom';
 
 
+let isSetRquirement = (isSetRquirement == null)?false:isSetRquirement;
 function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionResult }) {
   function onChange({ formData: data }) {
     requestActions.updateRequestForm(data);
+    if (!$('#root_requester_contact_email').attr('required') &&
+     !$('#root_requester_contact_phone_number').attr('required') &&
+     !$('#root_requester_contact_address_line1').attr('required')) {
+      $('#root_requester_contact_email').attr('required', 'true');
+      $('#root_requester_contact_phone_number').attr('required', 'true');
+      $('#root_requester_contact_address_line1').attr('required', 'true');
+      isSetRquirement = true;
+    }
+    if (isSetRquirement) {
+      let satisfy = false;
+      if (data.requester_contact.address_line1) {
+        $('#root_requester_contact_phone_number').removeAttr('required');
+        $('#root_requester_contact_email').removeAttr('required');
+        satisfy = true;
+      }
+      if (data.requester_contact.email) {
+        $('#root_requester_contact_address_line1').removeAttr('required');
+        $('#root_requester_contact_phone_number').removeAttr('required');
+        satisfy = true;
+      }
+      if (data.requester_contact.phone_number) {
+        $('#root_requester_contact_address_line1').removeAttr('required');
+        $('#root_requester_contact_email').removeAttr('required');
+        satisfy = true;
+      }
+      const fEmail = document.querySelector('#root_requester_contact_email');
+      if (!satisfy) {
+        fEmail
+          .setCustomValidity('In order to submit your request, you must provide at least one' +
+            ' of the following: email address, mailing address, or phone number.');
+      } else {
+        fEmail.setCustomValidity('');
+      }
+    }
   }
 
   function onFormSubmit({ formData: data }) {
