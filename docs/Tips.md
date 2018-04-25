@@ -11,5 +11,5 @@
 1. [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 1. Inspect Element is your friend (ex: alert box)
 1. Creating new html pages >  process?
-1. creating a new github doc, put the .extension on the file name. duh
-circlci
+1. creating a new github doc, put the .extension on the file name.
+1. Sign onto > [circleci.com](https://circleci.com), with github account to monitor deployment progress
