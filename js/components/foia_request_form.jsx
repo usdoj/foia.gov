@@ -16,7 +16,7 @@ import UploadProgress from './upload_progress';
 import { scrollOffset } from '../util/dom';
 
 
-let isSetRquirement = (isSetRquirement == null)?false:isSetRquirement;
+let isSetRquirement = false;
 function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionResult }) {
   function onChange({ formData: data }) {
     requestActions.updateRequestForm(data);
