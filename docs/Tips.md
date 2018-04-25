@@ -12,3 +12,4 @@
 1. Inspect Element is your friend (ex: alert box)
 1. Creating new html pages >  process?
 1. creating a new github doc, put the .extension on the file name. duh
+circlci
