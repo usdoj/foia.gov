@@ -16,7 +16,6 @@ import UploadProgress from './upload_progress';
 import { scrollOffset } from '../util/dom';
 
 function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionResult }) {
-
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
     const fieldErrors = document.getElementsByClassName('usa-input-error');
@@ -27,9 +26,9 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
   }
 
   // Custom validation function, which runs after jsonSchema validation.
-  function validate(formData, errors) {
+  function validate(data, errors) {
     const contactFields = ['email', 'address_line1', 'phone_number'];
-    if (contactFields.every(field => !formData.requester_contact[field])) {
+    if (contactFields.every(field => !data.requester_contact[field])) {
       contactFields.forEach((field) => {
         errors.requester_contact[field].addError('Please provide at least one form of contact information.');
       });
@@ -42,7 +41,7 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
   }
 
   // Listen for jsonSchema validation errors and jump to them.
-  function onError(errors) {
+  function onError() {
     focusOnFirstError();
   }
 
