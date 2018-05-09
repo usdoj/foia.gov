@@ -15,10 +15,34 @@ import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 import UploadProgress from './upload_progress';
 import { scrollOffset } from '../util/dom';
 
-
 function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionResult }) {
+  // Helper function to jump to the first form error.
+  function focusOnFirstError() {
+    const fieldErrors = document.getElementsByClassName('usa-input-error');
+    const firstError = fieldErrors.length && fieldErrors[0];
+    if (firstError) {
+      window.scrollTo(0, scrollOffset(firstError));
+    }
+  }
+
+  // Custom validation function, which runs after jsonSchema validation.
+  function validate(data, errors) {
+    const contactFields = ['email', 'address_line1', 'phone_number'];
+    if (contactFields.every(field => !data.requester_contact[field])) {
+      contactFields.forEach((field) => {
+        errors.requester_contact[field].addError('Please provide at least one form of contact information.');
+      });
+    }
+    return errors;
+  }
+
   function onChange({ formData: data }) {
     requestActions.updateRequestForm(data);
+  }
+
+  // Listen for jsonSchema validation errors and jump to them.
+  function onError() {
+    focusOnFirstError();
   }
 
   function onFormSubmit({ formData: data }) {
@@ -46,12 +70,7 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
         onSubmit();
       })
       .catch((error) => {
-        const fieldErrors = document.getElementsByClassName('usa-input-error');
-        const firstError = fieldErrors.length && fieldErrors[0];
-        if (firstError) {
-          window.scrollTo(0, scrollOffset(firstError));
-        }
-
+        focusOnFirstError();
         throw error;
       });
   }
@@ -80,6 +99,9 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
       schema={jsonSchema}
       uiSchema={uiSchema}
       widgets={widgets}
+      validate={validate}
+      onError={onError}
+      showErrorList={false}
     >
       <div id="foia-request-form_submit" className="foia-request-form_submit">
         <div className="foia-request-form_inline-progress">

@@ -7,16 +7,19 @@ function CustomFieldTemplate(props) {
     classNames,
     description,
     displayLabel,
-    errors,
     formContext,
     help,
     id,
     label,
     required,
+    rawErrors,
   } = props;
 
   const classes = [classNames];
-  const error = formContext.errors[id];
+  // Check for errors in either of two places:
+  // - formContext.errors: This is where errors returned from Drupal would be.
+  // - rawErrors: This is where jsonSchema validation errors would be.
+  const error = formContext.errors[id] || ((rawErrors.length) ? rawErrors[0] : false);
   if (error) {
     classes.push('usa-input-error');
   }
@@ -32,7 +35,6 @@ function CustomFieldTemplate(props) {
         </div>
       }
       {children}
-      {errors}
       { error &&
         <div
           className="usa-input-error-message"
@@ -50,12 +52,12 @@ CustomFieldTemplate.propTypes = {
   classNames: PropTypes.string,
   description: PropTypes.object,
   displayLabel: PropTypes.bool,
-  errors: PropTypes.object,
   formContext: PropTypes.object,
   help: PropTypes.object,
   id: PropTypes.string,
   label: PropTypes.string,
   required: PropTypes.bool,
+  rawErrors: PropTypes.array,
 };
 
 CustomFieldTemplate.defaultProps = {
@@ -63,12 +65,12 @@ CustomFieldTemplate.defaultProps = {
   classNames: '',
   description: {},
   displayLabel: true,
-  errors: {},
   formContext: {},
   help: {},
   id: '',
   label: '',
   required: false,
+  rawErrors: [],
 };
 
 export default CustomFieldTemplate;
