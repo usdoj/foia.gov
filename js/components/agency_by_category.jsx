@@ -1,19 +1,29 @@
+import { Map, List } from 'immutable';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 /**
- * A list of agency components by topic.
+ * A list of agencies by category.
  */
-class AgencyComponentsByTopic extends Component {
-  
+class AgencyByCategory extends Component {
+
   /**
    * Render this component.
    */
   render() {
+    const loading = !this.props.agencyFinderDataComplete;
+
+    this.props.agencies.forEach((agency) => {
+      if (agency.category) {
+        console.log(agency);
+      }
+    });
+
     return (
       <ul className="usa-accordion">
         <li>
           <button className="usa-accordion-button" aria-controls="a1">
-            Government agencies by topic
+            {loading ? `Loading…` : 'Government agencies by topic'}
           </button>
           <div id="a1" className="usa-accordion-content">
             <ul className="usa-accordion">
@@ -71,4 +81,14 @@ class AgencyComponentsByTopic extends Component {
   }
 }
 
-export default AgencyComponentsByTopic;
+AgencyByCategory.propTypes = {
+  /* eslint-disable react/no-unused-prop-types */
+  agencies: PropTypes.instanceOf(Map),
+  agencyFinderDataComplete: PropTypes.bool.isRequired,
+};
+
+AgencyByCategory.defaultProps = {
+  agencies: new Map(),
+};
+
+export default AgencyByCategory;

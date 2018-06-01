@@ -6,7 +6,7 @@ import AgencyComponentFinder from 'components/agency_component_finder';
 import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
 import agencyComponentStore from '../stores/agency_component';
-import AgencyComponentsByTopic from 'components/agency_components_by_topic';
+import AgencyByCategory from 'components/agency_by_category';
 
 
 class LandingComponent extends Component {
@@ -109,7 +109,10 @@ class LandingComponent extends Component {
               through FOIA.gov. For those agencies, this site   will provide
               you with the information you need to submit a request directly to
               the agency.</p>
-              <AgencyComponentsByTopic />
+              <AgencyByCategory
+                agencies={agencies}
+                agencyFinderDataComplete={agencyFinderDataComplete}
+              />
             </div>
         }
         {
