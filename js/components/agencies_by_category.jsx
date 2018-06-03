@@ -1,12 +1,12 @@
 import { Map, List } from 'immutable';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AgencyCategoryAccordion from 'components/agency_category_accordion';
+//import AgencyCategoryAccordion from 'components/agency_category_accordion';
 
 /**
  * A list of agencies by category.
  */
-class AgencyByCategory extends Component {
+class AgenciesByCategory extends Component {
 
   /**
    * Render this component.
@@ -23,7 +23,12 @@ class AgencyByCategory extends Component {
       }
     });
 
-    Object.entries(agenciesByCategory).map(foo => console.log(foo));
+    function idFromName(name) {
+      return name
+        .toLowerCase()
+        .replace(/ /g, '-')
+        .replace(/[^\w-]+/g, '');
+    }
 
     return (
       <ul className="usa-accordion">
@@ -34,12 +39,20 @@ class AgencyByCategory extends Component {
           <div id="a1" className="usa-accordion-content">
             <ul className="usa-accordion">
               {Object.entries(agenciesByCategory).map(([name, agencies]) =>
-                <li>
-                  <AgencyCategoryAccordion
-                    name={name}
-                    agencies={agencies}
-                  />
-                </li>
+              <li key={name}>
+                <button className="usa-accordion-button" aria-controls={idFromName(name)} aria-expanded="false">
+                  {name}
+                </button>
+                <div id={idFromName(name)} className="usa-accordion-content">
+                  <ul>
+                    {agencies.map(agency =>
+                    <li key={agency.name}>
+                      {agency.name}
+                    </li>
+                    )}
+                  </ul>
+                </div>
+              </li>
               )}
             </ul>
           </div>
@@ -49,14 +62,14 @@ class AgencyByCategory extends Component {
   }
 }
 
-AgencyByCategory.propTypes = {
+AgenciesByCategory.propTypes = {
   /* eslint-disable react/no-unused-prop-types */
   agencies: PropTypes.instanceOf(Map),
   agencyFinderDataComplete: PropTypes.bool.isRequired,
 };
 
-AgencyByCategory.defaultProps = {
+AgenciesByCategory.defaultProps = {
   agencies: new Map(),
 };
 
-export default AgencyByCategory;
+export default AgenciesByCategory;
