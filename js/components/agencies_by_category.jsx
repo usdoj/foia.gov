@@ -26,7 +26,7 @@ function AgenciesByCategory({ agencies, agencyFinderDataComplete, onAgencySelect
     <ul className="usa-accordion agencies-by-category">
       <li>
         <button className="usa-accordion-button" aria-controls="a1">
-          {loading ? 'Loading…' : 'Government agencies by topic'}
+          {loading ? 'Loading…' : 'Find government agencies by category'}
         </button>
         <div id="a1" className="usa-accordion-content">
           <ul className="usa-accordion agency-category">
