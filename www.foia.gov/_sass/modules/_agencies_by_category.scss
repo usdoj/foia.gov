@@ -1,0 +1,13 @@
+.agencies-by-category {
+  margin-top: 20px;
+  .agency-category {
+    ul {
+      @media all and (min-width: $medium-screen) {
+        column-count: 2;
+      }
+      li {
+        cursor: pointer;
+      }
+    }
+  }
+}
