@@ -5,9 +5,8 @@ import { requestActions } from 'actions';
 import AgencyComponentFinder from 'components/agency_component_finder';
 import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
-import agencyComponentStore from '../stores/agency_component';
 import AgenciesByCategory from 'components/agencies_by_category';
-
+import agencyComponentStore from '../stores/agency_component';
 
 class LandingComponent extends Component {
   constructor(props) {

@@ -31,7 +31,7 @@ export const requestActions = {
     const referenceFields = includeReferenceFields || {
       agency_component: ['title', 'abbreviation', 'agency'],
       agency: ['name', 'abbreviation', 'description', 'category'],
-      "agency.category": ['name'],
+      'agency.category': ['name'],
     };
 
     const request = jsonapi.params();
