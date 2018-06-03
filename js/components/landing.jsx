@@ -109,10 +109,6 @@ class LandingComponent extends Component {
               through FOIA.gov. For those agencies, this site   will provide
               you with the information you need to submit a request directly to
               the agency.</p>
-              <AgenciesByCategory
-                agencies={agencies}
-                agencyFinderDataComplete={agencyFinderDataComplete}
-              />
             </div>
         }
         {
@@ -131,6 +127,11 @@ class LandingComponent extends Component {
             onAgencySelect={agencyChange}
           />
         }
+        <AgenciesByCategory
+          agencies={agencies}
+          agencyFinderDataComplete={agencyFinderDataComplete}
+          onAgencySelect={agencyChange}
+        />
       </div>
     );
   }
