@@ -23,11 +23,15 @@ class AgenciesByCategory extends Component {
       }
     });
 
-    function idFromName(name) {
+    const idFromName = (name) => {
       return name
         .toLowerCase()
         .replace(/ /g, '-')
         .replace(/[^\w-]+/g, '');
+    }
+
+    const agencySelect = (agency) => {
+      console.log(agency);
     }
 
     return (
@@ -46,7 +50,7 @@ class AgenciesByCategory extends Component {
                 <div id={idFromName(name)} className="usa-accordion-content">
                   <ul>
                     {agencies.map(agency =>
-                    <li key={agency.name}>
+                    <li key={agency.name} onClick={() => agencySelect(agency)}>
                       {agency.name}
                     </li>
                     )}
