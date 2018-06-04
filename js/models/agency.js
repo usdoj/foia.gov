@@ -10,6 +10,7 @@ const defaults = {
   links: {},
   name: null,
   type: 'agency',
+  category: null,
 };
 
 class Agency extends Record(defaults) {
