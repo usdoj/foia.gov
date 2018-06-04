@@ -26,43 +26,45 @@ function AgenciesByCategory({ agencies, agencyFinderDataComplete, onAgencySelect
     <ul className="usa-accordion agencies-by-category">
       <li>
         <button className="usa-accordion-button" aria-controls="a1">
-          {loading ? 'Loading…' : 'Find government agencies by category'}
+          {loading ? 'Loading…' : 'Find government agencies by topic'}
         </button>
         <div id="a1" className="usa-accordion-content">
           <ul className="usa-accordion agency-category">
-            {Object.entries(agenciesByCategory).map(([categoryName, categoryAgencies]) => (
-              <li key={categoryName}>
-                <button
-                  className="usa-accordion-button"
-                  aria-controls={idFromName(categoryName)}
-                  aria-expanded="false"
-                >
-                  {categoryName}
-                </button>
-                <div
-                  id={idFromName(categoryName)}
-                  className="usa-accordion-content"
-                  aria-hidden="true"
-                >
-                  <ul>
-                    {categoryAgencies.sort((a, b) => a.name.localeCompare(b.name)).map(agency => (
-                      <li
-                        key={agency.name}
-                      >
-                        <span
-                          role="button"
-                          tabIndex="0"
-                          onClick={() => onAgencySelect(agency)}
-                          onKeyPress={() => onAgencySelect(agency)}
+            {Object.entries(agenciesByCategory)
+              .sort((a, b) => a[0].localeCompare(b[0]))
+              .map(([categoryName, categoryAgencies]) => (
+                <li key={categoryName}>
+                  <button
+                    className="usa-accordion-button"
+                    aria-controls={idFromName(categoryName)}
+                    aria-expanded="false"
+                  >
+                    {categoryName}
+                  </button>
+                  <div
+                    id={idFromName(categoryName)}
+                    className="usa-accordion-content"
+                    aria-hidden="true"
+                  >
+                    <ul>
+                      {categoryAgencies.sort((a, b) => a.name.localeCompare(b.name)).map(agency => (
+                        <li
+                          key={agency.name}
                         >
-                          {agency.name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
+                          <span
+                            role="button"
+                            tabIndex="0"
+                            onClick={() => onAgencySelect(agency)}
+                            onKeyPress={() => onAgencySelect(agency)}
+                          >
+                            {agency.name}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              ))}
           </ul>
         </div>
       </li>
