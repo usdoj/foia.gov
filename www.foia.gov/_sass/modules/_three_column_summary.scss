@@ -8,9 +8,6 @@ $icon-circumference-tablet: $space-4x;
   }
   .usa-width-one-third {
     p {
-      @media screen and (max-width: $medium-screen) {
-        margin-left: $icon-circumference + 1rem; // the width of the bubble at this screen size + margin
-      }
       @media screen and (min-width: $medium-screen) {
         padding-right: 1rem;
       }
@@ -20,7 +17,10 @@ $icon-circumference-tablet: $space-4x;
       font-family: $font-sans;
       // separate the headlines from preceding grafs when they're stacked
       @media screen and (max-width: $medium-screen) {
-        margin-top: $space-5x;
+        span {
+          margin-top: $space-1x;
+          padding-top: $space-1x;
+        }
       }
       &:before {
         content: "";
@@ -46,6 +46,13 @@ $icon-circumference-tablet: $space-4x;
           height: $space-1x * 8;
           margin-top: -7px;
           margin-right: 15px;
+        }
+      }
+      span {
+        margin-left: 75px;
+        display: block;
+        @media screen and (min-width: $medium-screen) and (max-width: $medium-large-screen) {
+          margin-left: 40px;
         }
       }
     }
