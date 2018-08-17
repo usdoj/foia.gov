@@ -126,11 +126,14 @@ class LandingComponent extends Component {
             onAgencySelect={agencyChange}
           />
         }
-        <AgenciesByCategory
-          agencies={agencies}
-          agencyFinderDataComplete={agencyFinderDataComplete}
-          onAgencySelect={agencyChange}
-        />
+        {
+          false &&
+          <AgenciesByCategory
+            agencies={agencies}
+            agencyFinderDataComplete={agencyFinderDataComplete}
+            onAgencySelect={agencyChange}
+          />
+        }
       </div>
     );
   }
