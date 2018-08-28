@@ -126,8 +126,7 @@ EOF
 
   <p>Federal agencies publish FOIA information   in accordance with guidelines prepared by the U. S. Department of Justice   Office of Information Policy. These guidelines, available <a href="http://www.justice.gov/oip/foiapost/guidance-annualreport-052008.pdf" target="_blank">here</a>,   describe the format and meaning of FOIA annual report information. In   addition, a <em>FOIA Annual Report XML schema</em> has been developed   allowing agency FOIA annual report information to be represented and   exchanged in a standardized format. This XML schema closely follows   the structure and terminology of the guidance document, and conforms   to the NIEM standard (<a href="http://niem.gov" target="_blank">http://niem.gov</a>).&nbsp;</p>
   <p>All agency data available through reports and graphs on the <a href="{{ site.baseurl }}/data.html">FOIA.gov</a> website is also available  for public download as XML documents conforming to the FOIA Annual Report XML schema at the link below. This enables any kind of  offline processing, storage, comparison, or mashup which may be desired.&nbsp;&nbsp; </p>
-  <p>The XML schema files are available at the <a href="http://tools.niem.gov/niemtools/iepdt/display/container.iepd?ref=r1CEsnbbWhA" target="blank">NIEM IEPD Clearinghouse</a>.<br />
-  The entire IEPD package may also be downloaded directly by clicking on the following link [<a href="{{ site.baseurl }}/iepd/FOIA_Annual_Report_v1.3.2.zip">Download IEPD</a>].</p>
+  <p>The entire IEPD package may also be downloaded directly by clicking on the following link [<a href="{{ site.baseurl }}/iepd/FOIA_Annual_Report_v1.3.2.zip">Download IEPD</a>].</p>
   <h3>FOIA Data Set Downloads</h3>
   <p>The following compressed files are complete archives of the  FOIA Data sets for the years 2008 through 2016.</p>
   <ul>
