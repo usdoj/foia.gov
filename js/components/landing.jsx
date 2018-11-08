@@ -91,6 +91,9 @@ class LandingComponent extends Component {
         <h2 className="agency-component-search_hed">
           Select an agency to start your request or to see an agency’s contact information:
         </h2>
+        <h3>
+          FOIA.gov is currently experiencing an issue with the agency search feature. We are working on the problem and apologize for the inconvenience.
+        </h3>
         <div ref={(e) => { this.agencyFinderElement = e; }}>
           <AgencyComponentFinder
             agencies={agencies}
