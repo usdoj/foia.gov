@@ -110,7 +110,7 @@ $ curl -H 'X-API-Key: <your-api-key>' https://api.foia.gov/api/agency_components
 Submit a request to the Office of Information Policy.
 
 ```
-curl -v -H 'X-Api-Key: <your-api-key>' https://api.foia.gov/api/webform/submit?_format=json --data-binary @- <<EOF
+curl -v -H 'X-Api-Key: <your-api-key>' -H 'Content-Type: application/json' https://api.foia.gov/api/webform/submit?_format=json --data-binary @- <<EOF
 {
     "id": "test_form",
     "email": "george@example.com",
