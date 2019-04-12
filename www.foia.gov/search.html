@@ -1,45 +1,24 @@
 ---
-title: Find
-layout: about
+title: "Search Government Websites"
 navigation: find
-subnav: searchfind
-use-legacy-scripts: true
-grid: grid-legacy
+layout: default
 ---
-	<div id="search-pre-text">
-                Agencies proactively post a wealth of information on their
-                websites and in their FOIA Libraries.  Before making a FOIA
-  request, you may wish to conduct a search of agencies&rsquo; websites to see what is already publicly available online.  The
-                search feature below allows you to search across all government
-                websites at once, to see what is already available without the
-                need for a FOIA request.
-		<br/><br/>
-                If you do not find what you are looking for online, or if you
-                want to request more information on a given topic, you can
-                submit a FOIA request to the agencies&rsquo; Contacts.
+<div id="search-pre-text">
+	<p>
+		Agencies proactively post a wealth of information on their websites and in their FOIA Libraries. Before making a FOIA request, you may wish to conduct a search of agencies’ websites to see what is already publicly available online. The search feature below allows you to search across all government websites at once, to see what is already available without the need for a FOIA request.<br/><br/>
+
+		If you do not find what you are looking for online, or if you want to request more information on a given topic, you can submit a FOIA request to the agencies’ Contacts.
+	</p>
+</div>
+<form class="usa-search usa-search-small" accept-charset="UTF-8" action="https://search.foia.gov/search" id="search-bar" method="get">
+	<div role="search">
+		<label class="usa-sr-only" for="query">Search federal agencies</label>
+		<input name="utf8" type="hidden" value="✓">
+		<input name="m" type="hidden" value="true">
+		<input name="affiliate" type="hidden" value="foia.gov">
+		<input class="usa-input" type="search" name="query" placeholder="" id="query" value="" size="15" maxlength="128">
+		<button class="usa-button" type="submit">
+			<span class="usa-search-submit-text">Search</span>
+		</button>
 	</div>
-	<form class="usa-search usa-search-small" accept-charset="UTF-8" action="https://search.foia.gov/search" id="search-bar" method="get">
-    <div role="search">
-		  	<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
-		  	<input id="m" name="m" type="hidden" value="true" />
-		  	<input id="affiliate" name="affiliate" type="hidden" value="foia.gov" />
-
-		  	<label class="usa-sr-only" for="query">Search federal agencies</label>
-		  	<input class="usagov-search-autocomplete ui-autocomplete-input ui-corner-all form-text"
-		  		autocomplete="off" type="search" name="query" placeholder="" id="query" value="" size="15" maxlength="128" />
-		  	<button type="submit" name="op" value="Search" class="form-submit">
-          <span class="usa-sr-only">Search</span>
-        </button>
-		  </div>
-	  </form>
-
-	  <p>&nbsp;</p>
-	  <div class="clear"></div>
-	  <div align="center" style="margin: 0 0 150px 0;">
-		  <!--:: <h2><a href="glance.html">View agency &quot;At-a-Glance&quot; reports</a><a class="overviewHelp" href="#"><img width="12" height="12" alt="Help - FOIA Overview for Agencies" src="images/question-icon.gif" style="margin: 0 5px;"></a></h2>::-->
-	  </div>
-	  <p>&nbsp;</p>
-	  <p>&nbsp;</p>
-	  <p>&nbsp;</p>
-	  <p>&nbsp;</p>
-	  <p align="right">Last Updated: 4/2015</p>
+</form>
