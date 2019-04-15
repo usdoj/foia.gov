@@ -7,12 +7,12 @@ ul.list-of-exemptions, ul.list-of-resources{
   max-width:62.4rem;
 }
 
-ul.list-of-exemptions > ol{
+ul.list-of-exemptions > li > ol{
   list-style:none;
   margin-left:2em;
 }
 
-ul.list-of-exemptions > ul{
+ul.list-of-exemptions > li > ul{
   list-style:none;
   margin-left:1em;
 }
