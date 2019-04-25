@@ -1,0 +1,21 @@
+.add-bottom-margin-one{
+  margin-bottom:1em;
+}
+
+ul.list-of-exemptions, ul.list-of-resources{
+  list-style:none;
+  max-width:62.4rem;
+}
+
+ul.list-of-exemptions > li > ol{
+  margin-left:2em;
+}
+
+ul.list-of-exemptions > li > ul{
+  list-style:none;
+  margin-left:1em;
+}
+
+.usa-header-extended{
+  border-bottom: 1px solid #DEF0FF !important;
+}
