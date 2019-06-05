@@ -311,7 +311,7 @@ var y;
 		}
 		x=document.getElementById("FY2010");
 		if(x != null){
-			x.checked=true;
+			//x.checked=true;
 		}
 	}
 }
