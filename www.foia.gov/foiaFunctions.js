@@ -7,7 +7,7 @@
 	Global variables
 */
 
-var curYear=2018;
+var curYear=2019;
 var aLink=["reportRequests","reportExemptions",
 		"reportAppeals","reportProcessingTime","reportFeeWaiver",
 		"reportPersonnel","reportBacklog","reportConsultations",
@@ -311,7 +311,7 @@ var y;
 		}
 		x=document.getElementById("FY2010");
 		if(x != null){
-			x.checked=true;
+			//x.checked=true;
 		}
 	}
 }
