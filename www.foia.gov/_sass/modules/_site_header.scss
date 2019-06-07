@@ -2,6 +2,11 @@
   @media screen and (max-width: $small-screen) {
     display: none;
   }
+  color: $color-primary-darkest;
+  &:hover,
+  &:active {
+    color: $color-primary;
+  }
 }
 
 .doj-banner {
