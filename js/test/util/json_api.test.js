@@ -103,7 +103,7 @@ describe('JsonApi', () => {
 
     it('calls get on the jsonapi instance', () => {
       expect(jsonapi.get).to.have.been.calledWith('/path', sinon.match({
-        params: { _format: 'api_json', page: { limit: 10 } },
+        params: { page: { limit: 10 } },
       }));
     });
 

@@ -26,10 +26,6 @@ describe('JsonApiParams', () => {
       params = new JsonApiParams();
       query = params.serialize();
     });
-
-    it('has _format parameter', () => {
-      expect(query).to.equal('_format=api_json');
-    });
   });
 
   describe('::include', () => {
@@ -43,7 +39,7 @@ describe('JsonApiParams', () => {
     });
 
     it('has include parameter', () => {
-      expect(query).to.equal('_format=api_json&include=agency');
+      expect(query).to.equal('include=agency');
     });
 
     describe('given multiple includes', () => {
@@ -57,7 +53,7 @@ describe('JsonApiParams', () => {
       });
 
       it('has comma separated list of includes', () => {
-        expect(query).to.equal('_format=api_json&include=agency,person');
+        expect(query).to.equal('include=agency,person');
       });
     });
   });
@@ -77,7 +73,7 @@ describe('JsonApiParams', () => {
     });
 
     it('includes a fields parameter', () => {
-      expect(query).to.equal('_format=api_json&fields[agency]=id,name');
+      expect(query).to.equal('fields[agency]=id,name');
     });
   });
 
@@ -97,7 +93,7 @@ describe('JsonApiParams', () => {
       });
 
       it('sets an offset parameter', () => {
-        expect(query).to.equal('_format=api_json&page[offset]=10');
+        expect(query).to.equal('page[offset]=10');
       });
     });
 
@@ -116,7 +112,7 @@ describe('JsonApiParams', () => {
       });
 
       it('sets a limit parameter', () => {
-        expect(query).to.equal('_format=api_json&page[limit]=10');
+        expect(query).to.equal('page[limit]=10');
       });
     });
 
@@ -135,7 +131,7 @@ describe('JsonApiParams', () => {
       });
 
       it('sets both parameters', () => {
-        expect(query).to.equal('_format=api_json&page[offset]=20&page[limit]=10');
+        expect(query).to.equal('page[offset]=20&page[limit]=10');
       });
     });
   });
@@ -156,7 +152,7 @@ describe('JsonApiParams', () => {
       });
 
       it('includes a filter shorthand parameter', () => {
-        expect(query).to.equal('_format=api_json&filter[id][value]=gsa');
+        expect(query).to.equal('filter[id][value]=gsa');
       });
     });
 
@@ -184,7 +180,7 @@ describe('JsonApiParams', () => {
       });
 
       it('includes a filter longhand parameter', () => {
-        expect(query).to.equal('_format=api_json&filter[id-filter][condition][path]=id&filter[id-filter][condition][value]=gsa');
+        expect(query).to.equal('filter[id-filter][condition][path]=id&filter[id-filter][condition][value]=gsa');
       });
     });
   });
@@ -303,7 +299,7 @@ describe('JsonApiParams', () => {
     });
 
     it('includes a filter operator parameter', () => {
-      expect(query).to.equal('_format=api_json&filter[title-filter][condition][path]=title&filter[title-filter][condition][value]=general&filter[title-filter][condition][operator]=CONTAINS');
+      expect(query).to.equal('filter[title-filter][condition][path]=title&filter[title-filter][condition][value]=general&filter[title-filter][condition][operator]=CONTAINS');
     });
   });
 });
