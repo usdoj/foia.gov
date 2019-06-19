@@ -27,11 +27,15 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
 
   // Custom validation function, which runs after jsonSchema validation.
   function validate(data, errors) {
+    const honField = 'website';
     const contactFields = ['email', 'address_line1', 'phone_number'];
     if (contactFields.every(field => !data.requester_contact[field])) {
       contactFields.forEach((field) => {
         errors.requester_contact[field].addError('Please provide at least one form of contact information.');
       });
+    }
+    if (data.requester_contact[honField]) {
+      errors.addError('Error');
     }
     return errors;
   }

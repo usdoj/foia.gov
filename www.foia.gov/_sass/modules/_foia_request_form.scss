@@ -12,6 +12,9 @@
   input {
     color: $color-primary-darkest;
   }
+  #root_requester_contact_website, label[for=root_requester_contact_website] {
+    display: none !important;
+  }
 }
 
 .foia-request-form_inline-progress {

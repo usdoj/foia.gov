@@ -94,12 +94,16 @@ function toUiSchemaProperty(webformField) {
  * Translates agency components' Drupal Webform fields into JSON schema and uiSchema
  * for use with react-jsonschema-form.
  */
-function webformFieldsToJsonSchema(formFields = [], { title, description } = {}) {
+function webformFieldsToJsonSchema(formFields = [], { title, description, id } = {}) {
   const jsonSchema = {
     title,
     description,
     type: 'object',
   };
+
+  if (id === 'requester_contact') {
+    formFields.push({ name: 'website', title: 'Do not fill in this field', type: 'textfield' });
+  }
 
   // Parse out agency component fields as JSON schema properties
   jsonSchema.properties = formFields
