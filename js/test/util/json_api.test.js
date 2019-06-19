@@ -164,13 +164,17 @@ describe('JsonApi', () => {
           .onFirstCall().returns(jsonApiResponse({
             data: [{ id: '1', type: 'agency', attributes: { name: 'gsa' }, links: {} }],
             links: {
-              next: '/path?offset=1',
+              next: {
+                href: '/path?offset=1',
+              },
             },
           }))
           .onSecondCall().returns(jsonApiResponse({
             data: [{ id: '2', type: 'agency', attributes: { name: 'doj' }, links: {} }],
             links: {
-              prev: '/path?offset=0',
+              prev: {
+                href: '/path?offset=0',
+              },
             },
           }));
 
