@@ -38,19 +38,19 @@ An agency component payload might look like
 Request a list of agency components names.
 
 ```
-curl -g -v -H 'X-API-Key: <your-api-key>' 'https://api.foia.gov/api/agency_components?_format=api_json&fields[agency_component]=title'
+curl -g -v -H 'X-API-Key: <your-api-key>' 'https://api.foia.gov/api/agency_components?&fields[agency_component]=title'
 ```
 
 Fetch a list of agency components with their parent agency.
 
 ```
-curl -g -v -H 'X-API-Key: <your-api-key>' 'https://api.foia.gov/api/agency_components?_format=api_json&include=agency&fields[agency]=name,abbreviation&fields[agency_component]=title,abbreviation,agency'
+curl -g -v -H 'X-API-Key: <your-api-key>' 'https://api.foia.gov/api/agency_components?&include=agency&fields[agency]=name,abbreviation&fields[agency_component]=title,abbreviation,agency'
 ```
 
 Fetch the Office of Information Policy.
 
 ```
-curl -g -v -H 'X-API-Key: <your-api-key>' 'https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758?_format=api_json'
+curl -g -v -H 'X-API-Key: <your-api-key>' 'https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758?'
 ```
 
 Fetch the Office of Information Policy’s FOIA request form.
@@ -64,7 +64,7 @@ curl -g -v -H 'X-API-Key: <your-api-key>' https://api.foia.gov/api/agency_compon
 
 You can submit a FOIA request using our API. The endpoint for the submission API:
 
-    https://api.foia.gov/api/webform/submit?_format=json
+    https://api.foia.gov/api/webform/submit
 
 You'll need to identify the request form you are submitting to using the Agency
 component API and provide any relevant data to Agency.
@@ -110,7 +110,7 @@ $ curl -H 'X-API-Key: <your-api-key>' https://api.foia.gov/api/agency_components
 Submit a request to the Office of Information Policy.
 
 ```
-curl -v -H 'X-Api-Key: <your-api-key>' -H 'Content-Type: application/json' https://api.foia.gov/api/webform/submit?_format=json --data-binary @- <<EOF
+curl -v -H 'X-Api-Key: <your-api-key>' -H 'Content-Type: application/json' https://api.foia.gov/api/webform/submit --data-binary @- <<EOF
 {
     "id": "test_form",
     "email": "george@example.com",

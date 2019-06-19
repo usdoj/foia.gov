@@ -108,7 +108,7 @@ class JsonApi {
           progress(finalize(response)); // Process this page
 
           if (response.data.links && response.data.links.next) {
-            return getPage(response.data.links.next);
+            return getPage(response.data.links.next.href);
           }
 
           return null;
