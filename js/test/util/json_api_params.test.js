@@ -18,16 +18,6 @@ describe('JsonApiParams', () => {
     sandbox.restore();
   });
 
-  describe('defaults', () => {
-    let params;
-    let query;
-
-    beforeEach(() => {
-      params = new JsonApiParams();
-      query = params.serialize();
-    });
-  });
-
   describe('::include', () => {
     let params;
     let query;
