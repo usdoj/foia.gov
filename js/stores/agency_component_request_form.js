@@ -55,7 +55,7 @@ class AgencyComponentRequestFormStore extends Store {
           .sectionedFormFromAgencyComponent(agencyComponent.toJS());
 
         // Set the form id for submission
-        requestForm.id = payload.agencyComponent.request_form.formId;
+        requestForm.id = payload.agencyComponent.request_form.drupal_internal__id;
 
         Object.assign(this.state, {
           requestForms: requestForms.set(agencyComponent.id, requestForm),
