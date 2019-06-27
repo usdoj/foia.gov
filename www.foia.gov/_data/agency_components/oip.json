@@ -735,6 +735,6 @@
         }
     ],
     "links": {
-        "self": "https://dev-api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758?_format=api_json&include=agency%2Cfield_misc%2Cfoia_officers%2Cpaper_receiver%2Cpublic_liaisons%2Crequest_form%2Cservice_centers"
+        "self": "https://dev-api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758?include=agency%2Cfield_misc%2Cfoia_officers%2Cpaper_receiver%2Cpublic_liaisons%2Crequest_form%2Cservice_centers"
     }
 }

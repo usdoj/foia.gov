@@ -11,9 +11,7 @@ import { buildQueryString as serialize } from 'd8-jsonapi-querystring';
 
 
 function defaults() {
-  return {
-    _format: 'api_json',
-  };
+  return {};
 }
 
 class JsonApiParams {

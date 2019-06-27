@@ -111,7 +111,7 @@ export const requestActions = {
       onUploadProgress: requestActions.submitRequestFormProgress,
     };
 
-    return requestapi.post('/webform/submit?_format=json', formData, options)
+    return requestapi.post('/webform/submit', formData, options)
       .catch((error) => {
         const defaultErrorMessage = 'Sorry, something went wrong and your request could not be submitted.';
         const submissionResult = {
