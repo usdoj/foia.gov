@@ -167,6 +167,13 @@ attachments_supporting_documentation:
   required: no
   example: '[{"filename": "letter.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}]'
 
+pdf:
+  name: pdf
+  type: object
+  description: A version of the complete request, as a PDF file.
+  required: yes
+  example: '{"filename": "request.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}'
+
 '*':
   name: '*'
   type: Determined by the [agency metadata file][agency-metadata-file-schema]. See [agency component specific form fields](#agency-component-specific-form-fields) below.
