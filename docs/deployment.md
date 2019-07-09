@@ -48,6 +48,10 @@ Deploying to staging is done via the creation of a branch that starts with "rele
 
 This kicks off the staging "build" process, which is managed by CircleCI. Roughly, the change should be deployed to [staging](https://stg-www.foia.gov) in about 5 minutes.
 
+## How to deploy to UAT
+
+Deploying to UAT is done in the same exact way as deploying to staging, only the branch should start with "uat-".
+
 ## How to deploy to production
 
 TBD (but basically this will involve creating a pull request to merge a release-* branch into the master branch.
