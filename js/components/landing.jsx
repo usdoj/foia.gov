@@ -6,6 +6,7 @@ import AgencyComponentFinder from 'components/agency_component_finder';
 import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
 import AgenciesByCategory from 'components/agencies_by_category';
+import AgenciesByAlphabet from 'components/agencies_by_alphabet';
 import agencyComponentStore from '../stores/agency_component';
 
 class LandingComponent extends Component {
@@ -175,6 +176,13 @@ class LandingComponent extends Component {
         {
           false &&
           <AgenciesByCategory
+            agencies={agencies}
+            agencyFinderDataComplete={agencyFinderDataComplete}
+            onAgencySelect={agencyChange}
+          />
+        }
+        {
+          <AgenciesByAlphabet
             agencies={agencies}
             agencyFinderDataComplete={agencyFinderDataComplete}
             onAgencySelect={agencyChange}
