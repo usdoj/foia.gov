@@ -28,22 +28,22 @@ function AgenciesByAlphabet({ agencies, agencyFinderDataComplete, onAgencySelect
             <ul className="usa-accordion agency-alphabet">
               {Object.entries(agenciesByAlphabet)
                 .sort((a, b) => a[0].localeCompare(b[0]))
-                .map(([alphabetLetter, alphabetAgencies]) => (
-                  <li key={alphabetLetter}>
+                .map(([azLetter, azAgencies]) => (
+                  <li key={azLetter}>
                     <button
                       className="usa-accordion-button"
-                      aria-controls={alphabetLetter}
+                      aria-controls={azLetter}
                       aria-expanded="false"
                     >
-                      {alphabetLetter}
+                      {azLetter}
                     </button>
                     <div
-                      id={alphabetLetter}
+                      id={azLetter}
                       className="usa-accordion-content"
                       aria-hidden="true"
                     >
                       <ul>
-                        {alphabetAgencies.sort((a, b) => a.name.localeCompare(b.name)).map(agency => (
+                        {azAgencies.sort((a, b) => a.name.localeCompare(b.name)).map(agency => (
                           <li
                             key={agency.name}
                           >
