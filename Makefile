@@ -9,6 +9,10 @@ ifeq ($(APP_ENV), staging)
   JEKYLL_OPTS+=--config _config.yml,_config.staging.yml
 endif
 
+ifeq ($(APP_ENV), uat)
+  JEKYLL_OPTS+=--config _config.yml,_config.uat.yml
+endif
+
 ifeq ($(APP_ENV), production)
   JEKYLL_OPTS+=--config _config.yml,_config.production.yml
 endif

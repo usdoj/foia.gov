@@ -101,6 +101,24 @@ jobs:
           APP_ENV: staging
     steps: *acquia-cloud-deploy-steps
 
+  # Build for the Acquia Cloud UAT environment
+  build-uat:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: production
+          APP_ENV: uat
+    steps: *build-steps
+
+  # Deploy job for the Acquia Cloud UAT environment
+  deploy-uat:
+    docker:
+      - image: circleci/ruby:2.4.1-node
+        environment:
+          NODE_ENV: production
+          APP_ENV: uat
+    steps: *acquia-cloud-deploy-steps
+
   # Build for the Acquia Cloud production environment
   build-production:
     docker:
@@ -154,6 +172,19 @@ workflows:
           filters:
             branches:
               only: /release-.*/
+
+      - build-uat:
+          requires:
+            - test
+          filters:
+            branches:
+              only: /uat-.*/
+      - deploy-uat:
+          requires:
+            - build-uat
+          filters:
+            branches:
+              only: /uat-.*/
 
       - build-production:
           requires:
