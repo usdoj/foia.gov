@@ -25,31 +25,6 @@ class LandingComponent extends Component {
     this.consultQueryString(nextProps);
   }
 
-  consultQueryString(props) {
-    // We only want to do this one time.
-    if (this.queryStringConsulted) {
-      return;
-    }
-    this.queryStringConsulted = true;
-
-    const {
-      typeQueryString,
-      idQueryString,
-    } = props;
-
-    if (typeQueryString === 'agency') {
-      const agency = agencyComponentStore.getAgency(idQueryString);
-      const agencyComponentsForAgency =
-        agencyComponentStore.getAgencyComponentsForAgency(agency.id);
-      this.setStateForAgency(agency, agencyComponentsForAgency);
-    }
-    if (typeQueryString === 'component') {
-      const component = agencyComponentStore.getAgencyComponent(idQueryString);
-      const agency = agencyComponentStore.getAgency(component.agency.id);
-      this.setStateForComponent(component, agency.isCentralized());
-    }
-  }
-
   setStateForAgency(agency, agencyComponentsForAgency) {
     this.setState({
       agency,
@@ -75,14 +50,45 @@ class LandingComponent extends Component {
     });
   }
 
-  render() {
-    // Recursively traverse up the DOM to figure out the scroll offset
-    function scrollOffset(element) {
-      return element.offsetParent ?
-        element.offsetTop + scrollOffset(element.offsetParent) :
-        element.offsetTop;
+  consultQueryString(props) {
+    // We only want to do this one time.
+    if (this.queryStringConsulted) {
+      return;
     }
+    this.queryStringConsulted = true;
 
+    const {
+      typeQueryString,
+      idQueryString,
+    } = props;
+
+    if (typeQueryString === 'agency') {
+      const agency = agencyComponentStore.getAgency(idQueryString);
+      const agencyComponentsForAgency =
+        agencyComponentStore.getAgencyComponentsForAgency(agency.id);
+      this.setStateForAgency(agency, agencyComponentsForAgency);
+      this.scrollToAgencyFinder();
+    }
+    if (typeQueryString === 'component') {
+      const component = agencyComponentStore.getAgencyComponent(idQueryString);
+      const agency = agencyComponentStore.getAgency(component.agency.id);
+      this.setStateForComponent(component, agency.isCentralized());
+      this.scrollToAgencyFinder();
+    }
+  }
+
+  // Recursively traverse up the DOM to figure out the scroll offset
+  scrollOffset(element) {
+    return element.offsetParent ?
+      element.offsetTop + this.scrollOffset(element.offsetParent) :
+      element.offsetTop;
+  }
+
+  scrollToAgencyFinder() {
+    window.scrollTo(0, this.scrollOffset(this.agencyFinderElement));
+  }
+
+  render() {
     // Note that the agencyComponent comes from two different sources, so the
     // properties might not be consistent.
     const agencyChange = (agencyComponent) => {
@@ -93,7 +99,7 @@ class LandingComponent extends Component {
       }
 
       // Scroll to back to the agency finder
-      window.scrollTo(0, scrollOffset(this.agencyFinderElement));
+      this.scrollToAgencyFinder();
 
       if (agencyComponent.type === 'agency_component') {
         fetchAgencyComponent(agencyComponent.id)
@@ -184,8 +190,6 @@ LandingComponent.propTypes = {
   agencyComponents: PropTypes.object.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
-  idQueryString: PropTypes.string,
-  typeQueryString: PropTypes.string,
   onChangeUrlQueryParams: PropTypes.func.isRequired,
 };
 
