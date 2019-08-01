@@ -95,6 +95,15 @@ class AgencyComponentStore extends Store {
 
       case types.AGENCY_FINDER_DATA_COMPLETE: {
         this.state.agencyFinderDataComplete = true;
+
+        // Make sure there are no duplicates. This can happen if a specific
+        // agency component is fetched before the full list is received.
+        this.state.agencyComponents = this.state.agencyComponents.filter((agencyComponent, index, self) =>
+          index === self.findIndex((possibleDuplicate) => (
+            possibleDuplicate.id === agencyComponent.id
+          ))
+        );
+
         this.__emitChange();
         break;
       }

@@ -18,11 +18,47 @@ class LandingComponent extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.agencyFinderDataComplete) {
+      return;
+    }
+    this.consultQueryString(nextProps);
+  }
+
+  consultQueryString(props) {
+    // We only want to do this one time.
+    if (this.queryStringConsulted) {
+      return;
+    }
+    this.queryStringConsulted = true;
+
+    const {
+      typeQueryString,
+      idQueryString,
+    } = props;
+
+    if (typeQueryString === 'agency') {
+      const agency = agencyComponentStore.getAgency(idQueryString);
+      const agencyComponentsForAgency =
+        agencyComponentStore.getAgencyComponentsForAgency(agency.id);
+      this.setStateForAgency(agency, agencyComponentsForAgency);
+    }
+    if (typeQueryString === 'component') {
+      const component = agencyComponentStore.getAgencyComponent(idQueryString);
+      const agency = agencyComponentStore.getAgency(component.agency.id);
+      this.setStateForComponent(component, agency.isCentralized());
+    }
+  }
+
   setStateForAgency(agency, agencyComponentsForAgency) {
     this.setState({
       agency,
       agencyComponent: null,
       agencyComponentsForAgency,
+    });
+    this.props.onChangeUrlQueryParams({
+      idQueryString: agency.id,
+      typeQueryString: 'agency',
     });
   }
 
@@ -32,6 +68,10 @@ class LandingComponent extends Component {
       agencyComponent,
       agencyComponentsForAgency: null,
       isCentralized,
+    });
+    this.props.onChangeUrlQueryParams({
+      idQueryString: agencyComponent.id,
+      typeQueryString: 'component',
     });
   }
 
@@ -144,10 +184,15 @@ LandingComponent.propTypes = {
   agencyComponents: PropTypes.object.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
+  idQueryString: PropTypes.string,
+  typeQueryString: PropTypes.string,
+  onChangeUrlQueryParams: PropTypes.func.isRequired,
 };
 
 LandingComponent.defaultProps = {
   agencyFinderDataProgress: 0,
+  idQueryString: null,
+  typeQueryString: null,
 };
 
 

@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
+import PropTypes from 'prop-types';
+import { addUrlProps, configureUrlQuery, UrlQueryParamTypes } from 'react-url-query';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 import { requestActions } from 'actions';
 import LandingComponent from '../components/landing';
 import agencyComponentStore from '../stores/agency_component';
 
+const urlPropsQueryConfig = {
+  typeQueryString: { type: UrlQueryParamTypes.string, queryParam: 'type' },
+  idQueryString: { type: UrlQueryParamTypes.string, queryParam: 'id' },
+};
+const history = createBrowserHistory({
+  basename: '/',
+});
+configureUrlQuery({ history });
 
 class LandingPage extends Component {
   static getStores() {
@@ -35,6 +46,12 @@ class LandingPage extends Component {
 
     // Pre-fetch the list of agencies and components for typeahead
     requestActions.fetchAgencyFinderData();
+
+    // Pre-fetch any component indicated by query strings.
+    if (this.props.typeQueryString === 'component') {
+      requestActions.fetchAgencyComponent(this.props.idQueryString)
+        .then(requestActions.receiveAgencyComponent);
+    }
   }
 
 
@@ -45,6 +62,11 @@ class LandingPage extends Component {
       agencyFinderDataComplete,
       agencyFinderDataProgress,
     } = this.state;
+    const {
+      idQueryString,
+      typeQueryString,
+      onChangeUrlQueryParams,
+    } = this.props;
 
     return (
       <LandingComponent
@@ -52,9 +74,23 @@ class LandingPage extends Component {
         agencyComponents={agencyComponents}
         agencyFinderDataComplete={agencyFinderDataComplete}
         agencyFinderDataProgress={agencyFinderDataProgress}
+        idQueryString={idQueryString}
+        typeQueryString={typeQueryString}
+        onChangeUrlQueryParams={onChangeUrlQueryParams}
       />
     );
   }
 }
 
-export default Container.create(LandingPage);
+LandingPage.propTypes = {
+  idQueryString: PropTypes.string,
+  typeQueryString: PropTypes.string,
+  onChangeUrlQueryParams: PropTypes.func,
+};
+
+LandingPage.defaultProps = {
+  idQueryString: null,
+  typeQueryString: null,
+};
+
+export default addUrlProps({ urlPropsQueryConfig })(Container.create(LandingPage));
