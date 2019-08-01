@@ -85,7 +85,7 @@ class LandingPage extends Component {
 LandingPage.propTypes = {
   idQueryString: PropTypes.string,
   typeQueryString: PropTypes.string,
-  onChangeUrlQueryParams: PropTypes.func,
+  onChangeUrlQueryParams: PropTypes.func.isRequired,
 };
 
 LandingPage.defaultProps = {

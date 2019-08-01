@@ -98,10 +98,8 @@ class AgencyComponentStore extends Store {
 
         // Make sure there are no duplicates. This can happen if a specific
         // agency component is fetched before the full list is received.
-        this.state.agencyComponents = this.state.agencyComponents.filter((agencyComponent, index, self) =>
-          index === self.findIndex((possibleDuplicate) => (
-            possibleDuplicate.id === agencyComponent.id
-          ))
+        this.state.agencyComponents = this.state.agencyComponents.filter((component, idx, self) =>
+          idx === self.findIndex(possibleDuplicate => possibleDuplicate.id === component.id),
         );
 
         this.__emitChange();
