@@ -18,7 +18,6 @@ function AgenciesByAlphabet({ agencies, agencyFinderDataComplete, onAgencySelect
   return (
     <div>
       <h3 className="agency-component-search_hed">Index of government agencies</h3>
-      <p>See below to pick from a full list of government agencies.</p>
       <ul className="usa-accordion agencies-by-alphabet">
         <li>
           <button className="usa-accordion-button" aria-controls="a1">

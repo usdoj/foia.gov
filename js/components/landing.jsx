@@ -148,16 +148,6 @@ class LandingComponent extends Component {
           />
         </div>
         {
-          !this.state.agencyComponent && !this.state.agency &&
-            <div>
-              <h3 className="agency-component-search_hed">When choosing an agency</h3>
-              <p>Remember that some agencies can’t yet receive FOIA requests
-              through FOIA.gov. For those agencies, this site   will provide
-              you with the information you need to submit a request directly to
-              the agency.</p>
-            </div>
-        }
-        {
           this.state.agencyComponent &&
           <AgencyComponentPreview
             agencyComponent={this.state.agencyComponent.toJS()}
@@ -187,6 +177,16 @@ class LandingComponent extends Component {
             agencyFinderDataComplete={agencyFinderDataComplete}
             onAgencySelect={agencyChange}
           />
+        }
+        {
+          !this.state.agencyComponent && !this.state.agency &&
+          <div>
+            <h3 className="agency-component-search_hed">When choosing an agency</h3>
+            <p>Remember that some agencies can’t yet receive FOIA requests
+            through FOIA.gov. For those agencies, this site   will provide
+            you with the information you need to submit a request directly to
+              the agency.</p>
+          </div>
         }
       </div>
     );
