@@ -6,6 +6,7 @@ import AgencyComponentFinder from 'components/agency_component_finder';
 import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
 import AgenciesByCategory from 'components/agencies_by_category';
+import AgenciesByAlphabet from 'components/agencies_by_alphabet';
 import agencyComponentStore from '../stores/agency_component';
 
 class LandingComponent extends Component {
@@ -147,16 +148,6 @@ class LandingComponent extends Component {
           />
         </div>
         {
-          !this.state.agencyComponent && !this.state.agency &&
-            <div>
-              <h3 className="agency-component-search_hed">When choosing an agency</h3>
-              <p>Remember that some agencies can’t yet receive FOIA requests
-              through FOIA.gov. For those agencies, this site   will provide
-              you with the information you need to submit a request directly to
-              the agency.</p>
-            </div>
-        }
-        {
           this.state.agencyComponent &&
           <AgencyComponentPreview
             agencyComponent={this.state.agencyComponent.toJS()}
@@ -179,6 +170,23 @@ class LandingComponent extends Component {
             agencyFinderDataComplete={agencyFinderDataComplete}
             onAgencySelect={agencyChange}
           />
+        }
+        {
+          <AgenciesByAlphabet
+            agencies={agencies}
+            agencyFinderDataComplete={agencyFinderDataComplete}
+            onAgencySelect={agencyChange}
+          />
+        }
+        {
+          !this.state.agencyComponent && !this.state.agency &&
+          <div>
+            <h3 className="agency-component-search_hed">When choosing an agency</h3>
+            <p>Remember that some agencies can’t yet receive FOIA requests
+            through FOIA.gov. For those agencies, this site   will provide
+            you with the information you need to submit a request directly to
+              the agency.</p>
+          </div>
         }
       </div>
     );
