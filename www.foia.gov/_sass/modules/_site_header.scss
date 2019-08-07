@@ -21,7 +21,9 @@
   .usa-nav {
     border-top: none; // WDS override
     .usa-nav-inner {
-      margin-top: auto; // WDS override
+      @media screen and (min-width: $nav-width) {
+        margin-top: auto; // WDS override
+      }
     }
   }
 }
