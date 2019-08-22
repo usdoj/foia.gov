@@ -12,50 +12,100 @@ $hide-secondary-nav-breakpoint: 900px;
   @extend .usa-button-outline;
 }
 
-.usa-nav-submenu {
-  margin-left: 1.5rem; // to match the padding on the parent element
-  background-color: $color-primary-alt-lightest;
-  a,
-  a:visited {
-    &:hover,
-    &:active {
-      text-decoration: none;
-      color: $color-primary-darkest;
-      background-color: $color-primary-alt-light;
+.usa-nav-link {
+  font-size: $h5-font-size;
+}
+
+@media screen and (min-width: $nav-width) {
+  .usa-nav-submenu {
+    margin-left: 1.5rem; // to match the padding on the parent element
+    background-color: $color-primary-alt-lightest;
+    a,
+    a:visited {
+      &:hover,
+      &:active {
+        text-decoration: none;
+        color: $color-primary-darkest;
+        background-color: $color-primary-alt-light;
+      }
     }
   }
-}
 
-.usa-nav-primary {
-  display: inline;
-}
+  .usa-nav-primary {
+    display: inline;
+  }
 
-.usa-nav-primary button {
-  &[aria-expanded=true] {
-    background-color: $color-white;
-    color: $color-primary-darkest;
-    &:hover {
+  .usa-nav-primary button {
+    &[aria-expanded=true] {
       background-color: $color-white;
-    }
-    span {
-      border-bottom-color: $color-primary-alt-light;
       color: $color-primary-darkest;
+      &:hover {
+        background-color: $color-white;
+      }
+      span {
+        border-bottom-color: $color-primary-alt-light;
+        color: $color-primary-darkest;
+      }
     }
   }
-}
 
-.usa-nav-primary button,
-.usa-nav-primary .usa-nav-link,
-.usa-header-extended .usa-nav-link {
-  font-weight: $font-normal;
-  color: $color-primary-darkest;
-  &:focus,
-  &:active {
-    outline: none;
+  .usa-nav-primary button,
+  .usa-nav-primary .usa-nav-link,
+  .usa-header-extended .usa-nav-link {
+    font-weight: $font-normal;
+    color: $color-primary-darkest;
+    &:focus,
+    &:active {
+      outline: none;
+    }
+    &:hover,
+    &:hover span {
+      border-bottom-color: $color-primary-alt-light;
+    }
   }
-  &:hover,
-  &:hover span {
-    border-bottom-color: $color-primary-alt-light;
+
+  .usa-nav-primary {
+    button,
+    .usa-nav-link {
+      &:focus {
+        span {
+          // match WDS
+          padding-bottom: 0.9rem;
+          border-bottom: 0.7rem solid $color-primary-alt-light;
+        }
+      }
+    }
+    button[aria-expanded=true] {
+      background-color: $color-white;
+      background-image: url('/assets/img/angle-arrow-down-primary.svg');
+      color: $color-primary-darkest;
+      &:hover {
+        background-color: $color-white;
+      }
+      span {
+        border-bottom-color: $color-primary-alt-light;
+        color: $color-primary-darkest;
+      }
+    }
+  }
+  .usa-nav-primary a,
+  .usa-nav-primary > li > a,
+  .usa-nav-primary button,
+  .usa-nav-secondary-links a {
+    color: $color-primary-darkest;
+    font-weight: $font-normal;
+    -moz-osx-font-smoothing: grayscale; // to match .usa-nav-link styles sans hover
+    -webkit-font-smoothing: antialiased;
+    &:hover,
+    &:active,
+    &:visited,
+    &:visited:active,
+    &:visited:hover {
+      color: $color-primary-darkest;
+      span {
+        border-color: $color-primary-alt-light;
+      }
+    }
   }
 }
 
@@ -73,48 +123,3 @@ $hide-secondary-nav-breakpoint: 900px;
     display: none;
   }
 }
-
-.usa-nav-primary {
-  button,
-  .usa-nav-link {
-    &:focus {
-      span {
-        // match WDS
-        padding-bottom: 0.9rem;
-        border-bottom: 0.7rem solid $color-primary-alt-light;
-      }
-    }
-  }
-  button[aria-expanded=true] {
-    background-color: $color-white;
-    background-image: url('/assets/img/angle-arrow-down-primary.svg');
-    color: $color-primary-darkest;
-    &:hover {
-      background-color: $color-white;
-    }
-    span {
-      border-bottom-color: $color-primary-alt-light;
-      color: $color-primary-darkest;
-    }
-  }
-}
-.usa-nav-primary a,
-.usa-nav-primary > li > a,
-.usa-nav-primary button,
-.usa-nav-secondary-links a {
-  color: $color-primary-darkest;
-  font-weight: $font-normal;
-  -moz-osx-font-smoothing: grayscale; // to match .usa-nav-link styles sans hover
-  -webkit-font-smoothing: antialiased;
-  &:hover,
-  &:active,
-  &:visited,
-  &:visited:active,
-  &:visited:hover {
-    color: $color-primary-darkest;
-    span {
-      border-color: $color-primary-alt-light;
-    }
-  }
-}
-
