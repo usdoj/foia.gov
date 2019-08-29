@@ -49,6 +49,7 @@ class AgencyComponentFinder extends Component {
   componentDidMount() {
     this.bloodhound = new Bloodhound({
       local: [],
+      identify: datum => datum.id,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       datumTokenizer: datum => (
         datum.type === 'agency' ?
