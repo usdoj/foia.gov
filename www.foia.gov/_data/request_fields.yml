@@ -4,7 +4,7 @@ version:
   type: string
   description: The version of the API used for determining compatibility. Reserved for future use.
   required: yes
-  example: '"1.0.0"'
+  example: '"1.1.0"'
 
 request_id:
   name: request_id
@@ -173,6 +173,13 @@ pdf:
   description: A version of the complete request, as a PDF file.
   required: yes
   example: '{"filename": "request.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}'
+
+testing:
+  name: testing
+  type: boolean
+  description: A boolean flag indicating whether or not this submission came from a non-production environment. This allows an endpoint to treat test submissions differently.
+  required: yes
+  example: 'false'
 
 '*':
   name: '*'
