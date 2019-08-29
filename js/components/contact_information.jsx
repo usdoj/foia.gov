@@ -8,18 +8,18 @@ import foiaPersonnel from '../util/foia_personnel';
 function ContactInformation({ agencyComponent }) {
   // Grab contacts
   const foiaOfficerFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'foia_officers').map(item => (
-    <div className="contact-information_section">
-      <FoiaPersonnel key={item.id} foiaPersonnel={item} />
+    <div key={item.id} className="contact-information_section">
+      <FoiaPersonnel foiaPersonnel={item} />
     </div>
   ));
   const serviceCenterFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'service_centers').map(item => (
-    <div className="contact-information_section">
-      <FoiaPersonnel key={item.id} foiaPersonnel={item} />
+    <div key={item.id} className="contact-information_section">
+      <FoiaPersonnel foiaPersonnel={item} />
     </div>
   ));
   const publicLiaisonFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'public_liaisons').map(item => (
-    <div className="contact-information_section">
-      <FoiaPersonnel key={item.id} foiaPersonnel={item} />
+    <div key={item.id} className="contact-information_section">
+      <FoiaPersonnel foiaPersonnel={item} />
     </div>
   ));
 
