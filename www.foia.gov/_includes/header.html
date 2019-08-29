@@ -15,9 +15,7 @@
       </em>
     </div>
     {% unless page.old-content-banner %}
-    <div class="feedback-bar">
-      <p><strong>Thank you for visiting FOIA.gov, the government’s central website for FOIA.</strong> We’ll continue to make improvements to the site and look forward to your input. Please submit feedback to <a href="mailto:National.FOIAPortal@usdoj.gov">National.FOIAPortal@usdoj.gov</a>.</p>
-    </div>
+      {% include feedback-bar.html %}
     {% endunless %}
   </div>
   <nav role="navigation" class="usa-nav print-hide">
