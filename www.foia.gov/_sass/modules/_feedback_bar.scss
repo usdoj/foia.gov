@@ -1,5 +1,4 @@
-.feedback-bar {
-  background: $color-primary-alt-lightest;
+.feedback-bar-production, .feedback-bar-non-production {
   clear: both;
   padding: $space-2x;
   margin: $space-2x auto 0;
@@ -15,5 +14,15 @@
     clear: none;
     width: 60%;
     margin-top: 0;
+  }
+}
+
+.feedback-bar-production {
+  background: $color-primary-alt-lightest;
+}
+
+.feedback-bar-non-production {
+  .usa-alert-body {
+    padding-left: 6rem;
   }
 }
