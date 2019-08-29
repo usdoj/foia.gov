@@ -24,7 +24,8 @@ management service for federal agencies.
 ## Change Log
 
 ### Version 1.1.0
-* Added the new field "testing", to indicate when a request came from a non-production environment
+* Add the new field "pdf", to contain an object with file data for a PDF version of the request
+* Add the new field "testing", to indicate when a request came from a non-production environment
 
 ## Receive a FOIA Request
 
