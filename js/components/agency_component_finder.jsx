@@ -49,6 +49,25 @@ class AgencyComponentFinder extends Component {
   componentDidMount() {
     this.bloodhound = new Bloodhound({
       local: [],
+      sorter: (a, b) => {
+        // Ensure that agencies come before components and vice versa.
+        if (a.type === 'agency' && b.type !== 'agency') {
+          return -1;
+        }
+        if (a.type !== 'agency' && b.type === 'agency') {
+          return 1;
+        }
+        // Otherwise sort by title/name.
+        const aName = (a.type === 'agency') ? a.name : a.title;
+        const bName = (b.type === 'agency') ? b.name : b.title;
+        if (aName < bName) {
+          return -1;
+        } else if (aName > bName) {
+          return 1;
+        }
+        return 0;
+      },
+      identify: datum => datum.id,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       datumTokenizer: datum => (
         datum.type === 'agency' ?

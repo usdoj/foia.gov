@@ -21,6 +21,11 @@ the tedious bits of implementing an API can be handled by a service like
 [api.data.gov](https://api.data.gov/about/), which provides a free API
 management service for federal agencies.
 
+## Change Log
+
+### Version 1.1.0
+* Add the new field "pdf", to contain an object with file data for a PDF version of the request
+* Add the new field "testing", to indicate when a request came from a non-production environment
 
 ## Receive a FOIA Request
 

@@ -1,0 +1,21 @@
+{% if site.app_env != 'production' %}
+<div class="feedback-bar-non-production usa-alert usa-alert-warning">
+  <div class="usa-alert-body">
+    <h3 class="usa-alert-heading">
+      For testing purposes only
+    </h3>
+    <p class="usa-alert-text">
+      Requests submitted here <strong>will not be processed</strong>.
+      To submit a FOIA request please visit the National FOIA Portal at <strong><a href="https://www.foia.gov">www.foia.gov</a></strong>.
+    </p>
+  </div>
+</div>
+{% else %}
+<div class="feedback-bar-production">
+  <p>
+    <strong>Thank you for visiting FOIA.gov, the government’s central website for FOIA.</strong>
+    We’ll continue to make improvements to the site and look forward to your input.
+    Please submit feedback to <a href="mailto:National.FOIAPortal@usdoj.gov">National.FOIAPortal@usdoj.gov</a>.
+  </p>
+</div>
+{% endif %}
