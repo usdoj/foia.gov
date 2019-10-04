@@ -108,6 +108,7 @@ class AgencyComponentFinder extends Component {
 
     this.typeahead = $(this.typeaheadInput).typeahead({
       highlight: true,
+      hint: false,
     }, {
       name: 'agencies',
       display,
