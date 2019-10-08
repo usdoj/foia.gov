@@ -64,6 +64,13 @@ function toJsonSchemaProperty(webformField) {
  * used with react-jsonschema-form.
  */
 function toUiSchemaProperty(webformField) {
+  // For fields with maxlength, automatically add help text.
+  if (webformField.maxlength) {
+    webformField.help += ` <em>This field has a maximum length of ${webformField.maxlength}
+      characters. If you need to include more information, please upload it under
+      "Additional information".</em>`;
+  }
+
   const uiSchemaProperty = {
     'ui:title': webformField.title,
     'ui:description': webformField.help && domify(webformField.help),
