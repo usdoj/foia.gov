@@ -41,6 +41,10 @@ function toJsonSchemaProperty(webformField) {
     property.default = webformField.default_value;
   }
 
+  if (webformField.maxlength) {
+    property.maxLength = Number.parseInt(webformField.maxlength);
+  }
+
   // If options is present, translate them to enums
   if (webformField.options && typeof webformField.options === 'object') {
     property.enum = [];
