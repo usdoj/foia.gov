@@ -66,9 +66,10 @@ function toJsonSchemaProperty(webformField) {
 function toUiSchemaProperty(webformField) {
   // For fields with maxlength, automatically add help text.
   if (webformField.maxlength) {
-    webformField.help += ` <em>This field has a maximum length of ${webformField.maxlength}
-      characters. If you need to include more information, please upload it under
-      "Additional information".</em>`;
+    const max = Number.parseInt(webformField.maxlength).toLocaleString();
+    webformField.help += `
+      <em>This field has a maximum length of ${max} characters.</em>
+    `;
   }
 
   const uiSchemaProperty = {
