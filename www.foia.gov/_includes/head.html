@@ -20,6 +20,9 @@
 <meta name="dc.creator" content="Freedom of Information Act (FOIA)" />
 <meta name="dc.language" scheme="ISO639" content="en-us" />
 <meta name="dc.date.created" content="2011-03-14" />
+{% if page.noindex %}
+<meta name="robots" content="noindex">
+{% endif %}
 {% for css in page.stylesheets %}
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/{{ css }}.css" />
 {% endfor %}
