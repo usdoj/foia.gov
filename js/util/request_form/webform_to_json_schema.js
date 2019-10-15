@@ -42,7 +42,7 @@ function toJsonSchemaProperty(webformField) {
   }
 
   if (webformField.maxlength) {
-    property.maxLength = Number.parseInt(webformField.maxlength);
+    property.maxLength = Number.parseInt(webformField.maxlength, 10);
   }
 
   // If options is present, translate them to enums
@@ -66,7 +66,7 @@ function toJsonSchemaProperty(webformField) {
 function toUiSchemaProperty(webformField) {
   // For fields with maxlength, automatically add help text.
   if (webformField.maxlength) {
-    const max = Number.parseInt(webformField.maxlength).toLocaleString();
+    const max = Number.parseInt(webformField.maxlength, 10).toLocaleString();
     webformField.help += `
       <em>This field has a maximum length of ${max} characters.</em>
     `;

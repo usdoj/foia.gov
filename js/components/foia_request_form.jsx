@@ -51,9 +51,9 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
 
   // Customize the errors that jsonSchema generates.
   function transformErrors(errors) {
-    return errors.map(error => {
+    return errors.map((error) => {
       // A friendlier message for maxLength.
-      if (error.name === "maxLength") {
+      if (error.name === 'maxLength') {
         error.message = `This field has a maximum length of ${error.argument}
           characters. If you need to include more information, please upload
           it under "Additional information".`;
