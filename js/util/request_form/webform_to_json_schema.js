@@ -41,6 +41,10 @@ function toJsonSchemaProperty(webformField) {
     property.default = webformField.default_value;
   }
 
+  if (webformField.maxlength) {
+    property.maxLength = Number.parseInt(webformField.maxlength, 10);
+  }
+
   // If options is present, translate them to enums
   if (webformField.options && typeof webformField.options === 'object') {
     property.enum = [];
@@ -60,6 +64,14 @@ function toJsonSchemaProperty(webformField) {
  * used with react-jsonschema-form.
  */
 function toUiSchemaProperty(webformField) {
+  // For fields with maxlength, automatically add help text.
+  if (webformField.maxlength) {
+    const max = Number.parseInt(webformField.maxlength, 10).toLocaleString();
+    webformField.help += `
+      <em>This field has a maximum length of ${max} characters.</em>
+    `;
+  }
+
   const uiSchemaProperty = {
     'ui:title': webformField.title,
     'ui:description': webformField.help && domify(webformField.help),

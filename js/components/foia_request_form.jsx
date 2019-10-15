@@ -49,6 +49,19 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
     focusOnFirstError();
   }
 
+  // Customize the errors that jsonSchema generates.
+  function transformErrors(errors) {
+    return errors.map((error) => {
+      // A friendlier message for maxLength.
+      if (error.name === 'maxLength') {
+        error.message = `This field has a maximum length of ${error.argument}
+          characters. If you need to include more information, please upload
+          it under "Additional information".`;
+      }
+      return error;
+    });
+  }
+
   function onFormSubmit({ formData: data }) {
     // Merge the sections into a single payload
     const payload = rf.mergeSectionFormData(data);
@@ -106,6 +119,7 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
       validate={validate}
       onError={onError}
       showErrorList={false}
+      transformErrors={transformErrors}
     >
       <div id="foia-request-form_submit" className="foia-request-form_submit">
         <div className="foia-request-form_inline-progress">
