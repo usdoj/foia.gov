@@ -12,10 +12,6 @@ let plugins = [
     $: 'jquery',
     jQuery: 'jquery',
   }),
-  new webpack.optimize.UglifyJsPlugin({
-    exclude: /excellentexport.js/,
-    sourceMap: isProduction,
-  }),
 ];
 
 if (isProduction) {
@@ -24,6 +20,9 @@ if (isProduction) {
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
     }),
   ]);
 }
@@ -45,6 +44,15 @@ module.exports = {
   },
   module: {
     loaders: [
+      // Some contributed code needs to be transpiled first.
+      {
+        include: /(excellentexport.js)/,
+        loader: 'babel-loader',
+        query: {
+          compact: false,
+          presets: ['es2015'],
+        },
+      },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
