@@ -157,7 +157,7 @@ class ContactDownloadButton extends Component {
     // Return the anchor link itself.
     return (
       <a
-        href="?download"
+        href="#0"
         role="button"
         tabIndex={0}
         className="usa-button"
