@@ -7,11 +7,20 @@ assert(['local', 'cloud-gov', 'development', 'staging', 'uat', 'production'].inc
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+// We need some exclude some files from being Uglified.
+let uglifyOptions = {
+    exclude: /excellentexport.js/,
+}
+if (isProduction) {
+    uglifyOptions.sourceMap = true;
+}
+
 let plugins = [
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
   }),
+  new webpack.optimize.UglifyJsPlugin(uglifyOptions),
 ];
 
 if (isProduction) {
@@ -20,9 +29,6 @@ if (isProduction) {
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
     }),
   ]);
 }
