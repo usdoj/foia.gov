@@ -15,7 +15,7 @@ let plugins = [
   new webpack.optimize.UglifyJsPlugin({
     exclude: /excellentexport.js/,
     sourceMap: isProduction,
-  ),
+  }),
 ];
 
 if (isProduction) {
