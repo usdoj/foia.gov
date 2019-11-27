@@ -11,12 +11,12 @@ build-steps: &build-steps
     paths:
       - vendor/bundle
   - type: cache-restore
-    key: v1-node-modules-{{ checksum "package.json" }}
+    key: v2-node-modules-{{ checksum "package.json" }}
   - run:
       name: Install npm dependencies
       command: npm install
   - type: cache-save
-    key: v1-node-modules-{{ checksum "package.json" }}
+    key: v2-node-modules-{{ checksum "package.json" }}
     paths:
       - node_modules
   - run:
@@ -56,7 +56,7 @@ jobs:
           name: Install jekyll dependencies
           command: bundle install --path vendor/bundle
       - type: cache-restore
-        key: v1-node-modules-{{ checksum "package.json" }}
+        key: v2-node-modules-{{ checksum "package.json" }}
       # Attach the build files for testing
       - attach_workspace:
           at: .
