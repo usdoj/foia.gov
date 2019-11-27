@@ -32,7 +32,7 @@
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
     "d8-jsonapi-querystring": "0.0.8",
-    "excellentexport": "github:brockfanning/excellentexport#ie-fixes-for-blobs-and-arrows",
+    "excellentexport": "github:jmaister/excellentexport",
     "exitscript": "1.1.7",
     "flux": "^3.1.3",
     "glossary-panel": "^1.0.0",
