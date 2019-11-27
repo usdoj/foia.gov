@@ -12,6 +12,10 @@ let plugins = [
     $: 'jquery',
     jQuery: 'jquery',
   }),
+  new webpack.optimize.UglifyJsPlugin({
+    exclude: /excellentexport.js/,
+    sourceMap: isProduction,
+  }),
 ];
 
 if (isProduction) {
@@ -20,9 +24,6 @@ if (isProduction) {
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
     }),
   ]);
 }
