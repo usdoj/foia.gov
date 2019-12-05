@@ -44,6 +44,15 @@ module.exports = {
   },
   module: {
     loaders: [
+      // Some contributed code needs to be transpiled first.
+      {
+        include: /(excellentexport.js)/,
+        loader: 'babel-loader',
+        query: {
+          compact: false,
+          presets: ['es2015'],
+        },
+      },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules)/,
