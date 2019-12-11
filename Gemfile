@@ -11,7 +11,7 @@ ruby RUBY_VERSION
 # Happy Jekylling!
 gem "jekyll", "3.6.3"
 
-gem "html-proofer", "3.7.2"
+gem "html-proofer", "3.14.1"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
