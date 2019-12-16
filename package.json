@@ -72,6 +72,6 @@
     "sinon": "^3.2.1",
     "sinon-chai": "^2.13.0",
     "webpack": "^2.7.0",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-node-externals": "^1.7.2"
   }
 }
