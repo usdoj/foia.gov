@@ -45,7 +45,7 @@
     "react": "^15.6.2",
     "react-dom": "^15.6.1",
     "react-jsonschema-form": "^0.51.0",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "^5.1.2",
     "react-url-query": "^1.5.0",
     "typeahead.js": "^0.11.1",
     "url": "^0.11.0",
