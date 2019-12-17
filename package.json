@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/18F/beta.foia.gov#readme",
   "dependencies": {
+    "assert": "^2.0.0",
     "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",
     "d8-jsonapi-querystring": "0.0.8",
@@ -47,6 +48,7 @@
     "react-router-dom": "^4.2.2",
     "react-url-query": "^1.5.0",
     "typeahead.js": "^0.11.1",
+    "url": "^0.11.0",
     "uswds": "^1.4.1"
   },
   "devDependencies": {
