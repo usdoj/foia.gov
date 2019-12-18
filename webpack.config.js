@@ -50,7 +50,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           compact: false,
-          presets: ['es2015'],
+          presets: ['@babel/env'],
         },
       },
       {
@@ -58,7 +58,7 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015'],
+          presets: ['@babel/react', '@babel/env'],
         },
       },
     ],
