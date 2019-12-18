@@ -49,7 +49,7 @@
     "react-url-query": "^1.5.0",
     "typeahead.js": "^0.11.1",
     "url": "^0.11.0",
-    "uswds": "^1.4.1"
+    "uswds": "^1.6.13"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
