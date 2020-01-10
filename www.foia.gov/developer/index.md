@@ -129,8 +129,9 @@ EOF
   <p>The entire IEPD package may also be downloaded directly by clicking on the following link [<a href="{{ site.baseurl }}/iepd/FOIA_Annual_Report_v2.2.zip">Download IEPD</a>].</p>
   <p>Within this IEPD package you can find the XML schema defined in <em>exchange_files/schema/extension/FoiaAnnualReportExtensions.xsd</em>. Note that this definition inherits from others, which can be found in the package as well, under <em>exchange_files/schema/Subset/niem/</em>.</p>
   <h3>FOIA Data Set Downloads</h3>
-  <p>The following compressed files are complete archives of the  FOIA Data sets for the years 2008 through 2017.</p>
+  <p>The following compressed files are complete archives of the  FOIA Data sets for the years 2008 through 2018.</p>
   <ul>
+    <li><a href="{{ site.baseurl }}/2018-FOIASetFull.zip">Download the full 2018 FOIA Data set</a> (.zip format)</li>
     <li><a href="{{ site.baseurl }}/2017-FOIASetFull.zip">Download the full 2017 FOIA Data set</a> (.zip format)</li>
     <li><a href="{{ site.baseurl }}/2016-FOIASetFull.zip">Download the full 2016 FOIA Data set</a> (.zip format)</li>
     <li><a href="{{ site.baseurl }}/2015-FOIASetFull.zip">Download the full 2015 FOIA Data set</a> (.zip format)</li>
