@@ -44,11 +44,13 @@ USWDSRadioWidget.propTypes = {
   label: PropTypes.string.isRequired,
   options: PropTypes.object,
   value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 USWDSRadioWidget.defaultProps = {
   options: {},
   value: '',
+  onChange: () => {},
 };
 
 export default USWDSRadioWidget;
