@@ -14,6 +14,11 @@
   .agency-info_reading-rooms h4 + p:before {
     @include has-icon($icon-book, $height: $space-4x);
   }
+
+}
+
+.tooltip-trigger {
+  @include has-icon($icon-question-circle, $height: $space-2x);
 }
 
 .use-light-icons {
