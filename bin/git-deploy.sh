@@ -5,7 +5,7 @@ set -o pipefail
 
 deploy_dir=deploy
 docroot_dir=docroot
-destination_repo="$GIT_REPO"
+destination_repo="foiafront@svn-23659.prod.hosting.acquia.com:foiafront.git"
 build_dir=${1}
 target=${2}
 
