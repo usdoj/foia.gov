@@ -22,7 +22,8 @@ label + .field-description {
   }
 
   fieldset fieldset legend,
-  #foia-request-form_submit h4 {
+  #foia-request-form_submit h4,
+  .foia-header-blue-line--h2{
     font-size: $h3-font-size-sans;
     font-family: $font-sans;
     font-weight: $font-semibold;
