@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tooltip from 'tooltip.js';
+import PropTypes from 'prop-types';
 
 class FoiaTooltip extends Component {
   componentDidMount() {
@@ -18,5 +19,9 @@ class FoiaTooltip extends Component {
     );
   }
 }
+
+FoiaTooltip.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
 export default FoiaTooltip;

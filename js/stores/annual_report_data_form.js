@@ -4,27 +4,26 @@ import { List, Map } from 'immutable';
 import dispatcher from '../util/dispatcher';
 
 class AnnualReportDataFormStore extends Store {
-    constructor(_dispatcher) {
-        super(_dispatcher);
+  constructor(_dispatcher) {
+    super(_dispatcher);
+    this.state = {
+      formSections: List(),
+      requestForms: new Map(),
+    };
+  }
 
-        this.state = {
-            formSections: List(),
-            requestForms: new Map(),
-        };
-    }
+  getState() {
+    return this.state;
+  }
 
-    getState() {
-        return this.state;
-    }
+  _onDispatch(payload) {
 
-    _onDispatch(payload) {
-
-    }
+  }
 }
 
 const annualReportDataFormStore = new AnnualReportDataFormStore(dispatcher);
 export default annualReportDataFormStore;
 
 export {
-    AnnualReportDataFormStore,
+  AnnualReportDataFormStore,
 };
