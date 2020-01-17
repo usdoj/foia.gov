@@ -10,14 +10,33 @@ The app uses the same architecture as the [Request app](request-app.md).
 ### Entry point
 `/js/annual_report_data.jsx`
 
+
 ### Page(s)
 `/js/pages/annual_report_data.jsx`
 
+
 ### Actions
+
 
 ### Stores
 `/js/stores/annual_report_data_form.js` 
 
+
 ### Models
 
+
 ### Components
+
+
+#### Tooltip
+
+Props include `text`, which is used to pass the paragraph text that needs to go
+inside of the tooltip.
+
+Example use:
+
+```
+import FoiaTooltip from '../components/foia_tooltip';
+..
+<FoiaTooltip text="Lorem ipsum dolor." />
+```

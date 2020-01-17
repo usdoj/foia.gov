@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import PropTypes from 'prop-types';
-import FoiaReportFormSectionTwo from "../components/foia_report_form_section_two";
+import FoiaTooltip from '../components/foia_tooltip';
+import FoiaReportFormSectionTwo from '../components/foia_report_form_section_two';
 
-import annualReportDataFormStore from "../stores/annual_report_data_form";
+import annualReportDataFormStore from '../stores/annual_report_data_form';
 
 class AnnualReportDataPage extends Component {
-    static getStores() {
-        return [annualReportDataFormStore];
-    }
-    static calculateState(prevState) {
-        return {};
-    }
+  static getStores() {
+    return [annualReportDataFormStore];
+  }
+  static calculateState(prevState) {
+    return {};
+  }
 
     render() {
         return (

@@ -12,7 +12,7 @@ class FoiaTooltip extends Component {
 
   render() {
     return (
-      <a className="tooltip-trigger" ref={(trigger) => { this.trigger = trigger; }} role="tooltip" data-tooltip="<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>">
+      <a className="tooltip-trigger" ref={(trigger) => { this.trigger = trigger; }} role="tooltip" data-tooltip={this.props.text}>
         <span className="visually-hidden">Help</span>
       </a>
     );
