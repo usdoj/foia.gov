@@ -40,3 +40,6 @@ import FoiaTooltip from '../components/foia_tooltip';
 ..
 <FoiaTooltip text="Lorem ipsum dolor." />
 ```
+
+Used in:
+ * foia_report_form_section_two
