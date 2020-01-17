@@ -14,7 +14,12 @@
   .agency-info_reading-rooms h4 + p:before {
     @include has-icon($icon-book, $height: $space-4x);
   }
-
+  .icon-plus {
+    @include has-icon($icon-plus);
+  }
+  .icon-minus {
+    @include has-icon($icon-minus);
+  }
 }
 
 .tooltip-trigger {
@@ -43,6 +48,12 @@
   }
   [data-term]:after {
     background-image: url($icon-glossary-light);
+  }
+  .icon-plus {
+    @include has-icon($icon-plus-light);
+  }
+  .icon-minus {
+    @include has-icon($icon-minus-light);
   }
 }
 
