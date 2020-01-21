@@ -56,3 +56,19 @@
 form [type=submit] {
   margin: $space-4x 0;
 }
+
+.close-button {
+  width: 4.4rem;
+  height: 4.4rem;
+  background-image: url($icon-close-button);
+  background-repeat: no-repeat;
+  border-radius: 100px;
+  background-color: transparent;
+  background-size: 3rem;
+  background-position: center center;
+}
+
+.close-button:hover,
+.close-button:active {
+  background-color: transparent;
+}

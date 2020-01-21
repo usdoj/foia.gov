@@ -43,3 +43,23 @@ import FoiaTooltip from '../components/foia_tooltip';
 
 Used in:
  * foia_report_form_section_two
+
+
+#### Modal
+
+Props include:
+* `triggerText` which is used inside the button that triggers the modal.
+* `ariaLabel` which is used as the aria label for the modal.
+* `modalContent` which is the content that goes inside the modal.
+
+Example use:
+
+ ```
+import FoiaModal from '../components/foia_modal';
+..
+<FoiaModal
+  triggerText='Lorem Ipsum'
+  ariaLabel='Solor sit amet'
+  modalContent={ <div>consectetur adipisicing elit</div> }
+/>
+```
