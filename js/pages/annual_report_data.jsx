@@ -3,6 +3,7 @@ import { Container } from 'flux/utils';
 import FoiaReportFormSectionTwo from '../components/foia_report_form_section_two';
 
 import annualReportDataFormStore from '../stores/annual_report_data_form';
+import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
 
 class AnnualReportDataPage extends Component {
   static getStores() {
@@ -18,6 +19,7 @@ class AnnualReportDataPage extends Component {
         <h1>Create a Report</h1>
         <form>
           <FoiaReportFormSectionTwo />
+          <FoiaReportFormSectionThree />
         </form>
       </div>
     );

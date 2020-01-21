@@ -1,0 +1,49 @@
+// Add space around checkboxes that are displayed in a list.
+//
+// Useful for displaying checkboxes in a grid.
+//
+// @example
+// <ul class="usa-unstyled-list usa-grid checkbox-list">
+//   <li className="usa-width-one-third">
+//     <input id="2019" type="checkbox" name="fiscal-year" value="2019" checked />
+//     <label htmlFor="2019">2019</label>
+//   </li>
+//   <li className="usa-width-one-third">
+//     <input id="2018" type="checkbox" name="fiscal-year" value="2018" />
+//     <label htmlFor="2018">2018</label>
+//   </li>
+//   <li className="usa-width-one-third">
+//     <input id="2017" type="checkbox" name="fiscal-year" value="2017" />
+//     <label htmlFor="2017">2017</label>
+//   </li>
+//   <li className="usa-width-one-third">
+//     <input id="2016" type="checkbox" name="fiscal-year" value="2016" />
+//     <label htmlFor="2016">2016</label>
+//   </li>
+//   <li className="usa-width-one-third">
+//     <input id="2015" type="checkbox" name="fiscal-year" value="2015" />
+//     <label htmlFor="2015">2015</label>
+//   </li>
+//   <li className="usa-width-one-third">
+//     <input id="2014" type="checkbox" name="fiscal-year" value="2014" />
+//     <label htmlFor="2014">2014</label>
+//   </li>
+// </ul>
+//
+// @see https://v1.designsystem.digital.gov/components/form-controls/#checkboxes for recommended checkbox markup.
+.checkbox-list {
+  margin: 1rem 0;
+
+  li {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+
+    &:first-child {
+      margin-top: 0.5rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
