@@ -59,7 +59,7 @@ class FoiaReportFormSectionTwo extends Component {
             <div className="form-group field">
               <label htmlFor="data_filter_subject">
                 Data Filters
-                <FoiaTooltip />
+                <FoiaTooltip text="Select the type of FOIA data you would like to view. The data comes from agencies' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary." />
               </label>
               <select name="data_filter_subject" id="data_filter_subject">
                 <option value="request_ex_6">Request Ex. 6</option>

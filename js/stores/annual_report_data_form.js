@@ -16,8 +16,11 @@ class AnnualReportDataFormStore extends Store {
     return this.state;
   }
 
-  _onDispatch(payload) {
-
+  __onDispatch(payload) {
+    switch (payload.type) {
+      default:
+        break;
+    }
   }
 }
 
