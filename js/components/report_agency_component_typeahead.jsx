@@ -45,6 +45,7 @@ class ReportAgencyComponentTypeahead extends Component {
     super(props);
 
     this.isIndexed = false;
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillMount() {
@@ -125,7 +126,7 @@ class ReportAgencyComponentTypeahead extends Component {
           $('<div>').addClass(datum.type).text(display(datum)),
       },
     })
-      .bind('typeahead:select', (e, suggestion) => this.props.onAgencyChange(suggestion));
+      .bind('typeahead:select', (e, suggestion) => this.handleChange(suggestion));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -158,6 +159,10 @@ class ReportAgencyComponentTypeahead extends Component {
       agencies: agencies.valueSeq(), // Pull the values, convert to sequence
       agencyComponents,
     }));
+  }
+
+  handleChange(selection) {
+    this.props.onAgencyChange(selection);
   }
 
   render() {
