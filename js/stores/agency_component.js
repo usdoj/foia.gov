@@ -144,11 +144,11 @@ class AgencyComponentStore extends Store {
           && Object.prototype.hasOwnProperty.call(selectedAgency, 'id');
 
         if (!selectedIsValid || !previousIsValid) {
-          return;
+          break;
         }
 
         if (selectedAgency.id === previousAgency.id) {
-          return;
+          break;
         }
 
         // Get a copy of the selected agencies state so that we don't
