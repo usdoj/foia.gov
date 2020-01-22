@@ -41,4 +41,4 @@ class AnnualReportDataPage extends Component {
   }
 }
 
-export default Container.create(AnnualReportDataPage);
+export default Container.create(AnnualReportDataPage, { pure: false });
