@@ -6,6 +6,8 @@ import { uniqueId } from 'lodash';
 import tokenizers from '../util/tokenizers';
 import dispatcher from '../util/dispatcher';
 import { types } from '../actions';
+import FoiaModal from './foia_modal';
+import agencyComponentStore from '../stores/agency_component';
 
 
 // Only load typeahead in the browser (avoid loading it for tests)
@@ -171,23 +173,43 @@ class ReportAgencyComponentTypeahead extends Component {
     });
   }
 
+  buildModalContent() {
+    return agencyComponentStore.getAgencyComponentsForAgency(this.props.selectedAgency.id)
+      .map(component => (
+        <div>{component.abbreviation}</div>
+      ));
+  }
+
   render() {
     const { agencyFinderDataProgress } = this.props;
     const loading = !this.props.agencyFinderDataComplete;
+    const agencyIsSelected = (this.props.selectedAgency.id !== 0 && this.props.selectedAgency.type === 'agency') || false;
+    const isCentralizedAgency = this.props.selectedAgency.component_count <= 1 || false;
 
     return (
-      <div role="search">
-        <label className="usa-sr-only" htmlFor={`agency-component-search-${this.state.id}`}>Search for an agency</label>
-        <input
-          type="text"
-          id={`agency-component-search-${this.state.id}`}
-          name="agency_component_search"
-          placeholder={loading ? `Loading… ${agencyFinderDataProgress}%` : 'Type agency name'}
-          disabled={loading}
-          ref={(input) => {
-            this.typeaheadInput = input;
-          }}
-        />
+      <div className="typeahead-search">
+        <div role="search">
+          <label className="usa-sr-only" htmlFor={`agency-component-search-${this.state.id}`}>Search for an agency</label>
+          <input
+            type="text"
+            id={`agency-component-search-${this.state.id}`}
+            name="agency_component_search"
+            placeholder={loading ? `Loading… ${agencyFinderDataProgress}%` : 'Type agency name'}
+            disabled={loading}
+            ref={(input) => {
+              this.typeaheadInput = input;
+            }}
+          />
+        </div>
+        <div className="form-group">
+          {agencyIsSelected && !isCentralizedAgency &&
+          <FoiaModal
+            modalContent={this.buildModalContent()}
+            ariaLabel="Filter agency components"
+            triggerText="Select Agency Components"
+          />
+          }
+        </div>
       </div>
     );
   }
