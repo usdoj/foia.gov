@@ -87,7 +87,7 @@ class FoiaReportFormSectionTwo extends Component {
                 }
               /> {/* End FoiaModal */}
             </div>
-            <div className="form-group field use-dark-icons usa-grid">
+            <div className="form-group field use-dark-icons">
               <a href="#"><span className="icon-plus"></span>Add Another Data Type</a>
             </div>
           </fieldset>
