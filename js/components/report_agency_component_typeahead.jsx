@@ -181,7 +181,6 @@ class ReportAgencyComponentTypeahead extends Component {
   }
 
   render() {
-    const { agencyFinderDataProgress } = this.props;
     const loading = !this.props.agencyFinderDataComplete;
     const agencyIsSelected = (this.props.selectedAgency.id !== 0 && this.props.selectedAgency.type === 'agency') || false;
     const isCentralizedAgency = this.props.selectedAgency.component_count <= 1 || false;
@@ -194,22 +193,22 @@ class ReportAgencyComponentTypeahead extends Component {
             type="text"
             id={`agency-component-search-${this.state.id}`}
             name="agency_component_search"
-            placeholder={loading ? `Loading… ${agencyFinderDataProgress}%` : 'Type agency name'}
+            placeholder={loading ? `Loading… ${this.props.agencyFinderDataProgress}%` : 'Type agency name'}
             disabled={loading}
             ref={(input) => {
               this.typeaheadInput = input;
             }}
           />
         </div>
-        <div className="form-group">
-          {agencyIsSelected && !isCentralizedAgency &&
-          <FoiaModal
-            modalContent={this.buildModalContent()}
-            ariaLabel="Filter agency components"
-            triggerText="Select Agency Components"
-          />
-          }
-        </div>
+        {agencyIsSelected && !isCentralizedAgency &&
+          <div className="form-group">
+            <FoiaModal
+              modalContent={this.buildModalContent()}
+              ariaLabel="Filter agency components"
+              triggerText="Select Agency Components"
+            />
+          </div>
+        }
       </div>
     );
   }
