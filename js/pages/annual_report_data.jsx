@@ -15,7 +15,7 @@ class AnnualReportDataPage extends Component {
 
   render() {
     return (
-      <div className="usa-grid" ref={(ref) => { this.element = ref; }}>
+      <div className="annual-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
         <h1>Create a Report</h1>
         <form>
           <FoiaReportFormSectionTwo />
