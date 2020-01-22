@@ -38,7 +38,7 @@ Example use:
 ```
 import FoiaTooltip from '../components/foia_tooltip';
 ..
-<FoiaTooltip text="Lorem ipsum dolor." />
+<FoiaTooltip text={ "Lorem ipsum dolor."} />
 ```
 
 Used in:
@@ -63,3 +63,6 @@ import FoiaModal from '../components/foia_modal';
   modalContent={ <div>consectetur adipisicing elit</div> }
 />
 ```
+
+Used in:
+ * foia_report_form_section_two

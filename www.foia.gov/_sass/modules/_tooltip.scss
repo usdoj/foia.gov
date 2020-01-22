@@ -26,8 +26,13 @@ a.tooltip-trigger {
   box-shadow: $tooltip-shadow-top;
   padding: 1rem 2rem;
   max-width: 40rem;
+  font-family: $font-sans;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  font-weight: normal;
   text-align: left;
   transform-style: preserve-3d;
+  z-index: 9999;
 }
 
 .tooltip .tooltip-arrow {

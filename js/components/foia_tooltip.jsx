@@ -21,7 +21,7 @@ class FoiaTooltip extends Component {
 }
 
 FoiaTooltip.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.object.isRequired,
 };
 
 export default FoiaTooltip;
