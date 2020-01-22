@@ -12,7 +12,7 @@ class ReportAgencyComponentFilter extends Component {
       agencyComponents,
       agencyFinderDataProgress,
       agencyFinderDataComplete,
-      onAgencyChange,
+      selectedAgency,
     } = this.props;
 
     return (
@@ -22,7 +22,7 @@ class ReportAgencyComponentFilter extends Component {
           agencyComponents={agencyComponents}
           agencyFinderDataProgress={agencyFinderDataProgress}
           agencyFinderDataComplete={agencyFinderDataComplete}
-          onAgencyChange={onAgencyChange}
+          selectedAgency={selectedAgency}
         />
       </div>
     );
@@ -34,15 +34,16 @@ ReportAgencyComponentFilter.propTypes = {
   agencies: PropTypes.instanceOf(Map),
   agencyComponents: PropTypes.instanceOf(List),
   /* eslint-enable react/no-unused-prop-types */
-  onAgencyChange: PropTypes.func.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
+  selectedAgency: PropTypes.object,
 };
 
 ReportAgencyComponentFilter.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
   agencyFinderDataProgress: 0,
+  selectedAgency: { id: 0 },
 };
 
 export default ReportAgencyComponentFilter;

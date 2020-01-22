@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 
 import tokenizers from '../util/tokenizers';
+import dispatcher from '../util/dispatcher';
+import { types } from '../actions';
 
 
 // Only load typeahead in the browser (avoid loading it for tests)
@@ -162,7 +164,11 @@ class ReportAgencyComponentTypeahead extends Component {
   }
 
   handleChange(selection) {
-    this.props.onAgencyChange(selection);
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_AGENCY_SELECTED,
+      selectedAgency: selection,
+      previousAgency: this.props.selectedAgency,
+    });
   }
 
   render() {
@@ -192,15 +198,16 @@ ReportAgencyComponentTypeahead.propTypes = {
   agencies: PropTypes.instanceOf(Map),
   agencyComponents: PropTypes.instanceOf(List),
   /* eslint-enable react/no-unused-prop-types */
-  onAgencyChange: PropTypes.func.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
+  selectedAgency: PropTypes.object,
 };
 
 ReportAgencyComponentTypeahead.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
   agencyFinderDataProgress: 0,
+  selectedAgency: { id: 0 },
 };
 
 export default ReportAgencyComponentTypeahead;
