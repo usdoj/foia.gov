@@ -117,6 +117,10 @@ class ReportAgencyComponentTypeahead extends Component {
     }
 
     this.typeahead = $(this.typeaheadInput).typeahead({
+      classNames: {
+        wrapper: ['twitter-typeahead', 'usa-search-bg-light', 'usa-reset-width'].join(' '),
+        input: ['tt-input', 'usa-reset-width'].join(' '),
+      },
       highlight: true,
       hint: false,
     }, {
@@ -175,8 +179,8 @@ class ReportAgencyComponentTypeahead extends Component {
     const loading = !this.props.agencyFinderDataComplete;
 
     return (
-      <div role="search">
-        <label className="usa-sr-only" htmlFor={`agency-component-search-${this.state.id}`}>Search for an agency</label>
+      <div role="search" className="form-group">
+        <label htmlFor={`agency-component-search-${this.state.id}`}><strong>Agency or Component Name</strong></label>
         <input
           type="text"
           id={`agency-component-search-${this.state.id}`}
