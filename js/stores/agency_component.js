@@ -165,6 +165,17 @@ class AgencyComponentStore extends Store {
         break;
       }
 
+      case types.SELECTED_AGENCIES_APPEND_BLANK: {
+        const selectedAgencies = [...this.state.selectedAgencies];
+        selectedAgencies.push({ id: (selectedAgencies.length) });
+
+        Object.assign(this.state, {
+          selectedAgencies,
+        });
+        this.__emitChange();
+        break;
+      }
+
       default:
         break;
     }
