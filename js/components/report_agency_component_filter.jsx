@@ -28,20 +28,24 @@ class ReportAgencyComponentFilter extends Component {
         );
       });
     return (
-      <fieldset className="usa-fieldset-inputs">
-        <legend className="usa-sr-only">Select Agency Components</legend>
-        <ul className="usa-unstyled-list usa-grid checkbox-list checkbox-list--in-modal">
-          {checkboxes}
-        </ul>
-        <div className="form-group_footer">
-          <ul className="inline-list">
-            <li><a href="#">Select All</a></li>
-            <li><a href="#">Select None</a></li>
-          </ul>
-          <button className="usa-button usa-button-primary-alt">Submit</button>
-          <button className="usa-button usa-button-outline">Cancel</button>
+      <div className="form-group">
+        <div className="usa-grid">
+          <h3 className="sans">Select Agencies or Components</h3>
+          <fieldset className="usa-fieldset-inputs">
+            <ul className="usa-unstyled-list usa-grid checkbox-list checkbox-list--in-modal">
+              {checkboxes}
+            </ul>
+            <div className="form-group_footer">
+              <ul className="inline-list">
+                <li><a href="#">Select All</a></li>
+                <li><a href="#">Select None</a></li>
+              </ul>
+              <button className="usa-button usa-button-primary-alt">Submit</button>
+              <button className="usa-button usa-button-outline">Cancel</button>
+            </div>
+          </fieldset>
         </div>
-      </fieldset>
+      </div>
     );
   }
 
