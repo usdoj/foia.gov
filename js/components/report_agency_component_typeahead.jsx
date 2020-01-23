@@ -6,8 +6,6 @@ import { uniqueId } from 'lodash';
 import tokenizers from '../util/tokenizers';
 import dispatcher from '../util/dispatcher';
 import { types } from '../actions';
-import FoiaModal from './foia_modal';
-import agencyComponentStore from '../stores/agency_component';
 
 
 // Only load typeahead in the browser (avoid loading it for tests)
