@@ -210,19 +210,24 @@ class ReportAgencyComponentTypeahead extends Component {
     }
 
     return (
-      <div role="search" className={wrapperClasses.join(' ')}>
-        <label htmlFor={`agency-component-search-${this.state.id}`}><strong>Agency or Component Name</strong></label>
-        <input
-          type="text"
-          id={`agency-component-search-${this.state.id}`}
-          name="agency_component_search"
-          placeholder={loading ? `Loading… ${this.props.agencyFinderDataProgress}%` : 'Type agency name'}
-          disabled={loading}
-          ref={(input) => {
-            this.typeaheadInput = input;
-          }}
-          onKeyPress={this.handleKeyPress}
-        />
+      <div>
+        <div role="search" className={wrapperClasses.join(' ')}>
+          <label htmlFor={`agency-component-search-${this.state.id}`}><strong>Agency or Component Name</strong></label>
+          <input
+            type="text"
+            id={`agency-component-search-${this.state.id}`}
+            name="agency_component_search"
+            placeholder={loading ? `Loading… ${this.props.agencyFinderDataProgress}%` : 'Type agency name'}
+            disabled={loading}
+            ref={(input) => {
+              this.typeaheadInput = input;
+            }}
+            onKeyPress={this.handleKeyPress}
+          />
+        </div>
+        {hasError &&
+        <p className="usa-input-error-message">{this.props.selectedAgency.error.message}</p>
+        }
       </div>
     );
   }
