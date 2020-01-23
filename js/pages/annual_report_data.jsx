@@ -5,13 +5,26 @@ import FoiaReportFormSectionTwo from '../components/foia_report_form_section_two
 
 import annualReportDataFormStore from '../stores/annual_report_data_form';
 import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
+import annualReportFiscalYearStore from '../stores/annual_report_fiscal_year';
+import { requestActions } from '../actions/index';
 
 class AnnualReportDataPage extends Component {
   static getStores() {
-    return [annualReportDataFormStore];
+    return [annualReportDataFormStore, annualReportFiscalYearStore];
   }
+
   static calculateState(prevState) {
-    return {};
+    const {
+      fiscalYears,
+    } = annualReportFiscalYearStore.getState();
+
+    return {
+      fiscalYears,
+    };
+  }
+
+  componentDidMount() {
+    requestActions.fetchAnnualReportDataFiscalYears();
   }
 
   render() {

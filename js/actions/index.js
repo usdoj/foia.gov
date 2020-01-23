@@ -1,10 +1,11 @@
 import assert from 'assert';
+import axios from 'axios';
+import settings from 'settings';
 
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
 import localapi from '../util/local_api';
 import requestapi from '../util/request_api';
-
 
 // Action types to identify an action
 export const types = {
@@ -13,6 +14,9 @@ export const types = {
   AGENCY_FINDER_DATA_COMPLETE: 'AGENCY_FINDER_DATA_COMPLETE',
   AGENCY_COMPONENT_FETCH: 'AGENCY_COMPONENT_FETCH',
   AGENCY_COMPONENT_RECEIVE: 'AGENCY_COMPONENT_RECEIVE',
+  ANNUAL_REPORT_FISCAL_YEARS_FETCH: 'ANNUAL_REPORT_FISCAL_YEARS_FETCH',
+  ANNUAL_REPORT_FISCAL_YEARS_RECEIVE: 'ANNUAL_REPORT_FISCAL_YEARS_RECEIVE',
+  ANNUAL_REPORT_FISCAL_YEARS_COMPLETE: 'ANNUAL_REPORT_FISCAL_YEARS_COMPLETE',
   REQUEST_FORM_UPDATE: 'REQUEST_FORM_UPDATE',
   REQUEST_FORM_SUBMIT: 'REQUEST_FORM_SUBMIT',
   REQUEST_FORM_SUBMIT_COMPLETE: 'REQUEST_FORM_SUBMIT_COMPLETE',
@@ -90,6 +94,40 @@ export const requestActions = {
     });
 
     return Promise.resolve(agencyComponent);
+  },
+
+  fetchAnnualReportDataFiscalYears() {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_FISCAL_YEARS_FETCH,
+    });
+
+    const request = axios.create({
+      baseURL: settings.api.jsonApiBaseURL,
+      headers: { 'X-Api-Key': settings.api.jsonApiKey },
+    });
+
+    return request
+      .get('/annual_foia_report/fiscal_years')
+      .then(response => response.data || [])
+      .then(requestActions.receiveAnnualReportFiscalYearsData)
+      .then(requestActions.completeAnnualReportFiscalYearsData);
+  },
+
+  receiveAnnualReportFiscalYearsData(fiscalYears) {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_FISCAL_YEARS_RECEIVE,
+      fiscalYears,
+    });
+
+    return Promise.resolve(fiscalYears);
+  },
+
+  completeAnnualReportFiscalYearsData() {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_FISCAL_YEARS_COMPLETE,
+    });
+
+    return Promise.resolve();
   },
 
   updateRequestForm(formData) {
