@@ -174,10 +174,36 @@ class ReportAgencyComponentTypeahead extends Component {
   }
 
   buildModalContent() {
-    return agencyComponentStore.getAgencyComponentsForAgency(this.props.selectedAgency.id)
-      .map(component => (
-        <div>{component.abbreviation}</div>
-      ));
+    const checkboxes = agencyComponentStore
+      .getAgencyComponentsForAgency(this.props.selectedAgency.id)
+      .map((component) => {
+        const inputId = uniqueId(`${component.abbreviation}_`);
+        return (
+          <li className="usa-width-one-third" key={component.id}>
+            <input
+              id={inputId}
+              type="checkbox"
+              name={`${this.props.selectedAgency.id}-component`}
+              value={component.id}
+            />
+            <label htmlFor={inputId}>{component.abbreviation}</label>
+          </li>
+        );
+      });
+    return (
+      <fieldset className="usa-fieldset-inputs">
+        <legend className="usa-sr-only">Select Agency Components</legend>
+        <ul className="usa-unstyled-list usa-grid checkbox-list checkbox-list--in-modal">
+          {checkboxes}
+        </ul>
+        <div className="form-group">
+          <ul className="inline-list">
+            <li><a href="#">Select All</a></li>
+            <li><a href="#">Select None</a></li>
+          </ul>
+        </div>
+      </fieldset>
+    );
   }
 
   render() {
