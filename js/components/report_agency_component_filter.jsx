@@ -30,7 +30,7 @@ class ReportAgencyComponentFilter extends Component {
     return (
       <div className="form-group">
         <div className="usa-grid">
-          <h3 className="sans">Select Agencies or Components</h3>
+          <h3 className="sans usa-reset-width">Select Agencies or Components</h3>
           <fieldset className="usa-fieldset-inputs">
             <ul className="usa-unstyled-list usa-grid checkbox-list checkbox-list--in-modal">
               {checkboxes}
