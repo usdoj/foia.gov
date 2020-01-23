@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import FoiaTooltip from './foia_tooltip';
 import ReportAgencyComponentFilter from './report_agency_component_filter';
+import AddLink from './add_link';
+import { types } from '../actions';
 
 /**
  * README!: The assumption of this file is that it is a 'good enough'
@@ -36,9 +38,10 @@ class FoiaReportFormSectionOne extends Component {
                 agencyFinderDataProgress={agencyFinderDataProgress}
                 selectedAgency={selected}
               />))}
-            <div className="form-group field use-dark-icons">
-              <a href="#"><span className="icon-plus" /><p className="usa-alert-text">Add Another Agency or Component</p></a>
-            </div>
+            <AddLink
+              eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
+              text="Add another Agency or Component"
+            />
           </fieldset>
         </div>
         <div className="clear">&nbsp;</div>
