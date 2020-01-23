@@ -48,6 +48,7 @@ class ReportAgencyComponentTypeahead extends Component {
 
     this.isIndexed = false;
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   componentWillMount() {
@@ -175,6 +176,31 @@ class ReportAgencyComponentTypeahead extends Component {
     });
   }
 
+  handleKeyPress(e) {
+    if (e.key !== 'Enter') {
+      return;
+    }
+
+    e.preventDefault();
+    this.bloodhound.search(this.typeahead.typeahead('val'), (suggestions) => {
+      if (suggestions.length) {
+        // Trigger the selection event on the first suggestion and close the
+        // typeahead
+        this.typeahead.typeahead('val', suggestions[0].title);
+        this.typeahead.trigger('typeahead:select', suggestions[0]);
+        this.typeahead.typeahead('close');
+      } else {
+        // Effectively sets the selectedAgency to an error state.
+        this.typeahead.trigger('typeahead:select', {
+          id: this.state.id,
+          error: {
+            message: `The entered agency or component "${this.typeahead.typeahead('val')}" does not exist.`
+          },
+        });
+      }
+    });
+  }
+
   render() {
     const loading = !this.props.agencyFinderDataComplete;
 
@@ -190,6 +216,7 @@ class ReportAgencyComponentTypeahead extends Component {
           ref={(input) => {
             this.typeaheadInput = input;
           }}
+          onKeyPress={this.handleKeyPress}
         />
       </div>
     );
