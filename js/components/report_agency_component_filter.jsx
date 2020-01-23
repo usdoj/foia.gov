@@ -21,7 +21,7 @@ class ReportAgencyComponentFilter extends Component {
               type="checkbox"
               name={`${this.props.selectedAgency.id}-component`}
               value={component.id}
-              checked
+              defaultChecked
             />
             <label htmlFor={inputId}>{component.abbreviation}</label>
           </li>
