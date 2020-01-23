@@ -21,6 +21,7 @@ class ReportAgencyComponentFilter extends Component {
               type="checkbox"
               name={`${this.props.selectedAgency.id}-component`}
               value={component.id}
+              checked
             />
             <label htmlFor={inputId}>{component.abbreviation}</label>
           </li>
@@ -32,11 +33,13 @@ class ReportAgencyComponentFilter extends Component {
         <ul className="usa-unstyled-list usa-grid checkbox-list checkbox-list--in-modal">
           {checkboxes}
         </ul>
-        <div className="form-group">
+        <div className="form-group_footer">
           <ul className="inline-list">
             <li><a href="#">Select All</a></li>
             <li><a href="#">Select None</a></li>
           </ul>
+          <button className="usa-button usa-button-primary-alt">Submit</button>
+          <button className="usa-button usa-button-outline">Cancel</button>
         </div>
       </fieldset>
     );
@@ -64,13 +67,11 @@ class ReportAgencyComponentFilter extends Component {
           selectedAgency={selectedAgency}
         />
         {agencyIsSelected && !isCentralizedAgency &&
-        <div className="form-group">
           <FoiaModal
             modalContent={this.buildModalContent()}
             ariaLabel="Filter agency components"
             triggerText="Select Agency Components"
           />
-        </div>
         }
       </div>
     );
