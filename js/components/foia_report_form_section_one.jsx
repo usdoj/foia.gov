@@ -1,13 +1,24 @@
+import { List, Map } from 'immutable';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import FoiaTooltip from './foia_tooltip';
+import ReportAgencyComponentFilter from './report_agency_component_filter';
 
 /**
  * README!: The assumption of this file is that it is a 'good enough'
  * holding place for the section two markup at the moment.  This should all be updated
  * as we break the markup into better components.
  */
-class FoiaReportFormSectionOne extends React.Component {
+class FoiaReportFormSectionOne extends Component {
   render() {
+    const {
+      agencies,
+      agencyComponents,
+      agencyFinderDataComplete,
+      agencyFinderDataProgress,
+      selectedAgencies,
+    } = this.props;
+
     return (
       <div>
         <div className="form-group">
@@ -16,13 +27,15 @@ class FoiaReportFormSectionOne extends React.Component {
               1. Select Agencies or Components
               <FoiaTooltip text="Select the type of FOIA data you would like to view. The data comes from agencies' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary." />
             </legend>
-            <div className="form-group field">
-              <label htmlFor="data_type"><strong>Agency or Component Name</strong></label>
-              <span className="twitter-typeahead usa-search-bg-light usa-reset-width">
-                <input type="text" id="search-field-big" name="search" className=" usa-reset-width" autoComplete="off" spellCheck="false" />
-                <button className="usa-button usa-button-outline usa-button-small" type="submit" href="#">Select Agency Components</button>
-              </span>
-            </div>
+            {selectedAgencies.map((selected, index) => (
+              <ReportAgencyComponentFilter
+                key={index}
+                agencies={agencies}
+                agencyComponents={agencyComponents}
+                agencyFinderDataComplete={agencyFinderDataComplete}
+                agencyFinderDataProgress={agencyFinderDataProgress}
+                selectedAgency={selected}
+              />))}
             <div className="form-group field use-dark-icons">
               <a href="#"><span className="icon-plus" /><p className="usa-alert-text">Add Another Agency or Component</p></a>
             </div>
@@ -66,4 +79,22 @@ class FoiaReportFormSectionOne extends React.Component {
     );
   }
 }
+
+FoiaReportFormSectionOne.propTypes = {
+  /* eslint-disable react/no-unused-prop-types */
+  agencies: PropTypes.instanceOf(Map),
+  agencyComponents: PropTypes.instanceOf(List),
+  selectedAgencies: PropTypes.array,
+  /* eslint-enable react/no-unused-prop-types */
+  agencyFinderDataComplete: PropTypes.bool.isRequired,
+  agencyFinderDataProgress: PropTypes.number,
+};
+
+FoiaReportFormSectionOne.defaultProps = {
+  agencies: new Map(),
+  agencyComponents: new List(),
+  agencyFinderDataProgress: 0,
+  selectedAgencies: [{ id: 0 }],
+};
+
 export default FoiaReportFormSectionOne;
