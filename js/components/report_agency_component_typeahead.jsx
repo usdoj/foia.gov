@@ -203,9 +203,14 @@ class ReportAgencyComponentTypeahead extends Component {
 
   render() {
     const loading = !this.props.agencyFinderDataComplete;
+    const hasError = Object.prototype.hasOwnProperty.call(this.props.selectedAgency, 'error');
+    const wrapperClasses = ['form-group'];
+    if (hasError) {
+      wrapperClasses.push('usa-input-error');
+    }
 
     return (
-      <div role="search" className="form-group">
+      <div role="search" className={wrapperClasses.join(' ')}>
         <label htmlFor={`agency-component-search-${this.state.id}`}><strong>Agency or Component Name</strong></label>
         <input
           type="text"
