@@ -3,6 +3,8 @@
 // Useful for displaying checkboxes in a grid.
 //
 // @example
+// Checkboxes displayed in a grid
+//
 // <ul class="usa-unstyled-list usa-grid checkbox-list">
 //   <li className="usa-width-one-third">
 //     <input id="2019" type="checkbox" name="fiscal-year" value="2019" checked />
@@ -16,17 +18,23 @@
 //     <input id="2017" type="checkbox" name="fiscal-year" value="2017" />
 //     <label htmlFor="2017">2017</label>
 //   </li>
+// </ul>
+//
+// @example
+// Checkboxes displayed in a grid, within a modal
+//
+// <ul class="usa-unstyled-list usa-grid checkbox-list checkbox-list--in-modal">
 //   <li className="usa-width-one-third">
-//     <input id="2016" type="checkbox" name="fiscal-year" value="2016" />
-//     <label htmlFor="2016">2016</label>
+//     <input id="2019" type="checkbox" name="fiscal-year" value="2019" checked />
+//     <label htmlFor="2019">2019</label>
 //   </li>
 //   <li className="usa-width-one-third">
-//     <input id="2015" type="checkbox" name="fiscal-year" value="2015" />
-//     <label htmlFor="2015">2015</label>
+//     <input id="2018" type="checkbox" name="fiscal-year" value="2018" />
+//     <label htmlFor="2018">2018</label>
 //   </li>
 //   <li className="usa-width-one-third">
-//     <input id="2014" type="checkbox" name="fiscal-year" value="2014" />
-//     <label htmlFor="2014">2014</label>
+//     <input id="2017" type="checkbox" name="fiscal-year" value="2017" />
+//     <label htmlFor="2017">2017</label>
 //   </li>
 // </ul>
 //
@@ -45,5 +53,33 @@
     &:last-child {
       margin-bottom: 0.5rem;
     }
+  }
+}
+
+// When displayed in a modal, the grid margins are a bit off.  This brings down
+// the margins of two scenarios that we are aware we may use at this moment, which is
+// a three column and a six column grid for checkboxes in a modal.  The smaller margins
+// allow the checkboxes to display the correct number of columns within the modal.
+@media all and (min-width: $medium-screen) {
+  $direction: get-direction($layout-direction, $default-layout-direction);
+
+  .checkbox-list--in-modal li.usa-width-one-third {
+    margin-#{$direction}: flex-gutter(4);
+  }
+
+  .checkbox-list--in-modal li.usa-width-one-sixth {
+    margin-#{$direction}: flex-gutter(6);
+  }
+}
+
+@media all and (min-width: $medium-large-screen) {
+  $direction: get-direction($layout-direction, $default-layout-direction);
+
+  .checkbox-list--in-modal li.usa-width-one-third {
+    margin-#{$direction}: flex-gutter(12);
+  }
+
+  .checkbox-list--in-modal li.usa-width-one-sixth {
+    margin-#{$direction}: flex-gutter(12);
   }
 }
