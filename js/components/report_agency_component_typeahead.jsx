@@ -182,6 +182,9 @@ class ReportAgencyComponentTypeahead extends Component {
     }
 
     e.preventDefault();
+
+    // Find the first suggestion returned from the bloodhound search when the user
+    // presses the enter key.  If there is no suggestion, set an error state.
     this.bloodhound.search(this.typeahead.typeahead('val'), (suggestions) => {
       if (suggestions.length) {
         // Trigger the selection event on the first suggestion and close the
