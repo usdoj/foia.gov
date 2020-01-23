@@ -169,7 +169,7 @@ class ReportAgencyComponentTypeahead extends Component {
 
   handleChange(selection) {
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_AGENCY_SELECTED,
+      type: types.SELECTED_AGENCIES_UPDATE,
       selectedAgency: selection,
       previousAgency: this.props.selectedAgency,
     });

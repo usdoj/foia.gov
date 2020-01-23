@@ -136,7 +136,7 @@ class AgencyComponentStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_AGENCY_SELECTED: {
+      case types.SELECTED_AGENCIES_UPDATE: {
         const { selectedAgency, previousAgency } = payload;
         const previousIsValid = typeof previousAgency === 'object'
           && Object.prototype.hasOwnProperty.call(previousAgency, 'id');
