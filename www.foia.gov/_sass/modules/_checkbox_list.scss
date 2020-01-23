@@ -56,30 +56,27 @@
   }
 }
 
-// When displayed in a modal, the grid margins are a bit off.  This brings down
-// the margins of two scenarios that we are aware we may use at this moment, which is
-// a three column and a six column grid for checkboxes in a modal.  The smaller margins
-// allow the checkboxes to display the correct number of columns within the modal.
-@media all and (min-width: $medium-screen) {
+// When displayed in a modal, the grid display and margins of the one third grid are a bit off.
+// This brings displays modal one third checkbox lists in a 2 column grid between medium
+// and medium large screens and updates margin sizes of the items in the last column.
+// The smaller margins allow the checkboxes to display the correct number of columns
+// within the modal.
+@media all and (min-width: $medium-screen) and (max-width: #{$medium-large-screen - 1px}) {
   $direction: get-direction($layout-direction, $default-layout-direction);
 
-  .checkbox-list--in-modal li.usa-width-one-third {
-    margin-#{$direction}: flex-gutter(4);
+  .checkbox-list--in-modal .usa-width-one-third {
+    @include span-columns(3 of 6);
   }
 
-  .checkbox-list--in-modal li.usa-width-one-sixth {
-    margin-#{$direction}: flex-gutter(6);
+  .checkbox-list--in-modal .usa-width-one-third:nth-child(2n) {
+    margin-#{$direction}: 0;
   }
 }
 
 @media all and (min-width: $medium-large-screen) {
   $direction: get-direction($layout-direction, $default-layout-direction);
 
-  .checkbox-list--in-modal li.usa-width-one-third {
-    margin-#{$direction}: flex-gutter(12);
-  }
-
-  .checkbox-list--in-modal li.usa-width-one-sixth {
-    margin-#{$direction}: flex-gutter(12);
+  .checkbox-list--in-modal .usa-width-one-third:nth-child(3n) {
+    margin-#{$direction}: 0;
   }
 }
