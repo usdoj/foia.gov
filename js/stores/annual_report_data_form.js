@@ -2,6 +2,7 @@ import { Store } from 'flux/utils';
 import { List, Map } from 'immutable';
 
 import dispatcher from '../util/dispatcher';
+import { types } from '../actions';
 
 class AnnualReportDataFormStore extends Store {
   constructor(_dispatcher) {
@@ -9,6 +10,7 @@ class AnnualReportDataFormStore extends Store {
     this.state = {
       formSections: List(),
       requestForms: new Map(),
+      selectedAgencies: [{ id: 0 }],
     };
   }
 
@@ -18,6 +20,45 @@ class AnnualReportDataFormStore extends Store {
 
   __onDispatch(payload) {
     switch (payload.type) {
+      case types.SELECTED_AGENCIES_UPDATE: {
+        const { selectedAgency, previousAgency } = payload;
+        const previousIsValid = typeof previousAgency === 'object'
+          && Object.prototype.hasOwnProperty.call(previousAgency, 'id');
+        const selectedIsValid = typeof selectedAgency === 'object'
+          && Object.prototype.hasOwnProperty.call(selectedAgency, 'id');
+
+        if (!selectedIsValid || !previousIsValid) {
+          break;
+        }
+
+        if (selectedAgency.id === previousAgency.id) {
+          break;
+        }
+
+        // Get a copy of the selected agencies state so that we don't
+        // mutate state.  Directly mutating the state prevents
+        // a rerender from firing, which causes multiple problems.
+        const selectedAgencies = [...this.state.selectedAgencies];
+        const indexToUpdate = selectedAgencies.findIndex(agency => agency.id === previousAgency.id);
+        selectedAgencies.splice(indexToUpdate, 1, selectedAgency);
+
+        Object.assign(this.state, {
+          selectedAgencies,
+        });
+        this.__emitChange();
+        break;
+      }
+
+      case types.SELECTED_AGENCIES_APPEND_BLANK: {
+        const selectedAgencies = [...this.state.selectedAgencies];
+        selectedAgencies.push({ id: (selectedAgencies.length) });
+
+        Object.assign(this.state, {
+          selectedAgencies,
+        });
+        this.__emitChange();
+        break;
+      }
       default:
         break;
     }

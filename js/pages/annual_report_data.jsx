@@ -24,8 +24,11 @@ class AnnualReportDataPage extends Component {
       agencyComponents,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
-      selectedAgencies,
     } = agencyComponentStore.getState();
+
+    const {
+      selectedAgencies,
+    } = annualReportDataFormStore.getState();
 
     return {
       agencies,
