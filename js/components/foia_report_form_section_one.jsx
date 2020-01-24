@@ -97,7 +97,7 @@ FoiaReportFormSectionOne.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
   agencyFinderDataProgress: 0,
-  selectedAgencies: [{ id: 0 }],
+  selectedAgencies: [{ index: 0 }],
 };
 
 export default FoiaReportFormSectionOne;

@@ -96,7 +96,7 @@ ReportAgencyComponentFilter.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
   agencyFinderDataProgress: 0,
-  selectedAgency: { id: 0 },
+  selectedAgency: { index: 0 },
 };
 
 export default ReportAgencyComponentFilter;

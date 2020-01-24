@@ -10,7 +10,7 @@ class AnnualReportDataFormStore extends Store {
     this.state = {
       formSections: List(),
       requestForms: new Map(),
-      selectedAgencies: [{ id: 0 }],
+      selectedAgencies: [{ index: 0 }],
     };
   }
 
@@ -23,15 +23,11 @@ class AnnualReportDataFormStore extends Store {
       case types.SELECTED_AGENCIES_UPDATE: {
         const { selectedAgency, previousAgency } = payload;
         const previousIsValid = typeof previousAgency === 'object'
-          && Object.prototype.hasOwnProperty.call(previousAgency, 'id');
+          && Object.prototype.hasOwnProperty.call(previousAgency, 'index');
         const selectedIsValid = typeof selectedAgency === 'object'
-          && Object.prototype.hasOwnProperty.call(selectedAgency, 'id');
+          && Object.prototype.hasOwnProperty.call(selectedAgency, 'index');
 
         if (!selectedIsValid || !previousIsValid) {
-          break;
-        }
-
-        if (selectedAgency.id === previousAgency.id) {
           break;
         }
 
@@ -39,8 +35,7 @@ class AnnualReportDataFormStore extends Store {
         // mutate state.  Directly mutating the state prevents
         // a rerender from firing, which causes multiple problems.
         const selectedAgencies = [...this.state.selectedAgencies];
-        const indexToUpdate = selectedAgencies.findIndex(agency => agency.id === previousAgency.id);
-        selectedAgencies.splice(indexToUpdate, 1, selectedAgency);
+        selectedAgencies.splice(previousAgency.index, 1, selectedAgency);
 
         Object.assign(this.state, {
           selectedAgencies,
@@ -51,7 +46,9 @@ class AnnualReportDataFormStore extends Store {
 
       case types.SELECTED_AGENCIES_APPEND_BLANK: {
         const selectedAgencies = [...this.state.selectedAgencies];
-        selectedAgencies.push({ id: (selectedAgencies.length) });
+        selectedAgencies.push({
+          index: (selectedAgencies.length),
+        });
 
         Object.assign(this.state, {
           selectedAgencies,

@@ -169,6 +169,12 @@ class ReportAgencyComponentTypeahead extends Component {
   }
 
   handleChange(selection) {
+    // Ensures that the new selection will replace the old selection in the
+    // selectedAgencies state.
+    Object.assign(selection, {
+      index: this.props.selectedAgency.index,
+    });
+
     dispatcher.dispatch({
       type: types.SELECTED_AGENCIES_UPDATE,
       selectedAgency: selection,
@@ -195,7 +201,6 @@ class ReportAgencyComponentTypeahead extends Component {
       } else {
         // Effectively sets the selectedAgency to an error state.
         this.typeahead.trigger('typeahead:select', {
-          id: this.state.id,
           error: {
             message: `The entered agency or component "${this.typeahead.typeahead('val')}" does not exist.`,
           },
@@ -250,7 +255,7 @@ ReportAgencyComponentTypeahead.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
   agencyFinderDataProgress: 0,
-  selectedAgency: { id: 0 },
+  selectedAgency: { index: 0 },
 };
 
 export default ReportAgencyComponentTypeahead;
