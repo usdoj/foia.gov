@@ -201,9 +201,7 @@ class ReportAgencyComponentTypeahead extends Component {
       } else {
         // Effectively sets the selectedAgency to an error state.
         this.typeahead.trigger('typeahead:select', {
-          error: {
-            message: `The entered agency or component "${this.typeahead.typeahead('val')}" does not exist.`,
-          },
+          error: true,
         });
       }
     });
@@ -234,7 +232,7 @@ class ReportAgencyComponentTypeahead extends Component {
           />
         </div>
         {hasError &&
-        <p className="usa-input-error-message">{this.props.selectedAgency.error.message}</p>
+        <p className="usa-input-error-message">An agency or component is required.</p>
         }
       </div>
     );
