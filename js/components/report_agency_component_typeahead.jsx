@@ -197,7 +197,7 @@ class ReportAgencyComponentTypeahead extends Component {
         this.typeahead.trigger('typeahead:select', {
           id: this.state.id,
           error: {
-            message: `The entered agency or component "${this.typeahead.typeahead('val')}" does not exist.`
+            message: `The entered agency or component "${this.typeahead.typeahead('val')}" does not exist.`,
           },
         });
       }
