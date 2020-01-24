@@ -6,13 +6,15 @@ $tooltip-shadow-arrow-bottom: -1px -1px 2px 0 rgba(0, 0, 0, 0.1); // Shadow for 
 $arrow-sizer: 1rem; // Change arrow size.
 
 a.tooltip-trigger {
-  height: 4em; // @TODO I think this can be set in the icon function.
-  width: 4em; // @TODO I think this can be set in the icon function.
-  float: none;
-  margin: 0 0 -2.75rem 0;
+  position: relative;
+  bottom: -1.75rem;
+  height: 5rem;
+  width: 4.4rem;
   display: inline-block;
   background-size: 2rem; 
   background-position: center center;
+  background-image: url($icon-question-circle);
+  background-repeat: no-repeat;
 }
 
 .tooltip-trigger:hover {

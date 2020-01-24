@@ -22,10 +22,6 @@
   }
 }
 
-.tooltip-trigger {
-  @include has-icon($icon-question-circle, $height: $space-2x);
-}
-
 .use-light-icons {
   .agency-info_processing-time h4 + p:before {
       @include has-icon($icon-clock-light);
