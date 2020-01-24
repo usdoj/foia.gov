@@ -40,7 +40,7 @@ class FoiaReportFormSectionOne extends Component {
               />))}
             <AddLink
               eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
-              text="Add another Agency or Component"
+              text="Add Another Agency or Component"
             />
           </fieldset>
         </div>
