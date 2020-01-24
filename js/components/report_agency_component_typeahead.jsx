@@ -133,12 +133,7 @@ class ReportAgencyComponentTypeahead extends Component {
           $('<div>').addClass(datum.type).text(display(datum)),
       },
     })
-      .bind('typeahead:select', (e, suggestion) => this.handleChange(suggestion))
-      .bind('typeahead:change', () => {
-        if (this.typeahead.typeahead('val') !== this.props.selectedAgency.title) {
-          this.setFromValue(this.typeahead.typeahead('val'));
-        }
-      });
+      .bind('typeahead:select', (e, suggestion) => this.handleChange(suggestion));
   }
 
   componentWillReceiveProps(nextProps) {
