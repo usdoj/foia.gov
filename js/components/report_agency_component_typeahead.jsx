@@ -133,7 +133,12 @@ class ReportAgencyComponentTypeahead extends Component {
           $('<div>').addClass(datum.type).text(display(datum)),
       },
     })
-      .bind('typeahead:select', (e, suggestion) => this.handleChange(suggestion));
+      .bind('typeahead:select', (e, suggestion) => this.handleChange(suggestion))
+      .bind('typeahead:change', () => {
+        if (this.typeahead.typeahead('val') !== this.props.selectedAgency.title) {
+          this.setFromValue(this.typeahead.typeahead('val'));
+        }
+      });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -188,10 +193,13 @@ class ReportAgencyComponentTypeahead extends Component {
     }
 
     e.preventDefault();
+    this.setFromValue(this.typeahead.typeahead('val'));
+  }
 
+  setFromValue(value) {
     // Find the first suggestion returned from the bloodhound search when the user
     // presses the enter key.  If there is no suggestion, set an error state.
-    this.bloodhound.search(this.typeahead.typeahead('val'), (suggestions) => {
+    this.bloodhound.search(value, (suggestions) => {
       if (suggestions.length) {
         // Trigger the selection event on the first suggestion and close the
         // typeahead
