@@ -113,9 +113,7 @@ class ReportAgencyComponentTypeahead extends Component {
       return;
     }
 
-    function display(datum) {
-      return datum.agency ? `${datum.title} (${datum.agency.name})` : datum.title;
-    }
+    const display = this.display;
 
     this.typeahead = $(this.typeaheadInput).typeahead({
       classNames: {
@@ -133,7 +131,12 @@ class ReportAgencyComponentTypeahead extends Component {
           $('<div>').addClass(datum.type).text(display(datum)),
       },
     })
-      .bind('typeahead:select', (e, suggestion) => this.handleChange(suggestion));
+      .bind('typeahead:select', (e, suggestion) => this.handleChange(suggestion))
+      .bind('typeahead:change', (e, value) => {
+        if (value !== this.display(this.props.selectedAgency)) {
+          this.setFromValue(value);
+        }
+      });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -168,6 +171,10 @@ class ReportAgencyComponentTypeahead extends Component {
     }));
   }
 
+  display(datum) {
+    return datum.agency ? `${datum.title} (${datum.agency.name})` : datum.title;
+  }
+
   handleChange(selection) {
     // Ensures that the new selection will replace the old selection in the
     // selectedAgencies state.
@@ -192,13 +199,20 @@ class ReportAgencyComponentTypeahead extends Component {
   }
 
   setFromValue(value) {
+    // Get rid of agency names if the value is an agency component with the name in parens.
+    // This matches how the suggestion title would be displayed and converts to
+    // a value that could be found by the search. For example, searching for:
+    // * Bureau of Economic Analysis (Department of Commerce): Finds no suggestion
+    // * Bureau of Economic Analysis: Finds the suggestion
+    //    Bureau of Economic Analysis (Department of Commerce)
+    const searchVal = value.replace(/\s\(.*\)/gi, '');
     // Find the first suggestion returned from the bloodhound search when the user
     // presses the enter key.  If there is no suggestion, set an error state.
-    this.bloodhound.search(value, (suggestions) => {
+    this.bloodhound.search(searchVal, (suggestions) => {
       if (suggestions.length) {
         // Trigger the selection event on the first suggestion and close the
         // typeahead
-        this.typeahead.typeahead('val', suggestions[0].title);
+        this.typeahead.typeahead('val', this.display(suggestions[0]));
         this.typeahead.trigger('typeahead:select', suggestions[0]);
         this.typeahead.typeahead('close');
       } else {
