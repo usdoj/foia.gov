@@ -24,8 +24,6 @@ class FoiaModal extends Component {
     this.setState({ modalIsOpen: false });
   }
 
-  
-
   render() {
     return (
       <div>
