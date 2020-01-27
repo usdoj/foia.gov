@@ -6,6 +6,7 @@ import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
 import localapi from '../util/local_api';
 import requestapi from '../util/request_api';
+import date from '../util/current_date';
 
 // Action types to identify an action
 export const types = {
@@ -17,6 +18,8 @@ export const types = {
   ANNUAL_REPORT_FISCAL_YEARS_FETCH: 'ANNUAL_REPORT_FISCAL_YEARS_FETCH',
   ANNUAL_REPORT_FISCAL_YEARS_RECEIVE: 'ANNUAL_REPORT_FISCAL_YEARS_RECEIVE',
   ANNUAL_REPORT_FISCAL_YEARS_COMPLETE: 'ANNUAL_REPORT_FISCAL_YEARS_COMPLETE',
+  SELECTED_AGENCIES_APPEND_BLANK: 'SELECTED_AGENCIES_APPEND_BLANK',
+  SELECTED_AGENCIES_UPDATE: 'SELECTED_AGENCIES_UPDATE',
   REQUEST_FORM_UPDATE: 'REQUEST_FORM_UPDATE',
   REQUEST_FORM_SUBMIT: 'REQUEST_FORM_SUBMIT',
   REQUEST_FORM_SUBMIT_COMPLETE: 'REQUEST_FORM_SUBMIT_COMPLETE',
@@ -26,7 +29,7 @@ export const types = {
 };
 
 // Action creators, to dispatch actions
-export const requestActions = {
+export const reportActions = {
   fetchAgencyFinderData(includeReferenceFields = null) {
     dispatcher.dispatch({
       type: types.AGENCY_FINDER_DATA_FETCH,
@@ -46,10 +49,14 @@ export const requestActions = {
       request.fields(field, referenceFields[field]);
     });
 
+    console.log(date.getCurrentDate('-'));
+
     return request
+      .filter('rep_start', 'field_rep_start', date.getCurrentDate('-'))
+      .operator('rep_start', '<=')
       .limit(50) // Maximum allowed by drupal
-      .paginate('/agency_components', requestActions.receiveAgencyFinderData)
-      .then(requestActions.completeAgencyFinderData);
+      .paginate('/agency_components', reportActions.receiveAgencyFinderData)
+      .then(reportActions.completeAgencyFinderData);
   },
 
   receiveAgencyFinderData(agencyComponents) {
@@ -109,8 +116,8 @@ export const requestActions = {
     return request
       .get('/annual_foia_report/fiscal_years')
       .then(response => response.data || [])
-      .then(requestActions.receiveAnnualReportFiscalYearsData)
-      .then(requestActions.completeAnnualReportFiscalYearsData);
+      .then(reportActions.receiveAnnualReportFiscalYearsData)
+      .then(reportActions.completeAnnualReportFiscalYearsData);
   },
 
   receiveAnnualReportFiscalYearsData(fiscalYears) {
@@ -146,7 +153,7 @@ export const requestActions = {
     });
 
     const options = {
-      onUploadProgress: requestActions.submitRequestFormProgress,
+      onUploadProgress: reportActions.submitRequestFormProgress,
     };
 
     return requestapi.post('/webform/submit', formData, options)
@@ -177,7 +184,7 @@ export const requestActions = {
 
         return Promise.resolve(submissionResult);
       })
-      .then(requestActions.completeSubmitRequestForm);
+      .then(reportActions.completeSubmitRequestForm);
   },
 
   submitRequestFormProgress(progress) {
@@ -204,7 +211,7 @@ export const requestActions = {
     });
 
     return localapi.requestFormSections()
-      .then(requestActions.receiveRequestFormSections);
+      .then(reportActions.receiveRequestFormSections);
   },
 
   receiveRequestFormSections(formSections) {
