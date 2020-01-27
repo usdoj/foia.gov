@@ -84,11 +84,9 @@ class FoiaReportFormSectionOne extends Component {
 }
 
 FoiaReportFormSectionOne.propTypes = {
-  /* eslint-disable react/no-unused-prop-types */
   agencies: PropTypes.instanceOf(Map),
   agencyComponents: PropTypes.instanceOf(List),
   selectedAgencies: PropTypes.array,
-  /* eslint-enable react/no-unused-prop-types */
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
 };

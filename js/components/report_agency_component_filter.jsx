@@ -83,10 +83,8 @@ class ReportAgencyComponentFilter extends Component {
 }
 
 ReportAgencyComponentFilter.propTypes = {
-  /* eslint-disable react/no-unused-prop-types */
   agencies: PropTypes.instanceOf(Map),
   agencyComponents: PropTypes.instanceOf(List),
-  /* eslint-enable react/no-unused-prop-types */
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
   selectedAgency: PropTypes.object,
