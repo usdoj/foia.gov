@@ -20,12 +20,6 @@ export const types = {
   ANNUAL_REPORT_FISCAL_YEARS_COMPLETE: 'ANNUAL_REPORT_FISCAL_YEARS_COMPLETE',
   SELECTED_AGENCIES_APPEND_BLANK: 'SELECTED_AGENCIES_APPEND_BLANK',
   SELECTED_AGENCIES_UPDATE: 'SELECTED_AGENCIES_UPDATE',
-  REQUEST_FORM_UPDATE: 'REQUEST_FORM_UPDATE',
-  REQUEST_FORM_SUBMIT: 'REQUEST_FORM_SUBMIT',
-  REQUEST_FORM_SUBMIT_COMPLETE: 'REQUEST_FORM_SUBMIT_COMPLETE',
-  REQUEST_FORM_SUBMIT_PROGRESS: 'REQUEST_FORM_SUBMIT_PROGRESS',
-  REQUEST_FORM_SECTIONS_FETCH: 'REQUEST_FORM_SECTIONS_FETCH',
-  REQUEST_FORM_SECTIONS_RECEIVE: 'REQUEST_FORM_SECTIONS_RECEIVE',
 };
 
 // Action creators, to dispatch actions
@@ -130,92 +124,6 @@ export const reportActions = {
   completeAnnualReportFiscalYearsData() {
     dispatcher.dispatch({
       type: types.ANNUAL_REPORT_FISCAL_YEARS_COMPLETE,
-    });
-
-    return Promise.resolve();
-  },
-
-  updateRequestForm(formData) {
-    dispatcher.dispatch({
-      type: types.REQUEST_FORM_UPDATE,
-      formData,
-    });
-
-    return Promise.resolve();
-  },
-
-  submitRequestForm(formData) {
-    dispatcher.dispatch({
-      type: types.REQUEST_FORM_SUBMIT,
-      formData,
-    });
-
-    const options = {
-      onUploadProgress: reportActions.submitRequestFormProgress,
-    };
-
-    return requestapi.post('/webform/submit', formData, options)
-      .catch((error) => {
-        const defaultErrorMessage = 'Sorry, something went wrong and your request could not be submitted.';
-        const submissionResult = {
-          errorMessage: error.message || defaultErrorMessage,
-        };
-
-        if (error.message === 'Network Error') {
-          // Network Error isn't any more helpful than our default message
-          submissionResult.errorMessage = 'The connection failed and your request could not be submitted. Please try again later.';
-        }
-
-        if (error.code === 'ECONNABORTED') {
-          submissionResult.errorMessage =
-            'The connection timed out and your request could not be submitted. Please try again.';
-        }
-
-        if (error.response && error.response.data && error.response.data.errors) {
-          submissionResult.errors = error.response.data.errors;
-        }
-
-        if (error.response && error.response.status === 422) {
-          submissionResult.errorMessage =
-            'Sorry, there was a problem with the information you provided, please check the form and correct any errors.';
-        }
-
-        return Promise.resolve(submissionResult);
-      })
-      .then(reportActions.completeSubmitRequestForm);
-  },
-
-  submitRequestFormProgress(progress) {
-    dispatcher.dispatch({
-      type: types.REQUEST_FORM_SUBMIT_PROGRESS,
-      progress,
-    });
-
-    return Promise.resolve();
-  },
-
-  completeSubmitRequestForm(submissionResult) {
-    dispatcher.dispatch({
-      type: types.REQUEST_FORM_SUBMIT_COMPLETE,
-      submissionResult,
-    });
-
-    return submissionResult.errorMessage ? Promise.reject() : Promise.resolve();
-  },
-
-  fetchRequestFormSections() {
-    dispatcher.dispatch({
-      type: types.REQUEST_FORM_SECTIONS_FETCH,
-    });
-
-    return localapi.requestFormSections()
-      .then(reportActions.receiveRequestFormSections);
-  },
-
-  receiveRequestFormSections(formSections) {
-    dispatcher.dispatch({
-      type: types.REQUEST_FORM_SECTIONS_RECEIVE,
-      formSections,
     });
 
     return Promise.resolve();

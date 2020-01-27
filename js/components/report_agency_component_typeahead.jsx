@@ -5,7 +5,7 @@ import { uniqueId } from 'lodash';
 
 import tokenizers from '../util/tokenizers';
 import dispatcher from '../util/dispatcher';
-import { types } from '../actions';
+import { types } from '../actions/report';
 
 
 // Only load typeahead in the browser (avoid loading it for tests)
