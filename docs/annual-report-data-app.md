@@ -124,3 +124,14 @@ Props:
  * `eventType`: The event name to dispatch that data stores will listen for.
    For example, a type from the `types` object in `js/actions/index.js`.
  * `text`: The link text to display.
+
+Example Use:
+```
+import AddLink from './add_link';
+import { types } from '../actions';
+...
+<AddLink
+  eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
+  text="Add Another Agency or Component"
+/>
+```
