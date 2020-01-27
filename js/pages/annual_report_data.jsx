@@ -7,7 +7,7 @@ import annualReportDataFormStore from '../stores/annual_report_data_form';
 import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
 import agencyComponentStore from '../stores/agency_component';
 import annualReportFiscalYearStore from '../stores/annual_report_fiscal_year';
-import { requestActions } from '../actions/report';
+import { reportActions } from '../actions/report';
 
 class AnnualReportDataPage extends Component {
   static getStores() {
@@ -41,7 +41,7 @@ class AnnualReportDataPage extends Component {
   }
 
   componentDidMount() {
-    requestActions.fetchAnnualReportDataFiscalYears();
+    reportActions.fetchAnnualReportDataFiscalYears();
 
     // If there is any agency data, assume all the data is fetched.
     if (this.state.agencies.size) {
@@ -49,8 +49,7 @@ class AnnualReportDataPage extends Component {
     }
 
     // Pre-fetch the list of agencies and components for typeahead
-    // @todo: Update this with new fetch function that gets unpublished agency components.
-    requestActions.fetchAgencyFinderData();
+    reportActions.fetchAgencyFinderData();
   }
 
   render() {
