@@ -66,3 +66,61 @@ import FoiaModal from '../components/foia_modal';
 
 Used in:
  * foia_report_form_section_two
+
+#### Agency Component Filter
+
+Wraps the typeahead search component and the "Select Agency Components"
+button (and modal).
+
+Props:
+ * `agencies`: A map of agencies that can be searched.
+ * `agencyComponents`: A list of components that can be searched.
+ * `agencyFinderDataComplete`: Whether or not the agencyComponent store is populated.
+ * `agencyFinderDataProgress`: The amount of progress made in populating the agencyComponent store.
+ * `selectedAgency` : An array of agencies or components that have been selected in the report form.
+
+ Example Use:
+ ```
+import ReportAgencyComponentFilter from '../components/report_agency_component_filter';
+...
+<ReportAgencyComponentFilter
+  agencies={agencies}
+  agencyComponents={agencyComponents}
+  agencyFinderDataComplete={agencyFinderDataComplete}
+  agencyFinderDataProgress={agencyFinderDataProgress}
+  selectedAgency={selected}
+/>
+```
+
+#### Agency Component Typeahead
+
+The typeahead search input for the annual report form.
+
+Props:
+ * `agencies`: A map of agencies that can be searched.
+ * `agencyComponents`: A list of components that can be searched.
+ * `agencyFinderDataComplete`: Whether or not the agencyComponent store is populated.
+ * `agencyFinderDataProgress`: The amount of progress made in populating the agencyComponent store.
+ * `selectedAgency` : An array of agencies or components that have been selected in the report form.
+
+Example Use:
+```
+import ReportAgencyComponentTypeahead from './report_agency_component_typeahead';
+...
+<ReportAgencyComponentTypeahead
+  agencies={agencies}
+  agencyComponents={agencyComponents}
+  agencyFinderDataProgress={agencyFinderDataProgress}
+  agencyFinderDataComplete={agencyFinderDataComplete}
+  selectedAgency={selectedAgency}
+/>
+```
+
+#### Add Link
+
+A link whose event handler will dispatch a given event.
+
+Props:
+ * `eventType`: The event name to dispatch that data stores will listen for.
+   For example, a type from the `types` object in `js/actions/index.js`.
+ * `text`: The link text to display.
