@@ -43,6 +43,11 @@ class FoiaModal extends Component {
           <div className="modal__inner">
             <div className="modal__content">
               {this.props.modalContent}
+              <div className="form-group form-group_footer">
+                {this.props.modalSubmitButton}
+                <button onClick={this.closeModal} className="usa-button usa-button-outline">Cancel</button>
+                {this.props.modalAdditionalLink}
+              </div>
             </div>
           </div>
         </Modal>
@@ -55,10 +60,14 @@ FoiaModal.propTypes = {
   triggerText: PropTypes.string,
   ariaLabel: PropTypes.string.isRequired,
   modalContent: PropTypes.object.isRequired,
+  modalSubmitButton: PropTypes.object,
+  modalAdditionalLink: PropTypes.object,
 };
 
 FoiaModal.defaultProps = {
   triggerText: 'Filter Results',
+  modalSubmitButton: null,
+  modalAdditionalLink: null,
 };
 
 export default FoiaModal;
