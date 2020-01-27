@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import FoiaTooltip from './foia_tooltip';
 import ReportAgencyComponentFilter from './report_agency_component_filter';
 import AddLink from './add_link';
-import { types } from '../actions';
+import { types } from '../actions/report';
 
 /**
  * README!: The assumption of this file is that it is a 'good enough'

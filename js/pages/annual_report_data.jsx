@@ -7,7 +7,7 @@ import annualReportDataFormStore from '../stores/annual_report_data_form';
 import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
 import agencyComponentStore from '../stores/agency_component';
 import annualReportFiscalYearStore from '../stores/annual_report_fiscal_year';
-import { requestActions } from '../actions/index';
+import { requestActions } from '../actions/report';
 
 class AnnualReportDataPage extends Component {
   static getStores() {
