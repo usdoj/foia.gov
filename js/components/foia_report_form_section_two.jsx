@@ -15,7 +15,7 @@ class FoiaReportFormSectionTwo extends Component {
           <fieldset>
             <legend className="foia-header-blue-line--h2">
               2. Select Data Type(s)
-              <FoiaTooltip text={'<p>Select the type of FOIA data you would like to view. The data comes from agencies\’ Annual FOIA Reports.</p><p>To learn more about the data, view the terms in the <span data-term="annual foia report" title="Click to define" tabindex="0">Glossary</span>.</p>'} />
+              <FoiaTooltip text={'<p>Select the type of FOIA data you would like to view. The data comes from agencies’ Annual FOIA Reports.</p><p>To learn more about the data, view the terms in the <span data-term="annual foia report" title="Click to define" tabindex="0">Glossary</span>.</p>'} />
             </legend>
             <div className="form-group field">
               <label htmlFor="data_type"><strong>Data Type</strong></label>
@@ -88,7 +88,7 @@ class FoiaReportFormSectionTwo extends Component {
               /> {/* End FoiaModal */}
             </div>
             <div className="form-group field use-dark-icons">
-              <a href="#"><span className="icon-plus"></span>Add Another Data Type</a>
+              <a href="#"><span className="icon-plus" />Add Another Data Type</a>
             </div>
           </fieldset>
         </div>

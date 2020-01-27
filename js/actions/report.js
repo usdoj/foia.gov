@@ -49,8 +49,6 @@ export const reportActions = {
       request.fields(field, referenceFields[field]);
     });
 
-    console.log(date.getCurrentDate('-'));
-
     return request
       .filter('rep_start', 'field_rep_start', date.getCurrentDate('-'))
       .operator('rep_start', '<=')
