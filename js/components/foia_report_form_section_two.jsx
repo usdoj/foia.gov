@@ -78,13 +78,10 @@ class FoiaReportFormSectionTwo extends Component {
                       <label htmlFor="data_filter_value">Enter a Numeric Value</label>
                       <input name="data_filter_value" id="data_filter_value" value="" placeholder="Enter a Numeric Value" />
                     </div>
-                    <div className="form-group form-group_footer">
-                      <button className="usa-button usa-button-primary-alt">Submit</button>
-                      <button className="usa-button usa-button-outline">Cancel</button>
-                      <a href="#">Reset Filter</a>
-                    </div>
                   </div>
                 }
+                modalSubmitButton={<button className="usa-button usa-button-primary-alt">Submit</button>}
+                modalAdditionalLink={<a href="#">Reset Filter</a>}
               /> {/* End FoiaModal */}
             </div>
             <div className="form-group field use-dark-icons">
