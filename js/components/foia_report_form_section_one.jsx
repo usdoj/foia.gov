@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import FoiaTooltip from './foia_tooltip';
 import ReportAgencyComponentFilter from './report_agency_component_filter';
 import AddLink from './add_link';
-import { types } from '../actions';
+import { types } from '../actions/report';
 
 /**
  * README!: The assumption of this file is that it is a 'good enough'
@@ -27,7 +27,7 @@ class FoiaReportFormSectionOne extends Component {
           <fieldset>
             <legend className="foia-header-blue-line--h2">
               1. Select Agencies or Components
-              <FoiaTooltip text="Select the type of FOIA data you would like to view. The data comes from agencies' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary." />
+              <FoiaTooltip text={'<p>Select an agency or agencies to view their data. You may also select specific components of an agency (such as the FBI, a component of the Department of Justice), or you may view data for all government agencies.</p>'} />
             </legend>
             {selectedAgencies.map((selected, index) => (
               <ReportAgencyComponentFilter

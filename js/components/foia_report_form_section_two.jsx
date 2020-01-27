@@ -15,7 +15,7 @@ class FoiaReportFormSectionTwo extends Component {
           <fieldset>
             <legend className="foia-header-blue-line--h2">
               2. Select Data Type(s)
-              <FoiaTooltip text={"Select the type of FOIA data you would like to view. The data comes from agencies' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary."} />
+              <FoiaTooltip text={'<p>Select the type of FOIA data you would like to view. The data comes from agencies’ Annual FOIA Reports.</p><p>To learn more about the data, view the terms in the <span data-term="annual foia report" title="Click to define" tabindex="0">Glossary</span>.</p>'} />
             </legend>
             <div className="form-group field">
               <label htmlFor="data_type"><strong>Data Type</strong></label>
@@ -55,7 +55,7 @@ class FoiaReportFormSectionTwo extends Component {
                     <div className="form-group field">
                       <label htmlFor="data_filter_subject">
                         Data Filters
-                        <FoiaTooltip text={"Select the type of FOIA data you would like to view. The data comes from agencies' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary."} />
+                        <FoiaTooltip text={'<p>If you would like to filter the results based on specific parameters, you can specify those parameters here.</p><p>To learn more about the data, view the terms in the <span data-term="" title="Click to view glossary" tabindex="0">Glossary</span>.</p>'} />
                       </label>
                       <select name="data_filter_subject" id="data_filter_subject">
                         <option value="request_ex_6">Request Ex. 6</option>
@@ -85,7 +85,7 @@ class FoiaReportFormSectionTwo extends Component {
               /> {/* End FoiaModal */}
             </div>
             <div className="form-group field use-dark-icons">
-              <a href="#"><span className="icon-plus"></span>Add Another Data Type</a>
+              <a href="#"><span className="icon-plus" />Add Another Data Type</a>
             </div>
           </fieldset>
         </div>

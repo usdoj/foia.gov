@@ -14,9 +14,7 @@ class FoiaReportFormSectionThree extends Component {
           <fieldset>
             <legend className="foia-header-blue-line--h2">
               3. Select Fiscal Years
-              <FoiaTooltip
-                text={"Select the years of FOIA data you would like to view. The data comes from agencies\' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary."}
-              />
+              <FoiaTooltip text={'<p>Select a Fiscal Year to view the data for that year. You may select multiple years, or you may view all years of available data.</p>'} />
             </legend>
             <fieldset className="usa-fieldset-inputs">
               <legend className="usa-sr-only">Select Fiscal Years</legend>
