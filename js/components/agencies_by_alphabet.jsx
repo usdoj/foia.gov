@@ -9,10 +9,12 @@ function AgenciesByAlphabet({ agencies, agencyFinderDataComplete, onAgencySelect
   const loading = !agencyFinderDataComplete;
   const agenciesByAlphabet = {};
   agencies.forEach((agency) => {
-    if (!agenciesByAlphabet[agency.name.charAt(0)]) {
-      agenciesByAlphabet[agency.name.charAt(0)] = [];
+    if (agency && agency.name) {
+      if (!agenciesByAlphabet[agency.name.charAt(0)]) {
+        agenciesByAlphabet[agency.name.charAt(0)] = [];
+      }
+      agenciesByAlphabet[agency.name.charAt(0)].push(agency);
     }
-    agenciesByAlphabet[agency.name.charAt(0)].push(agency);
   });
 
   return (
