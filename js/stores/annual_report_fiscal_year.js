@@ -1,7 +1,7 @@
 import { List } from 'immutable';
 import { Store } from 'flux/utils';
 
-import { types } from '../actions';
+import { types } from '../actions/report';
 import dispatcher from '../util/dispatcher';
 
 

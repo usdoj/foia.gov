@@ -4,8 +4,6 @@ import settings from 'settings';
 
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
-import localapi from '../util/local_api';
-import requestapi from '../util/request_api';
 import date from '../util/current_date';
 
 // Action types to identify an action

@@ -44,40 +44,6 @@ class FoiaReportFormSectionOne extends Component {
             />
           </fieldset>
         </div>
-        <div className="clear">&nbsp;</div>
-        <div className="form-group usa-width-one-half visually-hidden">
-          {/* Begin Modal Inner HTML */}
-          <div className="form-group">
-            <div className="usa-grid">
-              <h3 className="sans">Select Agencies or Components</h3>
-              <fieldset className="usa-fieldset-inputs">
-                <ul className="usa-unstyled-list usa-grid checkbox-list">
-                  <li className="usa-width-one-third">
-                    <input id="Agency-1" type="checkbox" name="Agency-1" value="Agency-1" />
-                    <label htmlFor="Agency-1">Agency 1</label>
-                  </li>
-                  <li className="usa-width-one-third">
-                    <input id="Agency-2" type="checkbox" name="Agency-2" value="Agency-2" />
-                    <label htmlFor="Agency-2">Agency 2</label>
-                  </li>
-                  <li className="usa-width-one-third">
-                    <input id="Agency-3" type="checkbox" name="Agency-3" value="Agency-3" />
-                    <label htmlFor="Agency-3">Agency 3</label>
-                  </li>
-                </ul>
-                <div className="form-group_footer">
-                  <ul className="inline-list">
-                    <li><a href="#">Select All</a></li>
-                    <li><a href="#">Select None</a></li>
-                  </ul>
-                  <button className="usa-button usa-button-primary-alt">Submit</button>
-                  <button className="usa-button usa-button-outline">Cancel</button>
-                </div>
-              </fieldset>
-            </div>
-          </div>
-          {/* End Modal Inner HTML */}
-        </div>
       </div>
     );
   }
