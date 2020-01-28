@@ -151,6 +151,41 @@ class ReportAgencyComponentTypeahead extends Component {
     this.index(nextProps);
   }
 
+  handleKeyPress(e) {
+    if (e.key !== 'Enter') {
+      return;
+    }
+
+    e.preventDefault();
+    this.setFromValue(this.typeahead.typeahead('val'));
+  }
+
+  setFromValue(value) {
+    // Get rid of agency names if the value is an agency component with the name in parens.
+    // This matches how the suggestion title would be displayed and converts to
+    // a value that could be found by the search. For example, searching for:
+    // * Bureau of Economic Analysis (Department of Commerce): Finds no suggestion
+    // * Bureau of Economic Analysis: Finds the suggestion
+    //    Bureau of Economic Analysis (Department of Commerce)
+    const searchVal = value.replace(/\s\(.*\)/gi, '');
+    // Find the first suggestion returned from the bloodhound search when the user
+    // presses the enter key.  If there is no suggestion, set an error state.
+    this.bloodhound.search(searchVal, (suggestions) => {
+      if (suggestions.length) {
+        // Trigger the selection event on the first suggestion and close the
+        // typeahead
+        this.typeahead.typeahead('val', this.display(suggestions[0]));
+        this.typeahead.trigger('typeahead:select', suggestions[0]);
+        this.typeahead.typeahead('close');
+      } else {
+        // Effectively sets the selectedAgency to an error state.
+        this.typeahead.trigger('typeahead:select', {
+          error: true,
+        });
+      }
+    });
+  }
+
   index(props) {
     if (this.isIndexed) {
       return;
@@ -186,41 +221,6 @@ class ReportAgencyComponentTypeahead extends Component {
       type: types.SELECTED_AGENCIES_UPDATE,
       selectedAgency: selection,
       previousAgency: this.props.selectedAgency,
-    });
-  }
-
-  handleKeyPress(e) {
-    if (e.key !== 'Enter') {
-      return;
-    }
-
-    e.preventDefault();
-    this.setFromValue(this.typeahead.typeahead('val'));
-  }
-
-  setFromValue(value) {
-    // Get rid of agency names if the value is an agency component with the name in parens.
-    // This matches how the suggestion title would be displayed and converts to
-    // a value that could be found by the search. For example, searching for:
-    // * Bureau of Economic Analysis (Department of Commerce): Finds no suggestion
-    // * Bureau of Economic Analysis: Finds the suggestion
-    //    Bureau of Economic Analysis (Department of Commerce)
-    const searchVal = value.replace(/\s\(.*\)/gi, '');
-    // Find the first suggestion returned from the bloodhound search when the user
-    // presses the enter key.  If there is no suggestion, set an error state.
-    this.bloodhound.search(searchVal, (suggestions) => {
-      if (suggestions.length) {
-        // Trigger the selection event on the first suggestion and close the
-        // typeahead
-        this.typeahead.typeahead('val', this.display(suggestions[0]));
-        this.typeahead.trigger('typeahead:select', suggestions[0]);
-        this.typeahead.typeahead('close');
-      } else {
-        // Effectively sets the selectedAgency to an error state.
-        this.typeahead.trigger('typeahead:select', {
-          error: true,
-        });
-      }
     });
   }
 
