@@ -135,3 +135,55 @@ import { types } from '../actions';
   text="Add Another Agency or Component"
 />
 ```
+
+
+#### FOIA Report Data Type Filter
+A component which encapsulates the Report Type select list and the data filter
+modal. The component is meant to be included in a loop for each selected data
+type.
+
+Props:
+ * `dataTypes`: The Ordered Map of data types (ex. Requests) keyed by the field 
+  group name.
+ * `dataTypeOptions`: The List object which contains the value/label pairs 
+  which should be added to the data type select field.
+ * `selectedDataType`: The object corresponding to the currently selected data type.
+
+Example Use:
+```
+import FoiaReportDataTypeFilter from './foia_report_data_type_filter';
+...
+{selectedDataTypes.map((selected, index) => (
+  <FoiaReportDataTypeFilter
+    key={index}
+    dataTypes={dataTypes}
+    dataTypeOptions={dataTypeOptions}
+    selectedDataType={selected}
+  />))}
+```
+
+
+#### USWDS Select Widget
+A simple component which can be used to create a select list of items which
+supports a placeholder value and an `onChange` handler.
+
+Props:
+ * `name`: The name property of the select.
+ * `title`: The text which appears in the label.
+ * `id`: The id of the select field.
+ * `value`: The value which should be selected.
+ * `handleChange`: The callback function which will be called by the `onChange` event.
+ * `options`: A List object of {value/label} pairs which populate the select options.
+ * `placeholder`: The text which should appear in the option with no value.
+ 
+ Example Use:
+ ```
+<USWDSSelectWidget
+  name="data_type"
+  title="Data Type"
+  id={`data-type-${this.state.id}`}
+  value={this.props.selectedDataType.id}
+  options={this.props.dataTypeOptions}
+  handleChange={this.handleChange}
+/>
+```

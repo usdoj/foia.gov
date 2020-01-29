@@ -1,0 +1,196 @@
+[
+    {
+        "id": "group_v_a_foia_requests_received",
+        "label": "Requests",
+        "filter_opts": [
+            {
+                "id": "field_foia_requests_va.field_req_pend_start_yr",
+                "label": "Number of Requests Pending as of Start of Fiscal Year"
+            },
+            {
+                "id": "field_foia_requests_va.field_req_received_yr",
+                "label": "Number of Requests Received in Fiscal Year"
+            },
+            {
+                "id": "field_foia_requests_va.field_req_processed_yr",
+                "label": "Number of Requests Processed in Fiscal Year"
+            },
+            {
+                "id": "field_foia_requests_va.field_req_pend_end_yr",
+                "label": "Number of Requests Pending as of End of Fiscal Year"
+            },
+            {
+                "id": "overall_req_pend_start_yr",
+                "label": "Agency Overall Number of Requests Pending as of Start of Fiscal Year"
+            },
+            {
+                "id": "overall_req_received_yr",
+                "label": "Agency Overall Number of Requests Received in Fiscal Year"
+            },
+            {
+                "id": "overall_req_processed_yr",
+                "label": "Agency Overall Number of Requests Processed in Fiscal Year"
+            },
+            {
+                "id": "overall_req_pend_end_yr",
+                "label": "Agency Overall Number of Requests Pending as of End of Fiscal Year"
+            }
+        ]
+    },
+    {
+        "id": "group_overall_vb1_main",
+        "label": " - Disposition (Dis.)",
+        "filter_opts": []
+    },
+    {
+        "id": "group_v_b_2_disposition_of_foia_",
+        "label": " - Dis. - \"Other\" Reasons,",
+        "filter_opts": []
+    },
+    {
+        "id": "group_viii_a_requests_for_expedi",
+        "label": " - Expedited Processing",
+        "filter_opts": []
+    },
+    {
+        "id": "group_v_b_3_disposition_of_foia_",
+        "label": "Exemptions",
+        "filter_opts": []
+    },
+    {
+        "id": "group_iv_exemption_3_statutes",
+        "label": " - Exemption 3 Statutes",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vi_a_administrative_appeal",
+        "label": "Appeals",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vi_b_disposition_of_admini",
+        "label": " - Disposition (Dis.)",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vi_c_1_reasons_for_denial_",
+        "label": " - Dis. - Use of Exemptions",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vi_c_2_reasons_for_denial_",
+        "label": " - Dis. - Other Than Exs.",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vi_c_3_reasons_for_denial_",
+        "label": " - Dis. - \"Other\" Reasons,",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vi_c_4_response_time_for_a",
+        "label": " - Response Time",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vi_c_5_ten_oldest",
+        "label": " - Ten Oldest Pending",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vii_a_foia_requests_wrap",
+        "label": "Processing Time",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vii_b_processed_req_wrap",
+        "label": " - Requests Granted",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vii_c_1_processed_simple_r",
+        "label": " - Simple Requests",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vii_c_2_processed_complex_",
+        "label": " - Complex Requests",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vii_c_3_processed_requests",
+        "label": " - Expedited Requests",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vii_d_pending_req_wrap",
+        "label": " - Pending Requests",
+        "filter_opts": []
+    },
+    {
+        "id": "group_vii_e_pending_req_wrap",
+        "label": " - Ten Oldest Requests",
+        "filter_opts": []
+    },
+    {
+        "id": "group_viii_b_requests_for_fee_wa",
+        "label": "Fee Waiver",
+        "filter_opts": []
+    },
+    {
+        "id": "group_ix_foia_personnel_cost_wra",
+        "label": "FOIA Personnel",
+        "filter_opts": []
+    },
+    {
+        "id": "group_x_fees_collected_for_proce",
+        "label": "FOIA Costs",
+        "filter_opts": []
+    },
+    {
+        "id": "group_xi_a_number_of_times_subse",
+        "label": "Exclusions",
+        "filter_opts": []
+    },
+    {
+        "id": "group_xi_b_number_of_subsection_",
+        "label": "Proactive Disclosures",
+        "filter_opts": []
+    },
+    {
+        "id": "group_xii_a_backlogs_of_foia_req",
+        "label": "Backlog",
+        "filter_opts": []
+    },
+    {
+        "id": "group_xii_b_consultations_on_foi",
+        "label": "Consultations",
+        "filter_opts": []
+    },
+    {
+        "id": "group_xii_c_consultations_wrap",
+        "label": " - Ten Oldest",
+        "filter_opts": []
+    },
+    {
+        "id": "group_xii_d_1_comparison_wrap",
+        "label": "Comparisons",
+        "filter_opts": []
+    },
+    {
+        "id": "group_xii_d_2_comparison_of_numb",
+        "label": " - Requests Backlogged",
+        "filter_opts": []
+    },
+    {
+        "id": "group_xii_e_1_comparison_of_wrap",
+        "label": " - Administrative Appeals",
+        "filter_opts": []
+    },
+    {
+        "id": "group_xii_e_2_comparison_of_numb",
+        "label": " - Appeals Backlogged",
+        "filter_opts": []
+    }
+]
+

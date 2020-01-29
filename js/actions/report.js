@@ -4,6 +4,7 @@ import settings from 'settings';
 
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
+import localapi from '../util/local_api';
 import date from '../util/current_date';
 
 // Action types to identify an action
@@ -18,6 +19,11 @@ export const types = {
   ANNUAL_REPORT_FISCAL_YEARS_COMPLETE: 'ANNUAL_REPORT_FISCAL_YEARS_COMPLETE',
   SELECTED_AGENCIES_APPEND_BLANK: 'SELECTED_AGENCIES_APPEND_BLANK',
   SELECTED_AGENCIES_UPDATE: 'SELECTED_AGENCIES_UPDATE',
+  ANNUAL_REPORT_DATA_TYPES_FETCH: 'ANNUAL_REPORT_DATA_TYPES_FETCH',
+  ANNUAL_REPORT_DATA_TYPES_RECEIVE: 'ANNUAL_REPORT_DATA_TYPES_RECEIVE',
+  ANNUAL_REPORT_DATA_TYPES_COMPLETE: 'ANNUAL_REPORT_DATA_TYPES_COMPLETE',
+  ANNUAL_REPORT_DATA_TYPE_UPDATE: 'ANNUAL_REPORT_DATA_TYPE_UPDATE',
+  ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP: 'ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP',
 };
 
 // Action creators, to dispatch actions
@@ -122,6 +128,33 @@ export const reportActions = {
   completeAnnualReportFiscalYearsData() {
     dispatcher.dispatch({
       type: types.ANNUAL_REPORT_FISCAL_YEARS_COMPLETE,
+    });
+
+    return Promise.resolve();
+  },
+
+  fetchAnnualReportDataTypes() {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_TYPES_FETCH,
+    });
+
+    return localapi.annualReportDataTypes()
+      .then(reportActions.receiveAnnualReportDataTypes)
+      .then(reportActions.completeAnnualReportDataTypes);
+  },
+
+  receiveAnnualReportDataTypes(annualReportDataTypes) {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_TYPES_RECEIVE,
+      annualReportDataTypes,
+    });
+
+    return Promise.resolve();
+  },
+
+  completeAnnualReportDataTypes() {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_TYPES_COMPLETE,
     });
 
     return Promise.resolve();

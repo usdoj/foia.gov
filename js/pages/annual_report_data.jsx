@@ -7,11 +7,17 @@ import annualReportDataFormStore from '../stores/annual_report_data_form';
 import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
 import agencyComponentStore from '../stores/agency_component';
 import annualReportFiscalYearStore from '../stores/annual_report_fiscal_year';
+import annualReportDataTypesStore from '../stores/annual_report_data_types';
 import { reportActions } from '../actions/report';
 
 class AnnualReportDataPage extends Component {
   static getStores() {
-    return [annualReportDataFormStore, annualReportFiscalYearStore, agencyComponentStore];
+    return [
+      annualReportDataFormStore,
+      annualReportFiscalYearStore,
+      agencyComponentStore,
+      annualReportDataTypesStore,
+    ];
   }
 
   static calculateState(prevState) {
@@ -28,7 +34,14 @@ class AnnualReportDataPage extends Component {
 
     const {
       selectedAgencies,
+      selectedDataTypes,
+      selectedDataTypeFilters,
     } = annualReportDataFormStore.getState();
+
+    const {
+      dataTypes,
+      dataTypeOptions,
+    } = annualReportDataTypesStore.getState();
 
     return {
       agencies,
@@ -37,11 +50,16 @@ class AnnualReportDataPage extends Component {
       agencyFinderDataProgress,
       fiscalYears,
       selectedAgencies,
+      dataTypes,
+      dataTypeOptions,
+      selectedDataTypes,
+      selectedDataTypeFilters,
     };
   }
 
   componentDidMount() {
     reportActions.fetchAnnualReportDataFiscalYears();
+    reportActions.fetchAnnualReportDataTypes();
 
     // If there is any agency data, assume all the data is fetched.
     if (this.state.agencies.size) {
@@ -59,6 +77,9 @@ class AnnualReportDataPage extends Component {
       agencyFinderDataComplete,
       agencyFinderDataProgress,
       selectedAgencies,
+      dataTypes,
+      dataTypeOptions,
+      selectedDataTypes,
     } = this.state;
 
     return (
@@ -72,7 +93,11 @@ class AnnualReportDataPage extends Component {
             agencyFinderDataProgress={agencyFinderDataProgress}
             selectedAgencies={selectedAgencies}
           />
-          <FoiaReportFormSectionTwo />
+          <FoiaReportFormSectionTwo
+            dataTypes={dataTypes}
+            dataTypeOptions={dataTypeOptions}
+            selectedDataTypes={selectedDataTypes}
+          />
           <FoiaReportFormSectionThree />
         </form>
       </div>

@@ -26,6 +26,10 @@ class LocalApi {
   requestFormSections() {
     return this.get('/request-form/sections.json');
   }
+
+  annualReportDataTypes() {
+    return this.get('/annual-report-form/report_data_map.json');
+  }
 }
 
 const localApi = new LocalApi();
