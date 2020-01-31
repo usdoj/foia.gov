@@ -11,6 +11,7 @@ class AnnualReportDataFormStore extends Store {
       selectedAgencies: [{ index: 0 }],
       selectedDataTypes: [{ index: 0, id: '' }],
       selectedDataTypeFilters: [{ index: 0 }],
+      selectedFiscalYears: [],
     };
   }
 
@@ -87,6 +88,17 @@ class AnnualReportDataFormStore extends Store {
         Object.assign(this.state, {
           selectedDataTypes: currentSelectedDataTypes,
         });
+        this.__emitChange();
+        break;
+      }
+
+      case types.SELECTED_FISCAL_YEARS_UPDATE: {
+        const { data } = payload;
+        if (!Array.isArray(data)) {
+          break;
+        }
+
+        Object.assign(this.state, { selectedFiscalYears: data });
         this.__emitChange();
         break;
       }

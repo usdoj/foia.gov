@@ -36,6 +36,7 @@ class AnnualReportDataPage extends Component {
       selectedAgencies,
       selectedDataTypes,
       selectedDataTypeFilters,
+      selectedFiscalYears,
     } = annualReportDataFormStore.getState();
 
     const {
@@ -49,6 +50,7 @@ class AnnualReportDataPage extends Component {
       agencyFinderDataComplete,
       agencyFinderDataProgress,
       fiscalYears,
+      selectedFiscalYears,
       selectedAgencies,
       dataTypes,
       dataTypeOptions,
@@ -80,6 +82,8 @@ class AnnualReportDataPage extends Component {
       dataTypes,
       dataTypeOptions,
       selectedDataTypes,
+      fiscalYears,
+      selectedFiscalYears,
     } = this.state;
 
     return (
@@ -98,7 +102,10 @@ class AnnualReportDataPage extends Component {
             dataTypeOptions={dataTypeOptions}
             selectedDataTypes={selectedDataTypes}
           />
-          <FoiaReportFormSectionThree />
+          <FoiaReportFormSectionThree
+            fiscalYears={fiscalYears}
+            selectedFiscalYears={selectedFiscalYears}
+          />
         </form>
       </div>
     );

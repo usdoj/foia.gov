@@ -24,6 +24,7 @@ export const types = {
   ANNUAL_REPORT_DATA_TYPES_COMPLETE: 'ANNUAL_REPORT_DATA_TYPES_COMPLETE',
   ANNUAL_REPORT_DATA_TYPE_UPDATE: 'ANNUAL_REPORT_DATA_TYPE_UPDATE',
   ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP: 'ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP',
+  SELECTED_FISCAL_YEARS_UPDATE: 'SELECTED_FISCAL_YEARS_UPDATE',
 };
 
 // Action creators, to dispatch actions
@@ -159,4 +160,16 @@ export const reportActions = {
 
     return Promise.resolve();
   },
+
+  updateSelectedFiscalYears(data) {
+    dispatcher.dispatch({
+      type: types.SELECTED_FISCAL_YEARS_UPDATE,
+      data,
+    });
+
+    // @todo: Do we need to resolve with any meaningful data here? For now,
+    // returning an empty promise for parity with other actions.
+    return Promise.resolve();
+  },
+
 };

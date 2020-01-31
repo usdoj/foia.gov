@@ -1,5 +1,10 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { List } from 'immutable';
 import FoiaTooltip from './foia_tooltip';
+import FoiaReportFormCheckboxWidget from './foia_report_form_checkbox_widget';
+import { reportActions } from '../actions/report';
+
 
 /**
  * README!: The assumption of this file is that it is a 'good enough'
@@ -7,7 +12,34 @@ import FoiaTooltip from './foia_tooltip';
  * as we break the markup into better components.
  */
 class FoiaReportFormSectionThree extends Component {
+  static handleSelectNone(event) {
+    reportActions.updateSelectedFiscalYears([]);
+    event.preventDefault();
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.handleSelectAll = this.handleSelectAll.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleSelectAll(event) {
+    reportActions.updateSelectedFiscalYears([...this.props.fiscalYears]);
+    event.preventDefault();
+  }
+
+  handleChange(event) {
+    const target = event.target;
+    const value = target.value.toString();
+    const selected = target.checked ?
+      [...this.props.selectedFiscalYears].concat([value]) :
+      [...this.props.selectedFiscalYears].filter(year => value !== year);
+    reportActions.updateSelectedFiscalYears(selected);
+  }
+
   render() {
+    const { fiscalYears, selectedFiscalYears } = this.props;
     return (
       <div>
         <div className="form-group">
@@ -19,59 +51,20 @@ class FoiaReportFormSectionThree extends Component {
             <fieldset className="usa-fieldset-inputs">
               <legend className="usa-sr-only">Select Fiscal Years</legend>
               <ul className="usa-unstyled-list usa-grid checkbox-list">
-                <li className="usa-width-one-sixth">
-                  <input id="2019" type="checkbox" name="fiscal-year" value="2019" />
-                  <label htmlFor="2019">2019</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2018" type="checkbox" name="fiscal-year" value="2018" />
-                  <label htmlFor="2018">2018</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2017" type="checkbox" name="fiscal-year" value="2017" />
-                  <label htmlFor="2017">2017</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2016" type="checkbox" name="fiscal-year" value="2016" />
-                  <label htmlFor="2016">2016</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2015" type="checkbox" name="fiscal-year" value="2015" />
-                  <label htmlFor="2015">2015</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2014" type="checkbox" name="fiscal-year" value="2014" />
-                  <label htmlFor="2014">2014</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2013" type="checkbox" name="fiscal-year" value="2013" />
-                  <label htmlFor="2013">2013</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2012" type="checkbox" name="fiscal-year" value="2012" />
-                  <label htmlFor="2012">2012</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2011" type="checkbox" name="fiscal-year" value="2011" />
-                  <label htmlFor="2011">2011</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2010" type="checkbox" name="fiscal-year" value="2010" />
-                  <label htmlFor="2010">2010</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2009" type="checkbox" name="fiscal-year" value="2009" />
-                  <label htmlFor="2009">2009</label>
-                </li>
-                <li className="usa-width-one-sixth">
-                  <input id="2008" type="checkbox" name="fiscal-year" value="2008" />
-                  <label htmlFor="2008">2008</label>
-                </li>
+                { fiscalYears.map(fiscalYear => (
+                  <li className="usa-width-one-sixth" key={fiscalYear}>
+                    <FoiaReportFormCheckboxWidget
+                      value={fiscalYear}
+                      checked={selectedFiscalYears.includes(fiscalYear)}
+                      onChange={this.handleChange}
+                    />
+                  </li>
+                ))}
               </ul>
               <div className="form-group">
                 <ul className="inline-list">
-                  <li><a href="#">Select All</a></li>
-                  <li><a href="#">Select None</a></li>
+                  <li><a href="#" onClick={this.handleSelectAll}>Select All</a></li>
+                  <li><a href="#" onClick={FoiaReportFormSectionThree.handleSelectNone}>Select None</a></li>
                 </ul>
               </div>
             </fieldset>
@@ -81,5 +74,15 @@ class FoiaReportFormSectionThree extends Component {
     );
   }
 }
+
+FoiaReportFormSectionThree.propTypes = {
+  fiscalYears: PropTypes.instanceOf(List),
+  selectedFiscalYears: PropTypes.array,
+};
+
+FoiaReportFormSectionThree.defaultProps = {
+  fiscalYears: List(),
+  selectedFiscalYears: [],
+};
 
 export default FoiaReportFormSectionThree;
