@@ -3,6 +3,7 @@ import { List, Map } from 'immutable';
 
 import dispatcher from '../util/dispatcher';
 import { types } from '../actions/report';
+import agencyComponentStore from './agency_component';
 
 class AnnualReportDataFormStore extends Store {
   constructor(_dispatcher) {
@@ -30,6 +31,33 @@ class AnnualReportDataFormStore extends Store {
 
         if (!selectedIsValid || !previousIsValid) {
           break;
+        }
+
+        // Ensure that we don't overwrite previous state if someone selects the same
+        // agency in the same field for some reason, presumably accidentally.
+        if (selectedAgency.id === previousAgency.id) {
+          break;
+        }
+
+        if (selectedAgency.type === 'agency') {
+          selectedAgency.components = agencyComponentStore
+            .getAgencyComponentsForAgency(selectedAgency.id)
+            .map(component => ({
+              abbreviation: component.abbreviation,
+              id: component.id,
+              isOverall: false,
+              selected: true,
+            }))
+            // Components with the same abbreviation as the agency must not be displayed
+            // as an option to select as a child of a selected agency.  These will instead be
+            // replaced by the Agency Overall option.
+            .filter(component => component.abbreviation !== selectedAgency.abbreviation)
+            .push({
+              abbreviation: 'Agency Overall',
+              id: `overall:${selectedAgency.id}`,
+              isOverall: true,
+              selected: true,
+            });
         }
 
         // Get a copy of the selected agencies state so that we don't
@@ -103,6 +131,80 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
+      case types.SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE: {
+        // Assigns agencyComponent selections to a temporary property on the
+        // agency that is being updated.  This allows the changes to be committed
+        // later when the user clicks "Submit" or to be discarded if the user clicks
+        // "Cancel".
+        const { agencyComponent, agency } = payload;
+        const selectedAgencies = [...this.state.selectedAgencies];
+
+        // Get a copy of the current components or tempSelectedComponents list
+        // so that we don't directly update those lists.
+        let components = selectedAgencies[agency.index].tempSelectedComponents
+          ? selectedAgencies[agency.index].tempSelectedComponents.toList()
+          : selectedAgencies[agency.index].components.toList();
+
+        // Update the temporary components list with a cloned agency component
+        // object where the select value is toggled.
+        components = components.set(
+          components.findIndex(component => component.id === agencyComponent.id),
+          Object.assign({}, agencyComponent, { selected: !agencyComponent.selected }),
+        );
+
+        selectedAgencies[agency.index].tempSelectedComponents = components;
+
+        Object.assign(this.state, {
+          selectedAgencies,
+        });
+        this.__emitChange();
+        break;
+      }
+
+      case types.SELECTED_AGENCY_COMPONENTS_MERGE_TEMPORARY: {
+        const { index } = payload;
+        const selectedAgencies = [...this.state.selectedAgencies];
+        const agency = Object.assign({}, selectedAgencies[index]);
+
+        if (!Object.prototype.hasOwnProperty.call(agency, 'tempSelectedComponents')) {
+          break;
+        }
+
+        // Assign the tempSelectedComponents property to the components property,
+        // effectively committing the selections made when updating component selections
+        // in the SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE event handler, and get
+        // rid of the temporary list of selected components, to avoid confusion on what
+        // the current state is.
+        agency.components = agency.tempSelectedComponents;
+        delete agency.tempSelectedComponents;
+
+        selectedAgencies.splice(index, 1, agency);
+
+        Object.assign(this.state, {
+          selectedAgencies,
+        });
+        this.__emitChange();
+        break;
+      }
+
+      case types.SELECTED_AGENCY_COMPONENTS_DISCARD_TEMPORARY: {
+        const { index } = payload;
+        const selectedAgencies = [...this.state.selectedAgencies];
+        const agency = Object.assign({}, selectedAgencies[index]);
+
+        if (!Object.prototype.hasOwnProperty.call(agency, 'tempSelectedComponents')) {
+          break;
+        }
+
+        // Discard any changes being held.
+        delete agency.tempSelectedComponents;
+        selectedAgencies.splice(agency.index, 1, agency);
+        Object.assign(this.state, {
+          selectedAgencies,
+        });
+        this.__emitChange();
+        break;
+      }
       default:
         break;
     }

@@ -4,14 +4,54 @@ import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 
 import ReportAgencyComponentTypeahead from './report_agency_component_typeahead';
-import agencyComponentStore from '../stores/agency_component';
 import FoiaModal from './foia_modal';
+import { types } from '../actions/report';
+import dispatcher from '../util/dispatcher';
 
 
 class ReportAgencyComponentFilter extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handleModalSubmit = this.handleModalSubmit.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
+    this.modalCanSubmit = this.modalCanSubmit.bind(this);
+  }
+
+  handleCheckboxChange(e, component) {
+    dispatcher.dispatch({
+      type: types.SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE,
+      agencyComponent: component,
+      agency: this.props.selectedAgency,
+    });
+  }
+
+  handleModalSubmit() {
+    dispatcher.dispatch({
+      type: types.SELECTED_AGENCY_COMPONENTS_MERGE_TEMPORARY,
+      index: this.props.selectedAgency.index,
+    });
+  }
+
+  handleModalClose() {
+    dispatcher.dispatch({
+      type: types.SELECTED_AGENCY_COMPONENTS_DISCARD_TEMPORARY,
+      index: this.props.selectedAgency.index,
+    });
+  }
+
+  modalCanSubmit() {
+    const components = this.props.selectedAgency.tempSelectedComponents
+      || this.props.selectedAgency.components;
+
+    return components.filter(item => item.selected).size > 0;
+  }
+
   buildModalContent() {
-    const checkboxes = agencyComponentStore
-      .getAgencyComponentsForAgency(this.props.selectedAgency.id)
+    const components = this.props.selectedAgency.tempSelectedComponents
+      || this.props.selectedAgency.components;
+    const checkboxes = components
       .map((component) => {
         const inputId = uniqueId(`${component.abbreviation}_`);
         return (
@@ -21,7 +61,8 @@ class ReportAgencyComponentFilter extends Component {
               type="checkbox"
               name={`${this.props.selectedAgency.id}-component`}
               value={component.id}
-              defaultChecked
+              checked={component.selected}
+              onChange={e => this.handleCheckboxChange(e, component)}
             />
             <label htmlFor={inputId}>{component.abbreviation}</label>
           </li>
@@ -35,14 +76,9 @@ class ReportAgencyComponentFilter extends Component {
             <ul className="usa-unstyled-list usa-grid checkbox-list checkbox-list--in-modal">
               {checkboxes}
             </ul>
-            <div className="form-group_footer">
-              <ul className="inline-list">
-                <li><a href="#">Select All</a></li>
-                <li><a href="#">Select None</a></li>
-              </ul>
-              <button className="usa-button usa-button-primary-alt">Submit</button>
-              <button className="usa-button usa-button-outline">Cancel</button>
-            </div>
+            {!this.modalCanSubmit() &&
+              <p className="usa-input-error-message">One or more components are required.</p>
+            }
           </fieldset>
         </div>
       </div>
@@ -71,11 +107,14 @@ class ReportAgencyComponentFilter extends Component {
           selectedAgency={selectedAgency}
         />
         {agencyIsSelected && !isCentralizedAgency &&
-          <FoiaModal
-            modalContent={this.buildModalContent()}
-            ariaLabel="Filter agency components"
-            triggerText="Select Agency Components"
-          />
+        <FoiaModal
+          modalContent={this.buildModalContent()}
+          ariaLabel="Filter agency components"
+          triggerText="Select Agency Components"
+          onSubmit={this.handleModalSubmit}
+          canSubmit={this.modalCanSubmit}
+          onClose={this.handleModalClose}
+        />
         }
       </div>
     );
