@@ -1,5 +1,4 @@
 import { Store } from 'flux/utils';
-import { List, Map } from 'immutable';
 
 import dispatcher from '../util/dispatcher';
 import { types } from '../actions/report';

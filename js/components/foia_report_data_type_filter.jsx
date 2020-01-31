@@ -38,10 +38,10 @@ class FoiaReportDataTypeFilter extends Component {
   buildModalContent() {
     const { dataTypes, selectedDataType } = this.props;
     const options = dataTypes.get(selectedDataType.id)
-      .filter_opts
-      .map(opt => (
-        <option value={opt.id} key={opt.id}>{opt.label}</option>
-      ));
+      .fields
+      .filter(opt => opt.filter)
+      .map(opt => ({ value: opt.id, label: opt.label }));
+
     const inputId = uniqueId('data-filter_');
 
     return (
@@ -50,12 +50,15 @@ class FoiaReportDataTypeFilter extends Component {
         <div className="form-group field">
           <label htmlFor={`${inputId}_subject-${selectedDataType.id}-${selectedDataType.index}`}>
             Data Filters
-            <FoiaTooltip text={"Select the type of FOIA data you would like to view. The data comes from agencies' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary."}
-            />
+            <FoiaTooltip text={"Select the type of FOIA data you would like to view. The data comes from agencies' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary."} />
           </label>
-          <select name={`${inputId}_subject-${selectedDataType.id}-${selectedDataType.index}`} id={`${inputId}_subject-${selectedDataType.id}-${selectedDataType.index}`}>
-            {options}
-          </select>
+          <USWDSSelectWidget
+            id={`${inputId}_subject-${selectedDataType.id}-${selectedDataType.index}`}
+            name={`${inputId}_subject-${selectedDataType.id}-${selectedDataType.index}`}
+            title=""
+            options={options}
+            placeholder=""
+          />
         </div>
         <div className="form-group field">
           <label htmlFor={`${inputId}_operator-${selectedDataType.id}-${selectedDataType.index}`}>Select a value</label>
@@ -95,7 +98,7 @@ class FoiaReportDataTypeFilter extends Component {
           title="Data Type"
           id={`data-type-${this.state.id}`}
           value={this.props.selectedDataType.id}
-          options={this.props.dataTypeOptions}
+          options={[...this.props.dataTypeOptions]}
           handleChange={this.handleChange}
         />
         {dataTypeSelected &&
