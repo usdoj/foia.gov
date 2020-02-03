@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { List, OrderedMap } from 'immutable';
+import { List } from 'immutable';
 import { uniqueId } from 'lodash';
 
 import USWDSSelectWidget from './uswds_select_widget';
@@ -13,7 +13,11 @@ class FoiaReportDataTypeFilter extends Component {
   constructor(props) {
     super(props);
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleDataTypeChange = this.handleDataTypeChange.bind(this);
+    this.handleFilterFieldUpdate = this.handleFilterFieldUpdate.bind(this);
+    this.handleModalSubmit = this.handleModalSubmit.bind(this);
+    this.handleFilterReset = this.handleFilterReset.bind(this);
+    this.modalCanSubmit = this.modalCanSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -22,7 +26,7 @@ class FoiaReportDataTypeFilter extends Component {
     });
   }
 
-  handleChange(e) {
+  handleDataTypeChange(e) {
     const selection = {
       id: e.target.value,
       index: this.props.selectedDataType.index,
@@ -35,34 +39,69 @@ class FoiaReportDataTypeFilter extends Component {
     });
   }
 
-  buildModalContent() {
-    const { dataTypes, selectedDataType } = this.props;
-    const options = dataTypes.get(selectedDataType.id)
-      .fields
-      .filter(opt => opt.filter)
-      .map(opt => ({ value: opt.id, label: opt.label }));
+  handleFilterFieldUpdate(e) {
+    const selection = this.props.selectedDataType;
+    const filterUpdate = {
+      name: e.target.name,
+      value: e.target.value,
+    };
 
-    const inputId = uniqueId('data-filter_');
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_TYPE_FILTER_UPDATE,
+      currentSelection: selection,
+      filter: filterUpdate,
+    });
+  }
+
+  handleModalSubmit() {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_TYPE_FILTER_SUBMIT,
+      index: this.props.selectedDataType.index,
+    });
+  }
+
+  handleFilterReset() {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_TYPE_FILTER_RESET,
+      index: this.props.selectedDataType.index,
+    });
+  }
+
+  modalCanSubmit() {
+    const filter = this.props.selectedDataType.tempFilter || this.props.selectedDataType.filter;
+    return filter.compareValue !== '' && parseInt(filter.compareValue, 10) >= 0;
+  }
+
+  buildModalContent() {
+    const { selectedDataType } = this.props;
+    const filter = this.props.selectedDataType.tempFilter || selectedDataType.filter;
 
     return (
       <div className="form-group">
         <h3 className="sans">Add Data Filter</h3>
         <div className="form-group field">
-          <label htmlFor={`${inputId}_subject-${selectedDataType.id}-${selectedDataType.index}`}>
+          <label htmlFor="filterField">
             Data Filters
             <FoiaTooltip text={"Select the type of FOIA data you would like to view. The data comes from agencies' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary."} />
           </label>
           <USWDSSelectWidget
-            id={`${inputId}_subject-${selectedDataType.id}-${selectedDataType.index}`}
-            name={`${inputId}_subject-${selectedDataType.id}-${selectedDataType.index}`}
+            id="filterField"
+            name="filterField"
             title=""
-            options={options}
+            options={selectedDataType.filterOptions}
             placeholder=""
+            handleChange={this.handleFilterFieldUpdate}
+            value={filter.filterField}
           />
         </div>
         <div className="form-group field">
-          <label htmlFor={`${inputId}_operator-${selectedDataType.id}-${selectedDataType.index}`}>Select a value</label>
-          <select name={`${inputId}_operator-${selectedDataType.id}-${selectedDataType.index}`} id={`${inputId}_operator-${selectedDataType.id}-${selectedDataType.index}`}>
+          <label htmlFor="op">Select a value</label>
+          <select
+            name="op"
+            id="op"
+            onChange={this.handleFilterFieldUpdate}
+            value={filter.op}
+          >
             <option value="greater_than">is greater than</option>
             <option value="less_than">is less than</option>
             <option value="equal_to">is equal to</option>
@@ -70,27 +109,31 @@ class FoiaReportDataTypeFilter extends Component {
           </select>
         </div>
         <div className="form-group field">
-          <label htmlFor={`${inputId}_value-${selectedDataType.id}-${selectedDataType.index}`}>Enter a Numeric Value</label>
+          <label htmlFor="compareValue">Enter a Numeric Value</label>
           <input
-            name={`${inputId}_value-${selectedDataType.id}-${selectedDataType.index}`}
-            id={`${inputId}_value-${selectedDataType.id}-${selectedDataType.index}`}
-            value=""
+            name="compareValue"
+            id="compareValue"
             placeholder="Enter a Numeric Value"
+            type="number"
+            min="0"
+            onChange={this.handleFilterFieldUpdate}
+            value={filter.compareValue}
           />
-        </div>
-        <div className="form-group form-group_footer">
-          <button className="usa-button usa-button-primary-alt">Submit
-          </button>
-          <button className="usa-button usa-button-outline">Cancel
-          </button>
-          <a href="#">Reset Filter</a>
+          {!this.modalCanSubmit() &&
+          <p className="usa-input-error-message">Please enter a numeric value to compare.</p>
+          }
         </div>
       </div>
     );
   }
 
   render() {
-    const dataTypeSelected = (this.props.selectedDataType.id !== '') || false;
+    const dataTypeSelected = (this.props.selectedDataType.id !== '' && this.props.selectedDataType.id !== 'group_iv_exemption_3_statutes') || false;
+    const resetButton = (<a
+      onClick={this.handleFilterReset}
+      style={{ cursor: 'pointer' }}
+      href={null}
+    >Reset Attribute</a>);
     return (
       <div>
         <USWDSSelectWidget
@@ -99,13 +142,17 @@ class FoiaReportDataTypeFilter extends Component {
           id={`data-type-${this.state.id}`}
           value={this.props.selectedDataType.id}
           options={[...this.props.dataTypeOptions]}
-          handleChange={this.handleChange}
+          handleChange={this.handleDataTypeChange}
         />
         {dataTypeSelected &&
           <FoiaModal
             triggerText="Filter Results"
             ariaLabel="Add Data Filter"
             modalContent={this.buildModalContent()}
+            onSubmit={this.handleModalSubmit}
+            onClose={this.handleFilterReset}
+            canSubmit={this.modalCanSubmit}
+            modalAdditionalLink={resetButton}
           />
         }
       </div>
@@ -114,13 +161,11 @@ class FoiaReportDataTypeFilter extends Component {
 }
 
 FoiaReportDataTypeFilter.propTypes = {
-  dataTypes: PropTypes.instanceOf(OrderedMap),
   dataTypeOptions: PropTypes.instanceOf(List),
   selectedDataType: PropTypes.object,
 };
 
 FoiaReportDataTypeFilter.defaultProps = {
-  dataTypes: new OrderedMap(),
   dataTypeOptions: new List(),
   selectedDataType: { index: 0, id: '' },
 };
