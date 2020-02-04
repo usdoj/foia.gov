@@ -23,3 +23,9 @@
     border-left: 1px solid $color-primary-alt-darker;
   }
 }
+
+.inline-list--centered {
+  @extend .inline-list;
+  text-align: center;
+  padding: 0 0 2rem 0;
+}

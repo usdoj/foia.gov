@@ -62,7 +62,7 @@ class FoiaReportFormSectionThree extends Component {
                 ))}
               </ul>
               <div className="form-group">
-                <ul className="inline-list">
+                <ul className="inline-list--centered">
                   <li><a href="#" onClick={this.handleSelectAll}>Select All</a></li>
                   <li><a href="#" onClick={FoiaReportFormSectionThree.handleSelectNone}>Select None</a></li>
                 </ul>

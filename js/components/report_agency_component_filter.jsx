@@ -8,7 +8,6 @@ import FoiaModal from './foia_modal';
 import { types } from '../actions/report';
 import dispatcher from '../util/dispatcher';
 
-
 class ReportAgencyComponentFilter extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +16,16 @@ class ReportAgencyComponentFilter extends Component {
     this.handleModalSubmit = this.handleModalSubmit.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
     this.modalCanSubmit = this.modalCanSubmit.bind(this);
+    this.handleSelectAll = this.handleSelectAll.bind(this);
+  }
+
+  handleSelectAll(e, selectValue) {
+    e.preventDefault();
+    dispatcher.dispatch({
+      type: types.SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE_ALL,
+      selectValue,
+      agency: this.props.selectedAgency,
+    });
   }
 
   handleCheckboxChange(e, component) {
@@ -68,6 +77,7 @@ class ReportAgencyComponentFilter extends Component {
           </li>
         );
       });
+
     return (
       <div className="form-group">
         <div className="usa-grid">
@@ -79,6 +89,12 @@ class ReportAgencyComponentFilter extends Component {
             {!this.modalCanSubmit() &&
               <p className="usa-input-error-message">One or more components are required.</p>
             }
+            <div className="form-group">
+              <ul className="inline-list--centered">
+                <li><a href="#" onClick={e => this.handleSelectAll(e, true)}>Select All</a></li>
+                <li><a href="#" onClick={e => this.handleSelectAll(e, false)}>Select None</a></li>
+              </ul>
+            </div>
           </fieldset>
         </div>
       </div>
