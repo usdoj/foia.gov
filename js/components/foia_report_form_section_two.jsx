@@ -26,7 +26,7 @@ class FoiaReportFormSectionTwo extends Component {
           <fieldset>
             <legend className="foia-header-blue-line--h2">
               2. Select Data Type(s)
-              <FoiaTooltip text={'<p>Select the type of FOIA data you would like to view. The data comes from agencies’ Annual FOIA Reports.</p><p>To learn more about the data, view the terms in the <span data-term="annual foia report" title="Click to define" tabindex="0">Glossary</span>.</p>'}/>
+              <FoiaTooltip text={'<p>Select the type of FOIA data you would like to view. The data comes from agencies’ Annual FOIA Reports.</p><p>To learn more about the data, view the terms in the <span data-term="annual foia report" title="Click to define" tabindex="0">Glossary</span>.</p>'} />
             </legend>
             <p>Adding more than one data filter will return results that fit any one of the filters
               provided. For example, a search for exemption data with the filters &ldquo;Ex. 5 is

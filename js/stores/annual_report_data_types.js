@@ -21,6 +21,12 @@ class AnnualReportDataTypesStore extends Store {
     return this.state.dataTypes.get(dataTypeId, null);
   }
 
+  getFieldsForDataType(dataTypeId) {
+    return this.getDataType(dataTypeId).fields ?
+      this.getDataType(dataTypeId).fields :
+      [];
+  }
+
   __onDispatch(payload) {
     switch (payload.type) {
       case types.ANNUAL_REPORT_DATA_TYPES_RECEIVE: {

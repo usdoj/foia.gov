@@ -2,195 +2,505 @@
     {
         "id": "group_v_a_foia_requests_received",
         "label": "Requests",
-        "filter_opts": [
+        "fields": [
             {
                 "id": "field_foia_requests_va.field_req_pend_start_yr",
-                "label": "Number of Requests Pending as of Start of Fiscal Year"
+                "label": "Number of Requests Pending as of Start of Fiscal Year",
+                "filter": true,
+                "overall_field": "field_overall_req_pend_start_yr"
             },
             {
                 "id": "field_foia_requests_va.field_req_received_yr",
-                "label": "Number of Requests Received in Fiscal Year"
+                "label": "Number of Requests Received in Fiscal Year",
+                "filter": true,
+                "overall_field": "field_overall_req_received_yr"
             },
             {
                 "id": "field_foia_requests_va.field_req_processed_yr",
-                "label": "Number of Requests Processed in Fiscal Year"
+                "label": "Number of Requests Processed in Fiscal Year",
+                "filter": true,
+                "overall_field": "field_overall_req_processed_yr"
             },
             {
                 "id": "field_foia_requests_va.field_req_pend_end_yr",
-                "label": "Number of Requests Pending as of End of Fiscal Year"
+                "label": "Number of Requests Pending as of End of Fiscal Year",
+                "filter": true,
+                "overall_field": "field_overall_req_pend_end_yr"
             },
             {
-                "id": "overall_req_pend_start_yr",
-                "label": "Agency Overall Number of Requests Pending as of Start of Fiscal Year"
-            },
-            {
-                "id": "overall_req_received_yr",
-                "label": "Agency Overall Number of Requests Received in Fiscal Year"
-            },
-            {
-                "id": "overall_req_processed_yr",
-                "label": "Agency Overall Number of Requests Processed in Fiscal Year"
-            },
-            {
-                "id": "overall_req_pend_end_yr",
-                "label": "Agency Overall Number of Requests Pending as of End of Fiscal Year"
+                "id": "field_footnotes_va",
+                "label": "Footnotes",
+                "filter": false,
+                "overall_field": false
             }
+        ],
+        "includes": [
+            "field_foia_requests_va",
+            "field_foia_requests_va.field_agency_component"
         ]
     },
     {
         "id": "group_overall_vb1_main",
         "label": " - Disposition (Dis.)",
-        "filter_opts": []
+        "fields": [
+            {
+                "id": "field_foia_requests_vb1.field_full_grants",
+                "label": "Number of Full Grants",
+                "filter": true,
+                "overall_field": "field_overall_vb1_full_grants"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_part_grants_denials",
+                "label": "Number of Partial Grants/Partial Denials",
+                "filter": true,
+                "overall_field": "field_overall_vb1_part_grants_de"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_full_denials_ex",
+                "label": "Number of Full Denials Based on Exemptions",
+                "filter": true,
+                "overall_field": "field_overall_vb1_full_denials_e"
+            },
+             {
+                "id": "field_foia_requests_vb1.field_no_rec",
+                "label": "No Records",
+                "filter": true,
+                "overall_field": "field_overall_vb1_no_rec"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_rec_ref_to_an_comp",
+                "label": "All Records Referred to Another Component or Agency",
+                "filter": true,
+                "overall_field": "field_overall_vb1_rec_ref_to_an_"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_req_withdrawn",
+                "label": "Request Withdrawn",
+                "filter": true,
+                "overall_field": "field_overall_vb1_req_withdrawn"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_fee_related_reason",
+                "label": "Fee-Related Reason",
+                "filter": true,
+                "overall_field": "field_overall_vb1_fee_related_re"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_rec_not_desc",
+                "label": "Records Not Reasonably Described",
+                "filter": true,
+                "overall_field": "field_overall_vb1_rec_not_desc"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_imp_req_oth_reason",
+                "label": "Improper FOIA Request for Other Reason",
+                "filter": true,
+                "overall_field": "field_overall_vb1_imp_req_oth_re"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_not_agency_record",
+                "label": "Not Agency Record",
+                "filter": true,
+                "overall_field": "field_overall_vb1_not_agency_rec"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_dup_request",
+                "label": "Duplicate Request",
+                "filter": true,
+                "overall_field": "field_overall_vb1_dup_request"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_oth",
+                "label": "Other*",
+                "filter": true,
+                "overall_field": "field_overall_vb1_oth"
+            },
+            {
+                "id": "field_foia_requests_vb1.field_total",
+                "label": "Total",
+                "filter": true,
+                "overall_field": "field_overall_vb1_total"
+            },
+            {
+                "id": "field_footnotes_vb1",
+                "label": "Footnotes",
+                "filter": false,
+                "overall_field": false
+            }
+        ],
+        "includes": [
+            "field_foia_requests_vb1",
+            "field_foia_requests_vb1.field_agency_component"
+        ]
     },
     {
         "id": "group_v_b_2_disposition_of_foia_",
         "label": " - Dis. - \"Other\" Reasons,",
-        "filter_opts": []
+        "fields": [
+            {
+                "id": "field_foia_requests_vb2.field_foia_req_vb2_info",
+                "label": "FOIA Request B.2 Information",
+                "filter": false,
+                "overall_field": false
+            },
+            {
+                "id": "field_foia_requests_vb2.field_foia_req_vb2_info.field_desc_oth_reasons",
+                "label": "Description of \"Other\" Reasons for Denials from Chart B(1)",
+                "filter": false,
+                "overall_field": false
+            },
+            {
+                "id": "field_foia_requests_vb2.field_foia_req_vb2_info.field_num_relied_upon",
+                "label": "Number of Times \"Other\" Reason Was Relied Upon",
+                "filter": true,
+                "overall_field": false
+            },
+            {
+                "id": "field_foia_requests_vb2.field_total",
+                "label": "Total",
+                "filter": true,
+                "overall_field": "field_overall_vb2_total"
+            },
+            {
+                "id": "field_footnotes_vb2",
+                "label": "Footnotes",
+                "filter": false,
+                "overall_field": false
+            }
+
+        ]
     },
     {
         "id": "group_viii_a_requests_for_expedi",
         "label": " - Expedited Processing",
-        "filter_opts": []
+        "fields": [
+            {
+                "id": "field_req_viiia.field_num_grant",
+                "label": "Number Granted",
+                "filter": true,
+                "overall_field": "field_overall_viiia_num_grant"
+            },
+            {
+                "id": "field_req_viiia.field_num_denied",
+                "label": "Number Denied",
+                "filter": true,
+                "overall_field": "field_overall_viiia_num_denied"
+            },
+            {
+                "id": "field_req_viiia.field_med_days_jud",
+                "label": "Median Number of Days to Adjudicate",
+                "filter": true,
+                "overall_field": "field_overall_viiia_med_days_jud"
+            },
+            {
+                "id": "field_req_viiia.field_avg_days_jud",
+                "label": "Average Number of Days to Adjudicate",
+                "filter": true,
+                "overall_field": "field_overall_viiia_avg_days_jud"
+            },
+            {
+                "id": "field_req_viiia.field_num_jud_w10",
+                "label": "Number Adjudicated Within Ten Calendar Days",
+                "filter": true,
+                "overall_field": "field_overall_viiia_num_jud_w10"
+            },
+            {
+                "id": "field_footnotes_viiia",
+                "label": "Footnotes",
+                "filter": false,
+                "overall_field": false
+            }
+        ]
     },
     {
         "id": "group_v_b_3_disposition_of_foia_",
         "label": "Exemptions",
-        "filter_opts": []
+        "fields": [
+            {
+                "id": "field_foia_requests_vb3.field_ex_1",
+                "label": "Ex. 1",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_1"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_2",
+                "label": "Ex. 2",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_2"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_3",
+                "label": "Ex. 3",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_2"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_4",
+                "label": "Ex. 4",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_4"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_5",
+                "label": "Ex. 5",
+                "filter": true,
+                "overall_field": "overall_vb3_ex_5"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_6",
+                "label": "Ex. 6",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_7"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_7_a",
+                "label": "Ex. 7(A)",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_7_a"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_7_b",
+                "label": "Ex. 7(B)",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_7_b"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_7_c",
+                "label": "Ex. 7(C)",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_7_c"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_7_d",
+                "label": "Ex. 7(D)",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_7_d"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_7_e",
+                "label": "Ex. 7(E)",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_7_e"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_7_f",
+                "label": "Ex. 7(F)",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_7_f"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_8",
+                "label": "Ex. 8",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_8"
+            },
+            {
+                "id": "field_foia_requests_vb3.field_ex_9",
+                "label": "Ex. 9",
+                "filter": true,
+                "overall_field": "field_overall_vb3_ex_9"
+            },
+            {
+                "id": "field_footnotes_vb3",
+                "label": "Footnotes",
+                "filter": false,
+                "overall_field": false
+            }
+        ],
+        "includes": [
+            "field_foia_requests_vb3",
+            "field_foia_requests_vb3.field_agency_component"
+        ]
     },
     {
         "id": "group_iv_exemption_3_statutes",
         "label": " - Exemption 3 Statutes",
-        "filter_opts": []
+        "fields": [
+            {
+                "id": "field_statute_iv.field_statute",
+                "label": "Statute",
+                "filter": false,
+                "overall_field": false
+            },
+            {
+                "id": "field_statute_iv.field_type_of_info_withheld",
+                "label": "Type of Information Withheld",
+                "filter": false,
+                "overall_field": false
+            },
+            {
+                "id": "field_statute_iv.field_agency_component_inf.field_num_relied_by_agency_comp",
+                "label": "Number of Times Relied Upon",
+                "filter": true,
+                "overall_field": "field_statute_iv.field_total_num_relied_by_agency"
+            },
+            {
+                "id": "field_footnotes_iv",
+                "label": "Footnotes",
+                "filter": false,
+                "overall_field": false
+            }
+        ],
+        "includes": [
+            "field_statute_iv",
+            "field_statute_iv.field_agency_component_inf"
+        ]
     },
     {
         "id": "group_vi_a_administrative_appeal",
         "label": "Appeals",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vi_b_disposition_of_admini",
         "label": " - Disposition (Dis.)",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vi_c_1_reasons_for_denial_",
         "label": " - Dis. - Use of Exemptions",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vi_c_2_reasons_for_denial_",
         "label": " - Dis. - Other Than Exs.",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vi_c_3_reasons_for_denial_",
         "label": " - Dis. - \"Other\" Reasons,",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vi_c_4_response_time_for_a",
         "label": " - Response Time",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vi_c_5_ten_oldest",
         "label": " - Ten Oldest Pending",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vii_a_foia_requests_wrap",
         "label": "Processing Time",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vii_b_processed_req_wrap",
         "label": " - Requests Granted",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vii_c_1_processed_simple_r",
         "label": " - Simple Requests",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vii_c_2_processed_complex_",
         "label": " - Complex Requests",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vii_c_3_processed_requests",
         "label": " - Expedited Requests",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vii_d_pending_req_wrap",
         "label": " - Pending Requests",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_vii_e_pending_req_wrap",
         "label": " - Ten Oldest Requests",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_viii_b_requests_for_fee_wa",
         "label": "Fee Waiver",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_ix_foia_personnel_cost_wra",
         "label": "FOIA Personnel",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_x_fees_collected_for_proce",
         "label": "FOIA Costs",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_xi_a_number_of_times_subse",
         "label": "Exclusions",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_xi_b_number_of_subsection_",
         "label": "Proactive Disclosures",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_xii_a_backlogs_of_foia_req",
         "label": "Backlog",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_xii_b_consultations_on_foi",
         "label": "Consultations",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_xii_c_consultations_wrap",
         "label": " - Ten Oldest",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_xii_d_1_comparison_wrap",
         "label": "Comparisons",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_xii_d_2_comparison_of_numb",
         "label": " - Requests Backlogged",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_xii_e_1_comparison_of_wrap",
         "label": " - Administrative Appeals",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     },
     {
         "id": "group_xii_e_2_comparison_of_numb",
         "label": " - Appeals Backlogged",
-        "filter_opts": []
+        "fields": [],
+        "includes": []
     }
 ]
 

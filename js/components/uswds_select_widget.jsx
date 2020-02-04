@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'immutable';
 
 const USWDSSelectWidget = props => (
   <div className="form-group field">
-    <label htmlFor={props.id}><strong>{props.title}</strong></label>
+    { props.title &&
+      <label htmlFor={props.id}><strong>{props.title}</strong></label>
+    }
     <select
       name={props.name}
       id={props.id}
@@ -12,7 +13,9 @@ const USWDSSelectWidget = props => (
       onChange={props.handleChange}
       className="usa-select usa-reset-width"
     >
-      <option value="">{props.placeholder}</option>
+      {props.placeholder &&
+        <option value="" key="">{props.placeholder}</option>
+      }
       {props.options.map(opt => (
         <option value={opt.value} key={opt.value}>{opt.label}</option>
       ))}
@@ -26,7 +29,7 @@ USWDSSelectWidget.propTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.string,
   handleChange: PropTypes.func,
-  options: PropTypes.instanceOf(List).isRequired,
+  options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
 };
 
