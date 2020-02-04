@@ -14,7 +14,7 @@ const USWDSSelectWidget = props => (
       className="usa-select usa-reset-width"
     >
       {props.placeholder &&
-        <option value="">{props.placeholder}</option>
+        <option value="" key="">{props.placeholder}</option>
       }
       {props.options.map(opt => (
         <option value={opt.value} key={opt.value}>{opt.label}</option>
