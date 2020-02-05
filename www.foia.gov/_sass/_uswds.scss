@@ -21,7 +21,10 @@ $color-primary-alt-darker: #306092;
 $color-primary-darkest: #122E51;
 $color-gray-dark: #212121; // same as USWDS $color-base
 $color-gray: #5B616A;
+$color-gray-light: #D0D0D0;
+$color-gray-lighter: #F1F1F1;
 $color-gray-lightest: #F8F8F8;
+$color-white: #FFFFFF;
 $color-focus: $color-primary-alt-light;
 
 // Mobile First breakpoints
@@ -91,5 +94,9 @@ $icon-plus-light: '/img/icon-plus-light.svg';
 
 $icon-question-circle: '/img/fontawesome/icon-question-circle.svg';
 $icon-close-button: '/img/fontawesome/times-circle-solid.svg';
+
+$icon-arrow-both-down: '/img/fontawesome/arrow-both-down.svg';
+$icon-arrow-both-up: '/img/fontawesome/arrow-both-up.svg';
+$icon-arrow-both-none: '/img/fontawesome/arrow-both-none.svg';
 
 @import '../../node_modules/uswds/src/stylesheets/uswds';

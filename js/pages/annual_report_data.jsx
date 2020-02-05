@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import FoiaReportFormSectionOne from '../components/foia_report_form_section_one';
 import FoiaReportFormSectionTwo from '../components/foia_report_form_section_two';
+import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
+import FoiaReportResultsTable from '../components/foia_report_results_table';
 
 import annualReportDataFormStore from '../stores/annual_report_data_form';
-import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
 import agencyComponentStore from '../stores/agency_component';
 import annualReportFiscalYearStore from '../stores/annual_report_fiscal_year';
 import annualReportDataTypesStore from '../stores/annual_report_data_types';
+
 import { reportActions } from '../actions/report';
 
 class AnnualReportDataPage extends Component {
@@ -105,6 +107,7 @@ class AnnualReportDataPage extends Component {
             selectedFiscalYears={selectedFiscalYears}
           />
         </form>
+        <FoiaReportResultsTable />
       </div>
     );
   }

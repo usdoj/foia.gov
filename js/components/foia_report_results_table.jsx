@@ -5,7 +5,6 @@
 
 import React, { Component } from 'react';
 import Tabulator from 'tabulator-tables';
-import 'tabulator-tables/dist/css/tabulator.min.css';
 
 class FoiaReportResultsTable extends Component {
   constructor() {
@@ -24,10 +23,9 @@ class FoiaReportResultsTable extends Component {
       { id: 3, agency: 'Department of Agriculture', component: 'AMS', fiscalYear: '2014' },
     ];
     const sampleColumns = [
-      { title: 'Compare', formatter: 'rowSelection', align: 'center', headerSort: false, cellClick: (e, cell) => { cell.getRow().toggleSelect(); } },
       { title: 'Agency', field: 'agency', align: 'center' },
       { title: 'Component', field: 'component', align: 'center' },
-      { title: 'Fiscal year', field: 'fiscalYear', align: 'center' },
+      { title: 'Fiscal Year', field: 'fiscalYear', align: 'center' },
     ];
 
     this.tableData = sampleData;
