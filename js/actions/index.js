@@ -1,6 +1,4 @@
 import assert from 'assert';
-import axios from 'axios';
-import settings from 'settings';
 
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
@@ -20,8 +18,6 @@ export const types = {
   REQUEST_FORM_SUBMIT_PROGRESS: 'REQUEST_FORM_SUBMIT_PROGRESS',
   REQUEST_FORM_SECTIONS_FETCH: 'REQUEST_FORM_SECTIONS_FETCH',
   REQUEST_FORM_SECTIONS_RECEIVE: 'REQUEST_FORM_SECTIONS_RECEIVE',
-  REPORT_DATA_TYPE_UPDATE: 'REPORT_DATA_TYPE_UPDATE',
-  REPORT_DATA_TYPE_FILTER_ADD_GROUP: 'REPORT_DATA_TYPE_FILTER_ADD_GROUP',
 };
 
 // Action creators, to dispatch actions

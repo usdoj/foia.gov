@@ -368,7 +368,7 @@
                 "overall_field": "field_overall_via_app_proc_yr"
             },
             {
-                "id": "field_admin_app_via.field_app_processed_yr",
+                "id": "field_admin_app_via.field_app_pend_end_yr",
                 "label": "Number of Appeals Pending as of End of Fiscal Year",
                 "filter": true,
                 "overall_field": "field_overall_via_app_pend_endyr"
@@ -615,7 +615,7 @@
     },
     {
         "id": "group_vi_c_3_reasons_for_denial_",
-        "label": " - Dis. - \"Other\" Reasons,",
+        "label": " - Dis. - \"Other\" Reasons",
         "fields": [
             {
                 "id": "field_admin_app_vic3.field_admin_app_vic3_info",

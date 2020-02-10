@@ -109,13 +109,17 @@ class AnnualReportDataFormStore extends Store {
             value: opt.id,
             label: opt.label,
           }));
-
-        selectedDataType.filter = {
+        // Add a default filter definition to make removing a submitted filter
+        // easier. This will replace the applied filter if the user chooses to
+        // remove a filter.
+        const filterDefaults = {
           applied: false,
           filterField: selectedDataType.filterOptions[0].value,
           op: 'greater_than',
           compareValue: '',
         };
+        selectedDataType.defaultFilter = filterDefaults;
+        selectedDataType.filter = Object.assign({}, filterDefaults);
 
         const selectedDataTypes = [...this.state.selectedDataTypes];
         selectedDataTypes.splice(previousDataType.index, 1, selectedDataType);
@@ -209,6 +213,23 @@ class AnnualReportDataFormStore extends Store {
         delete dataType.tempFilter;
 
         selectedDataTypes.splice(index, 1, dataType);
+
+        Object.assign(this.state, {
+          selectedDataTypes,
+        });
+
+        this.__emitChange();
+        break;
+      }
+
+      case types.ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE: {
+        const { selection } = payload;
+        const selectedDataTypes = [...this.state.selectedDataTypes];
+        // Assign a copy of the default filter object to the filter.
+        const tempFilter = Object.assign({}, selection.defaultFilter);
+        selection.filter = tempFilter;
+
+        selectedDataTypes[selection.index].filter = tempFilter;
 
         Object.assign(this.state, {
           selectedDataTypes,

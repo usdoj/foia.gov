@@ -18,6 +18,7 @@ class FoiaReportDataTypeFilter extends Component {
     this.handleModalSubmit = this.handleModalSubmit.bind(this);
     this.handleFilterReset = this.handleFilterReset.bind(this);
     this.modalCanSubmit = this.modalCanSubmit.bind(this);
+    this.handleFilterRemove = this.handleFilterRemove.bind(this);
   }
 
   componentWillMount() {
@@ -66,15 +67,25 @@ class FoiaReportDataTypeFilter extends Component {
       index: this.props.selectedDataType.index,
     });
   }
+  handleFilterRemove(e) {
+    this.filterModal.closeModal(e);
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE,
+      selection: this.props.selectedDataType,
+    });
+  }
 
   modalCanSubmit() {
     const filter = this.props.selectedDataType.tempFilter || this.props.selectedDataType.filter;
-    return filter.compareValue !== '' && parseInt(filter.compareValue, 10) >= 0;
+    return (filter.compareValue !== '' && parseInt(filter.compareValue, 10) >= 0) || filter.op === 'is_na';
   }
 
   buildModalContent() {
     const { selectedDataType } = this.props;
     const filter = this.props.selectedDataType.tempFilter || selectedDataType.filter;
+    const noValue = filter.compareValue === '';
+    const parsedValue = parseInt(filter.compareValue, 10);
+    const invalidValue = isNaN(parsedValue) || parsedValue < 0;
 
     return (
       <div className="form-group">
@@ -108,6 +119,7 @@ class FoiaReportDataTypeFilter extends Component {
             <option value="is_na">is equal to N/A</option>
           </select>
         </div>
+        {filter.op !== 'is_na' &&
         <div className="form-group field">
           <label htmlFor="compareValue">Enter a Numeric Value</label>
           <input
@@ -119,21 +131,27 @@ class FoiaReportDataTypeFilter extends Component {
             onChange={this.handleFilterFieldUpdate}
             value={filter.compareValue}
           />
-          {!this.modalCanSubmit() &&
+          {noValue &&
           <p className="usa-input-error-message">Please enter a numeric value to compare.</p>
           }
+          {!noValue && invalidValue &&
+          <p className="usa-input-error-message">Please enter a valid numeric value greater than or equal to zero.</p>
+          }
         </div>
+        }
       </div>
     );
   }
 
   render() {
     const dataTypeSelected = (this.props.selectedDataType.id !== '' && this.props.selectedDataType.id !== 'group_iv_exemption_3_statutes') || false;
-    const resetButton = (<a
-      onClick={this.handleFilterReset}
+    const filterSubmitted = Object.hasOwnProperty.call(this.props.selectedDataType, 'filter') && this.props.selectedDataType.filter.applied;
+    const removeButton = filterSubmitted ? (<a
+      onClick={this.handleFilterRemove}
       style={{ cursor: 'pointer' }}
       href={null}
-    >Reset Attribute</a>);
+    >Remove Filter</a>) : null;
+    const modalText = filterSubmitted ? 'Edit Results Filter' : 'Filter Results';
     return (
       <div>
         <USWDSSelectWidget
@@ -146,13 +164,14 @@ class FoiaReportDataTypeFilter extends Component {
         />
         {dataTypeSelected &&
           <FoiaModal
-            triggerText="Filter Results"
-            ariaLabel="Add Data Filter"
+            ref={(modal) => { this.filterModal = modal; }}
+            triggerText={modalText}
+            ariaLabel={modalText}
             modalContent={this.buildModalContent()}
             onSubmit={this.handleModalSubmit}
             onClose={this.handleFilterReset}
             canSubmit={this.modalCanSubmit}
-            modalAdditionalLink={resetButton}
+            modalAdditionalLink={removeButton}
           />
         }
       </div>

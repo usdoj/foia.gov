@@ -21,6 +21,17 @@ The app uses the same architecture as the [Request app](request-app.md).
 ### Stores
 `/js/stores/annual_report_data_form.js` 
 
+The `AnnualReportDataFormStore` contains the form state for the annual report
+that will be requested. It contains a separate section for each report section
+on the form the user sees.
+```
+    this.state = {
+      selectedAgencies: [{ index: 0 }],
+      selectedDataTypes: [{ index: 0, id: '' }],
+      selectedFiscalYears: [],
+    };
+```
+
 
 ### Models
 
@@ -162,10 +173,22 @@ import FoiaReportDataTypeFilter from './foia_report_data_type_filter';
   />))}
 ```
 
+The Report Data Type Filter section calls `FoiaModal` with the form state for
+the currently selected data type. Upon a valid modal submit, the form state for
+the selected data type's filter object is updated with the values entered in the
+form, and the filter object's `applied` property is set to `true`.
+
+The user may choose to remove a previously saved filter by clicking 
+`Edit Results Filter` and clicking `Remove Filter` in the modal. This will set 
+the `filter` property on the selected data type back to the default values and
+set the `applied` property on the filter to `false`.
+
 
 #### USWDS Select Widget
 A simple component which can be used to create a select list of items which
-supports a placeholder value and an `onChange` handler.
+supports a placeholder value and an `onChange` handler. The component will not
+display a placeholder if and empty string is passed in the `placeholder` prop. 
+The label can be suppressed by passing an empty string for the `title` prop.
 
 Props:
  * `name`: The name property of the select.
