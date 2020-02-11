@@ -27,6 +27,12 @@ class AnnualReportDataTypesStore extends Store {
       [];
   }
 
+  getIncludesForDataType(dataTypeId) {
+    return this.getDataType(dataTypeId).includes ?
+      this.getDataType(dataTypeId).includes :
+      [];
+  }
+
   __onDispatch(payload) {
     switch (payload.type) {
       case types.ANNUAL_REPORT_DATA_TYPES_RECEIVE: {

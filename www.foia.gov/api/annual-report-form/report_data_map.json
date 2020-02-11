@@ -167,6 +167,10 @@
                 "filter": false,
                 "overall_field": false
             }
+        ],
+        "includes": [
+            "field_foia_requests_vb2",
+            "field_foia_requests_vb2.field_foia_req_vb2_info"
         ]
     },
     {
@@ -243,7 +247,7 @@
                 "id": "field_foia_requests_vb3.field_ex_5",
                 "label": "Ex. 5",
                 "filter": true,
-                "overall_field": "overall_vb3_ex_5"
+                "overall_field": "field_overall_vb3_ex_5"
             },
             {
                 "id": "field_foia_requests_vb3.field_ex_6",
@@ -1085,7 +1089,7 @@
                 "id": "field_proc_req_viic1.field_400_up_days",
                 "label": "400+ Days",
                 "filter": true,
-                "overall_field": ""
+                "overall_field": "field_overall_viic1_400_up_days"
             },
             {
                 "id": "field_proc_req_viic1.field_total",
@@ -1185,7 +1189,7 @@
                 "id": "field_proc_req_viic2.field_400_up_days",
                 "label": "400+ Days",
                 "filter": true,
-                "overall_field": ""
+                "overall_field": "field_overall_viic2_400_up_days"
             },
             {
                 "id": "field_proc_req_viic2.field_total",
@@ -1285,7 +1289,7 @@
                 "id": "field_proc_req_viic3.field_400_up_days",
                 "label": "400+ Days",
                 "filter": true,
-                "overall_field": ""
+                "overall_field": "field_overall_viic3_400_up_days"
             },
             {
                 "id": "field_proc_req_viic3.field_total",

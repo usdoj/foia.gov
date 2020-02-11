@@ -1,11 +1,13 @@
 import assert from 'assert';
 import axios from 'axios';
 import settings from 'settings';
+import { List } from 'immutable';
 
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
 import localapi from '../util/local_api';
 import date from '../util/current_date';
+import reportRequestBuilder from '../util/foia_annual_report_request_builder';
 
 // Action types to identify an action
 export const types = {
@@ -183,4 +185,60 @@ export const reportActions = {
     return Promise.resolve();
   },
 
+  /**
+   * Get reports from the api, only including fields from the named sections.
+   *
+   * @param {List<string> | Array<string>} sections
+   *   A list of the section names to retrieve, which will be transformed into
+   *   a map of includes and fields on the jsonapi request.
+   * @param {Boolean} agencyOverall
+   *   A boolean to determine if the request should include the agency overall
+   *   fields if the section.
+   * @param {Function | null} modifier
+   *   An optional function that will get the JsonapiParams request object.
+   *   This function allows modifications to the request such as adding filters
+   *   or limits.  The function must return the updated request object.
+   * @returns {PromiseLike<T> | Promise<T> | *}
+   *
+   * @see js/util/json_api_params.js
+   * @see js/stores/annual_report_data_types.js
+   * @see www.foia.gov/api/annual-report-form/report_data_map.json
+   */
+  fetchAnnualReportData(sections = List(), agencyOverall = true, modifier = null) {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_FETCH,
+    });
+
+    // The default limit could be updated in the
+    // modifier function if it needs to be.
+    let builder = reportRequestBuilder;
+    builder.request.limit(5);
+    builder = builder.includeSections(sections, agencyOverall);
+
+    if (modifier && typeof modifier === 'function') {
+      builder = modifier(builder);
+    }
+
+    return builder
+      .request
+      .paginate('/annual_foia_report', reportActions.receiveAnnualReportData)
+      .then(reportActions.completeAnnualReportData);
+  },
+
+  receiveAnnualReportData(annualReports) {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_RECEIVE,
+      annualReports,
+    });
+
+    return Promise.resolve(annualReports);
+  },
+
+  completeAnnualReportData() {
+    dispatcher.dispatch({
+      type: types.ANNUAL_REPORT_DATA_COMPLETE,
+    });
+
+    return Promise.resolve();
+  },
 };

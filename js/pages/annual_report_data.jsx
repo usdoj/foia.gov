@@ -3,12 +3,14 @@ import { Container } from 'flux/utils';
 import FoiaReportFormSectionOne from '../components/foia_report_form_section_one';
 import FoiaReportFormSectionTwo from '../components/foia_report_form_section_two';
 import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
+import FoiaReportDataSubmit from '../components/foia_report_submit';
 import FoiaReportResultsTable from '../components/foia_report_results_table';
 
 import annualReportDataFormStore from '../stores/annual_report_data_form';
 import agencyComponentStore from '../stores/agency_component';
 import annualReportFiscalYearStore from '../stores/annual_report_fiscal_year';
 import annualReportDataTypesStore from '../stores/annual_report_data_types';
+import annualReportStore from '../stores/annual_report';
 
 import { reportActions } from '../actions/report';
 
@@ -19,6 +21,7 @@ class AnnualReportDataPage extends Component {
       annualReportFiscalYearStore,
       agencyComponentStore,
       annualReportDataTypesStore,
+      annualReportStore,
     ];
   }
 
@@ -45,6 +48,10 @@ class AnnualReportDataPage extends Component {
       dataTypeOptions,
     } = annualReportDataTypesStore.getState();
 
+    const {
+      reports,
+    } = annualReportStore.getState();
+
     return {
       agencies,
       agencyComponents,
@@ -56,6 +63,7 @@ class AnnualReportDataPage extends Component {
       dataTypes,
       dataTypeOptions,
       selectedDataTypes,
+      reports,
     };
   }
 
@@ -105,6 +113,9 @@ class AnnualReportDataPage extends Component {
           <FoiaReportFormSectionThree
             fiscalYears={fiscalYears}
             selectedFiscalYears={selectedFiscalYears}
+          />
+          <FoiaReportDataSubmit
+            selectedDataTypes={selectedDataTypes}
           />
         </form>
         <FoiaReportResultsTable />

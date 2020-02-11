@@ -21,31 +21,29 @@ class FoiaReportFormSectionOne extends Component {
       selectedAgencies,
     } = this.props;
 
-    return (
-      <div>
-        <div className="form-group">
-          <fieldset>
-            <legend className="foia-header-blue-line--h2">
-              1. Select Agencies or Components
-              <FoiaTooltip text={'<p>Select an agency or agencies to view their data. You may also select specific components of an agency (such as the FBI, a component of the Department of Justice), or you may view data for all government agencies.</p>'} />
-            </legend>
-            {selectedAgencies.map((selected, index) => (
-              <ReportAgencyComponentFilter
-                key={index}
-                agencies={agencies}
-                agencyComponents={agencyComponents}
-                agencyFinderDataComplete={agencyFinderDataComplete}
-                agencyFinderDataProgress={agencyFinderDataProgress}
-                selectedAgency={selected}
-              />))}
-            <AddLink
-              eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
-              text="Add Another Agency or Component"
-            />
-          </fieldset>
-        </div>
+    return <div>
+      <div className="form-group">
+        <fieldset>
+          <legend className="foia-header-blue-line--h2">
+            1. Select Agencies or Components
+            <FoiaTooltip text={'<p>Select an agency or agencies to view their data. You may also select specific components of an agency (such as the FBI, a component of the Department of Justice), or you may view data for all government agencies.</p>'} />
+          </legend>
+          {selectedAgencies.map((selected, index) => (
+            <ReportAgencyComponentFilter
+              key={index}
+              agencies={agencies}
+              agencyComponents={agencyComponents}
+              agencyFinderDataComplete={agencyFinderDataComplete}
+              agencyFinderDataProgress={agencyFinderDataProgress}
+              selectedAgency={selected}
+            />))}
+          <AddLink
+            eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
+            text="Add Another Agency or Component"
+          />
+        </fieldset>
       </div>
-    );
+    </div>;
   }
 }
 
