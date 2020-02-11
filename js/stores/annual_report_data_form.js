@@ -99,27 +99,29 @@ class AnnualReportDataFormStore extends Store {
         if (selectedDataType.id === previousDataType.id) {
           break;
         }
-        selectedDataType.fields = annualReportDataTypesStore
-          .getFieldsForDataType(selectedDataType.id);
+        if (selectedDataType.id !== '') {
+          selectedDataType.fields = annualReportDataTypesStore
+            .getFieldsForDataType(selectedDataType.id);
 
-        selectedDataType.filterOptions = selectedDataType
-          .fields
-          .filter(opt => opt.filter)
-          .map(opt => ({
-            value: opt.id,
-            label: opt.label,
-          }));
-        // Add a default filter definition to make removing a submitted filter
-        // easier. This will replace the applied filter if the user chooses to
-        // remove a filter.
-        const filterDefaults = {
-          applied: false,
-          filterField: selectedDataType.filterOptions[0].value,
-          op: 'greater_than',
-          compareValue: '',
-        };
-        selectedDataType.defaultFilter = filterDefaults;
-        selectedDataType.filter = Object.assign({}, filterDefaults);
+          selectedDataType.filterOptions = selectedDataType
+            .fields
+            .filter(opt => opt.filter)
+            .map(opt => ({
+              value: opt.id,
+              label: opt.label,
+            }));
+          // Add a default filter definition to make removing a submitted filter
+          // easier. This will replace the applied filter if the user chooses to
+          // remove a filter.
+          const filterDefaults = {
+            applied: false,
+            filterField: selectedDataType.filterOptions[0].value,
+            op: 'greater_than',
+            compareValue: '',
+          };
+          selectedDataType.defaultFilter = filterDefaults;
+          selectedDataType.filter = Object.assign({}, filterDefaults);
+        }
 
         const selectedDataTypes = [...this.state.selectedDataTypes];
         selectedDataTypes.splice(previousDataType.index, 1, selectedDataType);
