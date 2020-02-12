@@ -41,6 +41,12 @@ class AnnualReportDataPage extends Component {
       selectedAgencies,
       selectedDataTypes,
       selectedFiscalYears,
+      fiscalYearsIsValid,
+      dataTypesIsValid,
+      agencyComponentIsValid,
+      fiscalYearsDisplayError,
+      dataTypeDisplayError,
+      agencyComponentDisplayError,
     } = annualReportDataFormStore.getState();
 
     const {
@@ -59,6 +65,12 @@ class AnnualReportDataPage extends Component {
       agencyFinderDataProgress,
       fiscalYears,
       selectedFiscalYears,
+      fiscalYearsIsValid,
+      dataTypesIsValid,
+      agencyComponentIsValid,
+      fiscalYearsDisplayError,
+      dataTypeDisplayError,
+      agencyComponentDisplayError,
       selectedAgencies,
       dataTypes,
       dataTypeOptions,
@@ -92,6 +104,12 @@ class AnnualReportDataPage extends Component {
       selectedDataTypes,
       fiscalYears,
       selectedFiscalYears,
+      fiscalYearsIsValid,
+      dataTypesIsValid,
+      agencyComponentIsValid,
+      fiscalYearsDisplayError,
+      dataTypeDisplayError,
+      agencyComponentDisplayError,
     } = this.state;
 
     return (
@@ -104,18 +122,24 @@ class AnnualReportDataPage extends Component {
             agencyFinderDataComplete={agencyFinderDataComplete}
             agencyFinderDataProgress={agencyFinderDataProgress}
             selectedAgencies={selectedAgencies}
+            agencyComponentDisplayError={agencyComponentDisplayError}
           />
           <FoiaReportFormSectionTwo
             dataTypes={dataTypes}
             dataTypeOptions={dataTypeOptions}
             selectedDataTypes={selectedDataTypes}
+            dataTypeDisplayError={dataTypeDisplayError}
           />
           <FoiaReportFormSectionThree
             fiscalYears={fiscalYears}
             selectedFiscalYears={selectedFiscalYears}
+            fiscalYearsDisplayError={fiscalYearsDisplayError}
           />
           <FoiaReportDataSubmit
             selectedDataTypes={selectedDataTypes}
+            agencyComponentIsValid={agencyComponentIsValid}
+            dataTypesIsValid={dataTypesIsValid}
+            fiscalYearsIsValid={fiscalYearsIsValid}
           />
         </form>
         <FoiaReportResultsTable />

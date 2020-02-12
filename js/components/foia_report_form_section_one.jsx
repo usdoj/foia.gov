@@ -19,6 +19,7 @@ class FoiaReportFormSectionOne extends Component {
       agencyFinderDataComplete,
       agencyFinderDataProgress,
       selectedAgencies,
+      agencyComponentDisplayError,
     } = this.props;
 
     return <div>
@@ -36,6 +37,7 @@ class FoiaReportFormSectionOne extends Component {
               agencyFinderDataComplete={agencyFinderDataComplete}
               agencyFinderDataProgress={agencyFinderDataProgress}
               selectedAgency={selected}
+              agencyComponentDisplayError={agencyComponentDisplayError}
             />))}
           <AddLink
             eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
@@ -53,6 +55,7 @@ FoiaReportFormSectionOne.propTypes = {
   selectedAgencies: PropTypes.array,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
+  agencyComponentDisplayError: PropTypes.bool.isRequired,
 };
 
 FoiaReportFormSectionOne.defaultProps = {

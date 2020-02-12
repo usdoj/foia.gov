@@ -108,6 +108,7 @@ class ReportAgencyComponentFilter extends Component {
       agencyFinderDataProgress,
       agencyFinderDataComplete,
       selectedAgency,
+      agencyComponentDisplayError,
     } = this.props;
 
     const agencyIsSelected = (this.props.selectedAgency.id !== 0 && this.props.selectedAgency.type === 'agency') || false;
@@ -121,6 +122,7 @@ class ReportAgencyComponentFilter extends Component {
           agencyFinderDataProgress={agencyFinderDataProgress}
           agencyFinderDataComplete={agencyFinderDataComplete}
           selectedAgency={selectedAgency}
+          agencyComponentDisplayError={agencyComponentDisplayError}
         />
         {agencyIsSelected && !isCentralizedAgency &&
         <FoiaModal
@@ -143,6 +145,7 @@ ReportAgencyComponentFilter.propTypes = {
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
   selectedAgency: PropTypes.object,
+  agencyComponentDisplayError: PropTypes.bool.isRequired,
 };
 
 ReportAgencyComponentFilter.defaultProps = {

@@ -57,6 +57,10 @@ form [type=submit] {
   margin: $space-4x 0;
 }
 
+form .with-siblings[type=submit] {
+  margin: 0.5em;
+}
+
 .close-button {
   width: 4.4rem;
   height: 4.4rem;

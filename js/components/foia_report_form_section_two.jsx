@@ -18,6 +18,7 @@ class FoiaReportFormSectionTwo extends Component {
       dataTypes,
       dataTypeOptions,
       selectedDataTypes,
+      dataTypeDisplayError,
     } = this.props;
 
     return (
@@ -39,6 +40,7 @@ class FoiaReportFormSectionTwo extends Component {
                 dataTypes={dataTypes}
                 dataTypeOptions={dataTypeOptions}
                 selectedDataType={selected}
+                dataTypeDisplayError={dataTypeDisplayError}
               />))}
 
             <AddLink
@@ -56,6 +58,7 @@ FoiaReportFormSectionTwo.propTypes = {
   dataTypes: PropTypes.instanceOf(OrderedMap),
   dataTypeOptions: PropTypes.instanceOf(List),
   selectedDataTypes: PropTypes.array,
+  dataTypeDisplayError: PropTypes.bool.isRequired,
 };
 
 FoiaReportFormSectionTwo.defaultProps = {

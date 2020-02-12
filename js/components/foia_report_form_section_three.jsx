@@ -14,6 +14,7 @@ import { reportActions } from '../actions/report';
 class FoiaReportFormSectionThree extends Component {
   static handleSelectNone(event) {
     reportActions.updateSelectedFiscalYears([]);
+    reportActions.validateFiscalYearsField([]);
     event.preventDefault();
   }
 
@@ -26,6 +27,7 @@ class FoiaReportFormSectionThree extends Component {
 
   handleSelectAll(event) {
     reportActions.updateSelectedFiscalYears([...this.props.fiscalYears]);
+    reportActions.validateFiscalYearsField([...this.props.selectedFiscalYears]);
     event.preventDefault();
   }
 
@@ -36,10 +38,15 @@ class FoiaReportFormSectionThree extends Component {
       [...this.props.selectedFiscalYears].concat([value]) :
       [...this.props.selectedFiscalYears].filter(year => value !== year);
     reportActions.updateSelectedFiscalYears(selected);
+    reportActions.validateFiscalYearsField(selected);
   }
 
   render() {
-    const { fiscalYears, selectedFiscalYears } = this.props;
+    const { fiscalYears, selectedFiscalYears, fiscalYearsDisplayError } = this.props;
+    const checkboxFieldsetClasses = ['usa-fieldset-inputs'];
+    if (fiscalYearsDisplayError) {
+      checkboxFieldsetClasses.push('usa-input-error');
+    }
     return (
       <div>
         <div className="form-group">
@@ -48,7 +55,7 @@ class FoiaReportFormSectionThree extends Component {
               3. Select Fiscal Years
               <FoiaTooltip text={'<p>Select a Fiscal Year to view the data for that year. You may select multiple years, or you may view all years of available data.</p>'} />
             </legend>
-            <fieldset className="usa-fieldset-inputs">
+            <fieldset className={checkboxFieldsetClasses.join(' ')}>
               <legend className="usa-sr-only">Select Fiscal Years</legend>
               <ul className="usa-unstyled-list usa-grid checkbox-list">
                 { fiscalYears.map(fiscalYear => (
@@ -61,13 +68,16 @@ class FoiaReportFormSectionThree extends Component {
                   </li>
                 ))}
               </ul>
-              <div className="form-group">
-                <ul className="inline-list--centered">
-                  <li><a href="#" onClick={this.handleSelectAll}>Select All</a></li>
-                  <li><a href="#" onClick={FoiaReportFormSectionThree.handleSelectNone}>Select None</a></li>
-                </ul>
-              </div>
             </fieldset>
+            {fiscalYearsDisplayError &&
+              <p className="usa-input-error-message">At least one Fiscal Year is required.</p>
+            }
+            <div className="form-group">
+              <ul className="inline-list--centered">
+                <li><a href="#" onClick={this.handleSelectAll}>Select All</a></li>
+                <li><a href="#" onClick={FoiaReportFormSectionThree.handleSelectNone}>Select None</a></li>
+              </ul>
+            </div>
           </fieldset>
         </div>
       </div>
@@ -78,6 +88,7 @@ class FoiaReportFormSectionThree extends Component {
 FoiaReportFormSectionThree.propTypes = {
   fiscalYears: PropTypes.instanceOf(List),
   selectedFiscalYears: PropTypes.array,
+  fiscalYearsDisplayError: PropTypes.bool.isRequired,
 };
 
 FoiaReportFormSectionThree.defaultProps = {

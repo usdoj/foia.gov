@@ -38,6 +38,10 @@ export const types = {
   ANNUAL_REPORT_DATA_TYPE_FILTER_SUBMIT: 'ANNUAL_REPORT_DATA_TYPE_FILTER_SUBMIT',
   ANNUAL_REPORT_DATA_TYPE_FILTER_RESET: 'ANNUAL_REPORT_DATA_TYPE_FILTER_RESET',
   ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE: 'ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE',
+  AGENCY_COMPONENT_FIELD_HAS_ERRORS: 'AGENCY_COMPONENT_FIELD_HAS_ERRORS',
+  DATA_TYPE_FIELD_HAS_ERRORS: 'DATA_TYPE_FIELD_HAS_ERRORS',
+  FISCAL_YEAR_FIELD_HAS_ERRORS: 'FISCAL_YEAR_FIELD_HAS_ERRORS',
+  FORM_HAS_ERRORS: 'FORM_HAS_ERRORS',
 };
 
 // Action creators, to dispatch actions
@@ -185,6 +189,39 @@ export const reportActions = {
     return Promise.resolve();
   },
 
+  validateAgencyComponentField(selection) {
+    dispatcher.dispatch({
+      type: types.AGENCY_COMPONENT_FIELD_HAS_ERRORS,
+      selectedAgency: selection,
+    });
+
+    return Promise.resolve();
+  },
+
+  validateDataTypeField() {
+    dispatcher.dispatch({
+      type: types.DATA_TYPE_FIELD_HAS_ERRORS,
+    });
+
+    return Promise.resolve();
+  },
+
+  validateFiscalYearsField() {
+    dispatcher.dispatch({
+      type: types.FISCAL_YEAR_FIELD_HAS_ERRORS,
+    });
+
+    return Promise.resolve();
+  },
+
+  returnFieldValidationStateOnSubmit() {
+    dispatcher.dispatch({
+      type: types.FORM_HAS_ERRORS,
+    });
+
+    return Promise.resolve();
+  },
+
   /**
    * Get reports from the api, only including fields from the named sections.
    *
@@ -230,7 +267,6 @@ export const reportActions = {
       type: types.ANNUAL_REPORT_DATA_RECEIVE,
       annualReports,
     });
-
     return Promise.resolve(annualReports);
   },
 

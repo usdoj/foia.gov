@@ -5,7 +5,7 @@ import { uniqueId } from 'lodash';
 
 import tokenizers from '../util/tokenizers';
 import dispatcher from '../util/dispatcher';
-import { types } from '../actions/report';
+import { reportActions, types } from '../actions/report';
 
 
 // Only load typeahead in the browser (avoid loading it for tests)
@@ -222,13 +222,17 @@ class ReportAgencyComponentTypeahead extends Component {
       selectedAgency: selection,
       previousAgency: this.props.selectedAgency,
     });
+
+    reportActions.validateAgencyComponentField(selection);
   }
 
   render() {
+    const {
+      agencyComponentDisplayError,
+    } = this.props;
     const loading = !this.props.agencyFinderDataComplete;
-    const hasError = Object.prototype.hasOwnProperty.call(this.props.selectedAgency, 'error');
     const wrapperClasses = ['form-group'];
-    if (hasError) {
+    if (agencyComponentDisplayError) {
       wrapperClasses.push('usa-input-error');
     }
 
@@ -248,7 +252,7 @@ class ReportAgencyComponentTypeahead extends Component {
             onKeyPress={this.handleKeyPress}
           />
         </div>
-        {hasError &&
+        {agencyComponentDisplayError &&
         <p className="usa-input-error-message">An agency or component is required.</p>
         }
       </div>
@@ -264,6 +268,7 @@ ReportAgencyComponentTypeahead.propTypes = {
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
   selectedAgency: PropTypes.object,
+  agencyComponentDisplayError: PropTypes.bool.isRequired,
 };
 
 ReportAgencyComponentTypeahead.defaultProps = {

@@ -12,6 +12,12 @@ class AnnualReportDataFormStore extends Store {
       selectedAgencies: [{ index: 0 }],
       selectedDataTypes: [{ index: 0, id: '' }],
       selectedFiscalYears: [],
+      fiscalYearsIsValid: false,
+      dataTypesIsValid: false,
+      agencyComponentIsValid: false,
+      fiscalYearsDisplayError: false,
+      dataTypeDisplayError: false,
+      agencyComponentDisplayError: false,
     };
   }
 
@@ -153,6 +159,45 @@ class AnnualReportDataFormStore extends Store {
         }
 
         Object.assign(this.state, { selectedFiscalYears: data });
+        this.__emitChange();
+        break;
+      }
+
+      case types.AGENCY_COMPONENT_FIELD_HAS_ERRORS: {
+        const { selectedAgency } = payload;
+        const agencyComponentIsValid = !selectedAgency.error;
+
+        Object.assign(this.state, { agencyComponentIsValid });
+        this.__emitChange();
+        break;
+      }
+
+      case types.DATA_TYPE_FIELD_HAS_ERRORS: {
+        const dataTypesIsValid = [...this.state.selectedDataTypes][0].id.length > 0;
+
+        Object.assign(this.state, { dataTypesIsValid });
+        this.__emitChange();
+        break;
+      }
+
+      case types.FISCAL_YEAR_FIELD_HAS_ERRORS: {
+        const fiscalYearsIsValid = this.state.selectedFiscalYears.length > 0;
+
+        Object.assign(this.state, { fiscalYearsIsValid });
+        this.__emitChange();
+        break;
+      }
+
+      case types.FORM_HAS_ERRORS: {
+        Object.assign(this.state, {
+          agencyComponentDisplayError: !this.state.agencyComponentIsValid,
+        });
+        Object.assign(this.state, {
+          dataTypeDisplayError: !this.state.dataTypesIsValid,
+        });
+        Object.assign(this.state, {
+          fiscalYearsDisplayError: !this.state.fiscalYearsIsValid,
+        });
         this.__emitChange();
         break;
       }

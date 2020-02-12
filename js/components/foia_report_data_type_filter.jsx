@@ -7,7 +7,7 @@ import USWDSSelectWidget from './uswds_select_widget';
 import FoiaModal from './foia_modal';
 import FoiaTooltip from './foia_tooltip';
 import dispatcher from '../util/dispatcher';
-import { types } from '../actions/report';
+import { reportActions, types } from '../actions/report';
 
 class FoiaReportDataTypeFilter extends Component {
   constructor(props) {
@@ -38,6 +38,8 @@ class FoiaReportDataTypeFilter extends Component {
       selectedDataType: selection,
       previousDataType: this.props.selectedDataType,
     });
+
+    reportActions.validateDataTypeField(selection);
   }
 
   handleFilterFieldUpdate(e) {
@@ -144,6 +146,7 @@ class FoiaReportDataTypeFilter extends Component {
   }
 
   render() {
+    const { dataTypeDisplayError } = this.props;
     const dataTypeSelected = (this.props.selectedDataType.id !== '' && this.props.selectedDataType.id !== 'group_iv_exemption_3_statutes') || false;
     const filterSubmitted = Object.hasOwnProperty.call(this.props.selectedDataType, 'filter') && this.props.selectedDataType.filter.applied;
     const removeButton = filterSubmitted ? (<a
@@ -152,6 +155,8 @@ class FoiaReportDataTypeFilter extends Component {
       href={null}
     >Remove Filter</a>) : null;
     const modalText = filterSubmitted ? 'Edit Results Filter' : 'Filter Results';
+    const fieldsetClasses = dataTypeDisplayError ? 'usa-fieldset-inputs usa-input-error' : 'usa-fieldset-inputs';
+
     return (
       <div>
         <USWDSSelectWidget
@@ -161,7 +166,11 @@ class FoiaReportDataTypeFilter extends Component {
           value={this.props.selectedDataType.id}
           options={[...this.props.dataTypeOptions]}
           handleChange={this.handleDataTypeChange}
+          fieldsetClasses={fieldsetClasses}
         />
+        {dataTypeDisplayError &&
+        <p className="usa-input-error-message">A Data Type is required.</p>
+        }
         {dataTypeSelected &&
           <FoiaModal
             ref={(modal) => { this.filterModal = modal; }}
@@ -182,6 +191,7 @@ class FoiaReportDataTypeFilter extends Component {
 FoiaReportDataTypeFilter.propTypes = {
   dataTypeOptions: PropTypes.instanceOf(List),
   selectedDataType: PropTypes.object,
+  dataTypeDisplayError: PropTypes.bool.isRequired,
 };
 
 FoiaReportDataTypeFilter.defaultProps = {

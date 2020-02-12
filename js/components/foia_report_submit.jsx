@@ -6,18 +6,41 @@ class FoiaReportDataSubmit extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDownloadCSV = this.handleDownloadCSV.bind(this);
+    this.formIsValid = this.formIsValid.bind(this);
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    reportActions.fetchAnnualReportData(this.props.selectedDataTypes);
+  formIsValid() {
+    const validationFieldCheck = [
+      this.props.agencyComponentIsValid,
+      this.props.dataTypesIsValid,
+      this.props.fiscalYearsIsValid,
+    ];
+
+    return validationFieldCheck.every(Boolean);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    reportActions.returnFieldValidationStateOnSubmit();
+    if (this.formIsValid()) {
+      reportActions.fetchAnnualReportData(this.props.selectedDataTypes);
+    }
+  }
+
+  handleDownloadCSV(event) {
+    event.preventDefault();
+    reportActions.returnFieldValidationStateOnSubmit();
+    if (this.formIsValid()) {
+      // print the CSV
+    }
   }
 
   render() {
     return (
       <div className="form-group form-group_footer">
-        <button onClick={this.handleSubmit} className="usa-button usa-button-big usa-button-primary-alt">View Report</button>
-        <button onClick="" className="usa-button usa-button-big usa-button-outline">Download CSV</button>
+        <button onClick={this.handleSubmit} type="submit" className="usa-button usa-button-big usa-button-primary-alt with-siblings">View Report</button>
+        <button onClick={this.handleDownloadCSV} type="button" className="usa-button usa-button-big usa-button-outline">Download CSV</button>
         <a>Clear Search</a>
       </div>
     );
@@ -26,6 +49,9 @@ class FoiaReportDataSubmit extends Component {
 
 FoiaReportDataSubmit.propTypes = {
   selectedDataTypes: PropTypes.array,
+  fiscalYearsIsValid: PropTypes.bool.isRequired,
+  dataTypesIsValid: PropTypes.bool.isRequired,
+  agencyComponentIsValid: PropTypes.bool.isRequired,
 };
 
 FoiaReportDataSubmit.defaultProps = {
