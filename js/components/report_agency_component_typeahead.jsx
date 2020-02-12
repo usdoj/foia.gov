@@ -253,7 +253,7 @@ class ReportAgencyComponentTypeahead extends Component {
           />
         </div>
         {agencyComponentDisplayError &&
-        <p className="usa-input-error-message">An agency or component is required.</p>
+        <p className="usa-input-error-message">An Agency or Component is required.</p>
         }
       </div>
     );
