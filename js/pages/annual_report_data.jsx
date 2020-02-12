@@ -47,6 +47,7 @@ class AnnualReportDataPage extends Component {
       fiscalYearsDisplayError,
       dataTypeDisplayError,
       agencyComponentDisplayError,
+      tableDataTypes,
     } = annualReportDataFormStore.getState();
 
     const {
@@ -71,12 +72,21 @@ class AnnualReportDataPage extends Component {
       fiscalYearsDisplayError,
       dataTypeDisplayError,
       agencyComponentDisplayError,
+      tableDataTypes,
       selectedAgencies,
       dataTypes,
       dataTypeOptions,
       selectedDataTypes,
       reports,
     };
+  }
+
+  triggerCSV(event) {
+    event.preventDefault();
+
+    this.state.tableDataTypes.forEach((selectedDataType) => {
+      this.reportTable.downloadCSV(selectedDataType);
+    });
   }
 
   componentDidMount() {
@@ -140,9 +150,17 @@ class AnnualReportDataPage extends Component {
             agencyComponentIsValid={agencyComponentIsValid}
             dataTypesIsValid={dataTypesIsValid}
             fiscalYearsIsValid={fiscalYearsIsValid}
+            onClick={this.triggerCSV.bind(this)}
           />
         </form>
-        <FoiaReportResultsTable />
+
+        <div className="results-toolbar">
+          <button type="button" className="usa-button usa-button-big usa-button-primary-alt">Print</button>
+          <button onClick={this.triggerCSV.bind(this)} type="button" className="usa-button usa-button-big usa-button-primary-alt">Download CSV</button>
+        </div>
+        <FoiaReportResultsTable
+          ref={reportTable => this.reportTable = reportTable}
+        />
       </div>
     );
   }

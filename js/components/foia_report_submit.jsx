@@ -21,10 +21,12 @@ class FoiaReportDataSubmit extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
     reportActions.returnFieldValidationStateOnSubmit();
     if (this.formIsValid()) {
       reportActions.fetchAnnualReportData(this.props.selectedDataTypes);
+    }
+    else {
+      event.preventDefault();
     }
   }
 
@@ -32,7 +34,7 @@ class FoiaReportDataSubmit extends Component {
     event.preventDefault();
     reportActions.returnFieldValidationStateOnSubmit();
     if (this.formIsValid()) {
-      // print the CSV
+      this.props.onClick(event);
     }
   }
 
@@ -52,6 +54,7 @@ FoiaReportDataSubmit.propTypes = {
   fiscalYearsIsValid: PropTypes.bool.isRequired,
   dataTypesIsValid: PropTypes.bool.isRequired,
   agencyComponentIsValid: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 FoiaReportDataSubmit.defaultProps = {

@@ -152,6 +152,28 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
+      case types.GET_TABLE_DATA_TYPES: {
+        const { dataTypeOptions } = payload;
+        const tableDataTypes = [];
+        this.state.selectedDataTypes.forEach((selectedDataType) => {
+          if (selectedDataType.id.length > 0) {
+            const selectedID = selectedDataType.id;
+            dataTypeOptions.forEach((dataTypeOption) => {
+              const optionValue = dataTypeOption.value;
+              if (selectedID === optionValue) {
+                let tableDataType = dataTypeOption.label;
+                tableDataType = tableDataType.replace(/[^a-zA-Z ]/g, "").trim().replace(/[^A-Z0-9]+/ig, "-").toLowerCase();
+                tableDataTypes.push(tableDataType)
+              }
+            });
+          }
+        });
+
+        Object.assign(this.state, { tableDataTypes });
+        this.__emitChange();
+        break;
+      }
+
       case types.SELECTED_FISCAL_YEARS_UPDATE: {
         const { data } = payload;
         if (!Array.isArray(data)) {

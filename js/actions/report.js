@@ -42,6 +42,7 @@ export const types = {
   DATA_TYPE_FIELD_HAS_ERRORS: 'DATA_TYPE_FIELD_HAS_ERRORS',
   FISCAL_YEAR_FIELD_HAS_ERRORS: 'FISCAL_YEAR_FIELD_HAS_ERRORS',
   FORM_HAS_ERRORS: 'FORM_HAS_ERRORS',
+  GET_TABLE_DATA_TYPES: 'GET_TABLE_DATA_TYPES',
 };
 
 // Action creators, to dispatch actions
@@ -217,6 +218,15 @@ export const reportActions = {
   returnFieldValidationStateOnSubmit() {
     dispatcher.dispatch({
       type: types.FORM_HAS_ERRORS,
+    });
+
+    return Promise.resolve();
+  },
+
+  getTableDataTypes(dataTypeOptions) {
+    dispatcher.dispatch({
+      type: types.GET_TABLE_DATA_TYPES,
+      dataTypeOptions,
     });
 
     return Promise.resolve();
