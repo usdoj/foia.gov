@@ -43,10 +43,6 @@ function datums({ agencies, agencyComponents }) {
 
 
 class ReportAgencyComponentTypeahead extends Component {
-  static display(datum) {
-    return datum.agency ? `${datum.title} (${datum.agency.name})` : datum.title;
-  }
-
   constructor(props) {
     super(props);
 
@@ -180,6 +176,12 @@ class ReportAgencyComponentTypeahead extends Component {
       }
     });
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  display(datum) {
+    return datum.agency ? `${datum.title} (${datum.agency.name})` : datum.title;
+  }
+
 
   handleKeyPress(e) {
     if (e.key !== 'Enter') {
