@@ -43,6 +43,10 @@ function datums({ agencies, agencyComponents }) {
 
 
 class ReportAgencyComponentTypeahead extends Component {
+  static display(datum) {
+    return datum.agency ? `${datum.title} (${datum.agency.name})` : datum.title;
+  }
+
   constructor(props) {
     super(props);
 
@@ -151,15 +155,6 @@ class ReportAgencyComponentTypeahead extends Component {
     this.index(nextProps);
   }
 
-  handleKeyPress(e) {
-    if (e.key !== 'Enter') {
-      return;
-    }
-
-    e.preventDefault();
-    this.setFromValue(this.typeahead.typeahead('val'));
-  }
-
   setFromValue(value) {
     // Get rid of agency names if the value is an agency component with the name in parens.
     // This matches how the suggestion title would be displayed and converts to
@@ -186,6 +181,15 @@ class ReportAgencyComponentTypeahead extends Component {
     });
   }
 
+  handleKeyPress(e) {
+    if (e.key !== 'Enter') {
+      return;
+    }
+
+    e.preventDefault();
+    this.setFromValue(this.typeahead.typeahead('val'));
+  }
+
   index(props) {
     if (this.isIndexed) {
       return;
@@ -204,10 +208,6 @@ class ReportAgencyComponentTypeahead extends Component {
       agencies: agencies.valueSeq(), // Pull the values, convert to sequence
       agencyComponents,
     }));
-  }
-
-  display(datum) {
-    return datum.agency ? `${datum.title} (${datum.agency.name})` : datum.title;
   }
 
   handleChange(selection) {

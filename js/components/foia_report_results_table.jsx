@@ -20,9 +20,7 @@ class FoiaReportResultsTable extends Component {
     this.state = {
       reportTable: false,
     };
-
   }
-
 
   componentDidMount() {
     const sampleData = [

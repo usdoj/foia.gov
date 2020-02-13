@@ -24,8 +24,7 @@ class FoiaReportDataSubmit extends Component {
     reportActions.returnFieldValidationStateOnSubmit();
     if (this.formIsValid()) {
       reportActions.fetchAnnualReportData(this.props.selectedDataTypes);
-    }
-    else {
+    } else {
       event.preventDefault();
     }
   }

@@ -91,8 +91,8 @@ class ReportAgencyComponentFilter extends Component {
             }
             <div className="form-group">
               <ul className="inline-list--centered">
-                <li><a href="#" onClick={e => this.handleSelectAll(e, true)}>Select All</a></li>
-                <li><a href="#" onClick={e => this.handleSelectAll(e, false)}>Select None</a></li>
+                <li><a href="" onClick={e => this.handleSelectAll(e, true)}>Select All</a></li>
+                <li><a href="" onClick={e => this.handleSelectAll(e, false)}>Select None</a></li>
               </ul>
             </div>
           </fieldset>

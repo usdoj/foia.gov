@@ -5,12 +5,6 @@ import FoiaTooltip from './foia_tooltip';
 import FoiaReportFormCheckboxWidget from './foia_report_form_checkbox_widget';
 import { reportActions } from '../actions/report';
 
-
-/**
- * README!: The assumption of this file is that it is a 'good enough'
- * holding place for the section two markup at the moment.  This should all be updated
- * as we break the markup into better components.
- */
 class FoiaReportFormSectionThree extends Component {
   static handleSelectNone(event) {
     reportActions.updateSelectedFiscalYears([]);
@@ -74,8 +68,8 @@ class FoiaReportFormSectionThree extends Component {
             }
             <div className="form-group">
               <ul className="inline-list--centered">
-                <li><a href="#" onClick={this.handleSelectAll}>Select All</a></li>
-                <li><a href="#" onClick={FoiaReportFormSectionThree.handleSelectNone}>Select None</a></li>
+                <li><a href="" onClick={this.handleSelectAll}>Select All</a></li>
+                <li><a href="" onClick={FoiaReportFormSectionThree.handleSelectNone}>Select None</a></li>
               </ul>
             </div>
           </fieldset>

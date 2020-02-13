@@ -6,11 +6,7 @@ import ReportAgencyComponentFilter from './report_agency_component_filter';
 import AddLink from './add_link';
 import { types } from '../actions/report';
 
-/**
- * README!: The assumption of this file is that it is a 'good enough'
- * holding place for the section two markup at the moment.  This should all be updated
- * as we break the markup into better components.
- */
+/* eslint-disable-next-line react/prefer-stateless-function */
 class FoiaReportFormSectionOne extends Component {
   render() {
     const {
@@ -22,30 +18,32 @@ class FoiaReportFormSectionOne extends Component {
       agencyComponentDisplayError,
     } = this.props;
 
-    return <div>
-      <div className="form-group">
-        <fieldset>
-          <legend className="foia-header-blue-line--h2">
-            1. Select Agencies or Components
-            <FoiaTooltip text={'<p>Select an agency or agencies to view their data. You may also select specific components of an agency (such as the FBI, a component of the Department of Justice), or you may view data for all government agencies.</p>'} />
-          </legend>
-          {selectedAgencies.map((selected, index) => (
-            <ReportAgencyComponentFilter
-              key={index}
-              agencies={agencies}
-              agencyComponents={agencyComponents}
-              agencyFinderDataComplete={agencyFinderDataComplete}
-              agencyFinderDataProgress={agencyFinderDataProgress}
-              selectedAgency={selected}
-              agencyComponentDisplayError={agencyComponentDisplayError}
-            />))}
-          <AddLink
-            eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
-            text="Add Another Agency or Component"
-          />
-        </fieldset>
+    return (
+      <div>
+        <div className="form-group">
+          <fieldset>
+            <legend className="foia-header-blue-line--h2">
+              1. Select Agencies or Components
+              <FoiaTooltip text={'<p>Select an agency or agencies to view their data. You may also select specific components of an agency (such as the FBI, a component of the Department of Justice), or you may view data for all government agencies.</p>'} />
+            </legend>
+            {selectedAgencies.map((selected, index) => (
+              <ReportAgencyComponentFilter
+                key={index} // eslint-disable-line react/no-array-index-key
+                agencies={agencies}
+                agencyComponents={agencyComponents}
+                agencyFinderDataComplete={agencyFinderDataComplete}
+                agencyFinderDataProgress={agencyFinderDataProgress}
+                selectedAgency={selected}
+                agencyComponentDisplayError={agencyComponentDisplayError}
+              />))}
+            <AddLink
+              eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
+              text="Add Another Agency or Component"
+            />
+          </fieldset>
+        </div>
       </div>
-    </div>;
+    );
   }
 }
 

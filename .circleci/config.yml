@@ -60,9 +60,9 @@ jobs:
       # Attach the build files for testing
       - attach_workspace:
           at: .
-#      - run:
-#          name: Run tests
-#          command: make test
+      - run:
+          name: Run tests
+          command: make test
 
 
   # Build for the Acquia Cloud development environment

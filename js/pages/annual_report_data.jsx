@@ -25,7 +25,7 @@ class AnnualReportDataPage extends Component {
     ];
   }
 
-  static calculateState(prevState) {
+  static calculateState() {
     const {
       fiscalYears,
     } = annualReportFiscalYearStore.getState();
@@ -81,14 +81,6 @@ class AnnualReportDataPage extends Component {
     };
   }
 
-  triggerCSV(event) {
-    event.preventDefault();
-
-    this.state.tableDataTypes.forEach((selectedDataType) => {
-      this.reportTable.downloadCSV(selectedDataType);
-    });
-  }
-
   componentDidMount() {
     reportActions.fetchAnnualReportDataFiscalYears();
     reportActions.fetchAnnualReportDataTypes();
@@ -100,6 +92,14 @@ class AnnualReportDataPage extends Component {
 
     // Pre-fetch the list of agencies and components for typeahead
     reportActions.fetchAgencyFinderData();
+  }
+
+  triggerCSV(event) {
+    event.preventDefault();
+
+    this.state.tableDataTypes.forEach((selectedDataType) => {
+      this.reportTable.downloadCSV(selectedDataType);
+    });
   }
 
   render() {
@@ -159,7 +159,7 @@ class AnnualReportDataPage extends Component {
           <button onClick={this.triggerCSV.bind(this)} type="button" className="usa-button usa-button-big usa-button-primary-alt">Download CSV</button>
         </div>
         <FoiaReportResultsTable
-          ref={reportTable => this.reportTable = reportTable}
+          ref={(reportTable) => { this.reportTable = reportTable; }}
         />
       </div>
     );

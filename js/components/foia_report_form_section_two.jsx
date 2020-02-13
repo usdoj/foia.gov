@@ -7,11 +7,7 @@ import AddLink from './add_link';
 import FoiaReportDataTypeFilter from './foia_report_data_type_filter';
 import { types } from '../actions/report';
 
-/**
- * README!: The assumption of this file is that it is a 'good enough'
- * holding place for the section two markup at the moment.  This should all be
- * updated as we break the markup into better components.
- */
+/* eslint-disable-next-line react/prefer-stateless-function */
 class FoiaReportFormSectionTwo extends Component {
   render() {
     const {
@@ -36,7 +32,7 @@ class FoiaReportFormSectionTwo extends Component {
 
             {selectedDataTypes.map((selected, index) => (
               <FoiaReportDataTypeFilter
-                key={index}
+                key={index} // eslint-disable-line react/no-array-index-key
                 dataTypes={dataTypes}
                 dataTypeOptions={dataTypeOptions}
                 selectedDataType={selected}

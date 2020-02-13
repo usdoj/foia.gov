@@ -162,8 +162,8 @@ class AnnualReportDataFormStore extends Store {
               const optionValue = dataTypeOption.value;
               if (selectedID === optionValue) {
                 let tableDataType = dataTypeOption.label;
-                tableDataType = tableDataType.replace(/[^a-zA-Z ]/g, "").trim().replace(/[^A-Z0-9]+/ig, "-").toLowerCase();
-                tableDataTypes.push(tableDataType)
+                tableDataType = tableDataType.replace(/[^a-zA-Z ]/g, '').trim().replace(/[^A-Z0-9]+/ig, '-').toLowerCase();
+                tableDataTypes.push(tableDataType);
               }
             });
           }

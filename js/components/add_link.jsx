@@ -19,7 +19,7 @@ class AddLink extends Component {
   render() {
     return (
       <div className="form-group field use-dark-icons">
-        <a href="#" onClick={this.dispatchChange}><span className="icon-plus" />
+        <a href="" onClick={this.dispatchChange}><span className="icon-plus" />
           {this.props.text}
         </a>
       </div>
