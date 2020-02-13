@@ -2,6 +2,7 @@
   {
     "id": "group_v_a_foia_requests_received",
     "label": "Requests",
+    "pretty": "Received, Processed and Pending FOIA Requests",
     "fields": [
       {
         "id": "field_foia_requests_va.field_req_pend_start_yr",
@@ -42,6 +43,7 @@
   {
     "id": "group_overall_vb1_main",
     "label": " - Disposition (Dis.)",
+    "pretty": "Disposition of FOIA Requests - All Processed Requests",
     "fields": [
       {
         "id": "field_foia_requests_vb1.field_full_grants",
@@ -136,6 +138,7 @@
   {
     "id": "group_v_b_2_disposition_of_foia_",
     "label": " - Dis. - \"Other\" Reasons",
+    "pretty": "Disposition of FOIA Requests - Other Reasons",
     "fields": [
       {
         "id": "field_foia_requests_vb2.field_foia_req_vb2_info.field_desc_oth_reasons",
@@ -171,6 +174,7 @@
   {
     "id": "group_viii_a_requests_for_expedi",
     "label": " - Expedited Processing",
+    "pretty": "Requests for Expedited Processing",
     "fields": [
       {
         "id": "field_req_viiia.field_num_grant",
@@ -217,6 +221,7 @@
   {
     "id": "group_v_b_3_disposition_of_foia_",
     "label": "Exemptions",
+    "pretty": "Disposition of FOIA Requests - Number of Times Exemptions Applied",
     "fields": [
       {
         "id": "field_foia_requests_vb3.field_ex_1",
@@ -317,6 +322,7 @@
   {
     "id": "group_iv_exemption_3_statutes",
     "label": " - Exemption 3 Statutes",
+    "pretty": "Exemption 3 Statutes",
     "fields": [
       {
         "id": "field_statute_iv.field_statute",
@@ -358,6 +364,7 @@
   {
     "id": "group_vi_a_administrative_appeal",
     "label": "Appeals",
+    "pretty": "Received, Processed and Pending Administrative Appeals",
     "fields": [
       {
         "id": "field_admin_app_via.field_app_pend_start_yr",
@@ -398,6 +405,7 @@
   {
     "id": "group_vi_b_disposition_of_admini",
     "label": " - Disposition (Dis.)",
+    "pretty": "Disposition of Administrative Appeals - All Processed Appeals",
     "fields": [
       {
         "id": "field_admin_app_vib.field_affirmed_on_app",
@@ -444,6 +452,7 @@
   {
     "id": "group_vi_c_1_reasons_for_denial_",
     "label": " - Dis. - Use of Exemptions",
+    "pretty": "Reasons for Denial on Appeal - Number of Times Exemptions Applied",
     "fields": [
       {
         "id": "field_admin_app_vic1.field_ex_1",
@@ -544,6 +553,7 @@
   {
     "id": "group_vi_c_2_reasons_for_denial_",
     "label": " - Dis. - Other Than Exs.",
+    "pretty": "Reasons for Denial on Appeal - Reasons Other than Exemptions",
     "fields": [
       {
         "id": "field_admin_app_vic2.field_no_rec",
@@ -626,6 +636,7 @@
   {
     "id": "group_vi_c_3_reasons_for_denial_",
     "label": " - Dis. - \"Other\" Reasons",
+    "pretty": "Reasons for Denial on Appeal - Other Reasons",
     "fields": [
       {
         "id": "field_admin_app_vic3.field_admin_app_vic3_info.field_desc_oth_reasons",
@@ -661,6 +672,7 @@
   {
     "id": "group_vi_c_4_response_time_for_a",
     "label": " - Response Time",
+    "pretty": "Response Time for Administrative Appeals",
     "fields": [
       {
         "id": "field_admin_app_vic4.field_med_num_days",
@@ -701,6 +713,7 @@
   {
     "id": "group_vi_c_5_ten_oldest",
     "label": " - Ten Oldest Pending",
+    "pretty": "Ten Oldest Administrative Appeals",
     "fields": [
       {
         "id": "field_admin_app_vic5.field_date_10",
@@ -837,6 +850,7 @@
   {
     "id": "group_vii_a_foia_requests_wrap",
     "label": "Processing Time",
+    "pretty": "Processed Requests - Response Time for All Processed Perfected Requests",
     "fields": [
       {
         "id": "field_proc_req_viia.field_sim_med",
@@ -925,6 +939,7 @@
   {
     "id": "group_vii_b_processed_req_wrap",
     "label": " - Requests Granted",
+    "pretty": "Processed Requests - Response Time for Perfected Requests in Which Information Was Granted",
     "fields": [
       {
         "id": "field_proc_req_viib.field_sim_med",
@@ -1013,6 +1028,7 @@
   {
     "id": "group_vii_c_1_processed_simple_r",
     "label": " - Simple Requests",
+    "pretty": "Processed Requests - Response Time in Day Increments - Simple Requests",
     "fields": [
       {
         "id": "field_proc_req_viic1.field_1_20_days",
@@ -1113,6 +1129,7 @@
   {
     "id": "group_vii_c_2_processed_complex_",
     "label": " - Complex Requests",
+    "pretty": "Processed Requests - Response Time in Day Increments - Complex Requests",
     "fields": [
       {
         "id": "field_proc_req_viic2.field_1_20_days",
@@ -1213,6 +1230,7 @@
   {
     "id": "group_vii_c_3_processed_requests",
     "label": " - Expedited Requests",
+    "pretty": "Processed Requests - Response Time in Day Increments - Requests Granted Expedited Processing",
     "fields": [
       {
         "id": "field_proc_req_viic3.field_1_20_days",
@@ -1313,6 +1331,7 @@
   {
     "id": "group_vii_d_pending_req_wrap",
     "label": " - Pending Requests",
+    "pretty": "Pending Requests - All Pending Perfected Requests",
     "fields": [
       {
         "id": "field_proc_req_vii_d_.field_sim_pend",
@@ -1383,6 +1402,7 @@
   {
     "id": "group_vii_e_pending_req_wrap",
     "label": " - Ten Oldest Requests",
+    "pretty": "Pending Requests - Ten Oldest Pending Perfected Requests",
     "fields": [
       {
         "id": "field_admin_app_viie.field_date_10",
@@ -1519,6 +1539,7 @@
   {
     "id": "group_viii_b_requests_for_fee_wa",
     "label": "Fee Waiver",
+    "pretty": "Requests for Fee Waiver",
     "fields": [
       {
         "id": "field_req_viiib.field_num_grant",
@@ -1559,6 +1580,7 @@
   {
     "id": "group_ix_foia_personnel_cost_wra",
     "label": "FOIA Personnel",
+    "pretty": "FOIA Personnel",
     "fields": [
       {
         "id": "field_foia_pers_costs_ix.field_full_emp",
@@ -1593,6 +1615,7 @@
   {
     "id": "group_x_fees_collected_for_proce",
     "label": "FOIA Costs",
+    "pretty": "FOIA Costs and Fees Collected for Processing Requests",
     "fields": [
       {
         "id": "field_foia_pers_costs_ix.field_proc_costs",
@@ -1647,6 +1670,7 @@
   {
     "id": "group_xi_a_number_of_times_subse",
     "label": "Exclusions",
+    "pretty": "Number of Times Subsection (C) Used",
     "fields": [
       {
         "id": "field_sub_xia.field_sub_used",
@@ -1669,6 +1693,7 @@
   {
     "id": "group_xi_b_number_of_subsection_",
     "label": "Proactive Disclosures",
+    "pretty": "Number of Subsection (A)(2) Postings",
     "fields": [
       {
         "id": "field_sub_xib.field_rec_post_foia",
@@ -1697,6 +1722,7 @@
   {
     "id": "group_xii_a_backlogs_of_foia_req",
     "label": "Backlog",
+    "pretty": "Backlogs of FOIA Requests and Administrative Appeals",
     "fields": [
       {
         "id": "field_foia_xiia.field_back_req_end_yr",
@@ -1725,6 +1751,7 @@
   {
     "id": "group_xii_b_consultations_on_foi",
     "label": "Consultations",
+    "pretty": "Consultations on FOIA Requests - Received, Processed, and Pending Consultations",
     "fields": [
       {
         "id": "field_foia_xiib.field_pend_start_yr",
@@ -1765,6 +1792,7 @@
   {
     "id": "group_xii_c_consultations_wrap",
     "label": " - Ten Oldest",
+    "pretty": "Consultations on FOIA Requests - Ten Oldest Consultations Received from Other Agencies Pending at Agency",
     "fields": [
       {
         "id": "field_foia_xiic.field_date_10",
@@ -1901,6 +1929,7 @@
   {
     "id": "group_xii_d_1_comparison_wrap",
     "label": "Comparisons",
+    "pretty": "Comparison of Numbers of Requests from Previous Year and Current Year Annual Report",
     "fields": [
       {
         "id": "field_foia_xiid1.field_received_last_yr",
@@ -1941,6 +1970,7 @@
   {
     "id": "group_xii_d_2_comparison_of_numb",
     "label": " - Requests Backlogged",
+    "pretty": "Comparison of Backlogged Requests from Previous Year and Current Year Annual Report",
     "fields": [
       {
         "id": "field_foia_xiid2.field_back_prev_yr",
@@ -1969,6 +1999,7 @@
   {
     "id": "group_xii_e_1_comparison_of_wrap",
     "label": " - Administrative Appeals",
+    "pretty": "Comparison of Numbers of Administrative Appeals from Previous Year and Current Year Annual Report",
     "fields": [
       {
         "id": "field_foia_xiie1.field_received_last_yr",
@@ -2009,6 +2040,7 @@
   {
     "id": "group_xii_e_2_comparison_of_numb",
     "label": " - Appeals Backlogged",
+    "pretty": "Comparison of Backlogged Administrative Appeals from Previous Year and Current Year Annual Report",
     "fields": [
       {
         "id": "field_foia_xiie2.field_back_prev_yr",
