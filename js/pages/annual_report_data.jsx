@@ -166,8 +166,8 @@ return (
             />
             <FoiaReportDataSubmit
               allAgenciesSelected={allAgenciesSelected}
-              selectedAgencies={selectedAgencies}
               selectedDataTypes={selectedDataTypes}
+              selectedFiscalYears={selectedFiscalYears}
               agencyComponentIsValid={agencyComponentIsValid}
               dataTypesIsValid={dataTypesIsValid}
               fiscalYearsIsValid={fiscalYearsIsValid}

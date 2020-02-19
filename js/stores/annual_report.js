@@ -22,7 +22,12 @@ class AnnualReportStore extends Store {
   __onDispatch(payload) {
     switch (payload.type) {
       case types.ANNUAL_REPORT_DATA_FETCH: {
+        // Reset the report data to initial value so that report state after a new form submission
+        // is limited to only the data specific to that request.
         this.state.reportDataComplete = false;
+        Object.assign(this.state, {
+          reports: new Map(),
+        });
         this.__emitChange();
         break;
       }

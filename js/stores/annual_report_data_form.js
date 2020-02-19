@@ -28,7 +28,7 @@ class AnnualReportDataFormStore extends Store {
     return this.state;
   }
 
-  getSelectedAgencies() {
+  buildSelectedAgencies() {
     if (!this.state.allAgenciesSelected) {
       return [...this.state.selectedAgencies];
     }
@@ -37,7 +37,7 @@ class AnnualReportDataFormStore extends Store {
     // where the only component is an overall component.
     let { agencies } = agencyComponentStore.getState();
     agencies = agencies.map(agency => (
-      Object.assign({}, agency, {
+      Object.assign({}, agency.toJS(), {
         components: List([{
           abbreviation: 'Agency Overall',
           id: `overall:${agency.id}`,
@@ -158,7 +158,7 @@ class AnnualReportDataFormStore extends Store {
             .fields
             .filter(opt => opt.filter)
             .map(opt => ({
-              value: opt.id,
+              value: opt.filter === true ? opt.id : opt.filter,
               label: opt.label,
             }));
           // Add a default filter definition to make removing a submitted filter

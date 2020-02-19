@@ -370,10 +370,77 @@ describe('FoiaAnnualReportRequestBuilder', () => {
     });
   });
 
-  describe('::includeSections', () => {
+  describe('::addDataTypeFiltersGroup', () => {
+    it('adds data type filters when given an array of filter objects', () => {
+      requestBuilder.addDataTypeFiltersGroup([
+        {
+          filterField: 'field_admin_app_via.field_app_pend_start_yr',
+          op: 'greater_than',
+          compareValue: '4',
+        },
+        {
+          filterField: 'field_foia_requests_vb1.field_full_grants',
+          op: 'equal_to',
+          compareValue: '6',
+        },
+        {
+          filterField: 'field_proc_req_viia.field_comp_high',
+          op: 'is_na',
+        },
+        {
+          filterField: 'field_req_viiia.field_num_jud_w10',
+          op: 'less_than',
+          compareValue: '20',
+        },
+      ]);
+
+      expect(requestBuilder.request._params).to.have.property('filter');
+      expect(requestBuilder.request._params.filter).to.deep.equal({
+        'data-type-filter-0': {
+          condition: {
+            memberOf: 'or-filter-1',
+            operator: '>',
+            path: 'field_admin_app_via.field_app_pend_start_yr',
+            value: '4',
+          },
+        },
+        'data-type-filter-1': {
+          condition: {
+            memberOf: 'or-filter-1',
+            operator: '=',
+            path: 'field_foia_requests_vb1.field_full_grants',
+            value: '6',
+          },
+        },
+        'data-type-filter-2': {
+          condition: {
+            memberOf: 'or-filter-1',
+            operator: '=',
+            path: 'field_proc_req_viia.field_comp_high',
+            value: 'N/A',
+          },
+        },
+        'data-type-filter-3': {
+          condition: {
+            memberOf: 'or-filter-1',
+            operator: '<',
+            path: 'field_req_viiia.field_num_jud_w10',
+            value: '20',
+          },
+        },
+        'or-filter-1': {
+          group: {
+            conjunction: 'OR',
+          },
+        },
+      });
+    });
+  });
+
+  describe('::includeDataTypes', () => {
     it('builds includes and fields based on sections defined in the annualReportDataTypesStore', () => {
       const { selectedDataTypes } = annualReportDataFormStore.getState();
-      requestBuilder.includeSections(selectedDataTypes, false);
+      requestBuilder.includeDataTypes(selectedDataTypes, false);
 
       expect(requestBuilder.request._params, '_params').to.have.property('include');
       expect(requestBuilder.request._params.include.sort(), 'requestBuilder.request._params.include')
