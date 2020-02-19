@@ -1,0 +1,17 @@
+.usa-disabled {
+  a {
+    color: $color-gray;
+    pointer-events: none;
+  }
+
+  button {
+    @extend .usa-button-disabled;
+  }
+
+  input,
+  label,
+  select,
+  textarea {
+    color: $color-gray;
+  }
+}

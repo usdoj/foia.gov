@@ -1,4 +1,5 @@
 import { Store } from 'flux/utils';
+import { List } from 'immutable';
 
 import dispatcher from '../util/dispatcher';
 import { types } from '../actions/report';
@@ -10,6 +11,7 @@ class AnnualReportDataFormStore extends Store {
     super(_dispatcher);
     this.state = {
       selectedAgencies: [{ index: 0 }],
+      allAgenciesSelected: false,
       selectedDataTypes: [{ index: 0, id: '' }],
       selectedFiscalYears: [],
       fiscalYearsIsValid: false,
@@ -23,6 +25,28 @@ class AnnualReportDataFormStore extends Store {
 
   getState() {
     return this.state;
+  }
+
+  getSelectedAgencies() {
+    if (!this.state.allAgenciesSelected) {
+      return [...this.state.selectedAgencies];
+    }
+
+    // If all agencies are selected, get an array of all agencies
+    // where the only component is an overall component.
+    let { agencies } = agencyComponentStore.getState();
+    agencies = agencies.map(agency => (
+      Object.assign({}, agency, {
+        components: List([{
+          abbreviation: 'Agency Overall',
+          id: `overall:${agency.id}`,
+          isOverall: true,
+          selected: true,
+        }]),
+      })
+    ));
+
+    return agencies.toArray();
   }
 
   __onDispatch(payload) {
@@ -73,6 +97,24 @@ class AnnualReportDataFormStore extends Store {
 
         Object.assign(this.state, {
           selectedAgencies,
+        });
+        this.__emitChange();
+        break;
+      }
+
+      case types.SELECTED_AGENCIES_TOGGLE_SELECT_ALL: {
+        const { allAgenciesSelected } = Object.assign({}, this.getState());
+        let agencyComponentIsValid = true;
+        if (!allAgenciesSelected) {
+          const selectedAgencies = [...this.state.selectedAgencies];
+          agencyComponentIsValid = selectedAgencies
+            .filter(selection => selection.error || false)
+            .length === 0;
+        }
+
+        Object.assign(this.state, {
+          allAgenciesSelected: !allAgenciesSelected,
+          agencyComponentIsValid,
         });
         this.__emitChange();
         break;

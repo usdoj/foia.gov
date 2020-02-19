@@ -16,10 +16,23 @@ class AddLink extends Component {
     });
   }
 
+  iconColor() {
+    const colorClasses = {
+      dark: 'use-dark-icons',
+      light: 'use-light-icons',
+    };
+
+    return colorClasses[this.props.iconColor] || false;
+  }
+
   render() {
+    let classes = this.props.classes.length > 0 ? this.props.classes : ['form-group', 'field'];
+    classes = classes.concat(this.iconColor())
+      .filter(className => className !== false);
+
     return (
-      <div className="form-group field use-dark-icons">
-        <a href="" onClick={this.dispatchChange}><span className="icon-plus" />
+      <div className={classes.join(' ')}>
+        <a href="" onClick={this.dispatchChange}>{this.props.icon}
           {this.props.text}
         </a>
       </div>
@@ -30,6 +43,15 @@ class AddLink extends Component {
 AddLink.propTypes = {
   eventType: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  icon: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  iconColor: PropTypes.string,
+  classes: PropTypes.array,
+};
+
+AddLink.defaultProps = {
+  icon: (<span className="icon-plus" />),
+  iconColor: 'dark',
+  classes: [],
 };
 
 export default AddLink;

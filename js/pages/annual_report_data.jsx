@@ -38,6 +38,7 @@ class AnnualReportDataPage extends Component {
     } = agencyComponentStore.getState();
 
     const {
+      allAgenciesSelected,
       selectedAgencies,
       selectedDataTypes,
       selectedFiscalYears,
@@ -64,6 +65,7 @@ class AnnualReportDataPage extends Component {
       agencyComponents,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
+      allAgenciesSelected,
       fiscalYears,
       selectedFiscalYears,
       fiscalYearsIsValid,
@@ -108,6 +110,7 @@ class AnnualReportDataPage extends Component {
       agencyComponents,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
+      allAgenciesSelected,
       selectedAgencies,
       dataTypes,
       dataTypeOptions,
@@ -133,6 +136,7 @@ class AnnualReportDataPage extends Component {
             agencyFinderDataProgress={agencyFinderDataProgress}
             selectedAgencies={selectedAgencies}
             agencyComponentDisplayError={agencyComponentDisplayError}
+            allAgenciesSelected={allAgenciesSelected}
           />
           <FoiaReportFormSectionTwo
             dataTypes={dataTypes}
@@ -146,6 +150,8 @@ class AnnualReportDataPage extends Component {
             fiscalYearsDisplayError={fiscalYearsDisplayError}
           />
           <FoiaReportDataSubmit
+            allAgenciesSelected={allAgenciesSelected}
+            selectedAgencies={selectedAgencies}
             selectedDataTypes={selectedDataTypes}
             agencyComponentIsValid={agencyComponentIsValid}
             dataTypesIsValid={dataTypesIsValid}

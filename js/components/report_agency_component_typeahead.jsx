@@ -247,7 +247,7 @@ class ReportAgencyComponentTypeahead extends Component {
             id={`agency-component-search-${this.state.id}`}
             name="agency_component_search"
             placeholder={loading ? `Loading… ${this.props.agencyFinderDataProgress}%` : 'Type agency name'}
-            disabled={loading}
+            disabled={loading || this.props.isDisabled}
             ref={(input) => {
               this.typeaheadInput = input;
             }}
@@ -269,6 +269,7 @@ ReportAgencyComponentTypeahead.propTypes = {
   /* eslint-enable react/no-unused-prop-types */
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
+  isDisabled: PropTypes.bool,
   selectedAgency: PropTypes.object,
   agencyComponentDisplayError: PropTypes.bool.isRequired,
 };
@@ -277,6 +278,7 @@ ReportAgencyComponentTypeahead.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
   agencyFinderDataProgress: 0,
+  isDisabled: false,
   selectedAgency: { index: 0 },
 };
 

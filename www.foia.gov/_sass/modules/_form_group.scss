@@ -24,6 +24,26 @@ $form-description-leading: 1.4;
   color: $color-gray;
 }
 
+.form-group_footer-links {
+  @extend .usa-grid-full;
+  @extend .form-group;
+}
+
+.form-group_footer-links_left,
+.form-group_footer-links_right {
+  @extend .usa-width-one-half;
+  min-height: 1px; // Maintain spacing even if no data in the left group.
+}
+
+.form-group_footer-links_right {
+  margin-top: 1rem;
+
+  @media screen and (min-width: $medium-screen) {
+    margin-top: 0;
+    text-align: right;
+  }
+}
+
 .usa-form-hint {
   font-size: $form-description-font-size;
   line-height: $form-description-leading;

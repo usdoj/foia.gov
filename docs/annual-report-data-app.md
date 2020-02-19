@@ -89,6 +89,7 @@ Props:
  * `agencyFinderDataComplete`: Whether or not the agencyComponent store is populated.
  * `agencyFinderDataProgress`: The amount of progress made in populating the agencyComponent store.
  * `selectedAgency` : An array of agencies or components that have been selected in the report form.
+ * `isDisabled`: A boolean indicating that the field is disabled.
 
  Example Use:
  ```
@@ -113,6 +114,7 @@ Props:
  * `agencyFinderDataComplete`: Whether or not the agencyComponent store is populated.
  * `agencyFinderDataProgress`: The amount of progress made in populating the agencyComponent store.
  * `selectedAgency` : An array of agencies or components that have been selected in the report form.
+ * `isDisabled`: A boolean indicating that the field is disabled.
 
 Example Use:
 ```
@@ -135,6 +137,11 @@ Props:
  * `eventType`: The event name to dispatch that data stores will listen for.
    For example, a type from the `types` object in `js/actions/index.js`.
  * `text`: The link text to display.
+ * `icon`: Markup that will be rendered in the link, prior to text.
+ * `iconColor`: Accepts the values, `dark` or `light` to indicate the
+   wrapper class to use of `use-dark-icons` or `use-light-icons`.
+ * `classes`: Accepts an array of strings that will overwrite the wrapper
+   element classes.
 
 Example Use:
 ```
