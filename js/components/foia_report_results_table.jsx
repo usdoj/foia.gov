@@ -5,15 +5,14 @@
 
 import React, { Component } from 'react';
 import Tabulator from 'tabulator-tables';
+import PropTypes from 'prop-types';
 
 class FoiaReportResultsTable extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.tabulatorElement = null;
     this.tabulator = null;
-    this.tableData = [];
-    this.columns = [];
 
     this.downloadCSV = this.downloadCSV.bind(this);
 
@@ -23,37 +22,45 @@ class FoiaReportResultsTable extends Component {
   }
 
   componentDidMount() {
-    const sampleData = [
-      { id: 1, agency: 'Administrative Conference of the United States', component: 'ACUS', fiscalYear: '2017' },
-      { id: 2, agency: 'Central Intelligence Agency', component: 'CIA', fiscalYear: '2016' },
-      { id: 3, agency: 'Department of Agriculture', component: 'AMS', fiscalYear: '2014' },
-    ];
-    const sampleColumns = [
-      { title: 'Agency', field: 'agency', align: 'center' },
-      { title: 'Component', field: 'component', align: 'center' },
-      { title: 'Fiscal Year', field: 'fiscalYear', align: 'center' },
-    ];
-
-    this.tableData = sampleData;
-    this.tableColumns = sampleColumns;
-    this.tabulator = new Tabulator(this.element, {
-      data: this.tableData,
-      columns: this.tableColumns,
+    const { tableData, tableColumns } = this.props;
+    this.tabulator = new Tabulator(this.tabulatorElement, {
+      data: tableData,
+      columns: tableColumns,
       reactiveData: true,
     });
+    if (this.props.displayMode === 'download') {
+      this.downloadCSV();
+    }
   }
 
-  downloadCSV(reportType) {
+  downloadCSV() {
+    const { tableHeader } = this.props;
+    const reportType = tableHeader.replace(/[^a-zA-Z ]/g, '').trim().replace(/[^A-Z0-9]+/ig, '-').toLowerCase();
     this.tabulator.download('csv', `foia-${reportType}.csv`);
   }
 
   render() {
+    const attributes = this.props.displayMode === 'download' ? {
+      style: { display: 'none' },
+      'aria-hidden': 'true',
+    } : [];
     return (
-      <div>
-        <div ref={(ref) => { this.element = ref; }} />
+      <div{...attributes}>
+        <h2>{this.props.tableHeader}</h2>
+        <div ref={(ref) => {
+          this.tabulatorElement = ref;
+        }}
+        />
       </div>
     );
   }
 }
+
+FoiaReportResultsTable.propTypes = {
+  tableData: PropTypes.array.isRequired,
+  tableColumns: PropTypes.array.isRequired,
+  tableHeader: PropTypes.string.isRequired,
+  displayMode: PropTypes.string.isRequired,
+};
 
 export default FoiaReportResultsTable;

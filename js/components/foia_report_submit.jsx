@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reportActions } from '../actions/report';
+import { reportActions, types } from '../actions/report';
+import dispatcher from '../util/dispatcher';
 
 class FoiaReportDataSubmit extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDownloadCSV = this.handleDownloadCSV.bind(this);
     this.formIsValid = this.formIsValid.bind(this);
   }
 
@@ -21,27 +21,23 @@ class FoiaReportDataSubmit extends Component {
   }
 
   handleSubmit(event) {
-    reportActions.returnFieldValidationStateOnSubmit();
-    if (this.formIsValid()) {
-      reportActions.fetchAnnualReportData(this.props.selectedDataTypes);
-    } else {
-      event.preventDefault();
-    }
-  }
-
-  handleDownloadCSV(event) {
     event.preventDefault();
+    const action = event.target.value;
     reportActions.returnFieldValidationStateOnSubmit();
     if (this.formIsValid()) {
-      this.props.onClick(event);
+      dispatcher.dispatch({
+        type: types.REPORT_SUBMISSION_TYPE,
+        submissionAction: action,
+      });
+      reportActions.fetchAnnualReportData(this.props.selectedDataTypes);
     }
   }
 
   render() {
     return (
       <div className="form-group form-group_footer">
-        <button onClick={this.handleSubmit} type="submit" className="usa-button usa-button-big usa-button-primary-alt with-siblings">View Report</button>
-        <button onClick={this.handleDownloadCSV} type="button" className="usa-button usa-button-big usa-button-outline">Download CSV</button>
+        <button onClick={this.handleSubmit} value="view" type="submit" className="usa-button usa-button-big usa-button-primary-alt with-siblings">View Report</button>
+        <button onClick={this.handleSubmit} value="download" type="button" className="usa-button usa-button-big usa-button-outline">Download CSV</button>
         <a>Clear Search</a>
       </div>
     );
@@ -53,7 +49,6 @@ FoiaReportDataSubmit.propTypes = {
   fiscalYearsIsValid: PropTypes.bool.isRequired,
   dataTypesIsValid: PropTypes.bool.isRequired,
   agencyComponentIsValid: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 FoiaReportDataSubmit.defaultProps = {

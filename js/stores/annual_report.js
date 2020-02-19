@@ -2,7 +2,7 @@ import { Map } from 'immutable';
 import { Store } from 'flux/utils';
 import dispatcher from '../util/dispatcher';
 import { types } from '../actions/report';
-
+import annualReportDataFormStore from './annual_report_data_form';
 
 class AnnualReportStore extends Store {
   constructor(_dispatcher) {
@@ -10,6 +10,8 @@ class AnnualReportStore extends Store {
 
     this.state = {
       reports: new Map(),
+      reportTables: new Map(),
+      reportDataComplete: false,
     };
   }
 
@@ -19,6 +21,12 @@ class AnnualReportStore extends Store {
 
   __onDispatch(payload) {
     switch (payload.type) {
+      case types.ANNUAL_REPORT_DATA_FETCH: {
+        this.state.reportDataComplete = false;
+        this.__emitChange();
+        break;
+      }
+
       case types.ANNUAL_REPORT_DATA_RECEIVE: {
         const { reports } = this.state;
 
@@ -42,6 +50,65 @@ class AnnualReportStore extends Store {
         });
         this.__emitChange();
 
+        break;
+      }
+
+      case types.ANNUAL_REPORT_DATA_COMPLETE: {
+        const { selectedDataTypes } = annualReportDataFormStore.getState();
+        // Set up the default columns that appear in all data tables.
+        const defaultColumns = [
+          {
+            title: 'Agency',
+            field: 'field_agency',
+            align: 'center',
+          },
+          {
+            title: 'Component',
+            field: 'field_agency_component',
+            align: 'center',
+          },
+          {
+            title: 'Fiscal Year',
+            field: 'field_foia_annual_report_yr',
+            align: 'center',
+          },
+        ];
+
+        const tables = [];
+        selectedDataTypes.forEach((dataType) => {
+          if (!tables.some(item => item.id === dataType.id)) {
+            // Get our dataType-specific columns.
+            const dataColumns = dataType.fields
+              .filter(field => field.display)
+              .map(item => (
+                {
+                  title: item.label,
+                  field: item.id,
+                  align: 'center',
+                }));
+            const reportHeaders = defaultColumns.concat(dataColumns);
+            // @TODO: Actually fetch the data from the JSON:API result.
+            const dataRows = [];
+            tables.push({
+              id: dataType.id,
+              header: dataType.heading,
+              columns: reportHeaders,
+              data: dataRows,
+            });
+          }
+        });
+
+        const updatedReportTables = new Map(tables.map(table => ([
+          table.id,
+          table,
+        ])));
+
+        Object.assign(this.state, {
+          reportTables: updatedReportTables,
+          reportDataComplete: true,
+        });
+
+        this.__emitChange();
         break;
       }
       default:

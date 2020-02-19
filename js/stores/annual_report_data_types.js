@@ -33,6 +33,12 @@ class AnnualReportDataTypesStore extends Store {
       [];
   }
 
+  getPrettyLabelForDataType(dataTypeId) {
+    return this.getDataType(dataTypeId).pretty ?
+      this.getDataType(dataTypeId).pretty :
+      '';
+  }
+
   __onDispatch(payload) {
     switch (payload.type) {
       case types.ANNUAL_REPORT_DATA_TYPES_RECEIVE: {

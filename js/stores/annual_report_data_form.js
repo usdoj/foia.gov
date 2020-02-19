@@ -20,6 +20,7 @@ class AnnualReportDataFormStore extends Store {
       fiscalYearsDisplayError: false,
       dataTypeDisplayError: false,
       agencyComponentDisplayError: false,
+      submissionAction: false,
     };
   }
 
@@ -150,6 +151,8 @@ class AnnualReportDataFormStore extends Store {
         if (selectedDataType.id !== '') {
           selectedDataType.fields = annualReportDataTypesStore
             .getFieldsForDataType(selectedDataType.id);
+          selectedDataType.heading = annualReportDataTypesStore
+            .getPrettyLabelForDataType(selectedDataType.id);
 
           selectedDataType.filterOptions = selectedDataType
             .fields
@@ -194,24 +197,11 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.GET_TABLE_DATA_TYPES: {
-        const { dataTypeOptions } = payload;
-        const tableDataTypes = [];
-        this.state.selectedDataTypes.forEach((selectedDataType) => {
-          if (selectedDataType.id.length > 0) {
-            const selectedID = selectedDataType.id;
-            dataTypeOptions.forEach((dataTypeOption) => {
-              const optionValue = dataTypeOption.value;
-              if (selectedID === optionValue) {
-                let tableDataType = dataTypeOption.label;
-                tableDataType = tableDataType.replace(/[^a-zA-Z ]/g, '').trim().replace(/[^A-Z0-9]+/ig, '-').toLowerCase();
-                tableDataTypes.push(tableDataType);
-              }
-            });
-          }
+      case types.REPORT_SUBMISSION_TYPE: {
+        const { submissionAction } = payload;
+        Object.assign(this.state, {
+          submissionAction,
         });
-
-        Object.assign(this.state, { tableDataTypes });
         this.__emitChange();
         break;
       }

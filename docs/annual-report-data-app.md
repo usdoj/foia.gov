@@ -25,15 +25,25 @@ The `AnnualReportDataFormStore` contains the form state for the annual report
 that will be requested. It contains a separate section for each report section
 on the form the user sees.
 ```
-    this.state = {
-      selectedAgencies: [{ index: 0 }],
-      selectedDataTypes: [{ index: 0, id: '' }],
-      selectedFiscalYears: [],
-    };
+this.state = {
+  selectedAgencies: [{ index: 0 }],
+  selectedDataTypes: [{ index: 0, id: '' }],
+  selectedFiscalYears: [],
+};
 ```
 
+`/js/stores/annual_report.js`
 
-### Models
+The `AnnualReportStore` contains the results received from the API backend. It contains both the JSON API response
+data and the data converted into a format that can be used by the Tabulator table component. A flag indicates when
+the data has been received and processed and is ready for rendering.
+```
+this.state = {
+  reports: new Map(),
+  reportTables: new Map(),
+  reportDataComplete: false,
+};
+```
 
 
 ### Components
@@ -215,5 +225,28 @@ Props:
   value={this.props.selectedDataType.id}
   options={this.props.dataTypeOptions}
   handleChange={this.handleChange}
+/>
+```
+
+
+### FOIA Report Results Table
+A component which wraps the `Tabulator` Javascript table library. It is responsible for displaying and downloading
+report tables. One component will be rendered for each data type selected in the form.
+
+Props:
+ * `tableData`: An array of data rows to output in the table.
+ * `tableColumns`: An array of column headers to output in the table.
+ * `tableHeader`: The title which displays for each table; it is also used to generate the CSV filename.
+ * `displayMode`: A string which determines how the table should be output; valid values are `view` and `download`.
+ 
+Example use:
+```
+<FoiaReportResultsTable
+  key={`report-${table.id}`}
+  ref={(ref) => { this.reportRefs[table.id] = ref; }}
+  tableHeader={table.header}
+  tableData={table.data}
+  tableColumns={table.columns}
+  displayMode={submissionAction}
 />
 ```
