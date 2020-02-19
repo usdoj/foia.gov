@@ -76,3 +76,36 @@ form .with-siblings[type=submit] {
 .close-button:active {
   background-color: transparent;
 }
+
+%unstyled-button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  width: auto;
+
+  &:hover,
+  &:active {
+    color: inherit;
+    background: transparent;
+  }
+}
+.unstyled-button {
+  @extend %unstyled-button;
+}
+
+.button-as-link {
+  @extend %unstyled-button;
+  text-decoration: underline;
+  color: $color-primary-alt-darker;
+
+  &:hover,
+  &:active {
+    color: $color-primary-darker;
+    text-decoration: underline;
+  }
+}

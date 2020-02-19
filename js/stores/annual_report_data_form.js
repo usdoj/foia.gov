@@ -134,6 +134,23 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
+      case types.ANNUAL_REPORT_AGENCY_COMPONENT_REMOVE: {
+        const { selection } = payload;
+        const selectedAgencies = [...this.state.selectedAgencies];
+        // Remove the Agency Component whose index matches the object's index property.
+        selectedAgencies.splice(selection.index, 1);
+        // Reset the index number for the remaining objects.
+        selectedAgencies.forEach((selectedAgency, index) => {
+          selectedAgency.index = index;
+        });
+
+        Object.assign(this.state, {
+          selectedAgencies,
+        });
+        this.__emitChange();
+        break;
+      }
+
       case types.ANNUAL_REPORT_DATA_TYPE_UPDATE: {
         const { selectedDataType, previousDataType } = payload;
         const previousIsValid = typeof previousDataType === 'object'
@@ -217,40 +234,44 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.AGENCY_COMPONENT_FIELD_HAS_ERRORS: {
-        const { selectedAgency } = payload;
-        const agencyComponentIsValid = !selectedAgency.error;
+      case types.VALIDATE_FORM: {
+        const selectedAgencies = [...this.state.selectedAgencies];
+        const dataTypes = [...this.state.selectedDataTypes];
+        const fiscalYears = [...this.state.selectedFiscalYears];
+        const validityCheckSelectedAgencies = [];
+        const validityCheckDataTypes = [];
 
-        Object.assign(this.state, { agencyComponentIsValid });
-        this.__emitChange();
-        break;
-      }
+        // Check if Agency Component field is valid.
+        selectedAgencies.forEach((selectedAgency) => {
+          if (selectedAgency.id) {
+            validityCheckSelectedAgencies.push(true);
+          } else {
+            validityCheckSelectedAgencies.push(false);
+          }
+        });
+        const agencyComponentIsValid = validityCheckSelectedAgencies.includes(true);
 
-      case types.DATA_TYPE_FIELD_HAS_ERRORS: {
-        const dataTypesIsValid = [...this.state.selectedDataTypes][0].id.length > 0;
+        // Check if Data Type field is valid.
+        dataTypes.forEach((dataType) => {
+          if (dataType.id.length > 0) {
+            validityCheckDataTypes.push(true);
+          } else {
+            validityCheckDataTypes.push(false);
+          }
+        });
+        const dataTypesIsValid = validityCheckDataTypes.includes(true);
 
-        Object.assign(this.state, { dataTypesIsValid });
-        this.__emitChange();
-        break;
-      }
+        // Check if Fiscal Years field is valid.
+        const fiscalYearsIsValid = fiscalYears.length > 0;
 
-      case types.FISCAL_YEAR_FIELD_HAS_ERRORS: {
-        const fiscalYearsIsValid = this.state.selectedFiscalYears.length > 0;
-
-        Object.assign(this.state, { fiscalYearsIsValid });
-        this.__emitChange();
-        break;
-      }
-
-      case types.FORM_HAS_ERRORS: {
         Object.assign(this.state, {
-          agencyComponentDisplayError: !this.state.agencyComponentIsValid,
+          agencyComponentDisplayError: !agencyComponentIsValid,
         });
         Object.assign(this.state, {
-          dataTypeDisplayError: !this.state.dataTypesIsValid,
+          dataTypeDisplayError: !dataTypesIsValid,
         });
         Object.assign(this.state, {
-          fiscalYearsDisplayError: !this.state.fiscalYearsIsValid,
+          fiscalYearsDisplayError: !fiscalYearsIsValid,
         });
         this.__emitChange();
         break;
@@ -331,6 +352,26 @@ class AnnualReportDataFormStore extends Store {
         selection.filter = tempFilter;
 
         selectedDataTypes[selection.index].filter = tempFilter;
+
+        Object.assign(this.state, {
+          selectedDataTypes,
+        });
+
+        this.__emitChange();
+        break;
+      }
+
+      case types.ANNUAL_REPORT_DATA_TYPE_FIELD_REMOVE: {
+        const { selection } = payload;
+        const selectedDataTypes = [...this.state.selectedDataTypes];
+
+        // Remove the Data Type whose index matches the object's index property.
+        selectedDataTypes.splice(selection.index, 1);
+
+        // Reset the index number for the remaining objects.
+        selectedDataTypes.forEach((selectedDataType, index) => {
+          selectedDataType.index = index;
+        });
 
         Object.assign(this.state, {
           selectedDataTypes,

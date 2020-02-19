@@ -17,6 +17,18 @@ class FoiaReportFormSectionTwo extends Component {
       dataTypeDisplayError,
     } = this.props;
 
+    const dataTypesCount = this.props.selectedDataTypes.length;
+    const addAnotherDataType = [];
+    if (dataTypesCount < 3) {
+      addAnotherDataType.push(
+        <AddLink
+          eventType={types.ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP}
+          text="Add Another Data Type"
+        />,
+      );
+    }
+    const fieldsDisplayed = this.props.selectedDataTypes.length;
+
     return (
       <div>
         <div className="form-group">
@@ -37,6 +49,7 @@ class FoiaReportFormSectionTwo extends Component {
                 dataTypeOptions={dataTypeOptions}
                 selectedDataType={selected}
                 dataTypeDisplayError={dataTypeDisplayError}
+                fieldsDisplayed={fieldsDisplayed}
               />))}
 
             {this.props.selectedDataTypes.length < 3 &&

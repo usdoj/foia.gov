@@ -25,7 +25,7 @@ class FoiaReportDataSubmit extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const action = event.target.value;
-    reportActions.returnFieldValidationStateOnSubmit();
+    reportActions.validateForm();
     if (this.formIsValid()) {
       dispatcher.dispatch({
         type: types.REPORT_SUBMISSION_TYPE,

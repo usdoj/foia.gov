@@ -19,6 +19,8 @@ class FoiaReportFormSectionOne extends Component {
       allAgenciesSelected,
     } = this.props;
 
+    const fieldsDisplayed = this.props.selectedAgencies.length;
+
     return (
       <div>
         <div className="form-group">
@@ -36,6 +38,7 @@ class FoiaReportFormSectionOne extends Component {
                 agencyFinderDataProgress={agencyFinderDataProgress}
                 selectedAgency={selected}
                 agencyComponentDisplayError={agencyComponentDisplayError}
+                fieldsDisplayed={fieldsDisplayed}
                 isDisabled={this.props.allAgenciesSelected}
               />))}
             <div className="form-group_footer-links">

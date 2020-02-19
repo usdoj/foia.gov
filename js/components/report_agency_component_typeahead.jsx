@@ -5,7 +5,7 @@ import { uniqueId } from 'lodash';
 
 import tokenizers from '../util/tokenizers';
 import dispatcher from '../util/dispatcher';
-import { reportActions, types } from '../actions/report';
+import { types } from '../actions/report';
 
 
 // Only load typeahead in the browser (avoid loading it for tests)
@@ -224,8 +224,6 @@ class ReportAgencyComponentTypeahead extends Component {
       selectedAgency: selection,
       previousAgency: this.props.selectedAgency,
     });
-
-    reportActions.validateAgencyComponentField(selection);
   }
 
   render() {
@@ -236,6 +234,10 @@ class ReportAgencyComponentTypeahead extends Component {
     const wrapperClasses = ['form-group'];
     if (agencyComponentDisplayError) {
       wrapperClasses.push('usa-input-error');
+    }
+    // Needed for remove link feature so fields removed out of order display the correct value.
+    if (this.props.selectedAgency.id) {
+      $(this.typeaheadInput).typeahead('val', this.props.selectedAgency.title);
     }
 
     return (

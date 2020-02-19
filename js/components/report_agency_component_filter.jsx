@@ -5,6 +5,7 @@ import { uniqueId } from 'lodash';
 
 import ReportAgencyComponentTypeahead from './report_agency_component_typeahead';
 import FoiaModal from './foia_modal';
+import RemoveLink from './remove_link';
 import { types } from '../actions/report';
 import dispatcher from '../util/dispatcher';
 
@@ -109,11 +110,20 @@ class ReportAgencyComponentFilter extends Component {
       agencyFinderDataComplete,
       selectedAgency,
       agencyComponentDisplayError,
+      fieldsDisplayed,
       isDisabled,
     } = this.props;
 
     const agencyIsSelected = (this.props.selectedAgency.id !== 0 && this.props.selectedAgency.type === 'agency') || false;
     const isCentralizedAgency = this.props.selectedAgency.component_count <= 1 || false;
+
+    const removeAgencyComponentButton = fieldsDisplayed > 1 ? (
+      <RemoveLink
+        eventType={types.ANNUAL_REPORT_AGENCY_COMPONENT_REMOVE}
+        selection={this.props.selectedAgency}
+        text="Remove"
+      />
+    ) : null;
 
     return (
       <div className={'usa-search usa-search-big'.concat(isDisabled ? ' usa-disabled' : '')}>
@@ -126,16 +136,19 @@ class ReportAgencyComponentFilter extends Component {
           selectedAgency={selectedAgency}
           agencyComponentDisplayError={agencyComponentDisplayError}
         />
-        {agencyIsSelected && !isCentralizedAgency &&
-        <FoiaModal
-          modalContent={this.buildModalContent()}
-          ariaLabel="Filter agency components"
-          triggerText="Select Agency Components"
-          onSubmit={this.handleModalSubmit}
-          canSubmit={this.modalCanSubmit}
-          onClose={this.handleModalClose}
-        />
-        }
+        <div className="report-field-actions">
+          {agencyIsSelected && !isCentralizedAgency &&
+          <FoiaModal
+            modalContent={this.buildModalContent()}
+            ariaLabel="Filter agency components"
+            triggerText="Select Agency Components"
+            onSubmit={this.handleModalSubmit}
+            canSubmit={this.modalCanSubmit}
+            onClose={this.handleModalClose}
+          />
+          }
+          {removeAgencyComponentButton}
+        </div>
       </div>
     );
   }
@@ -149,6 +162,7 @@ ReportAgencyComponentFilter.propTypes = {
   isDisabled: PropTypes.bool,
   selectedAgency: PropTypes.object,
   agencyComponentDisplayError: PropTypes.bool.isRequired,
+  fieldsDisplayed: PropTypes.number.isRequired,
 };
 
 ReportAgencyComponentFilter.defaultProps = {

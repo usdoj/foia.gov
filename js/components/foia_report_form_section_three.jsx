@@ -8,7 +8,6 @@ import { reportActions } from '../actions/report';
 class FoiaReportFormSectionThree extends Component {
   static handleSelectNone(event) {
     reportActions.updateSelectedFiscalYears([]);
-    reportActions.validateFiscalYearsField([]);
     event.preventDefault();
   }
 
@@ -21,7 +20,6 @@ class FoiaReportFormSectionThree extends Component {
 
   handleSelectAll(event) {
     reportActions.updateSelectedFiscalYears([...this.props.fiscalYears]);
-    reportActions.validateFiscalYearsField([...this.props.selectedFiscalYears]);
     event.preventDefault();
   }
 
@@ -32,7 +30,6 @@ class FoiaReportFormSectionThree extends Component {
       [...this.props.selectedFiscalYears].concat([value]) :
       [...this.props.selectedFiscalYears].filter(year => value !== year);
     reportActions.updateSelectedFiscalYears(selected);
-    reportActions.validateFiscalYearsField(selected);
   }
 
   render() {

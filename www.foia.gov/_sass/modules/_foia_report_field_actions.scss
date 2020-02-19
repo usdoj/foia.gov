@@ -1,0 +1,12 @@
+.report-field-actions {
+  display: flex;
+  justify-content: space-between;
+
+  & .report-remove-field-button {
+    height: 5.4rem;
+    flex-grow: 1;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
