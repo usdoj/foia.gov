@@ -25,6 +25,11 @@ class FoiaAnnualReportFilterUtilities {
     return passes.length > 0;
   }
 
+  /**
+   * Gets all applied data type filters from the form state.
+   *
+   * @returns {unknown[]}
+   */
   static getFiltersFromSelectedDataTypes() {
     const selectedDataTypes = [...annualReportDataFormStore.getState().selectedDataTypes];
     return selectedDataTypes
@@ -33,6 +38,14 @@ class FoiaAnnualReportFilterUtilities {
       .filter(filter => filter.applied);
   }
 
+  /**
+   * Given an operation and two values, compares the two values.
+   *
+   * @param op
+   * @param value
+   * @param comparison
+   * @returns {boolean}
+   */
   static compare(op, value, comparison) {
     switch (op) {
       case 'greater_than': {
@@ -53,6 +66,14 @@ class FoiaAnnualReportFilterUtilities {
     }
   }
 
+  /**
+   * Converts strings and special values to numbers.
+   *
+   * @param {String} value
+   *   A string representing a numeric value.
+   * @returns {number}
+   *   A number.
+   */
   static convertToNumber(value) {
     switch (String(value).toLowerCase()) {
       case '<1':
@@ -63,6 +84,15 @@ class FoiaAnnualReportFilterUtilities {
     }
   }
 
+  /**
+   * Recurses into an object to get a value at a given path.
+   *
+   * @param {string} path
+   *   The path to get a value from, in dot notation.
+   * @param {Object} object
+   *   The object to recurse into.
+   * @returns {*}
+   */
   static getValue(path, object) {
     const parts = path.split('.');
     const field = parts.shift();
