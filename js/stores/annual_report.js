@@ -4,6 +4,7 @@ import dispatcher from '../util/dispatcher';
 import { types } from '../actions/report';
 import annualReportDataFormStore from './annual_report_data_form';
 import FoiaAnnualReportUtilities from '../util/foia_annual_report_utilities';
+import FoiaAnnualReportFilterUtilities from '../util/foia_annual_report_filter_utilities';
 
 class AnnualReportStore extends Store {
   constructor(_dispatcher) {
@@ -91,8 +92,12 @@ class AnnualReportStore extends Store {
           return allRows[key];
         }).filter(value => value !== false);
 
+        const filtered = FoiaAnnualReportFilterUtilities.filterByDataTypeConditions(
+          componentRows,
+          FoiaAnnualReportFilterUtilities.getFiltersFromSelectedDataTypes(),
+        );
 
-        const normalized = componentRows.map(row => (
+        const normalized = filtered.map(row => (
           // Normalization essentially checks every field to see if it's
           // an object with a value property.  If it is, it sets the field to the
           // field.value, allowing tablulator to use the ids in report_data_map.json.
