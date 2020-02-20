@@ -99,19 +99,6 @@ class FoiaAnnualReportUtilities {
     }, {});
   }
 
-  static assignDeep(object, path, value) {
-    const parts = path.split('.');
-    const key = parts.shift();
-    if (parts.length === 0) {
-      object[key] = value;
-      return object;
-    }
-    const next = object[key] || {};
-    object[key] = FoiaAnnualReportUtilities.assignDeep(next, parts.join('.'), value);
-
-    return object;
-  }
-
   /**
    * Gets overall data from a report and transforms it into an array of
    * objects with the same structure as what would come out of the getDataForType() method.
