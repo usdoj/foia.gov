@@ -69,9 +69,42 @@ class FoiaAnnualReportUtilities {
     return FoiaAnnualReportUtilities.mergeBy(report, dataType, 'field_agency_component');
   }
 
+  /**
+   * Gets overall data from a report and transforms it into an array of
+   * objects with the same structure as what would come out of the getDataForType() method.
+   *
+   * @param {Map} report
+   *   A report retrieved from the api.
+   * @param {Object} dataType
+   *   A dataType object as defined in report_data_map.json.
+   * @returns {{}}
+   *   An array of objects where drupal paragraph data has been flattened for use by tabulator.
+   *   See getDataForType() example output.
+   */
   static getOverallDataForType(report, dataType) {
-    const fields = annualReportDataTypesStore.getFieldsForDataType(dataType.id);
+    if (dataType.id === 'group_iv_exemption_3_statutes') {
+      return FoiaAnnualReportUtilities.getStatuteOverall(report, dataType);
+    }
 
+    const row = FoiaAnnualReportUtilities.buildOverallRow(report, dataType);
+    // For consistency with getStatuteOverall, which could have many rows,
+    // return the row in an array.
+    return [row];
+  }
+
+  /**
+   * Given an object of data, builds a single row of overall data, assigning
+   * overall values to objects and fields at the same path as would be assigned
+   * for component data rows.
+   *
+   * @param {Object|Map} data
+   *   A report or object that contains flattened data.
+   * @param {Object} dataType
+   *   The data type this row is being built for, as defined in report_data_map.json.
+   * @returns {*}
+   */
+  static buildOverallRow(data, dataType) {
+    const fields = annualReportDataTypesStore.getFieldsForDataType(dataType.id);
     return fields.reduce((overallData, field) => {
       const { id, overall_field } = field;
       if (overall_field === false) {
@@ -93,9 +126,37 @@ class FoiaAnnualReportUtilities {
         }
 
         return fieldValue[fieldName];
-      }, report);
+      }, data);
 
       return FoiaAnnualReportUtilities.assignDeep(overallData, id, value);
+    }, { field_agency_component: 'Agency Overall' });
+  }
+
+  /**
+   * Builds overall rows from flattened statute data since in this case the
+   * overall fields are nested.
+   *
+   * @param {Map} report
+   *   A report retrieved from the api.
+   * @param {Object} dataType
+   *   A dataType object as defined in report_data_map.json.
+   * @returns {{}}
+   *   An array of objects where drupal paragraph data has been flattened for use by tabulator.
+   *   See getDataForType() example output.
+   */
+  static getStatuteOverall(report, dataType) {
+    const flattened = FoiaAnnualReportUtilities.mergeBy(
+      report,
+      dataType,
+      'field_statute_iv.field_statute',
+    );
+
+    return Object.keys(flattened).reduce((overall, key) => {
+      const value = FoiaAnnualReportUtilities.buildOverallRow(flattened[key], dataType);
+      const id = FoiaAnnualReportUtilities.buildRowId('field_statute_iv.field_statute', value);
+      overall[id] = value;
+
+      return overall;
     }, {});
   }
 
