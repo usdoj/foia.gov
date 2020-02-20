@@ -266,12 +266,11 @@ class AnnualReportDataFormStore extends Store {
 
         Object.assign(this.state, {
           agencyComponentDisplayError: !agencyComponentIsValid,
-        });
-        Object.assign(this.state, {
           dataTypeDisplayError: !dataTypesIsValid,
-        });
-        Object.assign(this.state, {
           fiscalYearsDisplayError: !fiscalYearsIsValid,
+          fiscalYearsIsValid,
+          dataTypesIsValid,
+          agencyComponentIsValid,
         });
         this.__emitChange();
         break;
