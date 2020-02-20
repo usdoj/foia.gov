@@ -69,6 +69,49 @@ class FoiaAnnualReportUtilities {
     return FoiaAnnualReportUtilities.mergeBy(report, dataType, 'field_agency_component');
   }
 
+  static getOverallDataForType(report, dataType) {
+    const fields = annualReportDataTypesStore.getFieldsForDataType(dataType.id);
+
+    return fields.reduce((overallData, field) => {
+      const { id, overall_field } = field;
+      if (overall_field === false) {
+        return overallData;
+      }
+      if (id.indexOf('field_footnote') === 0) {
+        return overallData;
+      }
+
+      const path = overall_field.split('.');
+      const value = path.reduce((fieldValue, fieldName) => {
+        if (Map.isMap(fieldValue)) {
+          return fieldValue.get(fieldName);
+        }
+
+        // Short circuit if we can't go deeper.
+        if (fieldValue === null || typeof fieldValue !== 'object') {
+          return fieldValue;
+        }
+
+        return fieldValue[fieldName];
+      }, report);
+
+      return FoiaAnnualReportUtilities.assignDeep(overallData, id, value);
+    }, {});
+  }
+
+  static assignDeep(object, path, value) {
+    const parts = path.split('.');
+    const key = parts.shift();
+    if (parts.length === 0) {
+      object[key] = value;
+      return object;
+    }
+    const next = object[key] || {};
+    object[key] = FoiaAnnualReportUtilities.assignDeep(next, parts.join('.'), value);
+
+    return object;
+  }
+
   /**
    * Gets overall data from a report and transforms it into an array of
    * objects with the same structure as what would come out of the getDataForType() method.
