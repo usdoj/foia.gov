@@ -1,0 +1,29 @@
+.results-page-header {
+  display: flex;
+  flex-direction: column;
+
+  @media all and (min-width: $medium-screen) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: $space-5x 0;
+    flex-wrap: wrap;
+  }
+
+  & h1 {
+    margin-top: 0;
+    margin-top: $space-1x;
+    margin-right: $space-5x;
+  }
+}
+
+.results-toolbar {
+  display: flex;
+  margin-right: -1rem;
+
+  @media all and (min-width: $medium-screen) {
+    flex-basis: 34.4rem;
+    flex-grow: 0;
+    flex-shrink: 0;  
+  }
+}

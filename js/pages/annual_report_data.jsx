@@ -139,7 +139,6 @@ class AnnualReportDataPage extends Component {
     const [...reportTableEntries] = reportTables.values();
     return (
       <div className="annual-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
-
         {submissionAction === false || submissionAction === 'download' ?
           <div>
             <h1>Create a Report</h1>
@@ -178,10 +177,11 @@ class AnnualReportDataPage extends Component {
           : null
         }
         {submissionAction === 'view' ?
-          <div>
-            <h1>View Reports</h1>
+          <header className="results-page-header">
+            <h1>Report Results</h1>
             <div className="results-toolbar">
               <button
+                onClick={() => window.print()}
                 type="button"
                 className="usa-button usa-button-big usa-button-primary-alt"
               >Print
@@ -194,10 +194,13 @@ class AnnualReportDataPage extends Component {
                 CSV
               </button>
             </div>
-          </div>
+          </header>
           : null }
         {(submissionAction === 'view' || submissionAction === 'download') && !reportDataComplete &&
-        <div>Loading...</div>
+          <div className="results-loading">
+            <div className="spinner" />
+            <div className="results-loading__text">Loading...</div>
+          </div>
         }
         {reportDataComplete &&
         <div>
