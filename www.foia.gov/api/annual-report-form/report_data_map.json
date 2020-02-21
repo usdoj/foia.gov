@@ -372,7 +372,7 @@
         "id": "field_statute_iv.field_statute",
         "label": "Statute",
         "filter": false,
-        "overall_field": false,
+        "overall_field": "field_statute_iv.field_statute",
         "display": true
       },
       {

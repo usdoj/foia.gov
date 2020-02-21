@@ -7,18 +7,19 @@ The app uses the same architecture as the [Request app](request-app.md).
 
 ## Application Structure
 
+
 ### Entry point
+
 `/js/annual_report_data.jsx`
 
 
 ### Page(s)
+
 `/js/pages/annual_report_data.jsx`
 
 
-### Actions
-
-
 ### Stores
+
 `/js/stores/annual_report_data_form.js` 
 
 The `AnnualReportDataFormStore` contains the form state for the annual report
@@ -88,6 +89,7 @@ import FoiaModal from '../components/foia_modal';
 Used in:
  * foia_report_form_section_two
 
+
 #### Agency Component Filter
 
 Wraps the typeahead search component and the "Select Agency Components"
@@ -114,6 +116,7 @@ import ReportAgencyComponentFilter from '../components/report_agency_component_f
 />
 ```
 
+
 #### Agency Component Typeahead
 
 The typeahead search input for the annual report form.
@@ -138,6 +141,7 @@ import ReportAgencyComponentTypeahead from './report_agency_component_typeahead'
   selectedAgency={selectedAgency}
 />
 ```
+
 
 #### Add Link
 
@@ -166,6 +170,7 @@ import { types } from '../actions';
 
 
 #### FOIA Report Data Type Filter
+
 A component which encapsulates the Report Type select list and the data filter
 modal. The component is meant to be included in a loop for each selected data
 type.
@@ -202,6 +207,7 @@ set the `applied` property on the filter to `false`.
 
 
 #### USWDS Select Widget
+
 A simple component which can be used to create a select list of items which
 supports a placeholder value and an `onChange` handler. The component will not
 display a placeholder if and empty string is passed in the `placeholder` prop. 
@@ -230,6 +236,7 @@ Props:
 
 
 ### FOIA Report Results Table
+
 A component which wraps the `Tabulator` Javascript table library. It is responsible for displaying and downloading
 report tables. One component will be rendered for each data type selected in the form.
 
@@ -253,6 +260,7 @@ Example use:
 
 
 ### Utilities
+
 
 #### FoiaAnnualReportUtilities
 
