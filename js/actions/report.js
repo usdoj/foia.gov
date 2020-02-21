@@ -42,6 +42,7 @@ export const types = {
   ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE: 'ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE',
   VALIDATE_FORM: 'VALIDATE_FORM',
   REPORT_SUBMISSION_TYPE: 'REPORT_SUBMISSION_TYPE',
+  CLEAR_FORM: 'CLEAR_FORM',
 };
 
 // Action creators, to dispatch actions
@@ -242,6 +243,14 @@ export const reportActions = {
   completeAnnualReportData() {
     dispatcher.dispatch({
       type: types.ANNUAL_REPORT_DATA_COMPLETE,
+    });
+
+    return Promise.resolve();
+  },
+
+  clearForm() {
+    dispatcher.dispatch({
+      type: types.CLEAR_FORM,
     });
 
     return Promise.resolve();
