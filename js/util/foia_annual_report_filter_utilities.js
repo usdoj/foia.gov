@@ -16,6 +16,11 @@ class FoiaAnnualReportFilterUtilities {
    * @returns {boolean}
    */
   static passesAny(row, filters) {
+    // @todo Should the filters only be applied per data type?
+    // Eg, a processing time filter should not be applied to exemption 3 statutes.
+    if (filters.length === 0) {
+      return true;
+    }
     const passes = filters.filter((filter) => {
       const { compareValue, filterField, op } = filter;
       const value = FoiaAnnualReportFilterUtilities.getValue(filterField, row);
