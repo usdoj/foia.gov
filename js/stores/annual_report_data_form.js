@@ -50,6 +50,44 @@ class AnnualReportDataFormStore extends Store {
     return agencies.toArray();
   }
 
+  validateSelectAgencyComponent() {
+    // Check if Agency Component Name field is valid.
+    const selectedAgencies = [...this.state.selectedAgencies];
+    const validityCheckSelectedAgencies = [];
+    const allAgenciesSelected = this.state.allAgenciesSelected;
+    if (allAgenciesSelected) {
+      validityCheckSelectedAgencies.push(true);
+    } else {
+      selectedAgencies.forEach((selectedAgency) => {
+        if (selectedAgency.id) {
+          validityCheckSelectedAgencies.push(true);
+        } else {
+          validityCheckSelectedAgencies.push(false);
+        }
+      });
+    }
+    return validityCheckSelectedAgencies.includes(true);
+  }
+
+  validateSelectDataTypes() {
+    // Check if Data Type field is valid.
+    const dataTypes = [...this.state.selectedDataTypes];
+    const validityCheckDataTypes = [];
+    dataTypes.forEach((dataType) => {
+      if (dataType.id.length > 0) {
+        validityCheckDataTypes.push(true);
+      } else {
+        validityCheckDataTypes.push(false);
+      }
+    });
+    return validityCheckDataTypes.includes(true);
+  }
+
+  validateSelectedFiscalYears() {
+    const fiscalYears = [...this.state.selectedFiscalYears];
+    return fiscalYears.length > 0;
+  }
+
   __onDispatch(payload) {
     switch (payload.type) {
       case types.SELECTED_AGENCIES_UPDATE: {
@@ -99,24 +137,26 @@ class AnnualReportDataFormStore extends Store {
         Object.assign(this.state, {
           selectedAgencies,
         });
+
+        const agencyComponentIsValid = this.validateSelectAgencyComponent();
+        this.state.agencyComponentIsValid = agencyComponentIsValid;
+        this.state.agencyComponentDisplayError = !agencyComponentIsValid;
+
         this.__emitChange();
         break;
       }
 
       case types.SELECTED_AGENCIES_TOGGLE_SELECT_ALL: {
         const { allAgenciesSelected } = Object.assign({}, this.getState());
-        let agencyComponentIsValid = true;
-        if (!allAgenciesSelected) {
-          const selectedAgencies = [...this.state.selectedAgencies];
-          agencyComponentIsValid = selectedAgencies
-            .filter(selection => selection.error || false)
-            .length === 0;
-        }
 
         Object.assign(this.state, {
           allAgenciesSelected: !allAgenciesSelected,
-          agencyComponentIsValid,
         });
+
+        const agencyComponentIsValid = this.validateSelectAgencyComponent();
+        this.state.agencyComponentIsValid = agencyComponentIsValid;
+        this.state.agencyComponentDisplayError = !agencyComponentIsValid;
+
         this.__emitChange();
         break;
       }
@@ -147,6 +187,11 @@ class AnnualReportDataFormStore extends Store {
         Object.assign(this.state, {
           selectedAgencies,
         });
+
+        const agencyComponentIsValid = this.validateSelectAgencyComponent();
+        this.state.agencyComponentIsValid = agencyComponentIsValid;
+        this.state.agencyComponentDisplayError = !agencyComponentIsValid;
+
         this.__emitChange();
         break;
       }
@@ -197,6 +242,10 @@ class AnnualReportDataFormStore extends Store {
           selectedDataTypes,
         });
 
+        const dataTypesIsValid = this.validateSelectDataTypes();
+        this.state.dataTypesIsValid = dataTypesIsValid;
+        this.state.dataTypeDisplayError = !dataTypesIsValid;
+
         this.__emitChange();
         break;
       }
@@ -230,39 +279,19 @@ class AnnualReportDataFormStore extends Store {
         }
 
         Object.assign(this.state, { selectedFiscalYears: data });
+
+        const fiscalYearsIsValid = this.validateSelectedFiscalYears();
+        this.state.fiscalYearsIsValid = fiscalYearsIsValid;
+        this.state.fiscalYearsDisplayError = !fiscalYearsIsValid;
+
         this.__emitChange();
         break;
       }
 
       case types.VALIDATE_FORM: {
-        const selectedAgencies = [...this.state.selectedAgencies];
-        const dataTypes = [...this.state.selectedDataTypes];
-        const fiscalYears = [...this.state.selectedFiscalYears];
-        const validityCheckSelectedAgencies = [];
-        const validityCheckDataTypes = [];
-
-        // Check if Agency Component field is valid.
-        selectedAgencies.forEach((selectedAgency) => {
-          if (selectedAgency.id) {
-            validityCheckSelectedAgencies.push(true);
-          } else {
-            validityCheckSelectedAgencies.push(false);
-          }
-        });
-        const agencyComponentIsValid = validityCheckSelectedAgencies.includes(true);
-
-        // Check if Data Type field is valid.
-        dataTypes.forEach((dataType) => {
-          if (dataType.id.length > 0) {
-            validityCheckDataTypes.push(true);
-          } else {
-            validityCheckDataTypes.push(false);
-          }
-        });
-        const dataTypesIsValid = validityCheckDataTypes.includes(true);
-
-        // Check if Fiscal Years field is valid.
-        const fiscalYearsIsValid = fiscalYears.length > 0;
+        const agencyComponentIsValid = this.validateSelectAgencyComponent();
+        const dataTypesIsValid = this.validateSelectDataTypes();
+        const fiscalYearsIsValid = this.validateSelectedFiscalYears();
 
         Object.assign(this.state, {
           agencyComponentDisplayError: !agencyComponentIsValid,
@@ -375,6 +404,10 @@ class AnnualReportDataFormStore extends Store {
         Object.assign(this.state, {
           selectedDataTypes,
         });
+
+        const dataTypesIsValid = this.validateSelectDataTypes();
+        this.state.dataTypesIsValid = dataTypesIsValid;
+        this.state.dataTypeDisplayError = !dataTypesIsValid;
 
         this.__emitChange();
         break;
