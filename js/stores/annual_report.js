@@ -92,12 +92,12 @@ class AnnualReportStore extends Store {
         }).filter(value => value !== false);
 
 
-        const normalized = componentRows.map((row) => {
+        const normalized = componentRows.map(row => (
           // Normalization essentially checks every field to see if it's
           // an object with a value property.  If it is, it sets the field to the
           // field.value, allowing tablulator to use the ids in report_data_map.json.
-          return Object.assign({}, defaults, FoiaAnnualReportUtilities.normalize(row));
-        });
+          Object.assign({}, defaults, FoiaAnnualReportUtilities.normalize(row))
+        ));
 
         if (component.toLowerCase() === 'agency overall') {
           overallData.push(...normalized);
