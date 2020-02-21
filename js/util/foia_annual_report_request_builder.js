@@ -104,6 +104,14 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
         );
         filterNames.push(`data-type-filter-lt1-${filter.index}`);
       }
+      if (filter.op === 'greater_than' && filter.compareValue === 0) {
+        this.request = this.request.filter(
+          `data-type-filter-gt0-${filter.index}`,
+          filter.filterField,
+          '<1',
+        );
+        filterNames.push(`data-type-filter-gt0-${filter.index}`);
+      }
     }
 
     this.request.or(...filterNames);
