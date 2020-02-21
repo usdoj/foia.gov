@@ -250,3 +250,20 @@ Example use:
   displayMode={submissionAction}
 />
 ```
+
+
+### Utilities
+
+#### FoiaAnnualReportUtilities
+
+A utility class with static methods that can be used to get an
+array of data objects, suitable to be passed to tabulator,
+from a report that include the data specified by the included
+fields in the report_data_map.json file.
+
+Example use:
+```
+import FoiaAnnualReportUtilities from 'utils/foia_annual_report_utilities';
+...
+const rows = FoiaAnnualReportUtilities.getDataForType(report, dataType);
+```

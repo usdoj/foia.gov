@@ -3,6 +3,7 @@ import { Store } from 'flux/utils';
 import dispatcher from '../util/dispatcher';
 import { types } from '../actions/report';
 import annualReportDataFormStore from './annual_report_data_form';
+import FoiaAnnualReportUtilities from '../util/foia_annual_report_utilities';
 
 class AnnualReportStore extends Store {
   constructor(_dispatcher) {
@@ -17,6 +18,86 @@ class AnnualReportStore extends Store {
 
   getState() {
     return this.state;
+  }
+
+
+  static getSelectedAgencies() {
+    const { selectedAgencies } = annualReportDataFormStore.getState();
+    return selectedAgencies.reduce((formatted, selected) => {
+      switch (selected.type) {
+        case 'agency': {
+          const { abbreviation, components } = selected;
+          const selectedComponents = formatted[abbreviation] || [];
+          const componentAbbreviations = components
+            .filter(component => component.selected)
+            .map(component => component.abbreviation);
+
+          formatted[abbreviation] = selectedComponents.concat(...componentAbbreviations.toArray())
+            .filter((value, index, array) => array.indexOf(value) === index)
+            .sort();
+          break;
+        }
+        case 'agency_component': {
+          const { abbreviation, agency } = selected;
+          const agencyComponents = formatted[agency.abbreviation] || [];
+          formatted[agency.abbreviation] = agencyComponents
+            .concat(abbreviation)
+            .filter((value, index, array) => array.indexOf(value) === index)
+            .sort();
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+
+      return formatted;
+    }, {});
+  }
+
+  getReportDataForType(dataType) {
+    // @todo: Filter rows based on data type filters.
+    const tableData = [];
+    const { reports } = this.state;
+    const selectedAgencies = AnnualReportStore.getSelectedAgencies();
+
+    // Iterate over each report.
+    reports.forEach((report) => {
+      const { abbreviation: agency_abbr, name: agency_name } = report.get('field_agency');
+      const selectedComponents = [...selectedAgencies[agency_abbr] || []];
+      const flattened = FoiaAnnualReportUtilities.getDataForType(report, dataType);
+
+      selectedComponents.forEach((component) => {
+        const fiscal_year = report.get('field_foia_annual_report_yr');
+        const defaults = {
+          field_agency_component: component,
+          field_agency: agency_name,
+          field_foia_annual_report_yr: fiscal_year,
+        };
+
+        // It is not guaranteed that the flattened data will be keyed by
+        // a component abbreviation.  This gathers an array of all the rows
+        // for this component.
+        const rows = Object.keys(flattened).map((key) => {
+          if (flattened[key].field_agency_component !== component) {
+            return false;
+          }
+
+          return flattened[key];
+        }).filter(value => value !== false);
+
+
+        tableData.push(...rows.map((row) => {
+          // Normalization essentially checks every field to see if it's
+          // an object with a value property.  If it is, it sets the field to the
+          // field.value, allowing tablulator to use the ids in report_data_map.json.
+          const normalized = FoiaAnnualReportUtilities.normalize(row);
+          return Object.assign({}, defaults, normalized);
+        }));
+      });
+    });
+
+    return tableData;
   }
 
   __onDispatch(payload) {
@@ -92,8 +173,7 @@ class AnnualReportStore extends Store {
                   align: 'center',
                 }));
             const reportHeaders = defaultColumns.concat(dataColumns);
-            // @TODO: Actually fetch the data from the JSON:API result.
-            const dataRows = [];
+            const dataRows = this.getReportDataForType(dataType);
             tables.push({
               id: dataType.id,
               header: dataType.heading,
