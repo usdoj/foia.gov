@@ -36,39 +36,14 @@ class FoiaReportDataSubmit extends Component {
   }
 
   makeApiRequests() {
-    reportActions.fetchAnnualReportData((builder) => {
-      const selectedAgencies = annualReportDataFormStore.buildSelectedAgencies();
-      const agencies = selectedAgencies.filter(selection => selection.type === 'agency');
-      const components = selectedAgencies.filter(selection => selection.type === 'agency_component');
-      const dataTypeFilters = this.props.selectedDataTypes
-        .filter(selection => selection.filter.applied || false)
-        .map(selection => selection.filter);
-      const includeOverall = agencies.filter((agency) => {
-        const overall = agency
-          .components
-          .filter(component => component.selected && component.isOverall);
+    const dataTypes = this.props.selectedDataTypes.reduce((selectedTypes, type) => {
+      const typeList = selectedTypes[type.id] || [];
+      typeList.push(type);
+      selectedTypes[type.id] = typeList;
 
-        return List.isList(overall) ? overall.size > 0 : overall.length > 0;
-      }).length > 0;
-
-      let updatedBuilder = builder;
-      if (includeOverall) {
-        updatedBuilder = updatedBuilder.includeOverallFields(this.props.selectedDataTypes);
-      }
-
-      if (!this.props.allAgenciesSelected) {
-        updatedBuilder = updatedBuilder
-          .includeDataTypes(this.props.selectedDataTypes)
-          .addOrganizationsGroup({
-            agencies: agencies.map(agency => agency.abbreviation),
-            components: components.map(component => component.abbreviation),
-          });
-      }
-
-      return updatedBuilder
-        .addDataTypeFiltersGroup(dataTypeFilters)
-        .addFiscalYearsGroup(this.props.selectedFiscalYears);
-    });
+      return selectedTypes;
+    }, {});
+    reportActions.fetchAnnualReportData(dataTypes);
   }
 
   render() {

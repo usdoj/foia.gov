@@ -14,6 +14,7 @@ class AnnualReportStore extends Store {
       reports: new Map(),
       reportTables: new Map(),
       reportDataComplete: false,
+      numberOfTypesToProcess: 0,
     };
   }
 
@@ -118,11 +119,13 @@ class AnnualReportStore extends Store {
   __onDispatch(payload) {
     switch (payload.type) {
       case types.ANNUAL_REPORT_DATA_FETCH: {
+        const { typesCount } = payload;
         // Reset the report data to initial value so that report state after a new form submission
         // is limited to only the data specific to that request.
         this.state.reportDataComplete = false;
         Object.assign(this.state, {
           reports: new Map(),
+          numberOfTypesToProcess: typesCount || 1,
         });
         this.__emitChange();
         break;
@@ -155,6 +158,18 @@ class AnnualReportStore extends Store {
       }
 
       case types.ANNUAL_REPORT_DATA_COMPLETE: {
+        // If there are multiple data types requested, separate requests will be
+        // made for each data type.  Avoid building the report tables until all
+        // of the data type requests have finished processing.
+        // directly mutate b/c ? that seems bad
+        if (this.state.numberOfTypesToProcess > 1) {
+          Object.assign(this.state, {
+            numberOfTypesToProcess: this.state.numberOfTypesToProcess - 1,
+          });
+          this.__emitChange();
+          break;
+        }
+
         const { selectedDataTypes } = annualReportDataFormStore.getState();
         // Set up the default columns that appear in all data tables.
         const defaultColumns = [
@@ -206,6 +221,7 @@ class AnnualReportStore extends Store {
         Object.assign(this.state, {
           reportTables: updatedReportTables,
           reportDataComplete: true,
+          numberOfRequestsToProcess: 0,
         });
 
         this.__emitChange();
