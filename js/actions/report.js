@@ -43,6 +43,7 @@ export const types = {
   VALIDATE_FORM: 'VALIDATE_FORM',
   REPORT_SUBMISSION_TYPE: 'REPORT_SUBMISSION_TYPE',
   CLEAR_FORM: 'CLEAR_FORM',
+  RELOAD_FORM: 'RELOAD_FORM',
 };
 
 // Action creators, to dispatch actions
@@ -251,6 +252,15 @@ export const reportActions = {
   clearForm() {
     dispatcher.dispatch({
       type: types.CLEAR_FORM,
+    });
+
+    return Promise.resolve();
+  },
+
+  reloadForm(viewMode) {
+    dispatcher.dispatch({
+      type: types.RELOAD_FORM,
+      viewMode,
     });
 
     return Promise.resolve();

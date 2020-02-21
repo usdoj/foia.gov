@@ -497,6 +497,13 @@ class AnnualReportDataFormStore extends Store {
         this.__emitChange();
         break;
       }
+
+      case types.RELOAD_FORM: {
+        const { viewMode } = payload;
+        this.state.submissionAction = viewMode === 'results' ? 'view' : false;
+        this.__emitChange();
+        break;
+      }
       default:
         break;
     }

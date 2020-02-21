@@ -31,6 +31,7 @@ class FoiaReportDataSubmit extends Component {
         type: types.REPORT_SUBMISSION_TYPE,
         submissionAction: action,
       });
+      this.props.history.push('/data.html/results', { view: 'results' });
       this.makeApiRequests();
     }
   }
@@ -89,6 +90,7 @@ FoiaReportDataSubmit.propTypes = {
   fiscalYearsIsValid: PropTypes.bool.isRequired,
   dataTypesIsValid: PropTypes.bool.isRequired,
   agencyComponentIsValid: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 FoiaReportDataSubmit.defaultProps = {
