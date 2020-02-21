@@ -90,6 +90,20 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
         `data-type-filter-${filter.index}`,
         FoiaAnnualReportRequestBuilder.getOperator(filter.op),
       );
+
+      // Many numeric fields on the backend use the convention of
+      // allowing a text value of '<1', so if there is a filter
+      // looking for values that are less than anything (except 0)
+      // add a secondary filter param that will request values that
+      // equal the text '<1'.
+      if (filter.op === 'less_than' && filter.compareValue >= 1) {
+        this.request = this.request.filter(
+          `data-type-filter-lt1-${filter.index}`,
+          filter.filterField,
+          '<1',
+        );
+        filterNames.push(`data-type-filter-lt1-${filter.index}`);
+      }
     }
 
     this.request.or(...filterNames);
