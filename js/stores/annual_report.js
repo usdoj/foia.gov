@@ -94,7 +94,7 @@ class AnnualReportStore extends Store {
 
         const filtered = FoiaAnnualReportFilterUtilities.filterByDataTypeConditions(
           componentRows,
-          FoiaAnnualReportFilterUtilities.getFiltersFromSelectedDataTypes(),
+          FoiaAnnualReportFilterUtilities.getFiltersForType(dataType.id),
         );
 
         const normalized = filtered.map(row => (

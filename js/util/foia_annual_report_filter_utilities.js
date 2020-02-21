@@ -26,14 +26,21 @@ class FoiaAnnualReportFilterUtilities {
   }
 
   /**
-   * Gets all applied data type filters from the form state.
+   * Gets filters for a given data type.
    *
+   * @param dataTypeId
    * @returns {unknown[]}
    */
-  static getFiltersFromSelectedDataTypes() {
+  static getFiltersForType(dataTypeId) {
     const selectedDataTypes = [...annualReportDataFormStore.getState().selectedDataTypes];
     return selectedDataTypes
-      .filter(type => (typeof type.filter === 'object' && type.filter !== null))
+      .filter(type => (
+        typeof type.filter === 'object' && type.filter !== null
+      ))
+      // Filter out any selected data type that doesn't match the passed in data type.
+      // This prevents attempting to apply filters to a row where the data type
+      // is not the same.
+      .filter(type => type.id === dataTypeId)
       .map(type => type.filter)
       .filter(filter => filter.applied);
   }
