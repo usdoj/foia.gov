@@ -9,6 +9,7 @@ import date from '../util/current_date';
 import { FoiaAnnualReportRequestBuilder } from '../util/foia_annual_report_request_builder';
 import annualReportDataFormStore from '../stores/annual_report_data_form';
 import { List } from 'immutable';
+import FoiaAnnualReportFilterUtilities from '../util/foia_annual_report_filter_utilities';
 
 // Action types to identify an action
 export const types = {
@@ -245,9 +246,7 @@ export const reportActions = {
     const { allAgenciesSelected, selectedFiscalYears } = annualReportDataFormStore.getState();
     const agencies = selectedAgencies.filter(selection => selection.type === 'agency');
     const components = selectedAgencies.filter(selection => selection.type === 'agency_component');
-    const dataTypeFilters = type
-      .filter(selection => selection.filter.applied || false)
-      .map(selection => selection.filter);
+    const dataTypeFilters = FoiaAnnualReportFilterUtilities.getFiltersForType(type[0].id);
     const includeOverall = agencies.filter((agency) => {
       const overall = agency
         .components
@@ -271,7 +270,7 @@ export const reportActions = {
     }
 
     return updatedBuilder
-      .addDataTypeFiltersGroup(dataTypeFilters)
+      .addDataTypeFiltersGroup(dataTypeFilters, type[0].id)
       .addFiscalYearsGroup(selectedFiscalYears);
   },
 

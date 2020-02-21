@@ -1,4 +1,7 @@
 import annualReportDataFormStore from '../stores/annual_report_data_form';
+import { List } from 'immutable';
+import annualReportStore, { AnnualReportStore } from '../stores/annual_report';
+import annualReportDataTypesStore from '../stores/annual_report_data_types';
 
 /**
  * Provides utility functions for comparing rows of data with applied filters.
@@ -38,7 +41,7 @@ class FoiaAnnualReportFilterUtilities {
    */
   static getFiltersForType(dataTypeId) {
     const selectedDataTypes = [...annualReportDataFormStore.getState().selectedDataTypes];
-    return selectedDataTypes
+    let filters = selectedDataTypes
       .filter(type => (
         typeof type.filter === 'object' && type.filter !== null
       ))
@@ -48,6 +51,37 @@ class FoiaAnnualReportFilterUtilities {
       .filter(type => type.id === dataTypeId)
       .map(type => type.filter)
       .filter(filter => filter.applied);
+
+    if (this.filterOnOverallFields()) {
+      filters = this.transformToOverallFilters(filters, dataTypeId);
+    }
+    return filters;
+  }
+
+  static filterOnOverallFields() {
+    const selectedAgencies = AnnualReportStore.getSelectedAgencies();
+    const requestsComponents = Object.keys(selectedAgencies).filter((key) => {
+      const agency = selectedAgencies[key];
+      const hasComponents = agency
+        .filter(component => component.toLowerCase() !== 'agency overall');
+      return hasComponents.length > 0;
+    });
+
+    return requestsComponents.length <= 0;
+  }
+
+  static transformToOverallFilters(filters, dataTypeId) {
+    const fields = annualReportDataTypesStore.getFieldsForDataType(dataTypeId);
+    return filters.map((filter) => {
+      const field = fields
+        .filter(data => data.id === filter.filterField.replace('.value', ''));
+      if (field.length <= 0) {
+        return false;
+      }
+
+      filter.filterField = field[0].filter === true ? field[0].overall_field : `${field[0].overall_field}.value`;
+      return filter;
+    }).filter(filter => filter !== false);
   }
 
   /**
