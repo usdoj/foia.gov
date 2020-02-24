@@ -2,6 +2,7 @@ import assert from 'assert';
 import { List } from 'immutable';
 import { JsonApi } from './json_api';
 import annualReportDataTypesStore from '../stores/annual_report_data_types';
+import FoiaAnnualReportFilterUtilities from './foia_annual_report_filter_utilities';
 
 class FoiaAnnualReportRequestBuilder extends JsonApi {
   constructor(baseUrl) {
@@ -63,15 +64,20 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
     return this;
   }
 
-  addDataTypeFiltersGroup(filters = []) {
+  addDataTypeFiltersGroup(filters = [], dataTypeId) {
     if (filters.length <= 0) {
       return this;
+    }
+    let dataTypeFilters = filters;
+    if (FoiaAnnualReportFilterUtilities.filterOnOverallFields()) {
+      dataTypeFilters = FoiaAnnualReportFilterUtilities
+        .transformToOverallFilters(filters, dataTypeId);
     }
 
     // Transform the filters, adding an index which will be used when
     // naming the filter for the .request.filter() method and
     // handle the special operator `is_na`.
-    const dataTypeFilters = filters
+    dataTypeFilters = filters
       .map((filter, index) => (
         Object.assign({ index }, filter, {
           op: filter.op === 'is_na' ? 'equal_to' : filter.op,
