@@ -14,6 +14,9 @@ class AnnualReportStore extends Store {
       reports: new Map(),
       reportTables: new Map(),
       reportDataComplete: false,
+      // The number of data types requested on the front end form.  Separate api requests
+      // will be made for each data type so that filters, or the lack of filters for one
+      // data type, don't adversely affect the results, which should be more inclusive, not less.
       numberOfTypesToProcess: 0,
     };
   }
@@ -165,7 +168,6 @@ class AnnualReportStore extends Store {
         // If there are multiple data types requested, separate requests will be
         // made for each data type.  Avoid building the report tables until all
         // of the data type requests have finished processing.
-        // directly mutate b/c ? that seems bad
         if (this.state.numberOfTypesToProcess > 1) {
           Object.assign(this.state, {
             numberOfTypesToProcess: this.state.numberOfTypesToProcess - 1,
