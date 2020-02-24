@@ -1,6 +1,5 @@
+import { AnnualReportStore } from '../stores/annual_report';
 import annualReportDataFormStore from '../stores/annual_report_data_form';
-import { List } from 'immutable';
-import annualReportStore, { AnnualReportStore } from '../stores/annual_report';
 import annualReportDataTypesStore from '../stores/annual_report_data_types';
 
 /**

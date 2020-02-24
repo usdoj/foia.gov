@@ -1,6 +1,7 @@
 import assert from 'assert';
 import axios from 'axios';
 import settings from 'settings';
+import { List } from 'immutable';
 
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
@@ -8,7 +9,6 @@ import localapi from '../util/local_api';
 import date from '../util/current_date';
 import { FoiaAnnualReportRequestBuilder } from '../util/foia_annual_report_request_builder';
 import annualReportDataFormStore from '../stores/annual_report_data_form';
-import { List } from 'immutable';
 import FoiaAnnualReportFilterUtilities from '../util/foia_annual_report_filter_utilities';
 
 // Action types to identify an action

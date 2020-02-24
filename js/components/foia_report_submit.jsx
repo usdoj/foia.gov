@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'immutable';
 import { reportActions, types } from '../actions/report';
 import dispatcher from '../util/dispatcher';
-import annualReportDataFormStore from '../stores/annual_report_data_form';
 
 class FoiaReportDataSubmit extends Component {
   constructor(props) {
@@ -58,18 +56,14 @@ class FoiaReportDataSubmit extends Component {
 }
 
 FoiaReportDataSubmit.propTypes = {
-  allAgenciesSelected: PropTypes.bool,
   selectedDataTypes: PropTypes.array,
-  selectedFiscalYears: PropTypes.array,
   fiscalYearsIsValid: PropTypes.bool.isRequired,
   dataTypesIsValid: PropTypes.bool.isRequired,
   agencyComponentIsValid: PropTypes.bool.isRequired,
 };
 
 FoiaReportDataSubmit.defaultProps = {
-  allAgenciesSelected: false,
   selectedDataTypes: [],
-  selectedFiscalYears: [],
 };
 
 export default FoiaReportDataSubmit;
