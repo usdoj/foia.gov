@@ -93,6 +93,10 @@ class AnnualReportStore extends Store {
           return allRows[key];
         }).filter(value => value !== false);
 
+        // Filtering via the api will return reports that match the filter criteria,
+        // but will not filter out components within those reports that don't match the
+        // filter criteria.  This takes a pass over each row for this data type to filter
+        // out any component row that does not match the data type filter criteria.
         const filtered = FoiaAnnualReportFilterUtilities.filterByDataTypeConditions(
           componentRows,
           FoiaAnnualReportFilterUtilities.getFiltersForType(dataType.id),
