@@ -100,7 +100,7 @@ class AnnualReportStore extends Store {
         // but will not filter out components within those reports that don't match the
         // filter criteria.  This takes a pass over each row for this data type to filter
         // out any component row that does not match the data type filter criteria.
-        const filtered = FoiaAnnualReportFilterUtilities.filterByDataTypeConditions(
+        const filtered = FoiaAnnualReportFilterUtilities.filter(
           componentRows,
           FoiaAnnualReportFilterUtilities.getFiltersForType(dataType.id),
         );
