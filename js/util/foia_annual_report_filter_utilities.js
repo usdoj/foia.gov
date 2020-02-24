@@ -98,12 +98,18 @@ class FoiaAnnualReportFilterUtilities {
     const fields = annualReportDataTypesStore.getFieldsForDataType(dataTypeId);
     return filters.map((filter) => {
       const field = fields
-        .filter(data => data.id === filter.filterField.replace('.value', ''));
+        .filter(data => data.id === filter.filterField.replace(/\.value$/i, ''));
       if (field.length <= 0) {
-        return false;
+        return filter;
       }
 
-      filter.filterField = field[0].filter === true ? field[0].overall_field : `${field[0].overall_field}.value`;
+      // There is one case in the report_data_map.json file where a field is
+      // filterable, but does not have an overall field.  In this case, do not
+      // attempt to filter on an overall field, leaving the filter as it is.
+      if (field[0].filter === true && field[0].overall_field !== false) {
+        const isTextField = filter.filterField.match(/\.value$/i) !== null;
+        filter.filterField = isTextField ? `${field[0].overall_field}.value` : field[0].overall_field;
+      }
       return filter;
     }).filter(filter => filter !== false);
   }
