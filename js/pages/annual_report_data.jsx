@@ -60,6 +60,7 @@ class AnnualReportDataPage extends Component {
       reports,
       reportTables,
       reportDataComplete,
+      reportDataHasRows,
     } = annualReportStore.getState();
 
     return {
@@ -84,6 +85,7 @@ class AnnualReportDataPage extends Component {
       reports,
       reportTables,
       reportDataComplete,
+      reportDataHasRows,
     };
   }
 
@@ -135,8 +137,26 @@ class AnnualReportDataPage extends Component {
       reportTables,
       submissionAction,
       reportDataComplete,
+      reportDataHasRows,
     } = this.state;
     const [...reportTableEntries] = reportTables.values();
+    const reportToolbar = reportDataComplete && reportDataHasRows ?
+      (<div className="results-toolbar">
+        <button
+          onClick={() => window.print()}
+          type="button"
+          className="usa-button usa-button-big usa-button-primary-alt"
+        >Print
+        </button>
+        <button
+          onClick={this.triggerCSV.bind(this)}
+          type="button"
+          className="usa-button usa-button-big usa-button-primary-alt"
+        >Download
+          CSV
+        </button>
+      </div>)
+      : null;
     return (
       <div className="annual-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
         {submissionAction === false || submissionAction === 'download' ?
@@ -179,21 +199,7 @@ class AnnualReportDataPage extends Component {
         {submissionAction === 'view' ?
           <header className="results-page-header">
             <h1>Report Results</h1>
-            <div className="results-toolbar">
-              <button
-                onClick={() => window.print()}
-                type="button"
-                className="usa-button usa-button-big usa-button-primary-alt"
-              >Print
-              </button>
-              <button
-                onClick={this.triggerCSV.bind(this)}
-                type="button"
-                className="usa-button usa-button-big usa-button-primary-alt"
-              >Download
-                CSV
-              </button>
-            </div>
+            {reportToolbar}
           </header>
           : null }
         {(submissionAction === 'view' || submissionAction === 'download') && !reportDataComplete &&
@@ -202,7 +208,7 @@ class AnnualReportDataPage extends Component {
             <div className="results-loading__text">Loading...</div>
           </div>
         }
-        {reportDataComplete &&
+        {reportDataComplete && reportDataHasRows &&
         <div>
           {
             reportTableEntries.map(table => (
@@ -217,6 +223,12 @@ class AnnualReportDataPage extends Component {
             ))
           }
         </div> }
+        {reportDataComplete && !reportDataHasRows &&
+        <div className="info-box">
+          <p>No data meets your search criteria. Please try a new search.</p>
+        </div>
+
+        }
       </div>
     );
   }
