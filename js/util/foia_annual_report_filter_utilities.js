@@ -7,20 +7,30 @@ import annualReportDataTypesStore from '../stores/annual_report_data_types';
  * Provides utility functions for comparing rows of data with applied filters.
  */
 class FoiaAnnualReportFilterUtilities {
-  static filterByDataTypeConditions(rows, filters) {
+  /**
+   * Checks that a set of rows pass any of the given set of filters, returning only passing rows.
+   *
+   * @param {[{}]} rows
+   *   An array of row objects.
+   * @param {[{}]} filters
+   *   An array of data type filter objects.
+   * @returns {*}
+   */
+  static filter(rows, filters) {
     return rows.filter(row => FoiaAnnualReportFilterUtilities.passesAny(row, filters));
   }
 
   /**
    * Checks that a row passes any of the filters.
    *
-   * @param row
-   * @param filters
+   * @param {Object} row
+   *   A row of component data to be displayed
+   * @param {[{}]} filters
+   *   An array of data type filter objects.
    * @returns {boolean}
    */
   static passesAny(row, filters) {
-    // @todo Should the filters only be applied per data type?
-    // Eg, a processing time filter should not be applied to exemption 3 statutes.
+    // Don't filter if there are no filters to apply.
     if (filters.length === 0) {
       return true;
     }
@@ -58,6 +68,12 @@ class FoiaAnnualReportFilterUtilities {
     return filters;
   }
 
+  /**
+   * If the only agency component request is overall data, the filters
+   * applied should be applied to overall field values.
+   *
+   * @returns {boolean}
+   */
   static filterOnOverallFields() {
     const selectedAgencies = AnnualReportStore.getSelectedAgencies();
     const requestsComponents = Object.keys(selectedAgencies).filter((key) => {
@@ -70,6 +86,19 @@ class FoiaAnnualReportFilterUtilities {
     return requestsComponents.length <= 0;
   }
 
+  /**
+   * Sets a filter's filterField string to the fields corresponding overall field.
+   *
+   * By default filters are applied against a field id from report_data_map.json file.
+   * If only overall data is being requested on the front end, the filters should be applied
+   * against a field's corresponding overall_field.
+   *
+   * @param {[{}]} filters
+   *   An array of data type filters.
+   * @param {string} dataTypeId
+   *   A data type id.
+   * @returns {*}
+   */
   static transformToOverallFilters(filters, dataTypeId) {
     const fields = annualReportDataTypesStore.getFieldsForDataType(dataTypeId);
     return filters.map((filter) => {
