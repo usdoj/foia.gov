@@ -51,7 +51,7 @@ class FoiaAnnualReportFilterUtilities {
    */
   static getFiltersForType(dataTypeId) {
     const selectedDataTypes = [...annualReportDataFormStore.getState().selectedDataTypes];
-    let filters = selectedDataTypes
+    return selectedDataTypes
       .filter(type => (
         typeof type.filter === 'object' && type.filter !== null
       ))
@@ -59,13 +59,8 @@ class FoiaAnnualReportFilterUtilities {
       // This prevents attempting to apply filters to a row where the data type
       // is not the same.
       .filter(type => type.id === dataTypeId)
-      .map(type => type.filter)
+      .map(type => Object.assign({}, type.filter))
       .filter(filter => filter.applied);
-
-    if (this.filterOnOverallFields()) {
-      filters = this.transformToOverallFilters(filters, dataTypeId);
-    }
-    return filters;
   }
 
   /**
