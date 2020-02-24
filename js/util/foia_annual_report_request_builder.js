@@ -64,20 +64,16 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
     return this;
   }
 
-  addDataTypeFiltersGroup(filters = [], dataTypeId) {
+  addDataTypeFiltersGroup(filters = []) {
     if (filters.length <= 0) {
       return this;
     }
     let dataTypeFilters = filters;
-    if (FoiaAnnualReportFilterUtilities.filterOnOverallFields()) {
-      dataTypeFilters = FoiaAnnualReportFilterUtilities
-        .transformToOverallFilters(filters, dataTypeId);
-    }
 
     // Transform the filters, adding an index which will be used when
     // naming the filter for the .request.filter() method and
     // handle the special operator `is_na`.
-    dataTypeFilters = filters
+    dataTypeFilters = dataTypeFilters
       .map((filter, index) => (
         Object.assign({ index }, filter, {
           op: filter.op === 'is_na' ? 'equal_to' : filter.op,
