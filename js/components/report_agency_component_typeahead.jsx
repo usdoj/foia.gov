@@ -239,6 +239,9 @@ class ReportAgencyComponentTypeahead extends Component {
     if (this.props.selectedAgency.id) {
       $(this.typeaheadInput).typeahead('val', this.props.selectedAgency.title);
     }
+    else {
+      $(this.typeaheadInput).typeahead('val', null);
+    }
 
     return (
       <div>
