@@ -8,7 +8,10 @@ import FoiaAnnualReportUtilities from '../util/foia_annual_report_utilities';
 class AnnualReportStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
+    this.initializeState();
+  }
 
+  initializeState() {
     this.state = {
       reports: new Map(),
       reportTables: new Map(),
@@ -206,6 +209,13 @@ class AnnualReportStore extends Store {
         this.__emitChange();
         break;
       }
+
+      case types.CLEAR_FORM: {
+        this.initializeState();
+        this.__emitChange();
+        break;
+      }
+
       default:
         break;
     }
