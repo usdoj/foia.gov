@@ -17,6 +17,7 @@ class AnnualReportStore extends Store {
       reports: new Map(),
       reportTables: new Map(),
       reportDataComplete: false,
+      reportDataHasRows: false,
       // The number of data types requested on the front end form.  Separate api requests
       // will be made for each data type so that filters, or the lack of filters for one
       // data type, don't adversely affect the results, which should be more inclusive, not less.
@@ -222,6 +223,9 @@ class AnnualReportStore extends Store {
           }
         });
 
+        // Check to see that at least one table contains some data rows.
+        const hasRows = tables.some(table => table.data.length > 0);
+
         const updatedReportTables = new Map(tables.map(table => ([
           table.id,
           table,
@@ -230,6 +234,7 @@ class AnnualReportStore extends Store {
         Object.assign(this.state, {
           reportTables: updatedReportTables,
           reportDataComplete: true,
+          reportDataHasRows: hasRows,
           numberOfRequestsToProcess: 0,
         });
 

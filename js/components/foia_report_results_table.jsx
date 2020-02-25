@@ -28,7 +28,7 @@ class FoiaReportResultsTable extends Component {
       columns: tableColumns,
       reactiveData: true,
     });
-    if (this.props.displayMode === 'download') {
+    if (this.props.displayMode === 'download' && this.props.tableData.length > 0) {
       this.downloadCSV();
     }
   }
