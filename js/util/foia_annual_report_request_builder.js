@@ -82,18 +82,10 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
     const filterNames = dataTypeFilters.map(filter => `data-type-filter-${filter.index}`);
     while (dataTypeFilters.length > 0) {
       const filter = dataTypeFilters.shift();
-      /* eslint-disable */
-      // When the field being filtered on is stored as a string in the database,
-      // the comparison value must be wrapped in backticks in order to get correct results.
-      // Any filterField that has a path ending in .value is stored in the db as a string.
-      const compareValue = filter.filterField.indexOf('.value') === -1
-        ? filter.compareValue
-        : "`" + filter.compareValue + "`";
-      /* eslint-enable */
       this.request = this.request.filter(
         `data-type-filter-${filter.index}`,
         filter.filterField,
-        compareValue,
+        filter.compareValue,
       );
       this.request = this.request.operator(
         `data-type-filter-${filter.index}`,
