@@ -133,7 +133,7 @@ class FoiaAnnualReportFilterUtilities {
         return this.convertToNumber(value) === this.convertToNumber(comparison);
       }
       case 'is_na': {
-        return value.toLowerCase() === 'n/a';
+        return typeof value === 'string' && value.toLowerCase() === 'n/a';
       }
       default: {
         return false;
