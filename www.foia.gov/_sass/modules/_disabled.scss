@@ -9,9 +9,28 @@
   }
 
   input,
-  label,
   select,
   textarea {
-    color: $color-gray;
+    background-color: $color-gray-light;
+    color: $color-black;
   }
+}
+
+.usa-disabled input::-webkit-input-placeholder {
+  color: $color-black;
+}
+.usa-disabled input::-moz-placeholder {
+  color: $color-black;
+}
+.usa-disabled input:-ms-input-placeholder {
+  color: $color-black;
+}
+.usa-disabled input:-moz-placeholder {
+  color: $color-black;
+}
+.usa-disabled input::placeholder {
+  color: $color-black;
+}
+.usa-disabled input:placeholder-shown {
+  color: $color-black;
 }
