@@ -104,6 +104,10 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 				pointer-events: none;
 			}
 
+			&:last-child {
+				border-right: none;
+			}
+
 			//hold content of column header
 			.tabulator-col-content{
 				box-sizing:border-box;
@@ -670,6 +674,10 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 			}
 		}
 
+		&:last-child {
+			border-right: none;
+		}
+
 		//movable row handle
 		&.tabulator-row-handle{
 			display: inline-flex;
@@ -828,6 +836,10 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 		}
 	}
 
+	&:last-child .tabulator-cell {
+		border-bottom: 0;
+	}
+
 	//row grouping element
 	&.tabulator-group{
 		box-sizing:border-box;
@@ -924,22 +936,62 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 	}
 }
 
-// Table print styling
+@media print {
+	.tabulator {
+		font-size: 1rem;
 
-.tabulator-print-fullscreen{
-	position: absolute;
-	top:0;
-	bottom:0;
-	left:0;
-	right:0;
+		.tabulator-header {
 
-	z-index: 10000;
-}
+			.tabulator-headers {
+				margin-left: 0px;
+				display: flex;
+				flex-wrap: nowrap;
+				align-items: stretch;
 
-body.tabulator-print-fullscreen-hide>*:not(.tabulator-print-fullscreen){
-	display:none !important;
-}
+				.tabulator-col.tabulator-sortable {
+					display:block;
+					height: auto !important; // Overriding inline styles from tabulator. Sorry!
+					flex: 1 0 0;
+					display: flex;
+					align-items: center;
 
-.tabulator-print-table{
-	border-collapse: collapse;
-}
+					.tabulator-col-content {
+						padding: 0.25em;
+						background-image: none;
+
+						.tabulator-col-title {
+							padding-right: 0;
+							white-space: normal;
+							font-weight: 500;
+						} // End .tabulator-col-title
+					} // End .tabulator-col-content
+				} // End .tabulator-col.tabulator-sortable
+			} // End .tabulator Headers
+		} //  End .tabulator-header
+
+		.tabulator-tableHolder {
+			.tabulator-table {
+				display: block;
+				overflow: initial;
+				width: 100%;
+				overflow: hidden;
+
+				.tabulator-row {
+					margin-left: 0px;
+					display: flex;
+					flex-wrap: nowrap;
+					align-items: stretch;
+
+					.tabulator-cell {
+						height: auto !important; // Overriding inline styles from tabulator. Sorry!
+						flex: 1 0 0;
+						display: flex;
+						align-items: center;
+						white-space: normal;
+						padding: 0.25em;
+					} // End .tabulator-cell
+				} // End .tabulator-row
+			} // End .tabulator-table
+		} // End .tabulator-tableHolder
+	} // End .tabulator
+}  // End @media print
