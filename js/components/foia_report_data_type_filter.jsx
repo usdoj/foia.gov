@@ -92,14 +92,17 @@ class FoiaReportDataTypeFilter extends Component {
       <div className="form-group">
         <h3 className="sans">Add Data Filter</h3>
         <div className="form-group field">
-          <label htmlFor="filterField">
-            Data Filters
-            <FoiaTooltip text={"Select the type of FOIA data you would like to view. The data comes from agencies' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary."} />
-          </label>
           <USWDSSelectWidget
             id="filterField"
+            fieldsetClasses="usa-fieldset-inputs label-weight-normal"
             name="filterField"
-            title=""
+            title={
+              <span>Data Filters
+                <FoiaTooltip
+                  text={'Select the type of FOIA data you would like to view. The data comes from agencies\' Annual FOIA Reports. To learn more about the data, view the terms in the Glossary.'}
+                />
+              </span>
+            }
             options={selectedDataType.filterOptions}
             placeholder=""
             handleChange={this.handleFilterFieldUpdate}

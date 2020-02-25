@@ -18,3 +18,8 @@
     max-width: none;
     width: 100%;
 }
+
+.label-weight-normal label,
+.label-weight-normal label strong {
+  font-weight: normal;
+}
