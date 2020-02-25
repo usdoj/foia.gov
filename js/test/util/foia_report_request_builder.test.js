@@ -428,6 +428,13 @@ describe('FoiaAnnualReportRequestBuilder', () => {
             value: '20',
           },
         },
+        'data-type-filter-lt1-3': {
+          condition: {
+            memberOf: 'or-filter-1',
+            path: 'field_req_viiia.field_num_jud_w10',
+            value: '<1',
+          },
+        },
         'or-filter-1': {
           group: {
             conjunction: 'OR',

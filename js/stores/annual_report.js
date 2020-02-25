@@ -4,6 +4,7 @@ import dispatcher from '../util/dispatcher';
 import { types } from '../actions/report';
 import annualReportDataFormStore from './annual_report_data_form';
 import FoiaAnnualReportUtilities from '../util/foia_annual_report_utilities';
+import FoiaAnnualReportFilterUtilities from '../util/foia_annual_report_filter_utilities';
 
 class AnnualReportStore extends Store {
   constructor(_dispatcher) {
@@ -16,6 +17,10 @@ class AnnualReportStore extends Store {
       reports: new Map(),
       reportTables: new Map(),
       reportDataComplete: false,
+      // The number of data types requested on the front end form.  Separate api requests
+      // will be made for each data type so that filters, or the lack of filters for one
+      // data type, don't adversely affect the results, which should be more inclusive, not less.
+      numberOfTypesToProcess: 0,
     };
   }
 
@@ -94,8 +99,16 @@ class AnnualReportStore extends Store {
           return allRows[key];
         }).filter(value => value !== false);
 
+        // Filtering via the api will return reports that match the filter criteria,
+        // but will not filter out components within those reports that don't match the
+        // filter criteria.  This takes a pass over each row for this data type to filter
+        // out any component row that does not match the data type filter criteria.
+        const filtered = FoiaAnnualReportFilterUtilities.filter(
+          componentRows,
+          FoiaAnnualReportFilterUtilities.getFiltersForType(dataType.id),
+        );
 
-        const normalized = componentRows.map(row => (
+        const normalized = filtered.map(row => (
           // Normalization essentially checks every field to see if it's
           // an object with a value property.  If it is, it sets the field to the
           // field.value, allowing tablulator to use the ids in report_data_map.json.
@@ -116,11 +129,13 @@ class AnnualReportStore extends Store {
   __onDispatch(payload) {
     switch (payload.type) {
       case types.ANNUAL_REPORT_DATA_FETCH: {
+        const { typesCount } = payload;
         // Reset the report data to initial value so that report state after a new form submission
         // is limited to only the data specific to that request.
         this.state.reportDataComplete = false;
         Object.assign(this.state, {
           reports: new Map(),
+          numberOfTypesToProcess: typesCount || 1,
         });
         this.__emitChange();
         break;
@@ -153,6 +168,17 @@ class AnnualReportStore extends Store {
       }
 
       case types.ANNUAL_REPORT_DATA_COMPLETE: {
+        // If there are multiple data types requested, separate requests will be
+        // made for each data type.  Avoid building the report tables until all
+        // of the data type requests have finished processing.
+        if (this.state.numberOfTypesToProcess > 1) {
+          Object.assign(this.state, {
+            numberOfTypesToProcess: this.state.numberOfTypesToProcess - 1,
+          });
+          this.__emitChange();
+          break;
+        }
+
         const { selectedDataTypes } = annualReportDataFormStore.getState();
         // Set up the default columns that appear in all data tables.
         const defaultColumns = [
@@ -204,6 +230,7 @@ class AnnualReportStore extends Store {
         Object.assign(this.state, {
           reportTables: updatedReportTables,
           reportDataComplete: true,
+          numberOfRequestsToProcess: 0,
         });
 
         this.__emitChange();
