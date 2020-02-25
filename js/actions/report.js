@@ -1,12 +1,15 @@
 import assert from 'assert';
 import axios from 'axios';
 import settings from 'settings';
+import { List } from 'immutable';
 
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
 import localapi from '../util/local_api';
 import date from '../util/current_date';
 import { FoiaAnnualReportRequestBuilder } from '../util/foia_annual_report_request_builder';
+import annualReportDataFormStore from '../stores/annual_report_data_form';
+import FoiaAnnualReportFilterUtilities from '../util/foia_annual_report_filter_utilities';
 
 // Action types to identify an action
 export const types = {
@@ -42,6 +45,8 @@ export const types = {
   ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE: 'ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE',
   VALIDATE_FORM: 'VALIDATE_FORM',
   REPORT_SUBMISSION_TYPE: 'REPORT_SUBMISSION_TYPE',
+  CLEAR_FORM: 'CLEAR_FORM',
+  RELOAD_FORM: 'RELOAD_FORM',
 };
 
 // Action creators, to dispatch actions
@@ -205,30 +210,70 @@ export const reportActions = {
    *   An optional function that will get the JsonapiParams request object.
    *   This function allows modifications to the request such as adding filters
    *   or limits.  The function must return the updated request object.
-   * @returns {PromiseLike<T> | Promise<T> | *}
    *
    * @see js/util/json_api_params.js
    * @see js/stores/annual_report_data_types.js
    * @see www.foia.gov/api/annual-report-form/report_data_map.json
    */
-  fetchAnnualReportData(modifier = null) {
+  fetchAnnualReportData(dataTypes = {}) {
     dispatcher.dispatch({
       type: types.ANNUAL_REPORT_DATA_FETCH,
+      typesCount: Object.keys(dataTypes).length || 0,
     });
 
-    // The default limit could be updated in the
-    // modifier function if it needs to be.
-    let builder = new FoiaAnnualReportRequestBuilder();
-    builder.request.limit(5);
 
-    if (modifier && typeof modifier === 'function') {
-      builder = modifier(builder);
+    Object.keys(dataTypes).forEach((key) => {
+      let builder = new FoiaAnnualReportRequestBuilder();
+      // The default limit could be updated in the
+      // modifier function if it needs to be.
+      builder.request.limit(5);
+      builder = this.buildRequestForSelectedType(dataTypes[key], builder);
+
+      return builder
+        .request
+        .paginate('/annual_foia_report', reportActions.receiveAnnualReportData)
+        .then(reportActions.completeAnnualReportData);
+    });
+  },
+
+  /**
+   * Add filters and include fields to a request based on the form state.
+   *
+   * @param type
+   * @param builder
+   * @returns {FoiaAnnualReportRequestBuilder}
+   */
+  buildRequestForSelectedType(type, builder) {
+    const selectedAgencies = annualReportDataFormStore.buildSelectedAgencies();
+    const { allAgenciesSelected, selectedFiscalYears } = annualReportDataFormStore.getState();
+    const agencies = selectedAgencies.filter(selection => selection.type === 'agency');
+    const components = selectedAgencies.filter(selection => selection.type === 'agency_component');
+    const dataTypeFilters = FoiaAnnualReportFilterUtilities.getFiltersForType(type[0].id);
+    const includeOverall = agencies.filter((agency) => {
+      const overall = agency
+        .components
+        .filter(component => component.selected && component.isOverall);
+
+      return List.isList(overall) ? overall.size > 0 : overall.length > 0;
+    }).length > 0;
+
+    let updatedBuilder = builder;
+    if (includeOverall) {
+      updatedBuilder = updatedBuilder.includeOverallFields(type);
     }
 
-    return builder
-      .request
-      .paginate('/annual_foia_report', reportActions.receiveAnnualReportData)
-      .then(reportActions.completeAnnualReportData);
+    if (!allAgenciesSelected) {
+      updatedBuilder = updatedBuilder
+        .includeDataTypes(type)
+        .addOrganizationsGroup({
+          agencies: agencies.map(agency => agency.abbreviation),
+          components: components.map(component => component.abbreviation),
+        });
+    }
+
+    return updatedBuilder
+      .addDataTypeFiltersGroup(dataTypeFilters, type[0].id)
+      .addFiscalYearsGroup(selectedFiscalYears);
   },
 
   receiveAnnualReportData(annualReports) {
@@ -242,6 +287,23 @@ export const reportActions = {
   completeAnnualReportData() {
     dispatcher.dispatch({
       type: types.ANNUAL_REPORT_DATA_COMPLETE,
+    });
+
+    return Promise.resolve();
+  },
+
+  clearForm() {
+    dispatcher.dispatch({
+      type: types.CLEAR_FORM,
+    });
+
+    return Promise.resolve();
+  },
+
+  reloadForm(viewMode) {
+    dispatcher.dispatch({
+      type: types.RELOAD_FORM,
+      viewMode,
     });
 
     return Promise.resolve();

@@ -67,11 +67,12 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
     if (filters.length <= 0) {
       return this;
     }
+    let dataTypeFilters = filters;
 
     // Transform the filters, adding an index which will be used when
     // naming the filter for the .request.filter() method and
     // handle the special operator `is_na`.
-    const dataTypeFilters = filters
+    dataTypeFilters = dataTypeFilters
       .map((filter, index) => (
         Object.assign({ index }, filter, {
           op: filter.op === 'is_na' ? 'equal_to' : filter.op,
@@ -81,15 +82,45 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
     const filterNames = dataTypeFilters.map(filter => `data-type-filter-${filter.index}`);
     while (dataTypeFilters.length > 0) {
       const filter = dataTypeFilters.shift();
+      /* eslint-disable */
+      // When the field being filtered on is stored as a string in the database,
+      // the comparison value must be wrapped in backticks in order to get correct results.
+      // Any filterField that has a path ending in .value is stored in the db as a string.
+      const compareValue = filter.filterField.indexOf('.value') === -1
+        ? filter.compareValue
+        : "`" + filter.compareValue + "`";
+      /* eslint-enable */
       this.request = this.request.filter(
         `data-type-filter-${filter.index}`,
         filter.filterField,
-        filter.compareValue,
+        compareValue,
       );
       this.request = this.request.operator(
         `data-type-filter-${filter.index}`,
         FoiaAnnualReportRequestBuilder.getOperator(filter.op),
       );
+
+      // Many numeric fields on the backend use the convention of
+      // allowing a text value of '<1', so if there is a filter
+      // looking for values that are less than anything (except 0)
+      // add a secondary filter param that will request values that
+      // equal the text '<1'.
+      if (filter.op === 'less_than' && filter.compareValue >= 1) {
+        this.request = this.request.filter(
+          `data-type-filter-lt1-${filter.index}`,
+          filter.filterField,
+          '<1',
+        );
+        filterNames.push(`data-type-filter-lt1-${filter.index}`);
+      }
+      if (filter.op === 'greater_than' && filter.compareValue === 0) {
+        this.request = this.request.filter(
+          `data-type-filter-gt0-${filter.index}`,
+          filter.filterField,
+          '<1',
+        );
+        filterNames.push(`data-type-filter-gt0-${filter.index}`);
+      }
     }
 
     this.request.or(...filterNames);

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import FoiaReportFormSectionOne from '../components/foia_report_form_section_one';
 import FoiaReportFormSectionTwo from '../components/foia_report_form_section_two';
 import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
@@ -25,7 +28,7 @@ class AnnualReportDataPage extends Component {
     ];
   }
 
-  static calculateState() {
+  static calculateState(prevState, props) {
     const {
       fiscalYears,
     } = annualReportFiscalYearStore.getState();
@@ -63,6 +66,8 @@ class AnnualReportDataPage extends Component {
       reportDataHasRows,
     } = annualReportStore.getState();
 
+    const viewMode = props.location.state.view;
+
     return {
       agencies,
       agencyComponents,
@@ -86,15 +91,18 @@ class AnnualReportDataPage extends Component {
       reportTables,
       reportDataComplete,
       reportDataHasRows,
+      viewMode,
     };
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.reportRefs = {};
+    this.handlePopState = this.handlePopState.bind(this);
   }
 
   componentDidMount() {
+    window.onpopstate = this.handlePopState;
     reportActions.fetchAnnualReportDataFiscalYears();
     reportActions.fetchAnnualReportDataTypes();
 
@@ -113,6 +121,11 @@ class AnnualReportDataPage extends Component {
     reports.forEach((reportTable) => {
       reportTable.downloadCSV();
     });
+  }
+
+  handlePopState(event) {
+    event.preventDefault();
+    reportActions.reloadForm(this.state.viewMode);
   }
 
   render() {
@@ -138,6 +151,7 @@ class AnnualReportDataPage extends Component {
       submissionAction,
       reportDataComplete,
       reportDataHasRows,
+      viewMode,
     } = this.state;
     const [...reportTableEntries] = reportTables.values();
     const reportToolbar = reportDataComplete && reportDataHasRows ?
@@ -159,7 +173,7 @@ class AnnualReportDataPage extends Component {
       : null;
     return (
       <div className="annual-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
-        {submissionAction === false || submissionAction === 'download' ?
+        {submissionAction === false || submissionAction === 'download' || viewMode === 'form' ?
           <div>
             <h1>Create a Report</h1>
             <form >
@@ -184,19 +198,18 @@ class AnnualReportDataPage extends Component {
                 fiscalYearsDisplayError={fiscalYearsDisplayError}
               />
               <FoiaReportDataSubmit
-                allAgenciesSelected={allAgenciesSelected}
                 selectedDataTypes={selectedDataTypes}
-                selectedFiscalYears={selectedFiscalYears}
                 agencyComponentIsValid={agencyComponentIsValid}
                 dataTypesIsValid={dataTypesIsValid}
                 fiscalYearsIsValid={fiscalYearsIsValid}
                 onClick={this.triggerCSV.bind(this)}
+                history={this.props.history}
               />
             </form>
           </div>
           : null
         }
-        {submissionAction === 'view' ?
+        {submissionAction === 'view' && viewMode === 'results' ?
           <header className="results-page-header">
             <h1>Report Results</h1>
             {reportToolbar}
@@ -208,7 +221,7 @@ class AnnualReportDataPage extends Component {
             <div className="results-loading__text">Loading...</div>
           </div>
         }
-        {reportDataComplete && reportDataHasRows &&
+        {reportDataComplete && reportDataHasRows && ((submissionAction === 'view' && viewMode === 'results') || submissionAction === 'download') &&
         <div>
           {
             reportTableEntries.map(table => (
@@ -234,4 +247,10 @@ class AnnualReportDataPage extends Component {
   }
 }
 
-export default Container.create(AnnualReportDataPage);
+AnnualReportDataPage.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
+export default withRouter(Container.create(AnnualReportDataPage, {
+  withProps: true,
+}));

@@ -9,6 +9,10 @@ import annualReportDataTypesStore from './annual_report_data_types';
 class AnnualReportDataFormStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
+    this.initializeState();
+  }
+
+  initializeState() {
     this.state = {
       selectedAgencies: [{ index: 0 }],
       allAgenciesSelected: false,
@@ -517,6 +521,19 @@ class AnnualReportDataFormStore extends Store {
         Object.assign(this.state, {
           selectedAgencies,
         });
+        this.__emitChange();
+        break;
+      }
+
+      case types.CLEAR_FORM: {
+        this.initializeState();
+        this.__emitChange();
+        break;
+      }
+
+      case types.RELOAD_FORM: {
+        const { viewMode } = payload;
+        this.state.submissionAction = viewMode === 'results' ? 'view' : false;
         this.__emitChange();
         break;
       }
