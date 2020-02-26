@@ -169,7 +169,7 @@
       {
         "id": "field_foia_requests_vb2.field_foia_req_vb2_info.field_num_relied_upon",
         "label": "Number of Times \"Other\" Reason Was Relied Upon",
-        "filter": true,
+        "filter": false,
         "overall_field": false,
         "display": true
       },
@@ -735,7 +735,7 @@
       {
         "id": "field_admin_app_vic3.field_admin_app_vic3_info.field_num_relied_upon",
         "label": "Number of Times \"Other\" Reason Was Relied Upon",
-        "filter": true,
+        "filter": false,
         "overall_field": false,
         "display": true
       },
