@@ -74,7 +74,7 @@ class ReportAgencyComponentFilter extends Component {
               checked={component.selected}
               onChange={e => this.handleCheckboxChange(e, component)}
             />
-            <label htmlFor={inputId}>{component.abbreviation}</label>
+            <label htmlFor={inputId} className="touch-safe">{component.abbreviation}</label>
           </li>
         );
       });
@@ -92,8 +92,8 @@ class ReportAgencyComponentFilter extends Component {
             }
             <div className="form-group">
               <ul className="inline-list--centered">
-                <li><a href="" onClick={e => this.handleSelectAll(e, true)}>Select All</a></li>
-                <li><a href="" onClick={e => this.handleSelectAll(e, false)}>Select None</a></li>
+                <li><a href="" onClick={e => this.handleSelectAll(e, true)} className="touch-safe">Select All</a></li>
+                <li><a href="" onClick={e => this.handleSelectAll(e, false)} className="touch-safe">Select None</a></li>
               </ul>
             </div>
           </fieldset>

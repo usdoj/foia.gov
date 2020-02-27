@@ -23,3 +23,11 @@
 .label-weight-normal label strong {
   font-weight: normal;
 }
+
+/* Use .touch-safe directly on links.
+ * Use .touch-safe__wrapper on link ancestor if it is difficult to add the class directly to the link.
+ */
+.touch-safe,
+.touch-safe__wrapper a {
+    @include touch-safe();
+}

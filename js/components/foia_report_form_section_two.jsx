@@ -41,10 +41,15 @@ class FoiaReportFormSectionTwo extends Component {
               />))}
 
             {this.props.selectedDataTypes.length < 3 &&
-              <AddLink
-                eventType={types.ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP}
-                text="Add Another Data Type"
-              />
+              <div className="form-group_footer-links">
+                <div className="form-group_footer-links_left">
+                  <AddLink
+                    eventType={types.ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP}
+                    text="Add Another Data Type"
+                    classes={['touch-safe__wrapper']}
+                  />
+                </div>
+              </div>
             }
           </fieldset>
         </div>

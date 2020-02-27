@@ -153,13 +153,15 @@ class FoiaReportDataTypeFilter extends Component {
     const { dataTypeDisplayError, fieldsDisplayed } = this.props;
     const dataTypeSelected = (this.props.selectedDataType.id !== '' && this.props.selectedDataType.id !== 'group_iv_exemption_3_statutes') || false;
     const filterSubmitted = Object.hasOwnProperty.call(this.props.selectedDataType, 'filter') && this.props.selectedDataType.filter.applied;
-    const removeButton = filterSubmitted ? (<a
+    const removeButton = filterSubmitted ? (<button
       onClick={this.handleFilterRemove}
       style={{ cursor: 'pointer' }}
       href={null}
-    >Remove Filter</a>) : null;
+      className="button-as-link"
+      type="button"
+    >Remove Filter</button>) : null;
     const modalText = filterSubmitted ? 'Edit Results Filter' : 'Filter Results';
-    const fieldsetClasses = dataTypeDisplayError ? 'usa-fieldset-inputs usa-input-error' : 'usa-fieldset-inputs';
+    const fieldgroupClasses = dataTypeDisplayError ? 'form-group field usa-input-error' : 'form-group field';
 
     const removeDataFieldButton = fieldsDisplayed > 1 ? (
       <RemoveLink
@@ -177,7 +179,7 @@ class FoiaReportDataTypeFilter extends Component {
           value={this.props.selectedDataType.id}
           options={[...this.props.dataTypeOptions]}
           handleChange={this.handleDataTypeChange}
-          fieldsetClasses={fieldsetClasses}
+          fieldgroupClasses={fieldgroupClasses}
         />
         {dataTypeDisplayError &&
         <p className="usa-input-error-message">A Data Type is required.</p>

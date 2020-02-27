@@ -13,10 +13,10 @@ class FoiaTooltip extends Component {
 
   render() {
     return (
-      <a className="tooltip-trigger" ref={(trigger) => { this.trigger = trigger; }} role="tooltip" data-tooltip={this.props.text}>
-        <span className="visually-hidden">Help</span>
-      </a>
-    );
+    <button type="button" className="tooltip-trigger button-as-link" ref={(trigger) => { this.trigger = trigger; }} role="tooltip" data-tooltip={this.props.text}>
+      <span className="visually-hidden">Help</span>
+    </button>
+  );
   }
 }
 

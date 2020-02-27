@@ -2,26 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const USWDSSelectWidget = props => (
-  <div className="form-group field">
-    <fieldset className={props.fieldsetClasses}>
-      { props.title &&
-        <label htmlFor={props.id}><strong>{props.title}</strong></label>
+  <div className={props.fieldgroupClasses}>
+    { props.title &&
+      <label htmlFor={props.id}><strong>{props.title}</strong></label>
+    }
+    <select
+      name={props.name}
+      id={props.id}
+      value={props.value}
+      onChange={props.handleChange}
+      className="usa-select usa-reset-width"
+    >
+      {props.placeholder &&
+        <option value="" key="">{props.placeholder}</option>
       }
-      <select
-        name={props.name}
-        id={props.id}
-        value={props.value}
-        onChange={props.handleChange}
-        className="usa-select usa-reset-width"
-      >
-        {props.placeholder &&
-          <option value="" key="">{props.placeholder}</option>
-        }
-        {props.options.map(opt => (
-          <option value={opt.value} key={opt.value}>{opt.label}</option>
-        ))}
-      </select>
-    </fieldset>
+      {props.options.map(opt => (
+        <option value={opt.value} key={opt.value}>{opt.label}</option>
+      ))}
+    </select>
   </div>
 );
 
@@ -33,7 +31,7 @@ USWDSSelectWidget.propTypes = {
   handleChange: PropTypes.func,
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
-  fieldsetClasses: PropTypes.string,
+  fieldgroupClasses: PropTypes.string,
 };
 
 USWDSSelectWidget.defaultProps = {

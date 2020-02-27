@@ -12,7 +12,7 @@ function FoiaReportFormCheckboxWidget(props) {
         checked={props.checked}
         onChange={props.onChange}
       />
-      <label htmlFor={props.value}>{props.options.label || props.value}</label>
+      <label htmlFor={props.value} className="touch-safe">{props.options.label || props.value}</label>
     </div>
   );
 }
