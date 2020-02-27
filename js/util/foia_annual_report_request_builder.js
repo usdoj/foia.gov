@@ -2,6 +2,7 @@ import assert from 'assert';
 import { List } from 'immutable';
 import { JsonApi } from './json_api';
 import annualReportDataTypesStore from '../stores/annual_report_data_types';
+import FoiaAnnualReportFilterUtilities from './foia_annual_report_filter_utilities';
 
 class FoiaAnnualReportRequestBuilder extends JsonApi {
   constructor(baseUrl) {
@@ -63,11 +64,17 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
     return this;
   }
 
-  addDataTypeFiltersGroup(filters = []) {
+  addDataTypeFiltersGroup(filters = [], dataTypeId = '') {
     if (filters.length <= 0) {
       return this;
     }
-    let dataTypeFilters = filters;
+    let dataTypeFilters;
+    if (dataTypeId && FoiaAnnualReportFilterUtilities.filterOnOverallFields()) {
+      dataTypeFilters = FoiaAnnualReportFilterUtilities
+        .transformToOverallFilters(filters, dataTypeId);
+    } else {
+      dataTypeFilters = filters;
+    }
 
     // Transform the filters, adding an index which will be used when
     // naming the filter for the .request.filter() method and
