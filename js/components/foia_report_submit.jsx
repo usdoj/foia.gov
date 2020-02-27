@@ -4,9 +4,15 @@ import { reportActions, types } from '../actions/report';
 import dispatcher from '../util/dispatcher';
 
 class FoiaReportDataSubmit extends Component {
+  static handleClear(event) {
+    event.preventDefault();
+    reportActions.clearForm();
+  }
+
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleClear = this.handleClear.bind(this);
     this.formIsValid = this.formIsValid.bind(this);
   }
 
@@ -50,7 +56,7 @@ class FoiaReportDataSubmit extends Component {
       <div className="form-group form-group_footer">
         <button onClick={this.handleSubmit} value="view" type="submit" className="usa-button usa-button-big usa-button-primary-alt with-siblings">View Report</button>
         <button onClick={this.handleSubmit} value="download" type="button" className="usa-button usa-button-big usa-button-outline">Download CSV</button>
-        <a>Clear Search</a>
+        <button onClick={FoiaReportDataSubmit.handleClear} value="clear" type="button" className="button-as-link">Clear Search</button>
       </div>
     );
   }
