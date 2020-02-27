@@ -159,13 +159,13 @@ class AnnualReportDataPage extends Component {
         <button
           onClick={() => window.print()}
           type="button"
-          className="usa-button usa-button-big usa-button-primary-alt"
+          className="print-hide usa-button usa-button-big usa-button-primary-alt"
         >Print
         </button>
         <button
           onClick={this.triggerCSV.bind(this)}
           type="button"
-          className="usa-button usa-button-big usa-button-primary-alt"
+          className="print-hide usa-button usa-button-big usa-button-primary-alt"
         >Download
           CSV
         </button>
