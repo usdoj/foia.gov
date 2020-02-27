@@ -238,8 +238,7 @@ class ReportAgencyComponentTypeahead extends Component {
     // Needed for remove link feature so fields removed out of order display the correct value.
     if (this.props.selectedAgency.id) {
       $(this.typeaheadInput).typeahead('val', this.props.selectedAgency.title);
-    }
-    else {
+    } else {
       $(this.typeaheadInput).typeahead('val', null);
     }
 
