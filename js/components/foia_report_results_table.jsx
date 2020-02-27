@@ -27,6 +27,7 @@ class FoiaReportResultsTable extends Component {
       data: tableData,
       columns: tableColumns,
       reactiveData: true,
+      layout: 'fitDataStretch',
     });
     if (this.props.displayMode === 'download' && this.props.tableData.length > 0) {
       this.downloadCSV();
