@@ -116,6 +116,7 @@ class FoiaReportDataTypeFilter extends Component {
             id="op"
             onChange={this.handleFilterFieldUpdate}
             value={filter.op}
+            className="usa-reset-width"
           >
             <option value="greater_than">is greater than</option>
             <option value="less_than">is less than</option>
@@ -134,6 +135,7 @@ class FoiaReportDataTypeFilter extends Component {
             min="0"
             onChange={this.handleFilterFieldUpdate}
             value={filter.compareValue}
+            className="usa-reset-width"
           />
           {noValue &&
           <p className="usa-input-error-message">Please enter a numeric value to compare.</p>
