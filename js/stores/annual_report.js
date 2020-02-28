@@ -201,11 +201,12 @@ class AnnualReportStore extends Store {
         ];
 
         const tables = [];
+        const isOverallOnly = FoiaAnnualReportFilterUtilities.filterOnOverallFields();
         selectedDataTypes.forEach((dataType) => {
           if (!tables.some(item => item.id === dataType.id)) {
             // Get our dataType-specific columns.
             const dataColumns = dataType.fields
-              .filter(field => field.display)
+              .filter(field => field.display && (!isOverallOnly || field.overall_field))
               .map(item => (
                 {
                   title: item.label,
