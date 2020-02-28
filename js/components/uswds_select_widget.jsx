@@ -39,6 +39,7 @@ USWDSSelectWidget.defaultProps = {
   handleChange: () => {},
   placeholder: ' - none - ',
   fieldsetClasses: 'usa-fieldset-inputs',
+  fieldgroupClasses: '',
 };
 
 export default USWDSSelectWidget;
