@@ -437,7 +437,7 @@
         "display": true
       },
       {
-        "id": "field_admin_app_via.app_pend_end_yr",
+        "id": "field_admin_app_via.field_app_pend_end_yr",
         "label": "Number of Appeals Pending as of End of Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_via_app_pend_endyr",
@@ -2254,7 +2254,7 @@
         "display": true
       },
       {
-        "id": "field_foia_xiid2.field_back_cur_yrr",
+        "id": "field_foia_xiid2.field_back_cur_yr",
         "label": "Number of Backlogged Requests as of End of the Fiscal Year from Current Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiid2_back_cur_yr",
