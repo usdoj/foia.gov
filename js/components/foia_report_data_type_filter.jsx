@@ -90,7 +90,7 @@ class FoiaReportDataTypeFilter extends Component {
 
     return (
       <div className="form-group">
-        <h3 className="sans">Add Data Filter</h3>
+        <h3 className="sans usa-reset-width">Add Data Filter</h3>
         <div className="form-group field">
           <USWDSSelectWidget
             id="filterField"
