@@ -58,7 +58,10 @@ form [type=submit] {
 }
 
 form .with-siblings[type=submit] {
-  margin: 0.5em;
+  margin: 0.5em 0;
+  @media all and (min-width: $small-screen) {
+    margin: 0.5em;
+  }
 }
 
 .close-button {
@@ -91,7 +94,7 @@ form .with-siblings[type=submit] {
   &:hover,
   &:active {
     color: inherit;
-    background: transparent;
+    background-color: transparent;
   }
 }
 .unstyled-button {
@@ -100,6 +103,7 @@ form .with-siblings[type=submit] {
 
 .button-as-link {
   @extend %unstyled-button;
+  @include touch-safe();
   text-decoration: underline;
   color: $color-primary-alt-darker;
 

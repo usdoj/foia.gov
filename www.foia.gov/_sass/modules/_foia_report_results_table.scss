@@ -112,7 +112,6 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 			.tabulator-col-content{
 				box-sizing:border-box;
 				position: relative;
-				padding: 1em .5em 1em 1em;
 
 				//hold title of column header
 				.tabulator-col-title{
@@ -196,10 +195,6 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 
 			//styling child elements for sortable columns
 			&.tabulator-sortable{
-				.tabulator-col-title{
-					padding-right: 1em;
-				}
-
 				&:hover{
 					cursor: pointer;
 				}
@@ -208,7 +203,9 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
           background-image: none, url('/assets/img/arrow-both.svg');
           background-position: right 1.3rem center;
           background-repeat: no-repeat;
-          background-size: 1rem;
+					background-size: 1rem;
+					min-height: 5.6rem;
+
         }
 
 				&[aria-sort="none"]{
@@ -226,6 +223,26 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 				&[aria-sort="desc"]{
 					.tabulator-col-content {
             background-image: none, url($icon-arrow-both-down);
+					}
+				}
+
+				button {
+					margin: 0;
+					padding: 0;
+					background-color: transparent;
+					color: inherit;
+					font-family: inherit;
+					font-size: inherit;
+					font-weight: inherit;
+					line-height: inherit;
+					width: auto;
+					display: block;
+					width: 100%;
+					padding: 1.7rem 3.2rem 1.7rem 1.6rem;
+					text-align: left;
+
+					&:focus {
+						outline-offset: -.3rem;
 					}
 				}
 			}

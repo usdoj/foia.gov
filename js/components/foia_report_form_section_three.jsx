@@ -63,10 +63,10 @@ class FoiaReportFormSectionThree extends Component {
             {fiscalYearsDisplayError &&
               <p className="usa-input-error-message">At least one Fiscal Year is required.</p>
             }
-            <div className="form-group">
+            <div className="form-group_footer-links">
               <ul className="inline-list--centered">
-                <li><a href="" onClick={this.handleSelectAll}>Select All</a></li>
-                <li><a href="" onClick={FoiaReportFormSectionThree.handleSelectNone}>Select None</a></li>
+                <li><a href="" onClick={this.handleSelectAll} className="touch-safe">Select All</a></li>
+                <li><a href="" onClick={FoiaReportFormSectionThree.handleSelectNone} className="touch-safe">Select None</a></li>
               </ul>
             </div>
           </fieldset>

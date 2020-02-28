@@ -27,6 +27,7 @@ $form-description-leading: 1.4;
 .form-group_footer-links {
   @extend .usa-grid-full;
   @extend .form-group;
+  margin-top: 2.1rem; // Smaller margin to accomodate additional padding for touch safe zone.
 }
 
 .form-group_footer-links_left,

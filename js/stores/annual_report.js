@@ -6,6 +6,11 @@ import annualReportDataFormStore from './annual_report_data_form';
 import FoiaAnnualReportUtilities from '../util/foia_annual_report_utilities';
 import FoiaAnnualReportFilterUtilities from '../util/foia_annual_report_filter_utilities';
 
+// Function to output button in headers.
+function headingAsButton(cell) {
+  return `<button class="unstyled-button"> ${cell.getValue()} </button>`;
+}
+
 class AnnualReportStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
@@ -169,6 +174,9 @@ class AnnualReportStore extends Store {
       }
 
       case types.ANNUAL_REPORT_DATA_COMPLETE: {
+        // Resets focus to skip nav so tabbing doesn't default to footer before results load.
+        document.getElementById('skipnav').focus();
+
         // If there are multiple data types requested, separate requests will be
         // made for each data type.  Avoid building the report tables until all
         // of the data type requests have finished processing.
@@ -185,16 +193,19 @@ class AnnualReportStore extends Store {
         const defaultColumns = [
           {
             title: 'Agency',
+            titleFormatter: headingAsButton,
             field: 'field_agency',
             align: 'center',
           },
           {
             title: 'Component',
+            titleFormatter: headingAsButton,
             field: 'field_agency_component',
             align: 'center',
           },
           {
             title: 'Fiscal Year',
+            titleFormatter: headingAsButton,
             field: 'field_foia_annual_report_yr',
             align: 'center',
           },
@@ -210,6 +221,7 @@ class AnnualReportStore extends Store {
               .map(item => (
                 {
                   title: item.label,
+                  titleFormatter: headingAsButton,
                   field: item.id,
                   align: 'center',
                 }));

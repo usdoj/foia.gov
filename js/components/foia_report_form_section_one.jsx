@@ -46,6 +46,7 @@ class FoiaReportFormSectionOne extends Component {
                 {!allAgenciesSelected && <AddLink
                   eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
                   text="Add Another Agency or Component"
+                  classes={['touch-safe__wrapper']}
                 />}
               </div>
               <div className="form-group_footer-links_right">
@@ -53,6 +54,7 @@ class FoiaReportFormSectionOne extends Component {
                   eventType={types.SELECTED_AGENCIES_TOGGLE_SELECT_ALL}
                   text={!this.props.allAgenciesSelected ? 'Select All Agencies' : 'Unselect All Agencies'}
                   icon={false}
+                  classes={['touch-safe__wrapper']}
                 />
               </div>
             </div>

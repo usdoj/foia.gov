@@ -5,7 +5,7 @@ $tooltip-shadow-arrow-top: 1px 1px 2px 0 rgba(0, 0, 0, 0.1); // Shadow for arrow
 $tooltip-shadow-arrow-bottom: -1px -1px 2px 0 rgba(0, 0, 0, 0.1); // Shadow for arrow of bottom possitioned tooltip for IE.
 $arrow-sizer: 1rem; // Change arrow size.
 
-a.tooltip-trigger {
+.tooltip-trigger {
   position: relative;
   bottom: -1.75rem;
   height: 5rem;
@@ -15,6 +15,12 @@ a.tooltip-trigger {
   background-position: center center;
   background-image: url($icon-question-circle);
   background-repeat: no-repeat;
+}
+
+button, a {
+  &.tooltip-trigger:focus {
+    outline-offset: -.6rem;
+  }
 }
 
 .tooltip-trigger:hover {
