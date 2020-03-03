@@ -35,7 +35,11 @@ class FoiaReportDataSubmit extends Component {
         type: types.REPORT_SUBMISSION_TYPE,
         submissionAction: action,
       });
-      this.props.history.push('/data.html/results', { view: 'results' });
+      if (action === 'view') {
+        this.props.history.push('/data.html/results', { view: 'results' });
+        // Resets focus to body when (fake) results page loads.
+        document.body.focus();
+      }
       this.makeApiRequests();
     }
   }

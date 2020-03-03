@@ -252,6 +252,7 @@ class ReportAgencyComponentTypeahead extends Component {
             name="agency_component_search"
             placeholder={loading ? `Loading… ${this.props.agencyFinderDataProgress}%` : 'Type agency name'}
             disabled={loading || this.props.isDisabled}
+            title="Begin typing in the field to display matching options."
             ref={(input) => {
               this.typeaheadInput = input;
             }}

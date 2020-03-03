@@ -8,7 +8,7 @@
 {% endif %}
 <html lang="{{language}}">
 {% include head.html %}
-<body {% if page.grid contains 'grid-legacy' %}class="body--grid-legacy"{% endif %}>
+<body {% if page.grid contains 'grid-legacy' %}class="body--grid-legacy"{% endif %}{% if page.bundle contains 'annual_report_data' %} tabindex="0"{% endif %}>
 {% include header.html %}
 {{ content }}
 {% include footer.html %}

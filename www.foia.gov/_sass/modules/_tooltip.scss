@@ -6,8 +6,8 @@ $tooltip-shadow-arrow-bottom: -1px -1px 2px 0 rgba(0, 0, 0, 0.1); // Shadow for 
 $arrow-sizer: 1rem; // Change arrow size.
 
 .tooltip-trigger {
-  position: relative;
-  bottom: -1.75rem;
+  position: absolute;
+  top: -1rem;
   height: 5rem;
   width: 4.4rem;
   display: inline-block;
@@ -15,6 +15,10 @@ $arrow-sizer: 1rem; // Change arrow size.
   background-position: center center;
   background-image: url($icon-question-circle);
   background-repeat: no-repeat;
+}
+
+.form-group label .tooltip-trigger {
+  margin-top: -.5rem;
 }
 
 button, a {
