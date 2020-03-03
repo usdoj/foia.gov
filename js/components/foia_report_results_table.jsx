@@ -15,6 +15,7 @@ class FoiaReportResultsTable extends Component {
     this.tabulator = null;
 
     this.downloadCSV = this.downloadCSV.bind(this);
+    this.handleColumnFocus = this.handleColumnFocus.bind(this);
 
     this.state = {
       reportTable: false,
@@ -22,12 +23,20 @@ class FoiaReportResultsTable extends Component {
   }
 
   componentDidMount() {
-    const { tableData, tableColumns } = this.props;
+    const { tableData, tableColumns, tableId } = this.props;
     this.tabulator = new Tabulator(this.tabulatorElement, {
       data: tableData,
       columns: tableColumns,
       reactiveData: true,
       layout: 'fitDataStretch',
+      scrollToColumnPosition: 'center',
+      tableBuilt: () => {
+        const selector = `#${tableId} .tabulator-header button`;
+        const buttons = document.querySelectorAll(selector);
+        buttons.forEach((button) => {
+          button.addEventListener('focus', this.handleColumnFocus);
+        });
+      },
     });
     if (this.props.displayMode === 'download' && this.props.tableData.length > 0) {
       this.downloadCSV();
@@ -40,6 +49,13 @@ class FoiaReportResultsTable extends Component {
     this.tabulator.download('csv', `foia-${reportType}.csv`);
   }
 
+  handleColumnFocus(event) {
+    const button = event.target;
+    const columnElement = button.closest('.tabulator-col');
+    const tabulatorField = columnElement.getAttribute('tabulator-field');
+    this.tabulator.scrollToColumn(tabulatorField, 'middle', false);
+  }
+
   render() {
     const attributes = this.props.displayMode === 'download' ? {
       style: { display: 'none' },
@@ -48,9 +64,11 @@ class FoiaReportResultsTable extends Component {
     return (
       <div{...attributes}>
         <h2>{this.props.tableHeader}</h2>
-        <div ref={(ref) => {
-          this.tabulatorElement = ref;
-        }}
+        <div
+          id={this.props.tableId}
+          ref={(ref) => {
+            this.tabulatorElement = ref;
+          }}
         />
       </div>
     );
@@ -62,6 +80,7 @@ FoiaReportResultsTable.propTypes = {
   tableColumns: PropTypes.array.isRequired,
   tableHeader: PropTypes.string.isRequired,
   displayMode: PropTypes.string.isRequired,
+  tableId: PropTypes.string.isRequired,
 };
 
 export default FoiaReportResultsTable;

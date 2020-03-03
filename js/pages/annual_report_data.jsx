@@ -228,6 +228,7 @@ class AnnualReportDataPage extends Component {
               <FoiaReportResultsTable
                 key={`report-${table.id}`}
                 ref={(ref) => { this.reportRefs[table.id] = ref; }}
+                tableId={`report-${table.id}`}
                 tableHeader={table.header}
                 tableData={table.data}
                 tableColumns={table.columns}
