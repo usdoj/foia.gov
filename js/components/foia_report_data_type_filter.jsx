@@ -94,7 +94,8 @@ class FoiaReportDataTypeFilter extends Component {
         <div className="form-group field">
           <USWDSSelectWidget
             id="filterField"
-            fieldsetClasses="usa-fieldset-inputs label-weight-normal"
+            fieldsetClasses="usa-fieldset-inputs"
+            fieldgroupClasses="label-weight-normal"
             name="filterField"
             title={
               <span>Data Filters
