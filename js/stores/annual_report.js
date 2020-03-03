@@ -13,7 +13,11 @@ function headingAsButton(cell) {
 
 function cellWithAria(cell) {
   const columnHeader = cell.getColumn().getDefinition().title;
-  return `<span aria-label="${columnHeader}: ${cell.getValue()}">${cell.getValue()}</span>`;
+  let cellValue = cell.getValue();
+  if (cellValue === undefined || cellValue === null) {
+    cellValue = '';
+  }
+  return `<span aria-label="${columnHeader}: ${cellValue}">${cellValue}</span>`;
 }
 
 class AnnualReportStore extends Store {

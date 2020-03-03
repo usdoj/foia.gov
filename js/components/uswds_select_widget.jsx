@@ -25,7 +25,10 @@ const USWDSSelectWidget = props => (
 
 USWDSSelectWidget.propTypes = {
   name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]).isRequired,
   id: PropTypes.string.isRequired,
   value: PropTypes.string,
   handleChange: PropTypes.func,
