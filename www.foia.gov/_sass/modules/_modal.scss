@@ -30,6 +30,7 @@
 }
 
 .modal__inner {
+    max-height: 80vh; // Fixes ie11 bug.
     overflow: auto;
     padding: 2rem 3rem;
     flex-basis: 100%;
