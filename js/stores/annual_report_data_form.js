@@ -54,6 +54,20 @@ class AnnualReportDataFormStore extends Store {
     return agencies.toArray();
   }
 
+  /**
+   * Filter's invalid data types from an array of data type objects or
+   * the selectedDataTypes array.
+   *
+   * @param {[{}]|null} dataTypes
+   *   An array of dataType objects to filter, or null to filter the selectedDataTypes array.
+   * @returns {T[]}
+   *   A filtered array of data type objects.
+   */
+  getValidDataTypes(dataTypes) {
+    const filterableList = dataTypes || [...this.state.selectedDataTypes];
+    return filterableList.filter(type => type.id !== null && type.id !== undefined && type.id !== '');
+  }
+
   validateSelectAgencyComponent() {
     // Check if Agency Component Name field is valid.
     const selectedAgencies = [...this.state.selectedAgencies];

@@ -206,28 +206,37 @@ export const reportActions = {
    * Makes a base report api request with the correct events dispatched
    * while allowing the request to be modified before sending.
    *
-   * @param {Function | null} modifier
-   *   An optional function that will get the JsonapiParams request object.
-   *   This function allows modifications to the request such as adding filters
-   *   or limits.  The function must return the updated request object.
+   * @param {Array} dataTypes
+   *   An array of selected data type objects.
    *
    * @see js/util/json_api_params.js
    * @see js/stores/annual_report_data_types.js
    * @see www.foia.gov/api/annual-report-form/report_data_map.json
    */
-  fetchAnnualReportData(dataTypes = {}) {
+  fetchAnnualReportData(dataTypes = []) {
+    // Filter out any data type objects that represent empty fields
+    // in the form.  This prevents the request from breaking if a user
+    // adds a new data type field, but leaves the field empty.
+    const validTypes = annualReportDataFormStore.getValidDataTypes(dataTypes);
+    const typeGroups = validTypes.reduce((grouped, type) => {
+      const typeList = grouped[type.id] || [];
+      typeList.push(type);
+      grouped[type.id] = typeList;
+
+      return grouped;
+    }, {});
+
     dispatcher.dispatch({
       type: types.ANNUAL_REPORT_DATA_FETCH,
-      typesCount: Object.keys(dataTypes).length || 0,
+      typesCount: Object.keys(typeGroups).length || 0,
     });
 
-
-    Object.keys(dataTypes).forEach((key) => {
+    Object.keys(typeGroups).forEach((key) => {
       let builder = new FoiaAnnualReportRequestBuilder();
       // The default limit could be updated in the
       // modifier function if it needs to be.
       builder.request.limit(5);
-      builder = this.buildRequestForSelectedType(dataTypes[key], builder);
+      builder = this.buildRequestForSelectedType(typeGroups[key], builder);
 
       return builder
         .request

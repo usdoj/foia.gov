@@ -194,7 +194,7 @@ class AnnualReportStore extends Store {
           break;
         }
 
-        const { selectedDataTypes } = annualReportDataFormStore.getState();
+        const selectedDataTypes = annualReportDataFormStore.getValidDataTypes();
         // Set up the default columns that appear in all data tables.
         const defaultColumns = [
           {
