@@ -47,9 +47,11 @@ var clickedItem = $(this).attr("id");
 		$("#FY2016").attr("checked",true);
 		$("#FY2017").attr("checked",true);
 		$("#FY2018").attr("checked",true);
+		$("#FY2019").attr("checked",true);
 		$("#FY2016").attr("disabled",false);
 		$("#FY2017").attr("disabled",false);
 		$("#FY2018").attr("disabled",false);
+		$("#FY2019").attr("disabled",false);
 	}
     $("#ALL").attr("checked",false);
   }else{
@@ -57,6 +59,7 @@ var clickedItem = $(this).attr("id");
     $("#FY2016").attr("disabled",false);
     $("#FY2017").attr("disabled",false);
     $("#FY2018").attr("disabled",false);
+    $("#FY2019").attr("disabled",false);
   }
   if(consolelog) console.log("report compare function: "+compareSelected);
 }
@@ -86,9 +89,11 @@ var clickedItem = $(this).val();
 		$("#aFY2016").attr("checked",true);
 		$("#aFY2017").attr("checked",true);
 		$("#aFY2018").attr("checked",true);
+		$("#aFY2019").attr("checked",true);
 		$("#aFY2016").attr("disabled",false);
 		$("#aFY2017").attr("disabled",false);
 		$("#aFY2018").attr("disabled",false);
+		$("#aFY2019").attr("disabled",false);
 	}
     $("#aALL").attr("checked",false);
   }else{
@@ -96,6 +101,7 @@ var clickedItem = $(this).val();
     $("#aFY2016").attr("disabled",false);
     $("#aFY2017").attr("disabled",false);
     $("#aFY2018").attr("disabled",false);
+    $("#aFY2019").attr("disabled",false);
   }
   if(consolelog) console.log("report compare function: "+compareSelected);
 }
