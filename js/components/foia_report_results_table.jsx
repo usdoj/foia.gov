@@ -52,9 +52,21 @@ class FoiaReportResultsTable extends Component {
   handleColumnFocus(event) {
     const button = event.target;
     const columnElement = button.closest('.tabulator-col');
-    columnElement.scrollLeft = 0;
-    const tabulatorField = columnElement.getAttribute('tabulator-field');
-    this.tabulator.scrollToColumn(tabulatorField, 'right');
+    const colIndex = this
+      .tabulator
+      .columnManager
+      .columns
+      .findIndex(column => column.element === columnElement);
+    if (colIndex <= 0) {
+      this.tabulator.columnManager.element.scrollLeft = 0;
+      this.tabulator.rowManager.element.scrollLeft = 0;
+
+      return;
+    }
+    const precedingColumns = this.tabulator.columnManager.columns.slice(0, colIndex);
+    const precedingWidth = precedingColumns.reduce((width, column) => width + column.width, 0);
+    this.tabulator.columnManager.element.scrollLeft = precedingWidth;
+    this.tabulator.rowManager.element.scrollLeft = precedingWidth;
   }
 
   render() {
