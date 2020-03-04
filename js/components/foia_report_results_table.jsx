@@ -29,7 +29,6 @@ class FoiaReportResultsTable extends Component {
       columns: tableColumns,
       reactiveData: true,
       layout: 'fitDataStretch',
-      scrollToColumnPosition: 'center',
       tableBuilt: () => {
         const selector = `#${tableId} .tabulator-header button`;
         const buttons = document.querySelectorAll(selector);
@@ -53,8 +52,9 @@ class FoiaReportResultsTable extends Component {
   handleColumnFocus(event) {
     const button = event.target;
     const columnElement = button.closest('.tabulator-col');
+    columnElement.scrollLeft = 0;
     const tabulatorField = columnElement.getAttribute('tabulator-field');
-    this.tabulator.scrollToColumn(tabulatorField, 'middle', false);
+    this.tabulator.scrollToColumn(tabulatorField, 'right');
   }
 
   render() {

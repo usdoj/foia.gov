@@ -202,7 +202,7 @@ class AnnualReportStore extends Store {
             titleFormatter: headingAsButton,
             formatter: cellWithAria,
             field: 'field_agency',
-            align: 'center',
+            align: 'left',
           },
           {
             title: 'Component',
@@ -233,7 +233,7 @@ class AnnualReportStore extends Store {
                   titleFormatter: headingAsButton,
                   formatter: cellWithAria,
                   field: item.id,
-                  align: 'center',
+                  align: item.filter ? 'center' : 'left',
                 }));
             const reportHeaders = defaultColumns.concat(dataColumns);
             const dataRows = this.getReportDataForType(dataType);
