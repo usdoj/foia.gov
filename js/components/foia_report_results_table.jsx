@@ -33,7 +33,8 @@ class FoiaReportResultsTable extends Component {
       tableBuilt: () => {
         const selector = `#${tableId} .tabulator-header button`;
         const buttons = document.querySelectorAll(selector);
-        buttons.forEach((button) => {
+
+        Array.from(buttons).forEach((button) => {
           button.addEventListener('focus', this.handleColumnFocus);
         });
       },
