@@ -34,981 +34,993 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 
 //Tabulator Containing Element
 .tabulator{
-	position: relative;
+  position: relative;
 
-	border: 1px solid $borderColor;
+  border: 1px solid $borderColor;
 
-	background-color: $backgroundColor;
+  background-color: $backgroundColor;
 
-	font-size:$textSize;
-	text-align: left;
-	overflow:hidden;
+  font-size:$textSize;
+  text-align: left;
+  overflow:hidden;
 
-	-webkit-transform: translatez(0);
-	-moz-transform: translatez(0);
-	-ms-transform: translatez(0);
-	-o-transform: translatez(0);
-	transform: translatez(0);
+  -webkit-transform: translatez(0);
+  -moz-transform: translatez(0);
+  -ms-transform: translatez(0);
+  -o-transform: translatez(0);
+  transform: translatez(0);
 
-	&[tabulator-layout="fitDataFill"]{
-		.tabulator-tableHolder{
-			.tabulator-table{
-				min-width:100%;
-			}
-		}
-	}
+  &[tabulator-layout="fitDataFill"]{
+    .tabulator-tableHolder{
+      .tabulator-table{
+        min-width:100%;
+      }
+    }
+  }
 
-	&.tabulator-block-select{
-		user-select: none;
-	}
+  &.tabulator-block-select{
+    user-select: none;
+  }
 
-	//column header containing element
-	.tabulator-header{
-		position:relative;
-		box-sizing: border-box;
+  //column header containing element
+  .tabulator-header{
+    position:relative;
+    box-sizing: border-box;
 
-		width:100%;
+    width:100%;
 
-		border-bottom:1px solid $headerSeparatorColor;
-		background-color: $headerBackgroundColor;
-		color: $headerTextColor;
-		font-weight:bold;
+    border-bottom:1px solid $headerSeparatorColor;
+    background-color: $headerBackgroundColor;
+    color: $headerTextColor;
+    font-weight:bold;
 
-		white-space: nowrap;
-		overflow:hidden;
+    white-space: nowrap;
+    overflow:hidden;
 
-		-moz-user-select: none;
-		-khtml-user-select: none;
-		-webkit-user-select: none;
-		-o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
 
-		&.tabulator-header-hidden{
-			display:none;
-		}
+    &.tabulator-header-hidden{
+      display:none;
+    }
 
-		//individual column header element
-		.tabulator-col{
-			display:inline-block;
-			position:relative;
-			box-sizing:border-box;
-			border-right:1px solid $headerBorderColor;
-			background:$headerBackgroundColor;
-			text-align:left;
-			vertical-align: bottom;
-			overflow: hidden;
+    //individual column header element
+    .tabulator-col{
+      display:inline-block;
+      position:relative;
+      box-sizing:border-box;
+      border-right:1px solid $headerBorderColor;
+      background:$headerBackgroundColor;
+      text-align:left;
+      vertical-align: bottom;
+      overflow: hidden;
 
-			&.tabulator-moving{
-				position: absolute;
-				border:1px solid  $headerSeparatorColor;
-				background:darken($headerBackgroundColor, 10%);
-				pointer-events: none;
-			}
+      &.tabulator-moving{
+        position: absolute;
+        border:1px solid  $headerSeparatorColor;
+        background:darken($headerBackgroundColor, 10%);
+        pointer-events: none;
+      }
 
-			&:last-child {
-				border-right: none;
-			}
+      &:last-child {
+        border-right: none;
+      }
 
-			//hold content of column header
-			.tabulator-col-content{
-				box-sizing:border-box;
-				position: relative;
+      //hold content of column header
+      .tabulator-col-content{
+        box-sizing:border-box;
+        position: relative;
 
-				//hold title of column header
-				.tabulator-col-title{
-					box-sizing:border-box;
-					width: 100%;
+        //hold title of column header
+        .tabulator-col-title{
+          box-sizing:border-box;
+          width: 100%;
 
-					white-space: nowrap;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					vertical-align:bottom;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          vertical-align:bottom;
 
-					//element to hold title editor
-					.tabulator-title-editor{
-						box-sizing: border-box;
-						width: 100%;
+          // IE Overrides.
+          @media all and (-ms-high-contrast:none) {
+            // IE doesn't support the `outline-offset` property used on the header button focus so we add additional spacing here so outline is visible.
+            padding: .4rem;
+          }
 
-						border:1px solid #999;
+          //element to hold title editor
+          .tabulator-title-editor{
+            box-sizing: border-box;
+            width: 100%;
 
-						padding:1px;
+            border:1px solid #999;
 
-						background: #fff;
-					}
-				}
-			}
+            padding:1px;
 
-			//complex header column group
-			&.tabulator-col-group{
+            background: #fff;
+          }
+        }
+      }
 
-				//gelement to hold sub columns in column group
-				.tabulator-col-group-cols{
-					position:relative;
-					display: flex;
+      //complex header column group
+      &.tabulator-col-group{
 
-					border-top:1px solid $headerBorderColor;
-					overflow: hidden;
+        //gelement to hold sub columns in column group
+        .tabulator-col-group-cols{
+          position:relative;
+          display: flex;
 
-					.tabulator-col:last-child{
-						margin-right:-1px;
-					}
-				}
-			}
+          border-top:1px solid $headerBorderColor;
+          overflow: hidden;
 
-			//hide left resize handle on first column
-			&:first-child{
-				.tabulator-col-resize-handle.prev{
-					display: none;
-				}
-			}
+          .tabulator-col:last-child{
+            margin-right:-1px;
+          }
+        }
+      }
 
-			//placeholder element for sortable columns
-			&.ui-sortable-helper{
-				position: absolute;
-				background-color: $headerBackgroundColor !important;
-				border:1px solid $headerBorderColor;
-			}
+      //hide left resize handle on first column
+      &:first-child{
+        .tabulator-col-resize-handle.prev{
+          display: none;
+        }
+      }
 
-			//header filter containing element
-			.tabulator-header-filter{
-				position: relative;
-				box-sizing: border-box;
-				margin-top:2px;
-				width:100%;
-				text-align: center;
+      //placeholder element for sortable columns
+      &.ui-sortable-helper{
+        position: absolute;
+        background-color: $headerBackgroundColor !important;
+        border:1px solid $headerBorderColor;
+      }
 
-				//styling adjustment for inbuilt editors
-				textarea{
-					height:auto !important;
-				}
+      //header filter containing element
+      .tabulator-header-filter{
+        position: relative;
+        box-sizing: border-box;
+        margin-top:2px;
+        width:100%;
+        text-align: center;
 
-				svg{
-					margin-top: 3px;
-				}
+        //styling adjustment for inbuilt editors
+        textarea{
+          height:auto !important;
+        }
 
-				input{
-					&::-ms-clear {
-						width : 0;
-						height: 0;
-					}
-				}
-			}
+        svg{
+          margin-top: 3px;
+        }
 
-			//styling child elements for sortable columns
-			&.tabulator-sortable{
-				&:hover{
-					cursor: pointer;
-				}
+        input{
+          &::-ms-clear {
+            width : 0;
+            height: 0;
+          }
+        }
+      }
+
+      //styling child elements for sortable columns
+      &.tabulator-sortable{
+        &:hover{
+          cursor: pointer;
+        }
 
         .tabulator-col-content {
           background-image: none, url('/assets/img/arrow-both.svg');
           background-position: right 1.3rem center;
           background-repeat: no-repeat;
-					background-size: 1rem;
-					min-height: 5.6rem;
+          background-size: 1rem;
+          min-height: 5.6rem;
+
+          // IE Overrides.
+          @media all and (-ms-high-contrast:none) {
+            // IE background-size property handles differently in IE.
+            background-size: 1.3rem 1.3rem;
+          }
 
         }
 
-				&[aria-sort="none"]{
-					.tabulator-col-content {
+        &[aria-sort="none"]{
+          .tabulator-col-content {
             background-image: none, url($icon-arrow-both-none);
-					}
-				}
+          }
+        }
 
-				&[aria-sort="asc"]{
-					.tabulator-col-content {
+        &[aria-sort="asc"]{
+          .tabulator-col-content {
             background-image: none, url($icon-arrow-both-up);
-					}
-				}
+          }
+        }
 
-				&[aria-sort="desc"]{
-					.tabulator-col-content {
+        &[aria-sort="desc"]{
+          .tabulator-col-content {
             background-image: none, url($icon-arrow-both-down);
-					}
-				}
-
-				button {
-					margin: 0;
-					padding: 0;
-					background-color: transparent;
-					color: inherit;
-					font-family: inherit;
-					font-size: inherit;
-					font-weight: inherit;
-					line-height: inherit;
-					width: auto;
-					display: block;
-					width: 100%;
-					padding: 1.7rem 3.2rem 1.7rem 1.6rem;
-					text-align: left;
-
-					&:focus {
-						outline-offset: -.3rem;
-					}
-				}
-			}
-
-
-			&.tabulator-col-vertical{
-				.tabulator-col-content{
-					.tabulator-col-title{
-						writing-mode: vertical-rl;
-						text-orientation: mixed;
-
-						display:flex;
-						align-items:center;
-						justify-content:center;
-					}
-				}
-
-				&.tabulator-col-vertical-flip{
-					.tabulator-col-title{
-						transform: rotate(180deg);
-					}
-				}
-
-				&.tabulator-sortable{
-					.tabulator-col-title{
-						padding-right:0;
-						padding-top:20px;
-					}
-
-					&.tabulator-col-vertical-flip{
-						.tabulator-col-title{
-							padding-right:0;
-							padding-bottom:20px;
-						}
-
-					}
-				}
-			}
-		}
-
-		.tabulator-frozen{
-			display: inline-block;
-			position: absolute;
-
-			// background-color: inherit;
-
-			z-index: 10;
-
-			&.tabulator-frozen-left{
-				border-right:2px solid $rowBorderColor;
-			}
-
-			&.tabulator-frozen-right{
-				border-left:2px solid $rowBorderColor;
-			}
-		}
-
-
-		.tabulator-calcs-holder{
-			box-sizing:border-box;
-			min-width:600%;
-
-			background:lighten($headerBackgroundColor, 5%) !important;
-
-			.tabulator-row{
-				background:lighten($headerBackgroundColor, 5%) !important;
-
-				.tabulator-col-resize-handle{
-					display: none;
-				}
-			}
-
-			border-top:1px solid $rowBorderColor;
-			border-bottom:1px solid $headerBorderColor;
-
-			overflow: hidden;
-		}
-
-		.tabulator-frozen-rows-holder{
-			min-width:600%;
-
-			&:empty{
-				display: none;
-			}
-		}
-	}
-
-	//scrolling element to hold table
-	.tabulator-tableHolder{
-		position:relative;
-		width:100%;
-		white-space: nowrap;
-		overflow:auto;
-		-webkit-overflow-scrolling: touch;
-
-		&:focus{
-			outline: none;
-		}
-
-		//default placeholder element
-		.tabulator-placeholder{
-			box-sizing:border-box;
-			display: flex;
-			align-items:center;
-
-			&[tabulator-render-mode="virtual"]{
-				position: absolute;
-				top:0;
-				left:0;
-				height:100%;
-			}
-
-			width:100%;
-
-			span{
-				display: inline-block;
-
-				margin:0 auto;
-				padding:10px;
-
-				color:#ccc;
-				font-weight: bold;
-				font-size: 20px;
-			}
-		}
-
-		//element to hold table rows
-		.tabulator-table{
-			position:relative;
-			display:inline-block;
-			background-color:$rowBackgroundColor;
-			white-space: nowrap;
-			overflow:visible;
-			color:$rowTextColor;
-
-			//row element
-			.tabulator-row{
-				&.tabulator-calcs{
-					font-weight: bold;
-					background:darken($rowAltBackgroundColor, 5%) !important;
-
-					&.tabulator-calcs-top{
-						border-bottom:2px solid $rowBorderColor;
-					}
-
-					&.tabulator-calcs-bottom{
-						border-top:2px solid $rowBorderColor;
-					}
-				}
-			}
-
-		}
-	}
-
-
-
-	//footer element
-	.tabulator-footer{
-		padding:5px 10px;
-		border-top:1px solid $footerSeparatorColor;
-		background-color: $footerBackgroundColor;
-		text-align: right;
-		color: $footerTextColor;
-		font-weight:bold;
-		white-space:nowrap;
-		user-select:none;
-
-		-moz-user-select: none;
-		-khtml-user-select: none;
-		-webkit-user-select: none;
-		-o-user-select: none;
-
-		.tabulator-calcs-holder{
-			box-sizing:border-box;
-			width:calc(100% + 20px);
-			margin:-5px -10px 5px -10px;
-
-			text-align: left;
-
-			background:lighten($footerBackgroundColor, 5%) !important;
-
-			.tabulator-row{
-				background:lighten($footerBackgroundColor, 5%) !important;
-
-				.tabulator-col-resize-handle{
-					display: none;
-				}
-			}
-
-			border-bottom:1px solid $rowBorderColor;
-			border-top:1px solid $rowBorderColor;
-
-			overflow: hidden;
-
-			&:only-child{
-				margin-bottom:-5px;
-				border-bottom:none;
-			}
-		}
-
-		.tabulator-paginator{
-			color: $footerTextColor;
-			font-family:inherit;
-			font-weight:inherit;
-			font-size:inherit;
-		}
-
-		//pagination container element
-		.tabulator-page-size{
-			display:inline-block;
-
-			margin:0 5px;
-			padding:2px 5px;
-
-			border:1px solid $footerBorderColor;
-			border-radius:3px;
-		}
-
-		.tabulator-pages{
-			margin:0 7px;
-		}
-
-		//pagination button
-		.tabulator-page{
-			display:inline-block;
-
-			margin:0 2px;
-			padding:2px 5px;
-
-			border:1px solid $footerBorderColor;
-			border-radius:3px;
-
-			background:rgba(255,255,255,.2);
-
-			&.active{
-				color:$footerActiveColor;
-			}
-
-			&:disabled{
-				opacity:.5;
-			}
-
-			&:not(.disabled){
-				&:hover{
-					cursor:pointer;
-					background:rgba(0,0,0,.2);
-					color:#fff;
-				}
-			}
-		}
-	}
-
-	//column resize handles
-	.tabulator-col-resize-handle{
-		position:absolute;
-		right:0;
-		top:0;
-		bottom:0;
-		width:5px;
-
-		&.prev{
-			left:0;
-			right:auto;
-		}
-
-		&:hover{
-			cursor:ew-resize;
-		}
-	}
-
-
-	//holding div that contains loader and covers tabulator element to prevent interaction
-	.tabulator-loader{
-		position:absolute;
-		display: flex;
-		align-items:center;
-
-		top:0;
-		left:0;
-		z-index:100;
-
-		height:100%;
-		width:100%;
-		background:rgba(0,0,0,.4);
-		text-align:center;
-
-		//loading message element
-		.tabulator-loader-msg{
-			display:inline-block;
-
-			margin:0 auto;
-			padding:10px 20px;
-
-			border-radius:10px;
-
-			background:#fff;
-			font-weight:bold;
-			font-size:16px;
-
-			//loading message
-			&.tabulator-loading{
-				border:4px solid #333;
-				color:#000;
-			}
-
-			//error message
-			&.tabulator-error{
-				border:4px solid #D00;
-				color:#590000;
-			}
-		}
-	}
+          }
+        }
+
+        button {
+          margin: 0;
+          padding: 0;
+          background-color: transparent;
+          color: inherit;
+          font-family: inherit;
+          font-size: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+          width: auto;
+          display: block;
+          width: 100%;
+          padding: 1.7rem 3.2rem 1.7rem 1.6rem;
+          text-align: left;
+
+          &:focus {
+            outline-offset: -.3rem;
+          }
+
+        }
+      }
+
+      &.tabulator-col-vertical{
+        .tabulator-col-content{
+          .tabulator-col-title{
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+          }
+        }
+
+        &.tabulator-col-vertical-flip{
+          .tabulator-col-title{
+            transform: rotate(180deg);
+          }
+        }
+
+        &.tabulator-sortable{
+          .tabulator-col-title{
+            padding-right:0;
+            padding-top:20px;
+          }
+
+          &.tabulator-col-vertical-flip{
+            .tabulator-col-title{
+              padding-right:0;
+              padding-bottom:20px;
+            }
+
+          }
+        }
+      }
+    }
+
+    .tabulator-frozen{
+      display: inline-block;
+      position: absolute;
+
+      // background-color: inherit;
+
+      z-index: 10;
+
+      &.tabulator-frozen-left{
+        border-right:2px solid $rowBorderColor;
+      }
+
+      &.tabulator-frozen-right{
+        border-left:2px solid $rowBorderColor;
+      }
+    }
+
+
+    .tabulator-calcs-holder{
+      box-sizing:border-box;
+      min-width:600%;
+
+      background:lighten($headerBackgroundColor, 5%) !important;
+
+      .tabulator-row{
+        background:lighten($headerBackgroundColor, 5%) !important;
+
+        .tabulator-col-resize-handle{
+          display: none;
+        }
+      }
+
+      border-top:1px solid $rowBorderColor;
+      border-bottom:1px solid $headerBorderColor;
+
+      overflow: hidden;
+    }
+
+    .tabulator-frozen-rows-holder{
+      min-width:600%;
+
+      &:empty{
+        display: none;
+      }
+    }
+  }
+
+  //scrolling element to hold table
+  .tabulator-tableHolder{
+    position:relative;
+    width:100%;
+    white-space: nowrap;
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
+
+    &:focus{
+      outline: none;
+    }
+
+    //default placeholder element
+    .tabulator-placeholder{
+      box-sizing:border-box;
+      display: flex;
+      align-items:center;
+
+      &[tabulator-render-mode="virtual"]{
+        position: absolute;
+        top:0;
+        left:0;
+        height:100%;
+      }
+
+      width:100%;
+
+      span{
+        display: inline-block;
+
+        margin:0 auto;
+        padding:10px;
+
+        color:#ccc;
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+
+    //element to hold table rows
+    .tabulator-table{
+      position:relative;
+      display:inline-block;
+      background-color:$rowBackgroundColor;
+      white-space: nowrap;
+      overflow:visible;
+      color:$rowTextColor;
+
+      //row element
+      .tabulator-row{
+        &.tabulator-calcs{
+          font-weight: bold;
+          background:darken($rowAltBackgroundColor, 5%) !important;
+
+          &.tabulator-calcs-top{
+            border-bottom:2px solid $rowBorderColor;
+          }
+
+          &.tabulator-calcs-bottom{
+            border-top:2px solid $rowBorderColor;
+          }
+        }
+      }
+
+    }
+  }
+
+
+
+  //footer element
+  .tabulator-footer{
+    padding:5px 10px;
+    border-top:1px solid $footerSeparatorColor;
+    background-color: $footerBackgroundColor;
+    text-align: right;
+    color: $footerTextColor;
+    font-weight:bold;
+    white-space:nowrap;
+    user-select:none;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+
+    .tabulator-calcs-holder{
+      box-sizing:border-box;
+      width:calc(100% + 20px);
+      margin:-5px -10px 5px -10px;
+
+      text-align: left;
+
+      background:lighten($footerBackgroundColor, 5%) !important;
+
+      .tabulator-row{
+        background:lighten($footerBackgroundColor, 5%) !important;
+
+        .tabulator-col-resize-handle{
+          display: none;
+        }
+      }
+
+      border-bottom:1px solid $rowBorderColor;
+      border-top:1px solid $rowBorderColor;
+
+      overflow: hidden;
+
+      &:only-child{
+        margin-bottom:-5px;
+        border-bottom:none;
+      }
+    }
+
+    .tabulator-paginator{
+      color: $footerTextColor;
+      font-family:inherit;
+      font-weight:inherit;
+      font-size:inherit;
+    }
+
+    //pagination container element
+    .tabulator-page-size{
+      display:inline-block;
+
+      margin:0 5px;
+      padding:2px 5px;
+
+      border:1px solid $footerBorderColor;
+      border-radius:3px;
+    }
+
+    .tabulator-pages{
+      margin:0 7px;
+    }
+
+    //pagination button
+    .tabulator-page{
+      display:inline-block;
+
+      margin:0 2px;
+      padding:2px 5px;
+
+      border:1px solid $footerBorderColor;
+      border-radius:3px;
+
+      background:rgba(255,255,255,.2);
+
+      &.active{
+        color:$footerActiveColor;
+      }
+
+      &:disabled{
+        opacity:.5;
+      }
+
+      &:not(.disabled){
+        &:hover{
+          cursor:pointer;
+          background:rgba(0,0,0,.2);
+          color:#fff;
+        }
+      }
+    }
+  }
+
+  //column resize handles
+  .tabulator-col-resize-handle{
+    position:absolute;
+    right:0;
+    top:0;
+    bottom:0;
+    width:5px;
+
+    &.prev{
+      left:0;
+      right:auto;
+    }
+
+    &:hover{
+      cursor:ew-resize;
+    }
+  }
+
+
+  //holding div that contains loader and covers tabulator element to prevent interaction
+  .tabulator-loader{
+    position:absolute;
+    display: flex;
+    align-items:center;
+
+    top:0;
+    left:0;
+    z-index:100;
+
+    height:100%;
+    width:100%;
+    background:rgba(0,0,0,.4);
+    text-align:center;
+
+    //loading message element
+    .tabulator-loader-msg{
+      display:inline-block;
+
+      margin:0 auto;
+      padding:10px 20px;
+
+      border-radius:10px;
+
+      background:#fff;
+      font-weight:bold;
+      font-size:16px;
+
+      //loading message
+      &.tabulator-loading{
+        border:4px solid #333;
+        color:#000;
+      }
+
+      //error message
+      &.tabulator-error{
+        border:4px solid #D00;
+        color:#590000;
+      }
+    }
+  }
 }
 
 //row element
 .tabulator-row{
-	position: relative;
-	box-sizing: border-box;
-	min-height:$textSize + ($headerMargin * 2);
-	background-color: $rowBackgroundColor;
-
-
-	&.tabulator-row-even{
-		background-color: $rowAltBackgroundColor;
-	}
-
-	&.tabulator-selected{
-		background-color:$rowSelectedBackground;
-	}
-
-	&.tabulator-row-moving{
-		border:1px solid #000;
-		background:#fff;
-	}
-
-	&.tabulator-moving{
-		position: absolute;
-
-		border-top:1px solid  $rowBorderColor;
-		border-bottom:1px solid  $rowBorderColor;
-
-		pointer-events: none;
-		z-index:15;
-	}
-
-	//row resize handles
-	.tabulator-row-resize-handle{
-		position:absolute;
-		right:0;
-		bottom:0;
-		left:0;
-		height:5px;
-
-		&.prev{
-			top:0;
-			bottom:auto;
-		}
-
-		&:hover{
-			cursor:ns-resize;
-		}
-	}
-
-	.tabulator-frozen{
-		display: inline-block;
-		position: absolute;
-
-		background-color: inherit;
-
-		z-index: 10;
-
-		&.tabulator-frozen-left{
-			border-right:2px solid $rowBorderColor;
-		}
-
-		&.tabulator-frozen-right{
-			border-left:2px solid $rowBorderColor;
-		}
-	}
-
-	.tabulator-responsive-collapse{
-		box-sizing:border-box;
-
-		padding:5px;
-
-		border-top:1px solid $rowBorderColor;
-		border-bottom:1px solid $rowBorderColor;
-
-		&:empty{
-			display:none;
-		}
-
-		table{
-			font-size:$textSize;
-
-			tr{
-				td{
-					position: relative;
-
-					&:first-of-type{
-						padding-right:10px;
-					}
-				}
-			}
-		}
-	}
-
-	//cell element
-	.tabulator-cell{
-		display:inline-block;
-		position: relative;
-		box-sizing:border-box;
-		padding: .5em;
-		border-right: 1px solid $rowBorderColor;
-		border-bottom: 1px solid $rowBorderColor;
-		vertical-align:middle;
-		white-space:nowrap;
-		overflow:hidden;
-		text-overflow:ellipsis;
-
-
-		&.tabulator-editing{
-			border:1px solid  $editBoxColor;
-			padding: 0;
-
-			input, select{
-				border:1px;
-				background:transparent;
-			}
-		}
-
-		&.tabulator-validation-fail{
-			border:1px solid $errorColor;
-			input, select{
-				border:1px;
-				background:transparent;
-
-				color: $errorColor;
-			}
-		}
-
-		//hide left resize handle on first column
-		&:first-child{
-			.tabulator-col-resize-handle.prev{
-				display: none;
-			}
-		}
+  position: relative;
+  box-sizing: border-box;
+  min-height:$textSize + ($headerMargin * 2);
+  background-color: $rowBackgroundColor;
+
+
+  &.tabulator-row-even{
+    background-color: $rowAltBackgroundColor;
+  }
+
+  &.tabulator-selected{
+    background-color:$rowSelectedBackground;
+  }
+
+  &.tabulator-row-moving{
+    border:1px solid #000;
+    background:#fff;
+  }
+
+  &.tabulator-moving{
+    position: absolute;
+
+    border-top:1px solid  $rowBorderColor;
+    border-bottom:1px solid  $rowBorderColor;
+
+    pointer-events: none;
+    z-index:15;
+  }
+
+  //row resize handles
+  .tabulator-row-resize-handle{
+    position:absolute;
+    right:0;
+    bottom:0;
+    left:0;
+    height:5px;
+
+    &.prev{
+      top:0;
+      bottom:auto;
+    }
+
+    &:hover{
+      cursor:ns-resize;
+    }
+  }
+
+  .tabulator-frozen{
+    display: inline-block;
+    position: absolute;
+
+    background-color: inherit;
+
+    z-index: 10;
+
+    &.tabulator-frozen-left{
+      border-right:2px solid $rowBorderColor;
+    }
+
+    &.tabulator-frozen-right{
+      border-left:2px solid $rowBorderColor;
+    }
+  }
+
+  .tabulator-responsive-collapse{
+    box-sizing:border-box;
+
+    padding:5px;
+
+    border-top:1px solid $rowBorderColor;
+    border-bottom:1px solid $rowBorderColor;
+
+    &:empty{
+      display:none;
+    }
+
+    table{
+      font-size:$textSize;
+
+      tr{
+        td{
+          position: relative;
+
+          &:first-of-type{
+            padding-right:10px;
+          }
+        }
+      }
+    }
+  }
+
+  //cell element
+  .tabulator-cell{
+    display:inline-block;
+    position: relative;
+    box-sizing:border-box;
+    padding: .5em;
+    border-right: 1px solid $rowBorderColor;
+    border-bottom: 1px solid $rowBorderColor;
+    vertical-align:middle;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+
+
+    &.tabulator-editing{
+      border:1px solid  $editBoxColor;
+      padding: 0;
+
+      input, select{
+        border:1px;
+        background:transparent;
+      }
+    }
+
+    &.tabulator-validation-fail{
+      border:1px solid $errorColor;
+      input, select{
+        border:1px;
+        background:transparent;
+
+        color: $errorColor;
+      }
+    }
+
+    //hide left resize handle on first column
+    &:first-child{
+      .tabulator-col-resize-handle.prev{
+        display: none;
+      }
+    }
 
-		&:last-child {
-			border-right: none;
-		}
-
-		//movable row handle
-		&.tabulator-row-handle{
-			display: inline-flex;
-			align-items:center;
-			justify-content:center;
-
-			-moz-user-select: none;
-			-khtml-user-select: none;
-			-webkit-user-select: none;
-			-o-user-select: none;
+    &:last-child {
+      border-right: none;
+    }
+
+    //movable row handle
+    &.tabulator-row-handle{
+      display: inline-flex;
+      align-items:center;
+      justify-content:center;
+
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -o-user-select: none;
 
-			//handle holder
-			.tabulator-row-handle-box{
-				width:80%;
-
-				//Hamburger element
-				.tabulator-row-handle-bar{
-					width:100%;
-					height:3px;
-					margin-top:2px;
-					background:#666;
-				}
-			}
-		}
+      //handle holder
+      .tabulator-row-handle-box{
+        width:80%;
+
+        //Hamburger element
+        .tabulator-row-handle-bar{
+          width:100%;
+          height:3px;
+          margin-top:2px;
+          background:#666;
+        }
+      }
+    }
 
-		.tabulator-data-tree-branch{
-			display:inline-block;
-			vertical-align:middle;
+    .tabulator-data-tree-branch{
+      display:inline-block;
+      vertical-align:middle;
 
-			height:9px;
-			width:7px;
+      height:9px;
+      width:7px;
 
-			margin-top:-9px;
-			margin-right:5px;
+      margin-top:-9px;
+      margin-right:5px;
 
-			border-bottom-left-radius:1px;
+      border-bottom-left-radius:1px;
 
-			border-left:2px solid $rowBorderColor;
-			border-bottom:2px solid $rowBorderColor;
-		}
+      border-left:2px solid $rowBorderColor;
+      border-bottom:2px solid $rowBorderColor;
+    }
 
-		.tabulator-data-tree-control{
-
-			display:inline-flex;
-			justify-content:center;
-			align-items:center;
-			vertical-align:middle;
-
-			height:11px;
-			width:11px;
-
-			margin-right:5px;
-
-			border:1px solid $rowTextColor;
-			border-radius:2px;
-			background:rgba(0, 0, 0, .1);
-
-			overflow:hidden;
-
-			&:hover{
-				cursor:pointer;
-				background:rgba(0, 0, 0, .2);
-			}
-
-			.tabulator-data-tree-control-collapse{
-				display:inline-block;
-				position: relative;
-
-				height: 7px;
-				width: 1px;
-
-				background: transparent;
-
-				&:after {
-					position: absolute;
-					content: "";
-					left: -3px;
-					top: 3px;
-
-					height: 1px;
-					width: 7px;
-
-					background: $rowTextColor;
-				}
-			}
-
-			.tabulator-data-tree-control-expand{
-				display:inline-block;
-				position: relative;
-
-				height: 7px;
-				width: 1px;
-
-				background: $rowTextColor;
-
-				&:after {
-					position: absolute;
-					content: "";
-					left: -3px;
-					top: 3px;
-
-					height: 1px;
-					width: 7px;
-
-					background: $rowTextColor;
-				}
-			}
-
-		}
-
-		.tabulator-responsive-collapse-toggle{
-			display: inline-flex;
-			align-items:center;
-			justify-content:center;
-
-			-moz-user-select: none;
-			-khtml-user-select: none;
-			-webkit-user-select: none;
-			-o-user-select: none;
-
-			height:15px;
-			width:15px;
-
-			border-radius:20px;
-			background:#666;
-
-			color:$rowBackgroundColor;
-			font-weight:bold;
-			font-size:1.1em;
-
-			&:hover{
-				opacity:.7;
-			}
-
-			&.open{
-				.tabulator-responsive-collapse-toggle-close{
-					display:initial;
-				}
-
-				.tabulator-responsive-collapse-toggle-open{
-					display:none;
-				}
-			}
-
-			.tabulator-responsive-collapse-toggle-close{
-				display:none;
-			}
-		}
-
-		.tabulator-traffic-light{
-			display: inline-block;
-			height:14px;
-			width:14px;
-
-			border-radius:14px;
-		}
-	}
-
-	&:last-child .tabulator-cell {
-		border-bottom: 0;
-	}
-
-	//row grouping element
-	&.tabulator-group{
-		box-sizing:border-box;
-		border-bottom:1px solid #999;
-		border-right:1px solid $rowBorderColor;
-		border-top:1px solid #999;
-		padding:5px;
-		padding-left:10px;
-		background:#ccc;
-		font-weight:bold;
-
-		min-width: 100%;
-
-		&:hover{
-			cursor:pointer;
-			background-color:rgba(0,0,0,.1);
-		}
-
-		&.tabulator-group-level-1{
-			padding-left:30px;
-		}
-
-		&.tabulator-group-level-2{
-			padding-left:50px;
-		}
-
-		&.tabulator-group-level-3{
-			padding-left:70px;
-		}
-
-		&.tabulator-group-level-4{
-			padding-left:90px;
-		}
-
-		&.tabulator-group-level-5{
-			padding-left:110px;
-		}
-
-		.tabulator-group-toggle{
-			display: inline-block;
-		}
-
-		span{
-			margin-left:10px;
-			color:#d00;
-		}
-	}
+    .tabulator-data-tree-control{
+
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      vertical-align:middle;
+
+      height:11px;
+      width:11px;
+
+      margin-right:5px;
+
+      border:1px solid $rowTextColor;
+      border-radius:2px;
+      background:rgba(0, 0, 0, .1);
+
+      overflow:hidden;
+
+      &:hover{
+        cursor:pointer;
+        background:rgba(0, 0, 0, .2);
+      }
+
+      .tabulator-data-tree-control-collapse{
+        display:inline-block;
+        position: relative;
+
+        height: 7px;
+        width: 1px;
+
+        background: transparent;
+
+        &:after {
+          position: absolute;
+          content: "";
+          left: -3px;
+          top: 3px;
+
+          height: 1px;
+          width: 7px;
+
+          background: $rowTextColor;
+        }
+      }
+
+      .tabulator-data-tree-control-expand{
+        display:inline-block;
+        position: relative;
+
+        height: 7px;
+        width: 1px;
+
+        background: $rowTextColor;
+
+        &:after {
+          position: absolute;
+          content: "";
+          left: -3px;
+          top: 3px;
+
+          height: 1px;
+          width: 7px;
+
+          background: $rowTextColor;
+        }
+      }
+
+    }
+
+    .tabulator-responsive-collapse-toggle{
+      display: inline-flex;
+      align-items:center;
+      justify-content:center;
+
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -o-user-select: none;
+
+      height:15px;
+      width:15px;
+
+      border-radius:20px;
+      background:#666;
+
+      color:$rowBackgroundColor;
+      font-weight:bold;
+      font-size:1.1em;
+
+      &:hover{
+        opacity:.7;
+      }
+
+      &.open{
+        .tabulator-responsive-collapse-toggle-close{
+          display:initial;
+        }
+
+        .tabulator-responsive-collapse-toggle-open{
+          display:none;
+        }
+      }
+
+      .tabulator-responsive-collapse-toggle-close{
+        display:none;
+      }
+    }
+
+    .tabulator-traffic-light{
+      display: inline-block;
+      height:14px;
+      width:14px;
+
+      border-radius:14px;
+    }
+  }
+
+  &:last-child .tabulator-cell {
+    border-bottom: 0;
+  }
+
+  //row grouping element
+  &.tabulator-group{
+    box-sizing:border-box;
+    border-bottom:1px solid #999;
+    border-right:1px solid $rowBorderColor;
+    border-top:1px solid #999;
+    padding:5px;
+    padding-left:10px;
+    background:#ccc;
+    font-weight:bold;
+
+    min-width: 100%;
+
+    &:hover{
+      cursor:pointer;
+      background-color:rgba(0,0,0,.1);
+    }
+
+    &.tabulator-group-level-1{
+      padding-left:30px;
+    }
+
+    &.tabulator-group-level-2{
+      padding-left:50px;
+    }
+
+    &.tabulator-group-level-3{
+      padding-left:70px;
+    }
+
+    &.tabulator-group-level-4{
+      padding-left:90px;
+    }
+
+    &.tabulator-group-level-5{
+      padding-left:110px;
+    }
+
+    .tabulator-group-toggle{
+      display: inline-block;
+    }
+
+    span{
+      margin-left:10px;
+      color:#d00;
+    }
+  }
 
 }
 
 .tabulator-edit-select-list{
-	position: absolute;
-	display:inline-block;
-	box-sizing:border-box;
+  position: absolute;
+  display:inline-block;
+  box-sizing:border-box;
 
-	max-height:200px;
+  max-height:200px;
 
-	background:$rowBackgroundColor;
-	border:1px solid $rowBorderColor;
+  background:$rowBackgroundColor;
+  border:1px solid $rowBorderColor;
 
-	font-size:$textSize;
+  font-size:$textSize;
 
-	overflow-y:auto;
-	-webkit-overflow-scrolling: touch;
+  overflow-y:auto;
+  -webkit-overflow-scrolling: touch;
 
-	z-index: 10000;
+  z-index: 10000;
 
-	.tabulator-edit-select-list-item{
-		padding:4px;
+  .tabulator-edit-select-list-item{
+    padding:4px;
 
-		color:$rowTextColor;
+    color:$rowTextColor;
 
-		&.active{
-			color:$rowBackgroundColor;
-			background:$editBoxColor;
-		}
+    &.active{
+      color:$rowBackgroundColor;
+      background:$editBoxColor;
+    }
 
-		&:hover{
-			cursor:pointer;
+    &:hover{
+      cursor:pointer;
 
-			color:$rowBackgroundColor;
-			background:$editBoxColor;
-		}
-	}
+      color:$rowBackgroundColor;
+      background:$editBoxColor;
+    }
+  }
 
-	.tabulator-edit-select-list-group{
-		border-bottom:1px solid $rowBorderColor;
+  .tabulator-edit-select-list-group{
+    border-bottom:1px solid $rowBorderColor;
 
-		padding:4px;
-		padding-top:6px;
+    padding:4px;
+    padding-top:6px;
 
-		color:$rowTextColor;
-		font-weight:bold;
-	}
+    color:$rowTextColor;
+    font-weight:bold;
+  }
 }
 
 @media print {
-	.tabulator {
-		font-size: 1rem;
+  .tabulator {
+    font-size: 1rem;
 
-		.tabulator-header {
+    .tabulator-header {
 
-			.tabulator-headers {
-				margin-left: 0px;
-				display: flex;
-				flex-wrap: nowrap;
-				align-items: stretch;
+      .tabulator-headers {
+        margin-left: 0px;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: stretch;
 
-				.tabulator-col.tabulator-sortable {
-					display:block;
-					height: auto !important; // Overriding inline styles from tabulator. Sorry!
-					flex: 1 0 0;
-					display: flex;
-					align-items: center;
+        .tabulator-col.tabulator-sortable {
+          display:block;
+          height: auto !important; // Overriding inline styles from tabulator. Sorry!
+          flex: 1 0 0;
+          display: flex;
+          align-items: center;
 
-					.tabulator-col-content {
-						padding: 0.25em;
-						background-image: none;
+          .tabulator-col-content {
+            padding: 0.25em;
+            background-image: none;
 
-						.tabulator-col-title {
-							padding-right: 0;
-							white-space: normal;
-							font-weight: 500;
-						} // End .tabulator-col-title
-					} // End .tabulator-col-content
-				} // End .tabulator-col.tabulator-sortable
-			} // End .tabulator Headers
-		} //  End .tabulator-header
+            .tabulator-col-title {
+              padding-right: 0;
+              white-space: normal;
+              font-weight: 500;
+            } // End .tabulator-col-title
+          } // End .tabulator-col-content
+        } // End .tabulator-col.tabulator-sortable
+      } // End .tabulator Headers
+    } //  End .tabulator-header
 
-		.tabulator-tableHolder {
-			.tabulator-table {
-				display: block;
-				overflow: initial;
-				width: 100%;
-				overflow: hidden;
+    .tabulator-tableHolder {
+      .tabulator-table {
+        display: block;
+        overflow: initial;
+        width: 100%;
+        overflow: hidden;
 
-				.tabulator-row {
-					margin-left: 0px;
-					display: flex;
-					flex-wrap: nowrap;
-					align-items: stretch;
+        .tabulator-row {
+          margin-left: 0px;
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: stretch;
 
-					.tabulator-cell {
-						height: auto !important; // Overriding inline styles from tabulator. Sorry!
-						flex: 1 0 0;
-						display: flex;
-						align-items: center;
-						white-space: normal;
-						padding: 0.25em;
-					} // End .tabulator-cell
-				} // End .tabulator-row
-			} // End .tabulator-table
-		} // End .tabulator-tableHolder
-	} // End .tabulator
+          .tabulator-cell {
+            height: auto !important; // Overriding inline styles from tabulator. Sorry!
+            flex: 1 0 0;
+            display: flex;
+            align-items: center;
+            white-space: normal;
+            padding: 0.25em;
+          } // End .tabulator-cell
+        } // End .tabulator-row
+      } // End .tabulator-table
+    } // End .tabulator-tableHolder
+  } // End .tabulator
 }  // End @media print

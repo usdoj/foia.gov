@@ -8,7 +8,7 @@ import FoiaAnnualReportFilterUtilities from '../util/foia_annual_report_filter_u
 
 // Function to output button in headers.
 function headingAsButton(cell) {
-  return `<button class="unstyled-button tabulator-col-title" aria-hidden="true">${cell.getValue()}</button><div class="tabulator-col-title visually-hidden">${cell.getValue()}</div>`;
+  return `<button class="unstyled-button tabulator-col-button" aria-hidden="true">${cell.getValue()}</button><div class="tabulator-col-title visually-hidden">${cell.getValue()}</div>`;
 }
 
 function cellWithAria(cell) {

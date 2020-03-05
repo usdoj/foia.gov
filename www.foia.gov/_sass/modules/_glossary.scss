@@ -17,6 +17,12 @@ $background-color: $color-primary-darkest;
   &[aria-hidden='true'] {
     display: block !important;
     right: -100%;
+
+    @media print {
+      // The `display: block !important;` above  was clobbering the `.print-hide` class for all iOS browsers so the glossary was still printing.
+      display: none !important;
+    }
+
   }
 
   &[aria-hidden='false'] {
