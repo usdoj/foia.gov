@@ -3,3 +3,31 @@
     content: '';
     display: table;
 }
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; /* added line */
+}
+
+.usa-reset-width {
+    max-width: none;
+    width: 100%;
+}
+
+.label-weight-normal label,
+.label-weight-normal label strong {
+  font-weight: normal;
+}
+
+/* Use .touch-safe directly on links.
+ * Use .touch-safe__wrapper on link ancestor if it is difficult to add the class directly to the link.
+ */
+.touch-safe,
+.touch-safe__wrapper a {
+    @include touch-safe();
+}

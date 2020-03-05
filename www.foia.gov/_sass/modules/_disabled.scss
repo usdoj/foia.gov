@@ -1,0 +1,36 @@
+.usa-disabled {
+  a {
+    color: $color-gray;
+    pointer-events: none;
+  }
+
+  button {
+    @extend .usa-button-disabled;
+  }
+
+  input,
+  select,
+  textarea {
+    background-color: $color-gray-light;
+    color: $color-black;
+  }
+}
+
+.usa-disabled input::-webkit-input-placeholder {
+  color: $color-black;
+}
+.usa-disabled input::-moz-placeholder {
+  color: $color-black;
+}
+.usa-disabled input:-ms-input-placeholder {
+  color: $color-black;
+}
+.usa-disabled input:-moz-placeholder {
+  color: $color-black;
+}
+.usa-disabled input::placeholder {
+  color: $color-black;
+}
+.usa-disabled input:placeholder-shown {
+  color: $color-black;
+}

@@ -1,0 +1,9 @@
+select {
+  -webkit-appearance: none;
+}
+
+[type=checkbox]:checked + label::before,
+[type=radio]:checked + label::before {
+  background-color: $color-primary-alt-darker;
+  box-shadow: 0 0 0 1px $color-primary-alt-darker;
+}

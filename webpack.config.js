@@ -37,6 +37,7 @@ module.exports = {
     request: './js/request.jsx',
     uswds: './js/uswds.js',
     contact_download: './js/contact_download.jsx',
+    annual_report_data: './js/annual_report_data.jsx',
   },
   output: {
     path: path.resolve(__dirname, 'www.foia.gov/assets/js'),

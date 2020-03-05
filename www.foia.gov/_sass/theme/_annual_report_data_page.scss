@@ -1,0 +1,13 @@
+.annual-report-data-page {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  a {
+    text-decoration: underline;
+  }
+}
+
+@media print {
+  .annual-report-data-page {
+    width: 100%;
+  }
+}

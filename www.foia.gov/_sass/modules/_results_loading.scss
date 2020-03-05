@@ -1,0 +1,14 @@
+.results-loading {
+  margin-top: $space-4x;
+  margin-bottom: $space-4x;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__text {
+    margin: 0 0 0 $space-1x;
+    color: $color-gray;
+    font-size: 2.75rem;
+  }
+}
+

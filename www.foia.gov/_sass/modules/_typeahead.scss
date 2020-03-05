@@ -1,6 +1,8 @@
 .twitter-typeahead {
-  max-width: 46rem; // Match the max-width on WDS inputs
-  width: 80%;
+  &:not(.usa-reset-width) {
+    max-width: 46rem; // Match the max-width on WDS inputs
+    width: 80%;
+  }
 
   .tt-menu {
     background-color: $color-white;
@@ -20,7 +22,7 @@
     margin: 0;
   }
 
-  .tt-input {
+  &:not(.usa-search-bg-light) .tt-input {
     border: none;
   }
 

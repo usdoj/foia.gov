@@ -21,7 +21,10 @@ $color-primary-alt-darker: #306092;
 $color-primary-darkest: #122E51;
 $color-gray-dark: #212121; // same as USWDS $color-base
 $color-gray: #5B616A;
+$color-gray-light: #D0D0D0;
+$color-gray-lighter: #F1F1F1;
 $color-gray-lightest: #F8F8F8;
+$color-white: #FFFFFF;
 $color-focus: $color-primary-alt-light;
 
 // Mobile First breakpoints
@@ -70,9 +73,11 @@ $icon-external-link: '/img/icon-external-link.svg';
 $icon-file-attachment: '/img/picons/icon-file-attachment.svg';
 $icon-glossary: '/img/icon-glossary.svg';
 $icon-laptop: '/img/picons/icon-laptop.svg';
+$icon-minus: '/img/icon-minus.svg';
 $icon-pencil: '/img/picons/icon-pencil.svg';
 $icon-person: '/img/picons/icon-person.svg';
 $icon-phone: '/img/picons/icon-phone.svg';
+$icon-plus: '/img/icon-plus.svg';
 $icon-print: '/img/picons/icon-print.svg';
 $icon-spyglass: '/img/picons/icon-spyglass.svg';
 
@@ -81,8 +86,17 @@ $icon-clock-light: '/img/picons/icon-clock-light.svg';
 $icon-envelope-light: '/img/picons/icon-envelope-light.svg';
 $icon-glossary-light: '/img/icon-glossary-light.svg';
 $icon-laptop-light: '/img/picons/icon-laptop-light.svg';
+$icon-minus-light: '/img/icon-minus-light.svg';
 $icon-pencil-light: '/img/picons/icon-pencil-light.svg';
 $icon-person-light: '/img/picons/icon-person-light.svg';
 $icon-phone-light: '/img/picons/icon-phone-light.svg';
+$icon-plus-light: '/img/icon-plus-light.svg';
+
+$icon-question-circle: '/img/fontawesome/icon-question-circle.svg';
+$icon-close-button: '/img/fontawesome/times-circle-solid.svg';
+
+$icon-arrow-both-down: '/img/fontawesome/arrow-both-down.svg';
+$icon-arrow-both-up: '/img/fontawesome/arrow-both-up.svg';
+$icon-arrow-both-none: '/img/fontawesome/arrow-both-none.svg';
 
 @import '../../node_modules/uswds/src/stylesheets/uswds';

@@ -1,5 +1,6 @@
 .DS_Store
 .htpasswd
+.idea/
 .jekyll-metadata
 .sass-cache
 .tmp/

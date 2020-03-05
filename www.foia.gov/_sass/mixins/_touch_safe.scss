@@ -1,0 +1,9 @@
+$touch-affordance: 44px;
+
+@mixin touch-safe() {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+}
