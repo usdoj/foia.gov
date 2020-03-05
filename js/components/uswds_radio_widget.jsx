@@ -42,6 +42,7 @@ function USWDSRadioWidget(props) {
 
 USWDSRadioWidget.propTypes = {
   label: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   options: PropTypes.object,
   value: PropTypes.string,
   onChange: PropTypes.func,
