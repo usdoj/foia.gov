@@ -34,7 +34,7 @@ class FoiaReportResultsTable extends Component {
         const buttons = document.querySelectorAll(selector);
 
         Array.from(buttons).forEach((button) => {
-          button.addEventListener('focus', this.handleColumnFocus);
+          button.addEventListener('focusin', this.handleColumnFocus);
         });
       },
     });
@@ -52,9 +52,46 @@ class FoiaReportResultsTable extends Component {
   handleColumnFocus(event) {
     const button = event.target;
     const columnElement = button.closest('.tabulator-col');
-    columnElement.scrollLeft = 0;
-    const tabulatorField = columnElement.getAttribute('tabulator-field');
-    this.tabulator.scrollToColumn(tabulatorField, 'right');
+    const colIndex = this
+      .tabulator
+      .columnManager
+      .columns
+      .findIndex(column => column.element === columnElement);
+    if (colIndex <= 0) {
+      this.tabulator.columnManager.element.scrollLeft = 0;
+      this.tabulator.rowManager.element.scrollLeft = 0;
+
+      return;
+    }
+
+    const col = this.tabulator.columnManager.columns[colIndex];
+    const viewport = this.tabulator.columnManager.element.getBoundingClientRect().width;
+    const boundaryRight = col.width + col.element.offsetLeft - viewport;
+    const boundaryLeft = col.element.offsetLeft;
+    const currentScrollPosition = this.tabulator.columnManager.element.scrollLeft;
+
+    // If the focused element is already fully in view, make sure the
+    // table body is scrolled to the same position as the headings.
+    // Otherwise do nothing.
+    if (this.tabulator.columnManager.element.scrollLeft > boundaryRight
+      && this.tabulator.columnManager.element.scrollLeft < boundaryLeft) {
+      this.tabulator.rowManager.element.scrollLeft = currentScrollPosition;
+      return;
+    }
+
+    // If the left edge of the focused element is on the left side of the viewport
+    // (eg tabbing backwards), pin the element to the left side of the viewport,
+    // otherwise, pin the element to the right side of the viewport.
+    const diff = col.element.offsetLeft - currentScrollPosition;
+    const side = (viewport / 2) >= diff ? 'left' : 'right';
+    if (side === 'left') {
+      this.tabulator.columnManager.element.scrollLeft = col.element.offsetLeft;
+      this.tabulator.rowManager.element.scrollLeft = col.element.offsetLeft;
+    } else {
+      const newScrollPosition = col.width + col.element.offsetLeft - viewport;
+      this.tabulator.columnManager.element.scrollLeft = newScrollPosition;
+      this.tabulator.rowManager.element.scrollLeft = newScrollPosition;
+    }
   }
 
   render() {
