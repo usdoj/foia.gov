@@ -183,8 +183,44 @@ import { types } from '../actions';
 <AddLink
   eventType={types.SELECTED_AGENCIES_APPEND_BLANK}
   text="Add Another Agency or Component"
+  icon: (<span className="icon-plus" />),
+  iconColor: 'dark',
+  classes: ['touch-safe__wrapper'],
 />
 ```
+
+Used in:
+ * FoiaReportFormSectionOne
+ * FoiaReportFormSectionTwo
+
+
+#### Remove Link
+
+A link whose event handler will dispatch an event specific to a given
+selected form state element, such as a selected agency or selected data type.
+
+Props:
+ * `eventType`: The event name to dispatch that data stores will listen for.
+   For example, a type from the `types` object in `js/actions/index.js`.
+ * `text`: The link text to display.
+ * `selection`: The previously selected item that should be removed from
+   the form state if this link is clicked.
+
+Example Use:
+```
+import RemoveLink from './remove_link';
+import { types } from '../actions/report';
+...
+<RemoveLink
+  eventType={types.ANNUAL_REPORT_AGENCY_COMPONENT_REMOVE}
+  selection={this.props.selectedAgency}
+  text="Remove"
+/>
+```
+
+Used in:
+ * ReportAgencyComponentFilter
+ * FoiaReportDataTypeFilter
 
 
 #### FOIA Report Data Type Filter
