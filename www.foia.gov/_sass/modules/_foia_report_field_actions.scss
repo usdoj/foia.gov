@@ -1,3 +1,25 @@
+/* Report Field Actions
+ *
+ * Provides positioning for action buttons/links that appear below input fields
+ * on FOIA Report Form.
+ *
+ * Used in:
+ * - foia_report_data_type_filter
+ * - report_agency_component_filter
+ *
+ * Example Markup:
+ * ```
+ * <div class="report-field-actions">
+ *   <div>
+ *     <button class="usa-button usa-button-outline usa-button-small" type="button">Select Agency Components</button>
+ *   </div>
+ *   <div class="report-remove-field-button">
+ *     <button type="button" class="button-as-link">Remove</button>
+ *   </div>
+ * </div>
+ * ```
+ */
+
 .report-field-actions {
   display: flex;
   justify-content: space-between;

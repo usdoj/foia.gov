@@ -1,3 +1,17 @@
+/* Modal
+ *
+ * Modals are created using the react-modal library and use custom CSS.
+ *
+ * Documentation: https://www.npmjs.com/package/react-modal
+ *
+ * Component: foia_modal
+ *
+ * Used in:
+ * - foia_report_data_type_filter
+ * - foia_report_form_section_two
+
+ */
+
 .ReactModal__Body--open {
     overflow: hidden;
 }

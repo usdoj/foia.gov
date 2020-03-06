@@ -1,4 +1,25 @@
+/* Tooltip
+ *
+ * A clickable tooltip that can be used to display help text or
+ * additional information. Uses tooltip.js library.
+ *
+ * Component: foia_tooltip
+ *
+ * Used in:
+ * - foia_report_data_type_filter
+ * - foia_report_form_section_one
+ * - foia_report_form_section_two
+ * - foia_report_form_section_three
+ *
+ * Example Markup:
+ * ```
+ * <button type="button" class="tooltip-trigger button-as-link" title="Lorem Ipsum">
+ *   <span class="visually-hidden">Tooltip</span>
+ * </button>
+ * ```
+ */
 
+// Custom Tooltip Variables
 $tooltip-shadow-top: 0 1px 4px 0 rgba(0, 0, 0, 0.2); // Shadow when tooltip positioned top.
 $tooltip-shadow-bottom: 0 -1px 4px 0 rgba(0, 0, 0, 0.2); // Shadow when tooltip positioned bottom.
 $tooltip-shadow-arrow-top: 1px 1px 2px 0 rgba(0, 0, 0, 0.1); // Shadow for arrow of top possitioned tooltip for IE.

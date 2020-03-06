@@ -1,3 +1,22 @@
+/* Results Page Header
+ *
+ * Provides positioning for results page header.
+ * while report results are loading.
+ *
+ * Used in:
+ * - annual_report_data
+ *
+ * Example Markup:
+ * ```
+ * <header class="results-page-header">
+ *   <h1>Report Results</h1>
+ *   <div class="results-toolbar">
+ *     <button type="button" class="print-hide usa-button usa-button-big usa-button-primary-alt">Print</button>
+ *     <button type="button" class="print-hide usa-button usa-button-big usa-button-primary-alt">Download CSV</button>
+ *   </div>
+ * </header>
+ * ```
+ */
 .results-page-header {
   display: flex;
   flex-direction: column;

@@ -52,8 +52,10 @@ this.state = {
 
 #### Tooltip
 
-Props include `text`, which is used to pass the paragraph text that needs to go
-inside of the tooltip.
+A component that uses the tooltip.js library to create a clickable tooltip that can be used to display help text or additional information.
+
+Props include:
+* `text`: A string of text that will appear inside the tooltip, which can include some basic HTML elements such as `<p>`, `<span>` or `<a>`.
 
 Example use:
 
@@ -64,15 +66,22 @@ import FoiaTooltip from '../components/foia_tooltip';
 ```
 
 Used in:
+ * foia_report_data_type_filter
+ * foia_report_form_section_one
  * foia_report_form_section_two
+ * foia_report_form_section_three
 
 
 #### Modal
 
 Props include:
-* `triggerText` which is used inside the button that triggers the modal.
-* `ariaLabel` which is used as the aria label for the modal.
-* `modalContent` which is the content that goes inside the modal.
+* `triggerText`: The visible text in the button that triggers the modal.
+* `ariaLabel`: The aria label for the modal.
+* `modalContent`: The content that goes inside the modal.
+* `modalAdditionalLink`: Adds an additional, optional link next to the modal's buttons.
+* `canSubmit`: Passes a validation function that returns a boolean and disables the submit button if false.
+* `onSubmit`: The callback function which will be called by the `onSubmit` event.
+* `onClose`: The callback function which will be called by the `onClose` event.
 
 Example use:
 
@@ -83,10 +92,15 @@ import FoiaModal from '../components/foia_modal';
   triggerText='Lorem Ipsum'
   ariaLabel='Solor sit amet'
   modalContent={ <div>consectetur adipisicing elit</div> }
+  modalAdditionalLink={removeButton}
+  canSubmit={this.modalCanSubmit}
+  onSubmit={this.handleModalSubmit}
+  onClose={this.handleFilterReset}
 />
 ```
 
 Used in:
+ * foia_report_data_type_filter
  * foia_report_form_section_two
 
 
@@ -397,7 +411,8 @@ Props:
  * `tableColumns`: An array of column headers to output in the table.
  * `tableHeader`: The title which displays for each table; it is also used to generate the CSV filename.
  * `displayMode`: A string which determines how the table should be output; valid values are `view` and `download`.
- 
+ * `tableId`: A unique string that provides the ID attribute on the table (tabulator) element,
+
 Example use:
 ```
 <FoiaReportResultsTable
@@ -407,8 +422,65 @@ Example use:
   tableData={table.data}
   tableColumns={table.columns}
   displayMode={submissionAction}
+  tableId={`report-${table.id}`}
 />
 ```
+
+Used in:
+ * annual_report_data
+
+
+#### Foia Report Form Checkbox Widget
+
+Props include:
+* `value`: Used as the checkbox input's name, ID and value as well as the label if no options.label is provided.
+* `onChange`: The callback function which will be called by the `onChange` event.
+* `checked`: A boolean value that determines if the checkbox should be checked when the page loads. Defaults to `false`.
+* `options`: An object that takes an item with the key `label`, which will override the value as the checkbox input's label.
+
+Example use:
+
+ ```
+import FoiaReportFormCheckboxWidget from '../../components/foia_report_form_checkbox_widget';
+..
+<FoiaReportFormCheckboxWidget
+  checked
+  value={checkedOptionValue}
+  onChange={onChangeHandler}
+  options: { title: 'Lorem Ipsum' },
+/>
+```
+
+Used in:
+ * foia_report_form_section_three
+
+
+#### Foia Report Data Submit
+
+Props include
+* `selectedDataTypes`: An array of the currently selected DataTypes.
+* `fiscalYearsIsValid`: A boolean value indicating whether the Fiscal Years field is valid.
+* `dataTypesIsValid`: A boolean value indicating whether the Data Type field is valid.
+* `agencyComponentIsValid`:  A boolean value indicating whether the Agency Component field is valid.
+* `history`: An object that contains the browser history.
+
+Example use:
+
+```
+import FoiaReportDataSubmit from '../components/foia_report_submit';
+..
+<FoiaReportDataSubmit
+  selectedDataTypes={selectedDataTypes}
+  agencyComponentIsValid={agencyComponentIsValid}
+  dataTypesIsValid={dataTypesIsValid}
+  fiscalYearsIsValid={fiscalYearsIsValid}
+  onClick={this.triggerCSV.bind(this)}
+  history={this.props.history}
+/>
+```
+
+Used in:
+ * annual_report_data
 
 
 ### Utilities

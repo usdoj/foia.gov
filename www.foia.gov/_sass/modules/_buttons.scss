@@ -64,6 +64,7 @@ form .with-siblings[type=submit] {
   }
 }
 
+// Close button. Currently used ony on the modal.
 .close-button {
   width: 4.4rem;
   height: 4.4rem;
@@ -80,6 +81,7 @@ form .with-siblings[type=submit] {
   background-color: transparent;
 }
 
+// A silent class to extend buttons to reset their styles.
 %unstyled-button {
   margin: 0;
   padding: 0;
@@ -97,10 +99,13 @@ form .with-siblings[type=submit] {
     background-color: transparent;
   }
 }
+
+// A utility class to use directly on elements that extends the %unstlyed-button silent class.
 .unstyled-button {
   @extend %unstyled-button;
 }
 
+// Displays a button visually as a link with a touch safe zone.
 .button-as-link {
   @extend %unstyled-button;
   @include touch-safe();
