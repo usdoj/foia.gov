@@ -12,37 +12,125 @@ The app uses the same architecture as the [Request app](request-app.md).
 
 `/js/annual_report_data.jsx`
 
+This is the main entry point for the application. The application contains a 
+`Routeer` component and creates a browser history object which is passed to the 
+router. The router wraps the `AnnualReportDataPage` Flux container which drives 
+the application.
 
-### Page(s)
+
+### Page
 
 `/js/pages/annual_report_data.jsx`
+
+The `AnnualReportDataPage` component is the component which is responsible for 
+managing the application. It is implemented as a flux container with a router. 
+The `withProps` parameter is passed to the Container create to allow
+the history object to be passed to it as a prop.
+```
+export default withRouter(Container.create(AnnualReportDataPage, {
+  withProps: true,
+}));
+```
+
+Usage in application entry point:
+```
+import { createBrowserHistory } from 'history';
+import AnnualReportDataPage from 'pages/annual_report_data';
+
+const history = createBrowserHistory();
+history.push('/data.html', { view: 'form' });
+
+render(
+  <Router history={history}>
+    <AnnualReportDataPage />
+  </Router>,
+  document.getElementById('annual-report-data-react-app'),
+);
+```
 
 
 ### Stores
 
+The following data stores are used by the app's Container to maintain state. A 
+brief description of each store and its purpose follows.
+
 `/js/stores/annual_report_data_form.js` 
 
-The `AnnualReportDataFormStore` contains the form state for the annual report
-that will be requested. It contains a separate section for each report section
-on the form the user sees.
+The `AnnualReportDataFormStore` contains the form state for the annual report 
+that will be requested.  The state includes the data for each form section, 
+validation information, and the submission action for the form (either
+view or download). The app renders the appropriate content depending upon what 
+`submissionAction`, if any, has been chosen and updates the browser history 
+appropriately.
 ```
 this.state = {
   selectedAgencies: [{ index: 0 }],
+  allAgenciesSelected: false,
   selectedDataTypes: [{ index: 0, id: '' }],
   selectedFiscalYears: [],
+  fiscalYearsIsValid: false,
+  dataTypesIsValid: false,
+  agencyComponentIsValid: false,
+  fiscalYearsDisplayError: false,
+  dataTypeDisplayError: false,
+  agencyComponentDisplayError: false,
+  submissionAction: false,
+};
+```
+
+`js/stores/annual_report_fiscal_year.js`
+
+The 'AnnualReportFiscalYearStore' contains the list of fiscal years received 
+from the API backend. This list is used to populate the Fiscal Year checkbox 
+list on the form.
+```
+this.state = {
+  fiscalYears: new List(),
+};
+```
+
+`/js/stores/agency_component.js`
+
+The `AgencyComponentStore` is used to populate the available agencies for the 
+agency selector. This is a shared data store used by other apps on the site.
+```
+this.state = {
+  agencies: new Map(),
+  agencyComponents: new List(),
+  agencyFinderDataComplete: false,
+  agencyFinderDataProgress: 0,
+};
+```
+
+`/js/annual_report_data_types.js`
+
+The `AnnualReportDataTypesStore` contains the data types which can be selected 
+in Section 2 of the report with the fields associated with each data type. The 
+data store uses the local api utility to retrieve a JSON mapping of data
+types to fields located at `/api/annual-report-form/report_data_map.json`. The 
+fields list for each data type includes configuration for filters, field 
+display in reports, and associates the agency overall field with each component 
+field.
+```
+this.state = {
+  dataTypes: new OrderedMap(),
+  dataTypeOptions: new List(),
 };
 ```
 
 `/js/stores/annual_report.js`
 
-The `AnnualReportStore` contains the results received from the API backend. It contains both the JSON API response
-data and the data converted into a format that can be used by the Tabulator table component. A flag indicates when
+The `AnnualReportStore` contains the results received from the API backend. It 
+contains both the JSON API response data and the data converted into a format 
+that can be used by the Tabulator table component. A flag indicates when
 the data has been received and processed and is ready for rendering.
 ```
 this.state = {
   reports: new Map(),
   reportTables: new Map(),
   reportDataComplete: false,
+  reportDataHasRows: false,
+  numberOfTypesToProcess: 0,
 };
 ```
 
