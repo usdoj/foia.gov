@@ -32,6 +32,12 @@ class AnnualReportDataFormStore extends Store {
     return this.state;
   }
 
+  /**
+   * Returns an array of selected agency objects, building an array of all possible agencies if
+   * the allAgenciesSelected flag is true.
+   *
+   * @returns {Array<V>|*[]}
+   */
   buildSelectedAgencies() {
     if (!this.state.allAgenciesSelected) {
       return [...this.state.selectedAgencies];
