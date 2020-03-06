@@ -59,6 +59,13 @@ class ReportAgencyComponentFilter extends Component {
   }
 
   buildModalContent() {
+    // Renders an agency's components as checkboxes in a modal.
+    // tempSelectedComponents is the same list of components, but in
+    // a separate temporary array that exists if the checkbox state has changed
+    // in the modal. The changes are not permanent until the user
+    // clicks the "Submit" button.  This allows the user the opportunity
+    // to click "Cancel" and have the selected components return to their
+    // original state when the modal was opened.
     const components = this.props.selectedAgency.tempSelectedComponents
       || this.props.selectedAgency.components;
     const checkboxes = components
@@ -114,6 +121,9 @@ class ReportAgencyComponentFilter extends Component {
       isDisabled,
     } = this.props;
 
+    // Determines the selection type (agency or component) and if it has child components
+    // or is centralized. Only agencies that have multiple components should display
+    // a "Select Agency Components" button & modal.
     const agencyIsSelected = (this.props.selectedAgency.id !== 0 && this.props.selectedAgency.type === 'agency') || false;
     const isCentralizedAgency = this.props.selectedAgency.component_count <= 1 || false;
 
