@@ -224,6 +224,104 @@ the `filter` property on the selected data type back to the default values and
 set the `applied` property on the filter to `false`.
 
 
+#### Foia Report Form Section One
+
+A wrapper for the first section of the FOIA report form in which a user can
+select one or more Agencies or Components.  The component handles displaying
+a `ReportAgencyComponentFilter` for each selected agency, an
+"Add Another Agency or Component" link for users to select multiple agencies,
+and a "Select All Agencies" link as a shortcut for users that want to see data
+for all agencies.
+
+Props:
+ * `agencies`: A map of agencies that can be searched.
+ * `agencyComponents`: A list of components that can be searched.
+ * `agencyFinderDataComplete`: Whether or not the agencyComponent store is populated.
+ * `agencyFinderDataProgress`: The amount of progress made in populating the agencyComponent store.
+ * `selectedAgencies` : An array of agency or component objects that have been selected in the report form.
+   Agency objects include a `components` property which is an array of the agency's child components.
+   Component objects include an `agency` property which contains the parent agency information.
+ * `agencyComponentDisplayError`: A boolean indicating that a validation error message
+    should be displayed.
+ * `allAgenciesSelected`: A boolean indicating whether or not the user has selected to view data
+   for all agencies.
+
+Example Use:
+```
+<FoiaReportFormSectionOne
+  agencies={agencies}
+  agencyComponents={agencyComponents}
+  agencyFinderDataComplete={agencyFinderDataComplete}
+  agencyFinderDataProgress={agencyFinderDataProgress}
+  selectedAgencies={selectedAgencies}
+  agencyComponentDisplayError={agencyComponentDisplayError}
+  allAgenciesSelected={allAgenciesSelected}
+/>
+```
+
+Used in:
+ * AnnualReportDataPage
+
+
+#### Foia Report Form Section Two
+
+A wrapper for the second section of the FOIA report form in which a user can
+select one or more data types and add filters to the report.  The component
+handles displaying a `FoiaReportDataTypeFilter` for each selected data type
+and an "Add Another Data Type" link that allows users to add up to three data
+types.
+
+Props:
+ * `dataTypes`: A map of all the data types available for selection and information
+   about each type including the fields in that type and which fields are filterable.
+   See `www.foia.gov/api/annual-report-form/report_data_map.json` for more information
+   about each type.
+ * `dataTypeOptions`: A list data type objects that include a value and label which
+   is passed down to the `USWDSSelectWidget` in order to build the data types select field.
+ * `selectedDataTypes`: An array of objects for data types that have been selected on the form.
+ * `dataTypeDisplayError`: A boolean indicating that a validation error message
+    should be displayed.
+
+Example Use:
+```
+<FoiaReportFormSectionTwo
+  dataTypes={dataTypes}
+  dataTypeOptions={dataTypeOptions}
+  selectedDataTypes={selectedDataTypes}
+  dataTypeDisplayError={dataTypeDisplayError}
+/>
+```
+
+Used in:
+ * AnnualReportDataPage
+
+
+#### Foia Report Form Section Three
+
+The third section of the FOIA report form in which a user can select one or more
+fiscal years for which they would like to see report data.  The component
+displays a checkbox list of fiscal years, as well as "Select All" and "Select None"
+convenience links.
+
+Props:
+ * `fiscalYears`: An array of all fiscal years available for selection.
+ * `selectedFiscalYears`: An array of the fiscal years that have been selected.
+ * `fiscalYearsDisplayError`:  A boolean indicating that a validation error message
+    should be displayed.
+
+Example Use:
+```
+<FoiaReportFormSectionThree
+  fiscalYears={[2019, 2018, 2017]}
+  selectedFiscalYears={[2019]}
+  fiscalYearsDisplayError={false}
+/>
+```
+
+Used in:
+ * AnnualReportDataPage
+
+
 #### USWDS Select Widget
 
 A simple component which can be used to create a select list of items which
