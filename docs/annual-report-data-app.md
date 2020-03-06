@@ -332,11 +332,13 @@ modal. The component is meant to be included in a loop for each selected data
 type.
 
 Props:
- * `dataTypes`: The Ordered Map of data types (ex. Requests) keyed by the field 
-  group name.
  * `dataTypeOptions`: The List object which contains the value/label pairs 
   which should be added to the data type select field.
  * `selectedDataType`: The object corresponding to the currently selected data type.
+ * `dataTypeDisplayError`: A boolean indicating that a validation error message
+   should be displayed.
+ * `fieldsDisplayed`: The number of Data Type fields displayed,
+   used to determine if a remove button should be displayed.
 
 Example Use:
 ```
@@ -345,9 +347,10 @@ import FoiaReportDataTypeFilter from './foia_report_data_type_filter';
 {selectedDataTypes.map((selected, index) => (
   <FoiaReportDataTypeFilter
     key={index}
-    dataTypes={dataTypes}
     dataTypeOptions={dataTypeOptions}
     selectedDataType={selected}
+    dataTypeDisplayError={dataTypeDisplayError}
+    fieldsDisplayed={this.props.selectedDataTypes.length}
   />))}
 ```
 
