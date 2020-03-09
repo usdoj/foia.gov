@@ -1,3 +1,15 @@
+/* Spinner
+ *
+ * Provides visual cue to site users that report data is loading.
+ *
+ * Used in:
+ * - annual_report_data
+ *
+ * Example Markup:
+ * ```
+ * <div className="spinner" />
+ * ```
+ */
 .spinner {
   width: 3rem;
   height: 3rem;

@@ -184,6 +184,7 @@ class ReportAgencyComponentTypeahead extends Component {
 
 
   handleKeyPress(e) {
+    // Selects the first suggestion when the enter key is pressed.
     if (e.key !== 'Enter') {
       return;
     }
@@ -237,7 +238,7 @@ class ReportAgencyComponentTypeahead extends Component {
     }
     // Needed for remove link feature so fields removed out of order display the correct value.
     if (this.props.selectedAgency.id) {
-      $(this.typeaheadInput).typeahead('val', this.props.selectedAgency.title);
+      $(this.typeaheadInput).typeahead('val', this.display(this.props.selectedAgency));
     } else {
       $(this.typeaheadInput).typeahead('val', null);
     }

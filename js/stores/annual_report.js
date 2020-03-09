@@ -43,7 +43,16 @@ class AnnualReportStore extends Store {
     return this.state;
   }
 
-
+  /**
+   * Gets an object of all selected agency abbreviations, keying arrays of the components selected
+   * for that agency.
+   *
+   * @returns {Object}
+   * {
+   *   DOJ: ['OIP', 'Civil Rights'],
+   *   DOC: ['OIG', 'BIS']
+   * }
+   */
   static getSelectedAgencies() {
     const selectedAgencies = annualReportDataFormStore.buildSelectedAgencies();
     return selectedAgencies.reduce((formatted, selected) => {
@@ -78,8 +87,15 @@ class AnnualReportStore extends Store {
     }, {});
   }
 
+  /**
+   * Builds an array of data rows for a given data type from the reports retrieved from the api.
+   *
+   * @param {Object} dataType
+   *   The data type object containing an id corresponding to the report_data_map.json file.
+   * @returns {*[]}
+   *   An array of row objects that can be displayed by tabulator.js.
+   */
   getReportDataForType(dataType) {
-    // @todo: Filter rows based on data type filters.
     const componentData = [];
     const overallData = [];
     const { reports } = this.state;

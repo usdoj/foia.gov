@@ -1,3 +1,9 @@
+/* Touch Safe Mixin
+ *
+ * Use this mixin to add a touch safe zone to links and other interactive items
+ * for touch screen accessibility.
+ */
+
 $touch-affordance: 44px;
 
 @mixin touch-safe() {
