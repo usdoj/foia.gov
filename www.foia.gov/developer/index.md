@@ -131,6 +131,7 @@ EOF
   <h3>FOIA Data Set Downloads</h3>
   <p>The following compressed files are complete archives of the  FOIA Data sets for the years 2008 through 2018.</p>
   <ul>
+    <li><a href="{{ site.baseurl }}/2019-FOIASetFull.zip">Download the full 2019 FOIA Data set</a> (.zip format)</li>
     <li><a href="{{ site.baseurl }}/2018-FOIASetFull.zip">Download the full 2018 FOIA Data set</a> (.zip format)</li>
     <li><a href="{{ site.baseurl }}/2017-FOIASetFull.zip">Download the full 2017 FOIA Data set</a> (.zip format)</li>
     <li><a href="{{ site.baseurl }}/2016-FOIASetFull.zip">Download the full 2016 FOIA Data set</a> (.zip format)</li>
