@@ -379,14 +379,14 @@
         "id": "field_statute_iv.field_case_citation",
         "label": "Case Citation",
         "filter": false,
-        "overall_field": false,
+        "overall_field": "field_statute_iv.field_case_citation",
         "display": true
       },
       {
         "id": "field_statute_iv.field_type_of_info_withheld",
         "label": "Type of Information Withheld",
         "filter": false,
-        "overall_field": false,
+        "overall_field": "field_statute_iv.field_type_of_info_withheld",
         "display": true
       },
       {
