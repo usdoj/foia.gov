@@ -2326,14 +2326,14 @@
     "fields": [
       {
         "id": "field_foia_xiie2.field_back_prev_yr",
-        "label": "Number of Backlogged Requests as of End of the Fiscal Year from Previous Annual Report",
+        "label": "Number of Backlogged Appeals as of End of the Fiscal Year from Previous Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiie2_back_prev_yr",
         "display": true
       },
       {
         "id": "field_foia_xiie2.field_back_cur_yr",
-        "label": "Number of Backlogged Requests as of End of the Fiscal Year from Current Annual Report",
+        "label": "Number of Backlogged Appeals as of End of the Fiscal Year from Current Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiie2_back_cur_yr",
         "display": true
