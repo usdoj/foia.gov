@@ -85,4 +85,9 @@ a:active{text-decoration:none; }
 	float:left;
 	
 	}
-#chartdiv {width: 600px;}	
+#chartdiv {width: 600px;}
+
+input[type=checkbox]
+{
+  -webkit-appearance:checkbox;
+}
