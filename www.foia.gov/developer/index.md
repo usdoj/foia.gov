@@ -18,7 +18,7 @@ public. In order to use the API, you must [signup](https://api.data.gov/signup/)
 ### Agency components
 
 Agencies of the federal government submit information about their FOIA process
-in a machine-readable format to the Portal. This information is availble through
+in a machine-readable format to the Portal. This information is available through
 the Agency component API. This API follows the [JSON API](http://jsonapi.org/)
 standard and leverages the [Drupal JSON API
 module](https://www.drupal.org/docs/8/modules/json-api). The
