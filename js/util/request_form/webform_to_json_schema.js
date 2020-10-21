@@ -41,7 +41,7 @@ function toJsonSchemaFormat(webformFieldType) {
       format = false;
   }
 
-  return type;
+  return format;
 }
 
 /**
