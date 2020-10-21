@@ -28,6 +28,23 @@ function toJsonSchemaType(webformFieldType) {
 }
 
 /**
+ * Converts a metadata field's type to a JSON Schema format.
+ */
+function toJsonSchemaFormat(webformFieldType) {
+  let format;
+
+  switch (webformFieldType) {
+    case 'email':
+      format = 'email';
+      break;
+    default:
+      format = false;
+  }
+
+  return format;
+}
+
+/**
  * Converts a single form field from the agency metadata to a JSON schema
  * `properties` field.
  */
@@ -36,6 +53,11 @@ function toJsonSchemaProperty(webformField) {
   const property = {
     type,
   };
+
+  const format = toJsonSchemaFormat(webformField.type);
+  if (format) {
+    property.format = format;
+  }
 
   if (webformField.default_value) {
     property.default = webformField.default_value;
