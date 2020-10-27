@@ -11,9 +11,9 @@ function showAgency(no){
 
 function showReportVideo(report){
 var atext='<div style="width:579px;">';
-	atext+='<div class="popupClose"><a href="javascript:popupWinClose();">close</a><a href="javascript:popupWinClose();"><img src="images/popup-close.gif" alt="Close Window" /></a></div>';
+	atext+='<div class="popupClose"><a href="javascript:popupWinClose();">close<img src="images/popup-close.gif" alt="Close Window" /></a></div>';
 	atext+='<object id="videoFQT" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="579" height="383" align="left">';
-    
+
     	atext+='<param name="movie" value="/video/DOJVideoPlayer16to9.swf" />';
     	atext+='<param name="FlashVars" value="flvPath=foia/foia';
     	atext+=report;
@@ -33,12 +33,12 @@ var atext='<div style="width:579px;">';
 	atext+=report;
 	atext+='.png" ';
 	atext+='quality="high" bgcolor="#ffffff" width="579" height="383" align="right"  allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />';
-			
+
 
 	atext+='</object></div>';
 	var videoNode=document.getElementById("popupVideo");
 	videoNode.innerHTML=atext;
-		
+
 	popupWinOpenGeneric("popupVideo");
 }
 
@@ -76,7 +76,7 @@ function getListAgencyinPage(winAgency,func){
   var popupPad;
   var offset;
   var goSmall=false;
-	
+
   	winSize=document.documentElement.clientHeight;
   	allowLines=(winSize-93)/43-1;
   	if(allowLines>23) pageAgencySelection=24;
@@ -91,7 +91,7 @@ function getListAgencyinPage(winAgency,func){
 		//else if(allowLines>12) pageAgencySelection=12;
 	     	//else if(allowLines>10) pageAgencySelection=10;
 		     //else pageAgencySelection=parseInt(allowLines);
-		  
+
 	//ret+="<div style=\"float:right; margin: 30px 0 0 0;\"><a href=\"#\" class=\"selectButton\"><span>Select</span></a></div>";
 	//ret+="<h1>SELECT COMPONENTS</h1>";
 	ret+="<h2><div style='float:left;'>ALL AGENCIES</div><div style='float:right;padding:6px 18px 0px 0px;'>";
@@ -99,14 +99,14 @@ function getListAgencyinPage(winAgency,func){
 		ret+="<a href='javascript:previousListAgency(";
 		ret+=func;
 		ret+=");'>&lt;&lt;Previous</a></div>&nbsp;</h2>";
-	}else{		
+	}else{
 		ret+="<a href='javascript:nextListAgency(";
 		ret+=func;
 		ret+=");'>Next&gt;&gt;</a></div>&nbsp;</h2>";
 	}
 	//ret+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;<a href='javascript:previousListAgencyBlock();'>&lt;&lt;Previous</a>&nbsp;|&nbsp;";
 	//ret+="<a href='javascript:nextListAgencyBlock();'>Next&gt;&gt;</a>&nbsp;)</h2>";
-	
+
   //construct agencies list popup window
 	max=(agencies.length-1);
 	max-=(agencies.length-1)%linesOnList;
@@ -130,7 +130,7 @@ function getListAgencyinPage(winAgency,func){
 						}else{
 							ret+=agencies[j*linesOnList+i+offset];
 						}
-					
+
 					}else{
 						if(agenciesAb[j*linesOnList+i+offset] != ' '){
 							if(func == 1){
@@ -162,7 +162,7 @@ function getListAgencyinPage(winAgency,func){
 		ret+="<a href='javascript:previousListAgency(";
 		ret+=func;
 		ret+=");'>&lt;&lt;Previous</a></div>&nbsp;</h2>";
-	}else{		
+	}else{
 		ret+="<a href='javascript:nextListAgency(";
 		ret+=func;
 		ret+=");'>Next&gt;&gt;</a></div>&nbsp;</h2>";
