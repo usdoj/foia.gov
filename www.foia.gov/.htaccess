@@ -15,6 +15,7 @@ Header set Cache-Control "max-age=86400, public, must-revalidate"
 </FilesMatch>
 
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+Header always set Content-Security-Policy "frame-ancestors 'self' 'www.foia.gov'"
 
 RewriteEngine on
 
