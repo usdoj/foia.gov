@@ -7,7 +7,7 @@ permalink: /developer/agency-api/
 
 This is [a draft spec](https://github.com/18F/beta.foia.gov/issues/32) for integrating
 the FOIA.gov portal with existing FOIA case management systems (_e.g._,
-[FOIAonline](https://foiaonline.regulations.gov/foia/action/public/home))
+[FOIAonline](https://foiaonline.gov/foiaonline/action/public/home))
 operated by individual agencies in the federal government. This work stems from
 the interviews and research that led to our [FOIA Portal Discovery
 Recommendations](https://github.com/18F/foia-recommendations/blob/master/recommendations.md).
