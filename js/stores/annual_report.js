@@ -238,7 +238,7 @@ class AnnualReportStore extends Store {
 
         const tables = [];
         const isOverallOnly = FoiaAnnualReportFilterUtilities.filterOnOverallFields();
-        const collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+        const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
         selectedDataTypes.forEach((dataType) => {
           if (!tables.some(item => item.id === dataType.id)) {
             // Get our dataType-specific columns.
