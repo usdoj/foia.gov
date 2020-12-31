@@ -8,6 +8,7 @@ class FoiaTooltip extends Component {
       title: this.trigger.getAttribute('data-tooltip'),
       trigger: 'click',
       html: true,
+      closeOnClickOutside: true,
     });
   }
 
