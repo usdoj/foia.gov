@@ -17,6 +17,10 @@ ifeq ($(APP_ENV), production)
   JEKYLL_OPTS+=--config _config.yml,_config.production.yml
 endif
 
+ifeq ($(APP_ENV), ddev)
+  JEKYLL_OPTS+=--config _config.yml,_config.ddev.yml
+endif
+
 all: build test
 
 build:

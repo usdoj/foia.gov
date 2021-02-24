@@ -58,6 +58,23 @@ h2 {
   @extend %h2;
 }
 
+// Form section heading with blue underline
+%form-section-heading {
+  font-size: $h3-font-size-sans;
+  font-family: $font-sans;
+  font-weight: $font-semibold;
+  border-bottom: 1px solid $color-primary-alt-light;
+  margin-top: 0;
+  margin-bottom: $space-3x;
+  padding-bottom: $space-3x;
+  width: 100%;
+}
+
+.foia-header-blue-line--h2 {
+  @extend %form-section-heading;
+  position: relative;
+}
+
 // Heading 2
 h3 {
   font-size: $h3-font-size-mobile;

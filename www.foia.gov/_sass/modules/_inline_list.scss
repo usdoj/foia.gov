@@ -1,0 +1,50 @@
+// Display an unstyled list with separators between list elements.
+//
+// @example
+// <ul class="inline-list">
+//   <li><a href="#">Select All</a></li>
+//   <li><a href="#">Select None</a></li>
+// </ul>
+.inline-list {
+  @extend .usa-unstyled-list;
+
+  li {
+    display: inline-block;
+    line-height: 1;
+    padding: 0 1rem;
+    position: relative;
+  }
+
+  li:first-child {
+    padding-left: 0;
+  }
+
+  li + li {
+    border-left: 1px solid $color-primary-alt-darker;
+  }
+}
+
+.inline-list--centered {
+  @extend .inline-list;
+  text-align: center;
+  padding: 0 0 1rem 0;
+
+  li + li {
+    border-left: none;
+
+    // Moves line separator to pseudo element to prevent touch safe zone from changing separator height.
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 1.8rem;
+      border-left: 1px solid #306092;
+      margin-left: -1rem;
+      margin-right: 1rem;
+      margin-bottom: -.3rem;
+    }
+
+    &:first-child:before {
+      display: none;
+    }
+  }
+}

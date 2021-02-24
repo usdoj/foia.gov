@@ -1,7 +1,9 @@
 @import 'mixins/text_divider';
 @import 'mixins/has_icon';
+@import 'mixins/touch_safe';
 
 @import 'base/print';
 @import 'base/typography';
+@import 'base/inputs';
 @import 'base/utilities';
 @import 'base/z-index';

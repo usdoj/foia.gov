@@ -1,0 +1,29 @@
+/* Spinner
+ *
+ * Provides visual cue to site users that report data is loading.
+ *
+ * Used in:
+ * - annual_report_data
+ *
+ * Example Markup:
+ * ```
+ * <div className="spinner" />
+ * ```
+ */
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: .5rem solid $color-gray-light;
+  border-top: .5rem solid $color-gray;
+  border-radius: 100%;
+  transition-property: transform;
+  animation-name: rotate; 
+  animation-duration: 1.5s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}

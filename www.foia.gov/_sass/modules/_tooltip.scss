@@ -1,0 +1,121 @@
+/* Tooltip
+ *
+ * A clickable tooltip that can be used to display help text or
+ * additional information. Uses tooltip.js library.
+ *
+ * Component: foia_tooltip
+ *
+ * Used in:
+ * - foia_report_data_type_filter
+ * - foia_report_form_section_one
+ * - foia_report_form_section_two
+ * - foia_report_form_section_three
+ *
+ * Example Markup:
+ * ```
+ * <button type="button" class="tooltip-trigger button-as-link" title="Lorem Ipsum">
+ *   <span class="visually-hidden">Tooltip</span>
+ * </button>
+ * ```
+ */
+
+// Custom Tooltip Variables
+$tooltip-shadow-top: 0 1px 4px 0 rgba(0, 0, 0, 0.2); // Shadow when tooltip positioned top.
+$tooltip-shadow-bottom: 0 -1px 4px 0 rgba(0, 0, 0, 0.2); // Shadow when tooltip positioned bottom.
+$tooltip-shadow-arrow-top: 1px 1px 2px 0 rgba(0, 0, 0, 0.1); // Shadow for arrow of top possitioned tooltip for IE.
+$tooltip-shadow-arrow-bottom: -1px -1px 2px 0 rgba(0, 0, 0, 0.1); // Shadow for arrow of bottom possitioned tooltip for IE.
+$arrow-sizer: 1rem; // Change arrow size.
+
+.tooltip-trigger {
+  position: absolute;
+  top: -1rem;
+  height: 5rem;
+  width: 4.4rem;
+  display: inline-block;
+  background-size: 2rem; 
+  background-position: center center;
+  background-image: url($icon-question-circle);
+  background-repeat: no-repeat;
+}
+
+.form-group label .tooltip-trigger {
+  margin-top: -.5rem;
+}
+
+button, a {
+  &.tooltip-trigger:focus {
+    outline-offset: -.6rem;
+  }
+}
+
+.tooltip-trigger:hover {
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  color: $color-primary-alt-darker;
+  background-color: $color-primary-alt-lightest;
+  box-shadow: $tooltip-shadow-top;
+  padding: 1rem 2rem;
+  max-width: 40rem;
+  font-family: $font-sans;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  font-weight: normal;
+  text-align: left;
+  transform-style: preserve-3d;
+  z-index: 9999;
+}
+
+.tooltip .tooltip-arrow {
+  border-color: $color-primary-alt-lightest;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  margin: $arrow-sizer;
+
+    &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    transform: translateZ(-1px) translateX(-50%) rotate(45deg);
+    width: calc(#{$arrow-sizer} * 1.75);
+    height: calc(#{$arrow-sizer} * 1.75);
+    box-shadow: $tooltip-shadow-arrow-top;
+  }
+}
+
+.tooltip[x-placement^="top"] .tooltip-arrow {
+  border-width: $arrow-sizer $arrow-sizer 0 $arrow-sizer;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  bottom: -#{$arrow-sizer};
+  left: calc(50% - #{$arrow-sizer});
+  margin-top: 0;
+  margin-bottom: 0;
+  &:after {
+    bottom: calc(#{$arrow-sizer} / 2.4);
+  }
+}
+
+.tooltip[x-placement^="bottom"] {
+  box-shadow: $tooltip-shadow-bottom;
+}
+
+.tooltip[x-placement^="bottom"] .tooltip-arrow {
+  border-width: 0 $arrow-sizer $arrow-sizer $arrow-sizer;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  top: -#{$arrow-sizer};
+  left: calc(50% - #{$arrow-sizer});
+  margin-top: 0;
+  margin-bottom: 0;
+  &:after {
+    bottom: calc(-#{$arrow-sizer} * 2.4);
+    box-shadow: $tooltip-shadow-arrow-bottom;    
+  }
+}

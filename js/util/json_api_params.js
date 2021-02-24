@@ -33,6 +33,15 @@ class JsonApiParams {
     return this;
   }
 
+  includeMultiple(entities) {
+    const include = this._params.include || [];
+    this._params.include = include
+      .concat(entities)
+      .filter((value, index, array) => array.indexOf(value) === index);
+
+    return this;
+  }
+
   fields(entity, fields) {
     if (!this._params.fields) {
       this._params.fields = {};

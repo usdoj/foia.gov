@@ -1,0 +1,29 @@
+/* Results Loading
+ *
+ * Provides positioning for loading element that appears
+ * while report results are loading.
+ *
+ * Used in:
+ * - annual_report_data
+ *
+ * Example Markup:
+ * ```
+ * <div className="results-loading">
+ *   <div className="spinner" />
+ *   <div className="results-loading__text">Loading...</div>
+ * </div>
+ * ```
+ */
+.results-loading {
+  margin-top: $space-4x;
+  margin-bottom: $space-4x;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__text {
+    margin: 0 0 0 $space-1x;
+    color: $color-gray;
+    font-size: 2.75rem;
+  }
+}

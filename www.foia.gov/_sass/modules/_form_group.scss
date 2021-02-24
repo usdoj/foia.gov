@@ -5,6 +5,7 @@ $form-description-leading: 1.4;
   margin-top: $space-4x;
   label {
     margin-bottom: $space-1x;
+    position: relative;
   }
 }
 
@@ -13,11 +14,36 @@ $form-description-leading: 1.4;
   font-size: $h3-font-size;
 }
 
+.form-group_footer {
+  text-align: center;
+}
+
 .form-group_help-text {
   font-style: italic;
   font-family: $font-serif;
   font-size: $small-font-size;
   color: $color-gray;
+}
+
+.form-group_footer-links {
+  @extend .usa-grid-full;
+  @extend .form-group;
+  margin-top: 2.1rem; // Smaller margin to accomodate additional padding for touch safe zone.
+}
+
+.form-group_footer-links_left,
+.form-group_footer-links_right {
+  @extend .usa-width-one-half;
+  min-height: 1px; // Maintain spacing even if no data in the left group.
+}
+
+.form-group_footer-links_right {
+  margin-top: 1rem;
+
+  @media screen and (min-width: $medium-screen) {
+    margin-top: 0;
+    text-align: right;
+  }
 }
 
 .usa-form-hint {

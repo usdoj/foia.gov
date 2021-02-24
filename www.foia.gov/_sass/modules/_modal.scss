@@ -1,0 +1,84 @@
+/* Modal
+ *
+ * Modals are created using the react-modal library and use custom CSS.
+ *
+ * Documentation: https://www.npmjs.com/package/react-modal
+ *
+ * Component: foia_modal
+ *
+ * Used in:
+ * - foia_report_data_type_filter
+ * - foia_report_form_section_two
+
+ */
+
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+}
+
+.modal {
+    position: absolute;
+    display: flex;
+    top: 45%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    min-width: 40vw;
+    max-width: 80vw;
+    max-height: 80vh;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: $color-white;
+    outline: none;
+    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.modal__inner {
+    max-height: 80vh; // Fixes ie11 bug.
+    overflow: auto;
+    padding: 2rem 3rem;
+    flex-basis: 100%;
+}
+
+.modal__close {
+    position: absolute;
+    top: -29px;
+    left: -22px;
+}
+
+.modal__close:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: $color-white;
+    height: 2.7rem;
+    width: 2.7rem;
+    border-radius: 100px;
+    top: 17px;
+    left: 9px;
+    z-index: -1;
+}
+
+.modal h1,
+.modal h2,
+.modal h3,
+.modal h4,
+.modal h5,
+.modal h6 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.modal__content > .form-group {
+    margin-top: 0;
+}

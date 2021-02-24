@@ -14,6 +14,12 @@
   .agency-info_reading-rooms h4 + p:before {
     @include has-icon($icon-book, $height: $space-4x);
   }
+  .icon-plus {
+    @include has-icon($icon-plus, $width: 2.4rem, $height: 2.4rem, $float: left, $margins: 0 $space-1x 0 0);
+  }
+  .icon-minus {
+    @include has-icon($icon-minus, $width: 2.4rem, $height: 2.4rem, $float: left, $margins: 0 $space-1x 0 0);
+  }
 }
 
 .use-light-icons {
@@ -38,6 +44,12 @@
   }
   [data-term]:after {
     background-image: url($icon-glossary-light);
+  }
+  .icon-plus {
+    @include has-icon($icon-plus-light, $width: 2.4rem, $height: 2.4rem, $float: left, $margins: 0 $space-1x 0 0);
+  }
+  .icon-minus {
+    @include has-icon($icon-minus-light, $width: 2.4rem, $height: 2.4rem, $float: left, $margins: 0 $space-1x 0 0);
   }
 }
 
