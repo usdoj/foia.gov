@@ -2,12 +2,12 @@
 build-steps: &build-steps
   - checkout
   - type: cache-restore
-    key: v1-bundle-{{ checksum "Gemfile.lock" }}
+    key: v2-bundle-{{ checksum "Gemfile.lock" }}
   - run:
       name: Install jekyll dependencies
       command: bundle install --path vendor/bundle
   - type: cache-save
-    key: v1-bundle-{{ checksum "Gemfile.lock" }}
+    key: v2-bundle-{{ checksum "Gemfile.lock" }}
     paths:
       - vendor/bundle
   - type: cache-restore
@@ -51,7 +51,7 @@ jobs:
       - checkout
       # Restore dependencies required for running the tests
       - type: cache-restore
-        key: v1-bundle-{{ checksum "Gemfile.lock" }}
+        key: v2-bundle-{{ checksum "Gemfile.lock" }}
       - run:
           name: Install jekyll dependencies
           command: bundle install --path vendor/bundle
