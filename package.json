@@ -58,7 +58,7 @@
   "devDependencies": {
     "@babel/core": "^7.13.1",
     "babel-loader": "^8.0.6",
-    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-env": "^7.13.5",
     "@babel/preset-react": "^7.12.13",
     "chai": "^4.3.0",
     "css-loader": "^3.4.2",
