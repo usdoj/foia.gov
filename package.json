@@ -78,7 +78,7 @@
     "react-test-renderer": "^15.6.2",
     "sinon": "^8.1.1",
     "sinon-chai": "^3.5.0",
-    "style-loader": "^1.1.3",
+    "style-loader": "^2.0.0",
     "webpack": "^3.12.0",
     "webpack-node-externals": "^1.7.2"
   }
