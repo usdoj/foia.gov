@@ -270,7 +270,7 @@
         "id": "field_foia_requests_vb3.field_ex_3",
         "label": "Ex. 3",
         "filter": true,
-        "overall_field": "field_overall_vb3_ex_2",
+        "overall_field": "field_overall_vb3_ex_3",
         "display": true
       },
       {
