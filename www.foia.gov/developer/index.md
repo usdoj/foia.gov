@@ -22,7 +22,7 @@ in a machine-readable format to the Portal. This information is available throug
 the Agency component API. This API follows the [JSON API](http://jsonapi.org/)
 standard and leverages the [Drupal JSON API
 module](https://www.drupal.org/docs/8/modules/json-api). The
-[documentation](https://www.drupal.org/docs/8/modules/json-api) for the JSON API
+[documentation](https://www.drupal.org/docs/core-modules-and-themes/core-modules/jsonapi-module) for the JSON API
 module is a great resource.
 
 The endpoint for the Agency component API.
