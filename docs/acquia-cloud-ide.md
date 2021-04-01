@@ -53,7 +53,8 @@ ln -s ../foia.gov/_site docroot
 ```
 
 Now if you view the cloud IDE preview site, you should see something similar to
-the dev site.
+the dev site. **NOTE**: You will need to specify the path /index.html instead of
+just going to the homepage.
 
 ## Caveats
 
