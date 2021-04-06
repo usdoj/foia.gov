@@ -60,7 +60,7 @@ function fromFormData(formData) {
 
 function requestForm(data) {
   return Object.assign({
-    id: faker.random.uuid(),
+    id: faker.datatype.uuid(),
     jsonSchema: jsonSchemaField({
       title: 'An agency form',
       type: 'object',
