@@ -16,6 +16,8 @@ const driver = new mink.Mink({
     "the last item in the A section": "#A li:last-child span",
     "the start request button": ".start-request",
     "the first agency suggestion": ".tt-suggestion:first-child",
+    "the View Report button": "button[value='view']",
+    "the data type dropdown": "select[name='data_type']",
   }
 });
 

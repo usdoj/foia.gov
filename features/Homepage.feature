@@ -7,7 +7,7 @@ Feature: Homepage
 
   Background:
     Given I am on the homepage
-    And I wait 5 seconds
+    And I wait 10 seconds
 
   Scenario: The introduction banner appears on the page
     Then I should see "The basic function of the Freedom of Information Act"

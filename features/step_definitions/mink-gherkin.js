@@ -28,12 +28,22 @@ const customSteps = [
     }
   },
   {
-    pattern: /^(?:|I )check the year "([^"]*)"/,
+    pattern: /^(?:|I )check the box for the year "([^"]*)"/,
     callback: async function (value) {
-      const inputSelector = 'input[name="' + value + '"]';
-      return this.mink.page.$eval(inputSelector, el => {
-        el.checked = true;
-      });
+      const inputSelector = 'label[for="' + value + '"]';
+      const inputHandle = await this.mink.page.$(inputSelector);
+      await inputHandle.click();
+      return inputHandle.dispose();
+    }
+  },
+  {
+    pattern: /^(?:|I )choose "([^"]*)" from the data type dropdown/,
+    callback: async function (value) {
+      const inputSelector = this.mink.getSelector('the data type dropdown');
+      console.log(inputSelector);
+      const inputHandle = await this.mink.page.$(inputSelector);
+      await inputHandle.type(value);
+      return inputHandle.dispose();
     }
   }
 ];
