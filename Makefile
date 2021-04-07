@@ -46,7 +46,7 @@ serve.detached: clean build
 test.features: serve.detached
 	npx cucumber-js
 
-test:
+test: test.features
 	npm test
 	npm run lint
 	bin/htmlproofer.sh
