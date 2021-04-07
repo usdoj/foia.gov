@@ -41,12 +41,12 @@ version: 2
 jobs:
   build-local:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
     steps: *build-steps
 
   test:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
     steps:
       - checkout
       # Restore dependencies required for running the tests
@@ -68,7 +68,7 @@ jobs:
   # Build for the Acquia Cloud development environment
   build-development:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           NODE_ENV: production
           APP_ENV: development
@@ -77,7 +77,7 @@ jobs:
   # Deploy job for the Acquia Cloud development environment
   deploy-development:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           NODE_ENV: production
           APP_ENV: development
@@ -86,7 +86,7 @@ jobs:
   # Build for the Acquia Cloud staging environment
   build-staging:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           NODE_ENV: production
           APP_ENV: staging
@@ -95,7 +95,7 @@ jobs:
   # Deploy job for the Acquia Cloud staging environment
   deploy-staging:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           NODE_ENV: production
           APP_ENV: staging
@@ -104,7 +104,7 @@ jobs:
   # Build for the Acquia Cloud UAT environment
   build-uat:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           NODE_ENV: production
           APP_ENV: uat
@@ -113,7 +113,7 @@ jobs:
   # Deploy job for the Acquia Cloud UAT environment
   deploy-uat:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           NODE_ENV: production
           APP_ENV: uat
@@ -122,7 +122,7 @@ jobs:
   # Build for the Acquia Cloud production environment
   build-production:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           NODE_ENV: production
           APP_ENV: production
@@ -131,7 +131,7 @@ jobs:
   # Deploy job for the Acquia Cloud production environment
   deploy-production:
     docker:
-      - image: circleci/ruby:2.7.2-node
+      - image: circleci/ruby:2.7.2-node-browsers
         environment:
           NODE_ENV: production
           APP_ENV: production

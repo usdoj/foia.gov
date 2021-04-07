@@ -31,6 +31,7 @@ build:
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS)
 
 clean:
+	-pkill -f -9 jekyll
 	rm -rf www.foia.gov/assets
 	rm -rf _site
 
@@ -39,7 +40,13 @@ serve:
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build --watch $(JEKYLL_OPTS) &
 	node js/dev-server.js
 
-test:
+serve.detached: clean build
+	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll serve --detach --skip-initial-build $(JEKYLL_OPTS)
+
+test.features: serve.detached
+	npx cucumber-js
+
+test: test.features
 	npm test
 	npm run lint
 	bin/htmlproofer.sh
