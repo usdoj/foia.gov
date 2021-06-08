@@ -1,11 +1,10 @@
-// NEEDS QUARTERLY TREATMENT
 import { Map } from 'immutable';
 import { Store } from 'flux/utils';
 import dispatcher from '../util/dispatcher';
-import { types } from '../actions/report';
-import annualReportDataFormStore from './annual_report_data_form';
-import FoiaAnnualReportUtilities from '../util/foia_annual_report_utilities';
-import FoiaAnnualReportFilterUtilities from '../util/foia_annual_report_filter_utilities';
+import { types } from '../actions/quarterly_report';
+import quarterlyReportDataFormStore from './quarterly_report_data_form';
+import FoiaQuarterlyReportUtilities from '../util/foia_quarterly_report_utilities';
+import FoiaQuarterlyReportFilterUtilities from '../util/foia_quarterly_report_filter_utilities';
 
 // Function to output button in headers.
 function headingAsButton(cell) {
@@ -21,7 +20,7 @@ function cellWithAria(cell) {
   return `<span aria-label="${columnHeader}: ${cellValue}">${cellValue}</span>`;
 }
 
-class AnnualReportStore extends Store {
+class QuarterlyReportStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
     this.initializeState();
@@ -55,7 +54,7 @@ class AnnualReportStore extends Store {
    * }
    */
   static getSelectedAgencies() {
-    const selectedAgencies = annualReportDataFormStore.buildSelectedAgencies();
+    const selectedAgencies = quarterlyReportDataFormStore.buildSelectedAgencies();
     return selectedAgencies.reduce((formatted, selected) => {
       switch (selected.type) {
         case 'agency': {
@@ -100,7 +99,7 @@ class AnnualReportStore extends Store {
     const componentData = [];
     const overallData = [];
     const { reports } = this.state;
-    const selectedAgencies = AnnualReportStore.getSelectedAgencies();
+    const selectedAgencies = QuarterlyReportStore.getSelectedAgencies();
 
     // Iterate over each report.
     reports.forEach((report) => {
@@ -108,15 +107,15 @@ class AnnualReportStore extends Store {
       const selectedComponents = [...selectedAgencies[agency_abbr] || []];
       // When all agencies are selected, only overall fields are retrieved, so the
       // getDataForType() function call will fail.
-      const flattened = FoiaAnnualReportUtilities.getDataForType(report, dataType);
-      const overall = FoiaAnnualReportUtilities.getOverallDataForType(report, dataType);
+      const flattened = FoiaQuarterlyReportUtilities.getDataForType(report, dataType);
+      const overall = FoiaQuarterlyReportUtilities.getOverallDataForType(report, dataType);
 
       selectedComponents.forEach((component) => {
-        const fiscal_year = report.get('field_foia_annual_report_yr');
+        const fiscal_year = report.get('field_foia_quarterly_report_yr');
         const defaults = {
           field_agency_component: component,
           field_agency: agency_name,
-          field_foia_annual_report_yr: fiscal_year,
+          field_foia_quarterly_report_yr: fiscal_year,
         };
         const allRows = component.toLowerCase() === 'agency overall' ? overall : flattened;
 
@@ -135,16 +134,16 @@ class AnnualReportStore extends Store {
         // but will not filter out components within those reports that don't match the
         // filter criteria.  This takes a pass over each row for this data type to filter
         // out any component row that does not match the data type filter criteria.
-        const filtered = FoiaAnnualReportFilterUtilities.filter(
+        const filtered = FoiaQuarterlyReportFilterUtilities.filter(
           componentRows,
-          FoiaAnnualReportFilterUtilities.getFiltersForType(dataType.id),
+          FoiaQuarterlyReportFilterUtilities.getFiltersForType(dataType.id),
         );
 
         const normalized = filtered.map(row => (
           // Normalization essentially checks every field to see if it's
           // an object with a value property.  If it is, it sets the field to the
           // field.value, allowing tablulator to use the ids in report_data_map.json.
-          Object.assign({}, defaults, FoiaAnnualReportUtilities.normalize(row))
+          Object.assign({}, defaults, FoiaQuarterlyReportUtilities.normalize(row))
         ));
 
         if (component.toLowerCase() === 'agency overall') {
@@ -160,7 +159,7 @@ class AnnualReportStore extends Store {
 
   __onDispatch(payload) {
     switch (payload.type) {
-      case types.ANNUAL_REPORT_DATA_FETCH: {
+      case types.QUARTERLY_REPORT_DATA_FETCH: {
         const { typesCount } = payload;
         // Reset the report data to initial value so that report state after a new form submission
         // is limited to only the data specific to that request.
@@ -173,11 +172,11 @@ class AnnualReportStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_DATA_RECEIVE: {
+      case types.QUARTERLY_REPORT_DATA_RECEIVE: {
         const { reports } = this.state;
 
         const updatedReports = reports.withMutations((mutableReports) => {
-          payload.annualReports.forEach((report) => {
+          payload.quarterlyReports.forEach((report) => {
             // Merge new values if a report already exists since most report requests won't
             // contain all data.
             if (mutableReports.has(report.id)) {
@@ -199,7 +198,7 @@ class AnnualReportStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_DATA_COMPLETE: {
+      case types.QUARTERLY_REPORT_DATA_COMPLETE: {
         // If there are multiple data types requested, separate requests will be
         // made for each data type.  Avoid building the report tables until all
         // of the data type requests have finished processing.
@@ -211,7 +210,7 @@ class AnnualReportStore extends Store {
           break;
         }
 
-        const selectedDataTypes = annualReportDataFormStore.getValidDataTypes();
+        const selectedDataTypes = quarterlyReportDataFormStore.getValidDataTypes();
         // Set up the default columns that appear in all data tables.
         const defaultColumns = [
           {
@@ -232,13 +231,13 @@ class AnnualReportStore extends Store {
             title: 'Fiscal Year',
             titleFormatter: headingAsButton,
             formatter: cellWithAria,
-            field: 'field_foia_annual_report_yr',
+            field: 'field_foia_quarterly_report_yr',
             align: 'center',
           },
         ];
 
         const tables = [];
-        const isOverallOnly = FoiaAnnualReportFilterUtilities.filterOnOverallFields();
+        const isOverallOnly = FoiaQuarterlyReportFilterUtilities.filterOnOverallFields();
         const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
         selectedDataTypes.forEach((dataType) => {
           if (!tables.some(item => item.id === dataType.id)) {
@@ -296,10 +295,10 @@ class AnnualReportStore extends Store {
   }
 }
 
-const annualReportStore = new AnnualReportStore(dispatcher);
+const quarterlyReportStore = new QuarterlyReportStore(dispatcher);
 
-export default annualReportStore;
+export default quarterlyReportStore;
 
 export {
-  AnnualReportStore,
+  QuarterlyReportStore,
 };

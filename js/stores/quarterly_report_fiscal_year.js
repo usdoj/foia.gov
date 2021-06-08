@@ -1,12 +1,11 @@
-// NEEDS QUARTERLY TREATMENT
 import { List } from 'immutable';
 import { Store } from 'flux/utils';
 
-import { types } from '../actions/report';
+import { types } from '../actions/quarterly_report';
 import dispatcher from '../util/dispatcher';
 
 
-class AnnualReportFiscalYearStore extends Store {
+class QuarterlyReportFiscalYearStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
 
@@ -21,7 +20,7 @@ class AnnualReportFiscalYearStore extends Store {
 
   __onDispatch(payload) {
     switch (payload.type) {
-      case types.ANNUAL_REPORT_FISCAL_YEARS_RECEIVE: {
+      case types.QUARTERLY_REPORT_FISCAL_YEARS_RECEIVE: {
         if (!Object.prototype.hasOwnProperty.call(payload, 'fiscalYears') || !Array.isArray(payload.fiscalYears)) {
           break;
         }
@@ -41,10 +40,10 @@ class AnnualReportFiscalYearStore extends Store {
   }
 }
 
-const annualReportFiscalYearStore = new AnnualReportFiscalYearStore(dispatcher);
+const quarterlyReportFiscalYearStore = new QuarterlyReportFiscalYearStore(dispatcher);
 
-export default annualReportFiscalYearStore;
+export default quarterlyReportFiscalYearStore;
 
 export {
-  AnnualReportFiscalYearStore,
+  QuarterlyReportFiscalYearStore,
 };

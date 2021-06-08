@@ -1,4 +1,3 @@
-// NEEDS QUARTERLY TREATMENT
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import { withRouter } from 'react-router-dom';
@@ -10,29 +9,29 @@ import FoiaReportFormSectionThree from '../components/foia_report_form_section_t
 import FoiaReportDataSubmit from '../components/foia_report_submit';
 import FoiaReportResultsTable from '../components/foia_report_results_table';
 
-import annualReportDataFormStore from '../stores/annual_report_data_form';
+import quarterlyReportDataFormStore from '../stores/quarterly_report_data_form';
 import agencyComponentStore from '../stores/agency_component';
-import annualReportFiscalYearStore from '../stores/annual_report_fiscal_year';
-import annualReportDataTypesStore from '../stores/annual_report_data_types';
-import annualReportStore from '../stores/annual_report';
+import quarterlyReportFiscalYearStore from '../stores/quarterly_report_fiscal_year';
+import quarterlyReportDataTypesStore from '../stores/quarterly_report_data_types';
+import quarterlyReportStore from '../stores/quarterly_report';
 
-import { reportActions } from '../actions/report';
+import { reportActions } from '../actions/quarterly_report';
 
-class AnnualReportDataPage extends Component {
+class QuarterlyReportDataPage extends Component {
   static getStores() {
     return [
-      annualReportDataFormStore,
-      annualReportFiscalYearStore,
+      quarterlyReportDataFormStore,
+      quarterlyReportFiscalYearStore,
       agencyComponentStore,
-      annualReportDataTypesStore,
-      annualReportStore,
+      quarterlyReportDataTypesStore,
+      quarterlyReportStore,
     ];
   }
 
   static calculateState(prevState, props) {
     const {
       fiscalYears,
-    } = annualReportFiscalYearStore.getState();
+    } = quarterlyReportFiscalYearStore.getState();
 
     const {
       agencies,
@@ -53,19 +52,19 @@ class AnnualReportDataPage extends Component {
       dataTypeDisplayError,
       agencyComponentDisplayError,
       submissionAction,
-    } = annualReportDataFormStore.getState();
+    } = quarterlyReportDataFormStore.getState();
 
     const {
       dataTypes,
       dataTypeOptions,
-    } = annualReportDataTypesStore.getState();
+    } = quarterlyReportDataTypesStore.getState();
 
     const {
       reports,
       reportTables,
       reportDataComplete,
       reportDataHasRows,
-    } = annualReportStore.getState();
+    } = quarterlyReportStore.getState();
 
     const viewMode = props.location.state.view;
 
@@ -104,8 +103,8 @@ class AnnualReportDataPage extends Component {
 
   componentDidMount() {
     window.onpopstate = this.handlePopState;
-    reportActions.fetchAnnualReportDataFiscalYears();
-    reportActions.fetchAnnualReportDataTypes();
+    reportActions.fetchQuarterlyReportDataFiscalYears();
+    reportActions.fetchQuarterlyReportDataTypes();
 
     // If there is any agency data, assume all the data is fetched.
     if (this.state.agencies.size) {
@@ -173,7 +172,7 @@ class AnnualReportDataPage extends Component {
       </div>)
       : null;
     return (
-      <div className="annual-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
+      <div className="quarterly-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
         {submissionAction === false || submissionAction === 'download' || viewMode === 'form' ?
           <div>
             <h1>Create a Report</h1>
@@ -249,10 +248,10 @@ class AnnualReportDataPage extends Component {
   }
 }
 
-AnnualReportDataPage.propTypes = {
+QuarterlyReportDataPage.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-export default withRouter(Container.create(AnnualReportDataPage, {
+export default withRouter(Container.create(QuarterlyReportDataPage, {
   withProps: true,
 }));

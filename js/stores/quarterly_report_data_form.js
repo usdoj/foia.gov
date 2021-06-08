@@ -1,13 +1,12 @@
-// NEEDS QUARTERLY TREATMENT
 import { Store } from 'flux/utils';
 import { List } from 'immutable';
 
 import dispatcher from '../util/dispatcher';
-import { types } from '../actions/report';
+import { types } from '../actions/quarterly_report';
 import agencyComponentStore from './agency_component';
-import annualReportDataTypesStore from './annual_report_data_types';
+import quarterlyReportDataTypesStore from './quarterly_report_data_types';
 
-class AnnualReportDataFormStore extends Store {
+class QuarterlyReportDataFormStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
     this.initializeState();
@@ -199,7 +198,7 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_AGENCY_COMPONENT_REMOVE: {
+      case types.QUARTERLY_REPORT_AGENCY_COMPONENT_REMOVE: {
         const { selection } = payload;
         const selectedAgencies = [...this.state.selectedAgencies];
         // Remove the Agency Component whose index matches the object's index property.
@@ -221,7 +220,7 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_DATA_TYPE_UPDATE: {
+      case types.QUARTERLY_REPORT_DATA_TYPE_UPDATE: {
         const { selectedDataType, previousDataType } = payload;
         const previousIsValid = typeof previousDataType === 'object'
           && Object.prototype.hasOwnProperty.call(previousDataType, 'index');
@@ -236,9 +235,9 @@ class AnnualReportDataFormStore extends Store {
           break;
         }
         if (selectedDataType.id !== '') {
-          selectedDataType.fields = annualReportDataTypesStore
+          selectedDataType.fields = quarterlyReportDataTypesStore
             .getFieldsForDataType(selectedDataType.id);
-          selectedDataType.heading = annualReportDataTypesStore
+          selectedDataType.heading = quarterlyReportDataTypesStore
             .getPrettyLabelForDataType(selectedDataType.id);
 
           selectedDataType.filterOptions = selectedDataType
@@ -275,7 +274,7 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP: {
+      case types.QUARTERLY_REPORT_DATA_TYPE_FILTER_ADD_GROUP: {
         const currentSelectedDataTypes = [...this.state.selectedDataTypes];
         currentSelectedDataTypes.push({
           index: (currentSelectedDataTypes.length),
@@ -330,7 +329,7 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_DATA_TYPE_FILTER_UPDATE: {
+      case types.QUARTERLY_REPORT_DATA_TYPE_FILTER_UPDATE: {
         const { currentSelection, filter } = payload;
         const selectedDataTypes = [...this.state.selectedDataTypes];
         if (!(typeof currentSelection === 'object' && Object.prototype.hasOwnProperty.call(currentSelection, 'index'))) {
@@ -355,7 +354,7 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_DATA_TYPE_FILTER_SUBMIT: {
+      case types.QUARTERLY_REPORT_DATA_TYPE_FILTER_SUBMIT: {
         const { index } = payload;
         const selectedDataTypes = [...this.state.selectedDataTypes];
         const dataType = Object.assign({}, selectedDataTypes[index]);
@@ -377,7 +376,7 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_DATA_TYPE_FILTER_RESET: {
+      case types.QUARTERLY_REPORT_DATA_TYPE_FILTER_RESET: {
         const { index } = payload;
         const selectedDataTypes = [...this.state.selectedDataTypes];
         const dataType = Object.assign({}, selectedDataTypes[index]);
@@ -397,7 +396,7 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE: {
+      case types.QUARTERLY_REPORT_DATA_TYPE_FILTER_REMOVE: {
         const { selection } = payload;
         const selectedDataTypes = [...this.state.selectedDataTypes];
         // Assign a copy of the default filter object to the filter.
@@ -414,7 +413,7 @@ class AnnualReportDataFormStore extends Store {
         break;
       }
 
-      case types.ANNUAL_REPORT_DATA_TYPE_FIELD_REMOVE: {
+      case types.QUARTERLY_REPORT_DATA_TYPE_FIELD_REMOVE: {
         const { selection } = payload;
         const selectedDataTypes = [...this.state.selectedDataTypes];
 
@@ -564,9 +563,9 @@ class AnnualReportDataFormStore extends Store {
   }
 }
 
-const annualReportDataFormStore = new AnnualReportDataFormStore(dispatcher);
-export default annualReportDataFormStore;
+const quarterlyReportDataFormStore = new QuarterlyReportDataFormStore(dispatcher);
+export default quarterlyReportDataFormStore;
 
 export {
-  AnnualReportDataFormStore,
+  QuarterlyReportDataFormStore,
 };
