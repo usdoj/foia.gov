@@ -311,7 +311,7 @@ Props:
 Example Use:
 ```
 import RemoveLink from './remove_link';
-import { types } from '../actions/report';
+import { types } from '../actions/quarterly_report';
 ...
 <RemoveLink
   eventType={types.QUARTERLY_REPORT_AGENCY_COMPONENT_REMOVE}
