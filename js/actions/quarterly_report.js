@@ -1,4 +1,3 @@
-// NEEDS QUARTERLY TREATMENT
 import assert from 'assert';
 import axios from 'axios';
 import settings from 'settings';
@@ -8,9 +7,9 @@ import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
 import localapi from '../util/local_api';
 import date from '../util/current_date';
-import { FoiaAnnualReportRequestBuilder } from '../util/foia_annual_report_request_builder';
-import annualReportDataFormStore from '../stores/annual_report_data_form';
-import FoiaAnnualReportFilterUtilities from '../util/foia_annual_report_filter_utilities';
+import { FoiaQuarterlyReportRequestBuilder } from '../util/foia_quarterly_report_request_builder';
+import quarterlyReportDataFormStore from '../stores/quarterly_report_data_form';
+import FoiaQuarterlyReportFilterUtilities from '../util/foia_quarterly_report_filter_utilities';
 
 // Action types to identify an action
 export const types = {
@@ -19,31 +18,31 @@ export const types = {
   AGENCY_FINDER_DATA_COMPLETE: 'AGENCY_FINDER_DATA_COMPLETE',
   AGENCY_COMPONENT_FETCH: 'AGENCY_COMPONENT_FETCH',
   AGENCY_COMPONENT_RECEIVE: 'AGENCY_COMPONENT_RECEIVE',
-  ANNUAL_REPORT_DATA_FETCH: 'ANNUAL_REPORT_DATA_FETCH',
-  ANNUAL_REPORT_DATA_RECEIVE: 'ANNUAL_REPORT_DATA_RECEIVE',
-  ANNUAL_REPORT_DATA_COMPLETE: 'ANNUAL_REPORT_DATA_COMPLETE',
-  ANNUAL_REPORT_FISCAL_YEARS_FETCH: 'ANNUAL_REPORT_FISCAL_YEARS_FETCH',
-  ANNUAL_REPORT_FISCAL_YEARS_RECEIVE: 'ANNUAL_REPORT_FISCAL_YEARS_RECEIVE',
-  ANNUAL_REPORT_FISCAL_YEARS_COMPLETE: 'ANNUAL_REPORT_FISCAL_YEARS_COMPLETE',
+  QUARTERLY_REPORT_DATA_FETCH: 'QUARTERLY_REPORT_DATA_FETCH',
+  QUARTERLY_REPORT_DATA_RECEIVE: 'QUARTERLY_REPORT_DATA_RECEIVE',
+  QUARTERLY_REPORT_DATA_COMPLETE: 'QUARTERLY_REPORT_DATA_COMPLETE',
+  QUARTERLY_REPORT_FISCAL_YEARS_FETCH: 'QUARTERLY_REPORT_FISCAL_YEARS_FETCH',
+  QUARTERLY_REPORT_FISCAL_YEARS_RECEIVE: 'QUARTERLY_REPORT_FISCAL_YEARS_RECEIVE',
+  QUARTERLY_REPORT_FISCAL_YEARS_COMPLETE: 'QUARTERLY_REPORT_FISCAL_YEARS_COMPLETE',
   SELECTED_AGENCIES_APPEND_BLANK: 'SELECTED_AGENCIES_APPEND_BLANK',
   SELECTED_AGENCIES_UPDATE: 'SELECTED_AGENCIES_UPDATE',
-  ANNUAL_REPORT_DATA_TYPES_FETCH: 'ANNUAL_REPORT_DATA_TYPES_FETCH',
-  ANNUAL_REPORT_DATA_TYPES_RECEIVE: 'ANNUAL_REPORT_DATA_TYPES_RECEIVE',
-  ANNUAL_REPORT_DATA_TYPES_COMPLETE: 'ANNUAL_REPORT_DATA_TYPES_COMPLETE',
-  ANNUAL_REPORT_DATA_TYPE_UPDATE: 'ANNUAL_REPORT_DATA_TYPE_UPDATE',
-  ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP: 'ANNUAL_REPORT_DATA_TYPE_FILTER_ADD_GROUP',
-  ANNUAL_REPORT_DATA_TYPE_FIELD_REMOVE: 'ANNUAL_REPORT_DATA_TYPE_FIELD_REMOVE',
+  QUARTERLY_REPORT_DATA_TYPES_FETCH: 'QUARTERLY_REPORT_DATA_TYPES_FETCH',
+  QUARTERLY_REPORT_DATA_TYPES_RECEIVE: 'QUARTERLY_REPORT_DATA_TYPES_RECEIVE',
+  QUARTERLY_REPORT_DATA_TYPES_COMPLETE: 'QUARTERLY_REPORT_DATA_TYPES_COMPLETE',
+  QUARTERLY_REPORT_DATA_TYPE_UPDATE: 'QUARTERLY_REPORT_DATA_TYPE_UPDATE',
+  QUARTERLY_REPORT_DATA_TYPE_FILTER_ADD_GROUP: 'QUARTERLY_REPORT_DATA_TYPE_FILTER_ADD_GROUP',
+  QUARTERLY_REPORT_DATA_TYPE_FIELD_REMOVE: 'QUARTERLY_REPORT_DATA_TYPE_FIELD_REMOVE',
   SELECTED_FISCAL_YEARS_UPDATE: 'SELECTED_FISCAL_YEARS_UPDATE',
   SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE: 'SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE',
   SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE_ALL: 'SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE_ALL',
   SELECTED_AGENCY_COMPONENTS_DISCARD_TEMPORARY: 'SELECTED_AGENCY_COMPONENTS_DISCARD_TEMPORARY',
   SELECTED_AGENCY_COMPONENTS_MERGE_TEMPORARY: 'SELECTED_AGENCY_COMPONENTS_MERGE_TEMPORARY',
   SELECTED_AGENCIES_TOGGLE_SELECT_ALL: 'SELECTED_AGENCIES_TOGGLE_SELECT_ALL',
-  ANNUAL_REPORT_AGENCY_COMPONENT_REMOVE: 'ANNUAL_REPORT_AGENCY_COMPONENT_REMOVE',
-  ANNUAL_REPORT_DATA_TYPE_FILTER_UPDATE: 'ANNUAL_REPORT_DATA_TYPE_FILTER_UPDATE',
-  ANNUAL_REPORT_DATA_TYPE_FILTER_SUBMIT: 'ANNUAL_REPORT_DATA_TYPE_FILTER_SUBMIT',
-  ANNUAL_REPORT_DATA_TYPE_FILTER_RESET: 'ANNUAL_REPORT_DATA_TYPE_FILTER_RESET',
-  ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE: 'ANNUAL_REPORT_DATA_TYPE_FILTER_REMOVE',
+  QUARTERLY_REPORT_AGENCY_COMPONENT_REMOVE: 'QUARTERLY_REPORT_AGENCY_COMPONENT_REMOVE',
+  QUARTERLY_REPORT_DATA_TYPE_FILTER_UPDATE: 'QUARTERLY_REPORT_DATA_TYPE_FILTER_UPDATE',
+  QUARTERLY_REPORT_DATA_TYPE_FILTER_SUBMIT: 'QUARTERLY_REPORT_DATA_TYPE_FILTER_SUBMIT',
+  QUARTERLY_REPORT_DATA_TYPE_FILTER_RESET: 'QUARTERLY_REPORT_DATA_TYPE_FILTER_RESET',
+  QUARTERLY_REPORT_DATA_TYPE_FILTER_REMOVE: 'QUARTERLY_REPORT_DATA_TYPE_FILTER_REMOVE',
   VALIDATE_FORM: 'VALIDATE_FORM',
   REPORT_SUBMISSION_TYPE: 'REPORT_SUBMISSION_TYPE',
   CLEAR_FORM: 'CLEAR_FORM',
@@ -123,9 +122,9 @@ export const reportActions = {
     return Promise.resolve(agencyComponent);
   },
 
-  fetchAnnualReportDataFiscalYears() {
+  fetchQuarterlyReportDataFiscalYears() {
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_FISCAL_YEARS_FETCH,
+      type: types.QUARTERLY_REPORT_FISCAL_YEARS_FETCH,
     });
 
     const request = axios.create({
@@ -136,49 +135,49 @@ export const reportActions = {
     return request
       .get('/annual_foia_report/fiscal_years')
       .then(response => response.data || [])
-      .then(reportActions.receiveAnnualReportFiscalYearsData)
-      .then(reportActions.completeAnnualReportFiscalYearsData);
+      .then(reportActions.receiveQuarterlyReportFiscalYearsData)
+      .then(reportActions.completeQuarterlyReportFiscalYearsData);
   },
 
-  receiveAnnualReportFiscalYearsData(fiscalYears) {
+  receiveQuarterlyReportFiscalYearsData(fiscalYears) {
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_FISCAL_YEARS_RECEIVE,
+      type: types.QUARTERLY_REPORT_FISCAL_YEARS_RECEIVE,
       fiscalYears,
     });
 
     return Promise.resolve(fiscalYears);
   },
 
-  completeAnnualReportFiscalYearsData() {
+  completeQuarterlyReportFiscalYearsData() {
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_FISCAL_YEARS_COMPLETE,
+      type: types.QUARTERLY_REPORT_FISCAL_YEARS_COMPLETE,
     });
 
     return Promise.resolve();
   },
 
-  fetchAnnualReportDataTypes() {
+  fetchQuarterlyReportDataTypes() {
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_DATA_TYPES_FETCH,
+      type: types.QUARTERLY_REPORT_DATA_TYPES_FETCH,
     });
 
-    return localapi.annualReportDataTypes()
-      .then(reportActions.receiveAnnualReportDataTypes)
-      .then(reportActions.completeAnnualReportDataTypes);
+    return localapi.quarterlyReportDataTypes()
+      .then(reportActions.receiveQuarterlyReportDataTypes)
+      .then(reportActions.completeQuarterlyReportDataTypes);
   },
 
-  receiveAnnualReportDataTypes(annualReportDataTypes) {
+  receiveQuarterlyReportDataTypes(quarterlyReportDataTypes) {
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_DATA_TYPES_RECEIVE,
-      annualReportDataTypes,
+      type: types.QUARTERLY_REPORT_DATA_TYPES_RECEIVE,
+      quarterlyReportDataTypes,
     });
 
     return Promise.resolve();
   },
 
-  completeAnnualReportDataTypes() {
+  completeQuarterlyReportDataTypes() {
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_DATA_TYPES_COMPLETE,
+      type: types.QUARTERLY_REPORT_DATA_TYPES_COMPLETE,
     });
 
     return Promise.resolve();
@@ -211,14 +210,14 @@ export const reportActions = {
    *   An array of selected data type objects.
    *
    * @see js/util/json_api_params.js
-   * @see js/stores/annual_report_data_types.js
-   * @see www.foia.gov/api/annual-report-form/report_data_map.json
+   * @see js/stores/quarterly_report_data_types.js
+   * @see www.foia.gov/api/quarterly-report-form/report_data_map.json
    */
-  fetchAnnualReportData(dataTypes = []) {
+  fetchQuarterlyReportData(dataTypes = []) {
     // Filter out any data type objects that represent empty fields
     // in the form.  This prevents the request from breaking if a user
     // adds a new data type field, but leaves the field empty.
-    const validTypes = annualReportDataFormStore.getValidDataTypes(dataTypes);
+    const validTypes = quarterlyReportDataFormStore.getValidDataTypes(dataTypes);
     const typeGroups = validTypes.reduce((grouped, type) => {
       const typeList = grouped[type.id] || [];
       typeList.push(type);
@@ -228,12 +227,12 @@ export const reportActions = {
     }, {});
 
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_DATA_FETCH,
+      type: types.QUARTERLY_REPORT_DATA_FETCH,
       typesCount: Object.keys(typeGroups).length || 0,
     });
 
     Object.keys(typeGroups).forEach((key) => {
-      let builder = new FoiaAnnualReportRequestBuilder();
+      let builder = new FoiaQuarterlyReportRequestBuilder();
       // The default limit could be updated in the
       // modifier function if it needs to be.
       builder.request.limit(5);
@@ -241,8 +240,8 @@ export const reportActions = {
 
       return builder
         .request
-        .paginate('/annual_foia_report', reportActions.receiveAnnualReportData)
-        .then(reportActions.completeAnnualReportData);
+        .paginate('/annual_foia_report', reportActions.receiveQuarterlyReportData)
+        .then(reportActions.completeQuarterlyReportData);
     });
   },
 
@@ -254,11 +253,11 @@ export const reportActions = {
    * @returns {FoiaAnnualReportRequestBuilder}
    */
   buildRequestForSelectedType(type, builder) {
-    const selectedAgencies = annualReportDataFormStore.buildSelectedAgencies();
-    const { allAgenciesSelected, selectedFiscalYears } = annualReportDataFormStore.getState();
+    const selectedAgencies = quarterlyReportDataFormStore.buildSelectedAgencies();
+    const { allAgenciesSelected, selectedFiscalYears } = quarterlyReportDataFormStore.getState();
     const agencies = selectedAgencies.filter(selection => selection.type === 'agency');
     const components = selectedAgencies.filter(selection => selection.type === 'agency_component');
-    const dataTypeFilters = FoiaAnnualReportFilterUtilities.getFiltersForType(type[0].id);
+    const dataTypeFilters = FoiaQuarterlyReportFilterUtilities.getFiltersForType(type[0].id);
     const includeOverall = agencies.filter((agency) => {
       const overall = agency
         .components
@@ -286,17 +285,17 @@ export const reportActions = {
       .addFiscalYearsGroup(selectedFiscalYears);
   },
 
-  receiveAnnualReportData(annualReports) {
+  receiveQuarterlyReportData(quarterlyReports) {
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_DATA_RECEIVE,
+      type: types.QUARTERLY_REPORT_DATA_RECEIVE,
       annualReports,
     });
-    return Promise.resolve(annualReports);
+    return Promise.resolve(quarterlyReports);
   },
 
-  completeAnnualReportData() {
+  completeQuarterlyReportData() {
     dispatcher.dispatch({
-      type: types.ANNUAL_REPORT_DATA_COMPLETE,
+      type: types.QUARTERLY_REPORT_DATA_COMPLETE,
     });
 
     return Promise.resolve();

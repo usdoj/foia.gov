@@ -38,7 +38,7 @@ import { createBrowserHistory } from 'history';
 import QuarterlyReportDataPage from 'pages/quarterly_report_data';
 
 const history = createBrowserHistory();
-history.push('/data.html', { view: 'form' });
+history.push('/quarterly.html', { view: 'form' });
 
 render(
   <Router history={history}>
