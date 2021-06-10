@@ -133,7 +133,7 @@ export const reportActions = {
     });
 
     return request
-      .get('/annual_foia_report/fiscal_years')
+      .get('/quarterly_foia_report/fiscal_years')
       .then(response => response.data || [])
       .then(reportActions.receiveQuarterlyReportFiscalYearsData)
       .then(reportActions.completeQuarterlyReportFiscalYearsData);
@@ -240,7 +240,7 @@ export const reportActions = {
 
       return builder
         .request
-        .paginate('/annual_foia_report', reportActions.receiveQuarterlyReportData)
+        .paginate('/quarterly_foia_report', reportActions.receiveQuarterlyReportData)
         .then(reportActions.completeQuarterlyReportData);
     });
   },
@@ -250,7 +250,7 @@ export const reportActions = {
    *
    * @param type
    * @param builder
-   * @returns {FoiaAnnualReportRequestBuilder}
+   * @returns {FoiaQuarterlyReportRequestBuilder}
    */
   buildRequestForSelectedType(type, builder) {
     const selectedAgencies = quarterlyReportDataFormStore.buildSelectedAgencies();
@@ -288,7 +288,7 @@ export const reportActions = {
   receiveQuarterlyReportData(quarterlyReports) {
     dispatcher.dispatch({
       type: types.QUARTERLY_REPORT_DATA_RECEIVE,
-      annualReports,
+      quarterlyReports,
     });
     return Promise.resolve(quarterlyReports);
   },

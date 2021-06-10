@@ -1,11 +1,10 @@
-// NEEDS QUARTERLY TREATMENT
 import { Map } from 'immutable';
-import annualReportDataTypesStore from '../stores/annual_report_data_types';
+import quarterlyReportDataTypesStore from '../stores/quarterly_report_data_types';
 
 /**
  * Utility functions for working with report data.
  */
-class FoiaAnnualReportUtilities {
+class FoiaQuarterlyReportUtilities {
   /**
    * Given a report and data type, flattens out and merges the data into an array of
    * objects that can be used by tabulator.
@@ -43,31 +42,7 @@ class FoiaAnnualReportUtilities {
     // per component.  These must be merged on a unique identifying key
     // that is not the component abbreviation so that multiple rows per
     // component don't overwrite and merge together in unexpected ways.
-    if (dataType.id === 'group_vi_c_3_reasons_for_denial_') {
-      return FoiaAnnualReportUtilities.mergeBy(
-        report,
-        dataType,
-        'field_admin_app_vic3.field_admin_app_vic3_info.field_desc_oth_reasons.value',
-      );
-    }
-
-    if (dataType.id === 'group_v_b_2_disposition_of_foia_') {
-      return FoiaAnnualReportUtilities.mergeBy(
-        report,
-        dataType,
-        'field_foia_requests_vb2.field_foia_req_vb2_info.field_desc_oth_reasons.value',
-      );
-    }
-
-    if (dataType.id === 'group_iv_exemption_3_statutes') {
-      return FoiaAnnualReportUtilities.mergeBy(
-        report,
-        dataType,
-        'field_statute_iv.field_statute',
-      );
-    }
-
-    return FoiaAnnualReportUtilities.mergeBy(report, dataType, 'field_agency_component');
+    return FoiaQuarterlyReportUtilities.mergeBy(report, dataType, 'field_agency_component');
   }
 
   /**
@@ -83,11 +58,7 @@ class FoiaAnnualReportUtilities {
    *   See getDataForType() example output.
    */
   static getOverallDataForType(report, dataType) {
-    if (dataType.id === 'group_iv_exemption_3_statutes') {
-      return FoiaAnnualReportUtilities.getStatuteOverall(report, dataType);
-    }
-
-    const row = FoiaAnnualReportUtilities.buildOverallRow(report, dataType);
+    const row = FoiaQuarterlyReportUtilities.buildOverallRow(report, dataType);
     // For consistency with getStatuteOverall, which could have many rows,
     // return the row in an array.
     return [row];
@@ -105,13 +76,10 @@ class FoiaAnnualReportUtilities {
    * @returns {*}
    */
   static buildOverallRow(data, dataType) {
-    const fields = annualReportDataTypesStore.getFieldsForDataType(dataType.id);
+    const fields = quarterlyReportDataTypesStore.getFieldsForDataType(dataType.id);
     return fields.reduce((overallData, field) => {
       const { id, overall_field } = field;
       if (overall_field === false) {
-        return overallData;
-      }
-      if (id.indexOf('field_footnote') === 0) {
         return overallData;
       }
 
@@ -129,36 +97,8 @@ class FoiaAnnualReportUtilities {
         return fieldValue[fieldName];
       }, data);
 
-      return FoiaAnnualReportUtilities.assignDeep(overallData, id, value);
+      return FoiaQuarterlyReportUtilities.assignDeep(overallData, id, value);
     }, { field_agency_component: 'Agency Overall' });
-  }
-
-  /**
-   * Builds overall rows from flattened statute data since in this case the
-   * overall fields are nested.
-   *
-   * @param {Map} report
-   *   A report retrieved from the api.
-   * @param {Object} dataType
-   *   A dataType object as defined in report_data_map.json.
-   * @returns {{}}
-   *   An array of objects where drupal paragraph data has been flattened for use by tabulator.
-   *   See getDataForType() example output.
-   */
-  static getStatuteOverall(report, dataType) {
-    const flattened = FoiaAnnualReportUtilities.mergeBy(
-      report,
-      dataType,
-      'field_statute_iv.field_statute',
-    );
-
-    return Object.keys(flattened).reduce((overall, key) => {
-      const value = FoiaAnnualReportUtilities.buildOverallRow(flattened[key], dataType);
-      const id = FoiaAnnualReportUtilities.buildRowId('field_statute_iv.field_statute', value);
-      overall[id] = value;
-
-      return overall;
-    }, {});
   }
 
   /**
@@ -176,13 +116,13 @@ class FoiaAnnualReportUtilities {
    *   See the example return value for FoiaAnnualReportUtilities.getDataByType().
    */
   static mergeBy(report, dataType, idPath) {
-    const data = FoiaAnnualReportUtilities.flattenFields(report, dataType);
+    const data = FoiaQuarterlyReportUtilities.flattenFields(report, dataType);
     // Zips into an array where values that share the same unique id based
     // on the idPath are merged into the same object.
     return Object.keys(data).reduce((zipped, key) => {
       const values = data[key] || [];
       values.forEach((value) => {
-        const id = FoiaAnnualReportUtilities.buildRowId(idPath, value);
+        const id = FoiaQuarterlyReportUtilities.buildRowId(idPath, value);
         if (id === false) {
           return;
         }
@@ -215,7 +155,7 @@ class FoiaAnnualReportUtilities {
   static flattenFields(report, dataType) {
     // Only deal with the includes that are report field.
     // Nested data will be flattened later.
-    const fields = annualReportDataTypesStore.getIncludesForDataType(dataType.id)
+    const fields = quarterlyReportDataTypesStore.getIncludesForDataType(dataType.id)
       .filter(field => field.split('.').length === 1);
 
     return fields.reduce((values, field) => {
@@ -225,12 +165,12 @@ class FoiaAnnualReportUtilities {
       let data = report.get(field);
       data = Array.isArray(data) ? data : [];
       data = data.reduce((flattened, fieldValue) => (
-        flattened.concat(...FoiaAnnualReportUtilities.maybeFlatten(fieldValue))
+        flattened.concat(...FoiaQuarterlyReportUtilities.maybeFlatten(fieldValue))
       ), []);
 
       // Lift the component value up to each data object since tabulator will
       // expect a field_agency_component field directly on each row.
-      const transformed = FoiaAnnualReportUtilities.mergeComponent(
+      const transformed = FoiaQuarterlyReportUtilities.mergeComponent(
         data,
         field,
       );
@@ -257,7 +197,7 @@ class FoiaAnnualReportUtilities {
     }
 
     return data.reduce((collected, value) => {
-      const component = FoiaAnnualReportUtilities.retrieveComponent(value);
+      const component = FoiaQuarterlyReportUtilities.retrieveComponent(value);
       if (!component) {
         return collected;
       }
@@ -344,7 +284,7 @@ class FoiaAnnualReportUtilities {
     }
 
     return shouldFlatten.reduce((data, key) => (
-      data.concat(...FoiaAnnualReportUtilities.flatten(raw, key))
+      data.concat(...FoiaQuarterlyReportUtilities.flatten(raw, key))
     ), []);
   }
 
@@ -382,7 +322,7 @@ class FoiaAnnualReportUtilities {
    */
   static normalize(data) {
     if (Array.isArray(data)) {
-      return data.map(value => FoiaAnnualReportUtilities.normalize(value));
+      return data.map(value => FoiaQuarterlyReportUtilities.normalize(value));
     }
     if (data === null) {
       return data;
@@ -395,7 +335,7 @@ class FoiaAnnualReportUtilities {
     }
 
     return Object.keys(data).reduce((normalized, key) => {
-      normalized[key] = FoiaAnnualReportUtilities.normalize(data[key]);
+      normalized[key] = FoiaQuarterlyReportUtilities.normalize(data[key]);
 
       return normalized;
     }, {});
@@ -420,10 +360,10 @@ class FoiaAnnualReportUtilities {
       return object;
     }
     const next = object[key] || {};
-    object[key] = FoiaAnnualReportUtilities.assignDeep(next, parts.join('.'), value);
+    object[key] = FoiaQuarterlyReportUtilities.assignDeep(next, parts.join('.'), value);
 
     return object;
   }
 }
 
-export default FoiaAnnualReportUtilities;
+export default FoiaQuarterlyReportUtilities;

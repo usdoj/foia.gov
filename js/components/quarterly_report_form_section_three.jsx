@@ -66,7 +66,7 @@ class QuarterlyReportFormSectionThree extends Component {
             <div className="form-group_footer-links">
               <ul className="inline-list--centered">
                 <li><a href="" onClick={this.handleSelectAll} className="touch-safe">Select All</a></li>
-                <li><a href="" onClick={FoiaReportFormSectionThree.handleSelectNone} className="touch-safe">Select None</a></li>
+                <li><a href="" onClick={QuarterlyReportFormSectionThree.handleSelectNone} className="touch-safe">Select None</a></li>
               </ul>
             </div>
           </fieldset>

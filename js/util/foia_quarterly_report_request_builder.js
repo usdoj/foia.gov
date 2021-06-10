@@ -1,18 +1,17 @@
-// NEEDS QUARTERLY TREATMENT
 import assert from 'assert';
 import { List } from 'immutable';
 import { JsonApi } from './json_api';
-import annualReportDataTypesStore from '../stores/annual_report_data_types';
-import FoiaAnnualReportFilterUtilities from './foia_annual_report_filter_utilities';
+import quarterlyReportDataTypesStore from '../stores/quarterly_report_data_types';
+import FoiaQuarterlyReportFilterUtilities from './foia_quarterly_report_filter_utilities';
 
-class FoiaAnnualReportRequestBuilder extends JsonApi {
+class FoiaQuarterlyReportRequestBuilder extends JsonApi {
   constructor(baseUrl) {
     super(baseUrl);
 
     this.request = this.params();
     // Set default include fields.
     this.includeFields({
-      annual_foia_report_data: ['title', 'field_foia_annual_report_yr', 'field_agency', 'field_agency_components'],
+      quarterly_foia_report_data: ['title', 'field_quarterly_year', 'field_agency', 'field_agency_components'],
       field_agency: ['name', 'abbreviation'],
       field_agency_components: ['title'],
     });
@@ -28,7 +27,7 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
    *     agencies: ['DOJ', 'NASA'],
    *     components: ['OIG', 'FMC'],
    *   }
-   * @returns {FoiaAnnualReportRequestBuilder}
+   * @returns {FoiaQuarterlyReportRequestBuilder}
    */
   addOrganizationsGroup(abbreviations = {}) {
     let { agencies, components } = abbreviations;
@@ -70,8 +69,8 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
       return this;
     }
     let dataTypeFilters;
-    if (dataTypeId && FoiaAnnualReportFilterUtilities.filterOnOverallFields()) {
-      dataTypeFilters = FoiaAnnualReportFilterUtilities
+    if (dataTypeId && FoiaQuarterlyReportFilterUtilities.filterOnOverallFields()) {
+      dataTypeFilters = FoiaQuarterlyReportFilterUtilities
         .transformToOverallFilters(filters, dataTypeId);
     } else {
       dataTypeFilters = filters;
@@ -97,7 +96,7 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
       );
       this.request = this.request.operator(
         `data-type-filter-${filter.index}`,
-        FoiaAnnualReportRequestBuilder.getOperator(filter.op),
+        FoiaQuarterlyReportRequestBuilder.getOperator(filter.op),
       );
 
       // Many numeric fields on the backend use the convention of
@@ -166,8 +165,8 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
       ? List(types)
       : List([]);
 
-    const includes = FoiaAnnualReportRequestBuilder.getSectionIncludes(dataTypes);
-    const fields = FoiaAnnualReportRequestBuilder.getSectionFields(dataTypes, false);
+    const includes = FoiaQuarterlyReportRequestBuilder.getSectionIncludes(dataTypes);
+    const fields = FoiaQuarterlyReportRequestBuilder.getSectionFields(dataTypes, false);
 
     this.request.includeMultiple(includes);
     this.includeFields(fields);
@@ -180,8 +179,8 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
       ? List(types)
       : List([]);
 
-    const includes = FoiaAnnualReportRequestBuilder.getSectionIncludes(dataTypes);
-    const fields = FoiaAnnualReportRequestBuilder.getSectionOverallFields(dataTypes);
+    const includes = FoiaQuarterlyReportRequestBuilder.getSectionIncludes(dataTypes);
+    const fields = FoiaQuarterlyReportRequestBuilder.getSectionOverallFields(dataTypes);
 
     this.request.includeMultiple(includes);
     this.includeFields(fields);
@@ -192,7 +191,7 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
   includeFields(fields = {}) {
     if (Object.keys(fields).length > 0) {
       Object.keys(fields).forEach((field) => {
-        if (field !== 'annual_foia_report_data') {
+        if (field !== 'quarterly_foia_report_data') {
           this.request.include(field);
         }
         this.request.fields(field, fields[field]);
@@ -206,7 +205,7 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
 
   static getSectionIncludes(dataTypes) {
     return dataTypes.reduce((entities, section) => {
-      const includesForType = annualReportDataTypesStore.getIncludesForDataType(section.id);
+      const includesForType = quarterlyReportDataTypesStore.getIncludesForDataType(section.id);
       if (includesForType.length <= 0) {
         return entities;
       }
@@ -223,7 +222,7 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
       }
 
       let sectionFields = section.fields.map(item => item.id).filter(item => item !== false);
-      const includesForType = annualReportDataTypesStore.getIncludesForDataType(section.id);
+      const includesForType = quarterlyReportDataTypesStore.getIncludesForDataType(section.id);
       if (includesForType.length > 0) {
         sectionFields = sectionFields.concat(
           includesForType.filter(value => value.split('.').length > 1),
@@ -264,8 +263,8 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
       }
 
       if (path.length === 1) {
-        const entityFields = updatedEntities.annual_foia_report_data || [];
-        updatedEntities.annual_foia_report_data = entityFields
+        const entityFields = updatedEntities.quarterly_foia_report_data || [];
+        updatedEntities.quarterly_foia_report_data = entityFields
           .concat(path.pop())
           .filter((value, index, array) => array.indexOf(value) === index);
       }
@@ -289,9 +288,9 @@ class FoiaAnnualReportRequestBuilder extends JsonApi {
 
 
 // Export a singleton
-const reportRequestBuilder = new FoiaAnnualReportRequestBuilder();
+const reportRequestBuilder = new FoiaQuarterlyReportRequestBuilder();
 export default reportRequestBuilder;
 
 export {
-  FoiaAnnualReportRequestBuilder,
+  FoiaQuarterlyReportRequestBuilder,
 };

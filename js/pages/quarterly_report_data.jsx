@@ -3,11 +3,11 @@ import { Container } from 'flux/utils';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import FoiaReportFormSectionOne from '../components/foia_report_form_section_one';
-import FoiaReportFormSectionTwo from '../components/foia_report_form_section_two';
-import FoiaReportFormSectionThree from '../components/foia_report_form_section_three';
-import FoiaReportDataSubmit from '../components/foia_report_submit';
-import FoiaReportResultsTable from '../components/foia_report_results_table';
+import QuarterlyReportFormSectionOne from '../components/quarterly_report_form_section_one';
+import QuarterlyReportFormSectionTwo from '../components/quarterly_report_form_section_two';
+import QuarterlyReportFormSectionThree from '../components/quarterly_report_form_section_three';
+import QuarterlyReportDataSubmit from '../components/quarterly_report_submit';
+import QuarterlyReportResultsTable from '../components/quarterly_report_results_table';
 
 import quarterlyReportDataFormStore from '../stores/quarterly_report_data_form';
 import agencyComponentStore from '../stores/agency_component';
@@ -177,7 +177,7 @@ class QuarterlyReportDataPage extends Component {
           <div>
             <h1>Create a Report</h1>
             <form >
-              <FoiaReportFormSectionOne
+              <QuarterlyReportFormSectionOne
                 agencies={agencies}
                 agencyComponents={agencyComponents}
                 agencyFinderDataComplete={agencyFinderDataComplete}
@@ -186,18 +186,18 @@ class QuarterlyReportDataPage extends Component {
                 agencyComponentDisplayError={agencyComponentDisplayError}
                 allAgenciesSelected={allAgenciesSelected}
               />
-              <FoiaReportFormSectionTwo
+              <QuarterlyReportFormSectionTwo
                 dataTypes={dataTypes}
                 dataTypeOptions={dataTypeOptions}
                 selectedDataTypes={selectedDataTypes}
                 dataTypeDisplayError={dataTypeDisplayError}
               />
-              <FoiaReportFormSectionThree
+              <QuarterlyReportFormSectionThree
                 fiscalYears={fiscalYears}
                 selectedFiscalYears={selectedFiscalYears}
                 fiscalYearsDisplayError={fiscalYearsDisplayError}
               />
-              <FoiaReportDataSubmit
+              <QuarterlyReportDataSubmit
                 selectedDataTypes={selectedDataTypes}
                 agencyComponentIsValid={agencyComponentIsValid}
                 dataTypesIsValid={dataTypesIsValid}
@@ -225,7 +225,7 @@ class QuarterlyReportDataPage extends Component {
         <div>
           {
             reportTableEntries.map(table => (
-              <FoiaReportResultsTable
+              <QuarterlyReportResultsTable
                 key={`report-${table.id}`}
                 ref={(ref) => { this.reportRefs[table.id] = ref; }}
                 tableId={`report-${table.id}`}

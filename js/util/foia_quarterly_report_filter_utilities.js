@@ -1,12 +1,11 @@
-// NEEDS QUARTERLY TREATMENT
 import { AnnualReportStore } from '../stores/annual_report';
-import annualReportDataFormStore from '../stores/annual_report_data_form';
-import annualReportDataTypesStore from '../stores/annual_report_data_types';
+import quarterlyReportDataFormStore from '../stores/quarterly_report_data_form';
+import quarterlyReportDataTypesStore from '../stores/quarterly_report_data_types';
 
 /**
  * Provides utility functions for comparing rows of data with applied filters.
  */
-class FoiaAnnualReportFilterUtilities {
+class FoiaQuarterlyReportFilterUtilities {
   /**
    * Checks that a set of rows pass any of the given set of filters, returning only passing rows.
    *
@@ -17,7 +16,7 @@ class FoiaAnnualReportFilterUtilities {
    * @returns {*}
    */
   static filter(rows, filters) {
-    return rows.filter(row => FoiaAnnualReportFilterUtilities.passesAny(row, filters));
+    return rows.filter(row => FoiaQuarterlyReportFilterUtilities.passesAny(row, filters));
   }
 
   /**
@@ -36,7 +35,7 @@ class FoiaAnnualReportFilterUtilities {
     }
     const passes = filters.filter((filter) => {
       const { compareValue, filterField, op } = filter;
-      const value = FoiaAnnualReportFilterUtilities.getValue(filterField, row);
+      const value = FoiaQuarterlyReportFilterUtilities.getValue(filterField, row);
       return this.compare(op, value, compareValue);
     });
 
@@ -50,7 +49,7 @@ class FoiaAnnualReportFilterUtilities {
    * @returns {unknown[]}
    */
   static getFiltersForType(dataTypeId) {
-    const selectedDataTypes = [...annualReportDataFormStore.getState().selectedDataTypes];
+    const selectedDataTypes = [...quarterlyReportDataFormStore.getState().selectedDataTypes];
     return selectedDataTypes
       .filter(type => (
         typeof type.filter === 'object' && type.filter !== null
@@ -70,7 +69,7 @@ class FoiaAnnualReportFilterUtilities {
    * @returns {boolean}
    */
   static filterOnOverallFields() {
-    const selectedAgencies = AnnualReportStore.getSelectedAgencies();
+    const selectedAgencies = QuarterlyReportStore.getSelectedAgencies();
     const requestsComponents = Object.keys(selectedAgencies).filter((key) => {
       const agency = selectedAgencies[key];
       const hasComponents = agency
@@ -95,7 +94,7 @@ class FoiaAnnualReportFilterUtilities {
    * @returns {*}
    */
   static transformToOverallFilters(filters, dataTypeId) {
-    const fields = annualReportDataTypesStore.getFieldsForDataType(dataTypeId);
+    const fields = quarterlyReportDataTypesStore.getFieldsForDataType(dataTypeId);
     return filters.map((filter) => {
       const field = fields
         .filter(data => data.id === filter.filterField.replace(/\.value$/i, ''));
@@ -181,4 +180,4 @@ class FoiaAnnualReportFilterUtilities {
   }
 }
 
-export default FoiaAnnualReportFilterUtilities;
+export default FoiaQuarterlyReportFilterUtilities;
