@@ -58,7 +58,7 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
       return this;
     }
 
-    this.addFiltersFromList(years, 'fiscal-year', 'field_foia_annual_report_yr');
+    this.addFiltersFromList(years, 'fiscal-year', 'field_quarterly_year');
     this.request.or(...years.map(year => `fiscal-year-${year}`).toArray());
 
     return this;

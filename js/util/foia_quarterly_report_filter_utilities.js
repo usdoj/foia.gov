@@ -1,4 +1,4 @@
-import { AnnualReportStore } from '../stores/annual_report';
+import { QuarterlyReportStore } from '../stores/quarterly_report';
 import quarterlyReportDataFormStore from '../stores/quarterly_report_data_form';
 import quarterlyReportDataTypesStore from '../stores/quarterly_report_data_types';
 
