@@ -1,34 +1,55 @@
 [
   {
     "id": "group_component_data",
-    "label": "Received, processed, backlogged",
-    "pretty": "Received, processed, backlogged",
+    "label": "Received, processed, and backlogged FOIA requests",
+    "pretty": "Received, processed, and backlogged FOIA requests",
     "fields": [
       {
         "id": "field_quarterly_component_data.field_quarterly_backlogged",
         "label": "Number of requests backlogged",
         "filter": true,
-        "overall_field": false,
+        "overall_field": "field_quarterly_backlogged_oa",
         "display": true
       },
       {
         "id": "field_quarterly_component_data.field_quarterly_processed",
         "label": "Number of requests processed",
         "filter": true,
-        "overall_field": false,
+        "overall_field": "field_quarterly_processed_oa",
         "display": true
       },
       {
         "id": "field_quarterly_component_data.field_quarterly_received",
         "label": "Number of requests received",
         "filter": true,
-        "overall_field": false,
+        "overall_field": "field_quarterly_received_oa",
         "display": true
       }
     ],
     "includes": [
       "field_quarterly_component_data",
       "field_quarterly_component_data.field_agency_component"
+    ]
+  },
+  {
+    "id": "group_agency_data",
+    "label": "Ten oldest FOIA requests",
+    "pretty": "Ten oldest FOIA requests",
+    "fields": [
+      {
+        "id": "field_quarterly_pending",
+        "label": "Ten Oldest Pending Requests",
+        "filter": true,
+        "overall_field": false,
+        "display": true
+      },
+      {
+        "id": "field_quarterly_closed",
+        "label": "Ten Oldest Requests Closed",
+        "filter": true,
+        "overall_field": false,
+        "display": true
+      }
     ]
   }
 ]

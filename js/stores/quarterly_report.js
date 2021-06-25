@@ -111,11 +111,13 @@ class QuarterlyReportStore extends Store {
       const overall = FoiaQuarterlyReportUtilities.getOverallDataForType(report, dataType);
 
       selectedComponents.forEach((component) => {
-        const fiscal_year = report.get('field_foia_quarterly_report_yr');
+        const fiscal_year = report.get('field_quarterly_year');
+        const quarter = report.get('field_quarterly_quarter');
         const defaults = {
           field_agency_component: component,
           field_agency: agency_name,
-          field_foia_quarterly_report_yr: fiscal_year,
+          field_quarterly_year: fiscal_year,
+          field_quarterly_quarter: quarter,
         };
         const allRows = component.toLowerCase() === 'agency overall' ? overall : flattened;
 
@@ -231,7 +233,14 @@ class QuarterlyReportStore extends Store {
             title: 'Fiscal Year',
             titleFormatter: headingAsButton,
             formatter: cellWithAria,
-            field: 'field_foia_quarterly_report_yr',
+            field: 'field_quarterly_year',
+            align: 'center',
+          },
+          {
+            title: 'Quarter',
+            titleFormatter: headingAsButton,
+            formatter: cellWithAria,
+            field: 'field_quarterly_quarter',
             align: 'center',
           },
         ];

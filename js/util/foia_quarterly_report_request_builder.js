@@ -11,7 +11,7 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
     this.request = this.params();
     // Set default include fields.
     this.includeFields({
-      quarterly_foia_report_data: ['title', 'field_quarterly_year', 'field_agency', 'field_agency_components'],
+      quarterly_foia_report_data: ['title', 'field_quarterly_year', 'field_quarterly_quarter', 'field_agency', 'field_agency_components'],
       field_agency: ['name', 'abbreviation'],
       field_agency_components: ['title'],
     });
