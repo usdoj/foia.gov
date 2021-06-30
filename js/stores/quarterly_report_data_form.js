@@ -340,12 +340,15 @@ class QuarterlyReportDataFormStore extends Store {
         const agencyComponentIsValid = this.validateSelectAgencyComponent();
         const dataTypesIsValid = this.validateSelectDataTypes();
         const fiscalYearsIsValid = this.validateSelectedFiscalYears();
+        const quartersIsValid = this.validateSelectedQuarters();
 
         Object.assign(this.state, {
           agencyComponentDisplayError: !agencyComponentIsValid,
           dataTypeDisplayError: !dataTypesIsValid,
           fiscalYearsDisplayError: !fiscalYearsIsValid,
+          quartersDisplayError: !quartersIsValid,
           fiscalYearsIsValid,
+          quartersIsValid,
           dataTypesIsValid,
           agencyComponentIsValid,
         });
