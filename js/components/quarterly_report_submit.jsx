@@ -21,6 +21,7 @@ class QuarterlyReportDataSubmit extends Component {
       this.props.agencyComponentIsValid,
       this.props.dataTypesIsValid,
       this.props.fiscalYearsIsValid,
+      this.props.quartersIsValid,
     ];
 
     return validationFieldCheck.every(Boolean);
@@ -58,6 +59,7 @@ class QuarterlyReportDataSubmit extends Component {
 QuarterlyReportDataSubmit.propTypes = {
   selectedDataTypes: PropTypes.array,
   fiscalYearsIsValid: PropTypes.bool.isRequired,
+  quartersIsValid: PropTypes.bool.isRequired,
   dataTypesIsValid: PropTypes.bool.isRequired,
   agencyComponentIsValid: PropTypes.bool.isRequired,
   history: PropTypes.object.isRequired,

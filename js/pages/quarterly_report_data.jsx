@@ -82,11 +82,15 @@ class QuarterlyReportDataPage extends Component {
       agencyFinderDataProgress,
       allAgenciesSelected,
       fiscalYears,
+      quarters,
       selectedFiscalYears,
+      selectedQuarters,
       fiscalYearsIsValid,
+      quartersIsValid,
       dataTypesIsValid,
       agencyComponentIsValid,
       fiscalYearsDisplayError,
+      quartersDisplayError,
       dataTypeDisplayError,
       agencyComponentDisplayError,
       submissionAction,
@@ -99,9 +103,6 @@ class QuarterlyReportDataPage extends Component {
       reportDataComplete,
       reportDataHasRows,
       viewMode,
-      quarters,
-      selectedQuarters,
-      quartersDisplayError,
     };
   }
 
@@ -150,11 +151,15 @@ class QuarterlyReportDataPage extends Component {
       dataTypeOptions,
       selectedDataTypes,
       fiscalYears,
+      quarters,
       selectedFiscalYears,
+      selectedQuarters,
       fiscalYearsIsValid,
+      quartersIsValid,
       dataTypesIsValid,
       agencyComponentIsValid,
       fiscalYearsDisplayError,
+      quartersDisplayError,
       dataTypeDisplayError,
       agencyComponentDisplayError,
       reportTables,
@@ -162,9 +167,6 @@ class QuarterlyReportDataPage extends Component {
       reportDataComplete,
       reportDataHasRows,
       viewMode,
-      quarters,
-      selectedQuarters,
-      quartersDisplayError,
     } = this.state;
     const [...reportTableEntries] = reportTables.values();
     const reportToolbar = reportDataComplete && reportDataHasRows ?
@@ -220,6 +222,7 @@ class QuarterlyReportDataPage extends Component {
                 agencyComponentIsValid={agencyComponentIsValid}
                 dataTypesIsValid={dataTypesIsValid}
                 fiscalYearsIsValid={fiscalYearsIsValid}
+                quartersIsValid={quartersIsValid}
                 onClick={this.triggerCSV.bind(this)}
                 history={this.props.history}
               />

@@ -262,7 +262,11 @@ export const reportActions = {
    */
   buildRequestForSelectedType(type, builder) {
     const selectedAgencies = quarterlyReportDataFormStore.buildSelectedAgencies();
-    const { allAgenciesSelected, selectedFiscalYears, selectedQuarters } = quarterlyReportDataFormStore.getState();
+    const {
+      allAgenciesSelected,
+      selectedFiscalYears,
+      selectedQuarters,
+    } = quarterlyReportDataFormStore.getState();
     const agencies = selectedAgencies.filter(selection => selection.type === 'agency');
     const components = selectedAgencies.filter(selection => selection.type === 'agency_component');
     const dataTypeFilters = FoiaQuarterlyReportFilterUtilities.getFiltersForType(type[0].id);
