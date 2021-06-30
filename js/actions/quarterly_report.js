@@ -33,6 +33,7 @@ export const types = {
   QUARTERLY_REPORT_DATA_TYPE_FILTER_ADD_GROUP: 'QUARTERLY_REPORT_DATA_TYPE_FILTER_ADD_GROUP',
   QUARTERLY_REPORT_DATA_TYPE_FIELD_REMOVE: 'QUARTERLY_REPORT_DATA_TYPE_FIELD_REMOVE',
   SELECTED_FISCAL_YEARS_UPDATE: 'SELECTED_FISCAL_YEARS_UPDATE',
+  SELECTED_QUARTERS_UPDATE: 'SELECTED_QUARTERS_UPDATE',
   SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE: 'SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE',
   SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE_ALL: 'SELECTED_AGENCY_COMPONENT_TEMPORARY_UPDATE_ALL',
   SELECTED_AGENCY_COMPONENTS_DISCARD_TEMPORARY: 'SELECTED_AGENCY_COMPONENTS_DISCARD_TEMPORARY',
@@ -194,6 +195,13 @@ export const reportActions = {
     return Promise.resolve();
   },
 
+  updateSelectedQuarters(data) {
+    dispatcher.dispatch({
+      type: types.SELECTED_QUARTERS_UPDATE,
+      data,
+    });
+  },
+
   validateForm() {
     dispatcher.dispatch({
       type: types.VALIDATE_FORM,
@@ -254,7 +262,7 @@ export const reportActions = {
    */
   buildRequestForSelectedType(type, builder) {
     const selectedAgencies = quarterlyReportDataFormStore.buildSelectedAgencies();
-    const { allAgenciesSelected, selectedFiscalYears } = quarterlyReportDataFormStore.getState();
+    const { allAgenciesSelected, selectedFiscalYears, selectedQuarters } = quarterlyReportDataFormStore.getState();
     const agencies = selectedAgencies.filter(selection => selection.type === 'agency');
     const components = selectedAgencies.filter(selection => selection.type === 'agency_component');
     const dataTypeFilters = FoiaQuarterlyReportFilterUtilities.getFiltersForType(type[0].id);
@@ -282,7 +290,8 @@ export const reportActions = {
 
     return updatedBuilder
       .addDataTypeFiltersGroup(dataTypeFilters, type[0].id)
-      .addFiscalYearsGroup(selectedFiscalYears);
+      .addFiscalYearsGroup(selectedFiscalYears)
+      .addQuartersGroup(selectedQuarters);
   },
 
   receiveQuarterlyReportData(quarterlyReports) {

@@ -64,6 +64,21 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
     return this;
   }
 
+  addQuartersGroup(quarters) {
+    const quartersList = Array.isArray(quarters) || List.isList(quarters)
+      ? List(quarters)
+      : List([]);
+
+    if (quartersList.size <= 0) {
+      return this;
+    }
+
+    this.addFiltersFromList(quartersList, 'quarter', 'field_quarterly_quarter');
+    this.request.or(...quartersList.map(quarter => `quarter-${quarter}`).toArray());
+
+    return this;
+  }
+
   addDataTypeFiltersGroup(filters = [], dataTypeId = '') {
     if (filters.length <= 0) {
       return this;

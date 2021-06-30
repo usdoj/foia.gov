@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import { withRouter } from 'react-router-dom';
+import { List } from 'immutable';
 import PropTypes from 'prop-types';
 
 import QuarterlyReportFormSectionOne from '../components/quarterly_report_form_section_one';
 import QuarterlyReportFormSectionTwo from '../components/quarterly_report_form_section_two';
 import QuarterlyReportFormSectionThree from '../components/quarterly_report_form_section_three';
+import QuarterlyReportFormSectionFour from '../components/quarterly_report_form_section_four';
 import QuarterlyReportDataSubmit from '../components/quarterly_report_submit';
 import QuarterlyReportResultsTable from '../components/quarterly_report_results_table';
 
@@ -33,6 +35,8 @@ class QuarterlyReportDataPage extends Component {
       fiscalYears,
     } = quarterlyReportFiscalYearStore.getState();
 
+    const quarters = List(['1', '2', '3', '4']);
+
     const {
       agencies,
       agencyComponents,
@@ -45,10 +49,13 @@ class QuarterlyReportDataPage extends Component {
       selectedAgencies,
       selectedDataTypes,
       selectedFiscalYears,
+      selectedQuarters,
       fiscalYearsIsValid,
+      quartersIsValid,
       dataTypesIsValid,
       agencyComponentIsValid,
       fiscalYearsDisplayError,
+      quartersDisplayError,
       dataTypeDisplayError,
       agencyComponentDisplayError,
       submissionAction,
@@ -92,6 +99,9 @@ class QuarterlyReportDataPage extends Component {
       reportDataComplete,
       reportDataHasRows,
       viewMode,
+      quarters,
+      selectedQuarters,
+      quartersDisplayError,
     };
   }
 
@@ -152,6 +162,9 @@ class QuarterlyReportDataPage extends Component {
       reportDataComplete,
       reportDataHasRows,
       viewMode,
+      quarters,
+      selectedQuarters,
+      quartersDisplayError,
     } = this.state;
     const [...reportTableEntries] = reportTables.values();
     const reportToolbar = reportDataComplete && reportDataHasRows ?
@@ -196,6 +209,11 @@ class QuarterlyReportDataPage extends Component {
                 fiscalYears={fiscalYears}
                 selectedFiscalYears={selectedFiscalYears}
                 fiscalYearsDisplayError={fiscalYearsDisplayError}
+              />
+              <QuarterlyReportFormSectionFour
+                quarters={quarters}
+                selectedQuarters={selectedQuarters}
+                quartersDisplayError={quartersDisplayError}
               />
               <QuarterlyReportDataSubmit
                 selectedDataTypes={selectedDataTypes}

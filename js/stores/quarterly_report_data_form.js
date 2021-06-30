@@ -18,10 +18,13 @@ class QuarterlyReportDataFormStore extends Store {
       allAgenciesSelected: false,
       selectedDataTypes: [{ index: 0, id: '' }],
       selectedFiscalYears: [],
+      selectedQuarters: [],
       fiscalYearsIsValid: false,
+      quartersIsValid: false,
       dataTypesIsValid: false,
       agencyComponentIsValid: false,
       fiscalYearsDisplayError: false,
+      quartersDisplayError: false,
       dataTypeDisplayError: false,
       agencyComponentDisplayError: false,
       submissionAction: false,
@@ -110,6 +113,11 @@ class QuarterlyReportDataFormStore extends Store {
   validateSelectedFiscalYears() {
     const fiscalYears = [...this.state.selectedFiscalYears];
     return fiscalYears.length > 0;
+  }
+
+  validateSelectedQuarters() {
+    const quarters = [...this.state.selectedQuarters];
+    return quarters.length > 0;
   }
 
   __onDispatch(payload) {
@@ -307,6 +315,22 @@ class QuarterlyReportDataFormStore extends Store {
         const fiscalYearsIsValid = this.validateSelectedFiscalYears();
         this.state.fiscalYearsIsValid = fiscalYearsIsValid;
         this.state.fiscalYearsDisplayError = !fiscalYearsIsValid;
+
+        this.__emitChange();
+        break;
+      }
+
+      case types.SELECTED_QUARTERS_UPDATE: {
+        const { data } = payload;
+        if (!Array.isArray(data)) {
+          break;
+        }
+
+        Object.assign(this.state, { selectedQuarters: data });
+
+        const quartersIsValid = this.validateSelectedQuarters();
+        this.state.quartersIsValid = quartersIsValid;
+        this.state.quartersDisplayError = !quartersIsValid;
 
         this.__emitChange();
         break;
