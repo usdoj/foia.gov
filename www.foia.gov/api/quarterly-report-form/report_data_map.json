@@ -5,10 +5,10 @@
     "pretty": "Received, processed, and backlogged FOIA requests",
     "fields": [
       {
-        "id": "field_quarterly_component_data.field_quarterly_backlogged",
-        "label": "Number of requests backlogged",
+        "id": "field_quarterly_component_data.field_quarterly_received",
+        "label": "Number of requests received",
         "filter": true,
-        "overall_field": "field_quarterly_backlogged_oa",
+        "overall_field": "field_quarterly_received_oa",
         "display": true
       },
       {
@@ -19,10 +19,10 @@
         "display": true
       },
       {
-        "id": "field_quarterly_component_data.field_quarterly_received",
-        "label": "Number of requests received",
+        "id": "field_quarterly_component_data.field_quarterly_backlogged",
+        "label": "Number of requests backlogged",
         "filter": true,
-        "overall_field": "field_quarterly_received_oa",
+        "overall_field": "field_quarterly_backlogged_oa",
         "display": true
       }
     ],
