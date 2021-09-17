@@ -36,9 +36,7 @@ clean:
 	rm -rf _site
 
 serve:
-	npm run watch &
-	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build --watch $(JEKYLL_OPTS) &
-	node js/dev-server.js
+	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll serve $(JEKYLL_OPTS)
 
 serve.detached: clean build
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll serve --detach --skip-initial-build $(JEKYLL_OPTS)
