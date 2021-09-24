@@ -190,7 +190,7 @@ class QuarterlyReportDataPage extends Component {
       <div className="quarterly-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
         {submissionAction === false || submissionAction === 'download' || viewMode === 'form' ?
           <div>
-            <h1>Create a Report</h1>
+            <h1>Create a Quarterly Report</h1>
             <form >
               <QuarterlyReportFormSectionOne
                 agencies={agencies}
