@@ -175,7 +175,7 @@ class AnnualReportDataPage extends Component {
       <div className="annual-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
         {submissionAction === false || submissionAction === 'download' || viewMode === 'form' ?
           <div>
-            <h1>Create a Report</h1>
+            <h1>Create an Annual Report</h1>
             <form >
               <FoiaReportFormSectionOne
                 agencies={agencies}

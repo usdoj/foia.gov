@@ -10,7 +10,7 @@ Feature: Annual report
     And I wait 15 seconds
 
   Scenario: The input sections are visible
-    Then I should see "Create a Report"
+    Then I should see "Create an Annual Report"
     And I should see "1. Select Agencies or Components"
     And I should see "2. Select Data Type(s)"
     And I should see "3. Select Fiscal Years"
@@ -22,7 +22,7 @@ Feature: Annual report
     And I choose "Requests" from the data type dropdown
     And I check the box for the year "2020"
     And I click on "the View Report button"
-    And I wait 10 seconds
+    And I wait 12 seconds
     Then I should see "Report Results"
     And I should see "1785"
 
