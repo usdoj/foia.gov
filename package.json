@@ -33,7 +33,7 @@
     "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "d8-jsonapi-querystring": "0.0.8",
-    "excellentexport": "^3.6.0",
+    "excellentexport": "^3.7.1",
     "exitscript": "1.1.7",
     "flux": "^4.0.1",
     "glossary-panel": "^1.0.0",
