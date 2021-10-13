@@ -30,7 +30,7 @@
   "homepage": "https://github.com/18F/beta.foia.gov#readme",
   "dependencies": {
     "assert": "^2.0.0",
-    "axios": "^0.22.0",
+    "axios": "^0.23.0",
     "babel-polyfill": "^6.26.0",
     "d8-jsonapi-querystring": "0.0.8",
     "excellentexport": "^3.7.1",
