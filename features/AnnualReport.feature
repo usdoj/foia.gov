@@ -22,7 +22,7 @@ Feature: Annual report
     And I choose "Requests" from the data type dropdown
     And I check the box for the year "2020"
     And I click on "the View Report button"
-    And I wait 10 seconds
+    And I wait 12 seconds
     Then I should see "Report Results"
     And I should see "1785"
 
