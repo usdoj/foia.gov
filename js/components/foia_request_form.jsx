@@ -101,7 +101,9 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
   // Map these to react-jsonschema-form Ids
   const steps = (requestForm.sections || []).map(section => `root_${section.id}`);
 
-  const errors = (submissionResult.errors instanceof Map) ? submissionResult.errors.toJS() : submissionResult.errors;
+  const errors = (submissionResult.errors instanceof Map) ?
+    submissionResult.errors.toJS() :
+    submissionResult.errors;
   const formContext = { steps, errors };
   const { jsonSchema, uiSchema } = requestForm;
   return (
