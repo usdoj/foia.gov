@@ -54,7 +54,7 @@ class FoiaReportFormSectionOne extends Component {
                   eventType={types.SELECTED_AGENCIES_TOGGLE_SELECT_ALL}
                   text={!this.props.allAgenciesSelected ? 'Select All Agencies' : 'Unselect All Agencies'}
                   icon={false}
-                  classes={['touch-safe__wrapper']}
+                  classes={['touch-safe__wrapper', 'select-all-agencies']}
                 />
               </div>
             </div>
