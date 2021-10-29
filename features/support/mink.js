@@ -18,6 +18,7 @@ const driver = new mink.Mink({
     "the first agency suggestion": ".tt-suggestion:first-child",
     "the View Report button": "button[value='view']",
     "the data type dropdown": "select[name='data_type']",
+    "the Select All Agencies button": ".select-all-agencies",
   }
 });
 
