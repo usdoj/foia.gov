@@ -57,6 +57,8 @@ navigation:
           title: Annual data
         - href: /quarterly.html
           title: Quarterly data
+    - href: /chief-foia-officers-council.html
+      title: Chief FOIA Officers Council
 
   secondary:
     - href: https://admin.foia.gov/user/login
