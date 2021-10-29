@@ -37,3 +37,15 @@ Feature: Annual report
     And I choose "Requests" from the data type dropdown
     And I click on "the View Report button"
     Then I should see "At least one Fiscal Year is required."
+
+  Scenario: The "Select all agencies" feature show over-all numbers for all agencies
+    And I click "Select all agencies"
+    And I choose "Requests" from the data type dropdown
+    And I check the box for the year "2020"
+    And I click on "the View Report button"
+    And I wait 30 seconds
+    Then I should see "Report Results"
+    And I should see "Department of Justice"
+    And I should see "86729"
+    And I should see "Department of Transportation"
+    And I should see "14632"
