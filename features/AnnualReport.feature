@@ -39,7 +39,7 @@ Feature: Annual report
     Then I should see "At least one Fiscal Year is required."
 
   Scenario: The "Select all agencies" feature show over-all numbers for all agencies
-    And I click "Select all agencies"
+    And I click on "Select all agencies"
     And I choose "Requests" from the data type dropdown
     And I check the box for the year "2020"
     And I click on "the View Report button"
