@@ -3,7 +3,7 @@ import assert from 'assert';
 import dispatcher from '../util/dispatcher';
 import jsonapi from '../util/json_api';
 import localapi from '../util/local_api';
-import requestapi from '../util/request_api';
+import requestapi, {RequestApi} from '../util/request_api';
 
 // Action types to identify an action
 export const types = {
@@ -18,6 +18,7 @@ export const types = {
   REQUEST_FORM_SUBMIT_PROGRESS: 'REQUEST_FORM_SUBMIT_PROGRESS',
   REQUEST_FORM_SECTIONS_FETCH: 'REQUEST_FORM_SECTIONS_FETCH',
   REQUEST_FORM_SECTIONS_RECEIVE: 'REQUEST_FORM_SECTIONS_RECEIVE',
+  REQUEST_CFO_COUNCIL_DATA: 'REQUEST_CFO_COUNCIL_DATA',
 };
 
 // Action creators, to dispatch actions
@@ -176,5 +177,17 @@ export const requestActions = {
     });
 
     return Promise.resolve();
+  },
+
+  fetchCFOCouncilData() {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFO_COUNCIL_DATA,
+    });
+
+    const testURL = 'http://foia-api.ddev.site/api';
+    const request = new RequestApi(testURL);
+    request.get('/cfo/council?destination=/admin/content/cfo-council');
+
+    return request;
   },
 };
