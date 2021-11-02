@@ -53,6 +53,8 @@ navigation:
     - href: /data.html
       title: Agency FOIA data
       children:
+        - href: /reports.html
+          title: Overview
         - href: /data.html
           title: Annual data
         - href: /quarterly.html
