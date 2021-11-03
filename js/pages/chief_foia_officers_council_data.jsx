@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import chiefFOIAOfficersCouncilStore from '../stores/chief_foia_officers_council';
 
-import { requestActions } from 'actions';
+import { requestActions } from '../actions';
 
 class ChiefFoiaOfficersCouncilDataPage extends Component {
   static getStores() {
@@ -12,7 +12,6 @@ class ChiefFoiaOfficersCouncilDataPage extends Component {
   }
 
   static calculateState() {
-    // const viewMode = props.location.state.view;
 
     const {
       title,

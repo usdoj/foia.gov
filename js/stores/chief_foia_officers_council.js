@@ -5,7 +5,7 @@
  */
 
 import { Store } from 'flux/utils';
-import { types } from '../actions';
+import {requestActions, types} from '../actions';
 import dispatcher from '../util/dispatcher';
 
 class ChiefFOIAOfficersCouncilStore extends Store {
@@ -25,13 +25,22 @@ class ChiefFOIAOfficersCouncilStore extends Store {
 
   __onDispatch(payload) {
     switch (payload.type) {
-      case types.REQUEST_CFO_COUNCIL_DATA :
-        console.log(payload);
-        this.state.title = 'Hello World';
+      case types.REQUEST_CFO_COUNCIL_RECEIVE : {
+        const data = payload.councilData;
+        if (Object.values(data).length) {
+          Object.assign(this.state, {
+            title: data.title,
+            body: data.body,
+            committees: data.committees,
+            meetings: data.meetings,
+          });
+        }
         this.__emitChange();
         break;
-      default:
+      }
+      default: {
         break;
+      }
     }
   }
 }
