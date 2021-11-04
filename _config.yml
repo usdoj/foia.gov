@@ -57,8 +57,16 @@ navigation:
           title: Annual data
         - href: /quarterly.html
           title: Quarterly data
-    - href: /chief-foia-officers-council.html
+    - href: /chief-foia-officers-council
       title: Chief FOIA Officers Council
+      children:
+        - href: /chief-foia-officers-council
+          title: Chief FOIA Officers Council
+        - href: /chief-foia-officers-council/committee/
+          title: Technology Committee
+        - href: /chief-foia-officers-council/committee/
+          title: Committee On Cross-Agency Collaboration and Innovation
+        - href: /chief-foia-officers-council.html
 
   secondary:
     - href: https://admin.foia.gov/user/login

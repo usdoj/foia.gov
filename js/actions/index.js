@@ -20,6 +20,10 @@ export const types = {
   REQUEST_FORM_SECTIONS_RECEIVE: 'REQUEST_FORM_SECTIONS_RECEIVE',
   REQUEST_CFO_COUNCIL_FETCH: 'REQUEST_CFO_COUNCIL_FETCH',
   REQUEST_CFO_COUNCIL_RECEIVE: 'REQUEST_CFO_COUNCIL_RECEIVE',
+  REQUEST_CFOC_MEETING_FETCH: 'REQUEST_CFOC_MEETING_FETCH',
+  REQUEST_CFOC_MEETING_RECEIVE: 'REQUEST_CFOC_MEETING_RECEIVE',
+  REQUEST_CFOC_COMMITTEE_FETCH: 'REQUEST_CFOC_COMMITTEE_FETCH',
+  REQUEST_CFOC_COMMITTEE_RECEIVE: 'REQUEST_CFOC_COMMITTEE_RECEIVE',
 };
 
 // Action creators, to dispatch actions
@@ -28,7 +32,7 @@ export const requestActions = {
     dispatcher.dispatch({
       type: types.REQUEST_CFO_COUNCIL_FETCH,
     });
-    const request = requestapi.get('/cfo/council?destination=/admin/content/cfo-council');
+    const request = requestapi.get('/cfo/council');
     return request.then(requestActions.receiveCFOCouncilData);
   },
 
@@ -40,6 +44,22 @@ export const requestActions = {
 
     return Promise.resolve(councilData);
   },
+
+  fetchCFOCouncilMeetingData() {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_MEETING_FETCH,
+    });
+  },
+
+  receiveCFOCouncilMeetingData(meetingData) {},
+
+  fetchCFOCouncilCommitteeData() {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_COMMITTEE_FETCH,
+    });
+  },
+
+  receiveCFOCouncilCommitteeData(councilData) {},
 
   fetchAgencyFinderData(includeReferenceFields = null) {
     dispatcher.dispatch({

@@ -5,7 +5,7 @@
  */
 
 import { Store } from 'flux/utils';
-import {requestActions, types} from '../actions';
+import { types } from '../actions';
 import dispatcher from '../util/dispatcher';
 
 class ChiefFOIAOfficersCouncilStore extends Store {
