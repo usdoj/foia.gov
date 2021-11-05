@@ -22,7 +22,22 @@ const CFOCPageComponent = props => (
           })
         )
     }
-    <div className="cfoc-page-meetings" />
+    {
+      !props.meetings
+        ? null
+        : (
+          props.meetings.map((meeting, index) => {
+            const key = meeting.meeting_title.length * index;
+            return (
+              <CFOCPageCommitteeComponent
+                title={meeting.meeting_title}
+                body={meeting.meeting_body}
+                key={key}
+              />
+            );
+          })
+        )
+    }
   </div>
 );
 
