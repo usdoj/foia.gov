@@ -11,6 +11,7 @@ import dispatcher from '../util/dispatcher';
 class ChiefFOIAOfficersCouncilStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
+
     this.state = {
       title: '',
       body: '',
@@ -27,6 +28,7 @@ class ChiefFOIAOfficersCouncilStore extends Store {
     switch (payload.type) {
       case types.REQUEST_CFO_COUNCIL_RECEIVE : {
         const data = payload.councilData;
+
         if (Object.values(data).length) {
           Object.assign(this.state, {
             title: data.title,
