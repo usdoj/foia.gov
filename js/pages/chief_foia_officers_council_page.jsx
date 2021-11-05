@@ -38,8 +38,6 @@ class ChiefFoiaOfficersCouncilPage extends Component {
       committees,
       meetings,
     } = this.state;
-
-    console.log(this.state);
     return (
       <div className="chief-foia-officers-council-page">
         <CFOCPageComponent title={title} body={body} committees={committees} meetings={meetings} />

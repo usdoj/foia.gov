@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CFOCPageCommitteeComponent = props => (
-  <div className="cfoc-page-committees">
+  <div className="cfoc-page-committee">
     {
       !props.title
         ? null
