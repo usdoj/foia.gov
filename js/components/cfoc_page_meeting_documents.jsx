@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 const CFOCPageMeetingDocumentsComponent = props => (
-  <Link to={props.link} className="cfoc-page-meeting-document">{props.title}</Link>
+  <a href={props.link} className="cfoc-page-meeting-document">{props.title}</a>
 );
 
 

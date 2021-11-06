@@ -20,29 +20,6 @@ const CFOCPageMeetingComponent = props => (
         )
     }
     {
-      props.documents.length
-        ? (
-          <div className="cfoc-page-meeting-document-links">
-            {
-              props.documents.map((document, index) => {
-                const key = document.item_title.length * index;
-                return (
-                  <p key={key}>
-                    <CFOCPageMeetingDocumentsComponent
-                      title={document.item_title}
-                      link={document.item_link}
-                      key={key}
-                    />
-                  </p>
-                );
-              })
-            }
-          </div>
-        )
-        : null
-    }
-
-    {
       props.materials.length
         ? (
           <div className="cfoc-page-meeting-materials">
@@ -63,6 +40,28 @@ const CFOCPageMeetingComponent = props => (
                 })
               }
             </ul>
+          </div>
+        )
+        : null
+    }
+    {
+      props.documents.length
+        ? (
+          <div className="cfoc-page-meeting-document-links">
+            {
+              props.documents.map((document, index) => {
+                const key = document.item_title.length * index;
+                return (
+                  <p key={key}>
+                    <CFOCPageMeetingDocumentsComponent
+                      title={document.item_title}
+                      link={document.item_link}
+                      key={key}
+                    />
+                  </p>
+                );
+              })
+            }
           </div>
         )
         : null
