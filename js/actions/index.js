@@ -62,7 +62,7 @@ export const requestActions = {
     return request;
   },
 
-  receiveCFOCouncilMeetingData(meetingData, status = 200) {
+  receiveCFOCouncilMeetingData(meetingData, status = null) {
     dispatcher.dispatch({
       type: types.REQUEST_CFOC_MEETING_RECEIVE,
       meetingData,
@@ -81,16 +81,20 @@ export const requestActions = {
     if (committeeID) {
       const api = `/cfo/committee/${committeeID}`;
       request = requestapi.get(api);
-      request.then(requestActions.receiveCFOCouncilCommitteeData);
+      request.then(requestActions.receiveCFOCouncilCommitteeData)
+        .catch((error) => {
+          requestActions.receiveCFOCouncilCommitteeData({}, error.response.status);
+        });
     }
 
     return request;
   },
 
-  receiveCFOCouncilCommitteeData(committeeData) {
+  receiveCFOCouncilCommitteeData(committeeData, status = null) {
     dispatcher.dispatch({
       type: types.REQUEST_CFOC_COMMITTEE_RECEIVE,
       committeeData,
+      status,
     });
 
     return Promise.resolve(committeeData);

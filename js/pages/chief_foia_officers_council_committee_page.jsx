@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import chiefFOIAOfficersCouncilStore from '../stores/chief_foia_officers_council';
-
 import { requestActions } from '../actions';
+import CFOCPageCommitteeDetailComponent from '../components/cfoc_page_committee_detail';
+import NotFoundPage from './not_found';
 
 class ChiefFoiaOfficersCouncilCommitteePage extends Component {
   static getStores() {
@@ -14,30 +16,55 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
     const {
       title,
       body,
-      committees,
-      meetings,
+      status,
     } = chiefFOIAOfficersCouncilStore.getState();
 
     return {
       title,
       body,
-      committees,
-      meetings,
+      status,
     };
   }
 
   componentDidMount() {
-    requestActions.fetchCFOCouncilData();
+    const { id } = this.props.match.params;
+    requestActions.fetchCFOCouncilCommitteeData(id);
   }
 
   render() {
+    const {
+      title,
+      body,
+      status,
+    } = this.state;
+    const notFound = status === 404;
+
     return (
-      <div>
-        <h2>Chief Committee Page.</h2>
-      </div>
+      !notFound
+        ? (
+          <div className="chief-foia-officers-council-committee-detail">
+            <CFOCPageCommitteeDetailComponent title={title} body={body} />
+          </div>
+        )
+        : (
+          <NotFoundPage />
+        )
     );
   }
 }
+
+ChiefFoiaOfficersCouncilCommitteePage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.object,
+  }),
+};
+
+ChiefFoiaOfficersCouncilCommitteePage.defaultProps = {
+  match: {
+    params: {},
+  },
+};
+
 
 export default withRouter(Container.create(ChiefFoiaOfficersCouncilCommitteePage, {
   withProps: true,

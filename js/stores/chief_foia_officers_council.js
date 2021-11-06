@@ -62,6 +62,23 @@ class ChiefFOIAOfficersCouncilStore extends Store {
         this.__emitChange();
         break;
       }
+      case types.REQUEST_CFOC_COMMITTEE_RECEIVE: {
+        const data = payload.committeeData;
+
+        if (Object.values(data).length) {
+          Object.assign(this.state, {
+            title: data.committee_title,
+            body: data.committee_body,
+            status: payload.status,
+          });
+        } else {
+          Object.assign(this.state, {
+            status: payload.status,
+          });
+        }
+        this.__emitChange();
+        break;
+      }
       default: {
         break;
       }
