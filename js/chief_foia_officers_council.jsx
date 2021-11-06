@@ -11,8 +11,8 @@ render(
   <Router basename="/chief-foia-officers-council">
     <Switch>
       <Route path="/" exact component={ChiefFoiaOfficersCouncilPage} />
-      <Route path="/meeting" component={ChiefFoiaOfficersCouncilMeetingPage} />
-      <Route path="/committee" component={ChiefFoiaOfficersCouncilCommitteePage} />
+      <Route path="/meeting/:id" exact component={ChiefFoiaOfficersCouncilMeetingPage} />
+      <Route path="/committee/:id" component={ChiefFoiaOfficersCouncilCommitteePage} />
       <Route component={NotFoundPage} />
     </Switch>
   </Router>,

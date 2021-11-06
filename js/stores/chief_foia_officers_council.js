@@ -15,8 +15,11 @@ class ChiefFOIAOfficersCouncilStore extends Store {
     this.state = {
       title: '',
       body: '',
+      meeting_heading: '',
       committees: [],
       meetings: [],
+      meeting_agenda: [],
+      status: null,
     };
   }
 
@@ -35,6 +38,25 @@ class ChiefFOIAOfficersCouncilStore extends Store {
             body: data.body,
             committees: data.committees,
             meetings: data.meetings,
+          });
+        }
+        this.__emitChange();
+        break;
+      }
+      case types.REQUEST_CFOC_MEETING_RECEIVE: {
+        const data = payload.meetingData;
+
+        if (Object.values(data).length) {
+          Object.assign(this.state, {
+            title: data.meeting_title,
+            body: data.meeting_body,
+            meeting_heading: data.meeting_heading,
+            meeting_agenda: data.meeting_agenda,
+            status: payload.status,
+          });
+        } else {
+          Object.assign(this.state, {
+            status: payload.status,
           });
         }
         this.__emitChange();

@@ -46,7 +46,7 @@ const CFOCPageMeetingComponent = props => (
       props.materials.length
         ? (
           <div className="cfoc-page-meeting-materials">
-            <h3>Meeting Materials</h3>
+            <p>Meeting Materials</p>
             <ul>
               {
                 props.materials.map((material, index) => {
