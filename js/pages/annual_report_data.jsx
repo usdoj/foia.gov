@@ -177,12 +177,12 @@ class AnnualReportDataPage extends Component {
           <div>
             <h1>Create an Annual Report</h1>
             <p>
-              Annual Reports shine a light on agencies&apos; administration of the FOIA by providing
-              members of the public with detailed FOIA statistics. Users can filter data by agency,
-              data type, and fiscal year. Users can also compare data across years and agencies. Annual
-              Report data is displayed as a chart on FOIA.gov and can also be downloaded as a CSV file.
-              For full data sets from agency Annual Reports, please visit <a href="/developer/">the
-              Developer page</a>.
+              Annual Reports shine a light on agencies&apos; administration of the FOIA by
+              providing members of the public with detailed FOIA statistics. Users can filter
+              data by agency, data type, and fiscal year. Users can also compare data across years
+              and agencies. Annual Report data is displayed as a chart on FOIA.gov and can also
+              be downloaded as a CSV file. For full data sets from agency Annual Reports, please
+              visit <a href="/developer/">the Developer page</a>.
             </p>
             <form >
               <FoiaReportFormSectionOne
