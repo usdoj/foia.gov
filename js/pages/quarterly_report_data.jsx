@@ -191,6 +191,7 @@ class QuarterlyReportDataPage extends Component {
         {submissionAction === false || submissionAction === 'download' || viewMode === 'form' ?
           <div>
             <h1>Create a Quarterly Report</h1>
+            <p>FOIA.gov provides a more real-time picture of agency FOIA administration through its display of Quarterly Report data. Each quarter, agencies must provide the number of requests received, processed, and in the agency's backlog. Additionally, agencies must report the status of the agency's ten oldest pending requests each quarter. Users can filter data by agency, data type, and quarter. Quarterly Report data is displayed as a chart on FOIA.gov and can also be downloaded as a CSV file.</p>
             <form >
               <QuarterlyReportFormSectionOne
                 agencies={agencies}
