@@ -23,7 +23,7 @@ const CFOCPageMeetingComponent = props => (
       props.materials.length
         ? (
           <div className="cfoc-page-meeting-materials">
-            <p>Meeting Materials</p>
+            <p><i>Meeting Materials</i></p>
             <ul>
               {
                 props.materials.map((material, index) => {
@@ -48,20 +48,23 @@ const CFOCPageMeetingComponent = props => (
       props.documents.length
         ? (
           <div className="cfoc-page-meeting-document-links">
-            {
-              props.documents.map((document, index) => {
-                const key = document.item_title.length * index;
-                return (
-                  <p key={key}>
-                    <CFOCPageMeetingDocumentsComponent
-                      title={document.item_title}
-                      link={document.item_link}
-                      key={key}
-                    />
-                  </p>
-                );
-              })
-            }
+            <p><i>Working Documents</i></p>
+            <ul>
+              {
+                props.documents.map((document, index) => {
+                  const key = document.item_title.length * index;
+                  return (
+                    <li key={key}>
+                      <CFOCPageMeetingDocumentsComponent
+                        title={document.item_title}
+                        link={document.item_link}
+                        key={key}
+                      />
+                    </li>
+                  );
+                })
+              }
+            </ul>
           </div>
         )
         : null
