@@ -37,7 +37,7 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
       body,
       status,
     } = this.state;
-    const notFound = status === 404;
+    const notFound = status === 404 || status === 500;
 
     return (
       !notFound

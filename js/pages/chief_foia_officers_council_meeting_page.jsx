@@ -43,7 +43,7 @@ class ChiefFoiaOfficersCouncilMeetingPage extends Component {
       meeting_agenda,
       status,
     } = this.state;
-    const notFound = status === 404;
+    const notFound = status === 404 || status === 500;
 
     return (
       !notFound
