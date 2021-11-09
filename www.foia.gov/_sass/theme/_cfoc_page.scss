@@ -1,0 +1,63 @@
+.cfoc-page {
+  padding-bottom:4.6875rem;
+
+  ul {
+    padding-left: 1.55rem;
+  }
+
+  p {
+    max-width: 90%;
+  }
+
+  .cfoc-page-content-items {
+    margin-top: 2.75rem;
+
+    > * {
+
+      &:first-child {
+        border-top: 1px solid #92C8F6;
+        padding-top: .75rem;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #92C8F6;
+        padding-bottom: .75rem;
+      }
+
+      h2 {
+        margin: 1.5rem 0 .5rem;
+      }
+    }
+  }
+
+  .cfoc-meeting-detail-agenda {
+
+    > * {
+
+      &:not(:first-child) {
+        padding-top: .75rem;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #92C8F6;
+        padding-bottom: .75rem;
+      }
+    }
+  }
+
+  .cfo-meeting-detail-agenda-item {
+    display: flex;
+    flex-flow: row nowrap;
+
+    > * {
+      &:first-child {
+        font-weight: bold;
+        width: 20%;
+      }
+
+      &:last-child {
+        width: 80%;
+      }
+    }
+  }
+}

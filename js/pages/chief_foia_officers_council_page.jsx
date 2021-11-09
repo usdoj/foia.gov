@@ -39,7 +39,7 @@ class ChiefFoiaOfficersCouncilPage extends Component {
       meetings,
     } = this.state;
     return (
-      <div className="chief-foia-officers-council-page">
+      <div className={'chief-foia-officers-council-page cfoc-page'}>
         <CFOCPageComponent title={title} body={body} committees={committees} meetings={meetings} />
       </div>
     );

@@ -42,7 +42,7 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
     return (
       !notFound
         ? (
-          <div className="chief-foia-officers-council-committee-detail">
+          <div className={'chief-foia-officers-council-committee-detail cfoc-page'}>
             <CFOCPageCommitteeDetailComponent title={title} body={body} />
           </div>
         )

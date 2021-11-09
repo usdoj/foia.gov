@@ -48,7 +48,7 @@ class ChiefFoiaOfficersCouncilMeetingPage extends Component {
     return (
       !notFound
         ? (
-          <div className="chief-foia-officers-council-meeting-detail">
+          <div className={`chief-foia-officers-council-meeting-detail cfoc-page`}>
             <CFOCPageMeetingDetailComponent
               title={title}
               body={body}

@@ -7,41 +7,43 @@ const CFOCPageComponent = props => (
   <div className="cfoc-page-content">
     <h1>{props.title}</h1>
     <article dangerouslySetInnerHTML={{ __html: props.body }} />
-    {
-      !props.committees
-        ? null
-        : (
-          props.committees.map((committee, index) => {
-            const key = committee.committee_title.length * index;
-            return (
-              <CFOCPageCommitteeComponent
-                title={committee.committee_title}
-                body={committee.committee_body}
-                key={key}
-              />
-            );
-          })
-        )
-    }
-    {
-      !props.meetings
-        ? null
-        : (
-          props.meetings.map((meeting, index) => {
-            const key = meeting.meeting_title.length * index;
+    <div className="cfoc-page-content-items">
+      {
+        !props.committees
+          ? null
+          : (
+            props.committees.map((committee, index) => {
+              const key = committee.committee_title.length * index;
+              return (
+                <CFOCPageCommitteeComponent
+                  title={committee.committee_title}
+                  body={committee.committee_body}
+                  key={key}
+                />
+              );
+            })
+          )
+      }
+      {
+        !props.meetings
+          ? null
+          : (
+            props.meetings.map((meeting, index) => {
+              const key = meeting.meeting_title.length * index;
 
-            return (
-              <CFOCPageMeetingComponent
-                title={meeting.meeting_title}
-                body={meeting.meeting_body}
-                documents={meeting.meeting_documents}
-                materials={meeting.meeting_materials}
-                key={key}
-              />
-            );
-          })
-        )
-    }
+              return (
+                <CFOCPageMeetingComponent
+                  title={meeting.meeting_title}
+                  body={meeting.meeting_body}
+                  documents={meeting.meeting_documents}
+                  materials={meeting.meeting_materials}
+                  key={key}
+                />
+              );
+            })
+          )
+      }
+    </div>
   </div>
 );
 
