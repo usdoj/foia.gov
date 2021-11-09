@@ -18,7 +18,7 @@ const CFOCPageMeetingDetailComponent = props => (
                     <div className="cfo-meeting-detail-agenda-item" key={key}>
                       <div>{item.agenda_time}</div>
                       <div>
-                        <span>{item.agenda_title}</span>
+                        <span className="title">{item.agenda_title}</span>
                         <span>{item.agenda_description}</span>
                       </div>
                     </div>

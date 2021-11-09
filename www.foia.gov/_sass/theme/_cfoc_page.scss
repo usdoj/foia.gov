@@ -1,5 +1,13 @@
-.cfoc-page {
+#chief-foia-officers-council-react-app {
   padding-bottom:4.6875rem;
+
+  .usa-grid {
+    padding-top:3.875rem;
+    padding-left: 0;
+  }
+}
+
+.cfoc-page {
 
   ul {
     padding-left: 1.55rem;
@@ -7,6 +15,18 @@
 
   p {
     max-width: 90%;
+  }
+
+  .cfoc-page-meeting-materials,
+  .cfoc-page-meeting-document-links {
+
+    > p {
+      margin-bottom: .75rem;
+    }
+
+    > ul {
+      margin-top: 0;
+    }
   }
 
   .cfoc-page-content-items {
@@ -31,6 +51,7 @@
   }
 
   .cfoc-meeting-detail-agenda {
+    margin-top: 3.125rem;
 
     > * {
 
@@ -50,6 +71,7 @@
     flex-flow: row nowrap;
 
     > * {
+
       &:first-child {
         font-weight: bold;
         width: 20%;
@@ -57,6 +79,15 @@
 
       &:last-child {
         width: 80%;
+      }
+
+      span {
+        display: block;
+
+        &.title {
+          font-weight: bold;
+          margin-bottom: .75rem;
+        }
       }
     }
   }
