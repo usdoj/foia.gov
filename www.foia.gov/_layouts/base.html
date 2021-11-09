@@ -8,19 +8,13 @@
 {% endif %}
 <html lang="{{language}}">
 {% include head.html %}
-<body {% if page.grid contains 'grid-legacy' %}class="body--grid-legacy"{% endif %}{% if page.bundle contains '_report_data' %} tabindex="0"{% endif %}>
+<body {% if page.bundle contains '_report_data' %} tabindex="0"{% endif %}>
 {% include header.html %}
 {{ content }}
 {% include footer.html %}
 {% include glossary.html %}
-{% include legacy/popup.html %}
-{% comment %}
-`page.init` is used for the legacy pages.
-`page.bundle` is used for the non-legacy pages.
-{% endcomment %}
 <script src="{{ site.baseurl }}/assets/js/uswds.bundle.js"></script>
 {% include exitscript.html %}
-{% if page.init %}<script type="text/javascript" src="{{ page.init | prepend: "/" | prepend: site.baseurl }}"></script>{% endif %}
 {% if page.bundle %}<script type="text/javascript" src="{{ page.bundle | append: ".bundle.js" | prepend: "/assets/js/" | prepend: site.baseurl }}" ></script>{% endif %}
 {% include siteimprove.html %}
 </body>
