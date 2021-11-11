@@ -16,12 +16,14 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
     const {
       title,
       body,
+      hasData,
       status,
     } = chiefFOIAOfficersCouncilStore.getState();
 
     return {
       title,
       body,
+      hasData,
       status,
     };
   }
@@ -35,9 +37,10 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
     const {
       title,
       body,
+      hasData,
       status,
     } = this.state;
-    const notFound = status === 404 || status === 500;
+    const notFound = status === 404 || status === 500 || hasData === false;
 
     return (
       !notFound

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CFOCPageCommitteeDetailComponent = props => (
-  <div className="cfoc-committee-detail" >
+const CFOCPageContentComponent = props => (
+  <div className="cfoc-page-content" >
     {
       !props.title
         ? null
@@ -20,14 +20,14 @@ const CFOCPageCommitteeDetailComponent = props => (
   </div>
 );
 
-CFOCPageCommitteeDetailComponent.propTypes = {
+CFOCPageContentComponent.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
 };
 
-CFOCPageCommitteeDetailComponent.defaultProps = {
+CFOCPageContentComponent.defaultProps = {
   title: '',
   body: '',
 };
 
-export default CFOCPageCommitteeDetailComponent;
+export default CFOCPageContentComponent;

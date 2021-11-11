@@ -19,6 +19,7 @@ class ChiefFOIAOfficersCouncilStore extends Store {
       committees: [],
       meetings: [],
       meeting_agenda: [],
+      hasData: null,
       status: null,
     };
   }
@@ -38,6 +39,11 @@ class ChiefFOIAOfficersCouncilStore extends Store {
             body: data.body,
             committees: data.committees,
             meetings: data.meetings,
+            hasData: true,
+          });
+        } else {
+          Object.assign(this.state, {
+            hasData: false,
           });
         }
         this.__emitChange();
@@ -52,10 +58,12 @@ class ChiefFOIAOfficersCouncilStore extends Store {
             body: data.meeting_body,
             meeting_heading: data.meeting_heading,
             meeting_agenda: data.meeting_agenda,
+            hasData: true,
             status: payload.status,
           });
         } else {
           Object.assign(this.state, {
+            hasData: false,
             status: payload.status,
           });
         }
@@ -69,10 +77,31 @@ class ChiefFOIAOfficersCouncilStore extends Store {
           Object.assign(this.state, {
             title: data.committee_title,
             body: data.committee_body,
+            hasData: true,
             status: payload.status,
           });
         } else {
           Object.assign(this.state, {
+            hasData: false,
+            status: payload.status,
+          });
+        }
+        this.__emitChange();
+        break;
+      }
+      case types.REQUEST_CFOC_PAGE_RECEIVE: {
+        const data = payload.pageData;
+
+        if (Object.values(data).length) {
+          Object.assign(this.state, {
+            title: data.page_title,
+            body: data.page_body,
+            hasData: true,
+            status: payload.status,
+          });
+        } else {
+          Object.assign(this.state, {
+            hasData: false,
             status: payload.status,
           });
         }

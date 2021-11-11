@@ -18,6 +18,7 @@ class ChiefFoiaOfficersCouncilMeetingPage extends Component {
       body,
       meeting_heading,
       meeting_agenda,
+      hasData,
       status,
     } = chiefFOIAOfficersCouncilStore.getState();
 
@@ -26,6 +27,7 @@ class ChiefFoiaOfficersCouncilMeetingPage extends Component {
       body,
       meeting_heading,
       meeting_agenda,
+      hasData,
       status,
     };
   }
@@ -41,9 +43,10 @@ class ChiefFoiaOfficersCouncilMeetingPage extends Component {
       body,
       meeting_heading,
       meeting_agenda,
+      hasData,
       status,
     } = this.state;
-    const notFound = status === 404 || status === 500;
+    const notFound = status === 404 || status === 500 || hasData === false;
 
     return (
       !notFound

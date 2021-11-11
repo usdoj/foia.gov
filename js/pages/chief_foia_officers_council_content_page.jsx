@@ -4,9 +4,10 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import chiefFOIAOfficersCouncilStore from '../stores/chief_foia_officers_council';
 import { requestActions } from '../actions';
+import CFOCPageContentComponent from '../components/cfoc_page_content';
 import NotFoundPage from './not_found';
 
-class ChiefFoiaOfficersCouncilBasePage extends Component {
+class ChiefFoiaOfficersCouncilContentPage extends Component {
   static getStores() {
     return [chiefFOIAOfficersCouncilStore];
   }
@@ -15,34 +16,37 @@ class ChiefFoiaOfficersCouncilBasePage extends Component {
     const {
       title,
       body,
+      hasData,
       status,
     } = chiefFOIAOfficersCouncilStore.getState();
 
     return {
       title,
       body,
+      hasData,
       status,
     };
   }
 
   componentDidMount() {
     const { id } = this.props.match.params;
-    requestActions.fetchCFOCouncilCommitteeData(id);
+    requestActions.fetchCFOCouncilPageData(id);
   }
 
   render() {
     const {
       title,
       body,
+      hasData,
       status,
     } = this.state;
-    const notFound = status === 404 || status === 500;
+    const notFound = status === 404 || status === 500 || hasData === false;
 
     return (
       !notFound
         ? (
-          <div className={'chief-foia-officers-council-page-detail cfoc-page'}>
-            <p>Hello World.</p>
+          <div className={'chief-foia-officers-council-content-detail cfoc-page'}>
+            <CFOCPageContentComponent title={title} body={body} />
           </div>
         )
         : (
@@ -52,20 +56,20 @@ class ChiefFoiaOfficersCouncilBasePage extends Component {
   }
 }
 
-ChiefFoiaOfficersCouncilBasePage.propTypes = {
+ChiefFoiaOfficersCouncilContentPage.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.object,
   }),
 };
 
-ChiefFoiaOfficersCouncilBasePage.defaultProps = {
+ChiefFoiaOfficersCouncilContentPage.defaultProps = {
   match: {
     params: {},
   },
 };
 
 
-export default withRouter(Container.create(ChiefFoiaOfficersCouncilBasePage, {
+export default withRouter(Container.create(ChiefFoiaOfficersCouncilContentPage, {
   withProps: true,
 }));
 

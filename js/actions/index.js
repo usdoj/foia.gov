@@ -24,6 +24,8 @@ export const types = {
   REQUEST_CFOC_MEETING_RECEIVE: 'REQUEST_CFOC_MEETING_RECEIVE',
   REQUEST_CFOC_COMMITTEE_FETCH: 'REQUEST_CFOC_COMMITTEE_FETCH',
   REQUEST_CFOC_COMMITTEE_RECEIVE: 'REQUEST_CFOC_COMMITTEE_RECEIVE',
+  REQUEST_CFOC_PAGE_FETCH: 'REQUEST_CFOC_PAGE_FETCH',
+  REQUEST_CFOC_PAGE_RECEIVE: 'REQUEST_CFOC_PAGE_RECEIVE',
 };
 
 // Action creators, to dispatch actions
@@ -62,7 +64,7 @@ export const requestActions = {
     return request;
   },
 
-  receiveCFOCouncilMeetingData(meetingData, status = null) {
+  receiveCFOCouncilMeetingData(meetingData, status = 200) {
     dispatcher.dispatch({
       type: types.REQUEST_CFOC_MEETING_RECEIVE,
       meetingData,
@@ -90,7 +92,7 @@ export const requestActions = {
     return request;
   },
 
-  receiveCFOCouncilCommitteeData(committeeData, status = null) {
+  receiveCFOCouncilCommitteeData(committeeData, status = 200) {
     dispatcher.dispatch({
       type: types.REQUEST_CFOC_COMMITTEE_RECEIVE,
       committeeData,
@@ -98,6 +100,34 @@ export const requestActions = {
     });
 
     return Promise.resolve(committeeData);
+  },
+
+  fetchCFOCouncilPageData(pageID) {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_PAGE_FETCH,
+    });
+
+    let request = null;
+    if (pageID) {
+      const api = `/cfo/page/${pageID}`;
+      request = requestapi.get(api);
+      request.then(requestActions.receiveCFOCouncilPageData)
+        .catch((error) => {
+          requestActions.receiveCFOCouncilPageData({}, error.response.status);
+        });
+    }
+
+    return request;
+  },
+
+  receiveCFOCouncilPageData(pageData, status = 200) {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_PAGE_RECEIVE,
+      pageData,
+      status,
+    });
+
+    return Promise.resolve(pageData);
   },
 
   fetchAgencyFinderData(includeReferenceFields = null) {
