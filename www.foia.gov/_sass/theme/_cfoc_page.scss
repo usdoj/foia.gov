@@ -68,13 +68,23 @@
 
   .cfo-meeting-detail-agenda-item {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
+
+    @media screen and (min-width: $small-screen) {
+      flex-flow: row nowrap;
+    }
+
 
     > * {
 
       &:first-child {
         font-weight: bold;
+        margin-bottom: 1rem;
         width: 20%;
+
+        @media screen and (min-width: $small-screen) {
+          margin-bottom: 0;
+        }
       }
 
       &:last-child {
