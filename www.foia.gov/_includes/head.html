@@ -28,9 +28,6 @@
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/{{ css }}.css" />
 {% endfor %}
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/foia-style.css?{{site.time | date: '%s%N'}}" />
-{% if page.use-legacy-scripts %}
-{% include legacy/head.html %}
-{% endif %}
 {% for script in page.scripts %}
 <script type="text/javascript" src="{{ script }}?{{site.time | date: '%s%N'}}"></script>
 {% endfor %}
