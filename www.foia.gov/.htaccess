@@ -27,9 +27,6 @@ RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [NE,L,R=302]
 {% endif %}
 
-# Proxy any /foia requests to the reporting back end
-RewriteRule "^foia/(.*)$" "foia-proxy.php?u=foia/$1" [QSA,L]
-
 # Legacy page redirects
 RewriteRule ^developer.html$ /developer/ [R=301,L]
 RewriteRule ^xmlgen/(.*)$ https://archive.foia.gov/xmlgen/ [R=301,L]
