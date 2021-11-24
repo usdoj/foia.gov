@@ -18,10 +18,118 @@ export const types = {
   REQUEST_FORM_SUBMIT_PROGRESS: 'REQUEST_FORM_SUBMIT_PROGRESS',
   REQUEST_FORM_SECTIONS_FETCH: 'REQUEST_FORM_SECTIONS_FETCH',
   REQUEST_FORM_SECTIONS_RECEIVE: 'REQUEST_FORM_SECTIONS_RECEIVE',
+  REQUEST_CFO_COUNCIL_FETCH: 'REQUEST_CFO_COUNCIL_FETCH',
+  REQUEST_CFO_COUNCIL_RECEIVE: 'REQUEST_CFO_COUNCIL_RECEIVE',
+  REQUEST_CFOC_MEETING_FETCH: 'REQUEST_CFOC_MEETING_FETCH',
+  REQUEST_CFOC_MEETING_RECEIVE: 'REQUEST_CFOC_MEETING_RECEIVE',
+  REQUEST_CFOC_COMMITTEE_FETCH: 'REQUEST_CFOC_COMMITTEE_FETCH',
+  REQUEST_CFOC_COMMITTEE_RECEIVE: 'REQUEST_CFOC_COMMITTEE_RECEIVE',
+  REQUEST_CFOC_PAGE_FETCH: 'REQUEST_CFOC_PAGE_FETCH',
+  REQUEST_CFOC_PAGE_RECEIVE: 'REQUEST_CFOC_PAGE_RECEIVE',
 };
 
 // Action creators, to dispatch actions
 export const requestActions = {
+  fetchCFOCouncilData() {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFO_COUNCIL_FETCH,
+    });
+    const request = requestapi.get('/cfo/council');
+    return request.then(requestActions.receiveCFOCouncilData);
+  },
+
+  receiveCFOCouncilData(councilData) {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFO_COUNCIL_RECEIVE,
+      councilData,
+    });
+
+    return Promise.resolve(councilData);
+  },
+
+  fetchCFOCouncilMeetingData(meetingID) {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_MEETING_FETCH,
+    });
+    let request = null;
+    if (meetingID) {
+      const api = `/cfo/meeting/${meetingID}`;
+      request = requestapi.get(api);
+      request.then(requestActions.receiveCFOCouncilMeetingData)
+        .catch((error) => {
+          requestActions.receiveCFOCouncilMeetingData({}, error.response.status);
+        });
+    }
+
+    return request;
+  },
+
+  receiveCFOCouncilMeetingData(meetingData, status = 200) {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_MEETING_RECEIVE,
+      meetingData,
+      status,
+    });
+
+    return Promise.resolve(meetingData);
+  },
+
+  fetchCFOCouncilCommitteeData(committeeID) {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_COMMITTEE_FETCH,
+    });
+
+    let request = null;
+    if (committeeID) {
+      const api = `/cfo/committee/${committeeID}`;
+      request = requestapi.get(api);
+      request.then(requestActions.receiveCFOCouncilCommitteeData)
+        .catch((error) => {
+          requestActions.receiveCFOCouncilCommitteeData({}, error.response.status);
+        });
+    }
+
+    return request;
+  },
+
+  receiveCFOCouncilCommitteeData(committeeData, status = 200) {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_COMMITTEE_RECEIVE,
+      committeeData,
+      status,
+    });
+
+    return Promise.resolve(committeeData);
+  },
+
+  fetchCFOCouncilPageData(pageID) {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_PAGE_FETCH,
+    });
+
+    let request = null;
+    if (pageID) {
+      const api = `/cfo/page/${pageID}`;
+      request = requestapi.get(api);
+      request.then(requestActions.receiveCFOCouncilPageData)
+        .catch((error) => {
+          requestActions.receiveCFOCouncilPageData({}, error.response.status);
+        });
+    }
+
+    return request;
+  },
+
+  receiveCFOCouncilPageData(pageData, status = 200) {
+    dispatcher.dispatch({
+      type: types.REQUEST_CFOC_PAGE_RECEIVE,
+      pageData,
+      status,
+    });
+
+    return Promise.resolve(pageData);
+  },
+
   fetchAgencyFinderData(includeReferenceFields = null) {
     dispatcher.dispatch({
       type: types.AGENCY_FINDER_DATA_FETCH,
