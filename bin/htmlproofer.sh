@@ -6,6 +6,8 @@ set -o nounset
 
 IGNORE_HREFS=$(ruby -e 'puts %w{
   \/chief-foia-officers-council
+  \/chief-foia-officers-council\/committee\/technology-committee
+  \/chief-foia-officers-council\/committee\/committee-on-cross-agency-collaboration-and-innovation
 }.map{|h| "/#{h}/"}.join(",")')
 
 # Run htmlproofer with an ignore list of files
