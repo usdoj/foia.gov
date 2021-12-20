@@ -3,49 +3,52 @@ import PropTypes from 'prop-types';
 import CFOCPageCommitteeComponent from './cfoc_page_committee';
 import CFOCPageMeetingComponent from './cfoc_page_meeting';
 
-const CFOCPageComponent = props => (
-  <div className="cfoc-page-content">
-    <h1>{props.title}</h1>
-    <article dangerouslySetInnerHTML={{ __html: props.body }} />
-    <div className="cfoc-page-content-items">
-      {
-        !props.committees
-          ? null
-          : (
-            props.committees.map((committee, index) => {
-              const key = committee.committee_title.length * index;
-              return (
-                <CFOCPageCommitteeComponent
-                  title={committee.committee_title}
-                  body={committee.committee_body}
-                  key={key}
-                />
-              );
-            })
-          )
-      }
-      {
-        !props.meetings
-          ? null
-          : (
-            props.meetings.map((meeting, index) => {
-              const key = meeting.meeting_title.length * index;
+const CFOCPageComponent = (props) => {
+  const { title, body, committees, meetings } = props;
+  return (
+    <div className="cfoc-page-content">
+      <h1>{title}</h1>
+      <article dangerouslySetInnerHTML={{ __html: body }} />
+      <div className="cfoc-page-content-items">
+        {
+          !committees
+            ? null
+            : (
+              committees.map((committee, index) => {
+                const key = committee.committee_title.length * index;
+                return (
+                  <CFOCPageCommitteeComponent
+                    title={committee.committee_title}
+                    body={committee.committee_body}
+                    key={key}
+                  />
+                );
+              })
+            )
+        }
+        {
+          !meetings
+            ? null
+            : (
+              meetings.map((meeting, index) => {
+                const key = meeting.meeting_title.length * index;
 
-              return (
-                <CFOCPageMeetingComponent
-                  title={meeting.meeting_title}
-                  body={meeting.meeting_body}
-                  documents={meeting.meeting_documents}
-                  materials={meeting.meeting_materials}
-                  key={key}
-                />
-              );
-            })
-          )
-      }
+                return (
+                  <CFOCPageMeetingComponent
+                    title={meeting.meeting_title}
+                    body={meeting.meeting_body}
+                    documents={meeting.meeting_documents}
+                    materials={meeting.meeting_materials}
+                    key={key}
+                  />
+                );
+              })
+            )
+        }
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 CFOCPageComponent.propTypes = {
   title: PropTypes.string,

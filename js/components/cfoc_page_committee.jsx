@@ -1,24 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CFOCPageCommitteeComponent = props => (
-  <div className="cfoc-page-committee">
-    {
-      !props.title
-        ? null
-        : (
-          <h2>{props.title}</h2>
-        )
-    }
-    {
-      !props.body
-        ? null
-        : (
-          <article dangerouslySetInnerHTML={{ __html: props.body }} />
-        )
-    }
-  </div>
-);
+const CFOCPageCommitteeComponent = (props) => {
+  const { title, body } = props;
+  return (
+    <div className="cfoc-page-committee">
+      {
+        !title
+          ? null
+          : (
+            <h2>{title}</h2>
+          )
+      }
+      {
+        !body
+          ? null
+          : (
+            <article dangerouslySetInnerHTML={{ __html: body }} />
+          )
+      }
+    </div>
+  );
+};
 
 CFOCPageCommitteeComponent.propTypes = {
   title: PropTypes.string,
