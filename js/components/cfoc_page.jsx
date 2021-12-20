@@ -5,6 +5,7 @@ import CFOCPageMeetingComponent from './cfoc_page_meeting';
 
 const CFOCPageComponent = (props) => {
   const { title, body, committees, meetings } = props;
+
   return (
     <div className="cfoc-page-content">
       <h1>{title}</h1>
@@ -20,6 +21,8 @@ const CFOCPageComponent = (props) => {
                   <CFOCPageCommitteeComponent
                     title={committee.committee_title}
                     body={committee.committee_body}
+                    attachments={committee.committee_attachments}
+                    workingGroups={committee.working_groups}
                     key={key}
                   />
                 );
@@ -57,6 +60,8 @@ CFOCPageComponent.propTypes = {
   committee: PropTypes.shape({
     committee_title: PropTypes.string,
     committee_body: PropTypes.string,
+    committee_attachments: PropTypes.any,
+    working_groups: PropTypes.any,
   }),
   meetings: PropTypes.array,
   meeting: PropTypes.shape({

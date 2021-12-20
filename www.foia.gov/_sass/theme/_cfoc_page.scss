@@ -10,7 +10,10 @@
 .cfoc-page {
 
   ul {
-    padding-left: 1.55rem;
+
+    &:not(.usa-accordion) {
+      padding-left: 1.55rem;
+    }
   }
 
   p {
