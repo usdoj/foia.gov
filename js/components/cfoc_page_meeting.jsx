@@ -9,7 +9,7 @@ const CFOCPageMeetingComponent = props => (
       !props.title
         ? null
         : (
-          <h2>{props.title}</h2>
+          <h3>{props.title}</h3>
         )
     }
     {

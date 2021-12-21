@@ -12,7 +12,7 @@ const CFOCPageCommitteeComponent = (props) => {
         !title
           ? null
           : (
-            <h2>{title}</h2>
+            <h2><strong>{title}</strong></h2>
           )
       }
       {
@@ -23,22 +23,26 @@ const CFOCPageCommitteeComponent = (props) => {
           )
       }
       { attachments.length ? <CFOCPageAttachmentsComponent attachments={attachments} /> : null }
-      { workingGroups.length ? <h3>Working Groups</h3> : null }
       {
         !workingGroups.length
           ? null
           : (
-            workingGroups.map((workingGroup, index) => {
-              const key = index + 1;
-              return (
-                <CFOCPageCommitteeWorkGroupComponent
-                  title={workingGroup.item_title}
-                  body={workingGroup.item_body}
-                  attachments={workingGroup.item_attachments}
-                  key={key}
-                />
-              );
-            })
+            <div className="cfo-page-working-group-container">
+              <h3>Working Groups</h3>
+              {
+                workingGroups.map((workingGroup, index) => {
+                  const key = index + 1;
+                  return (
+                    <CFOCPageCommitteeWorkGroupComponent
+                      title={workingGroup.item_title}
+                      body={workingGroup.item_body}
+                      attachments={workingGroup.item_attachments}
+                      key={key}
+                    />
+                  );
+                })
+              }
+            </div>
           )
       }
     </div>

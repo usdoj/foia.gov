@@ -4,7 +4,7 @@ import CFOCPageCommitteeComponent from './cfoc_page_committee';
 import CFOCPageMeetingComponent from './cfoc_page_meeting';
 
 const CFOCPageComponent = (props) => {
-  const { title, body, committees, meetings } = props;
+  const { title, body, committees, meetingsUpcoming, meetingsPast } = props;
 
   return (
     <div className="cfoc-page-content">
@@ -15,37 +15,76 @@ const CFOCPageComponent = (props) => {
           !committees
             ? null
             : (
-              committees.map((committee, index) => {
-                const key = committee.committee_title.length * index;
-                return (
-                  <CFOCPageCommitteeComponent
-                    title={committee.committee_title}
-                    body={committee.committee_body}
-                    attachments={committee.committee_attachments}
-                    workingGroups={committee.working_groups}
-                    key={key}
-                  />
-                );
-              })
+              <div className="cfoc-page-committees">
+                {
+                  committees.map((committee, index) => {
+                    const key = committee.committee_title.length * index;
+                    return (
+                      <CFOCPageCommitteeComponent
+                        title={committee.committee_title}
+                        body={committee.committee_body}
+                        attachments={committee.committee_attachments}
+                        workingGroups={committee.working_groups}
+                        key={key}
+                      />
+                    );
+                  })
+                }
+              </div>
             )
         }
         {
-          !meetings
+          !meetingsUpcoming.length
             ? null
             : (
-              meetings.map((meeting, index) => {
-                const key = meeting.meeting_title.length * index;
+              <div className="cfoc-page-upcoming-meetings">
+                <h2><strong>UPCOMING MEETINGS:</strong></h2>
+                {
+                  meetingsUpcoming.map((meeting, index) => {
+                    const key = meeting.meeting_title.length * index;
 
-                return (
-                  <CFOCPageMeetingComponent
-                    title={meeting.meeting_title}
-                    body={meeting.meeting_body}
-                    documents={meeting.meeting_documents}
-                    materials={meeting.meeting_materials}
-                    key={key}
-                  />
-                );
-              })
+                    return (
+                      <CFOCPageMeetingComponent
+                        title={meeting.meeting_title}
+                        body={meeting.meeting_body}
+                        documents={meeting.meeting_documents}
+                        materials={meeting.meeting_materials}
+                        key={key}
+                      />
+                    );
+                  })
+                }
+              </div>
+            )
+        }
+        {
+          !meetingsPast.length
+            ? null
+            : (
+              <ul className="cfoc-page-meetings-past usa-accordion">
+                <li>
+                  <button className="usa-accordion-button" aria-controls="cfo-past-meetings" aria-expanded={!meetingsUpcoming.length ? 'true' : 'false'}>
+                    PAST MEETINGS
+                  </button>
+                  <div id="cfo-past-meetings" className="usa-accordion-content" aria-hidden={meetingsUpcoming.length ? 'true' : 'false'}>
+                    {
+                      meetingsPast.map((meeting, index) => {
+                        const key = meeting.meeting_title.length * index;
+
+                        return (
+                          <CFOCPageMeetingComponent
+                            title={meeting.meeting_title}
+                            body={meeting.meeting_body}
+                            documents={meeting.meeting_documents}
+                            materials={meeting.meeting_materials}
+                            key={key}
+                          />
+                        );
+                      })
+                    }
+                  </div>
+                </li>
+              </ul>
             )
         }
       </div>
@@ -63,7 +102,8 @@ CFOCPageComponent.propTypes = {
     committee_attachments: PropTypes.any,
     working_groups: PropTypes.any,
   }),
-  meetings: PropTypes.array,
+  meetingsUpcoming: PropTypes.array,
+  meetingsPast: PropTypes.array,
   meeting: PropTypes.shape({
     meeting_title: PropTypes.string,
     meeting_body: PropTypes.string,
@@ -80,7 +120,8 @@ CFOCPageComponent.defaultProps = {
     committee_title: '',
     committee_body: '',
   },
-  meetings: [],
+  meetingsUpcoming: [],
+  meetingsPast: [],
   meeting: {
     meeting_title: '',
     meeting_body: '',

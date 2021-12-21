@@ -20,6 +20,45 @@
     max-width: 90%;
   }
 
+  .cfoc-attachments {
+    a {
+      &:after {
+        display: none !important;
+      }
+    }
+  }
+
+  .cfoc-page-committees {
+    margin-top: 4.6875rem;
+
+    > * {
+      border-bottom: 1px solid #92C8F6;
+      padding-bottom: 23px;
+    }
+
+  }
+
+  .cfoc-page-upcoming-meetings {
+    margin-top: 4.6875rem;
+
+    & + .cfoc-page-meetings-past {
+      margin-top: 0 !important;
+    }
+  }
+
+  .cfoc-page-meetings-past {
+    margin-top: 4.6875rem;
+
+    .usa-accordion-content {
+
+      > * {
+        &:not(:last-child) {
+          border-bottom: 1px solid #92C8F6;
+        }
+      }
+    }
+  }
+
   .cfoc-page-meeting-materials,
   .cfoc-page-meeting-document-links {
 
@@ -37,14 +76,8 @@
 
     > * {
 
-      &:first-child {
-        border-top: 1px solid #92C8F6;
-        padding-top: .75rem;
-      }
-
       &:not(:last-child) {
-        border-bottom: 1px solid #92C8F6;
-        padding-bottom: .75rem;
+        padding-bottom: 1rem;
       }
 
       h2 {

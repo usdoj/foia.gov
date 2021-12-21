@@ -17,7 +17,8 @@ class ChiefFOIAOfficersCouncilStore extends Store {
       body: '',
       meeting_heading: '',
       committees: [],
-      meetings: [],
+      meetingsUpcoming: [],
+      meetingsPast: [],
       attachments: [],
       workingGroups: [],
       meeting_agenda: [],
@@ -34,13 +35,13 @@ class ChiefFOIAOfficersCouncilStore extends Store {
     switch (payload.type) {
       case types.REQUEST_CFO_COUNCIL_RECEIVE : {
         const data = payload.councilData;
-
         if (Object.values(data).length) {
           Object.assign(this.state, {
             title: data.title,
             body: data.body,
             committees: data.committees,
-            meetings: data.meetings,
+            meetingsUpcoming: data.meetings.upcoming,
+            meetingsPast: data.meetings.past,
             hasData: true,
           });
         } else {
