@@ -5,7 +5,6 @@ import CFOCPageAttachmentsComponent from './cfoc_page_attachments';
 
 const CFOCPageCommitteeDetailComponent = (props) => {
   const { title, body, attachments, workingGroups } = props;
-  console.log(attachments);
 
   return (
     <div className="cfoc-committee-detail" >
