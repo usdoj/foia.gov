@@ -18,6 +18,8 @@ class ChiefFOIAOfficersCouncilStore extends Store {
       meeting_heading: '',
       committees: [],
       meetings: [],
+      attachments: [],
+      workingGroups: [],
       meeting_agenda: [],
       hasData: null,
       status: null,
@@ -77,6 +79,8 @@ class ChiefFOIAOfficersCouncilStore extends Store {
           Object.assign(this.state, {
             title: data.committee_title,
             body: data.committee_body,
+            attachments: data.committee_attachments,
+            working_groups: data.working_groups,
             hasData: true,
             status: payload.status,
           });
