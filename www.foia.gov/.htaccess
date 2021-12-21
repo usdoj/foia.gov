@@ -19,6 +19,10 @@ Header always set Content-Security-Policy "frame-ancestors 'self' https://www.fo
 
 RewriteEngine on
 
+# Redirect for archive.foia.gov.
+RewriteCond %{HTTP_HOST} ^archive\.foia\.gov [NC]
+RewriteRule ^(.*) https://www.foia.gov [R=301,L]
+
 {% if jekyll.environment == 'production' %}
 # Redirect http -> https
 RewriteCond %{HTTPS} off
