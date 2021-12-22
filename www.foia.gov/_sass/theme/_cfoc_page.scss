@@ -63,6 +63,10 @@
   .cfoc-page-upcoming-meetings {
     margin-top: 4.6875rem;
 
+    & > .cfoc-page-meeting:not(:first-of-type) {
+      border-top: 1px solid #92C8F6;
+    }
+
     & + .cfoc-page-meetings-past {
       margin-top: 0 !important;
     }
