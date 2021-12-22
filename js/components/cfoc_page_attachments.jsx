@@ -9,7 +9,7 @@ const CFOCPageAttachmentsComponent = (props) => {
         attachments.map((attachment, index) => {
           const key = index + 1;
           return (
-            <a className="usa-button usa-button-primary-alt" href={attachment.attachment_file} rel="noreferrer" target="_blank" key={key}>
+            <a className="usa-button usa-button-primary-alt" href={attachment.attachment_file} rel="noopener noreferrer" target="_blank" key={key}>
               {attachment.attachment_title}
               <span />
             </a>
