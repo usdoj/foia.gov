@@ -101,6 +101,7 @@ class ChiefFOIAOfficersCouncilStore extends Store {
           Object.assign(this.state, {
             title: data.page_title,
             body: data.page_body,
+            attachments: data.page_attachments,
             hasData: true,
             status: payload.status,
           });
