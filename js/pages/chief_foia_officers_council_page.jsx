@@ -16,14 +16,16 @@ class ChiefFoiaOfficersCouncilPage extends Component {
       title,
       body,
       committees,
-      meetings,
+      meetingsUpcoming,
+      meetingsPast,
     } = chiefFOIAOfficersCouncilStore.getState();
 
     return {
       title,
       body,
       committees,
-      meetings,
+      meetingsUpcoming,
+      meetingsPast,
     };
   }
 
@@ -36,11 +38,18 @@ class ChiefFoiaOfficersCouncilPage extends Component {
       title,
       body,
       committees,
-      meetings,
+      meetingsUpcoming,
+      meetingsPast,
     } = this.state;
     return (
       <div className={'chief-foia-officers-council-page cfoc-page'}>
-        <CFOCPageComponent title={title} body={body} committees={committees} meetings={meetings} />
+        <CFOCPageComponent
+          title={title}
+          body={body}
+          committees={committees}
+          meetingsUpcoming={meetingsUpcoming}
+          meetingsPast={meetingsPast}
+        />
       </div>
     );
   }

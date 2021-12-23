@@ -16,6 +16,7 @@ class ChiefFoiaOfficersCouncilContentPage extends Component {
     const {
       title,
       body,
+      attachments,
       hasData,
       status,
     } = chiefFOIAOfficersCouncilStore.getState();
@@ -23,6 +24,7 @@ class ChiefFoiaOfficersCouncilContentPage extends Component {
     return {
       title,
       body,
+      attachments,
       hasData,
       status,
     };
@@ -37,6 +39,7 @@ class ChiefFoiaOfficersCouncilContentPage extends Component {
     const {
       title,
       body,
+      attachments,
       hasData,
       status,
     } = this.state;
@@ -46,7 +49,7 @@ class ChiefFoiaOfficersCouncilContentPage extends Component {
       !notFound
         ? (
           <div className={'chief-foia-officers-council-content-detail cfoc-page'}>
-            <CFOCPageContentComponent title={title} body={body} />
+            <CFOCPageContentComponent title={title} body={body} attachments={attachments} />
           </div>
         )
         : (

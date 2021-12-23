@@ -10,11 +10,79 @@
 .cfoc-page {
 
   ul {
-    padding-left: 1.55rem;
+
+    &:not(.usa-accordion) {
+      padding-left: 1.55rem;
+    }
   }
 
   p {
     max-width: 90%;
+  }
+
+  .cfoc-attachments {
+    a {
+      padding-right: 12px;
+
+      &:after {
+        display: none !important;
+      }
+
+      span {
+        display: inline-block;
+        position: relative;
+        width: 20px;
+        height: 13px;
+        margin-left: 10px;
+
+        &:after {
+          content: " ";
+          background-image: url('/img/save_alt.svg');
+          position: absolute;
+          width: 17px;
+          height: 17px;
+          background-size: 16px;
+          background-repeat: no-repeat;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .cfoc-page-committees {
+    margin-top: 4.6875rem;
+
+    > * {
+      border-bottom: 1px solid #92C8F6;
+      padding-bottom: 23px;
+    }
+
+  }
+
+  .cfoc-page-upcoming-meetings {
+    margin-top: 4.6875rem;
+
+    & > .cfoc-page-meeting:not(:first-of-type) {
+      border-top: 1px solid #92C8F6;
+    }
+
+    & + .cfoc-page-meetings-past {
+      margin-top: 0 !important;
+    }
+  }
+
+  .cfoc-page-meetings-past {
+    margin-top: 4.6875rem;
+
+    .usa-accordion-content {
+
+      > * {
+        &:not(:last-child) {
+          border-bottom: 1px solid #92C8F6;
+        }
+      }
+    }
   }
 
   .cfoc-page-meeting-materials,
@@ -34,14 +102,8 @@
 
     > * {
 
-      &:first-child {
-        border-top: 1px solid #92C8F6;
-        padding-top: .75rem;
-      }
-
       &:not(:last-child) {
-        border-bottom: 1px solid #92C8F6;
-        padding-bottom: .75rem;
+        padding-bottom: 1rem;
       }
 
       h2 {
