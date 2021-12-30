@@ -81,7 +81,7 @@
     "sinon": "11.x",
     "sinon-chai": "3.x",
     "style-loader": "3.x",
-    "webpack": "4.x",
+    "webpack": "5.x",
     "webpack-cli": "4.x",
     "webpack-node-externals": "3.x"
   }
