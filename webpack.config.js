@@ -15,6 +15,9 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
     }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
   ],
   entry: {
     landing: './js/landing.jsx',

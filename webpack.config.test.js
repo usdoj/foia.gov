@@ -36,6 +36,9 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
     }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
