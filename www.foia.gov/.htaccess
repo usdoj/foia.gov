@@ -40,3 +40,11 @@ RewriteRule ^xmlgen$ https://archive.foia.gov/xmlgen/ [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^request/([a-z0-9_-]+/)*$ request/index.html
+
+# CFO single page app
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^chief-foia-officers-council$ chief-foia-officers-council.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^chief-foia-officers-council/(.*)$ chief-foia-officers-council.html

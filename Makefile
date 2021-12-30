@@ -36,7 +36,7 @@ clean:
 	rm -rf _site
 
 serve:
-	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll serve $(JEKYLL_OPTS)
+	node js/dev-server.js
 
 serve.detached: clean build
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll serve --detach --skip-initial-build $(JEKYLL_OPTS)
