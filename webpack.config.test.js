@@ -3,16 +3,30 @@ const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
 
 module.exports = {
+  mode: 'production',
   target: 'node',
   externals: [nodeExternals()],
   module: {
-    loaders: [
+    rules: [
+      // Some contributed code needs to be transpiled first.
+      {
+        include: /(excellentexport.js)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            compact: false,
+          },
+        },
+      },
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['@babel/react', '@babel/env'],
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         },
       },
     ],
