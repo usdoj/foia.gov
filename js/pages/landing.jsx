@@ -54,7 +54,6 @@ class LandingPage extends Component {
     }
   }
 
-
   render() {
     const {
       agencies,

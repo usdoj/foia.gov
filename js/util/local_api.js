@@ -16,7 +16,7 @@ class LocalApi {
 
   get(...args) {
     return this._api.get(...args)
-      .then(response => response.data);
+      .then((response) => response.data);
   }
 
   glossary() {

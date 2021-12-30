@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 function UploadProgress({ progressLoaded, progressTotal }) {
   const percentage = Math.floor(progressLoaded / progressTotal * 100);
   // Use a fallback in case we're not receiving progress events. In that case
@@ -26,6 +25,5 @@ UploadProgress.defaultProps = {
   progressTotal: 0,
   progressLoaded: 0,
 };
-
 
 export default UploadProgress;

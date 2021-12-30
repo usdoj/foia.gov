@@ -56,7 +56,7 @@ class QuarterlyReportResultsTable extends Component {
       .tabulator
       .columnManager
       .columns
-      .findIndex(column => column.element === columnElement);
+      .findIndex((column) => column.element === columnElement);
     if (colIndex <= 0) {
       this.tabulator.columnManager.element.scrollLeft = 0;
       this.tabulator.rowManager.element.scrollLeft = 0;
@@ -100,7 +100,7 @@ class QuarterlyReportResultsTable extends Component {
       'aria-hidden': 'true',
     } : [];
     return (
-      <div{...attributes}>
+      <div {...attributes}>
         <h2>{this.props.tableHeader}</h2>
         <div
           id={this.props.tableId}

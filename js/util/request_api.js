@@ -11,12 +11,12 @@ class RequestApi {
 
   get(...args) {
     return this._api.get(...args)
-      .then(response => response.data);
+      .then((response) => response.data);
   }
 
   post(...args) {
     return this._api.post(...args)
-      .then(response => response.data);
+      .then((response) => response.data);
   }
 }
 

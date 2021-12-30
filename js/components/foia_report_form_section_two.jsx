@@ -25,10 +25,12 @@ class FoiaReportFormSectionTwo extends Component {
               2. Select Data Type(s)
               <FoiaTooltip text={'<p>Select the type of FOIA data you would like to view. The data comes from agencies’ Annual FOIA Reports.</p><p>To learn more about the data, view the terms in the <span data-term="annual foia report" title="Click to define" tabindex="0">Glossary</span>.</p>'} />
             </legend>
-            <p>Adding more than one data filter will return results that fit any one of the filters
+            <p>
+              Adding more than one data filter will return results that fit any one of the filters
               provided. For example, a search for exemption data with the filters &ldquo;Ex. 5 is
               0&rdquo; + &ldquo;Ex. 6 is 0&rdquo; will return data that satisfy either criteria,
-              rather than limiting the results to data that satisfy both criteria.</p>
+              rather than limiting the results to data that satisfy both criteria.
+            </p>
 
             {selectedDataTypes.map((selected, index) => (
               <FoiaReportDataTypeFilter
@@ -38,9 +40,11 @@ class FoiaReportFormSectionTwo extends Component {
                 selectedDataType={selected}
                 dataTypeDisplayError={dataTypeDisplayError}
                 fieldsDisplayed={this.props.selectedDataTypes.length}
-              />))}
+              />
+            ))}
 
-            {this.props.selectedDataTypes.length < 3 &&
+            {this.props.selectedDataTypes.length < 3
+              && (
               <div className="form-group_footer-links">
                 <div className="form-group_footer-links_left">
                   <AddLink
@@ -50,7 +54,7 @@ class FoiaReportFormSectionTwo extends Component {
                   />
                 </div>
               </div>
-            }
+              )}
           </fieldset>
         </div>
       </div>

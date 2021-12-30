@@ -45,7 +45,7 @@ describe('Foia Report Form ', () => {
     it('can select all options', () => {
       const expectedArgument = [...fiscalYearsData];
       formElement
-        .findWhere(el => el.type() === 'a' && el.text().includes('Select All'))
+        .findWhere((el) => el.type() === 'a' && el.text().includes('Select All'))
         .simulate('click', mockClickEvent);
       expect(reportActions.updateSelectedFiscalYears.calledWith(expectedArgument)).to.be.true;
     });
@@ -53,7 +53,7 @@ describe('Foia Report Form ', () => {
     it('can deselect all options', () => {
       const expectedArgument = [];
       formElement
-        .findWhere(el => el.type() === 'a' && el.text().includes('Select None'))
+        .findWhere((el) => el.type() === 'a' && el.text().includes('Select None'))
         .simulate('click', mockClickEvent);
       expect(reportActions.updateSelectedFiscalYears.calledWith(expectedArgument)).to.be.true;
     });

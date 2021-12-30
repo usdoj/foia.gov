@@ -11,7 +11,6 @@ import { List } from 'immutable';
 import { Agency } from '../models';
 import domify from '../util/request_form/domify';
 
-
 function AgencyPreview({ agency, agencyComponentsForAgency, onAgencySelect }) {
   const description = agency.mission();
   return (
@@ -51,12 +50,13 @@ function AgencyPreview({ agency, agencyComponentsForAgency, onAgencySelect }) {
         </ul>
       </div>
       <div className="usa-width-one-half">
-        { description &&
+        { description
+          && (
           <div>
             <h4>Agency mission</h4>
             <p>{domify(description)}</p>
           </div>
-        }
+          )}
       </div>
     </div>
   );
@@ -67,6 +67,5 @@ AgencyPreview.propTypes = {
   agencyComponentsForAgency: PropTypes.instanceOf(List).isRequired,
   onAgencySelect: PropTypes.func.isRequired,
 };
-
 
 export default AgencyPreview;

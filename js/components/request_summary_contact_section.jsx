@@ -23,13 +23,15 @@ function RequestSummaryContactSection({ formData, section }) {
     <section key={section.id}>
       <h3>{section.title}</h3>
       <div className="request-summary_section">
-        { fullName &&
+        { fullName
+          && (
           <div>
             <h5>Name</h5>
             <p>{fullName}</p>
           </div>
-        }
-        { requesterContact.address_line1 &&
+          )}
+        { requesterContact.address_line1
+          && (
           <div>
             <h5>Mailing address</h5>
             <address>
@@ -45,41 +47,43 @@ function RequestSummaryContactSection({ formData, section }) {
               <p>{ requesterContact.address_country }</p>
             </address>
           </div>
-        }
-        { requesterContact.phone_number &&
+          )}
+        { requesterContact.phone_number
+          && (
           <div>
             <h5>Phone number</h5>
             <p>{ requesterContact.phone_number }</p>
           </div>
-        }
-        { requesterContact.fax_number &&
+          )}
+        { requesterContact.fax_number
+          && (
           <div>
             <h5>Fax number</h5>
             <p>{ requesterContact.fax_number }</p>
           </div>
-        }
-        { requesterContact.company_organization &&
+          )}
+        { requesterContact.company_organization
+          && (
           <div>
             <h5>Company/organization</h5>
             <p>{ requesterContact.company_organization }</p>
           </div>
-        }
-        { requesterContact.email &&
+          )}
+        { requesterContact.email
+          && (
           <div>
             <h5>Email</h5>
             <p>{ requesterContact.email }</p>
           </div>
-        }
+          )}
       </div>
     </section>
   );
 }
 
-
 RequestSummaryContactSection.propTypes = {
   formData: PropTypes.object.isRequired,
   section: PropTypes.object.isRequired,
 };
-
 
 export default RequestSummaryContactSection;

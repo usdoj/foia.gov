@@ -61,8 +61,8 @@ class QuarterlyReportStore extends Store {
           const { abbreviation, components } = selected;
           const selectedComponents = formatted[abbreviation] || [];
           const componentAbbreviations = components
-            .filter(component => component.selected)
-            .map(component => component.abbreviation);
+            .filter((component) => component.selected)
+            .map((component) => component.abbreviation);
 
           formatted[abbreviation] = selectedComponents.concat(...componentAbbreviations.toArray())
             .filter((value, index, array) => array.indexOf(value) === index)
@@ -130,7 +130,7 @@ class QuarterlyReportStore extends Store {
           }
 
           return allRows[key];
-        }).filter(value => value !== false);
+        }).filter((value) => value !== false);
 
         // Filtering via the api will return reports that match the filter criteria,
         // but will not filter out components within those reports that don't match the
@@ -141,11 +141,11 @@ class QuarterlyReportStore extends Store {
           FoiaQuarterlyReportFilterUtilities.getFiltersForType(dataType.id),
         );
 
-        const normalized = filtered.map(row => (
+        const normalized = filtered.map((row) => (
           // Normalization essentially checks every field to see if it's
           // an object with a value property.  If it is, it sets the field to the
           // field.value, allowing tablulator to use the ids in report_data_map.json.
-          Object.assign({}, defaults, FoiaQuarterlyReportUtilities.normalize(row))
+          { ...defaults, ...FoiaQuarterlyReportUtilities.normalize(row) }
         ));
 
         if (component.toLowerCase() === 'agency overall') {
@@ -184,7 +184,7 @@ class QuarterlyReportStore extends Store {
             if (mutableReports.has(report.id)) {
               mutableReports.update(
                 report.id,
-                previousValue => previousValue.merge(new Map(report)),
+                (previousValue) => previousValue.merge(new Map(report)),
               );
             } else {
               mutableReports.set(report.id, new Map(report));
@@ -249,11 +249,11 @@ class QuarterlyReportStore extends Store {
         const isOverallOnly = FoiaQuarterlyReportFilterUtilities.filterOnOverallFields();
         const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
         selectedDataTypes.forEach((dataType) => {
-          if (!tables.some(item => item.id === dataType.id)) {
+          if (!tables.some((item) => item.id === dataType.id)) {
             // Get our dataType-specific columns.
             const dataColumns = dataType.fields
-              .filter(field => field.display && (!isOverallOnly || field.overall_field))
-              .map(item => (
+              .filter((field) => field.display && (!isOverallOnly || field.overall_field))
+              .map((item) => (
                 {
                   title: item.label,
                   titleFormatter: headingAsButton,
@@ -274,9 +274,9 @@ class QuarterlyReportStore extends Store {
         });
 
         // Check to see that at least one table contains some data rows.
-        const hasRows = tables.some(table => table.data.length > 0);
+        const hasRows = tables.some((table) => table.data.length > 0);
 
-        const updatedReportTables = new Map(tables.map(table => ([
+        const updatedReportTables = new Map(tables.map((table) => ([
           table.id,
           table,
         ])));

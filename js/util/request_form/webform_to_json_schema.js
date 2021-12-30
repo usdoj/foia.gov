@@ -1,6 +1,5 @@
 import domify from './domify';
 
-
 /**
  * Converts a metadata field's type to a JSON Schema type.
  */
@@ -123,7 +122,6 @@ function toUiSchemaProperty(webformField) {
   return { [webformField.name]: uiSchemaProperty };
 }
 
-
 /**
  * Translates agency components' Drupal Webform fields into JSON schema and uiSchema
  * for use with react-jsonschema-form.
@@ -146,8 +144,8 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
 
   // Add required fields to the `required` property
   jsonSchema.required = formFields
-    .filter(formField => formField.required)
-    .map(formField => formField.name);
+    .filter((formField) => formField.required)
+    .map((formField) => formField.name);
 
   // Parse out uiSchema from fields
   const uiSchema = formFields
@@ -155,11 +153,10 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
     .reduce((properties, property) => Object.assign(properties, property), {});
 
   // Set ordering of form fields
-  uiSchema['ui:order'] = formFields.map(formField => formField.name);
+  uiSchema['ui:order'] = formFields.map((formField) => formField.name);
 
   return { jsonSchema, uiSchema };
 }
-
 
 export default {
   webformFieldsToJsonSchema,

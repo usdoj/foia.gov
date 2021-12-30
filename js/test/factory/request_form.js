@@ -1,25 +1,26 @@
 import faker from 'faker';
 
-
 function sectionFactory(data) {
-  return Object.assign({
+  return {
     id: faker.lorem.slug(),
     title: `${faker.commerce.department} questions`,
     description: faker.lorem.sentences(3),
-  }, data);
+    ...data,
+  };
 }
 
 function jsonSchemaField(data) {
-  return Object.assign({
+  return {
     title: `${faker.lorem.word()} form field`,
     type: 'string',
     description: faker.lorem.sentence(),
-  }, data);
+    ...data,
+  };
 }
 
 function fromFormData(formData) {
   const sections = Object.keys(formData)
-    .map(sectionId => sectionFactory({ id: sectionId, title: `${sectionId} section` }));
+    .map((sectionId) => sectionFactory({ id: sectionId, title: `${sectionId} section` }));
 
   const uiSchema = sections
     .reduce((schema, section) => Object.assign(schema, { [section.id]: {} }), {});
@@ -29,11 +30,10 @@ function fromFormData(formData) {
       const sectionFields = formData[section.id];
       const sectionProperties = Object.keys(sectionFields)
         .reduce(
-          (props, field) =>
-            Object.assign(
-              props,
-              { [field]: jsonSchemaField({ title: `${field} label` }) },
-            ),
+          (props, field) => Object.assign(
+            props,
+            { [field]: jsonSchemaField({ title: `${field} label` }) },
+          ),
           {},
         );
 
@@ -59,7 +59,7 @@ function fromFormData(formData) {
 }
 
 function requestForm(data) {
-  return Object.assign({
+  return {
     id: faker.datatype.uuid(),
     jsonSchema: jsonSchemaField({
       title: 'An agency form',
@@ -87,12 +87,12 @@ function requestForm(data) {
       sectionFactory({ id: 'requester_contact_section', title: 'Requester contact' }),
       sectionFactory({ id: 'additional_fields_section', title: 'Additional fields' }),
     ],
-  }, data);
+    ...data,
+  };
 }
 
 requestForm.jsonSchemaField = jsonSchemaField;
 requestForm.sectionFactory = sectionFactory;
 requestForm.fromFormData = fromFormData;
-
 
 export default requestForm;

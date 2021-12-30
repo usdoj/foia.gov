@@ -28,11 +28,12 @@ class AddLink extends Component {
   render() {
     let classes = this.props.classes.length > 0 ? this.props.classes : ['form-group', 'field'];
     classes = classes.concat(this.iconColor())
-      .filter(className => className !== false);
+      .filter((className) => className !== false);
 
     return (
       <div className={classes.join(' ')}>
-        <a href="" onClick={this.dispatchChange}>{this.props.icon}
+        <a href="" onClick={this.dispatchChange}>
+          {this.props.icon}
           {this.props.text}
         </a>
       </div>

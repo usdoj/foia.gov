@@ -12,8 +12,8 @@ function titleIsGlossaryTerm(title) {
 }
 
 function displayName(foiaPersonnel) {
-  const name = foiaPersonnel.name;
-  let title = foiaPersonnel.title;
+  const { name } = foiaPersonnel;
+  let { title } = foiaPersonnel;
 
   if (titleIsGlossaryTerm(title)) {
     // Highlight the title as a glossary term
@@ -23,7 +23,9 @@ function displayName(foiaPersonnel) {
   if (name && title) {
     return (
       <span>
-        {name}, {title}
+        {name}
+        ,
+        {title}
       </span>
     );
   }
@@ -44,13 +46,14 @@ function FoiaPersonnel({ foiaPersonnel }) {
       { name && <p className="agency-info_personnel">{name}</p> }
       {
         (foiaPersonnel.phone || [])
-          .map(phone => <p className="agency-info_phone" key={phone}>{ phone }</p>)
+          .map((phone) => <p className="agency-info_phone" key={phone}>{ phone }</p>)
       }
-      { foiaPersonnel.email &&
+      { foiaPersonnel.email
+        && (
         <p className="agency-info_email">
           <a href={`mailto:${email}`}>{ email }</a>
         </p>
-      }
+        )}
     </div>
   );
 }
@@ -63,6 +66,5 @@ FoiaPersonnel.propTypes = {
 FoiaPersonnel.defaultProps = {
   foiaPersonnel: null,
 };
-
 
 export default FoiaPersonnel;

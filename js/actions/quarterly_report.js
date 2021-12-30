@@ -135,7 +135,7 @@ export const reportActions = {
 
     return request
       .get('/quarterly_foia_report/fiscal_years')
-      .then(response => response.data || [])
+      .then((response) => response.data || [])
       .then(reportActions.receiveQuarterlyReportFiscalYearsData)
       .then(reportActions.completeQuarterlyReportFiscalYearsData);
   },
@@ -267,13 +267,13 @@ export const reportActions = {
       selectedFiscalYears,
       selectedQuarters,
     } = quarterlyReportDataFormStore.getState();
-    const agencies = selectedAgencies.filter(selection => selection.type === 'agency');
-    const components = selectedAgencies.filter(selection => selection.type === 'agency_component');
+    const agencies = selectedAgencies.filter((selection) => selection.type === 'agency');
+    const components = selectedAgencies.filter((selection) => selection.type === 'agency_component');
     const dataTypeFilters = FoiaQuarterlyReportFilterUtilities.getFiltersForType(type[0].id);
     const includeOverall = agencies.filter((agency) => {
       const overall = agency
         .components
-        .filter(component => component.selected && component.isOverall);
+        .filter((component) => component.selected && component.isOverall);
 
       return List.isList(overall) ? overall.size > 0 : overall.length > 0;
     }).length > 0;
@@ -287,8 +287,8 @@ export const reportActions = {
       updatedBuilder = updatedBuilder
         .includeDataTypes(type)
         .addOrganizationsGroup({
-          agencies: agencies.map(agency => agency.abbreviation),
-          components: components.map(component => component.abbreviation),
+          agencies: agencies.map((agency) => agency.abbreviation),
+          components: components.map((component) => component.abbreviation),
         });
     }
 

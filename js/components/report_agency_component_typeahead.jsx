@@ -7,14 +7,12 @@ import tokenizers from '../util/tokenizers';
 import dispatcher from '../util/dispatcher';
 import { types } from '../actions/report';
 
-
 // Only load typeahead in the browser (avoid loading it for tests)
 let Bloodhound;
 if (typeof window !== 'undefined') {
   Bloodhound = require('typeahead.js/dist/bloodhound'); // eslint-disable-line global-require
   require('typeahead.js/dist/typeahead.jquery'); // eslint-disable-line global-require
 }
-
 
 // Expects agencies as a sequence type
 function datums({ agencies, agencyComponents }) {
@@ -36,11 +34,10 @@ function datums({ agencies, agencyComponents }) {
     // Include decentralized agency components in typeahead
     .concat(
       agencyComponents.toJS().filter(
-        agencyComponent => !(agencyComponent.agency.id in centralizedAgencyIndex),
+        (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
       ),
     );
 }
-
 
 class ReportAgencyComponentTypeahead extends Component {
   constructor(props) {
@@ -73,16 +70,16 @@ class ReportAgencyComponentTypeahead extends Component {
         const bName = (b.type === 'agency') ? b.name : b.title;
         if (aName < bName) {
           return -1;
-        } else if (aName > bName) {
+        } if (aName > bName) {
           return 1;
         }
         return 0;
       },
-      identify: datum => datum.id,
+      identify: (datum) => datum.id,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      datumTokenizer: datum => (
-        datum.type === 'agency' ?
-          (
+      datumTokenizer: (datum) => (
+        datum.type === 'agency'
+          ? (
             // For agencies
             []
               .concat(Bloodhound.tokenizers.nonword(datum.name))
@@ -92,9 +89,9 @@ class ReportAgencyComponentTypeahead extends Component {
             []
               .concat(Bloodhound.tokenizers.nonword(datum.title))
               .concat(
-                datum.abbreviation ?
-                  Bloodhound.tokenizers.whitespace(datum.abbreviation) :
-                  tokenizers.firstLetterOfEachCapitalizedWord(datum.title),
+                datum.abbreviation
+                  ? Bloodhound.tokenizers.whitespace(datum.abbreviation)
+                  : tokenizers.firstLetterOfEachCapitalizedWord(datum.title),
               )
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.name))
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.abbreviation))
@@ -113,7 +110,7 @@ class ReportAgencyComponentTypeahead extends Component {
       return;
     }
 
-    const display = this.display;
+    const { display } = this;
 
     this.typeahead = $(this.typeaheadInput).typeahead({
       classNames: {
@@ -127,8 +124,7 @@ class ReportAgencyComponentTypeahead extends Component {
       display,
       source: this.bloodhound.ttAdapter(),
       templates: {
-        suggestion: datum =>
-          $('<div>').addClass(datum.type).text(display(datum)),
+        suggestion: (datum) => $('<div>').addClass(datum.type).text(display(datum)),
       },
     })
       .bind('typeahead:select', (e, suggestion) => this.handleChange(suggestion))
@@ -181,7 +177,6 @@ class ReportAgencyComponentTypeahead extends Component {
   display(datum) {
     return datum.agency ? `${datum.title} (${datum.agency.name})` : datum.title;
   }
-
 
   handleKeyPress(e) {
     // Selects the first suggestion when the enter key is pressed.
@@ -260,9 +255,8 @@ class ReportAgencyComponentTypeahead extends Component {
             onKeyPress={this.handleKeyPress}
           />
         </div>
-        {agencyComponentDisplayError &&
-        <p className="usa-input-error-message">An Agency or Component is required.</p>
-        }
+        {agencyComponentDisplayError
+        && <p className="usa-input-error-message">An Agency or Component is required.</p>}
       </div>
     );
   }

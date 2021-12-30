@@ -4,7 +4,6 @@ import { Store } from 'flux/utils';
 import { types } from '../actions/quarterly_report';
 import dispatcher from '../util/dispatcher';
 
-
 class QuarterlyReportFiscalYearStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);

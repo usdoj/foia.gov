@@ -8,7 +8,6 @@ import FoiaPersonnel from 'components/foia_personnel';
 import FoiaSubmissionAddress from 'components/foia_submission_address';
 import { AgencyComponent } from 'models';
 
-
 describe('ContactInformation', () => {
   let sandbox;
   beforeEach(() => {
@@ -97,7 +96,7 @@ describe('ContactInformation', () => {
     });
 
     it('includes public liaison info', () => {
-      const foiaPersonnel = element.find(FoiaPersonnel).get(2).props.foiaPersonnel;
+      const { foiaPersonnel } = element.find(FoiaPersonnel).get(2).props;
       expect(foiaPersonnel).to.deep.equal(foiaPublicLiaison);
     });
 

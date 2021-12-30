@@ -1,7 +1,6 @@
 import { List, Map, Record } from 'immutable';
 import foiaPersonnel from '../util/foia_personnel';
 
-
 const defaults = {
   abbreviation: null,
   agency: null, // An Agency model
@@ -41,7 +40,6 @@ const defaults = {
   type: 'agency_component',
   website: new Map(),
 };
-
 
 class AgencyComponent extends Record(defaults) {
   static parseWebformElements(webform) {

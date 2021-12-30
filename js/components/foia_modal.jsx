@@ -46,7 +46,10 @@ class FoiaModal extends Component {
         >
           <div className="modal__close">
             <button onClick={this.closeModal} className="close-button" type="button">
-              <span className="visually-hidden">Close modal: {this.props.ariaLabel}</span>
+              <span className="visually-hidden">
+                Close modal:
+                {this.props.ariaLabel}
+              </span>
             </button>
           </div>
           <div className="modal__inner">
@@ -79,8 +82,8 @@ FoiaModal.defaultProps = {
   triggerText: 'Filter Results',
   modalAdditionalLink: null,
   canSubmit: () => true,
-  onSubmit: e => e,
-  onClose: e => e,
+  onSubmit: (e) => e,
+  onClose: (e) => e,
 };
 
 export default FoiaModal;

@@ -8,7 +8,6 @@ import ConfirmationTestPage from './pages/confirmation_test';
 import AgencyComponentRequestPage from './pages/agency_component_request';
 import NotFoundPage from './pages/not_found';
 
-
 const history = createBrowserHistory({
   basename: '/request',
 });
@@ -22,13 +21,14 @@ window.app = {
 render(
   <Router history={history}>
     <Switch>
-      { appEnv !== 'production' &&
+      { appEnv !== 'production'
         // This is a test page to help with styling and testing
+        && (
         <Route
           path="/agency-component/:agencyComponentId/confirmation"
           component={ConfirmationTestPage}
         />
-      }
+        )}
       <Route path="/agency-component/:agencyComponentId" component={AgencyComponentRequestPage} />
       <Route component={NotFoundPage} />
     </Switch>

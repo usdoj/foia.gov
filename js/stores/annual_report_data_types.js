@@ -22,21 +22,21 @@ class AnnualReportDataTypesStore extends Store {
   }
 
   getFieldsForDataType(dataTypeId) {
-    return this.getDataType(dataTypeId).fields ?
-      this.getDataType(dataTypeId).fields :
-      [];
+    return this.getDataType(dataTypeId).fields
+      ? this.getDataType(dataTypeId).fields
+      : [];
   }
 
   getIncludesForDataType(dataTypeId) {
-    return this.getDataType(dataTypeId).includes ?
-      this.getDataType(dataTypeId).includes :
-      [];
+    return this.getDataType(dataTypeId).includes
+      ? this.getDataType(dataTypeId).includes
+      : [];
   }
 
   getPrettyLabelForDataType(dataTypeId) {
-    return this.getDataType(dataTypeId).pretty ?
-      this.getDataType(dataTypeId).pretty :
-      '';
+    return this.getDataType(dataTypeId).pretty
+      ? this.getDataType(dataTypeId).pretty
+      : '';
   }
 
   __onDispatch(payload) {
@@ -47,7 +47,8 @@ class AnnualReportDataTypesStore extends Store {
         }
         const reportTypeOptions = payload.annualReportDataTypes;
         const updatedDataTypes = new OrderedMap(reportTypeOptions.map(
-          (item => ([item.id, item]))));
+          ((item) => ([item.id, item])),
+        ));
 
         Object.assign(this.state, {
           dataTypes: updatedDataTypes,
@@ -59,7 +60,7 @@ class AnnualReportDataTypesStore extends Store {
 
       case types.ANNUAL_REPORT_DATA_TYPES_COMPLETE: {
         const [...dataTypesArray] = this.state.dataTypes.values();
-        const dataTypeOptions = dataTypesArray.map(item => ({
+        const dataTypeOptions = dataTypesArray.map((item) => ({
           value: item.id,
           label: item.label,
         }));

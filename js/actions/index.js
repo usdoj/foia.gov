@@ -232,8 +232,7 @@ export const requestActions = {
         }
 
         if (error.code === 'ECONNABORTED') {
-          submissionResult.errorMessage =
-            'The connection timed out and your request could not be submitted. Please try again.';
+          submissionResult.errorMessage = 'The connection timed out and your request could not be submitted. Please try again.';
         }
 
         if (error.response && error.response.data && error.response.data.errors) {
@@ -241,8 +240,7 @@ export const requestActions = {
         }
 
         if (error.response && error.response.status === 422) {
-          submissionResult.errorMessage =
-            'Sorry, there was a problem with the information you provided, please check the form and correct any errors.';
+          submissionResult.errorMessage = 'Sorry, there was a problem with the information you provided, please check the form and correct any errors.';
         }
 
         return Promise.resolve(submissionResult);

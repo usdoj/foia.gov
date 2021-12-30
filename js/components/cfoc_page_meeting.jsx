@@ -3,23 +3,24 @@ import PropTypes from 'prop-types';
 import CFOCPageMeetingDocumentsComponent from './cfoc_page_meeting_documents';
 import CFOCPageMeetingMaterialsComponent from './cfoc_page_meeting_materials';
 
-const CFOCPageMeetingComponent = props => (
-  <div className="cfoc-page-meeting">
-    {
+function CFOCPageMeetingComponent(props) {
+  return (
+    <div className="cfoc-page-meeting">
+      {
       !props.title
         ? null
         : (
           <h3>{props.title}</h3>
         )
     }
-    {
+      {
       !props.body
         ? null
         : (
           <article dangerouslySetInnerHTML={{ __html: props.body }} />
         )
     }
-    {
+      {
       props.materials.length
         ? (
           <div className="cfoc-page-meeting-materials">
@@ -44,7 +45,7 @@ const CFOCPageMeetingComponent = props => (
         )
         : null
     }
-    {
+      {
       props.documents.length
         ? (
           <div className="cfoc-page-meeting-document-links">
@@ -69,8 +70,9 @@ const CFOCPageMeetingComponent = props => (
         )
         : null
     }
-  </div>
-);
+    </div>
+  );
+}
 
 CFOCPageMeetingComponent.propTypes = {
   title: PropTypes.string,

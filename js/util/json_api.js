@@ -39,7 +39,6 @@ function finalize(response) {
 
 function noop() { }
 
-
 class JsonApi {
   constructor(baseURL) {
     this._api = axios.create({
@@ -74,9 +73,7 @@ class JsonApi {
   }
 
   get(path, options = {}) {
-    return this._api.get(path, Object.assign({
-      paramsSerializer: serialize,
-    }, options));
+    return this._api.get(path, { paramsSerializer: serialize, ...options });
   }
 
   /*
@@ -102,22 +99,20 @@ class JsonApi {
       progress = noop;
     }
 
-    const getPage = (pagePath, pageOptions) =>
-      this.get(pagePath, pageOptions)
-        .then((response) => {
-          progress(finalize(response)); // Process this page
+    const getPage = (pagePath, pageOptions) => this.get(pagePath, pageOptions)
+      .then((response) => {
+        progress(finalize(response)); // Process this page
 
-          if (response.data.links && response.data.links.next) {
-            return getPage(response.data.links.next.href);
-          }
+        if (response.data.links && response.data.links.next) {
+          return getPage(response.data.links.next.href);
+        }
 
-          return null;
-        });
+        return null;
+      });
 
     return getPage(path, options);
   }
 }
-
 
 // Export a singleton
 const jsonapi = new JsonApi();

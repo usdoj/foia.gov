@@ -7,7 +7,6 @@ import NonInteroperableInfo from './non_interoperable_info';
 import { AgencyComponent } from '../models';
 import domify from '../util/request_form/domify';
 
-
 function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized }) {
   const description = AgencyComponent.agencyMission(agencyComponent);
   const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
@@ -32,47 +31,57 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
           )
         }
         <h3>{isCentralized ? agencyComponent.agency.name : agencyComponent.title }</h3>
-        { !agencyComponent.request_form &&
-          <NonInteroperableInfo agencyComponent={agencyComponent} />
-        }
+        { !agencyComponent.request_form
+          && <NonInteroperableInfo agencyComponent={agencyComponent} />}
       </div>
       <div className="usa-width-one-half">
-        { description &&
+        { description
+          && (
           <div>
             <h4>Agency mission</h4>
             <p>{domify(description)}</p>
           </div>
-        }
+          )}
 
         <h4>Contact</h4>
         <ContactInformation agencyComponent={agencyComponent} />
       </div>
       <div className="usa-width-one-half start-request-container">
-        { agencyComponent.request_data_year &&
-          <AgencyComponentProcessingTime agencyComponent={agencyComponent} />
-        }
+        { agencyComponent.request_data_year
+          && <AgencyComponentProcessingTime agencyComponent={agencyComponent} />}
         <div className="agency-info_reading-rooms">
           <h4>
             The records or information you&rsquo;re looking for may already be public.
           </h4>
-          { agencyComponent.website &&
+          { agencyComponent.website
+            && (
             <p>
-              Visit the agency’s <a href={agencyComponent.website.uri}>website</a> to learn more.
+              Visit the agency’s
+              {' '}
+              <a href={agencyComponent.website.uri}>website</a>
+              {' '}
+              to learn more.
             </p>
-          }
-          { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length > 0 &&
-            <p>To see what’s been made available, you can visit an
-              agency’s <a href={agencyComponent.reading_rooms[0].uri}>FOIA library</a>.</p>
-          }
+            )}
+          { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length > 0
+            && (
+            <p>
+              To see what’s been made available, you can visit an
+              agency’s
+              <a href={agencyComponent.reading_rooms[0].uri}>FOIA library</a>
+              .
+            </p>
+            )}
         </div>
-        { agencyComponent.request_form &&
+        { agencyComponent.request_form
+          && (
           <a
             className="usa-button usa-button-primary start-request"
             href={requestUrl}
           >
             Start FOIA request
           </a>
-        }
+          )}
       </div>
     </div>
   );
@@ -83,6 +92,5 @@ AgencyComponentPreview.propTypes = {
   agencyComponent: PropTypes.object.isRequired,
   isCentralized: PropTypes.bool.isRequired,
 };
-
 
 export default AgencyComponentPreview;

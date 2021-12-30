@@ -2,7 +2,6 @@ import { expect } from 'chai';
 
 import { dataUrlToAttachment } from '../../util/attachment';
 
-
 describe('util/attachment', () => {
   describe('dataUrlToAttachment()', () => {
     it('given empty string, returns an empty array', () => {

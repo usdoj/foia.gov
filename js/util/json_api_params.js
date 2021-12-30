@@ -9,7 +9,6 @@ import assert from 'assert';
 
 import { buildQueryString as serialize } from 'd8-jsonapi-querystring';
 
-
 function defaults() {
   return {};
 }
@@ -85,7 +84,6 @@ class JsonApiParams {
         value,
       };
 
-
       this._params.filter = filter;
       return this;
     }
@@ -113,14 +111,14 @@ class JsonApiParams {
   }
 
   _group(group, conjunction, ...filterNames) {
-    const filter = this._params.filter;
+    const { filter } = this._params;
     assert(filter, 'You must define your named filters before assigning them a group.');
 
     // Add each filter to the group
     filterNames.forEach((filterName) => {
       assert(filter[filterName]);
 
-      const condition = filter[filterName].condition;
+      const { condition } = filter[filterName];
       assert(condition);
 
       condition.memberOf = group;
@@ -135,7 +133,7 @@ class JsonApiParams {
   }
 
   operator(filterName, operator) {
-    const filter = this._params.filter;
+    const { filter } = this._params;
     assert(filter, 'You must define your named filters before assigning them an operator.');
 
     filter[filterName].condition.operator = operator;
@@ -159,6 +157,5 @@ class JsonApiParams {
     return serialize(this._params);
   }
 }
-
 
 export default JsonApiParams;

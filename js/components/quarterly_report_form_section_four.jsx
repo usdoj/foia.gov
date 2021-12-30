@@ -24,11 +24,11 @@ class QuarterlyReportFormSectionFour extends Component {
   }
 
   handleChange(event) {
-    const target = event.target;
+    const { target } = event;
     const value = target.value.toString();
-    const selected = target.checked ?
-      [...this.props.selectedQuarters].concat([value]) :
-      [...this.props.selectedQuarters].filter(year => value !== year);
+    const selected = target.checked
+      ? [...this.props.selectedQuarters].concat([value])
+      : [...this.props.selectedQuarters].filter((year) => value !== year);
     reportActions.updateSelectedQuarters(selected);
   }
 
@@ -44,12 +44,12 @@ class QuarterlyReportFormSectionFour extends Component {
           <fieldset>
             <legend className="foia-header-blue-line--h2">
               4. Select Quarters
-              <FoiaTooltip text={'<p>Select a quarter to view the data for that part of the year. You may select multiple quarters, or you may view all quarters of available data.</p>'} />
+              <FoiaTooltip text="<p>Select a quarter to view the data for that part of the year. You may select multiple quarters, or you may view all quarters of available data.</p>" />
             </legend>
             <fieldset className={checkboxFieldsetClasses.join(' ')}>
               <legend className="usa-sr-only">Select Quarters</legend>
               <ul className="usa-unstyled-list usa-grid checkbox-list">
-                { quarters.map(quarter => (
+                { quarters.map((quarter) => (
                   <li className="usa-width-one-sixth" key={quarter}>
                     <FoiaReportFormCheckboxWidget
                       value={quarter}
@@ -60,9 +60,8 @@ class QuarterlyReportFormSectionFour extends Component {
                 ))}
               </ul>
             </fieldset>
-            {quartersDisplayError &&
-              <p className="usa-input-error-message">At least one Quarter is required.</p>
-            }
+            {quartersDisplayError
+              && <p className="usa-input-error-message">At least one Quarter is required.</p>}
             <div className="form-group_footer-links">
               <ul className="inline-list--centered">
                 <li><a href="" onClick={this.handleSelectAll} className="touch-safe">Select All</a></li>

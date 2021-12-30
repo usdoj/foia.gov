@@ -16,7 +16,7 @@ class FoiaQuarterlyReportFilterUtilities {
    * @returns {*}
    */
   static filter(rows, filters) {
-    return rows.filter(row => FoiaQuarterlyReportFilterUtilities.passesAny(row, filters));
+    return rows.filter((row) => FoiaQuarterlyReportFilterUtilities.passesAny(row, filters));
   }
 
   /**
@@ -51,15 +51,15 @@ class FoiaQuarterlyReportFilterUtilities {
   static getFiltersForType(dataTypeId) {
     const selectedDataTypes = [...quarterlyReportDataFormStore.getState().selectedDataTypes];
     return selectedDataTypes
-      .filter(type => (
+      .filter((type) => (
         typeof type.filter === 'object' && type.filter !== null
       ))
       // Filter out any selected data type that doesn't match the passed in data type.
       // This prevents attempting to apply filters to a row where the data type
       // is not the same.
-      .filter(type => type.id === dataTypeId)
-      .map(type => Object.assign({}, type.filter))
-      .filter(filter => filter.applied);
+      .filter((type) => type.id === dataTypeId)
+      .map((type) => ({ ...type.filter }))
+      .filter((filter) => filter.applied);
   }
 
   /**
@@ -73,7 +73,7 @@ class FoiaQuarterlyReportFilterUtilities {
     const requestsComponents = Object.keys(selectedAgencies).filter((key) => {
       const agency = selectedAgencies[key];
       const hasComponents = agency
-        .filter(component => component.toLowerCase() !== 'agency overall');
+        .filter((component) => component.toLowerCase() !== 'agency overall');
       return hasComponents.length > 0;
     });
 
@@ -97,7 +97,7 @@ class FoiaQuarterlyReportFilterUtilities {
     const fields = quarterlyReportDataTypesStore.getFieldsForDataType(dataTypeId);
     return filters.map((filter) => {
       const field = fields
-        .filter(data => data.id === filter.filterField.replace(/\.value$/i, ''));
+        .filter((data) => data.id === filter.filterField.replace(/\.value$/i, ''));
       if (field.length <= 0) {
         return filter;
       }
@@ -110,7 +110,7 @@ class FoiaQuarterlyReportFilterUtilities {
         filter.filterField = isTextField ? `${field[0].overall_field}.value` : field[0].overall_field;
       }
       return filter;
-    }).filter(filter => filter !== false);
+    }).filter((filter) => filter !== false);
   }
 
   /**

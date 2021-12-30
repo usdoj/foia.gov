@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 function USWDSRadioWidget(props) {
   const { enumOptions, inline } = props.options;
 
@@ -20,16 +19,15 @@ function USWDSRadioWidget(props) {
             />
           );
 
-
           return inline ? (
             <li>
               {radio}
-              <label htmlFor={key} key={key} className={'radio-inline'}>
+              <label htmlFor={key} key={key} className="radio-inline">
                 {option.label}
               </label>
             </li>
           ) : (
-            <li key={key} className={'radio'}>
+            <li key={key} className="radio">
               {radio}
               <label htmlFor={`${props.label}-${option.label}`}>{option.label}</label>
             </li>
