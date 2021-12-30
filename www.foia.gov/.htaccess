@@ -1,6 +1,6 @@
 ---
 ---
-DirectoryIndex index.php index.html index.htm index.json
+DirectoryIndex index.html index.htm index.json
 ErrorDocument 404 /404.html
 FileETag All
 {% if site.app_env == 'production' %}
