@@ -20,12 +20,9 @@ class FoiaReportDataTypeFilter extends Component {
     this.handleFilterReset = this.handleFilterReset.bind(this);
     this.modalCanSubmit = this.modalCanSubmit.bind(this);
     this.handleFilterRemove = this.handleFilterRemove.bind(this);
-  }
-
-  componentWillMount() {
-    this.setState({
+    this.state = {
       id: uniqueId(),
-    });
+    };
   }
 
   handleDataTypeChange(e) {

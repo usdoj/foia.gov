@@ -46,12 +46,9 @@ class ReportAgencyComponentTypeahead extends Component {
     this.isIndexed = false;
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
-
-  componentWillMount() {
-    this.setState({
+    this.state = {
       id: uniqueId(),
-    });
+    };
   }
 
   componentDidMount() {

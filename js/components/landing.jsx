@@ -205,6 +205,8 @@ LandingComponent.propTypes = {
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
   onChangeUrlQueryParams: PropTypes.func.isRequired,
+  idQueryString: PropTypes.string,
+  typeQueryString: PropTypes.string,
 };
 
 LandingComponent.defaultProps = {
