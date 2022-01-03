@@ -19,11 +19,11 @@ class LandingComponent extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.agencyFinderDataComplete) {
+  componentDidUpdate() {
+    if (!this.props.agencyFinderDataComplete) {
       return;
     }
-    this.consultQueryString(nextProps);
+    this.consultQueryString();
   }
 
   setStateForAgency(agency, agencyComponentsForAgency) {
@@ -51,7 +51,7 @@ class LandingComponent extends Component {
     });
   }
 
-  consultQueryString(props) {
+  consultQueryString() {
     // We only want to do this one time.
     if (this.queryStringConsulted) {
       return;
@@ -61,7 +61,7 @@ class LandingComponent extends Component {
     const {
       typeQueryString,
       idQueryString,
-    } = props;
+    } = this.props;
 
     if (typeQueryString === 'agency') {
       const agency = agencyComponentStore.getAgency(idQueryString);

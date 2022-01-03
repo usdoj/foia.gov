@@ -91,7 +91,7 @@ class AgencyComponentFinder extends Component {
     // If we have all the data already then index it. If we're still waiting on
     // data, we'll index when we receive the complete props.
     if (this.props.agencyFinderDataComplete) {
-      this.index(this.props);
+      this.index();
     }
 
     // Initialize the typeahead input element
@@ -117,19 +117,19 @@ class AgencyComponentFinder extends Component {
       .bind('typeahead:select', (e, suggestion) => this.props.onAgencyChange(suggestion));
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate() {
     // Indexing the typeahead is expensive and if we do it in batches, it gets
     // complicated to calculate which agencies are centralized vs
     // decentralized. Wait until we've received all the agency finder data
     // before indexing.
-    if (!nextProps.agencyFinderDataComplete) {
+    if (!this.props.agencyFinderDataComplete) {
       return;
     }
 
-    this.index(nextProps);
+    this.index();
   }
 
-  index(props) {
+  index() {
     if (this.isIndexed) {
       return;
     }
@@ -140,7 +140,7 @@ class AgencyComponentFinder extends Component {
     // render which should be available once the agency finder data fetch is
     // complete.
     this.isIndexed = true;
-    const { agencies, agencyComponents } = props;
+    const { agencies, agencyComponents } = this.props;
 
     this.bloodhound.clear(); // Just in case
     this.bloodhound.add(datums({

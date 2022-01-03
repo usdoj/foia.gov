@@ -33,18 +33,19 @@ class AgencyComponentRequestPage extends Component {
   }
 
   componentDidMount() {
-    this.init(this.props);
+    this.init();
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
     const { agencyComponentId } = this.props.match.params;
-    if (nextProps.match.params.agencyComponentId !== agencyComponentId) {
-      this.init(nextProps);
+    const { agencyComponentIdPrev } = prevProps.match.params;
+    if (agencyComponentId !== agencyComponentIdPrev) {
+      this.init();
     }
   }
 
-  init(props) {
-    const { agencyComponentId } = props.match.params;
+  init() {
+    const { agencyComponentId } = this.props.match.params;
 
     // Check the form sections were fetched
     const { formSections } = agencyComponentRequestFormStore.getState();
