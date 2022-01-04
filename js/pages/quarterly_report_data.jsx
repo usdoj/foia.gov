@@ -10,6 +10,7 @@ import QuarterlyReportFormSectionThree from '../components/quarterly_report_form
 import QuarterlyReportFormSectionFour from '../components/quarterly_report_form_section_four';
 import QuarterlyReportDataSubmit from '../components/quarterly_report_submit';
 import QuarterlyReportResultsTable from '../components/quarterly_report_results_table';
+import QuarterlyReportResultsChart from '../components/quarterly_report_results_chart';
 
 import quarterlyReportDataFormStore from '../stores/quarterly_report_data_form';
 import agencyComponentStore from '../stores/agency_component';
@@ -262,15 +263,18 @@ class QuarterlyReportDataPage extends Component {
         <div>
           {
             reportTableEntries.map((table) => (
-              <QuarterlyReportResultsTable
-                key={`report-${table.id}`}
-                ref={(ref) => { this.reportRefs[table.id] = ref; }}
-                tableId={`report-${table.id}`}
-                tableHeader={table.header}
-                tableData={table.data}
-                tableColumns={table.columns}
-                displayMode={submissionAction}
-              />
+              <div>
+                <QuarterlyReportResultsTable
+                  key={`report-${table.id}`}
+                  ref={(ref) => { this.reportRefs[table.id] = ref; }}
+                  tableId={`report-${table.id}`}
+                  tableHeader={table.header}
+                  tableData={table.data}
+                  tableColumns={table.columns}
+                  displayMode={submissionAction}
+                />
+                <QuarterlyReportResultsChart />
+              </div>
             ))
           }
         </div>
