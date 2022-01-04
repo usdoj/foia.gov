@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/18F/beta.foia.gov#readme",
   "dependencies": {
+    "@rjsf/core": "2.x",
     "assert": "2.x",
     "axios": "0.x",
     "babel-polyfill": "6.x",
@@ -45,7 +46,6 @@
     "prop-types": "15.x",
     "react": "16.x",
     "react-dom": "16.x",
-    "react-jsonschema-form": "1.x",
     "react-modal": "3.x",
     "react-router-dom": "5.x",
     "react-url-query": "1.x",

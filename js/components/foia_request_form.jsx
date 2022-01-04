@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Form from 'react-jsonschema-form';
+import Form from '@rjsf/core';
 import { Map } from 'immutable';
 
 import CustomFieldTemplate from 'components/request_custom_field_template';
