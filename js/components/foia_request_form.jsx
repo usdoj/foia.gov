@@ -14,6 +14,7 @@ import FoiaFileWidget from './foia_file_widget';
 import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 import UploadProgress from './upload_progress';
 import { scrollOffset } from '../util/dom';
+import dispatcher from '../util/dispatcher';
 
 function FoiaRequestForm({
   formData, upload, onSubmit, requestForm, submissionResult,
@@ -43,7 +44,9 @@ function FoiaRequestForm({
   }
 
   function onChange({ formData: data }) {
-    requestActions.updateRequestForm(data);
+    if (!dispatcher.isDispatching()) {
+      requestActions.updateRequestForm(data);
+    }
   }
 
   // Listen for jsonSchema validation errors and jump to them.
