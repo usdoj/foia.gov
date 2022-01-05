@@ -263,7 +263,7 @@ class QuarterlyReportDataPage extends Component {
         <div>
           {
             reportTableEntries.map((table) => (
-              <div>
+              <div key={`report-container-${table.id}`}>
                 <QuarterlyReportResultsTable
                   key={`report-${table.id}`}
                   ref={(ref) => { this.reportRefs[table.id] = ref; }}
@@ -273,7 +273,11 @@ class QuarterlyReportDataPage extends Component {
                   tableColumns={table.columns}
                   displayMode={submissionAction}
                 />
-                <QuarterlyReportResultsChart />
+                <QuarterlyReportResultsChart
+                  key={`report-chart-${table.id}`}
+                  tableData={table.data}
+                  tableColumns={table.columns}
+                />
               </div>
             ))
           }
