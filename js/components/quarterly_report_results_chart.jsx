@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import faker from 'faker';
+import palette from 'google-palette';
 
 class QuarterlyReportResultsChart extends Component {
   constructor(props) {
@@ -23,6 +24,8 @@ class QuarterlyReportResultsChart extends Component {
       Legend
     );
 
+    this.colors = palette('mpn65', 65);
+
     const { tableData, tableColumns } = this.props;
 
     const thisClass = this;
@@ -31,6 +34,18 @@ class QuarterlyReportResultsChart extends Component {
       plugins: {
         legend: {
           position: 'bottom',
+        },
+        tooltip: {
+          callbacks: {
+            title: function(context) {
+              const year = context[0].label.split(';')[0];
+              const quarter = context[0].label.split(';')[1];
+              return [
+                'Year: ' + year,
+                'Quarter: ' + quarter,
+              ];
+            },
+          },
         },
       },
       scales: {
@@ -65,10 +80,9 @@ class QuarterlyReportResultsChart extends Component {
   }
 
   applyColorToDatasets(datasets) {
-    const colors = ['#7e984f', '#8d73ca', '#aaa533', '#c65b8a', '#4aac8d', '#c95f44'];
     let colorIndex = 0;
     datasets.forEach(dataset => {
-      dataset.backgroundColor = colors[colorIndex];
+      dataset.backgroundColor = '#' + this.colors[colorIndex];
       colorIndex++;
     });
   }

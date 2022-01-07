@@ -39,6 +39,7 @@
     "exitscript": "1.1.7",
     "flux": "4.x",
     "glossary-panel": "1.x",
+    "google-palette": "^1.1.0",
     "history": "4.x",
     "immutable": "3.x",
     "jquery": "3.x",
