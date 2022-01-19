@@ -1,6 +1,6 @@
 ---
 ---
-DirectoryIndex index.php index.html index.htm index.json
+DirectoryIndex index.html index.htm index.json
 ErrorDocument 404 /404.html
 FileETag All
 {% if site.app_env == 'production' %}
@@ -19,6 +19,10 @@ Header always set Content-Security-Policy "frame-ancestors 'self' https://www.fo
 
 RewriteEngine on
 
+# Redirect for archive.foia.gov.
+RewriteCond %{HTTP_HOST} ^archive\.foia\.gov [NC]
+RewriteRule ^(.*) https://www.foia.gov [R=301,L]
+
 {% if jekyll.environment == 'production' %}
 # Redirect http -> https
 RewriteCond %{HTTPS} off
@@ -36,3 +40,11 @@ RewriteRule ^xmlgen$ https://archive.foia.gov/xmlgen/ [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^request/([a-z0-9_-]+/)*$ request/index.html
+
+# CFO single page app
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^chief-foia-officers-council$ chief-foia-officers-council.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^chief-foia-officers-council/(.*)$ chief-foia-officers-council.html

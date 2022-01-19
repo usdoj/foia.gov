@@ -1,0 +1,166 @@
+#chief-foia-officers-council-react-app {
+  padding-bottom:4.6875rem;
+
+  .usa-grid {
+    padding-top:3.875rem;
+    padding-left: 0;
+  }
+}
+
+.cfoc-page {
+
+  ul {
+
+    &:not(.usa-accordion) {
+      padding-left: 1.55rem;
+    }
+  }
+
+  p {
+    max-width: 90%;
+  }
+
+  .cfoc-attachments {
+    a {
+      padding-right: 12px;
+
+      &:after {
+        display: none !important;
+      }
+
+      span {
+        display: inline-block;
+        position: relative;
+        width: 20px;
+        height: 13px;
+        margin-left: 10px;
+
+        &:after {
+          content: " ";
+          background-image: url('/img/save_alt.svg');
+          position: absolute;
+          width: 17px;
+          height: 17px;
+          background-size: 16px;
+          background-repeat: no-repeat;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .cfoc-page-committees {
+    margin-top: 4.6875rem;
+
+    > * {
+      border-bottom: 1px solid #92C8F6;
+      padding-bottom: 23px;
+    }
+
+  }
+
+  .cfoc-page-upcoming-meetings {
+    margin-top: 4.6875rem;
+
+    & > .cfoc-page-meeting:not(:first-of-type) {
+      border-top: 1px solid #92C8F6;
+    }
+
+    & + .cfoc-page-meetings-past {
+      margin-top: 0 !important;
+    }
+  }
+
+  .cfoc-page-meetings-past {
+    margin-top: 4.6875rem;
+
+    .usa-accordion-content {
+
+      > * {
+        &:not(:last-child) {
+          border-bottom: 1px solid #92C8F6;
+        }
+      }
+    }
+  }
+
+  .cfoc-page-meeting-materials,
+  .cfoc-page-meeting-document-links {
+
+    > p {
+      margin-bottom: .75rem;
+    }
+
+    > ul {
+      margin-top: 0;
+    }
+  }
+
+  .cfoc-page-content-items {
+    margin-top: 2.75rem;
+
+    > * {
+
+      &:not(:last-child) {
+        padding-bottom: 1rem;
+      }
+
+      h2 {
+        margin: 1.5rem 0 .5rem;
+      }
+    }
+  }
+
+  .cfoc-meeting-detail-agenda {
+    margin-top: 3.125rem;
+
+    > * {
+
+      &:not(:first-child) {
+        padding-top: .75rem;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #92C8F6;
+        padding-bottom: .75rem;
+      }
+    }
+  }
+
+  .cfo-meeting-detail-agenda-item {
+    display: flex;
+    flex-flow: column nowrap;
+
+    @media screen and (min-width: $small-screen) {
+      flex-flow: row nowrap;
+    }
+
+
+    > * {
+
+      &:first-child {
+        font-weight: bold;
+        margin-bottom: 1rem;
+        width: 20%;
+
+        @media screen and (min-width: $small-screen) {
+          margin-bottom: 0;
+        }
+      }
+
+      &:last-child {
+        width: 80%;
+      }
+
+      span {
+        display: block;
+
+        &.title {
+          font-weight: bold;
+          margin-bottom: .75rem;
+        }
+      }
+    }
+  }
+}

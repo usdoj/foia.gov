@@ -61,6 +61,11 @@ app.get('/request/*', (req, res) => {
   res.sendFile(path.join(static_path, 'request', 'index.html'));
 });
 
+// Serve the CFO single-page app from all subfolders.
+app.get('/chief-foia-officers-council/*', (req, res) => {
+  res.sendFile(path.join(static_path, 'chief-foia-officers-council.html'));
+});
+
 // catch 404 and render the static 404 page
 app.use((req, res, next) => {
   res.status(404).sendFile(path.join(static_path, '404.html'));
