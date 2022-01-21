@@ -49,7 +49,7 @@
     "react-modal": "3.x",
     "react-router-dom": "5.x",
     "react-url-query": "1.x",
-    "tabulator-tables": "4.x",
+    "tabulator-tables": "5.x",
     "tooltip.js": "1.x",
     "typeahead.js": "0.x",
     "url": "0.x",
