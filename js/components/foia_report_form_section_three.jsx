@@ -24,11 +24,11 @@ class FoiaReportFormSectionThree extends Component {
   }
 
   handleChange(event) {
-    const target = event.target;
+    const { target } = event;
     const value = target.value.toString();
-    const selected = target.checked ?
-      [...this.props.selectedFiscalYears].concat([value]) :
-      [...this.props.selectedFiscalYears].filter(year => value !== year);
+    const selected = target.checked
+      ? [...this.props.selectedFiscalYears].concat([value])
+      : [...this.props.selectedFiscalYears].filter((year) => value !== year);
     reportActions.updateSelectedFiscalYears(selected);
   }
 
@@ -44,12 +44,12 @@ class FoiaReportFormSectionThree extends Component {
           <fieldset>
             <legend className="foia-header-blue-line--h2">
               3. Select Fiscal Years
-              <FoiaTooltip text={'<p>Select a Fiscal Year to view the data for that year. You may select multiple years, or you may view all years of available data.</p>'} />
+              <FoiaTooltip text="<p>Select a Fiscal Year to view the data for that year. You may select multiple years, or you may view all years of available data.</p>" />
             </legend>
             <fieldset className={checkboxFieldsetClasses.join(' ')}>
               <legend className="usa-sr-only">Select Fiscal Years</legend>
               <ul className="usa-unstyled-list usa-grid checkbox-list">
-                { fiscalYears.map(fiscalYear => (
+                { fiscalYears.map((fiscalYear) => (
                   <li className="usa-width-one-sixth" key={fiscalYear}>
                     <FoiaReportFormCheckboxWidget
                       value={fiscalYear}
@@ -60,9 +60,8 @@ class FoiaReportFormSectionThree extends Component {
                 ))}
               </ul>
             </fieldset>
-            {fiscalYearsDisplayError &&
-              <p className="usa-input-error-message">At least one Fiscal Year is required.</p>
-            }
+            {fiscalYearsDisplayError
+              && <p className="usa-input-error-message">At least one Fiscal Year is required.</p>}
             <div className="form-group_footer-links">
               <ul className="inline-list--centered">
                 <li><a href="" onClick={this.handleSelectAll} className="touch-safe">Select All</a></li>

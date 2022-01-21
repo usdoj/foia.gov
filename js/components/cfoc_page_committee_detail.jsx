@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import CFOCPageCommitteeWorkGroupComponent from './cfoc_page_committee_workgroup';
 import CFOCPageAttachmentsComponent from './cfoc_page_attachments';
 
-const CFOCPageCommitteeDetailComponent = (props) => {
-  const { title, body, attachments, workingGroups } = props;
+function CFOCPageCommitteeDetailComponent(props) {
+  const {
+    title, body, attachments, workingGroups,
+  } = props;
 
   return (
-    <div className="cfoc-committee-detail" >
+    <div className="cfoc-committee-detail">
       {
         !title
           ? null
@@ -44,7 +46,7 @@ const CFOCPageCommitteeDetailComponent = (props) => {
       }
     </div>
   );
-};
+}
 
 CFOCPageCommitteeDetailComponent.propTypes = {
   title: PropTypes.string,

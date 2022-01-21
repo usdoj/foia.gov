@@ -5,7 +5,6 @@ import { shallow } from 'enzyme';
 
 import FoiaSubmissionAddress from 'components/foia_submission_address';
 
-
 describe('FoiaSubmissionAddress', () => {
   let sandbox;
   beforeEach(() => {

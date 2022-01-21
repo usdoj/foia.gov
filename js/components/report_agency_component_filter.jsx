@@ -55,7 +55,7 @@ class ReportAgencyComponentFilter extends Component {
     const components = this.props.selectedAgency.tempSelectedComponents
       || this.props.selectedAgency.components;
 
-    return components.filter(item => item.selected).size > 0;
+    return components.filter((item) => item.selected).size > 0;
   }
 
   buildModalContent() {
@@ -79,7 +79,7 @@ class ReportAgencyComponentFilter extends Component {
               name={`${this.props.selectedAgency.id}-component`}
               value={component.id}
               checked={component.selected}
-              onChange={e => this.handleCheckboxChange(e, component)}
+              onChange={(e) => this.handleCheckboxChange(e, component)}
             />
             <label htmlFor={inputId} className="touch-safe">{component.abbreviation}</label>
           </li>
@@ -94,13 +94,12 @@ class ReportAgencyComponentFilter extends Component {
             <ul className="usa-unstyled-list usa-grid checkbox-list checkbox-list--in-modal">
               {checkboxes}
             </ul>
-            {!this.modalCanSubmit() &&
-              <p className="usa-input-error-message">One or more components are required.</p>
-            }
+            {!this.modalCanSubmit()
+              && <p className="usa-input-error-message">One or more components are required.</p>}
             <div className="form-group">
               <ul className="inline-list--centered">
-                <li><a href="" onClick={e => this.handleSelectAll(e, true)} className="touch-safe">Select All</a></li>
-                <li><a href="" onClick={e => this.handleSelectAll(e, false)} className="touch-safe">Select None</a></li>
+                <li><a href="" onClick={(e) => this.handleSelectAll(e, true)} className="touch-safe">Select All</a></li>
+                <li><a href="" onClick={(e) => this.handleSelectAll(e, false)} className="touch-safe">Select None</a></li>
               </ul>
             </div>
           </fieldset>
@@ -147,7 +146,8 @@ class ReportAgencyComponentFilter extends Component {
           agencyComponentDisplayError={agencyComponentDisplayError}
         />
         <div className="report-field-actions">
-          {agencyIsSelected && !isCentralizedAgency &&
+          {agencyIsSelected && !isCentralizedAgency
+          && (
           <FoiaModal
             modalContent={this.buildModalContent()}
             ariaLabel="Filter agency components"
@@ -156,7 +156,7 @@ class ReportAgencyComponentFilter extends Component {
             canSubmit={this.modalCanSubmit}
             onClose={this.handleModalClose}
           />
-          }
+          )}
           {removeAgencyComponentButton}
         </div>
       </div>

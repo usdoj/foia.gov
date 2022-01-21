@@ -19,11 +19,11 @@ class LandingComponent extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.agencyFinderDataComplete) {
+  componentDidUpdate() {
+    if (!this.props.agencyFinderDataComplete) {
       return;
     }
-    this.consultQueryString(nextProps);
+    this.consultQueryString();
   }
 
   setStateForAgency(agency, agencyComponentsForAgency) {
@@ -51,7 +51,7 @@ class LandingComponent extends Component {
     });
   }
 
-  consultQueryString(props) {
+  consultQueryString() {
     // We only want to do this one time.
     if (this.queryStringConsulted) {
       return;
@@ -61,12 +61,11 @@ class LandingComponent extends Component {
     const {
       typeQueryString,
       idQueryString,
-    } = props;
+    } = this.props;
 
     if (typeQueryString === 'agency') {
       const agency = agencyComponentStore.getAgency(idQueryString);
-      const agencyComponentsForAgency =
-        agencyComponentStore.getAgencyComponentsForAgency(agency.id);
+      const agencyComponentsForAgency = agencyComponentStore.getAgencyComponentsForAgency(agency.id);
       this.setStateForAgency(agency, agencyComponentsForAgency);
       this.scrollToAgencyFinder();
     }
@@ -80,9 +79,9 @@ class LandingComponent extends Component {
 
   // Recursively traverse up the DOM to figure out the scroll offset
   scrollOffset(element) {
-    return element.offsetParent ?
-      element.offsetTop + this.scrollOffset(element.offsetParent) :
-      element.offsetTop;
+    return element.offsetParent
+      ? element.offsetTop + this.scrollOffset(element.offsetParent)
+      : element.offsetTop;
   }
 
   scrollToAgencyFinder() {
@@ -104,7 +103,7 @@ class LandingComponent extends Component {
 
       if (agencyComponent.type === 'agency_component') {
         fetchAgencyComponent(agencyComponent.id)
-          .then(component => this.setStateForComponent(component, false));
+          .then((component) => this.setStateForComponent(component, false));
         return;
       }
 
@@ -115,14 +114,13 @@ class LandingComponent extends Component {
         const component = agencyComponentStore
           .getState()
           .agencyComponents
-          .find(c => c.agency.id === agency.id);
+          .find((c) => c.agency.id === agency.id);
         fetchAgencyComponent(component.id)
-          .then(c => this.setStateForComponent(c, true));
+          .then((c) => this.setStateForComponent(c, true));
         return;
       }
 
-      const agencyComponentsForAgency =
-        agencyComponentStore.getAgencyComponentsForAgency(agency.id);
+      const agencyComponentsForAgency = agencyComponentStore.getAgencyComponentsForAgency(agency.id);
       this.setStateForAgency(agency, agencyComponentsForAgency);
     };
 
@@ -148,45 +146,53 @@ class LandingComponent extends Component {
           />
         </div>
         {
-          this.state.agencyComponent &&
+          this.state.agencyComponent
+          && (
           <AgencyComponentPreview
             agencyComponent={this.state.agencyComponent.toJS()}
             isCentralized={this.state.isCentralized}
             onAgencySelect={agencyChange}
           />
+          )
         }
         {
-          this.state.agency &&
+          this.state.agency
+          && (
           <AgencyPreview
             agency={this.state.agency}
             agencyComponentsForAgency={this.state.agencyComponentsForAgency}
             onAgencySelect={agencyChange}
           />
+          )
         }
         {
-          false &&
+          false
+          && (
           <AgenciesByCategory
             agencies={agencies}
             agencyFinderDataComplete={agencyFinderDataComplete}
             onAgencySelect={agencyChange}
           />
+          )
         }
+        <AgenciesByAlphabet
+          agencies={agencies}
+          agencyFinderDataComplete={agencyFinderDataComplete}
+          onAgencySelect={agencyChange}
+        />
         {
-          <AgenciesByAlphabet
-            agencies={agencies}
-            agencyFinderDataComplete={agencyFinderDataComplete}
-            onAgencySelect={agencyChange}
-          />
-        }
-        {
-          !this.state.agencyComponent && !this.state.agency &&
+          !this.state.agencyComponent && !this.state.agency
+          && (
           <div>
             <h3 className="agency-component-search_hed">When choosing an agency</h3>
-            <p>Remember that some agencies can’t yet receive FOIA requests
+            <p>
+              Remember that some agencies can’t yet receive FOIA requests
               through FOIA.gov. For those agencies, this site   will provide
               you with the information you need to submit a request directly to
-              the agency.</p>
+              the agency.
+            </p>
           </div>
+          )
         }
       </div>
     );
@@ -199,6 +205,8 @@ LandingComponent.propTypes = {
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number,
   onChangeUrlQueryParams: PropTypes.func.isRequired,
+  idQueryString: PropTypes.string,
+  typeQueryString: PropTypes.string,
 };
 
 LandingComponent.defaultProps = {
@@ -206,6 +214,5 @@ LandingComponent.defaultProps = {
   idQueryString: null,
   typeQueryString: null,
 };
-
 
 export default LandingComponent;

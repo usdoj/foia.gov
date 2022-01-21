@@ -169,90 +169,99 @@ class QuarterlyReportDataPage extends Component {
       viewMode,
     } = this.state;
     const [...reportTableEntries] = reportTables.values();
-    const reportToolbar = reportDataComplete && reportDataHasRows ?
-      (<div className="results-toolbar">
-        <button
-          onClick={() => window.print()}
-          type="button"
-          className="print-hide usa-button usa-button-big usa-button-primary-alt"
-        >Print
-        </button>
-        <button
-          onClick={this.triggerCSV.bind(this)}
-          type="button"
-          className="print-hide usa-button usa-button-big usa-button-primary-alt"
-        >Download
-          CSV
-        </button>
-      </div>)
+    const reportToolbar = reportDataComplete && reportDataHasRows
+      ? (
+        <div className="results-toolbar">
+          <button
+            onClick={() => window.print()}
+            type="button"
+            className="print-hide usa-button usa-button-big usa-button-primary-alt"
+          >
+            Print
+          </button>
+          <button
+            onClick={this.triggerCSV.bind(this)}
+            type="button"
+            className="print-hide usa-button usa-button-big usa-button-primary-alt"
+          >
+            Download
+            CSV
+          </button>
+        </div>
+      )
       : null;
     return (
       <div className="quarterly-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
-        {submissionAction === false || submissionAction === 'download' || viewMode === 'form' ?
-          <div>
-            <h1>Create a Quarterly Report</h1>
-            <p>
-              FOIA.gov provides a more real-time picture of agency FOIA administration through
-              its display of Quarterly Report data. Each quarter, agencies must provide the number
-              of requests received, processed, and in the agency&apos;s backlog. Additionally,
-              agencies must report the status of the agency&apos;s ten oldest pending requests each
-              quarter. Users can filter data by agency, data type, and quarter.
-            </p>
-            <form >
-              <QuarterlyReportFormSectionOne
-                agencies={agencies}
-                agencyComponents={agencyComponents}
-                agencyFinderDataComplete={agencyFinderDataComplete}
-                agencyFinderDataProgress={agencyFinderDataProgress}
-                selectedAgencies={selectedAgencies}
-                agencyComponentDisplayError={agencyComponentDisplayError}
-                allAgenciesSelected={allAgenciesSelected}
-              />
-              <QuarterlyReportFormSectionTwo
-                dataTypes={dataTypes}
-                dataTypeOptions={dataTypeOptions}
-                selectedDataTypes={selectedDataTypes}
-                dataTypeDisplayError={dataTypeDisplayError}
-              />
-              <QuarterlyReportFormSectionThree
-                fiscalYears={fiscalYears}
-                selectedFiscalYears={selectedFiscalYears}
-                fiscalYearsDisplayError={fiscalYearsDisplayError}
-              />
-              <QuarterlyReportFormSectionFour
-                quarters={quarters}
-                selectedQuarters={selectedQuarters}
-                quartersDisplayError={quartersDisplayError}
-              />
-              <QuarterlyReportDataSubmit
-                selectedDataTypes={selectedDataTypes}
-                agencyComponentIsValid={agencyComponentIsValid}
-                dataTypesIsValid={dataTypesIsValid}
-                fiscalYearsIsValid={fiscalYearsIsValid}
-                quartersIsValid={quartersIsValid}
-                onClick={this.triggerCSV.bind(this)}
-                history={this.props.history}
-              />
-            </form>
-          </div>
-          : null
-        }
-        {submissionAction === 'view' && viewMode === 'results' ?
-          <header className="results-page-header">
-            <h1>Report Results</h1>
-            {reportToolbar}
-          </header>
+        {submissionAction === false || submissionAction === 'download' || viewMode === 'form'
+          ? (
+            <div>
+              <h1>Create a Quarterly Report</h1>
+              <p>
+                FOIA.gov provides a more real-time picture of agency FOIA administration through
+                its display of Quarterly Report data. Each quarter, agencies must provide the number
+                of requests received, processed, and in the agency&apos;s backlog. Additionally,
+                agencies must report the status of the agency&apos;s ten oldest pending requests each
+                quarter. Users can filter data by agency, data type, and quarter.
+              </p>
+              <form>
+                <QuarterlyReportFormSectionOne
+                  agencies={agencies}
+                  agencyComponents={agencyComponents}
+                  agencyFinderDataComplete={agencyFinderDataComplete}
+                  agencyFinderDataProgress={agencyFinderDataProgress}
+                  selectedAgencies={selectedAgencies}
+                  agencyComponentDisplayError={agencyComponentDisplayError}
+                  allAgenciesSelected={allAgenciesSelected}
+                />
+                <QuarterlyReportFormSectionTwo
+                  dataTypes={dataTypes}
+                  dataTypeOptions={dataTypeOptions}
+                  selectedDataTypes={selectedDataTypes}
+                  dataTypeDisplayError={dataTypeDisplayError}
+                />
+                <QuarterlyReportFormSectionThree
+                  fiscalYears={fiscalYears}
+                  selectedFiscalYears={selectedFiscalYears}
+                  fiscalYearsDisplayError={fiscalYearsDisplayError}
+                />
+                <QuarterlyReportFormSectionFour
+                  quarters={quarters}
+                  selectedQuarters={selectedQuarters}
+                  quartersDisplayError={quartersDisplayError}
+                />
+                <QuarterlyReportDataSubmit
+                  selectedDataTypes={selectedDataTypes}
+                  agencyComponentIsValid={agencyComponentIsValid}
+                  dataTypesIsValid={dataTypesIsValid}
+                  fiscalYearsIsValid={fiscalYearsIsValid}
+                  quartersIsValid={quartersIsValid}
+                  onClick={this.triggerCSV.bind(this)}
+                  history={this.props.history}
+                />
+              </form>
+            </div>
+          )
+          : null}
+        {submissionAction === 'view' && viewMode === 'results'
+          ? (
+            <header className="results-page-header">
+              <h1>Report Results</h1>
+              {reportToolbar}
+            </header>
+          )
           : null }
-        {(submissionAction === 'view' || submissionAction === 'download') && !reportDataComplete &&
+        {(submissionAction === 'view' || submissionAction === 'download') && !reportDataComplete
+          && (
           <div className="results-loading">
             <div className="spinner" />
             <div className="results-loading__text">Loading...</div>
           </div>
-        }
-        {reportDataComplete && reportDataHasRows && ((submissionAction === 'view' && viewMode === 'results') || submissionAction === 'download') &&
+          )}
+        {reportDataComplete && reportDataHasRows && ((submissionAction === 'view' && viewMode === 'results') || submissionAction === 'download')
+        && (
         <div>
           {
-            reportTableEntries.map(table => (
+            reportTableEntries.map((table) => (
               <QuarterlyReportResultsTable
                 key={`report-${table.id}`}
                 ref={(ref) => { this.reportRefs[table.id] = ref; }}
@@ -264,13 +273,14 @@ class QuarterlyReportDataPage extends Component {
               />
             ))
           }
-        </div> }
-        {reportDataComplete && !reportDataHasRows &&
+        </div>
+        ) }
+        {reportDataComplete && !reportDataHasRows
+        && (
         <div className="info-box">
           <p>No data meets your search criteria. Please try a new search.</p>
         </div>
-
-        }
+        )}
       </div>
     );
   }

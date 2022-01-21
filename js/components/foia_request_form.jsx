@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Form from 'react-jsonschema-form';
+import Form from '@rjsf/core';
 import { Map } from 'immutable';
 
 import CustomFieldTemplate from 'components/request_custom_field_template';
@@ -14,8 +14,11 @@ import FoiaFileWidget from './foia_file_widget';
 import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 import UploadProgress from './upload_progress';
 import { scrollOffset } from '../util/dom';
+import dispatcher from '../util/dispatcher';
 
-function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionResult }) {
+function FoiaRequestForm({
+  formData, upload, onSubmit, requestForm, submissionResult,
+}) {
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
     const fieldErrors = document.getElementsByClassName('usa-input-error');
@@ -29,7 +32,7 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
   function validate(data, errors) {
     const honField = 'website';
     const contactFields = ['email', 'address_line1', 'phone_number'];
-    if (contactFields.every(field => !data.requester_contact[field])) {
+    if (contactFields.every((field) => !data.requester_contact[field])) {
       contactFields.forEach((field) => {
         errors.requester_contact[field].addError('Please provide at least one form of contact information.');
       });
@@ -41,7 +44,9 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
   }
 
   function onChange({ formData: data }) {
-    requestActions.updateRequestForm(data);
+    if (!dispatcher.isDispatching()) {
+      requestActions.updateRequestForm(data);
+    }
   }
 
   // Listen for jsonSchema validation errors and jump to them.
@@ -67,7 +72,7 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
     const payload = rf.mergeSectionFormData(data);
     // Transform file fields to attachments
     findFileFields(requestForm)
-      .filter(fileFieldName => fileFieldName in payload)
+      .filter((fileFieldName) => fileFieldName in payload)
       .forEach((fileFieldName) => {
         payload[fileFieldName] = dataUrlToAttachment(payload[fileFieldName]);
       });
@@ -99,11 +104,11 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
   };
 
   // Map these to react-jsonschema-form Ids
-  const steps = (requestForm.sections || []).map(section => `root_${section.id}`);
+  const steps = (requestForm.sections || []).map((section) => `root_${section.id}`);
 
-  const errors = (submissionResult.errors instanceof Map) ?
-    submissionResult.errors.toJS() :
-    submissionResult.errors;
+  const errors = (submissionResult.errors instanceof Map)
+    ? submissionResult.errors.toJS()
+    : submissionResult.errors;
   const formContext = { steps, errors };
   const { jsonSchema, uiSchema } = requestForm;
   return (
@@ -130,30 +135,36 @@ function FoiaRequestForm({ formData, upload, onSubmit, requestForm, submissionRe
         </div>
         <h3>Review and submit</h3>
         <div className="info-box">
-          <p>Please review the information you entered above before submitting to
+          <p>
+            Please review the information you entered above before submitting to
             an agency. You should hear from the agency within the coming weeks.
             If you don’t hear from the agency, please reach out
-            using the contact information provided to you on this site.</p>
+            using the contact information provided to you on this site.
+          </p>
         </div>
-        { upload.get('inProgress') ?
-          <UploadProgress
-            progressTotal={upload.get('progressTotal')}
-            progressLoaded={upload.get('progressLoaded')}
-          /> :
-          <button
-            className="usa-button usa-button-big usa-button-primary-alt"
-            type="submit"
-          >
-            Submit request
-          </button>
-        }
-        { submissionResult.errorMessage &&
+        { upload.get('inProgress')
+          ? (
+            <UploadProgress
+              progressTotal={upload.get('progressTotal')}
+              progressLoaded={upload.get('progressLoaded')}
+            />
+          )
+          : (
+            <button
+              className="usa-button usa-button-big usa-button-primary-alt"
+              type="submit"
+            >
+              Submit request
+            </button>
+          )}
+        { submissionResult.errorMessage
+          && (
           <p>
             <span className="usa-input-error-message" role="alert">
               {submissionResult.errorMessage}
             </span>
           </p>
-        }
+          )}
       </div>
     </Form>
   );
@@ -170,6 +181,5 @@ FoiaRequestForm.propTypes = {
 FoiaRequestForm.defaultProps = {
   onSubmit: () => {},
 };
-
 
 export default FoiaRequestForm;

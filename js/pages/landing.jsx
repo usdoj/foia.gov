@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container } from 'flux/utils';
 import PropTypes from 'prop-types';
 import { addUrlProps, configureUrlQuery, UrlQueryParamTypes } from 'react-url-query';
-import createBrowserHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 import { requestActions } from 'actions';
 import LandingComponent from '../components/landing';
@@ -53,7 +53,6 @@ class LandingPage extends Component {
         .then(requestActions.receiveAgencyComponent);
     }
   }
-
 
   render() {
     const {

@@ -2,7 +2,6 @@ import { expect } from 'chai';
 
 import foiaPersonnel from '../../util/foia_personnel';
 
-
 describe('foia_personnel', () => {
   describe('personnel()', () => {
     describe('given an empty list of members', () => {

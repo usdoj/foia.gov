@@ -6,8 +6,9 @@ import { AgencyComponent, SubmissionResult } from '../models';
 import RequestSummary from './request_summary';
 import ContactInformation from './contact_information';
 
-
-function Confirmation({ agencyComponent, formData, requestForm, submissionResult }) {
+function Confirmation({
+  agencyComponent, formData, requestForm, submissionResult,
+}) {
   const { submission_id } = submissionResult;
   const getDate = () => {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -20,13 +21,20 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
   return (
     <div className="confirmation sidebar_content-inner">
       <div className="print-only confirmation_print-submission-id">
-        <p><strong>Submission ID:</strong> {submission_id}</p>
+        <p>
+          <strong>Submission ID:</strong>
+          {' '}
+          {submission_id}
+        </p>
       </div>
       <h1 className="confirmation_title">Success!</h1>
       <section className="confirmation_contact">
         <h3>
           Your FOIA request has been created and is being sent to
-          the {agencyComponent.title}.
+          the
+          {' '}
+          {agencyComponent.title}
+          .
         </h3>
         <p className="print-hide">
           Please save this page for your records.
@@ -51,9 +59,16 @@ function Confirmation({ agencyComponent, formData, requestForm, submissionResult
 
       <section className="confirmation_request-summary">
         <h2>Request summary</h2>
-        <p>Request submitted on <strong>{ getDate() }</strong>.</p>
+        <p>
+          Request submitted on
+          <strong>{ getDate() }</strong>
+          .
+        </p>
         <p className="confirmation_submission-id">
-          The confirmation ID for your request is <strong>{submission_id}</strong>.
+          The confirmation ID for your request is
+          {' '}
+          <strong>{submission_id}</strong>
+          .
         </p>
         <div className="info-box">
           <p>
@@ -81,6 +96,5 @@ Confirmation.propTypes = {
 Confirmation.defaultProps = {
   formData: new Map(),
 };
-
 
 export default Confirmation;

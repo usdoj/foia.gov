@@ -22,7 +22,7 @@ foia-api, set `APP_ENV=local`.
 
 ## Tests
 
-The test files are compiled via `mocha-webpack` and then run with mocha.
+The test files are compiled via `mochapack` and then run with mocha.
 
     $ make test
 

@@ -20,12 +20,9 @@ class QuarterlyReportDataTypeFilter extends Component {
     this.handleFilterReset = this.handleFilterReset.bind(this);
     this.modalCanSubmit = this.modalCanSubmit.bind(this);
     this.handleFilterRemove = this.handleFilterRemove.bind(this);
-  }
-
-  componentWillMount() {
-    this.setState({
+    this.state = {
       id: uniqueId(),
-    });
+    };
   }
 
   handleDataTypeChange(e) {
@@ -68,6 +65,7 @@ class QuarterlyReportDataTypeFilter extends Component {
       index: this.props.selectedDataType.index,
     });
   }
+
   handleFilterRemove(e) {
     this.filterModal.closeModal(e);
     dispatcher.dispatch({
@@ -97,13 +95,14 @@ class QuarterlyReportDataTypeFilter extends Component {
             fieldsetClasses="usa-fieldset-inputs"
             fieldgroupClasses="label-weight-normal"
             name="filterField"
-            title={
-              <span>Data Filters
+            title={(
+              <span>
+                Data Filters
                 <FoiaTooltip
                   text={'Select the type of FOIA data you would like to view. The data comes from agencies\' Quarterly FOIA Reports. To learn more about the data, view the terms in the Glossary.'}
                 />
               </span>
-            }
+            )}
             options={selectedDataType.filterOptions}
             placeholder=""
             handleChange={this.handleFilterFieldUpdate}
@@ -125,7 +124,8 @@ class QuarterlyReportDataTypeFilter extends Component {
             <option value="is_na">is equal to N/A</option>
           </select>
         </div>
-        {filter.op !== 'is_na' &&
+        {filter.op !== 'is_na'
+        && (
         <div className="form-group field">
           <label htmlFor="compareValue">Enter a Numeric Value</label>
           <input
@@ -138,14 +138,12 @@ class QuarterlyReportDataTypeFilter extends Component {
             value={filter.compareValue}
             className="usa-reset-width"
           />
-          {noValue &&
-          <p className="usa-input-error-message">Please enter a numeric value to compare.</p>
-          }
-          {!noValue && invalidValue &&
-          <p className="usa-input-error-message">Please enter a valid numeric value greater than or equal to zero.</p>
-          }
+          {noValue
+          && <p className="usa-input-error-message">Please enter a numeric value to compare.</p>}
+          {!noValue && invalidValue
+          && <p className="usa-input-error-message">Please enter a valid numeric value greater than or equal to zero.</p>}
         </div>
-        }
+        )}
       </div>
     );
   }
@@ -154,13 +152,17 @@ class QuarterlyReportDataTypeFilter extends Component {
     const { dataTypeDisplayError, fieldsDisplayed } = this.props;
     const dataTypeSelected = (this.props.selectedDataType.id !== '' && this.props.selectedDataType.id !== 'group_iv_exemption_3_statutes') || false;
     const filterSubmitted = Object.hasOwnProperty.call(this.props.selectedDataType, 'filter') && this.props.selectedDataType.filter.applied;
-    const removeButton = filterSubmitted ? (<button
-      onClick={this.handleFilterRemove}
-      style={{ cursor: 'pointer' }}
-      href={null}
-      className="button-as-link"
-      type="button"
-    >Remove Filter</button>) : null;
+    const removeButton = filterSubmitted ? (
+      <button
+        onClick={this.handleFilterRemove}
+        style={{ cursor: 'pointer' }}
+        href={null}
+        className="button-as-link"
+        type="button"
+      >
+        Remove Filter
+      </button>
+    ) : null;
     const modalText = filterSubmitted ? 'Edit Results Filter' : 'Filter Results';
     const fieldgroupClasses = dataTypeDisplayError ? 'form-group field usa-input-error' : 'form-group field';
 
@@ -182,11 +184,11 @@ class QuarterlyReportDataTypeFilter extends Component {
           handleChange={this.handleDataTypeChange}
           fieldgroupClasses={fieldgroupClasses}
         />
-        {dataTypeDisplayError &&
-        <p className="usa-input-error-message">A Data Type is required.</p>
-        }
+        {dataTypeDisplayError
+        && <p className="usa-input-error-message">A Data Type is required.</p>}
         <div className="report-field-actions">
-          {dataTypeSelected &&
+          {dataTypeSelected
+            && (
             <FoiaModal
               ref={(modal) => { this.filterModal = modal; }}
               triggerText={modalText}
@@ -197,7 +199,7 @@ class QuarterlyReportDataTypeFilter extends Component {
               canSubmit={this.modalCanSubmit}
               modalAdditionalLink={removeButton}
             />
-          }
+            )}
           {removeDataFieldButton}
         </div>
       </div>

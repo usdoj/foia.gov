@@ -8,7 +8,6 @@ import Confirmation from 'components/confirmation';
 import ContactInformation from 'components/contact_information';
 import { AgencyComponent, SubmissionResult } from 'models';
 
-
 describe('Confirmation', () => {
   let sandbox;
   beforeEach(() => {

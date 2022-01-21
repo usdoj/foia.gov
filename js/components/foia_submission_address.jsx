@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 function FoiaSubmissionAddress({ submissionAddress, paperReceiver }) {
   const {
     address_line1,
@@ -15,10 +14,30 @@ function FoiaSubmissionAddress({ submissionAddress, paperReceiver }) {
 
   return (
     <address className="agency-info_mailing-address">
-      { name && <span>{name}<br /></span> }
-      { title && <span>{title}<br /></span> }
-      { address_line1 && <span>{address_line1}<br /></span> }
-      { address_line2 && <span>{address_line2}<br /></span> }
+      { name && (
+      <span>
+        {name}
+        <br />
+      </span>
+      ) }
+      { title && (
+      <span>
+        {title}
+        <br />
+      </span>
+      ) }
+      { address_line1 && (
+      <span>
+        {address_line1}
+        <br />
+      </span>
+      ) }
+      { address_line2 && (
+      <span>
+        {address_line2}
+        <br />
+      </span>
+      ) }
       <span>{ `${locality}, ${administrative_area} ${postal_code}` }</span>
     </address>
   );
@@ -33,6 +52,5 @@ FoiaSubmissionAddress.defaultProps = {
   paperReceiver: null,
   submissionAddress: null,
 };
-
 
 export default FoiaSubmissionAddress;

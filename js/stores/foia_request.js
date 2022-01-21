@@ -13,7 +13,6 @@ import dispatcher from '../util/dispatcher';
 import agencyComponentRequestFormStore from './agency_component_request_form';
 import rf from '../util/request_form';
 
-
 class FoiaRequestStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
@@ -60,7 +59,7 @@ class FoiaRequestStore extends Store {
       }
 
       case types.REQUEST_FORM_SUBMIT_PROGRESS: {
-        const progress = payload.progress;
+        const { progress } = payload;
         if (!progress.lengthComputable) {
           break;
         }

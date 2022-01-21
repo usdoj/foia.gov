@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CFOCPageMeetingDetailComponent = props => (
-  <div className="cfoc-meeting-detail" >
-    <h1>{props.title}</h1>
-    <div dangerouslySetInnerHTML={{ __html: props.heading }} />
-    <article dangerouslySetInnerHTML={{ __html: props.body }} />
-    {
+function CFOCPageMeetingDetailComponent(props) {
+  return (
+    <div className="cfoc-meeting-detail">
+      <h1>{props.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: props.heading }} />
+      <article dangerouslySetInnerHTML={{ __html: props.body }} />
+      {
       props.agenda.length
         ? (
           <div className="cfoc-meeting-detail-agenda">
@@ -30,9 +31,9 @@ const CFOCPageMeetingDetailComponent = props => (
         )
         : null
     }
-  </div>
-);
-
+    </div>
+  );
+}
 
 CFOCPageMeetingDetailComponent.propTypes = {
   title: PropTypes.string,

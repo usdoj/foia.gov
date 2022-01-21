@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CFOCPageAttachmentsComponent = (props) => {
+function CFOCPageAttachmentsComponent(props) {
   const { attachments } = props;
   return (
     <div className="cfoc-attachments">
@@ -18,8 +18,7 @@ const CFOCPageAttachmentsComponent = (props) => {
       }
     </div>
   );
-};
-
+}
 
 CFOCPageAttachmentsComponent.propTypes = {
   attachments: PropTypes.array,

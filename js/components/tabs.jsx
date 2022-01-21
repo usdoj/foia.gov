@@ -53,9 +53,10 @@ class Tabs extends Component {
       tabControls
     );
   }
+
   render() {
     const agencyComponent = this.props.agencyComponent.toJS();
-    const requestForm = this.props.requestForm;
+    const { requestForm } = this.props;
 
     return (
       <aside className="sidebar print-hide">
@@ -83,17 +84,23 @@ class Tabs extends Component {
                   </p>
                 </li>
                 <li>
-                  <h4>The description of records you are requesting is
-                    very important.</h4>
-                  <p className="submission-help_description">Be sure your
-                    request is clear and as specific as possible.</p>
+                  <h4>
+                    The description of records you are requesting is
+                    very important.
+                  </h4>
+                  <p className="submission-help_description">
+                    Be sure your
+                    request is clear and as specific as possible.
+                  </p>
                 </li>
                 <li>
                   <h4>Do research before you file.</h4>
-                  <p className="submission-help_research">Sometimes what you are
+                  <p className="submission-help_research">
+                    Sometimes what you are
                     looking for  is already public. You can
                     find out by reaching out to the agency you’re interested in
-                    or by visiting their website or their FOIA Library.</p>
+                    or by visiting their website or their FOIA Library.
+                  </p>
                 </li>
               </ul>
             </section>
@@ -101,11 +108,12 @@ class Tabs extends Component {
           <section className={this.state.selectedTab === 1 ? 'tab_active panel_light-color' : 'panel_light-color'}>
             <h3>{ agencyComponent.agency.name }</h3>
             <h2>{ agencyComponent.title }</h2>
-            { agencyComponent.request_data_year &&
+            { agencyComponent.request_data_year
+              && (
               <section className="submission-help_processing-time">
                 <AgencyComponentProcessingTime agencyComponent={agencyComponent} />
               </section>
-            }
+              )}
             <section className="submission-help_agency-mission">
               <h4>Agency mission</h4>
               <p>{ domify(AgencyComponent.agencyMission(agencyComponent)) }</p>

@@ -3,7 +3,7 @@ import 'test/setup';
 import React from 'react';
 import { render, shallow } from 'enzyme';
 import { Map } from 'immutable';
-import Form from 'react-jsonschema-form';
+import Form from '@rjsf/core';
 
 import FoiaRequestForm from '../../components/foia_request_form';
 import SubmissionResult from '../../models/submission_result';

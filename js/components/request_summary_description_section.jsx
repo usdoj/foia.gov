@@ -14,11 +14,9 @@ function RequestSummaryDescriptionSection({ formData, section }) {
   );
 }
 
-
 RequestSummaryDescriptionSection.propTypes = {
   formData: PropTypes.object.isRequired,
   section: PropTypes.object.isRequired,
 };
-
 
 export default RequestSummaryDescriptionSection;

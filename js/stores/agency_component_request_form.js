@@ -7,7 +7,6 @@ import rf from '../util/request_form';
 import agencyComponentStore from './agency_component';
 import domify from '../util/request_form/domify';
 
-
 class AgencyComponentRequestFormStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
@@ -31,9 +30,7 @@ class AgencyComponentRequestFormStore extends Store {
       case types.REQUEST_FORM_SECTIONS_RECEIVE: {
         const domifiedFormSections = payload
           .formSections
-          .map(section =>
-            Object.assign({}, section, { description: domify(section.description) }),
-          );
+          .map((section) => ({ ...section, description: domify(section.description) }));
 
         Object.assign(this.state, {
           formSections: new List(domifiedFormSections),

@@ -10,4 +10,3 @@ Object.assign(global, {
   expect,
   sinon,
 });
-

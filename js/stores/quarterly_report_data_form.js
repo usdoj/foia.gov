@@ -49,15 +49,16 @@ class QuarterlyReportDataFormStore extends Store {
     // If all agencies are selected, get an array of all agencies
     // where the only component is an overall component.
     let { agencies } = agencyComponentStore.getState();
-    agencies = agencies.map(agency => (
-      Object.assign({}, agency.toJS(), {
+    agencies = agencies.map((agency) => (
+      {
+        ...agency.toJS(),
         components: List([{
           abbreviation: 'Agency Overall',
           id: `overall:${agency.id}`,
           isOverall: true,
           selected: true,
         }]),
-      })
+      }
     ));
 
     return agencies.toArray();
@@ -74,14 +75,14 @@ class QuarterlyReportDataFormStore extends Store {
    */
   getValidDataTypes(dataTypes) {
     const filterableList = dataTypes || [...this.state.selectedDataTypes];
-    return filterableList.filter(type => type.id !== null && type.id !== undefined && type.id !== '');
+    return filterableList.filter((type) => type.id !== null && type.id !== undefined && type.id !== '');
   }
 
   validateSelectAgencyComponent() {
     // Check if Agency Component Name field is valid.
     const selectedAgencies = [...this.state.selectedAgencies];
     const validityCheckSelectedAgencies = [];
-    const allAgenciesSelected = this.state.allAgenciesSelected;
+    const { allAgenciesSelected } = this.state;
     if (allAgenciesSelected) {
       validityCheckSelectedAgencies.push(true);
     } else {
@@ -142,7 +143,7 @@ class QuarterlyReportDataFormStore extends Store {
         if (selectedAgency.type === 'agency') {
           selectedAgency.components = agencyComponentStore
             .getAgencyComponentsForAgency(selectedAgency.id)
-            .map(component => ({
+            .map((component) => ({
               abbreviation: component.abbreviation,
               id: component.id,
               isOverall: false,
@@ -151,7 +152,7 @@ class QuarterlyReportDataFormStore extends Store {
             // Components with the same abbreviation as the agency must not be displayed
             // as an option to select as a child of a selected agency.  These will instead be
             // replaced by the Agency Overall option.
-            .filter(component => component.abbreviation !== selectedAgency.abbreviation)
+            .filter((component) => component.abbreviation !== selectedAgency.abbreviation)
             .push({
               abbreviation: 'Agency Overall',
               id: `overall:${selectedAgency.id}`,
@@ -179,7 +180,7 @@ class QuarterlyReportDataFormStore extends Store {
       }
 
       case types.SELECTED_AGENCIES_TOGGLE_SELECT_ALL: {
-        const { allAgenciesSelected } = Object.assign({}, this.getState());
+        const { allAgenciesSelected } = { ...this.getState() };
 
         Object.assign(this.state, {
           allAgenciesSelected: !allAgenciesSelected,
@@ -250,8 +251,8 @@ class QuarterlyReportDataFormStore extends Store {
 
           selectedDataType.filterOptions = selectedDataType
             .fields
-            .filter(opt => opt.filter)
-            .map(opt => ({
+            .filter((opt) => opt.filter)
+            .map((opt) => ({
               value: opt.filter === true ? opt.id : opt.filter,
               label: opt.label,
             }));
@@ -265,7 +266,7 @@ class QuarterlyReportDataFormStore extends Store {
             compareValue: '',
           };
           selectedDataType.defaultFilter = filterDefaults;
-          selectedDataType.filter = Object.assign({}, filterDefaults);
+          selectedDataType.filter = { ...filterDefaults };
         }
 
         const selectedDataTypes = [...this.state.selectedDataTypes];
@@ -364,9 +365,9 @@ class QuarterlyReportDataFormStore extends Store {
         }
         // Get a copy of the filter so we aren't updating the real one until
         // the user submits the modal.
-        const tempFilter = currentSelection.tempFilter ?
-          Object.assign({}, currentSelection.tempFilter) :
-          Object.assign({}, currentSelection.filter);
+        const tempFilter = currentSelection.tempFilter
+          ? ({ ...currentSelection.tempFilter })
+          : ({ ...currentSelection.filter });
         Object.assign(tempFilter, {
           applied: true,
         });
@@ -384,7 +385,7 @@ class QuarterlyReportDataFormStore extends Store {
       case types.QUARTERLY_REPORT_DATA_TYPE_FILTER_SUBMIT: {
         const { index } = payload;
         const selectedDataTypes = [...this.state.selectedDataTypes];
-        const dataType = Object.assign({}, selectedDataTypes[index]);
+        const dataType = { ...selectedDataTypes[index] };
 
         if (!Object.prototype.hasOwnProperty.call(dataType, 'tempFilter')) {
           break;
@@ -406,7 +407,7 @@ class QuarterlyReportDataFormStore extends Store {
       case types.QUARTERLY_REPORT_DATA_TYPE_FILTER_RESET: {
         const { index } = payload;
         const selectedDataTypes = [...this.state.selectedDataTypes];
-        const dataType = Object.assign({}, selectedDataTypes[index]);
+        const dataType = { ...selectedDataTypes[index] };
 
         if (!Object.prototype.hasOwnProperty.call(dataType, 'tempFilter')) {
           break;
@@ -427,7 +428,7 @@ class QuarterlyReportDataFormStore extends Store {
         const { selection } = payload;
         const selectedDataTypes = [...this.state.selectedDataTypes];
         // Assign a copy of the default filter object to the filter.
-        const tempFilter = Object.assign({}, selection.defaultFilter);
+        const tempFilter = { ...selection.defaultFilter };
         selection.filter = tempFilter;
 
         selectedDataTypes[selection.index].filter = tempFilter;
@@ -481,8 +482,8 @@ class QuarterlyReportDataFormStore extends Store {
         // Update the temporary components list with a cloned agency component
         // object where the select value is toggled.
         components = components.set(
-          components.findIndex(component => component.id === agencyComponent.id),
-          Object.assign({}, agencyComponent, { selected: !agencyComponent.selected }),
+          components.findIndex((component) => component.id === agencyComponent.id),
+          { ...agencyComponent, selected: !agencyComponent.selected },
         );
 
         selectedAgencies[agency.index].tempSelectedComponents = components;
@@ -512,8 +513,8 @@ class QuarterlyReportDataFormStore extends Store {
         // object where all select values are toggled.
         components.map((item) => {
           components = components.set(
-            components.findIndex(component => component.id === item.id),
-            Object.assign({}, item, { selected: selectValue }),
+            components.findIndex((component) => component.id === item.id),
+            { ...item, selected: selectValue },
           );
           return components;
         });
@@ -530,7 +531,7 @@ class QuarterlyReportDataFormStore extends Store {
       case types.SELECTED_AGENCY_COMPONENTS_MERGE_TEMPORARY: {
         const { index } = payload;
         const selectedAgencies = [...this.state.selectedAgencies];
-        const agency = Object.assign({}, selectedAgencies[index]);
+        const agency = { ...selectedAgencies[index] };
 
         if (!Object.prototype.hasOwnProperty.call(agency, 'tempSelectedComponents')) {
           break;
@@ -556,7 +557,7 @@ class QuarterlyReportDataFormStore extends Store {
       case types.SELECTED_AGENCY_COMPONENTS_DISCARD_TEMPORARY: {
         const { index } = payload;
         const selectedAgencies = [...this.state.selectedAgencies];
-        const agency = Object.assign({}, selectedAgencies[index]);
+        const agency = { ...selectedAgencies[index] };
 
         if (!Object.prototype.hasOwnProperty.call(agency, 'tempSelectedComponents')) {
           break;

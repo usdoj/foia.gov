@@ -2,7 +2,6 @@ import { expect } from 'chai';
 
 import wfjs from '../../../util/request_form/webform_to_json_schema';
 
-
 describe('webformFieldsToJsonSchema()', () => {
   describe('given no formFields', () => {
     let formFields;

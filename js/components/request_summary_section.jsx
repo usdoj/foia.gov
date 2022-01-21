@@ -5,7 +5,6 @@ import RequestSummaryContactSection from './request_summary_contact_section';
 import RequestSummaryDescriptionSection from './request_summary_description_section';
 import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 
-
 // Returns the field label from the requestForm for human readable display
 function fieldLabel(requestForm, sectionId, fieldName) {
   const { jsonSchema, uiSchema } = requestForm;
@@ -56,7 +55,7 @@ function RequestSummarySection({ section, formData, requestForm }) {
   // Maintain field ordering as much as possible, start with section field name ordering
   const populatedFields = (section.fieldNames || Object.keys(sectionFields))
     // Only include fields that actually exist in this form
-    .filter(fieldName => fieldName in sectionFields && !!sectionFields[fieldName]);
+    .filter((fieldName) => fieldName in sectionFields && !!sectionFields[fieldName]);
 
   // Don't show the section if there's nothing to show
   if (!populatedFields.length) {
@@ -76,13 +75,14 @@ function RequestSummarySection({ section, formData, requestForm }) {
 
               return (
                 <div key={`${section.id}-${fieldName}`}>
-                  { isFileField ?
-                    fileField(value) :
-                    <div>
-                      <h5 className="request-summary_label">{label}</h5>
-                      <div>{value}</div>
-                    </div>
-                  }
+                  { isFileField
+                    ? fileField(value)
+                    : (
+                      <div>
+                        <h5 className="request-summary_label">{label}</h5>
+                        <div>{value}</div>
+                      </div>
+                    )}
                 </div>
               );
             })
@@ -97,6 +97,5 @@ RequestSummarySection.propTypes = {
   formData: PropTypes.object.isRequired,
   requestForm: PropTypes.object.isRequired,
 };
-
 
 export default RequestSummarySection;
