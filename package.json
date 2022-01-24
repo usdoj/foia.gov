@@ -78,7 +78,7 @@
     "mochapack": "2.x",
     "npm-run-all": "4.x",
     "process": "0.x",
-    "react-test-renderer": "15.x",
+    "react-test-renderer": "17.x",
     "sinon": "11.x",
     "sinon-chai": "3.x",
     "style-loader": "3.x",
