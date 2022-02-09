@@ -55,7 +55,7 @@ function RequestSummarySection({ section, formData, requestForm }) {
 
   // The "supporting_docs" section can have custom fields which are not in section.fieldNames.
   if (section.id === 'supporting_docs') {
-    Object.keys(sectionFields).forEach(sectionField => {
+    Object.keys(sectionFields).forEach((sectionField) => {
       if (!sectionFieldNames.includes(sectionField)) {
         sectionFieldNames.push(sectionField);
       }
