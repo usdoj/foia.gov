@@ -129,7 +129,6 @@ function toUiSchemaProperty(webformField) {
 function webformFieldsToJsonSchema(formFields = [], { title, description, id } = {}) {
   const jsonSchema = {
     title,
-    description,
     type: 'object',
   };
 
@@ -154,6 +153,9 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
 
   // Set ordering of form fields
   uiSchema['ui:order'] = formFields.map((formField) => formField.name);
+
+  // Set the description for this section.
+  uiSchema['ui:description'] = description;
 
   return { jsonSchema, uiSchema };
 }
