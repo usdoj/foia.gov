@@ -51,9 +51,19 @@ function RequestSummarySection({ section, formData, requestForm }) {
 
   const sectionFields = formData[section.id] || {};
   const fileFields = findFileFields(requestForm);
+  const sectionFieldNames = (section.fieldNames) ? [...section.fieldNames] : Object.keys(sectionFields);
+
+  // The "supporting_docs" section can have custom fields which are not in section.fieldNames.
+  if (section.id === 'supporting_docs') {
+    Object.keys(sectionFields).forEach((sectionField) => {
+      if (!sectionFieldNames.includes(sectionField)) {
+        sectionFieldNames.push(sectionField);
+      }
+    });
+  }
 
   // Maintain field ordering as much as possible, start with section field name ordering
-  const populatedFields = (section.fieldNames || Object.keys(sectionFields))
+  const populatedFields = sectionFieldNames
     // Only include fields that actually exist in this form
     .filter((fieldName) => fieldName in sectionFields && !!sectionFields[fieldName]);
 
