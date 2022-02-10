@@ -31,23 +31,30 @@ build:
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS)
 
 clean:
-	-pkill -f -9 jekyll
 	rm -rf www.foia.gov/assets
 	rm -rf _site
 
 serve:
+	-pkill -9 -f "node js/dev-server.js"
 	node js/dev-server.js
 
-serve.detached: clean build
-	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll serve --detach --skip-initial-build $(JEKYLL_OPTS)
+serve.detached:
+	-pkill -9 -f "node js/dev-server.js"
+	node js/dev-server.js &
 
-test.features: serve.detached
+test.features:
 	npx cucumber-js
 
-test: test.features
-	npm test
-	npm run lint
+test.html:
 	bin/htmlproofer.sh
+
+test.lint:
+	npm run lint
+
+test.functional:
+	npm test
+
+test: clean build serve.detached test.functional test.lint test.html test.features
 	@echo OK
 
 
