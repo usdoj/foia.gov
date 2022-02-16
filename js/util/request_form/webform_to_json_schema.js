@@ -88,9 +88,7 @@ function toUiSchemaProperty(webformField) {
   // For fields with maxlength, automatically add help text.
   if (webformField.maxlength) {
     const max = Number.parseInt(webformField.maxlength, 10).toLocaleString();
-    webformField.help += `
-      <em>This field has a maximum length of ${max} characters.</em>
-    `;
+   
   }
 
   const uiSchemaProperty = {
