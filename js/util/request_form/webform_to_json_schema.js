@@ -93,8 +93,7 @@ function toUiSchemaProperty(webformField) {
       webformField.help = `
       <em>This field has a maximum length of ${max} characters.</em>
       `;
-    }
-    else {
+    } else {
       webformField.help += `
       <em>This field has a maximum length of ${max} characters.</em>
     `;
