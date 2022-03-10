@@ -86,7 +86,7 @@ address_zip_postal_code:
 request_description:
   name: request_description
   type: string
-  description: Description of the records the requester is seeking.
+  description: Description of the records the requester is seeking.  This field should be set to a 10,000 character limit by default.
   required: yes
   example: '"I am seeking records pertaining to ..."'
 
@@ -107,7 +107,7 @@ fee_waiver:
 fee_waiver_explanation:
   name: fee_waiver_explanation
   type: string
-  description: The justification for the fee waiver.
+  description: The justification for the fee waiver.  This field should be set to a 10,000 character limit by default.
   required: no
   example: '"As a journalist organization, I am requesting these records on behalf of the public and intend to make these records accesible to the public."'
 
@@ -128,7 +128,7 @@ expedited_processing:
 expedited_processing_explanation:
   name: expedited_processing_explanation
   type: string
-  description: The justification for why expedited processing should be granted.
+  description: The justification for why expedited processing should be granted.  This field should be set to a 10,000 character limit by default.
   required: no
   example: '"The request should be given expedited processing because…"'
 

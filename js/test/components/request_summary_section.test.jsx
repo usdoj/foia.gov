@@ -6,7 +6,6 @@ import { shallow } from 'enzyme';
 import RequestSummarySection from 'components/request_summary_section';
 import * as factory from 'test/factory';
 
-
 describe('RequestSummarySection', () => {
   let sandbox;
   beforeEach(() => {

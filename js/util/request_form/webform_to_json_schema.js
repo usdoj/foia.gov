@@ -1,6 +1,5 @@
 import domify from './domify';
 
-
 /**
  * Converts a metadata field's type to a JSON Schema type.
  */
@@ -89,9 +88,16 @@ function toUiSchemaProperty(webformField) {
   // For fields with maxlength, automatically add help text.
   if (webformField.maxlength) {
     const max = Number.parseInt(webformField.maxlength, 10).toLocaleString();
-    webformField.help += `
+
+    if (webformField.help == null) {
+      webformField.help = `
+      <em>This field has a maximum length of ${max} characters.</em>
+      `;
+    } else {
+      webformField.help += `
       <em>This field has a maximum length of ${max} characters.</em>
     `;
+    }
   }
 
   const uiSchemaProperty = {
@@ -123,7 +129,6 @@ function toUiSchemaProperty(webformField) {
   return { [webformField.name]: uiSchemaProperty };
 }
 
-
 /**
  * Translates agency components' Drupal Webform fields into JSON schema and uiSchema
  * for use with react-jsonschema-form.
@@ -131,7 +136,6 @@ function toUiSchemaProperty(webformField) {
 function webformFieldsToJsonSchema(formFields = [], { title, description, id } = {}) {
   const jsonSchema = {
     title,
-    description,
     type: 'object',
   };
 
@@ -146,8 +150,8 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
 
   // Add required fields to the `required` property
   jsonSchema.required = formFields
-    .filter(formField => formField.required)
-    .map(formField => formField.name);
+    .filter((formField) => formField.required)
+    .map((formField) => formField.name);
 
   // Parse out uiSchema from fields
   const uiSchema = formFields
@@ -155,11 +159,13 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
     .reduce((properties, property) => Object.assign(properties, property), {});
 
   // Set ordering of form fields
-  uiSchema['ui:order'] = formFields.map(formField => formField.name);
+  uiSchema['ui:order'] = formFields.map((formField) => formField.name);
+
+  // Set the description for this section.
+  uiSchema['ui:description'] = description;
 
   return { jsonSchema, uiSchema };
 }
-
 
 export default {
   webformFieldsToJsonSchema,

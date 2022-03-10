@@ -215,7 +215,7 @@ class FoiaAnnualReportUtilities {
     // Only deal with the includes that are report field.
     // Nested data will be flattened later.
     const fields = annualReportDataTypesStore.getIncludesForDataType(dataType.id)
-      .filter(field => field.split('.').length === 1);
+      .filter((field) => field.split('.').length === 1);
 
     return fields.reduce((values, field) => {
       // Check for nested values that can be flattened and build an array
@@ -337,7 +337,7 @@ class FoiaAnnualReportUtilities {
    * @returns {{}[]|*[]}
    */
   static maybeFlatten(raw = {}) {
-    const shouldFlatten = Object.keys(raw).filter(key => Array.isArray(raw[key]));
+    const shouldFlatten = Object.keys(raw).filter((key) => Array.isArray(raw[key]));
     if (shouldFlatten.length <= 0) {
       return [raw];
     }
@@ -364,7 +364,7 @@ class FoiaAnnualReportUtilities {
     }
 
     return data.map((value) => {
-      const newValue = Object.assign({}, raw);
+      const newValue = { ...raw };
       newValue[field] = value;
 
       return newValue;
@@ -381,7 +381,7 @@ class FoiaAnnualReportUtilities {
    */
   static normalize(data) {
     if (Array.isArray(data)) {
-      return data.map(value => FoiaAnnualReportUtilities.normalize(value));
+      return data.map((value) => FoiaAnnualReportUtilities.normalize(value));
     }
     if (data === null) {
       return data;

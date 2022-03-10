@@ -10,7 +10,7 @@ function ProgressBar({ sections }) {
   return (
     <ul className="sidebar_progress-bar">
       {
-        sections.map(section => (
+        sections.map((section) => (
           <li key={section.id}>
             <a href={href(section.id)}>
               <span>{section.title}</span>
@@ -30,6 +30,5 @@ function ProgressBar({ sections }) {
 ProgressBar.propTypes = {
   sections: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
-
 
 export default ProgressBar;

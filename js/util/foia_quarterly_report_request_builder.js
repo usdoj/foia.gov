@@ -34,8 +34,8 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
     agencies = Array.isArray(agencies) || List.isList(agencies) ? List(agencies) : List([]);
     components = Array.isArray(components) || List.isList(components) ? List(components) : List([]);
     const filterNames = agencies
-      .map(agency => `agency-${agency}`)
-      .concat(components.map(component => `component-${component}`));
+      .map((agency) => `agency-${agency}`)
+      .concat(components.map((component) => `component-${component}`));
 
     if (filterNames.size <= 0) {
       return this;
@@ -59,7 +59,7 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
     }
 
     this.addFiltersFromList(years, 'fiscal-year', 'field_quarterly_year');
-    this.request.or(...years.map(year => `fiscal-year-${year}`).toArray());
+    this.request.or(...years.map((year) => `fiscal-year-${year}`).toArray());
 
     return this;
   }
@@ -74,7 +74,7 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
     }
 
     this.addFiltersFromList(quartersList, 'quarter', 'field_quarterly_quarter');
-    this.request.or(...quartersList.map(quarter => `quarter-${quarter}`).toArray());
+    this.request.or(...quartersList.map((quarter) => `quarter-${quarter}`).toArray());
 
     return this;
   }
@@ -96,12 +96,14 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
     // handle the special operator `is_na`.
     dataTypeFilters = dataTypeFilters
       .map((filter, index) => (
-        Object.assign({ index }, filter, {
+        {
+          index,
+          ...filter,
           op: filter.op === 'is_na' ? 'equal_to' : filter.op,
           compareValue: filter.op === 'is_na' ? 'N/A' : filter.compareValue,
-        })
+        }
       ));
-    const filterNames = dataTypeFilters.map(filter => `data-type-filter-${filter.index}`);
+    const filterNames = dataTypeFilters.map((filter) => `data-type-filter-${filter.index}`);
     while (dataTypeFilters.length > 0) {
       const filter = dataTypeFilters.shift();
       this.request = this.request.filter(
@@ -236,11 +238,11 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
         return entities;
       }
 
-      let sectionFields = section.fields.map(item => item.id).filter(item => item !== false);
+      let sectionFields = section.fields.map((item) => item.id).filter((item) => item !== false);
       const includesForType = quarterlyReportDataTypesStore.getIncludesForDataType(section.id);
       if (includesForType.length > 0) {
         sectionFields = sectionFields.concat(
-          includesForType.filter(value => value.split('.').length > 1),
+          includesForType.filter((value) => value.split('.').length > 1),
         ).filter((value, index, array) => array.indexOf(value) === index);
       }
 
@@ -255,8 +257,8 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
       }
 
       const sectionFields = section.fields
-        .map(item => item.overall_field)
-        .filter(item => item !== false);
+        .map((item) => item.overall_field)
+        .filter((item) => item !== false);
 
       return this.includeSectionFields(sectionFields, entities);
     }, {});
@@ -300,7 +302,6 @@ class FoiaQuarterlyReportRequestBuilder extends JsonApi {
     return operators[name] || '=';
   }
 }
-
 
 // Export a singleton
 const reportRequestBuilder = new FoiaQuarterlyReportRequestBuilder();

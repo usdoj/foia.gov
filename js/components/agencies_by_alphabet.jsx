@@ -44,7 +44,7 @@ function AgenciesByAlphabet({ agencies, agencyFinderDataComplete, onAgencySelect
                       aria-hidden="true"
                     >
                       <ul>
-                        {azAgencies.sort((a, b) => a.name.localeCompare(b.name)).map(agency => (
+                        {azAgencies.sort((a, b) => a.name.localeCompare(b.name)).map((agency) => (
                           <li
                             key={agency.name}
                           >

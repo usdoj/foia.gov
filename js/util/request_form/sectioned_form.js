@@ -2,12 +2,11 @@ import assert from 'assert';
 
 import wfjs from './webform_to_json_schema';
 
-
 class SectionedFormBuilder {
   constructor(formSections) {
     this.formSections = formSections;
     this.additionalFieldsSection = formSections
-      .find(section => section.isAgencySpecificFieldSection);
+      .find((section) => section.isAgencySpecificFieldSection);
     assert(
       this.additionalFieldsSection,
       'There must be exactly one section marked as the additional fields section.',
@@ -15,10 +14,9 @@ class SectionedFormBuilder {
 
     this.fieldToSectionMap = formSections
       .reduce(
-        (memo, section) =>
-          section
-            .fieldNames
-            .reduce((map, fieldName) => Object.assign(map, { [fieldName]: section }), memo),
+        (memo, section) => section
+          .fieldNames
+          .reduce((map, fieldName) => Object.assign(map, { [fieldName]: section }), memo),
         {},
       );
   }
@@ -26,9 +24,9 @@ class SectionedFormBuilder {
   // Find the section this field belongs to. If it doesn't belong to any
   // section (a 10% field perhaps) it falls in the addtional fields section.
   findSection(fieldName) {
-    return fieldName in this.fieldToSectionMap ?
-      this.fieldToSectionMap[fieldName] :
-      this.additionalFieldsSection;
+    return fieldName in this.fieldToSectionMap
+      ? this.fieldToSectionMap[fieldName]
+      : this.additionalFieldsSection;
   }
 
   bucketFieldsBySection(formFields) {
@@ -49,7 +47,7 @@ class SectionedFormBuilder {
 
     // Grab a list of sections, skipping empty sections
     const sections = this.formSections
-      .filter(section => section.id in fieldsBySection);
+      .filter((section) => section.id in fieldsBySection);
 
     const result = sections
       .map((section) => {
@@ -91,7 +89,6 @@ class SectionedFormBuilder {
   }
 }
 
-
 function mergeSectionFormData(formData) {
   return Object.keys(formData)
     .reduce(
@@ -99,7 +96,6 @@ function mergeSectionFormData(formData) {
       {},
     );
 }
-
 
 export default {
   mergeSectionFormData,

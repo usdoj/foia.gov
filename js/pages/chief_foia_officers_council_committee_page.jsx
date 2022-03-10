@@ -51,7 +51,7 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
     return (
       !notFound
         ? (
-          <div className={'chief-foia-officers-council-committee-detail cfoc-page'}>
+          <div className="chief-foia-officers-council-committee-detail cfoc-page">
             <CFOCPageCommitteeDetailComponent
               title={title}
               body={body}
@@ -79,8 +79,6 @@ ChiefFoiaOfficersCouncilCommitteePage.defaultProps = {
   },
 };
 
-
 export default withRouter(Container.create(ChiefFoiaOfficersCouncilCommitteePage, {
   withProps: true,
 }));
-

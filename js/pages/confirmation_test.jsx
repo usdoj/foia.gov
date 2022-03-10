@@ -80,18 +80,19 @@ class ConfirmationPage extends Component {
   }
 
   componentDidMount() {
-    this.init(this.props);
+    this.init();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const agencyComponentId = this.props.match.params.agencyComponentId;
-    if (nextProps.match.params.agencyComponentId !== agencyComponentId) {
-      this.init(nextProps);
+  componentDidUpdate(prevProps) {
+    const { agencyComponentId } = this.props.match.params;
+    const { agencyComponentIdPrev } = prevProps.match.params;
+    if (agencyComponentId !== agencyComponentIdPrev) {
+      this.init();
     }
   }
 
-  init(props) {
-    const agencyComponentId = props.match.params.agencyComponentId;
+  init() {
+    const { agencyComponentId } = this.props.match.params;
 
     requestActions.fetchRequestFormSections()
       .then(() => requestActions.fetchAgencyComponent(agencyComponentId))

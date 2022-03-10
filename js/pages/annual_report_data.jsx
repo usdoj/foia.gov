@@ -154,84 +154,96 @@ class AnnualReportDataPage extends Component {
       viewMode,
     } = this.state;
     const [...reportTableEntries] = reportTables.values();
-    const reportToolbar = reportDataComplete && reportDataHasRows ?
-      (<div className="results-toolbar">
-        <button
-          onClick={() => window.print()}
-          type="button"
-          className="print-hide usa-button usa-button-big usa-button-primary-alt"
-        >Print
-        </button>
-        <button
-          onClick={this.triggerCSV.bind(this)}
-          type="button"
-          className="print-hide usa-button usa-button-big usa-button-primary-alt"
-        >Download
-          CSV
-        </button>
-      </div>)
+    const reportToolbar = reportDataComplete && reportDataHasRows
+      ? (
+        <div className="results-toolbar">
+          <button
+            onClick={() => window.print()}
+            type="button"
+            className="print-hide usa-button usa-button-big usa-button-primary-alt"
+          >
+            Print
+          </button>
+          <button
+            onClick={this.triggerCSV.bind(this)}
+            type="button"
+            className="print-hide usa-button usa-button-big usa-button-primary-alt"
+          >
+            Download
+            CSV
+          </button>
+        </div>
+      )
       : null;
     return (
       <div className="annual-report-data-page usa-grid" ref={(ref) => { this.element = ref; }}>
-        {submissionAction === false || submissionAction === 'download' || viewMode === 'form' ?
-          <div>
-            <h1>Create an Annual Report</h1>
-            <p>
-              Annual Reports shine a light on agencies&apos; administration of the FOIA by
-              providing members of the public with detailed FOIA statistics. Users can filter
-              data by agency, data type, and fiscal year. Users can also compare data across years
-              and agencies. For full data sets from agency Annual Reports, please
-              visit <a href="/developer/">the Developer page</a>.
-            </p>
-            <form >
-              <FoiaReportFormSectionOne
-                agencies={agencies}
-                agencyComponents={agencyComponents}
-                agencyFinderDataComplete={agencyFinderDataComplete}
-                agencyFinderDataProgress={agencyFinderDataProgress}
-                selectedAgencies={selectedAgencies}
-                agencyComponentDisplayError={agencyComponentDisplayError}
-                allAgenciesSelected={allAgenciesSelected}
-              />
-              <FoiaReportFormSectionTwo
-                dataTypes={dataTypes}
-                dataTypeOptions={dataTypeOptions}
-                selectedDataTypes={selectedDataTypes}
-                dataTypeDisplayError={dataTypeDisplayError}
-              />
-              <FoiaReportFormSectionThree
-                fiscalYears={fiscalYears}
-                selectedFiscalYears={selectedFiscalYears}
-                fiscalYearsDisplayError={fiscalYearsDisplayError}
-              />
-              <FoiaReportDataSubmit
-                selectedDataTypes={selectedDataTypes}
-                agencyComponentIsValid={agencyComponentIsValid}
-                dataTypesIsValid={dataTypesIsValid}
-                fiscalYearsIsValid={fiscalYearsIsValid}
-                onClick={this.triggerCSV.bind(this)}
-                history={this.props.history}
-              />
-            </form>
-          </div>
-          : null
-        }
-        {submissionAction === 'view' && viewMode === 'results' ?
-          <header className="results-page-header">
-            <h1>Report Results</h1>
-            {reportToolbar}
-          </header>
+        {submissionAction === false || submissionAction === 'download' || viewMode === 'form'
+          ? (
+            <div>
+              <h1>Create an Annual Report</h1>
+              <p>
+                Annual Reports shine a light on agencies&apos; administration of the FOIA by
+                providing members of the public with detailed FOIA statistics. Users can filter
+                data by agency, data type, and fiscal year. Users can also compare data across years
+                and agencies. For full data sets from agency Annual Reports, please
+                visit
+                {' '}
+                <a href="/developer/">the Developer page</a>
+                .
+              </p>
+              <form>
+                <FoiaReportFormSectionOne
+                  agencies={agencies}
+                  agencyComponents={agencyComponents}
+                  agencyFinderDataComplete={agencyFinderDataComplete}
+                  agencyFinderDataProgress={agencyFinderDataProgress}
+                  selectedAgencies={selectedAgencies}
+                  agencyComponentDisplayError={agencyComponentDisplayError}
+                  allAgenciesSelected={allAgenciesSelected}
+                />
+                <FoiaReportFormSectionTwo
+                  dataTypes={dataTypes}
+                  dataTypeOptions={dataTypeOptions}
+                  selectedDataTypes={selectedDataTypes}
+                  dataTypeDisplayError={dataTypeDisplayError}
+                />
+                <FoiaReportFormSectionThree
+                  fiscalYears={fiscalYears}
+                  selectedFiscalYears={selectedFiscalYears}
+                  fiscalYearsDisplayError={fiscalYearsDisplayError}
+                />
+                <FoiaReportDataSubmit
+                  selectedDataTypes={selectedDataTypes}
+                  agencyComponentIsValid={agencyComponentIsValid}
+                  dataTypesIsValid={dataTypesIsValid}
+                  fiscalYearsIsValid={fiscalYearsIsValid}
+                  onClick={this.triggerCSV.bind(this)}
+                  history={this.props.history}
+                />
+              </form>
+            </div>
+          )
+          : null}
+        {submissionAction === 'view' && viewMode === 'results'
+          ? (
+            <header className="results-page-header">
+              <h1>Report Results</h1>
+              {reportToolbar}
+            </header>
+          )
           : null }
-        {(submissionAction === 'view' || submissionAction === 'download') && !reportDataComplete &&
+        {(submissionAction === 'view' || submissionAction === 'download') && !reportDataComplete
+          && (
           <div className="results-loading">
             <div className="spinner" />
             <div className="results-loading__text">Loading...</div>
           </div>
-        }
-        {reportDataComplete && reportDataHasRows && ((submissionAction === 'view' && viewMode === 'results') || submissionAction === 'download') &&
+          )}
+        {reportDataComplete && reportDataHasRows && ((submissionAction === 'view' && viewMode === 'results') || submissionAction === 'download')
+        && (
         <div>
           {
-            reportTableEntries.map(table => (
+            reportTableEntries.map((table) => (
               <FoiaReportResultsTable
                 key={`report-${table.id}`}
                 ref={(ref) => { this.reportRefs[table.id] = ref; }}
@@ -243,13 +255,14 @@ class AnnualReportDataPage extends Component {
               />
             ))
           }
-        </div> }
-        {reportDataComplete && !reportDataHasRows &&
+        </div>
+        ) }
+        {reportDataComplete && !reportDataHasRows
+        && (
         <div className="info-box">
           <p>No data meets your search criteria. Please try a new search.</p>
         </div>
-
-        }
+        )}
       </div>
     );
   }

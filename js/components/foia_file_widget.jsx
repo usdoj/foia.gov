@@ -16,7 +16,6 @@ function dataUrlToFileInfo(dataUrl) {
   };
 }
 
-
 function parseFile(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -40,7 +39,6 @@ function parseFile(file) {
     reader.readAsDataURL(file);
   });
 }
-
 
 class FoiaFileWidget extends React.Component {
   constructor(props) {
@@ -81,9 +79,20 @@ class FoiaFileWidget extends React.Component {
           onChange={onChange}
           defaultValue=""
         />
-        { this.state.fileInfo &&
-          <div><strong>{name}</strong> ({type}, {size} bytes)</div>
-        }
+        { this.state.fileInfo
+          && (
+          <div>
+            <strong>{name}</strong>
+            {' '}
+            (
+            {type}
+            ,
+            {' '}
+            {size}
+            {' '}
+            bytes)
+          </div>
+          )}
       </div>
     );
   }

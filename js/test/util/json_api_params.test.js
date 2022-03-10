@@ -6,7 +6,6 @@ import JsonApiParams from '../../util/json_api_params';
 
 chai.use(sinonChai);
 
-
 describe('JsonApiParams', () => {
   let sandbox;
 

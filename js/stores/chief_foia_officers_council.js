@@ -33,7 +33,7 @@ class ChiefFOIAOfficersCouncilStore extends Store {
 
   __onDispatch(payload) {
     switch (payload.type) {
-      case types.REQUEST_CFO_COUNCIL_RECEIVE : {
+      case types.REQUEST_CFO_COUNCIL_RECEIVE: {
         const data = payload.councilData;
         if (Object.values(data).length) {
           Object.assign(this.state, {

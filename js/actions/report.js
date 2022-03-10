@@ -134,7 +134,7 @@ export const reportActions = {
 
     return request
       .get('/annual_foia_report/fiscal_years')
-      .then(response => response.data || [])
+      .then((response) => response.data || [])
       .then(reportActions.receiveAnnualReportFiscalYearsData)
       .then(reportActions.completeAnnualReportFiscalYearsData);
   },
@@ -255,13 +255,13 @@ export const reportActions = {
   buildRequestForSelectedType(type, builder) {
     const selectedAgencies = annualReportDataFormStore.buildSelectedAgencies();
     const { allAgenciesSelected, selectedFiscalYears } = annualReportDataFormStore.getState();
-    const agencies = selectedAgencies.filter(selection => selection.type === 'agency');
-    const components = selectedAgencies.filter(selection => selection.type === 'agency_component');
+    const agencies = selectedAgencies.filter((selection) => selection.type === 'agency');
+    const components = selectedAgencies.filter((selection) => selection.type === 'agency_component');
     const dataTypeFilters = FoiaAnnualReportFilterUtilities.getFiltersForType(type[0].id);
     const includeOverall = agencies.filter((agency) => {
       const overall = agency
         .components
-        .filter(component => component.selected && component.isOverall);
+        .filter((component) => component.selected && component.isOverall);
 
       return List.isList(overall) ? overall.size > 0 : overall.length > 0;
     }).length > 0;
@@ -275,8 +275,8 @@ export const reportActions = {
       updatedBuilder = updatedBuilder
         .includeDataTypes(type)
         .addOrganizationsGroup({
-          agencies: agencies.map(agency => agency.abbreviation),
-          components: components.map(component => component.abbreviation),
+          agencies: agencies.map((agency) => agency.abbreviation),
+          components: components.map((component) => component.abbreviation),
         });
     }
 

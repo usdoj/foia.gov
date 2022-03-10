@@ -12,14 +12,13 @@ import foiaRequestStore from 'stores/foia_request';
 import NotFound from './not_found';
 import { scrollOffset } from '../util/dom';
 
-
 class AgencyComponentRequestPage extends Component {
   static getStores() {
     return [agencyComponentStore, foiaRequestStore, agencyComponentRequestFormStore];
   }
 
   static calculateState(prevState, props) {
-    const agencyComponentId = props.match.params.agencyComponentId;
+    const { agencyComponentId } = props.match.params;
     const agencyComponent = agencyComponentStore.getAgencyComponent(agencyComponentId);
     const requestForm = agencyComponentRequestFormStore.getAgencyComponentForm(agencyComponentId);
     const { formData, upload, submissionResult } = foiaRequestStore.getState();
@@ -34,24 +33,25 @@ class AgencyComponentRequestPage extends Component {
   }
 
   componentDidMount() {
-    this.init(this.props);
+    this.init();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const agencyComponentId = this.props.match.params.agencyComponentId;
-    if (nextProps.match.params.agencyComponentId !== agencyComponentId) {
-      this.init(nextProps);
+  componentDidUpdate(prevProps) {
+    const { agencyComponentId } = this.props.match.params;
+    const { agencyComponentIdPrev } = prevProps.match.params;
+    if (agencyComponentId !== agencyComponentIdPrev) {
+      this.init();
     }
   }
 
-  init(props) {
-    const agencyComponentId = props.match.params.agencyComponentId;
+  init() {
+    const { agencyComponentId } = this.props.match.params;
 
     // Check the form sections were fetched
     const { formSections } = agencyComponentRequestFormStore.getState();
-    const formSectionsFetch = formSections.size ?
-      Promise.resolve() :
-      requestActions.fetchRequestFormSections();
+    const formSectionsFetch = formSections.size
+      ? Promise.resolve()
+      : requestActions.fetchRequestFormSections();
 
     // Check agency component exists in store
     const { agencyComponent } = this.state;
@@ -84,7 +84,9 @@ class AgencyComponentRequestPage extends Component {
   }
 
   render() {
-    const { agencyComponent, formData, requestForm, submissionResult } = this.state;
+    const {
+      agencyComponent, formData, requestForm, submissionResult,
+    } = this.state;
     if (this.state.agencyComponentNotFound) {
       // The api returned a 404, we should do the same
       return <NotFound />;
@@ -123,12 +125,14 @@ class AgencyComponentRequestPage extends Component {
     return (
       <div className="usa-grid-full grid-flex grid-left" ref={(ref) => { this.element = ref; }}>
         {
-          agencyComponent && requestForm ?
-            <Tabs
-              agencyComponent={agencyComponent}
-              requestForm={requestForm}
-            /> :
-            null
+          agencyComponent && requestForm
+            ? (
+              <Tabs
+                agencyComponent={agencyComponent}
+                requestForm={requestForm}
+              />
+            )
+            : null
         }
         <div className="sidebar_content">
           { mainContent }

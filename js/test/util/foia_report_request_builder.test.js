@@ -10,7 +10,6 @@ import JsonApiParams from '../../util/json_api_params';
 
 chai.use(sinonChai);
 
-
 describe('FoiaAnnualReportRequestBuilder', () => {
   let requestBuilder;
   let sandbox;
@@ -158,7 +157,9 @@ describe('FoiaAnnualReportRequestBuilder', () => {
             label: 'Number of Times Relied Upon',
             filter: true,
             overall_field: 'field_statute_iv.field_total_num_relied_by_agency',
-          }, { id: 'field_footnotes_iv', label: 'Footnotes', filter: false, overall_field: false }],
+          }, {
+            id: 'field_footnotes_iv', label: 'Footnotes', filter: false, overall_field: false,
+          }],
         filterOptions: [
           {
             value: 'field_statute_iv.field_agency_component_inf.field_num_relied_by_agency_comp',

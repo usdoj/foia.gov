@@ -5,9 +5,7 @@ import chaiSinon from 'sinon-chai';
 import wfjs from '../../../util/request_form/webform_to_json_schema';
 import sectionedForm from '../../../util/request_form/sectioned_form';
 
-
 chai.use(chaiSinon);
-
 
 describe('SectionedFormBuilder', () => {
   let builder;

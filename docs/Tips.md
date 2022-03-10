@@ -2,7 +2,7 @@
 1. Chrome is the recommended browser
 1. Edit in github
 1. Merging a single html file to dev can take 10-12 minutes
-2. Inline stying should not be used. Instead...
+2. Inline styling should not be used. Instead...
 2. Use the [U.S Web Design System](https://designsystem.digital.gov/), [UI components](https://designsystem.digital.gov/components/) for styling and justification, ex: text width standard etc.
 2. style usa-content (sets content to recommended width to match css spec)
 1.  /_config.yml (@root) controls drop down navigation menu

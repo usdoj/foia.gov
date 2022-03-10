@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 
 import tokenizers from '../util/tokenizers';
 
-
 // Only load typeahead in the browser (avoid loading it for tests)
 let Bloodhound;
 if (typeof window !== 'undefined') {
   Bloodhound = require('typeahead.js/dist/bloodhound'); // eslint-disable-line global-require
   require('typeahead.js/dist/typeahead.jquery'); // eslint-disable-line global-require
 }
-
 
 // Expects agencies as a sequence type
 function datums({ agencies, agencyComponents }) {
@@ -33,11 +31,10 @@ function datums({ agencies, agencyComponents }) {
     // Include decentralized agency components in typeahead
     .concat(
       agencyComponents.toJS().filter(
-        agencyComponent => !(agencyComponent.agency.id in centralizedAgencyIndex),
+        (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
       ),
     );
 }
-
 
 class AgencyComponentFinder extends Component {
   constructor(props) {
@@ -62,16 +59,16 @@ class AgencyComponentFinder extends Component {
         const bName = (b.type === 'agency') ? b.name : b.title;
         if (aName < bName) {
           return -1;
-        } else if (aName > bName) {
+        } if (aName > bName) {
           return 1;
         }
         return 0;
       },
-      identify: datum => datum.id,
+      identify: (datum) => datum.id,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      datumTokenizer: datum => (
-        datum.type === 'agency' ?
-          (
+      datumTokenizer: (datum) => (
+        datum.type === 'agency'
+          ? (
             // For agencies
             []
               .concat(Bloodhound.tokenizers.nonword(datum.name))
@@ -81,9 +78,9 @@ class AgencyComponentFinder extends Component {
             []
               .concat(Bloodhound.tokenizers.nonword(datum.title))
               .concat(
-                datum.abbreviation ?
-                  Bloodhound.tokenizers.whitespace(datum.abbreviation) :
-                  tokenizers.firstLetterOfEachCapitalizedWord(datum.title),
+                datum.abbreviation
+                  ? Bloodhound.tokenizers.whitespace(datum.abbreviation)
+                  : tokenizers.firstLetterOfEachCapitalizedWord(datum.title),
               )
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.name))
               .concat(Bloodhound.tokenizers.whitespace(datum.agency.abbreviation))
@@ -94,7 +91,7 @@ class AgencyComponentFinder extends Component {
     // If we have all the data already then index it. If we're still waiting on
     // data, we'll index when we receive the complete props.
     if (this.props.agencyFinderDataComplete) {
-      this.index(this.props);
+      this.index();
     }
 
     // Initialize the typeahead input element
@@ -114,26 +111,25 @@ class AgencyComponentFinder extends Component {
       display,
       source: this.bloodhound.ttAdapter(),
       templates: {
-        suggestion: datum =>
-          $('<div>').addClass(datum.type).text(display(datum)),
+        suggestion: (datum) => $('<div>').addClass(datum.type).text(display(datum)),
       },
     })
       .bind('typeahead:select', (e, suggestion) => this.props.onAgencyChange(suggestion));
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate() {
     // Indexing the typeahead is expensive and if we do it in batches, it gets
     // complicated to calculate which agencies are centralized vs
     // decentralized. Wait until we've received all the agency finder data
     // before indexing.
-    if (!nextProps.agencyFinderDataComplete) {
+    if (!this.props.agencyFinderDataComplete) {
       return;
     }
 
-    this.index(nextProps);
+    this.index();
   }
 
-  index(props) {
+  index() {
     if (this.isIndexed) {
       return;
     }
@@ -144,7 +140,7 @@ class AgencyComponentFinder extends Component {
     // render which should be available once the agency finder data fetch is
     // complete.
     this.isIndexed = true;
-    const { agencies, agencyComponents } = props;
+    const { agencies, agencyComponents } = this.props;
 
     this.bloodhound.clear(); // Just in case
     this.bloodhound.add(datums({

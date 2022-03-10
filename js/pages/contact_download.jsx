@@ -163,7 +163,9 @@ class ContactDownloadButton extends Component {
         className="usa-button"
         ref={(c) => { this.downloadButton = c; }}
         onClick={this.handleClick.bind(this)}
-      >{ buttonText }</a>
+      >
+        { buttonText }
+      </a>
     );
   }
 }

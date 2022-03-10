@@ -5,7 +5,6 @@ import RequestSummaryContactSection from './request_summary_contact_section';
 import RequestSummaryDescriptionSection from './request_summary_description_section';
 import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 
-
 // Returns the field label from the requestForm for human readable display
 function fieldLabel(requestForm, sectionId, fieldName) {
   const { jsonSchema, uiSchema } = requestForm;
@@ -52,11 +51,21 @@ function RequestSummarySection({ section, formData, requestForm }) {
 
   const sectionFields = formData[section.id] || {};
   const fileFields = findFileFields(requestForm);
+  const sectionFieldNames = (section.fieldNames) ? [...section.fieldNames] : Object.keys(sectionFields);
+
+  // The "supporting_docs" section can have custom fields which are not in section.fieldNames.
+  if (section.id === 'supporting_docs') {
+    Object.keys(sectionFields).forEach((sectionField) => {
+      if (!sectionFieldNames.includes(sectionField)) {
+        sectionFieldNames.push(sectionField);
+      }
+    });
+  }
 
   // Maintain field ordering as much as possible, start with section field name ordering
-  const populatedFields = (section.fieldNames || Object.keys(sectionFields))
+  const populatedFields = sectionFieldNames
     // Only include fields that actually exist in this form
-    .filter(fieldName => fieldName in sectionFields && !!sectionFields[fieldName]);
+    .filter((fieldName) => fieldName in sectionFields && !!sectionFields[fieldName]);
 
   // Don't show the section if there's nothing to show
   if (!populatedFields.length) {
@@ -76,13 +85,14 @@ function RequestSummarySection({ section, formData, requestForm }) {
 
               return (
                 <div key={`${section.id}-${fieldName}`}>
-                  { isFileField ?
-                    fileField(value) :
-                    <div>
-                      <h5 className="request-summary_label">{label}</h5>
-                      <div>{value}</div>
-                    </div>
-                  }
+                  { isFileField
+                    ? fileField(value)
+                    : (
+                      <div>
+                        <h5 className="request-summary_label">{label}</h5>
+                        <div>{value}</div>
+                      </div>
+                    )}
                 </div>
               );
             })
@@ -97,6 +107,5 @@ RequestSummarySection.propTypes = {
   formData: PropTypes.object.isRequired,
   requestForm: PropTypes.object.isRequired,
 };
-
 
 export default RequestSummarySection;

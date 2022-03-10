@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import CFOCPageCommitteeComponent from './cfoc_page_committee';
 import CFOCPageMeetingComponent from './cfoc_page_meeting';
 
-const CFOCPageComponent = (props) => {
-  const { title, body, committees, meetingsUpcoming, meetingsPast } = props;
+function CFOCPageComponent(props) {
+  const {
+    title, body, committees, meetingsUpcoming, meetingsPast,
+  } = props;
 
   return (
     <div className="cfoc-page-content">
@@ -90,7 +92,7 @@ const CFOCPageComponent = (props) => {
       </div>
     </div>
   );
-};
+}
 
 CFOCPageComponent.propTypes = {
   title: PropTypes.string,

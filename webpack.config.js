@@ -7,30 +7,18 @@ assert(['local', 'cloud-gov', 'development', 'staging', 'uat', 'production', 'dd
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-let plugins = [
-  new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-  }),
-];
-
-if (isProduction) {
-  plugins = plugins.concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-    }),
-  ]);
-}
-
-
 module.exports = {
+  mode: isProduction ? 'production' : 'development',
   devtool: isProduction ? 'source-map' : 'eval-source-map',
-  plugins,
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
+  ],
   entry: {
     landing: './js/landing.jsx',
     glossary: './js/glossary.js',
@@ -46,22 +34,26 @@ module.exports = {
     filename: '[name].bundle.js',
   },
   module: {
-    loaders: [
+    rules: [
       // Some contributed code needs to be transpiled first.
       {
         include: /(excellentexport.js)/,
-        loader: 'babel-loader',
-        query: {
-          compact: false,
-          presets: ['@babel/env'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            compact: false,
+          },
         },
       },
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['@babel/react', '@babel/env'],
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
         },
       },
     ],

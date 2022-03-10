@@ -17,7 +17,7 @@ function AgenciesByCategory({ agencies, agencyFinderDataComplete, onAgencySelect
     }
   });
 
-  const idFromName = name => name
+  const idFromName = (name) => name
     .toLowerCase()
     .replace(/ /g, '-')
     .replace(/[^\w-]+/g, '');
@@ -47,7 +47,7 @@ function AgenciesByCategory({ agencies, agencyFinderDataComplete, onAgencySelect
                     aria-hidden="true"
                   >
                     <ul>
-                      {categoryAgencies.sort((a, b) => a.name.localeCompare(b.name)).map(agency => (
+                      {categoryAgencies.sort((a, b) => a.name.localeCompare(b.name)).map((agency) => (
                         <li
                           key={agency.name}
                         >

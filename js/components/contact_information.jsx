@@ -7,17 +7,17 @@ import foiaPersonnel from '../util/foia_personnel';
 
 function ContactInformation({ agencyComponent }) {
   // Grab contacts
-  const foiaOfficerFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'foia_officers').map(item => (
+  const foiaOfficerFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'foia_officers').map((item) => (
     <div key={item.id} className="contact-information_section">
       <FoiaPersonnel foiaPersonnel={item} />
     </div>
   ));
-  const serviceCenterFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'service_centers').map(item => (
+  const serviceCenterFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'service_centers').map((item) => (
     <div key={item.id} className="contact-information_section">
       <FoiaPersonnel foiaPersonnel={item} />
     </div>
   ));
-  const publicLiaisonFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'public_liaisons').map(item => (
+  const publicLiaisonFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'public_liaisons').map((item) => (
     <div key={item.id} className="contact-information_section">
       <FoiaPersonnel foiaPersonnel={item} />
     </div>
@@ -33,11 +33,12 @@ function ContactInformation({ agencyComponent }) {
           submissionAddress={agencyComponent.submission_address}
           paperReceiver={agencyComponent.paper_receiver}
         />
-        { agencyComponent.email &&
+        { agencyComponent.email
+          && (
           <p className="agency-info_email">
             <a href={`mailto:${agencyComponent.email}`}>{ agencyComponent.email }</a>
           </p>
-        }
+          )}
       </div>
     </div>
   );
@@ -46,6 +47,5 @@ function ContactInformation({ agencyComponent }) {
 ContactInformation.propTypes = {
   agencyComponent: PropTypes.object.isRequired,
 };
-
 
 export default ContactInformation;

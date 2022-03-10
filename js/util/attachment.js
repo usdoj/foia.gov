@@ -36,7 +36,7 @@ export function findFileFields(requestForm) {
 
       // Find file fields in this section
       return Object.keys(uiSchemaSection)
-        .filter(fieldName => uiSchemaSection[fieldName]['ui:widget'] === 'file');
+        .filter((fieldName) => uiSchemaSection[fieldName]['ui:widget'] === 'file');
     })
     .reduce((fileFields, sectionFileFields) => fileFields.concat(sectionFileFields), []);
 }

@@ -6,7 +6,6 @@ const defaults = {
   submission_id: null,
 };
 
-
 class SubmissionResult extends Record(defaults) {
 }
 
