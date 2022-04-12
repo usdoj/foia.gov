@@ -163,7 +163,7 @@ fax_number:
 attachments_supporting_documentation:
   name: attachments_supporting_documentation
   type: [object]
-  description: Documents or attachments supporting the request provided by the requester.
+  description: Documents or attachments supporting the request provided by the requester.  This field should be set to a 20MB size limit by default.
   required: no
   example: '[{"filename": "letter.pdf", "content_type": "application/pdf", "filesize": 27556, "filedata": "YSBiYXNlNjQgZW5jb2RlZCBmaWxlCg=="}]'
 
