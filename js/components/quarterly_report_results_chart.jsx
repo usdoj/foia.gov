@@ -96,6 +96,11 @@ function disaggregationsFromRow(row, columns) {
 
 function datasetsFromRows(rows, columns) {
   const datasets = [];
+  const agencyOverall = rows.filter(row => row.field_agency_component === 'Agency Overall');
+  if (agencyOverall.length > 0) {
+    // If the search included agency overall, just show that.
+    rows = agencyOverall;
+  }
   rows.forEach((row) => {
     const agency = row.field_agency;
     const component = row.field_agency_component;
