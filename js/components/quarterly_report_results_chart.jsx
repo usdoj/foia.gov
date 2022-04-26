@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Bar } from 'react-chartjs-2';
 import palette from 'google-palette';
 
@@ -137,6 +138,7 @@ class QuarterlyReportResultsChart extends Component {
       BarElement,
       Tooltip,
       Legend,
+      ChartDataLabels,
     );
 
     this.colors = palette('mpn65', 65);
@@ -148,6 +150,11 @@ class QuarterlyReportResultsChart extends Component {
       plugins: {
         legend: {
           position: 'bottom',
+        },
+        datalabels: {
+          backgroundColor: 'black',
+          borderRadius: 4,
+          color: 'white',
         },
         tooltip: {
           callbacks: {

@@ -34,6 +34,7 @@
     "axios": "0.x",
     "babel-polyfill": "6.x",
     "chart.js": "^3.7.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
     "d8-jsonapi-querystring": "0.0.8",
     "excellentexport": "3.x",
     "exitscript": "1.1.7",
