@@ -267,7 +267,7 @@ class QuarterlyReportDataPage extends Component {
             reportTableEntries.map((table) => (
               <div key={`report-container-${table.id}`}>
                 <h2>{ table.header }</h2>
-                <Tabs defaultActive={0} manualActivation preventScroll>
+                <Tabs defaultActive={0} preventScroll>
                   <div className="tab-container">
                     <TabList>
                       <div className="tab-list" aria-label='Report results'>

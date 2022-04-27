@@ -98,18 +98,16 @@ function disaggregationsFromRow(row, columns) {
 
 function datasetsFromRows(rows, columns) {
   const datasets = [];
-  const agencyOverall = rows.filter(row => row.field_agency_component === 'Agency Overall');
-  if (agencyOverall.length > 0) {
-    // If the search included agency overall, just show that.
-    rows = agencyOverall;
-  }
   rows.forEach((row) => {
     const agency = row.field_agency;
     const component = row.field_agency_component;
     const xAxisLabel = xAxisLabelFromRow(row);
     disaggregationsFromRow(row, columns).forEach((disaggregation) => {
       const fieldTitle = columns.find((column) => column.field === disaggregation.field).title;
-      const label = `${agency}, ${component}, ${fieldTitle}`;
+      let label = `${agency}, ${component}, ${fieldTitle}`;
+      if (agency === 'Sum of multiple agencies and components') {
+        label = `${component}, ${fieldTitle}`;
+      }
       const value = {
         xAxisLabel,
         value: disaggregation.value,
@@ -151,10 +149,7 @@ class QuarterlyReportResultsChart extends Component {
     );
 
     this.colors = palette('mpn65', 65);
-
-    const { tableData, tableColumns } = this.props;
-
-    const options = {
+    this.options = {
       responsive: true,
       plugins: {
         legend: {
@@ -200,18 +195,15 @@ class QuarterlyReportResultsChart extends Component {
       },
     };
 
-    const xAxes = xAxesFromRows(tableData);
-    const datasets = datasetsFromRows(tableData, tableColumns, xAxes);
-    this.applyColorToDatasets(datasets);
-
     this.state = {
+      overall: true,
+      totals: true,
       chartType: 'bar',
-      data: {
-        labels: xAxes.map((axis) => axis.label),
-        datasets,
-      },
-      options,
     };
+
+    this.toggleChartType = this.toggleChartType.bind(this);
+    this.toggleOverall = this.toggleOverall.bind(this);
+    this.toggleTotals = this.toggleTotals.bind(this);
   }
 
   applyColorToDatasets(datasets) {
@@ -222,20 +214,158 @@ class QuarterlyReportResultsChart extends Component {
     });
   }
 
+  getData() {
+    const { tableData, tableColumns } = this.props;
+    const { overall, totals } = this.state;
+    let rows = tableData;
+    if (overall) {
+      rows = this.getOverall();
+    }
+    if (totals) {
+      rows = this.getTotals(rows);
+    }
+    const xAxes = xAxesFromRows(rows);
+    const datasets = datasetsFromRows(rows, tableColumns, xAxes);
+    this.applyColorToDatasets(datasets);
+    return {
+      labels: xAxes.map((axis) => axis.label),
+      datasets,
+    }
+  }
+
+  getOverall() {
+    const agenciesWithOverall = {};
+    const { tableData } = this.props;
+    tableData.forEach(row => {
+      if (row.field_agency_component === 'Agency Overall') {
+        agenciesWithOverall[row.field_agency] = true;
+      }
+    });
+    return tableData.filter(row => {
+      if (agenciesWithOverall[row.field_agency]) {
+        return row.field_agency_component === 'Agency Overall';
+      }
+      return true;
+    });
+  }
+
+  getTotals(rows) {
+    const totals = {};
+    rows.forEach(row => {
+      const totalId = [
+        row['field_quarterly_quarter'],
+        row['field_quarterly_year'],
+      ].join('|');
+      const componentId = [
+        row['field_agency'],
+        row['field_agency_component'],
+      ].join('|');
+      if (!totals[totalId]) {
+        totals[totalId] = {
+          componentIds: [],
+          rows: [],
+        };
+      }
+      totals[totalId].componentIds.push(componentId);
+      totals[totalId].rows.push(row);
+    });
+    Object.values(totals).forEach(total => {
+      const summedRow = {};
+      total.rows.forEach(row => {
+        Object.keys(row).forEach(prop => {
+          if (!(nonDisaggregationColumns().includes(prop))) {
+            if (Number.isInteger(row[prop])) {
+              if (!summedRow[prop]) {
+                summedRow[prop] = row[prop];
+              }
+              else {
+                summedRow[prop] += row[prop];
+              }
+            }
+            else if (typeof row[prop] === 'object' && row[prop] !== null) {
+              if (!summedRow[prop]) {
+                summedRow[prop] = {};
+              }
+              Object.keys(row[prop]).forEach(childProp => {
+                if (!summedRow[prop][childProp]) {
+                  summedRow[prop][childProp] = row[prop][childProp];
+                }
+                else {
+                  summedRow[prop][childProp] += row[prop][childProp];
+                }
+              });
+            }
+          }
+        });
+      });
+      total.summedRow = summedRow;
+    });
+    return Object.entries(totals).map(([totalId, totalRow]) => {
+      const row = {};
+      row['field_quarterly_quarter'] = totalId.split('|')[0];
+      row['field_quarterly_year'] = totalId.split('|')[1];
+      row['field_agency'] = 'Sum of multiple agencies and components';
+      row['field_agency_component'] = 'Sum total of ' + totalRow.componentIds.map(componentId => {
+        const [agency, component] = componentId.split('|');
+        if (component === 'Agency Overall') {
+          return agency;
+        }
+        return component;
+      }).join(', ');
+      Object.keys(totalRow.summedRow).forEach(summedProp => {
+        if (!(nonDisaggregationColumns().includes(summedProp))) {
+          row[summedProp] = totalRow.summedRow[summedProp];
+        }
+      });
+      return row;
+    });
+  }
+
+  toggleChartType() {
+    const { chartType } = this.state;
+    const newChartType = chartType === 'bar' ? 'line' : 'bar';
+    this.setState({
+      chartType: newChartType,
+    });
+  }
+
+  toggleOverall() {
+    const { overall } = this.state;
+    this.setState({
+      overall: !overall,
+    });
+  }
+
+  toggleTotals() {
+    const { totals } = this.state;
+    this.setState({
+      totals: !totals,
+    });
+  }
+
   render() {
-    const {
-      chartType,
-      options,
-      data,
-    } = this.state;
+    const { chartType, overall, totals } = this.state;
+    const chartTypeLabel = chartType === 'bar' ? 'Switch to line chart' : 'Switch to bar chart';
+    const overallLabel = overall ? 'Always show components' : 'Limit to agency overall when possible';
+    const totalsLabel = totals ? 'Do not sum values' : 'Sum values';
     return (
       <div>
         { chartType === 'line' &&
-          <Line options={options} data={data} />
+          <Line options={this.options} data={this.getData()} />
         }
         {chartType === 'bar' &&
-          <Bar options={options} data={data} />
+          <Bar options={this.options} data={this.getData()} />
         }
+
+        <button onClick={this.toggleChartType}>
+          {chartTypeLabel}
+        </button>
+        <button onClick={this.toggleOverall}>
+          {overallLabel}
+        </button>
+        <button onClick={this.toggleTotals}>
+          {totalsLabel}
+        </button>
       </div>
     );
   }
