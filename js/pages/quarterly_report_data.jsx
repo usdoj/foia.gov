@@ -20,6 +20,8 @@ import quarterlyReportStore from '../stores/quarterly_report';
 
 import { reportActions } from '../actions/quarterly_report';
 
+import { Tabs, TabList, Tab, Panel } from '@accessible/tabs'
+
 class QuarterlyReportDataPage extends Component {
   static getStores() {
     return [
@@ -264,20 +266,43 @@ class QuarterlyReportDataPage extends Component {
           {
             reportTableEntries.map((table) => (
               <div key={`report-container-${table.id}`}>
-                <QuarterlyReportResultsTable
-                  key={`report-${table.id}`}
-                  ref={(ref) => { this.reportRefs[table.id] = ref; }}
-                  tableId={`report-${table.id}`}
-                  tableHeader={table.header}
-                  tableData={table.data}
-                  tableColumns={table.columns}
-                  displayMode={submissionAction}
-                />
-                <QuarterlyReportResultsChart
-                  key={`report-chart-${table.id}`}
-                  tableData={table.data}
-                  tableColumns={table.columns}
-                />
+                <h2>{ table.header }</h2>
+                <Tabs defaultActive={0} manualActivation preventScroll>
+                  <div className="tab-container">
+                    <TabList>
+                      <div className="tab-list" aria-label='Report results'>
+                        <Tab>
+                          <button className="tab-button usa-button usa-button-outline">Table</button>
+                        </Tab>
+                        <Tab>
+                          <button className="tab-button usa-button usa-button-outline">Chart</button>
+                        </Tab>
+                      </div>
+                    </TabList>
+                    <Panel>
+                      <div className="tab-panel">
+                        <QuarterlyReportResultsTable
+                          key={`report-${table.id}`}
+                          ref={(ref) => { this.reportRefs[table.id] = ref; }}
+                          tableId={`report-${table.id}`}
+                          tableData={table.data}
+                          tableColumns={table.columns}
+                          tableHeader={table.header}
+                          displayMode={submissionAction}
+                        />
+                      </div>
+                    </Panel>
+                    <Panel>
+                      <div className="tab-panel">
+                        <QuarterlyReportResultsChart
+                          key={`report-chart-${table.id}`}
+                          tableData={table.data}
+                          tableColumns={table.columns}
+                        />
+                      </div>
+                    </Panel>
+                  </div>
+                </Tabs>
               </div>
             ))
           }

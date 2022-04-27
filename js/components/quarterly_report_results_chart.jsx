@@ -5,11 +5,13 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
+  LineElement,
+  PointElement,
   Tooltip,
   Legend,
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { Bar } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 import palette from 'google-palette';
 
 function yearFromLabel(label) {
@@ -141,6 +143,8 @@ class QuarterlyReportResultsChart extends Component {
       CategoryScale,
       LinearScale,
       BarElement,
+      LineElement,
+      PointElement,
       Tooltip,
       Legend,
       ChartDataLabels,
@@ -150,7 +154,7 @@ class QuarterlyReportResultsChart extends Component {
 
     const { tableData, tableColumns } = this.props;
 
-    this.options = {
+    const options = {
       responsive: true,
       plugins: {
         legend: {
@@ -199,9 +203,14 @@ class QuarterlyReportResultsChart extends Component {
     const xAxes = xAxesFromRows(tableData);
     const datasets = datasetsFromRows(tableData, tableColumns, xAxes);
     this.applyColorToDatasets(datasets);
-    this.data = {
-      labels: xAxes.map((axis) => axis.label),
-      datasets,
+
+    this.state = {
+      chartType: 'bar',
+      data: {
+        labels: xAxes.map((axis) => axis.label),
+        datasets,
+      },
+      options,
     };
   }
 
@@ -214,8 +223,20 @@ class QuarterlyReportResultsChart extends Component {
   }
 
   render() {
+    const {
+      chartType,
+      options,
+      data,
+    } = this.state;
     return (
-      <Bar options={this.options} data={this.data} />
+      <div>
+        { chartType === 'line' &&
+          <Line options={options} data={data} />
+        }
+        {chartType === 'bar' &&
+          <Bar options={options} data={data} />
+        }
+      </div>
     );
   }
 }
