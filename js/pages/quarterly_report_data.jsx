@@ -3,6 +3,12 @@ import { Container } from 'flux/utils';
 import { withRouter } from 'react-router-dom';
 import { List } from 'immutable';
 import PropTypes from 'prop-types';
+import {
+  Tabs,
+  TabList,
+  Tab,
+  Panel,
+} from '@accessible/tabs';
 
 import QuarterlyReportFormSectionOne from '../components/quarterly_report_form_section_one';
 import QuarterlyReportFormSectionTwo from '../components/quarterly_report_form_section_two';
@@ -19,8 +25,6 @@ import quarterlyReportDataTypesStore from '../stores/quarterly_report_data_types
 import quarterlyReportStore from '../stores/quarterly_report';
 
 import { reportActions } from '../actions/quarterly_report';
-
-import { Tabs, TabList, Tab, Panel } from '@accessible/tabs'
 
 class QuarterlyReportDataPage extends Component {
   static getStores() {
@@ -270,7 +274,7 @@ class QuarterlyReportDataPage extends Component {
                 <Tabs defaultActive={0} preventScroll>
                   <div className="tab-container">
                     <TabList>
-                      <div className="tab-list" aria-label='Report results'>
+                      <div className="tab-list" aria-label="Report results">
                         <Tab>
                           <button className="tab-button usa-button usa-button-outline">Table</button>
                         </Tab>

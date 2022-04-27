@@ -133,6 +133,76 @@ function datasetsFromRows(rows, columns) {
   return datasets;
 }
 
+function getTotals(rows) {
+  const totals = {};
+  rows.forEach((row) => {
+    const totalId = [
+      row.field_quarterly_quarter,
+      row.field_quarterly_year,
+    ].join('|');
+    const componentId = [
+      row.field_agency,
+      row.field_agency_component,
+    ].join('|');
+    if (!totals[totalId]) {
+      totals[totalId] = {
+        componentIds: [],
+        rows: [],
+      };
+    }
+    totals[totalId].componentIds.push(componentId);
+    totals[totalId].rows.push(row);
+  });
+  Object.values(totals).forEach((total) => {
+    const summedRow = {};
+    total.rows.forEach((row) => {
+      Object.keys(row).forEach((prop) => {
+        if (!(nonDisaggregationColumns().includes(prop))) {
+          if (Number.isInteger(row[prop])) {
+            if (!summedRow[prop]) {
+              summedRow[prop] = row[prop];
+            } else {
+              summedRow[prop] += row[prop];
+            }
+          } else if (typeof row[prop] === 'object' && row[prop] !== null) {
+            if (!summedRow[prop]) {
+              summedRow[prop] = {};
+            }
+            Object.keys(row[prop]).forEach((childProp) => {
+              if (!summedRow[prop][childProp]) {
+                summedRow[prop][childProp] = row[prop][childProp];
+              } else {
+                summedRow[prop][childProp] += row[prop][childProp];
+              }
+            });
+          }
+        }
+      });
+    });
+    total.summedRow = summedRow;
+  });
+  return Object.entries(totals).map(([totalId, totalRow]) => {
+    const row = {};
+    row.field_quarterly_quarter = totalId.split('|')[0];
+    row.field_quarterly_year = totalId.split('|')[1];
+    row.field_agency = 'Sum of multiple agencies and components';
+    const sumLabels = totalRow.componentIds.map((componentId) => {
+      const [agency, component] = componentId.split('|');
+      if (component === 'Agency Overall') {
+        return agency;
+      }
+      return component;
+    }).join(', ');
+    row.field_agency_component = `Sum total of ${sumLabels}`;
+    Object.keys(totalRow.summedRow).forEach((summedProp) => {
+      if (!(nonDisaggregationColumns().includes(summedProp))) {
+        row[summedProp] = totalRow.summedRow[summedProp];
+      }
+    });
+    return row;
+  });
+}
+
 class QuarterlyReportResultsChart extends Component {
   constructor(props) {
     super(props);
@@ -222,7 +292,7 @@ class QuarterlyReportResultsChart extends Component {
       rows = this.getOverall();
     }
     if (totals) {
-      rows = this.getTotals(rows);
+      rows = getTotals(rows);
     }
     const xAxes = xAxesFromRows(rows);
     const datasets = datasetsFromRows(rows, tableColumns, xAxes);
@@ -230,94 +300,22 @@ class QuarterlyReportResultsChart extends Component {
     return {
       labels: xAxes.map((axis) => axis.label),
       datasets,
-    }
+    };
   }
 
   getOverall() {
     const agenciesWithOverall = {};
     const { tableData } = this.props;
-    tableData.forEach(row => {
+    tableData.forEach((row) => {
       if (row.field_agency_component === 'Agency Overall') {
         agenciesWithOverall[row.field_agency] = true;
       }
     });
-    return tableData.filter(row => {
+    return tableData.filter((row) => {
       if (agenciesWithOverall[row.field_agency]) {
         return row.field_agency_component === 'Agency Overall';
       }
       return true;
-    });
-  }
-
-  getTotals(rows) {
-    const totals = {};
-    rows.forEach(row => {
-      const totalId = [
-        row['field_quarterly_quarter'],
-        row['field_quarterly_year'],
-      ].join('|');
-      const componentId = [
-        row['field_agency'],
-        row['field_agency_component'],
-      ].join('|');
-      if (!totals[totalId]) {
-        totals[totalId] = {
-          componentIds: [],
-          rows: [],
-        };
-      }
-      totals[totalId].componentIds.push(componentId);
-      totals[totalId].rows.push(row);
-    });
-    Object.values(totals).forEach(total => {
-      const summedRow = {};
-      total.rows.forEach(row => {
-        Object.keys(row).forEach(prop => {
-          if (!(nonDisaggregationColumns().includes(prop))) {
-            if (Number.isInteger(row[prop])) {
-              if (!summedRow[prop]) {
-                summedRow[prop] = row[prop];
-              }
-              else {
-                summedRow[prop] += row[prop];
-              }
-            }
-            else if (typeof row[prop] === 'object' && row[prop] !== null) {
-              if (!summedRow[prop]) {
-                summedRow[prop] = {};
-              }
-              Object.keys(row[prop]).forEach(childProp => {
-                if (!summedRow[prop][childProp]) {
-                  summedRow[prop][childProp] = row[prop][childProp];
-                }
-                else {
-                  summedRow[prop][childProp] += row[prop][childProp];
-                }
-              });
-            }
-          }
-        });
-      });
-      total.summedRow = summedRow;
-    });
-    return Object.entries(totals).map(([totalId, totalRow]) => {
-      const row = {};
-      row['field_quarterly_quarter'] = totalId.split('|')[0];
-      row['field_quarterly_year'] = totalId.split('|')[1];
-      row['field_agency'] = 'Sum of multiple agencies and components';
-      row['field_agency_component'] = 'Sum total of ' + totalRow.componentIds.map(componentId => {
-        const [agency, component] = componentId.split('|');
-        if (component === 'Agency Overall') {
-          return agency;
-        }
-        return component;
-      }).join(', ');
-      Object.keys(totalRow.summedRow).forEach(summedProp => {
-        if (!(nonDisaggregationColumns().includes(summedProp))) {
-          row[summedProp] = totalRow.summedRow[summedProp];
-        }
-      });
-      return row;
     });
   }
 
@@ -350,12 +348,8 @@ class QuarterlyReportResultsChart extends Component {
     const totalsLabel = totals ? 'Do not sum values' : 'Sum values';
     return (
       <div>
-        { chartType === 'line' &&
-          <Line options={this.options} data={this.getData()} />
-        }
-        {chartType === 'bar' &&
-          <Bar options={this.options} data={this.getData()} />
-        }
+        { chartType === 'line' && <Line options={this.options} data={this.getData()} /> }
+        { chartType === 'bar' && <Bar options={this.options} data={this.getData()} /> }
 
         <button onClick={this.toggleChartType}>
           {chartTypeLabel}
