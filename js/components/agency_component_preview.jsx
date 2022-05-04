@@ -56,7 +56,7 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
           { agencyComponent.website
             && (
             <p>
-              Visit the agency’s
+              Visit the agency&rsquo;s
               {' '}
               <a href={agencyComponent.website.uri}>website</a>
               {' '}
@@ -66,8 +66,8 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
           { agencyComponent.reading_rooms && agencyComponent.reading_rooms.length > 0
             && (
             <p>
-              To see what’s been made available, you can visit an
-              agency’s
+              To see what&rsquo;s been made available, you can visit an agency&rsquo;s
+              {' '}
               <a href={agencyComponent.reading_rooms[0].uri}>FOIA library</a>
               .
             </p>
