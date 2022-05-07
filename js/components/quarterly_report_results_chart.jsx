@@ -20,7 +20,7 @@ function getTimeKeyFromRow(row) {
     year: field_quarterly_year,
     quarter: field_quarterly_quarter,
     id: `${field_quarterly_year}|${field_quarterly_quarter}`,
-  }
+  };
 }
 
 // Get timeKeys, keyed by key.
@@ -29,7 +29,7 @@ function getTimeKeysFromRows(rows) {
   for (const row of rows) {
     const timeKey = getTimeKeyFromRow(row);
     timeKeys[timeKey.id] = timeKey;
-  };
+  }
   return timeKeys;
 }
 
@@ -43,6 +43,20 @@ function getOverallOnlyAgencies(rows) {
     }
   }
   return agenciesWithOverall;
+}
+
+function getDataTypeValueFromRow(dataType, row) {
+  let drilled = row;
+  const levels = dataType.field.split('.');
+  for (const level of levels) {
+    if (typeof drilled !== 'object') {
+      break;
+    }
+    if (typeof drilled[level] !== 'undefined') {
+      drilled = drilled[level];
+    }
+  }
+  return drilled;
 }
 
 function getSeriesKeyFromRowAndDataType(row, dataType, totals) {
@@ -60,24 +74,30 @@ function getSeriesKeyFromRowAndDataType(row, dataType, totals) {
   return seriesKey;
 }
 
-function getDataTypeValueFromRow(dataType, row) {
-  let drilled = row;
-  const levels = dataType.field.split('.');
-  let levelsDrilled = 0;
-  for (const level of levels) {
-    if (typeof drilled !== 'object') {
-      break;
-    }
-    if (typeof drilled[level] !== 'undefined') {
-      drilled = drilled[level];
-      levelsDrilled += 1;
-    }
+function nonDisaggregationColumns() {
+  return [
+    'field_agency',
+    'field_agency_component',
+    'field_quarterly_year',
+    'field_quarterly_quarter',
+  ];
+}
+
+function isFieldDataType(field) {
+  return !(nonDisaggregationColumns().includes(field));
+}
+
+function getDataTypes(columns) {
+  return columns.filter((col) => isFieldDataType(col.field));
+}
+
+function sortObservationsInDatasets(datasets) {
+  function sortByTimeKey(a, b) {
+    return (a.timeKey.id > b.timeKey.id) ? 1 : -1;
   }
-  if (levelsDrilled !== levels.length) {
-    // Something went wrong.
-    throw ('Problem in getDataTypeValueFromRow');
+  for (const ds of Object.values(datasets)) {
+    ds.observations.sort(sortByTimeKey);
   }
-  return drilled;
 }
 
 function getDatasetsFromRows(rows, columns, overall, totals) {
@@ -100,18 +120,17 @@ function getDatasetsFromRows(rows, columns, overall, totals) {
       const seriesKey = getSeriesKeyFromRowAndDataType(row, dataType, totals);
       if (typeof datasets[seriesKey.id] === 'undefined') {
         datasets[seriesKey.id] = {
-          seriesKey: seriesKey,
+          seriesKey,
           observations: [],
         };
       }
       const dataset = datasets[seriesKey.id];
-      const existing = dataset.observations.find(obs => obs.timeKey.id === timeKey.id);
+      const existing = dataset.observations.find((obs) => obs.timeKey.id === timeKey.id);
       if (existing) {
         existing.value += seriesKey.value;
-      }
-      else {
+      } else {
         dataset.observations.push({
-          timeKey: timeKey,
+          timeKey,
           value: seriesKey.value,
         });
       }
@@ -119,29 +138,6 @@ function getDatasetsFromRows(rows, columns, overall, totals) {
   }
   sortObservationsInDatasets(datasets);
   return datasets;
-}
-
-function sortObservationsInDatasets(datasets) {
-  for (const ds of Object.values(datasets)) {
-    ds.observations.sort((a, b) => (a.timeKey.id > b.timeKey.id) ? 1 : -1);
-  }
-}
-
-function isFieldDataType(field) {
-  return nonDisaggregationColumns().includes(field) ? false : true;
-}
-
-function getDataTypes(columns) {
-  return columns.filter(col => isFieldDataType(col.field));
-}
-
-function nonDisaggregationColumns() {
-  return [
-    'field_agency',
-    'field_agency_component',
-    'field_quarterly_year',
-    'field_quarterly_quarter',
-  ];
 }
 
 function yearFromLabel(label) {
@@ -162,7 +158,7 @@ function convertToChartJsDatasets(datasets, tableColumns) {
       return field ? field.title : labelPart;
     }).join(', ');
     return {
-      label: label,
+      label,
       data: dataset.observations.map((obs) => obs.value),
     };
   });
@@ -333,19 +329,17 @@ class QuarterlyReportResultsChart extends Component {
         <button onClick={this.toggleTotals}>
           {totalsLabel}
         </button>
-        { totals &&
-          <h2>Showing sums of:</h2> 
-        }
-        { totals && 
+        { totals && (
+        <div>
+          <h2>Showing sums of:</h2>
           <ul>
-            {this.getAllComponentsInTotal().map(item =>
-            <li key={item}>{item}</li>)
-            }
+            {this.getAllComponentsInTotal().map((item) => <li key={item}>{item}</li>)}
           </ul>
-        }
-        { !showChart &&
+        </div>
+        )}
+        { !showChart && (
           <h2>There are too many datasets to display as on a chart.</h2>
-        }
+        )}
       </div>
     );
   }
