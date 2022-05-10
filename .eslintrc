@@ -40,3 +40,6 @@ rules:
   'import/no-unresolved': 0
   'prefer-destructuring': 0
   'import/named': 0
+  'import/no-relative-packages': 0
+  'import/no-extraneous-dependencies': 0
+  'import/extensions': 0

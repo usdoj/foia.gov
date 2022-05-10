@@ -3,7 +3,6 @@ import { Container } from 'flux/utils';
 import { withRouter } from 'react-router-dom';
 import { List } from 'immutable';
 import PropTypes from 'prop-types';
-
 import QuarterlyReportFormSectionOne from '../components/quarterly_report_form_section_one';
 import QuarterlyReportFormSectionTwo from '../components/quarterly_report_form_section_two';
 import QuarterlyReportFormSectionThree from '../components/quarterly_report_form_section_three';
@@ -18,6 +17,9 @@ import quarterlyReportDataTypesStore from '../stores/quarterly_report_data_types
 import quarterlyReportStore from '../stores/quarterly_report';
 
 import { reportActions } from '../actions/quarterly_report';
+import scroll from '../util/scroll';
+
+scroll.smoothScroll();
 
 class QuarterlyReportDataPage extends Component {
   static getStores() {
@@ -72,7 +74,6 @@ class QuarterlyReportDataPage extends Component {
       reportDataComplete,
       reportDataHasRows,
     } = quarterlyReportStore.getState();
-
     const viewMode = props.location.state.view;
 
     return {
@@ -116,7 +117,6 @@ class QuarterlyReportDataPage extends Component {
     window.onpopstate = this.handlePopState;
     reportActions.fetchQuarterlyReportDataFiscalYears();
     reportActions.fetchQuarterlyReportDataTypes();
-
     // If there is any agency data, assume all the data is fetched.
     if (this.state.agencies.size) {
       return;

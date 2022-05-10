@@ -16,6 +16,9 @@ import annualReportDataTypesStore from '../stores/annual_report_data_types';
 import annualReportStore from '../stores/annual_report';
 
 import { reportActions } from '../actions/report';
+import scroll from '../util/scroll';
+
+scroll.smoothScroll();
 
 class AnnualReportDataPage extends Component {
   static getStores() {
