@@ -13,11 +13,9 @@ function skipOnClick(e) {
     target.focus();
   }
 
-  // manually smooth scroll down
+  // manually scroll down and prevent browser refresh
   e.preventDefault();
-  $([document.documentElement, document.body]).animate({
-    scrollTop: $(id).offset().top,
-  }, 500);
+  $([document.documentElement, document.body]).scrollTop(500);
 }
 
 function smoothScroll() {
