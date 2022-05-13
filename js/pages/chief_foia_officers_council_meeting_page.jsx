@@ -6,6 +6,9 @@ import chiefFOIAOfficersCouncilStore from '../stores/chief_foia_officers_council
 import { requestActions } from '../actions';
 import CFOCPageMeetingDetailComponent from '../components/cfoc_page_meeting_detail';
 import NotFoundPage from './not_found';
+import scroll from '../util/scroll';
+
+scroll.smoothScroll();
 
 class ChiefFoiaOfficersCouncilMeetingPage extends Component {
   static getStores() {

@@ -23,6 +23,9 @@ import agencyComponentRequestFormStore from 'stores/agency_component_request_for
 import foiaRequestStore from 'stores/foia_request';
 import faker from 'faker'; // eslint-disable-line import/no-extraneous-dependencies
 import NotFound from './not_found';
+import scroll from '../util/scroll';
+
+scroll.smoothScroll();
 
 class ConfirmationPage extends Component {
   static getStores() {

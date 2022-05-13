@@ -7,6 +7,9 @@ import { createBrowserHistory } from 'history';
 import { requestActions } from 'actions';
 import LandingComponent from '../components/landing';
 import agencyComponentStore from '../stores/agency_component';
+import scroll from '../util/scroll';
+
+scroll.smoothScroll();
 
 const urlPropsQueryConfig = {
   typeQueryString: { type: UrlQueryParamTypes.string, queryParam: 'type' },

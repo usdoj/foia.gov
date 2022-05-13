@@ -12,10 +12,11 @@ function skipOnClick(e) {
     target.setAttribute('tabindex', 0);
     target.focus();
   }
-
   // manually scroll down and prevent browser refresh
   e.preventDefault();
-  $([document.documentElement, document.body]).scrollTop(500);
+  $([document.documentElement, document.body]).animate({
+    scrollTop: $(id).offset().top,
+  }, 200);
 }
 
 function smoothScroll() {

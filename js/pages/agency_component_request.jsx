@@ -11,6 +11,9 @@ import agencyComponentRequestFormStore from 'stores/agency_component_request_for
 import foiaRequestStore from 'stores/foia_request';
 import NotFound from './not_found';
 import { scrollOffset } from '../util/dom';
+import scroll from '../util/scroll';
+
+scroll.smoothScroll();
 
 class AgencyComponentRequestPage extends Component {
   static getStores() {

@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import scroll from '../util/scroll';
+
+scroll.smoothScroll();
 
 function NotFoundPage({ children }) {
   return (
@@ -12,6 +15,7 @@ function NotFoundPage({ children }) {
           improve upon this site in the future. Please let us know if you think
           something is missing or broken
           by
+          {' '}
           <a href="mailto:National.FOIAPortal@usdoj.gov">submitting feedback</a>
           .
         </p>

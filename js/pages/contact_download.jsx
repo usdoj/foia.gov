@@ -3,6 +3,9 @@ import { Container } from 'flux/utils';
 import { requestActions } from 'actions';
 import ExcellentExport from 'excellentexport';
 import agencyComponentStore from '../stores/agency_component';
+import scroll from '../util/scroll';
+
+scroll.smoothScroll();
 
 /**
  * A download button for getting all agency component contact information as CSV.
