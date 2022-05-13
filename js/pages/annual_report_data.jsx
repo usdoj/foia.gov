@@ -66,7 +66,8 @@ class AnnualReportDataPage extends Component {
       reportDataHasRows,
     } = annualReportStore.getState();
 
-    const viewMode = props.location.state.view;
+    const { location } = props;
+    const viewMode = (location.state) ? location.state.view : 'form';
 
     return {
       agencies,
