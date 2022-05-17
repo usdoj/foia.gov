@@ -12,12 +12,14 @@ function NotFoundPage({ children }) {
           improve upon this site in the future. Please let us know if you think
           something is missing or broken
           by
+          {' '}
           <a href="mailto:National.FOIAPortal@usdoj.gov">submitting feedback</a>
           .
         </p>
         { children || (
         <p>
           You can also click back, or
+          {' '}
           <a href="/">start over</a>
           .
         </p>

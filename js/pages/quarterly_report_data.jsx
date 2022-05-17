@@ -74,8 +74,12 @@ class QuarterlyReportDataPage extends Component {
     } = quarterlyReportStore.getState();
 
     const { location } = props;
-    const viewMode = (location.state) ? location.state.view : 'results';
-
+    let viewMode;
+    if (location.pathname === '/quarterly.html/results') {
+      viewMode = 'results';
+    } else {
+      viewMode = 'form';
+    }
     return {
       agencies,
       agencyComponents,

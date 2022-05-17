@@ -67,8 +67,12 @@ class AnnualReportDataPage extends Component {
     } = annualReportStore.getState();
 
     const { location } = props;
-    const viewMode = (location.state) ? location.state.view : 'results';
-
+    let viewMode;
+    if (location.pathname === '/data.html/results') {
+      viewMode = 'results';
+    } else {
+      viewMode = 'form';
+    }
     return {
       agencies,
       agencyComponents,
