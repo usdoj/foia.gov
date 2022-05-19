@@ -200,6 +200,8 @@ class AnnualReportDataFormStore extends Store {
       }
 
       case types.ANNUAL_REPORT_AGENCY_COMPONENT_REMOVE: {
+
+        console.log('annual_report_data_form.js');
         const { selection } = payload;
         const selectedAgencies = [...this.state.selectedAgencies];
         // Remove the Agency Component whose index matches the object's index property.

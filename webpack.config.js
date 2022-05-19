@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 const env = process.env.APP_ENV || 'development';
 assert(['local', 'cloud-gov', 'development', 'staging', 'uat', 'production', 'ddev'].includes(env), `${env} is not an acceptable environment.`);
-
+console.log("env", env);
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {

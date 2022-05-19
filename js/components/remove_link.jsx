@@ -11,6 +11,7 @@ class RemoveLink extends Component {
 
   dispatchChange(e) {
     e.preventDefault();
+    console.log('dispatchChange');
     dispatcher.dispatch({
       type: this.props.eventType,
       selection: this.props.selection,

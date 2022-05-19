@@ -130,7 +130,7 @@ class ReportAgencyComponentFilter extends Component {
       <RemoveLink
         eventType={types.ANNUAL_REPORT_AGENCY_COMPONENT_REMOVE}
         selection={this.props.selectedAgency}
-        text="Remove"
+        text="Remove component"
       />
     ) : null;
 
