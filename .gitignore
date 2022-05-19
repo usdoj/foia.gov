@@ -10,3 +10,4 @@ _site
 node_modules/
 npm-debug.log*
 /www.foia.gov/assets/
+_fonts
