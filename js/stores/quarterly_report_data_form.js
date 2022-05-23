@@ -444,8 +444,6 @@ class QuarterlyReportDataFormStore extends Store {
       case types.QUARTERLY_REPORT_DATA_TYPE_FIELD_REMOVE: {
         const { selection } = payload;
         const selectedDataTypes = [...this.state.selectedDataTypes];
-
-        console.log('types.QUARTERLY_REPORT_DATA_TYPE_FIELD_REMOVE', selectedDataTypes);
         // Remove the Data Type whose index matches the object's index property.
         selectedDataTypes.splice(selection.index, 1);
 

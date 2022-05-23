@@ -6,13 +6,12 @@ import { uniqueId } from 'lodash';
 import ReportAgencyComponentTypeahead from './report_agency_component_typeahead';
 import FoiaModal from './foia_modal';
 import RemoveLink from './remove_link';
-import { types } from '../actions/report';
+import { types } from '../actions/quarterly_report';
 import dispatcher from '../util/dispatcher';
 
-class ReportAgencyComponentFilter extends Component {
+class QuarterlyReportAgencyComponentFilter extends Component {
   constructor(props) {
     super(props);
-
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleModalSubmit = this.handleModalSubmit.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
@@ -128,7 +127,7 @@ class ReportAgencyComponentFilter extends Component {
 
     const removeAgencyComponentButton = fieldsDisplayed > 1 ? (
       <RemoveLink
-        eventType={types.ANNUAL_REPORT_AGENCY_COMPONENT_REMOVE}
+        eventType={types.QUARTERLY_REPORT_AGENCY_COMPONENT_REMOVE}
         selection={this.props.selectedAgency}
         text="Remove"
       />
@@ -164,7 +163,7 @@ class ReportAgencyComponentFilter extends Component {
   }
 }
 
-ReportAgencyComponentFilter.propTypes = {
+QuarterlyReportAgencyComponentFilter.propTypes = {
   agencies: PropTypes.instanceOf(Map),
   agencyComponents: PropTypes.instanceOf(List),
   agencyFinderDataComplete: PropTypes.bool.isRequired,
@@ -175,7 +174,7 @@ ReportAgencyComponentFilter.propTypes = {
   fieldsDisplayed: PropTypes.number.isRequired,
 };
 
-ReportAgencyComponentFilter.defaultProps = {
+QuarterlyReportAgencyComponentFilter.defaultProps = {
   agencies: new Map(),
   agencyComponents: new List(),
   agencyFinderDataProgress: 0,
@@ -183,4 +182,4 @@ ReportAgencyComponentFilter.defaultProps = {
   selectedAgency: { index: 0 },
 };
 
-export default ReportAgencyComponentFilter;
+export default QuarterlyReportAgencyComponentFilter;

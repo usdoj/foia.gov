@@ -170,7 +170,7 @@ class QuarterlyReportDataTypeFilter extends Component {
       <RemoveLink
         eventType={types.QUARTERLY_REPORT_DATA_TYPE_FIELD_REMOVE}
         selection={this.props.selectedDataType}
-        text="Remove aa"
+        text="Remove"
       />
     ) : null;
     return (
