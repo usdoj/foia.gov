@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import Tabulator from 'tabulator-tables';
+import { TabulatorFull as Tabulator } from 'tabulator-tables';
 import PropTypes from 'prop-types';
 
 class QuarterlyReportResultsTable extends Component {
@@ -29,14 +29,14 @@ class QuarterlyReportResultsTable extends Component {
       columns: tableColumns,
       reactiveData: true,
       layout: 'fitDataStretch',
-      tableBuilt: () => {
-        const selector = `#${tableId} .tabulator-header button`;
-        const buttons = document.querySelectorAll(selector);
+    });
+    this.tabulator.on('tableBuilt', () => {
+      const selector = `#${tableId} .tabulator-header button`;
+      const buttons = document.querySelectorAll(selector);
 
-        Array.from(buttons).forEach((button) => {
-          button.addEventListener('focusin', this.handleColumnFocus);
-        });
-      },
+      Array.from(buttons).forEach((button) => {
+        button.addEventListener('focusin', this.handleColumnFocus);
+      });
     });
     if (this.props.displayMode === 'download' && this.props.tableData.length > 0) {
       this.downloadCSV();
