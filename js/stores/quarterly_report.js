@@ -220,28 +220,28 @@ class QuarterlyReportStore extends Store {
             titleFormatter: headingAsButton,
             formatter: cellWithAria,
             field: 'field_agency',
-            align: 'left',
+            hozAlign: 'left',
           },
           {
             title: 'Component',
             titleFormatter: headingAsButton,
             formatter: cellWithAria,
             field: 'field_agency_component',
-            align: 'center',
+            hozAlign: 'center',
           },
           {
             title: 'Fiscal Year',
             titleFormatter: headingAsButton,
             formatter: cellWithAria,
             field: 'field_quarterly_year',
-            align: 'center',
+            hozAlign: 'center',
           },
           {
             title: 'Quarter',
             titleFormatter: headingAsButton,
             formatter: cellWithAria,
             field: 'field_quarterly_quarter',
-            align: 'center',
+            hozAlign: 'center',
           },
         ];
 
@@ -259,7 +259,7 @@ class QuarterlyReportStore extends Store {
                   titleFormatter: headingAsButton,
                   formatter: cellWithAria,
                   field: item.id,
-                  align: item.filter ? 'center' : 'left',
+                  hozAlign: item.filter ? 'center' : 'left',
                   sorter: collator.compare,
                 }));
             const reportHeaders = defaultColumns.concat(dataColumns);
