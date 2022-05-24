@@ -37,7 +37,7 @@
     "cucumber-mink": "2.x",
     "d8-jsonapi-querystring": "0.0.8",
     "excellentexport": "3.x",
-    "exitscript": "1.1.7",
+    "exitscript": "1.2.0",
     "flux": "4.x",
     "glossary-panel": "1.x",
     "history": "4.x",
