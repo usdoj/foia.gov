@@ -80,7 +80,7 @@
     "npm-run-all": "4.x",
     "process": "0.x",
     "react-test-renderer": "16.x",
-    "sinon": "13.x",
+    "sinon": "14.x",
     "sinon-chai": "3.x",
     "style-loader": "3.x",
     "webpack": "5.x",
