@@ -61,7 +61,7 @@
     "@babel/core": "7.x",
     "@babel/preset-env": "7.x",
     "@babel/preset-react": "7.x",
-    "@cucumber/cucumber": "^7.x",
+    "@cucumber/cucumber": "^8.x",
     "babel-loader": "8.x",
     "chai": "4.x",
     "css-loader": "6.x",
