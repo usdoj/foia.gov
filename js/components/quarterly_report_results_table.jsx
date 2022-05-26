@@ -101,7 +101,6 @@ class QuarterlyReportResultsTable extends Component {
     } : [];
     return (
       <div {...attributes}>
-        <h2>{this.props.tableHeader}</h2>
         <div
           id={this.props.tableId}
           ref={(ref) => {

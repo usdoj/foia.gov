@@ -3,6 +3,12 @@ import { Container } from 'flux/utils';
 import { withRouter } from 'react-router-dom';
 import { List } from 'immutable';
 import PropTypes from 'prop-types';
+import {
+  Tabs,
+  TabList,
+  Tab,
+  Panel,
+} from '@accessible/tabs';
 
 import QuarterlyReportFormSectionOne from '../components/quarterly_report_form_section_one';
 import QuarterlyReportFormSectionTwo from '../components/quarterly_report_form_section_two';
@@ -10,6 +16,7 @@ import QuarterlyReportFormSectionThree from '../components/quarterly_report_form
 import QuarterlyReportFormSectionFour from '../components/quarterly_report_form_section_four';
 import QuarterlyReportDataSubmit from '../components/quarterly_report_submit';
 import QuarterlyReportResultsTable from '../components/quarterly_report_results_table';
+import QuarterlyReportResultsChart from '../components/quarterly_report_results_chart';
 
 import quarterlyReportDataFormStore from '../stores/quarterly_report_data_form';
 import agencyComponentStore from '../stores/agency_component';
@@ -267,15 +274,45 @@ class QuarterlyReportDataPage extends Component {
         <div>
           {
             reportTableEntries.map((table) => (
-              <QuarterlyReportResultsTable
-                key={`report-${table.id}`}
-                ref={(ref) => { this.reportRefs[table.id] = ref; }}
-                tableId={`report-${table.id}`}
-                tableHeader={table.header}
-                tableData={table.data}
-                tableColumns={table.columns}
-                displayMode={submissionAction}
-              />
+              <div key={`report-container-${table.id}`}>
+                <h2>{ table.header }</h2>
+                <Tabs defaultActive={0} preventScroll>
+                  <div className="tab-container">
+                    <TabList>
+                      <div className="tab-list" aria-label="Report results">
+                        <Tab>
+                          <button className="tab-button usa-button usa-button-outline">Table</button>
+                        </Tab>
+                        <Tab>
+                          <button className="tab-button usa-button usa-button-outline">Chart</button>
+                        </Tab>
+                      </div>
+                    </TabList>
+                    <Panel>
+                      <div className="tab-panel">
+                        <QuarterlyReportResultsTable
+                          key={`report-${table.id}`}
+                          ref={(ref) => { this.reportRefs[table.id] = ref; }}
+                          tableId={`report-${table.id}`}
+                          tableData={table.data}
+                          tableColumns={table.columns}
+                          tableHeader={table.header}
+                          displayMode={submissionAction}
+                        />
+                      </div>
+                    </Panel>
+                    <Panel>
+                      <div className="tab-panel">
+                        <QuarterlyReportResultsChart
+                          key={`report-chart-${table.id}`}
+                          tableData={table.data}
+                          tableColumns={table.columns}
+                        />
+                      </div>
+                    </Panel>
+                  </div>
+                </Tabs>
+              </div>
             ))
           }
         </div>

@@ -1,0 +1,22 @@
+.tab-button {
+  &[aria-selected=true] {
+    background-color: $color-primary-alt-light;
+    color: $color-primary-darkest;
+    box-shadow: inset 0 0 0 2px $color-primary-alt-light;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
+}
+.tab-panel {
+  opacity: 1;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  
+  &[aria-hidden=true] {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+}
