@@ -18,6 +18,7 @@ function AgencyComponentProcessingTime({ agencyComponent }) {
     <div className="agency-info_processing-time">
       <h4>
         Average processing time for
+        {' '}
         {agencyComponent.request_data_year}
       </h4>
       { simple_average_days && (
