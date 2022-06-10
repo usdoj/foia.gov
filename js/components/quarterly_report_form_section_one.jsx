@@ -2,7 +2,7 @@ import { List, Map } from 'immutable';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import FoiaTooltip from './foia_tooltip';
-import ReportAgencyComponentFilter from './report_agency_component_filter';
+import QuarterlyReportAgencyComponentFilter from './quarterly_report_agency_component_filter';
 import AddLink from './add_link';
 import { types } from '../actions/quarterly_report';
 
@@ -30,7 +30,7 @@ class QuarterlyReportFormSectionOne extends Component {
               <FoiaTooltip text="<p>Select an agency or agencies to view their data. You may also select specific components of an agency (such as the FBI, a component of the Department of Justice), or you may view data for all government agencies.</p>" />
             </legend>
             {selectedAgencies.map((selected, index) => (
-              <ReportAgencyComponentFilter
+              <QuarterlyReportAgencyComponentFilter
                 key={index} // eslint-disable-line react/no-array-index-key
                 agencies={agencies}
                 agencyComponents={agencyComponents}
