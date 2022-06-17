@@ -146,6 +146,15 @@ EOF
     <li><a href="{{ site.baseurl }}/2008-FOIASetFull.zip">Download the full 2008 FOIA Data set</a> (.zip format)</li>
   </ul>
 
+### Annual Report XML API
+
+Individual annual reports, in XML format, are available via an API endpoint:
+
+`/api/annual-report-xml/[agency abbreviation]/[year]`
+
+For example, to receive the Department of Justice (DOJ) annual report for 2021, you could use this:
+
+`curl -H 'X-API-Key: <your-api-key>' https://api.foia.gov/api/annual-report-xml/DOJ/2021`
 
 ## Agency resources
 
