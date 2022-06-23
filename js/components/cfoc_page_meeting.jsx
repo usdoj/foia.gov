@@ -4,13 +4,19 @@ import CFOCPageMeetingDocumentsComponent from './cfoc_page_meeting_documents';
 import CFOCPageMeetingMaterialsComponent from './cfoc_page_meeting_materials';
 
 function CFOCPageMeetingComponent(props) {
-  const { id } = props;
   return (
     <li className="cfoc-page-meeting">
-      <button className="usa-accordion-button" aria-controls={id} aria-expanded="false">
-        {props.title}
+      <button className="usa-accordion-button" aria-controls={props.id} aria-expanded="false">
+        {props.date}
       </button>
-      <div id={id} className="usa-accordion-content" aria-hidden="true">
+      <div id={props.id} className="usa-accordion-content" aria-hidden="true">
+        {
+          !props.title
+            ? null
+            : (
+              <h3>{props.title}</h3>
+            )
+        }
         {
           !props.body
             ? null
@@ -87,6 +93,7 @@ CFOCPageMeetingComponent.propTypes = {
     item_link: PropTypes.string,
   }),
   id: PropTypes.string,
+  date: PropTypes.string,
 };
 
 CFOCPageMeetingComponent.defaultProps = {
@@ -103,6 +110,7 @@ CFOCPageMeetingComponent.defaultProps = {
     item_link: '',
   },
   id: '',
+  date: '',
 };
 
 export default CFOCPageMeetingComponent;

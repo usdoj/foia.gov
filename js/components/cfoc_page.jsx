@@ -7,6 +7,11 @@ function CFOCPageComponent(props) {
   const {
     title, body, committees, meetingsUpcoming, meetingsPast,
   } = props;
+  const dateOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
 
   return (
     <div className="cfoc-page-content">
@@ -43,9 +48,10 @@ function CFOCPageComponent(props) {
                 <h2><strong>UPCOMING MEETINGS:</strong></h2>
                 <ul className="cfoc-page-upcoming-meetings-list usa-accordion">
                   {
-                  meetingsUpcoming.map((meeting, index) => {
+                  meetingsUpcoming.reverse().map((meeting, index) => {
                     const key = meeting.meeting_title.length * index;
                     const id = `upcoming-${key.toString()}`;
+                    const date = new Date(meeting.meeting_timestamp * 1000);
 
                     return (
                       <CFOCPageMeetingComponent
@@ -53,6 +59,7 @@ function CFOCPageComponent(props) {
                         body={meeting.meeting_body}
                         documents={meeting.meeting_documents}
                         materials={meeting.meeting_materials}
+                        date={date.toLocaleString('en-US', dateOptions)}
                         id={id}
                         key={key}
                       />
@@ -74,6 +81,7 @@ function CFOCPageComponent(props) {
                   meetingsPast.map((meeting, index) => {
                     const key = meeting.meeting_title.length * index;
                     const id = `past-${key.toString()}`;
+                    const date = new Date(meeting.meeting_timestamp * 1000);
 
                     return (
                       <CFOCPageMeetingComponent
@@ -81,6 +89,7 @@ function CFOCPageComponent(props) {
                         body={meeting.meeting_body}
                         documents={meeting.meeting_documents}
                         materials={meeting.meeting_materials}
+                        date={date.toLocaleString('en-US', dateOptions)}
                         id={id}
                         key={key}
                       />
