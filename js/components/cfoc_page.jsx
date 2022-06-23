@@ -41,9 +41,11 @@ function CFOCPageComponent(props) {
             : (
               <div className="cfoc-page-upcoming-meetings">
                 <h2><strong>UPCOMING MEETINGS:</strong></h2>
-                {
+                <ul className="cfoc-page-upcoming-meetings-list usa-accordion">
+                  {
                   meetingsUpcoming.map((meeting, index) => {
                     const key = meeting.meeting_title.length * index;
+                    const id = `upcoming-${key.toString()}`;
 
                     return (
                       <CFOCPageMeetingComponent
@@ -51,11 +53,13 @@ function CFOCPageComponent(props) {
                         body={meeting.meeting_body}
                         documents={meeting.meeting_documents}
                         materials={meeting.meeting_materials}
+                        id={id}
                         key={key}
                       />
                     );
                   })
-                }
+                  }
+                </ul>
               </div>
             )
         }
@@ -63,30 +67,28 @@ function CFOCPageComponent(props) {
           !meetingsPast.length
             ? null
             : (
-              <ul className="cfoc-page-meetings-past usa-accordion">
-                <li>
-                  <button className="usa-accordion-button" aria-controls="cfo-past-meetings" aria-expanded={!meetingsUpcoming.length ? 'true' : 'false'}>
-                    PAST MEETINGS
-                  </button>
-                  <div id="cfo-past-meetings" className="usa-accordion-content" aria-hidden={meetingsUpcoming.length ? 'true' : 'false'}>
-                    {
-                      meetingsPast.map((meeting, index) => {
-                        const key = meeting.meeting_title.length * index;
+              <div className="cfoc-page-past-meetings">
+                <h2><strong>PAST MEETINGS:</strong></h2>
+                <ul className="cfoc-page-past-meetings-list usa-accordion">
+                  {
+                  meetingsPast.map((meeting, index) => {
+                    const key = meeting.meeting_title.length * index;
+                    const id = `past-${key.toString()}`;
 
-                        return (
-                          <CFOCPageMeetingComponent
-                            title={meeting.meeting_title}
-                            body={meeting.meeting_body}
-                            documents={meeting.meeting_documents}
-                            materials={meeting.meeting_materials}
-                            key={key}
-                          />
-                        );
-                      })
-                    }
-                  </div>
-                </li>
-              </ul>
+                    return (
+                      <CFOCPageMeetingComponent
+                        title={meeting.meeting_title}
+                        body={meeting.meeting_body}
+                        documents={meeting.meeting_documents}
+                        materials={meeting.meeting_materials}
+                        id={id}
+                        key={key}
+                      />
+                    );
+                  })
+                  }
+                </ul>
+              </div>
             )
         }
       </div>
