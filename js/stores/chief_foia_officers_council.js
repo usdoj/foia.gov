@@ -20,7 +20,8 @@ class ChiefFOIAOfficersCouncilStore extends Store {
       meetingsUpcoming: [],
       meetingsPast: [],
       attachments: [],
-      workingGroups: [],
+      workingGroupsActive: [],
+      workingGroupsInactive: [],
       meeting_agenda: [],
       hasData: null,
       status: null,
@@ -77,11 +78,13 @@ class ChiefFOIAOfficersCouncilStore extends Store {
         const data = payload.committeeData;
 
         if (Object.values(data).length) {
+          console.log(data.working_groups);
           Object.assign(this.state, {
             title: data.committee_title,
             body: data.committee_body,
             attachments: data.committee_attachments,
-            working_groups: data.working_groups,
+            workingGroupsActive: data.working_groups.filter(group => group.item_active),
+            workingGroupsInactive: data.working_groups.filter(group => !(group.item_active)),
             hasData: true,
             status: payload.status,
           });

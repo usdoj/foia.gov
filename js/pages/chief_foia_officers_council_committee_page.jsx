@@ -17,7 +17,8 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
       title,
       body,
       attachments,
-      working_groups,
+      workingGroupsActive,
+      workingGroupsInactive,
       hasData,
       status,
     } = chiefFOIAOfficersCouncilStore.getState();
@@ -26,7 +27,8 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
       title,
       body,
       attachments,
-      working_groups,
+      workingGroupsActive,
+      workingGroupsInactive,
       hasData,
       status,
     };
@@ -42,7 +44,8 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
       title,
       body,
       attachments,
-      working_groups,
+      workingGroupsActive,
+      workingGroupsInactive,
       hasData,
       status,
     } = this.state;
@@ -56,7 +59,8 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
               title={title}
               body={body}
               attachments={attachments}
-              workingGroups={working_groups}
+              workingGroupsActive={workingGroupsActive}
+              workingGroupsInactive={workingGroupsInactive}
             />
           </div>
         )

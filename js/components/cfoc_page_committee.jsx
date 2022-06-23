@@ -26,13 +26,13 @@ function CFOCPageCommitteeComponent(props) {
       }
       { attachments.length ? <CFOCPageAttachmentsComponent attachments={attachments} /> : null }
       {
-        !workingGroups.length
+        !workingGroupsActive.length
           ? null
           : (
             <div className="cfo-page-working-group-container">
               <h3>Working Groups</h3>
               {
-                workingGroups.map((workingGroup, index) => {
+                workingGroupsActive.map((workingGroup, index) => {
                   const key = index + 1;
                   return (
                     <CFOCPageCommitteeWorkGroupComponent
