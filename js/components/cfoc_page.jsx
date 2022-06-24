@@ -31,7 +31,8 @@ function CFOCPageComponent(props) {
                         title={committee.committee_title}
                         body={committee.committee_body}
                         attachments={committee.committee_attachments}
-                        workingGroups={committee.working_groups}
+                        workingGroupsActive={committee.workingGroupsActive}
+                        workingGroupsInactive={committee.workingGroupsInactive}
                         key={key}
                       />
                     );
@@ -113,7 +114,8 @@ CFOCPageComponent.propTypes = {
     committee_title: PropTypes.string,
     committee_body: PropTypes.string,
     committee_attachments: PropTypes.any,
-    working_groups: PropTypes.any,
+    workingGroupsActive: PropTypes.any,
+    workingGroupsInactive: PropTypes.any,
   }),
   meetingsUpcoming: PropTypes.array,
   meetingsPast: PropTypes.array,

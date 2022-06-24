@@ -5,7 +5,7 @@ import CFOCPageAttachmentsComponent from './cfoc_page_attachments';
 
 function CFOCPageCommitteeDetailComponent(props) {
   const {
-    title, body, attachments, workingGroups,
+    title, body, attachments, workingGroupsActive, workingGroupsInactive,
   } = props;
 
   return (
@@ -26,12 +26,30 @@ function CFOCPageCommitteeDetailComponent(props) {
       }
 
       { attachments.length ? <CFOCPageAttachmentsComponent attachments={attachments} /> : null }
-      { workingGroups.length ? <h3>Working Groups</h3> : null }
+      { workingGroupsActive.length ? <h3>Working Groups</h3> : null }
       {
-        !workingGroups.length
+        !workingGroupsActive.length
           ? null
           : (
-            workingGroups.map((group, index) => {
+            workingGroupsActive.map((group, index) => {
+              const key = index + 1;
+              return (
+                <CFOCPageCommitteeWorkGroupComponent
+                  title={group.item_title}
+                  body={group.item_body}
+                  attachments={group.item_attachments}
+                  key={key}
+                />
+              );
+            })
+          )
+      }
+      { workingGroupsInactive.length ? <h3>Inactive Working Groups</h3> : null }
+      {
+        !workingGroupsInactive.length
+          ? null
+          : (
+            workingGroupsInactive.map((group, index) => {
               const key = index + 1;
               return (
                 <CFOCPageCommitteeWorkGroupComponent
@@ -56,7 +74,8 @@ CFOCPageCommitteeDetailComponent.propTypes = {
     attachment_title: PropTypes.string,
     attachment_file: PropTypes.string,
   }),
-  workingGroups: PropTypes.array,
+  workingGroupsActive: PropTypes.array,
+  workingGroupsInactive: PropTypes.array,
   group: PropTypes.shape({
     item_title: PropTypes.string,
     item_body: PropTypes.string,
@@ -69,7 +88,8 @@ CFOCPageCommitteeDetailComponent.defaultProps = {
   body: '',
   attachments: [],
   attachment: {},
-  workingGroups: [],
+  workingGroupsActive: [],
+  workingGroupsInactive: [],
   group: {},
 };
 
