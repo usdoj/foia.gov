@@ -77,14 +77,16 @@ CFOCPageCommitteeComponent.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
   attachments: PropTypes.any,
-  workingGroups: PropTypes.any,
+  workingGroupsActive: PropTypes.any,
+  workingGroupsInactive: PropTypes.any,
 };
 
 CFOCPageCommitteeComponent.defaultProps = {
   title: '',
   body: '',
   attachments: [],
-  workingGroups: [],
+  workingGroupsActive: [],
+  workingGroupsInactive: [],
 };
 
 export default CFOCPageCommitteeComponent;
