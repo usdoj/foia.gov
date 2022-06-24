@@ -5,7 +5,7 @@ import CFOCPageAttachmentsComponent from './cfoc_page_attachments';
 
 function CFOCPageCommitteeComponent(props) {
   const {
-    title, body, attachments, workingGroups,
+    title, body, attachments, workingGroupsActive, workingGroupsInactive,
   } = props;
 
   return (
@@ -33,6 +33,28 @@ function CFOCPageCommitteeComponent(props) {
               <h3>Working Groups</h3>
               {
                 workingGroupsActive.map((workingGroup, index) => {
+                  const key = index + 1;
+                  return (
+                    <CFOCPageCommitteeWorkGroupComponent
+                      title={workingGroup.item_title}
+                      body={workingGroup.item_body}
+                      attachments={workingGroup.item_attachments}
+                      key={key}
+                    />
+                  );
+                })
+              }
+            </div>
+          )
+      }
+      {
+        !workingGroupsInactive.length
+          ? null
+          : (
+            <div className="cfo-page-working-group-container">
+              <h3>Inactive Working Groups</h3>
+              {
+                workingGroupsInactive.map((workingGroup, index) => {
                   const key = index + 1;
                   return (
                     <CFOCPageCommitteeWorkGroupComponent
