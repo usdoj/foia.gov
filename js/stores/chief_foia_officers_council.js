@@ -83,8 +83,8 @@ class ChiefFOIAOfficersCouncilStore extends Store {
             title: data.committee_title,
             body: data.committee_body,
             attachments: data.committee_attachments,
-            workingGroupsActive: data.working_groups.filter(group => group.item_active),
-            workingGroupsInactive: data.working_groups.filter(group => !(group.item_active)),
+            workingGroupsActive: data.working_groups.filter((group) => group.item_active),
+            workingGroupsInactive: data.working_groups.filter((group) => !(group.item_active)),
             hasData: true,
             status: payload.status,
           });
