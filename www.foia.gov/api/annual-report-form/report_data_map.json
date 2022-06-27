@@ -768,28 +768,28 @@
       {
         "id": "field_admin_app_vic4.field_med_num_days",
         "label": "Median Number of Days",
-        "filter": "field_admin_app_vic4.field_med_num_days.value",
+        "filter": "field_admin_app_vic4.field_med_num_days",
         "overall_field": "field_overall_vic4_med_num_days",
         "display": true
       },
       {
         "id": "field_admin_app_vic4.field_avg_num_days",
         "label": "Average Number of Days",
-        "filter": "field_admin_app_vic4.field_avg_num_days.value",
+        "filter": "field_admin_app_vic4.field_avg_num_days",
         "overall_field": "field_overall_vic4_avg_num_days",
         "display": true
       },
       {
         "id": "field_admin_app_vic4.field_low_num_days",
         "label": "Lowest Number of Days",
-        "filter": "field_admin_app_vic4.field_low_num_days.value",
+        "filter": "field_admin_app_vic4.field_low_num_days",
         "overall_field": "field_overall_vic4_low_num_days",
         "display": true
       },
       {
         "id": "field_admin_app_vic4.field_high_num_days",
         "label": "Highest Number of Days",
-        "filter": "field_admin_app_vic4.field_high_num_days.value",
+        "filter": "field_admin_app_vic4.field_high_num_days",
         "overall_field": "field_overall_vic4_high_num_days",
         "display": true
       },
