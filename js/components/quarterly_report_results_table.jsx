@@ -46,7 +46,10 @@ class QuarterlyReportResultsTable extends Component {
   downloadCSV() {
     const { tableHeader } = this.props;
     const reportType = tableHeader.replace(/[^a-zA-Z ]/g, '').trim().replace(/[^A-Z0-9]+/ig, '-').toLowerCase();
-    this.tabulator.download('csv', `foia-${reportType}.csv`);
+    const table = this.tabulator;
+    table.on('tableBuilt', () => {
+      table.download('csv', `foia-${reportType}.csv`);
+    });
   }
 
   handleColumnFocus(event) {
