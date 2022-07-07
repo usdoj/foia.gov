@@ -47,7 +47,7 @@ class FoiaReportResultsTable extends Component {
     const { tableHeader } = this.props;
     const reportType = tableHeader.replace(/[^a-zA-Z ]/g, '').trim().replace(/[^A-Z0-9]+/ig, '-').toLowerCase();
     const table = this.tabulator;
-    table.on('tableBuilt', function () {
+    table.on('tableBuilt', () => {
       table.download('csv', `foia-${reportType}.csv`);
     });
   }
