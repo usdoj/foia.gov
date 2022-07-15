@@ -7,6 +7,11 @@ function CFOCPageComponent(props) {
   const {
     title, body, committees, meetingsUpcoming, meetingsPast,
   } = props;
+  const dateOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  };
 
   return (
     <div className="cfoc-page-content">
@@ -26,7 +31,8 @@ function CFOCPageComponent(props) {
                         title={committee.committee_title}
                         body={committee.committee_body}
                         attachments={committee.committee_attachments}
-                        workingGroups={committee.working_groups}
+                        workingGroupsActive={committee.workingGroupsActive}
+                        workingGroupsInactive={committee.workingGroupsInactive}
                         key={key}
                       />
                     );
@@ -41,9 +47,12 @@ function CFOCPageComponent(props) {
             : (
               <div className="cfoc-page-upcoming-meetings">
                 <h2><strong>UPCOMING MEETINGS:</strong></h2>
-                {
-                  meetingsUpcoming.map((meeting, index) => {
+                <ul className="cfoc-page-upcoming-meetings-list usa-accordion">
+                  {
+                  meetingsUpcoming.reverse().map((meeting, index) => {
                     const key = meeting.meeting_title.length * index;
+                    const id = `upcoming-${key.toString()}`;
+                    const date = new Date(meeting.meeting_timestamp * 1000);
 
                     return (
                       <CFOCPageMeetingComponent
@@ -51,11 +60,14 @@ function CFOCPageComponent(props) {
                         body={meeting.meeting_body}
                         documents={meeting.meeting_documents}
                         materials={meeting.meeting_materials}
+                        date={date.toLocaleString('en-US', dateOptions)}
+                        id={id}
                         key={key}
                       />
                     );
                   })
-                }
+                  }
+                </ul>
               </div>
             )
         }
@@ -63,30 +75,30 @@ function CFOCPageComponent(props) {
           !meetingsPast.length
             ? null
             : (
-              <ul className="cfoc-page-meetings-past usa-accordion">
-                <li>
-                  <button className="usa-accordion-button" aria-controls="cfo-past-meetings" aria-expanded={!meetingsUpcoming.length ? 'true' : 'false'}>
-                    PAST MEETINGS
-                  </button>
-                  <div id="cfo-past-meetings" className="usa-accordion-content" aria-hidden={meetingsUpcoming.length ? 'true' : 'false'}>
-                    {
-                      meetingsPast.map((meeting, index) => {
-                        const key = meeting.meeting_title.length * index;
+              <div className="cfoc-page-past-meetings">
+                <h2><strong>PAST MEETINGS:</strong></h2>
+                <ul className="cfoc-page-past-meetings-list usa-accordion">
+                  {
+                  meetingsPast.map((meeting, index) => {
+                    const key = meeting.meeting_title.length * index;
+                    const id = `past-${key.toString()}`;
+                    const date = new Date(meeting.meeting_timestamp * 1000);
 
-                        return (
-                          <CFOCPageMeetingComponent
-                            title={meeting.meeting_title}
-                            body={meeting.meeting_body}
-                            documents={meeting.meeting_documents}
-                            materials={meeting.meeting_materials}
-                            key={key}
-                          />
-                        );
-                      })
-                    }
-                  </div>
-                </li>
-              </ul>
+                    return (
+                      <CFOCPageMeetingComponent
+                        title={meeting.meeting_title}
+                        body={meeting.meeting_body}
+                        documents={meeting.meeting_documents}
+                        materials={meeting.meeting_materials}
+                        date={date.toLocaleString('en-US', dateOptions)}
+                        id={id}
+                        key={key}
+                      />
+                    );
+                  })
+                  }
+                </ul>
+              </div>
             )
         }
       </div>
@@ -102,7 +114,8 @@ CFOCPageComponent.propTypes = {
     committee_title: PropTypes.string,
     committee_body: PropTypes.string,
     committee_attachments: PropTypes.any,
-    working_groups: PropTypes.any,
+    workingGroupsActive: PropTypes.any,
+    workingGroupsInactive: PropTypes.any,
   }),
   meetingsUpcoming: PropTypes.array,
   meetingsPast: PropTypes.array,

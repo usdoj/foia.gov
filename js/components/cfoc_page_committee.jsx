@@ -5,7 +5,7 @@ import CFOCPageAttachmentsComponent from './cfoc_page_attachments';
 
 function CFOCPageCommitteeComponent(props) {
   const {
-    title, body, attachments, workingGroups,
+    title, body, attachments, workingGroupsActive, workingGroupsInactive,
   } = props;
 
   return (
@@ -26,13 +26,35 @@ function CFOCPageCommitteeComponent(props) {
       }
       { attachments.length ? <CFOCPageAttachmentsComponent attachments={attachments} /> : null }
       {
-        !workingGroups.length
+        !workingGroupsActive.length
           ? null
           : (
             <div className="cfo-page-working-group-container">
               <h3>Working Groups</h3>
               {
-                workingGroups.map((workingGroup, index) => {
+                workingGroupsActive.map((workingGroup, index) => {
+                  const key = index + 1;
+                  return (
+                    <CFOCPageCommitteeWorkGroupComponent
+                      title={workingGroup.item_title}
+                      body={workingGroup.item_body}
+                      attachments={workingGroup.item_attachments}
+                      key={key}
+                    />
+                  );
+                })
+              }
+            </div>
+          )
+      }
+      {
+        !workingGroupsInactive.length
+          ? null
+          : (
+            <div className="cfo-page-working-group-container">
+              <h3>Inactive Working Groups</h3>
+              {
+                workingGroupsInactive.map((workingGroup, index) => {
                   const key = index + 1;
                   return (
                     <CFOCPageCommitteeWorkGroupComponent
@@ -55,14 +77,16 @@ CFOCPageCommitteeComponent.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
   attachments: PropTypes.any,
-  workingGroups: PropTypes.any,
+  workingGroupsActive: PropTypes.any,
+  workingGroupsInactive: PropTypes.any,
 };
 
 CFOCPageCommitteeComponent.defaultProps = {
   title: '',
   body: '',
   attachments: [],
-  workingGroups: [],
+  workingGroupsActive: [],
+  workingGroupsInactive: [],
 };
 
 export default CFOCPageCommitteeComponent;

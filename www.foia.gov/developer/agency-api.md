@@ -182,3 +182,39 @@ EOF
 ```
 
 [agency-metadata-file-schema]: https://github.com/18F/foia-recommendations/blob/master/schemas.md#agency-metadata-file
+
+### Troubleshooting request failures
+
+Various factors may cause a request submitted on FOIA.gov to an agency via API to fail. In these instances, the National FOIA Portal Administrator will inform the agency/component of the failure, and will pass along the error message. Agencies/components will coordinate with their tracking system vendor to analyze this error message and address the problem to prevent similar failures in the future. The following list contains common error messages that may be helpful in this analysis.
+
+Additional info on CURL errors can be found here: [libcurl - Error Codes.](https://curl.se/libcurl/c/libcurl-errors.html)
+
+**Error message:** | API URL for the component must use the HTTPS protocol.
+:--- |:---
+**Meaning:** | The URL in the API configuration must be an https:// URL. Agency endpoints should be restricted to HTTPS only with valid TLS certificates. FOIA.gov will validate your certificate as part of the HTTPS request. 
+
+**Error message:** | Exception message: cURL error 28: Connection timed out after 30,001 milliseconds
+:--- |:---
+**Meaning:** | Operation timeout. The specified time-out period was reached according to the conditions. FOIA.gov must receive a 200 Successful response from the tracking system within 30 seconds, otherwise it assumes the request failed to transmit and it will continue trying to send the request 5 times until it fatally fails.<br><br>Sometimes the request will actually submit and can be seen in the agency’s tracking system despite the failure on the FOIA.gov side resulting in 5 duplicate requests.<br><br>To address this, ensure that the 200 Success response is sent to FOIA.gov within 30,000 milliseconds (30 seconds). This requirement is detailed in the “Response” section of the API Specs. 
+
+**Error message:** | Exception message: cURL error 60: SSL certificate problem: unable to get local issuer certificate (see https://curl.haxx.se/libcurl/c/libcurl-errors.html).
+:--- |:---
+**Error message:** | cURL error 60: SSL certificate problem: certificate has expired 
+**Error message:** | cURL error 60: SSL certificate problem: unable to get local issuer certificate (see https://curl.haxx.se/libcurl/c/libcurl-errors.html).
+**Meaning:** | Requests from FOIA.gov are sent over the public internet and do not have access to an agency’s private network or intranet. The SSL certificate installed on the API endpoint must use a trusted certificate authority (cannot be self-signed). The agency may need to update the certificate information.
+
+**Error message:** | 404 Current IP Address is not allowed
+:--- |:---
+**Meaning:** | Agency endpoints may have an allowlist of IP addresses as a security protection. Sometimes the FOIA.gov IP address has not been added to that allowlist, the endpoint returns an error message similar to this. The appropriate fix is to add the FOIA.gov IP addresses to the allowlist. The error description should identify the IP address that needs to be added to the allowlist.
+
+**Error message:** | Did not receive JSON response from component.
+:--- |:---
+**Meaning:** | This means the response sent to FOIA.gov was not in application/JSON format or was not sent at all. 
+
+**Error message:** | API security token not matched.
+:--- |:---
+**Meaning:** | Agency endpoints require a secret key as a security protection. Sometimes the secret key that FOIA.gov is using does not match what is expected by the agency endpoint, and the endpoint returns an error message similar to this. The appropriate fix is to compare the expected secret key with the actual secret key to ensure that they match.
+
+**Error message:** | Maximum request length exceeded.
+:--- |:---
+**Meaning:** | Some agency tracking systems may have a maximum length for fields. Some FOIA.gov request form fields have a 10,000 character limit by default. This error may also indicate that attachment fields are not set to accept files up to 20 MB by default. Confirm that the request_description, fee_waiver_explanation, and expedited_processing_reason fields in your tracking system accept up to 10,000 characters, and that attachments_supporting_documentation accept files up to 20MB. (See “Request Fields” above for parameters.)
