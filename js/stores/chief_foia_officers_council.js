@@ -41,8 +41,8 @@ class ChiefFOIAOfficersCouncilStore extends Store {
             title: data.title,
             body: data.body,
             committees: data.committees,
-            meetingsUpcoming: data.meetings.upcoming,
-            meetingsPast: data.meetings.past,
+            meetingsUpcoming: (data.meetings) ? data.meetings.upcoming : [],
+            meetingsPast: (data.meetings) ? data.meetings.past : [],
             hasData: true,
           });
         } else {
