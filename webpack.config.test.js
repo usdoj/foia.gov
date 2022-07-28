@@ -44,7 +44,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
     modules: [path.join(__dirname, 'js'), 'node_modules'],
     alias: {
-      settings$: path.join(__dirname, 'js', 'settings', 'uat.js'),
+      settings$: path.join(__dirname, 'js', 'settings', 'development.js'),
     },
   },
 };
