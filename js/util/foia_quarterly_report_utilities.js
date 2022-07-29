@@ -75,6 +75,10 @@ class FoiaQuarterlyReportUtilities {
   static getOverallDataSums(overallData, dataType) {
     const sums = {};
     const summedRows = [];
+    const hasAutoSumFields = dataType.fields.some(field => field.autosum);
+    if (!hasAutoSumFields) {
+      return summedRows;
+    }
     overallData.forEach((row) => {
       const year = row.field_quarterly_year;
       if (typeof sums[year] === 'undefined') {
