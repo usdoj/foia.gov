@@ -1,4 +1,5 @@
 import { Map } from 'immutable';
+import { get as _get, set as _set, cloneDeep as _cloneDeep } from 'lodash';
 import quarterlyReportDataTypesStore from '../stores/quarterly_report_data_types';
 
 /**
@@ -62,6 +63,52 @@ class FoiaQuarterlyReportUtilities {
     // For consistency with getStatuteOverall, which could have many rows,
     // return the row in an array.
     return [row];
+  }
+
+  /**
+   * Calculates and returns any automatic sums for a data type.
+   * @param {Array} overallData
+   *   An array of row data for the agency-overall data.
+   * @param {Object} dataType
+   *   A dataType object as defined in report_data_map.json.
+   */
+  static getOverallDataSums(overallData, dataType) {
+    const sums = {};
+    const summedRows = [];
+    overallData.forEach((row) => {
+      const year = row.field_quarterly_year;
+      if (typeof sums[year] === 'undefined') {
+        sums[year] = {};
+      }
+      const quarter = row.field_quarterly_quarter;
+      if (typeof sums[year][quarter] === 'undefined') {
+        sums[year][quarter] = {};
+      }
+      dataType.fields.forEach((field) => {
+        if (field.autosum) {
+          const value = _get(row, field.id);
+          if (typeof sums[year][quarter][field.id] === 'undefined') {
+            sums[year][quarter][field.id] = 0;
+          }
+          sums[year][quarter][field.id] += value;
+        }
+      });
+    });
+
+    Object.keys(sums).forEach((year) => {
+      Object.keys(sums[year]).forEach((quarter) => {
+        const emptyRow = _cloneDeep(overallData[0]);
+        emptyRow.field_quarterly_year = parseInt(year, 10);
+        emptyRow.field_quarterly_quarter = parseInt(quarter, 10);
+        emptyRow.field_agency = 'All agencies';
+        dataType.fields.forEach((field) => {
+          const value = (field.autosum) ? sums[year][quarter][field.id] : 'N/A';
+          _set(emptyRow, field.id, value);
+        });
+        summedRows.push(emptyRow);
+      });
+    });
+    return summedRows;
   }
 
   /**

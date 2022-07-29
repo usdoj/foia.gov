@@ -9,21 +9,24 @@
         "label": "Number of requests received",
         "filter": true,
         "overall_field": "field_quarterly_received_oa",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_quarterly_component_data.field_quarterly_processed",
         "label": "Number of requests processed",
         "filter": true,
         "overall_field": "field_quarterly_processed_oa",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_quarterly_component_data.field_quarterly_backlogged",
         "label": "Number of requests backlogged",
         "filter": true,
         "overall_field": "field_quarterly_backlogged_oa",
-        "display": true
+        "display": true,
+        "autosum": false
       }
     ],
     "includes": [
@@ -41,14 +44,16 @@
         "label": "Ten Oldest Pending Requests",
         "filter": true,
         "overall_field": "field_quarterly_pending",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_quarterly_closed",
         "label": "Ten Oldest Requests Closed",
         "filter": true,
         "overall_field": "field_quarterly_closed",
-        "display": true
+        "display": true,
+        "autosum": false
       }
     ]
   }

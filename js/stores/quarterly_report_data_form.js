@@ -36,6 +36,16 @@ class QuarterlyReportDataFormStore extends Store {
   }
 
   /**
+   * Return true/false depending on whether "all agencies" was selected.
+   *
+   * @returns Boolean
+   */
+  allAgenciesSelected() {
+    const { allAgenciesSelected } = this.state;
+    return allAgenciesSelected;
+  }
+
+  /**
    * Returns an array of selected agency objects, building an array of all possible agencies if
    * the allAgenciesSelected flag is true.
    *

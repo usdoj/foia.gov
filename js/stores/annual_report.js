@@ -100,6 +100,7 @@ class AnnualReportStore extends Store {
     const overallData = [];
     const { reports } = this.state;
     const selectedAgencies = AnnualReportStore.getSelectedAgencies();
+    const allAgenciesSelected = annualReportDataFormStore.allAgenciesSelected();
 
     // Iterate over each report.
     reports.forEach((report) => {
@@ -153,6 +154,11 @@ class AnnualReportStore extends Store {
         }
       });
     });
+
+    if (allAgenciesSelected) {
+      const summedRows = FoiaAnnualReportUtilities.getOverallDataSums(overallData, dataType);
+      return componentData.concat(overallData).concat(summedRows);
+    }
 
     return componentData.concat(overallData);
   }

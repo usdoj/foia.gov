@@ -1,4 +1,5 @@
 import { Map } from 'immutable';
+import { get as _get, set as _set, cloneDeep as _cloneDeep } from 'lodash';
 import annualReportDataTypesStore from '../stores/annual_report_data_types';
 
 /**
@@ -90,6 +91,45 @@ class FoiaAnnualReportUtilities {
     // For consistency with getStatuteOverall, which could have many rows,
     // return the row in an array.
     return [row];
+  }
+
+  /**
+   * Calculates and returns any automatic sums for a data type.
+   * @param {Array} overallData
+   *   An array of row data for the agency-overall data.
+   * @param {Object} dataType
+   *   A dataType object as defined in report_data_map.json.
+   */
+  static getOverallDataSums(overallData, dataType) {
+    const sums = {};
+    const summedRows = [];
+    overallData.forEach((row) => {
+      const year = row.field_foia_annual_report_yr;
+      if (typeof sums[year] === 'undefined') {
+        sums[year] = {};
+      }
+      dataType.fields.forEach((field) => {
+        if (field.autosum) {
+          const value = _get(row, field.id);
+          if (typeof sums[year][field.id] === 'undefined') {
+            sums[year][field.id] = 0;
+          }
+          sums[year][field.id] += value;
+        }
+      });
+    });
+
+    Object.keys(sums).forEach((year) => {
+      const emptyRow = _cloneDeep(overallData[0]);
+      emptyRow.field_foia_annual_report_yr = parseInt(year, 10);
+      emptyRow.field_agency = 'All agencies';
+      dataType.fields.forEach((field) => {
+        const value = (field.autosum) ? sums[year][field.id] : 'N/A';
+        _set(emptyRow, field.id, value);
+      });
+      summedRows.push(emptyRow);
+    });
+    return summedRows;
   }
 
   /**

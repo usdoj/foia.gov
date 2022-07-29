@@ -100,6 +100,7 @@ class QuarterlyReportStore extends Store {
     const overallData = [];
     const { reports } = this.state;
     const selectedAgencies = QuarterlyReportStore.getSelectedAgencies();
+    const allAgenciesSelected = quarterlyReportDataFormStore.allAgenciesSelected();
 
     // Iterate over each report.
     reports.forEach((report) => {
@@ -155,6 +156,11 @@ class QuarterlyReportStore extends Store {
         }
       });
     });
+
+    if (allAgenciesSelected) {
+      const summedRows = FoiaQuarterlyReportUtilities.getOverallDataSums(overallData, dataType);
+      return componentData.concat(overallData).concat(summedRows);
+    }
 
     return componentData.concat(overallData);
   }
