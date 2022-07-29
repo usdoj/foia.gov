@@ -103,7 +103,7 @@ class FoiaAnnualReportUtilities {
   static getOverallDataSums(overallData, dataType) {
     const sums = {};
     const summedRows = [];
-    const hasAutoSumFields = dataType.fields.some(field => field.autosum);
+    const hasAutoSumFields = dataType.fields.some((field) => field.autosum);
     if (!hasAutoSumFields) {
       return summedRows;
     }
