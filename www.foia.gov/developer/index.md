@@ -12,8 +12,9 @@ bundle: contact_download
 ## FOIA API
 
 The FOIA request Portal is powered by an API. This API is available to the
-public. In order to use the API, you must [signup](https://api.data.gov/signup/) for an API key.
+public. In order to use the API, you must signup for an API key below:
 
+{% include api-key-signup-form.html %}
 
 ### Agency components
 
