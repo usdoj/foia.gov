@@ -118,7 +118,7 @@ class FoiaAnnualReportUtilities {
           if (typeof sums[year][field.id] === 'undefined') {
             sums[year][field.id] = 0;
           }
-          sums[year][field.id] += value;
+          sums[year][field.id] += Number(value);
         }
       });
     });

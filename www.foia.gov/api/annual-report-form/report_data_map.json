@@ -200,7 +200,7 @@
         "filter": true,
         "overall_field": "field_overall_vb2_total",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_footnotes_vb2",

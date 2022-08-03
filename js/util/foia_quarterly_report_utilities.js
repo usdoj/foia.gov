@@ -94,7 +94,7 @@ class FoiaQuarterlyReportUtilities {
           if (typeof sums[year][quarter][field.id] === 'undefined') {
             sums[year][quarter][field.id] = 0;
           }
-          sums[year][quarter][field.id] += value;
+          sums[year][quarter][field.id] += Number(value);
         }
       });
     });
