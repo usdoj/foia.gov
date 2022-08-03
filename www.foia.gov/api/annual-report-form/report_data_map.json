@@ -711,7 +711,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_no_rec",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_rec_refer_initial",
@@ -719,7 +719,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_rec_refer_ini",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_req_withdrawn",
@@ -727,7 +727,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_req_withdrawn",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_fee_related_reason",
@@ -735,7 +735,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_fee_rel_reas",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_rec_not_reasonably_desc",
@@ -743,7 +743,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_rec_not_desc",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_imp_req_oth_reason",
@@ -751,7 +751,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_imp_req_oth",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_not_agency_rec",
@@ -759,7 +759,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_not_agency_re",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_dup_req",
@@ -767,7 +767,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_dup_req",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_req_in_lit",
@@ -775,7 +775,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_req_in_lit",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_app_denial_exp",
@@ -783,7 +783,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_app_denial_ex",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_oth",
@@ -791,7 +791,7 @@
         "filter": true,
         "overall_field": "field_overall_vic2_oth",
         "display": true,
-        "autosum": false
+        "autosum": true
       },
       {
         "id": "field_footnotes_vic2",
