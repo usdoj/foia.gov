@@ -12,9 +12,7 @@ bundle: contact_download
 ## FOIA API
 
 The FOIA request Portal is powered by an API. This API is available to the
-public. In order to use the API, you must signup for an API key below:
-
-{% include api-key-signup-form.html %}
+public. In order to use the API, you must [signup for an API key here](#api-key-signup).
 
 ### Agency components
 
@@ -161,6 +159,10 @@ For example, to receive the Department of Justice (DOJ) annual report for 2021, 
 
 If your agency is interested in receiving requests from the Portal via an API, please check out
 our [API spec](/developer/agency-api/) and [get in touch with us](mailto:{{ site.email }}).
+
+## API Key Signup
+
+{% include api-key-signup-form.html %}
 
 ## FOIA Contacts Download
 
