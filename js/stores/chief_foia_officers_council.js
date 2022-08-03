@@ -78,7 +78,9 @@ class ChiefFOIAOfficersCouncilStore extends Store {
         const data = payload.committeeData;
 
         if (Object.values(data).length) {
-          console.log(data.working_groups);
+          if (typeof data.working_groups === 'undefined') {
+            data.working_groups = [];
+          }
           Object.assign(this.state, {
             title: data.committee_title,
             body: data.committee_body,
