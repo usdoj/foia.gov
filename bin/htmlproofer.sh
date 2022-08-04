@@ -11,4 +11,4 @@ IGNORE_HREFS=$(ruby -e 'puts %w{
 }.map{|h| "/#{h}/"}.join(",")')
 
 # Run htmlproofer with an ignore list of files
-bundle exec htmlproofer _site --disable-external --file-ignore $(paste -sd, .htmlprooferignore) --url-ignore $IGNORE_HREFS $@
+bundle exec htmlproofer _site --disable-external --ignore-files $(paste -sd, .htmlprooferignore) --ignore-urls $IGNORE_HREFS $@
