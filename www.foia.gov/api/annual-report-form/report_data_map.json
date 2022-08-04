@@ -9,35 +9,40 @@
         "label": "Number of Requests Pending as of Start of Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_req_pend_start_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_va.field_req_received_yr",
         "label": "Number of Requests Received in Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_req_received_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_va.field_req_processed_yr",
         "label": "Number of Requests Processed in Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_req_processed_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_va.field_req_pend_end_yr",
         "label": "Number of Requests Pending as of End of Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_req_pend_end_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_va",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -55,98 +60,112 @@
         "label": "Number of Full Grants",
         "filter": true,
         "overall_field": "field_overall_vb1_full_grants",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_part_grants_denials",
         "label": "Number of Partial Grants/Partial Denials",
         "filter": true,
         "overall_field": "field_overall_vb1_part_grants_de",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_full_denials_ex",
         "label": "Number of Full Denials Based on Exemptions",
         "filter": true,
         "overall_field": "field_overall_vb1_full_denials_e",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_no_rec",
         "label": "No Records",
         "filter": true,
         "overall_field": "field_overall_vb1_no_rec",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_rec_ref_to_an_comp",
         "label": "All Records Referred to Another Component or Agency",
         "filter": true,
         "overall_field": "field_overall_vb1_rec_ref_to_an_",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_req_withdrawn",
         "label": "Request Withdrawn",
         "filter": true,
         "overall_field": "field_overall_vb1_req_withdrawn",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_fee_related_reason",
         "label": "Fee-Related Reason",
         "filter": true,
         "overall_field": "field_overall_vb1_fee_related_re",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_rec_not_desc",
         "label": "Records Not Reasonably Described",
         "filter": true,
         "overall_field": "field_overall_vb1_rec_not_desc",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_imp_req_oth_reason",
         "label": "Improper FOIA Request for Other Reason",
         "filter": true,
         "overall_field": "field_overall_vb1_imp_req_oth_re",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_not_agency_record",
         "label": "Not Agency Record",
         "filter": true,
         "overall_field": "field_overall_vb1_not_agency_rec",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_dup_request",
         "label": "Duplicate Request",
         "filter": true,
         "overall_field": "field_overall_vb1_dup_request",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_oth",
         "label": "Other*",
         "filter": true,
         "overall_field": "field_overall_vb1_oth",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb1.field_total",
         "label": "Total",
         "filter": true,
         "overall_field": "field_overall_vb1_total",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_vb1",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -164,28 +183,32 @@
         "label": "Description of \"Other\" Reasons for Denials from Chart B(1)",
         "filter": false,
         "overall_field": false,
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_requests_vb2.field_foia_req_vb2_info.field_num_relied_upon",
         "label": "Number of Times \"Other\" Reason Was Relied Upon",
         "filter": false,
         "overall_field": false,
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_requests_vb2.field_total",
         "label": "Total",
         "filter": true,
         "overall_field": "field_overall_vb2_total",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_vb2",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -204,42 +227,48 @@
         "label": "Number Granted",
         "filter": true,
         "overall_field": "field_overall_viiia_num_grant",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_req_viiia.field_num_denied",
         "label": "Number Denied",
         "filter": true,
         "overall_field": "field_overall_viiia_num_denied",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_req_viiia.field_med_days_jud",
         "label": "Median Number of Days to Adjudicate",
         "filter": "field_req_viiia.field_med_days_jud.value",
         "overall_field": "field_overall_viiia_med_days_jud",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_req_viiia.field_avg_days_jud",
         "label": "Average Number of Days to Adjudicate",
         "filter": "field_req_viiia.field_avg_days_jud.value",
         "overall_field": "field_overall_viiia_avg_days_jud",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_req_viiia.field_num_jud_w10",
         "label": "Number Adjudicated Within Ten Calendar Days",
         "filter": "field_req_viiia.field_num_jud_w10.value",
         "overall_field": "field_overall_viiia_num_jud_w10",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_viiia",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -257,105 +286,120 @@
         "label": "Ex. 1",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_1",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_2",
         "label": "Ex. 2",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_2",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_3",
         "label": "Ex. 3",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_3",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_4",
         "label": "Ex. 4",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_4",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_5",
         "label": "Ex. 5",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_5",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_6",
         "label": "Ex. 6",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_6",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_7_a",
         "label": "Ex. 7(A)",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_7_a",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_7_b",
         "label": "Ex. 7(B)",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_7_b",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_7_c",
         "label": "Ex. 7(C)",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_7_c",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_7_d",
         "label": "Ex. 7(D)",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_7_d",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_7_e",
         "label": "Ex. 7(E)",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_7_e",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_7_f",
         "label": "Ex. 7(F)",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_7_f",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_8",
         "label": "Ex. 8",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_8",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_requests_vb3.field_ex_9",
         "label": "Ex. 9",
         "filter": true,
         "overall_field": "field_overall_vb3_ex_9",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_vb3",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -373,35 +417,40 @@
         "label": "Statute",
         "filter": false,
         "overall_field": "field_statute_iv.field_statute",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_statute_iv.field_case_citation",
         "label": "Case Citation",
         "filter": false,
         "overall_field": "field_statute_iv.field_case_citation",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_statute_iv.field_type_of_info_withheld",
         "label": "Type of Information Withheld",
         "filter": false,
         "overall_field": "field_statute_iv.field_type_of_info_withheld",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_statute_iv.field_agency_component_inf.field_num_relied_by_agency_comp",
         "label": "Number of Times Relied Upon",
         "filter": true,
         "overall_field": "field_statute_iv.field_total_num_relied_by_agency",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_iv",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -420,35 +469,40 @@
         "label": "Number of Appeals Pending as of Start of Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_via_app_pend_start",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_via.field_app_received_yr",
         "label": "Number of Appeals Received in Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_via_app_recd_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_via.field_app_processed_yr",
         "label": "Number of Appeals Processed in Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_via_app_proc_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_via.field_app_pend_end_yr",
         "label": "Number of Appeals Pending as of End of Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_via_app_pend_endyr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_via",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -466,42 +520,48 @@
         "label": "Number Affirmed on Appeal",
         "filter": true,
         "overall_field": "field_overall_vib_affirm_on_app",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vib.field_part_on_app",
         "label": "Number Partially Affirmed & Partially Reversed/Remanded on Appeal",
         "filter": true,
         "overall_field": "field_overall_vib_part_on_app",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vib.field_complete_on_app",
         "label": "Number Completely Reversed/Remanded on Appeal",
         "filter": true,
         "overall_field": "field_overall_vib_comp_on_app",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vib.field_closed_oth_app",
         "label": "Number of Appeals Closed for Other Reasons",
         "filter": true,
         "overall_field": "field_overall_vib_closed_oth_app",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vib.field_total",
         "label": "Total",
         "filter": true,
         "overall_field": "field_overall_vib_total",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_vib",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -519,105 +579,120 @@
         "label": "Ex. 1",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_1",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_2",
         "label": "Ex. 2",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_2",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_3",
         "label": "Ex. 3",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_3",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_4",
         "label": "Ex. 4",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_4",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_5",
         "label": "Ex. 5",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_5",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_6",
         "label": "Ex. 6",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_6",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_7_a",
         "label": "Ex. 7(A)",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_7_a",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_7_b",
         "label": "Ex. 7(B)",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_7_b",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_7_c",
         "label": "Ex. 7(C)",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_7_c",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_7_d",
         "label": "Ex. 7(D)",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_7_d",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_7_e",
         "label": "Ex. 7(E)",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_7_e",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_7_f",
         "label": "Ex. 7(F)",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_7_f",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_8",
         "label": "Ex. 8",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_8",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic1.field_ex_9",
         "label": "Ex. 9",
         "filter": true,
         "overall_field": "field_overall_vic1_ex_9",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_vic1",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -635,84 +710,96 @@
         "label": "No Records",
         "filter": true,
         "overall_field": "field_overall_vic2_no_rec",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_rec_refer_initial",
         "label": "Records Referred at Initial Request Level",
         "filter": true,
         "overall_field": "field_overall_vic2_rec_refer_ini",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_req_withdrawn",
         "label": "Request Withdrawn",
         "filter": true,
         "overall_field": "field_overall_vic2_req_withdrawn",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_fee_related_reason",
         "label": "Fee-Related Reason",
         "filter": true,
         "overall_field": "field_overall_vic2_fee_rel_reas",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_rec_not_reasonably_desc",
         "label": "Records Not Reasonably Described",
         "filter": true,
         "overall_field": "field_overall_vic2_rec_not_desc",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_imp_req_oth_reason",
         "label": "Improper Request for Other Reason",
         "filter": true,
         "overall_field": "field_overall_vic2_imp_req_oth",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_not_agency_rec",
         "label": "Not Agency Record",
         "filter": true,
         "overall_field": "field_overall_vic2_not_agency_re",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_dup_req",
         "label": "Duplicate Request or Appeal",
         "filter": true,
         "overall_field": "field_overall_vic2_dup_req",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_req_in_lit",
         "label": "Request in Litigation",
         "filter": true,
         "overall_field": "field_overall_vic2_req_in_lit",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_app_denial_exp",
         "label": "Appeal Based Solely on Denial of Request for Expedited Processing",
         "filter": true,
         "overall_field": "field_overall_vic2_app_denial_ex",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic2.field_oth",
         "label": "Other*",
         "filter": true,
         "overall_field": "field_overall_vic2_oth",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_vic2",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -730,28 +817,32 @@
         "label": "Description of \"Other\" Reasons for Denial on Appeal from Chart C(2)",
         "filter": false,
         "overall_field": false,
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic3.field_admin_app_vic3_info.field_num_relied_upon",
         "label": "Number of Times \"Other\" Reason Was Relied Upon",
         "filter": false,
         "overall_field": false,
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_admin_app_vic3.field_total",
         "label": "Total",
         "filter": true,
         "overall_field": "field_overall_vic3_total",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_vic3",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -770,35 +861,40 @@
         "label": "Median Number of Days",
         "filter": "field_admin_app_vic4.field_med_num_days",
         "overall_field": "field_overall_vic4_med_num_days",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic4.field_avg_num_days",
         "label": "Average Number of Days",
         "filter": "field_admin_app_vic4.field_avg_num_days",
         "overall_field": "field_overall_vic4_avg_num_days",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic4.field_low_num_days",
         "label": "Lowest Number of Days",
         "filter": "field_admin_app_vic4.field_low_num_days",
         "overall_field": "field_overall_vic4_low_num_days",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic4.field_high_num_days",
         "label": "Highest Number of Days",
         "filter": "field_admin_app_vic4.field_high_num_days",
         "overall_field": "field_overall_vic4_high_num_days",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_vic4",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -816,147 +912,168 @@
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_10",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_10",
         "label": "10th Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_10.value",
         "overall_field": "field_overall_vic5_num_day_10",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_date_9",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_9",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_9",
         "label": "9th Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_9.value",
         "overall_field": "field_overall_vic5_num_day_9",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_date_8",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_8",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_8",
         "label": "8th Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_8.value",
         "overall_field": "field_overall_vic5_num_day_8",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_date_7",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_7",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_7",
         "label": "7th Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_7.value",
         "overall_field": "field_overall_vic5_num_day_7",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_date_6",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_6",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_6",
         "label": "6th Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_6.value",
         "overall_field": "field_overall_vic5_num_day_6",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_date_5",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_5",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_5",
         "label": "5th Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_5.value",
         "overall_field": "field_overall_vic5_num_day_5",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_date_4",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_4",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_4",
         "label": "4th Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_4.value",
         "overall_field": "field_overall_vic5_num_day_4",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_date_3",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_3",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_3",
         "label": "3rd Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_3.value",
         "overall_field": "field_overall_vic5_num_day_3",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_date_2",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_2",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_2",
         "label": "2nd Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_2.value",
         "overall_field": "field_overall_vic5_num_day_2",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_date_1",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_vic5_date_1",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_vic5.field_num_days_1",
         "label": "Oldest Number of Days Pending",
         "filter": "field_admin_app_vic5.field_num_days_1.value",
         "overall_field": "field_overall_vic5_num_day_1",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_vic5",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -974,91 +1091,104 @@
         "label": "Simple - Median Number of Days",
         "filter": "field_proc_req_viia.field_sim_med.value",
         "overall_field": "field_overall_viia_sim_med",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_sim_avg",
         "label": "Simple - Average Number of Days",
         "filter": "field_proc_req_viia.field_sim_avg.value",
         "overall_field": "field_overall_viia_sim_avg",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_sim_low",
         "label": "Simple - Lowest Number of Days",
         "filter": "field_proc_req_viia.field_sim_low.value",
         "overall_field": "field_overall_viia_sim_low",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_sim_high",
         "label": "Simple - Highest Number of Days",
         "filter": "field_proc_req_viia.field_sim_high.value",
         "overall_field": "field_overall_viia_sim_high",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_comp_med",
         "label": "Complex - Median Number of Days",
         "filter": "field_proc_req_viia.field_comp_med.value",
         "overall_field": "field_overall_viia_comp_med",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_comp_avg",
         "label": "Complex - Average Number of Days",
         "filter": "field_proc_req_viia.field_comp_avg.value",
         "overall_field": "field_overall_viia_comp_avg",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_comp_low",
         "label": "Complex - Lowest Number of Days",
         "filter": "field_proc_req_viia.field_comp_low.value",
         "overall_field": "field_overall_viia_comp_low",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_comp_high",
         "label": "Complex - Highest Number of Days",
         "filter": "field_proc_req_viia.field_comp_high.value",
         "overall_field": "field_overall_viia_comp_high",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_exp_med",
         "label": "Expedited Processing - Median Number of Days",
         "filter": "field_proc_req_viia.field_exp_med.value",
         "overall_field": "field_overall_viia_exp_med",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_exp_avg",
         "label": "Expedited Processing - Average Number of Days",
         "filter": "field_proc_req_viia.field_exp_avg.value",
         "overall_field": "field_overall_viia_exp_avg",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_exp_low",
         "label": "Expedited Processing - Lowest Number of Days",
         "filter": "field_proc_req_viia.field_exp_low.value",
         "overall_field": "field_overall_viia_exp_low",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viia.field_exp_high",
         "label": "Expedited Processing - Highest Number of Days",
         "filter": "field_proc_req_viia.field_exp_high.value",
         "overall_field": "field_overall_viia_exp_high",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_viia",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1076,91 +1206,104 @@
         "label": "Simple - Median Number of Days",
         "filter": "field_proc_req_viib.field_sim_med.value",
         "overall_field": "field_overall_viib_sim_med",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_sim_avg",
         "label": "Simple - Average Number of Days",
         "filter": "field_proc_req_viib.field_sim_avg.value",
         "overall_field": "field_overall_viib_sim_avg",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_sim_low",
         "label": "Simple - Lowest Number of Days",
         "filter": "field_proc_req_viib.field_sim_low.value",
         "overall_field": "field_overall_viib_sim_low",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_sim_high",
         "label": "Simple - Highest Number of Days",
         "filter": "field_proc_req_viib.field_sim_high.value",
         "overall_field": "field_overall_viib_sim_high",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_comp_med",
         "label": "Complex - Median Number of Days",
         "filter": "field_proc_req_viib.field_comp_med.value",
         "overall_field": "field_overall_viib_comp_med",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_comp_avg",
         "label": "Complex - Average Number of Days",
         "filter": "field_proc_req_viib.field_comp_avg.value",
         "overall_field": "field_overall_viib_comp_avg",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_comp_low",
         "label": "Complex - Lowest Number of Days",
         "filter": "field_proc_req_viib.field_comp_low.value",
         "overall_field": "field_overall_viib_comp_low",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_comp_high",
         "label": "Complex - Highest Number of Days",
         "filter": "field_proc_req_viib.field_comp_high.value",
         "overall_field": "field_overall_viib_comp_high",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_exp_med",
         "label": "Expedited Processing - Median Number of Days",
         "filter": "field_proc_req_viib.field_exp_med.value",
         "overall_field": "field_overall_viib_exp_med",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_exp_avg",
         "label": "Expedited Processing - Average Number of Days",
         "filter": "field_proc_req_viib.field_exp_avg.value",
         "overall_field": "field_overall_viib_exp_avg",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_exp_low",
         "label": "Expedited Processing - Lowest Number of Days",
         "filter": "field_proc_req_viib.field_exp_low.value",
         "overall_field": "field_overall_viib_exp_low",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_proc_req_viib.field_exp_high",
         "label": "Expedited Processing - Highest Number of Days",
         "filter": "field_proc_req_viib.field_exp_high.value",
         "overall_field": "field_overall_viib_exp_high",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_viib",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1178,105 +1321,120 @@
         "label": "<1-20 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_1_20_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_21_40_days",
         "label": "21-40 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_21_40_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_41_60_days",
         "label": "41-60 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_41_60_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_61_80_days",
         "label": "61-80 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_61_80_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_81_100_days",
         "label": "81-100 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_81_100_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_101_120_days",
         "label": "101-120 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_101_120_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_121_140_days",
         "label": "121-140 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_121_140_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_141_160_days",
         "label": "141-160 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_141_160_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_161_180_days",
         "label": "161-180 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_161_180_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_181_200_days",
         "label": "181-200 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_181_200_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_201_300_days",
         "label": "201-300 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_201_300_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_301_400_days",
         "label": "301-400 Days",
         "filter": true,
         "overall_field": "field_overall_viic1_301_400_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_400_up_days",
         "label": "401+ Days",
         "filter": true,
         "overall_field": "field_overall_viic1_400_up_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic1.field_total",
         "label": "Total",
         "filter": true,
         "overall_field": "field_overall_viic1_total",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_viic1",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1294,105 +1452,120 @@
         "label": "<1-20 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_1_20_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_21_40_days",
         "label": "21-40 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_21_40_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_41_60_days",
         "label": "41-60 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_41_60_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_61_80_days",
         "label": "61-80 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_61_80_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_81_100_days",
         "label": "81-100 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_81_100_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_101_120_days",
         "label": "101-120 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_101_120_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_121_140_days",
         "label": "121-140 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_121_140_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_141_160_days",
         "label": "141-160 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_141_160_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_161_180_days",
         "label": "161-180 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_161_180_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_181_200_days",
         "label": "181-200 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_181_200_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_201_300_days",
         "label": "201-300 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_201_300_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_301_400_days",
         "label": "301-400 Days",
         "filter": true,
         "overall_field": "field_overall_viic2_301_400_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_400_up_days",
         "label": "401+ Days",
         "filter": true,
         "overall_field": "field_overall_viic2_400_up_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic2.field_total",
         "label": "Total",
         "filter": true,
         "overall_field": "field_overall_viic2_total",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_viic2",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1410,105 +1583,120 @@
         "label": "<1-20 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_1_20_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_21_40_days",
         "label": "21-40 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_21_40_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_41_60_days",
         "label": "41-60 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_41_60_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_61_80_days",
         "label": "61-80 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_61_80_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_81_100_days",
         "label": "81-100 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_81_100_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_101_120_days",
         "label": "101-120 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_101_120_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_121_140_days",
         "label": "121-140 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_121_140_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_141_160_days",
         "label": "141-160 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_141_160_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_161_180_days",
         "label": "161-180 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_161_180_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_181_200_days",
         "label": "181-200 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_181_200_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_201_300_days",
         "label": "201-300 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_201_300_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_301_400_days",
         "label": "301-400 Days",
         "filter": true,
         "overall_field": "field_overall_viic3_301_400_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_400_up_days",
         "label": "401+ Days",
         "filter": true,
         "overall_field": "field_overall_viic3_400_up_days",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_proc_req_viic3.field_total",
         "label": "Total",
         "filter": true,
         "overall_field": "field_overall_viic3_total",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_viic3",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1526,70 +1714,80 @@
         "label": "Simple - Number Pending",
         "filter": "field_proc_req_vii_d_.field_sim_pend.value",
         "overall_field": "field_overall_viid_sim_pend",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_pending_requests_vii_d_.field_sim_med",
         "label": "Simple - Median Number of Days",
         "filter": "field_proc_req_vii_d_.field_sim_med.value",
         "overall_field": "field_overall_viid_sim_med",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_pending_requests_vii_d_.field_sim_avg",
         "label": "Simple - Average Number of Days",
         "filter": "field_proc_req_vii_d_.field_sim_avg.value",
         "overall_field": "field_overall_viid_sim_avg",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_pending_requests_vii_d_.field_comp_pend",
         "label": "Complex - Number Pending",
         "filter": "field_proc_req_vii_d_.field_comp_pend.value",
         "overall_field": "field_overall_viid_comp_pend",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_pending_requests_vii_d_.field_comp_med",
         "label": "Complex - Median Number of Days",
         "filter": "field_proc_req_vii_d_.field_comp_med.value",
         "overall_field": "field_overall_viid_comp_med",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_pending_requests_vii_d_.field_comp_avg",
         "label": "Complex - Average Number of Days",
         "filter": "field_proc_req_vii_d_.field_comp_avg.value",
         "overall_field": "field_overall_viid_comp_avg",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_pending_requests_vii_d_.field_exp_pend",
         "label": "Expedited Processing - Number Pending",
         "filter": "field_proc_req_vii_d_.field_exp_pend.value",
         "overall_field": "field_overall_viid_exp_pend",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_pending_requests_vii_d_.field_exp_med",
         "label": "Expedited Processing - Median Number of Days",
         "filter": "field_proc_req_vii_d_.field_exp_med.value",
         "overall_field": "field_overall_viid_exp_med",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_pending_requests_vii_d_.field_exp_avg",
         "label": "Expedited Processing - Average Number of Days",
         "filter": "field_proc_req_vii_d_.field_exp_avg.value",
         "overall_field": "field_overall_viid_exp_avg",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_viid",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1607,147 +1805,168 @@
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_10",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_10",
         "label": "10th Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_10.value",
         "overall_field": "field_overall_viie_num_days_10",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_date_9",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_9",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_9",
         "label": "9th Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_9.value",
         "overall_field": "field_overall_viie_num_days_9",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_date_8",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_8",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_8",
         "label": "8th Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_8.value",
         "overall_field": "field_overall_viie_num_days_8",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_date_7",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_7",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_7",
         "label": "7th Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_7.value",
         "overall_field": "field_overall_viie_num_days_7",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_date_6",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_6",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_6",
         "label": "6th Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_6.value",
         "overall_field": "field_overall_viie_num_days_6",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_date_5",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_5",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_5",
         "label": "5th Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_5.value",
         "overall_field": "field_overall_viie_num_days_5",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_date_4",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_4",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_4",
         "label": "4th Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_4.value",
         "overall_field": "field_overall_viie_num_days_4",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_date_3",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_3",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_3",
         "label": "3rd Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_3.value",
         "overall_field": "field_overall_viie_num_days_3",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_date_2",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_2",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_2",
         "label": "2nd Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_2.value",
         "overall_field": "field_overall_viie_num_days_2",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_date_1",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_viie_date_1",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_admin_app_viie.field_num_days_1",
         "label": "Oldest Number of Days Pending",
         "filter": "field_admin_app_viie.field_num_days_1.value",
         "overall_field": "field_overall_viie_num_days_1",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_viie",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1765,35 +1984,40 @@
         "label": "Number Granted",
         "filter": true,
         "overall_field": "field_overall_viiib_num_grant",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_req_viiib.field_num_denied",
         "label": "Number Denied",
         "filter": true,
         "overall_field": "field_overall_viiib_num_denied",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_req_viiib.field_med_days_jud",
         "label": "Median Number of Days to Adjudicate",
         "filter": "field_req_viiib.field_med_days_jud.value",
         "overall_field": "field_overall_viiib_med_days_jud",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_req_viiib.field_avg_days_jud",
         "label": "Average Number of Days to Adjudicate",
         "filter": "field_req_viiib.field_avg_days_jud.value",
         "overall_field": "field_overall_viiib_avg_days_jud",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_viiib",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1811,28 +2035,32 @@
         "label": "Number of \"Full-Time FOIA Employees\"",
         "filter": true,
         "overall_field": "field_overall_ix_full_emp",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_pers_costs_ix.field_eq_full_emp",
         "label": "Number of \"Equivalent Full-Time FOIA Employees\"",
         "filter": true,
         "overall_field": "field_overall_ix_eq_full_emp",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_pers_costs_ix.field_total_staff",
         "label": "Total Number of \"Full-Time FOIA Staff\"",
         "filter": true,
         "overall_field": "field_overall_ix_total_staff",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_ix",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1850,49 +2078,56 @@
         "label": "Processing Costs",
         "filter": true,
         "overall_field": "field_overall_ix_proc_costs",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_pers_costs_ix.field_lit_costs",
         "label": "Litigation-Related Costs",
         "filter": true,
         "overall_field": "field_overall_ix_lit_costs",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_pers_costs_ix.field_total_costs",
         "label": "Total Costs",
         "filter": true,
         "overall_field": "field_overall_ix_total_costs",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_ix",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       },
       {
         "id": "field_fees_x.field_total_fees",
         "label": "Total Amount of Fees Collected",
         "filter": true,
         "overall_field": "field_overall_x_total_fees",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_fees_x.field_perc_costs",
         "label": "Percentage of Total Costs",
         "filter": true,
         "overall_field": "field_overall_x_perc_costs",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_x",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1912,14 +2147,16 @@
         "label": "Number of Times Subsection Used",
         "filter": true,
         "overall_field": "field_overall_xia_sub_used",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_xia",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1937,21 +2174,24 @@
         "label": "Number of Records Posted by the FOIA Office",
         "filter": true,
         "overall_field": "field_overall_xib_rec_post_foia",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_sub_xib.field_rec_post_prog",
         "label": "Number of Records Posted by Program Offices",
         "filter": true,
         "overall_field": "field_overall_xib_rec_post_prog",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_xib",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -1969,21 +2209,24 @@
         "label": "Number of Backlogged Requests as of End of Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_xiia_back_req_end_",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiia.field_back_app_end_yr",
         "label": "Number of Backlogged Appeals as of End of Fiscal Year",
         "filter": "field_foia_xiia.field_back_app_end_yr.value",
         "overall_field": "field_overall_xiia_back_app_end_",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_xiia",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -2001,35 +2244,40 @@
         "label": "Number of Consultations Received from Other Agencies that were Pending at the Agency as of Start of the Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_xiib_pend_start_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiib.field_con_during_yr",
         "label": "Number of Consultations Received from Other Agencies During the Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_xiib_con_during_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiib.field_proc_start_yr",
         "label": "Number of Consultations Received from Other Agencies that were Processed by the Agency During the Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_xiib_proc_start_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiib.field_pend_end_yr",
         "label": "Number of Consultations Received from Other Agencies that were Pending at the Agency as of End of the Fiscal Year",
         "filter": true,
         "overall_field": "field_overall_xiib_pend_end_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_xiib",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -2047,147 +2295,168 @@
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_10",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_10",
         "label": "10th Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_10.value",
         "overall_field": "field_overall_xiic_num_days_10",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_date_9",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_9",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_9",
         "label": "9th Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_9.value",
         "overall_field": "field_overall_xiic_num_days_9",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_date_8",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_8",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_8",
         "label": "8th Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_8.value",
         "overall_field": "field_overall_xiic_num_days_8",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_date_7",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_7",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_7",
         "label": "7th Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_7.value",
         "overall_field": "field_overall_xiic_num_days_7",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_date_6",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_6",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_6",
         "label": "6th Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_6.value",
         "overall_field": "field_overall_xiic_num_days_6",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_date_5",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_5",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_5",
         "label": "5th Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_5.value",
         "overall_field": "field_overall_xiic_num_days_5",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_date_4",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_4",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_4",
         "label": "4th Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_4.value",
         "overall_field": "field_overall_xiic_num_days_4",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_date_3",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_3",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_3",
         "label": "3rd Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_3.value",
         "overall_field": "field_overall_xiic_num_days_3",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_date_2",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_2",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_2",
         "label": "2nd Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_2.value",
         "overall_field": "field_overall_xiic_num_days_2",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_date_1",
         "label": "Date",
         "filter": false,
         "overall_field": "field_overall_xiic_date_1",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_foia_xiic.field_num_days_1",
         "label": "Oldest Number of Days Pending",
         "filter": "field_foia_xiic.field_num_days_1.value",
         "overall_field": "field_overall_xiic_num_days_1",
-        "display": true
+        "display": true,
+        "autosum": false
       },
       {
         "id": "field_footnotes_xiic",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -2205,35 +2474,40 @@
         "label": "Number Received During Fiscal Year from Last Year's Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiid1_received_las",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiid1.field_received_cur_yr",
         "label": "Number Received During Fiscal Year from Current Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiid1_received_cur",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiid1.field_proc_last_yr",
         "label": "Number Processed During Fiscal Year from Last Year's Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiid1_proc_last_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiid1.field_proc_cur_yr",
         "label": "Number Processed During Fiscal Year from Current Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiid1_proc_cur_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_xiid1",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -2251,21 +2525,24 @@
         "label": "Number of Backlogged Requests as of End of the Fiscal Year from Previous Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiid2_back_prev_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiid2.field_back_cur_yr",
         "label": "Number of Backlogged Requests as of End of the Fiscal Year from Current Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiid2_back_cur_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_xiid2",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -2283,35 +2560,40 @@
         "label": "Number Received During Fiscal Year from Last Year's Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiie1_received_las",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiie1.field_received_cur_yr",
         "label": "Number Received During Fiscal Year from Current Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiie1_received_cur",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiie1.field_proc_last_yr",
         "label": "Number Processed During Fiscal Year from Last Year's Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiie1_proc_last_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiie1.field_proc_cur_yr",
         "label": "Number Processed During Fiscal Year from Current Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiie1_proc_cur_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_xiie1",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
@@ -2329,21 +2611,24 @@
         "label": "Number of Backlogged Appeals as of End of the Fiscal Year from Previous Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiie2_back_prev_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_foia_xiie2.field_back_cur_yr",
         "label": "Number of Backlogged Appeals as of End of the Fiscal Year from Current Annual Report",
         "filter": true,
         "overall_field": "field_overall_xiie2_back_cur_yr",
-        "display": true
+        "display": true,
+        "autosum": true
       },
       {
         "id": "field_footnotes_xiie2",
         "label": "Footnotes",
         "filter": false,
         "overall_field": false,
-        "display": false
+        "display": false,
+        "autosum": false
       }
     ],
     "includes": [
