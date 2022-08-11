@@ -41,8 +41,8 @@ class ChiefFOIAOfficersCouncilStore extends Store {
             title: data.title,
             body: data.body,
             committees: data.committees,
-            meetingsUpcoming: data.meetings.upcoming,
-            meetingsPast: data.meetings.past,
+            meetingsUpcoming: (data.meetings) ? data.meetings.upcoming : [],
+            meetingsPast: (data.meetings) ? data.meetings.past : [],
             hasData: true,
           });
         } else {
@@ -78,7 +78,9 @@ class ChiefFOIAOfficersCouncilStore extends Store {
         const data = payload.committeeData;
 
         if (Object.values(data).length) {
-          console.log(data.working_groups);
+          if (typeof data.working_groups === 'undefined') {
+            data.working_groups = [];
+          }
           Object.assign(this.state, {
             title: data.committee_title,
             body: data.committee_body,
