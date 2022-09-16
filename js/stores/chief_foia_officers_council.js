@@ -19,7 +19,6 @@ class ChiefFOIAOfficersCouncilStore extends Store {
       committees: [],
       meetingsUpcoming: [],
       meetingsPast: [],
-      attachments: [],
       workingGroupsActive: [],
       workingGroupsInactive: [],
       meeting_agenda: [],
@@ -84,7 +83,6 @@ class ChiefFOIAOfficersCouncilStore extends Store {
           Object.assign(this.state, {
             title: data.committee_title,
             body: data.committee_body,
-            attachments: data.committee_attachments,
             workingGroupsActive: data.working_groups.filter((group) => group.item_active),
             workingGroupsInactive: data.working_groups.filter((group) => !(group.item_active)),
             hasData: true,
@@ -106,7 +104,6 @@ class ChiefFOIAOfficersCouncilStore extends Store {
           Object.assign(this.state, {
             title: data.page_title,
             body: data.page_body,
-            attachments: data.page_attachments,
             hasData: true,
             status: payload.status,
           });

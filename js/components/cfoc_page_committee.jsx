@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CFOCPageCommitteeWorkGroupComponent from './cfoc_page_committee_workgroup';
-import CFOCPageAttachmentsComponent from './cfoc_page_attachments';
 
 function CFOCPageCommitteeComponent(props) {
   const {
-    title, body, attachments, workingGroupsActive, workingGroupsInactive,
+    title, body, workingGroupsActive, workingGroupsInactive,
   } = props;
 
   return (
@@ -24,7 +23,6 @@ function CFOCPageCommitteeComponent(props) {
             <article dangerouslySetInnerHTML={{ __html: body }} />
           )
       }
-      { attachments.length ? <CFOCPageAttachmentsComponent attachments={attachments} /> : null }
       {
         !workingGroupsActive.length
           ? null
@@ -38,7 +36,6 @@ function CFOCPageCommitteeComponent(props) {
                     <CFOCPageCommitteeWorkGroupComponent
                       title={workingGroup.item_title}
                       body={workingGroup.item_body}
-                      attachments={workingGroup.item_attachments}
                       key={key}
                     />
                   );
@@ -60,7 +57,6 @@ function CFOCPageCommitteeComponent(props) {
                     <CFOCPageCommitteeWorkGroupComponent
                       title={workingGroup.item_title}
                       body={workingGroup.item_body}
-                      attachments={workingGroup.item_attachments}
                       key={key}
                     />
                   );
@@ -76,7 +72,6 @@ function CFOCPageCommitteeComponent(props) {
 CFOCPageCommitteeComponent.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
-  attachments: PropTypes.any,
   workingGroupsActive: PropTypes.any,
   workingGroupsInactive: PropTypes.any,
 };
@@ -84,7 +79,6 @@ CFOCPageCommitteeComponent.propTypes = {
 CFOCPageCommitteeComponent.defaultProps = {
   title: '',
   body: '',
-  attachments: [],
   workingGroupsActive: [],
   workingGroupsInactive: [],
 };
