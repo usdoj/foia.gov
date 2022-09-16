@@ -16,7 +16,6 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
     const {
       title,
       body,
-      attachments,
       workingGroupsActive,
       workingGroupsInactive,
       hasData,
@@ -26,7 +25,6 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
     return {
       title,
       body,
-      attachments,
       workingGroupsActive,
       workingGroupsInactive,
       hasData,
@@ -43,7 +41,6 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
     const {
       title,
       body,
-      attachments,
       workingGroupsActive,
       workingGroupsInactive,
       hasData,
@@ -58,7 +55,6 @@ class ChiefFoiaOfficersCouncilCommitteePage extends Component {
             <CFOCPageCommitteeDetailComponent
               title={title}
               body={body}
-              attachments={attachments}
               workingGroupsActive={workingGroupsActive}
               workingGroupsInactive={workingGroupsInactive}
             />

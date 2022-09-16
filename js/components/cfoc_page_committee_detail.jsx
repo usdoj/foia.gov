@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CFOCPageCommitteeWorkGroupComponent from './cfoc_page_committee_workgroup';
-import CFOCPageAttachmentsComponent from './cfoc_page_attachments';
 
 function CFOCPageCommitteeDetailComponent(props) {
   const {
-    title, body, attachments, workingGroupsActive, workingGroupsInactive,
+    title, body, workingGroupsActive, workingGroupsInactive,
   } = props;
 
   return (
@@ -25,7 +24,6 @@ function CFOCPageCommitteeDetailComponent(props) {
           )
       }
 
-      { attachments.length ? <CFOCPageAttachmentsComponent attachments={attachments} /> : null }
       { workingGroupsActive.length ? <h3>Working Groups</h3> : null }
       {
         !workingGroupsActive.length
@@ -37,7 +35,6 @@ function CFOCPageCommitteeDetailComponent(props) {
                 <CFOCPageCommitteeWorkGroupComponent
                   title={group.item_title}
                   body={group.item_body}
-                  attachments={group.item_attachments}
                   key={key}
                 />
               );
@@ -55,7 +52,6 @@ function CFOCPageCommitteeDetailComponent(props) {
                 <CFOCPageCommitteeWorkGroupComponent
                   title={group.item_title}
                   body={group.item_body}
-                  attachments={group.item_attachments}
                   key={key}
                 />
               );
@@ -69,7 +65,6 @@ function CFOCPageCommitteeDetailComponent(props) {
 CFOCPageCommitteeDetailComponent.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
-  attachments: PropTypes.array,
   attachment: PropTypes.shape({
     attachment_title: PropTypes.string,
     attachment_file: PropTypes.string,
@@ -79,14 +74,12 @@ CFOCPageCommitteeDetailComponent.propTypes = {
   group: PropTypes.shape({
     item_title: PropTypes.string,
     item_body: PropTypes.string,
-    item_attachments: PropTypes.any,
   }),
 };
 
 CFOCPageCommitteeDetailComponent.defaultProps = {
   title: '',
   body: '',
-  attachments: [],
   attachment: {},
   workingGroupsActive: [],
   workingGroupsInactive: [],

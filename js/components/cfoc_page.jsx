@@ -30,7 +30,6 @@ function CFOCPageComponent(props) {
                       <CFOCPageCommitteeComponent
                         title={committee.committee_title}
                         body={committee.committee_body}
-                        attachments={committee.committee_attachments}
                         workingGroupsActive={committee.workingGroupsActive}
                         workingGroupsInactive={committee.workingGroupsInactive}
                         key={key}
@@ -113,7 +112,6 @@ CFOCPageComponent.propTypes = {
   committee: PropTypes.shape({
     committee_title: PropTypes.string,
     committee_body: PropTypes.string,
-    committee_attachments: PropTypes.any,
     workingGroupsActive: PropTypes.any,
     workingGroupsInactive: PropTypes.any,
   }),
