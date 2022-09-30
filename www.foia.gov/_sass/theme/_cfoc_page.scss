@@ -65,6 +65,12 @@
     > ul {
       margin-top: 0;
     }
+
+    a {
+      @extend %a-colors;
+      text-decoration: none;
+      border-bottom: 2px solid $color-primary-alt;
+    }
   }
 
   .cfoc-page-content-items {
