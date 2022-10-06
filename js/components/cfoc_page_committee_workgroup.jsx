@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CFOCPageAttachmentsComponent from './cfoc_page_attachments';
 
 function CFOCPageCommitteeWorkGroupComponent(props) {
-  const { title, body, attachments } = props;
+  const { title, body } = props;
   let workgroupId = (Math.floor(Math.random() * 10000000000000));
   workgroupId = `workgroup-${workgroupId}`;
   return (
@@ -20,7 +19,6 @@ function CFOCPageCommitteeWorkGroupComponent(props) {
                 <article dangerouslySetInnerHTML={{ __html: props.body }} />
               )
           }
-          <CFOCPageAttachmentsComponent attachments={attachments} />
         </div>
       </li>
     </ul>
@@ -30,13 +28,11 @@ function CFOCPageCommitteeWorkGroupComponent(props) {
 CFOCPageCommitteeWorkGroupComponent.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
-  attachments: PropTypes.any,
 };
 
 CFOCPageCommitteeWorkGroupComponent.defaultProps = {
   title: '',
   body: '',
-  attachments: [],
 };
 
 export default CFOCPageCommitteeWorkGroupComponent;

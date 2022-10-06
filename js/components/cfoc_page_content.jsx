@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CFOCPageAttachmentsComponent from './cfoc_page_attachments';
 
 function CFOCPageContentComponent(props) {
   return (
@@ -19,11 +18,6 @@ function CFOCPageContentComponent(props) {
           <article dangerouslySetInnerHTML={{ __html: props.body }} />
         )
     }
-      {
-      props.attachments.length
-        ? <CFOCPageAttachmentsComponent attachments={props.attachments} />
-        : null
-    }
     </div>
   );
 }
@@ -31,13 +25,11 @@ function CFOCPageContentComponent(props) {
 CFOCPageContentComponent.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
-  attachments: PropTypes.array,
 };
 
 CFOCPageContentComponent.defaultProps = {
   title: '',
   body: '',
-  attachments: [],
 };
 
 export default CFOCPageContentComponent;

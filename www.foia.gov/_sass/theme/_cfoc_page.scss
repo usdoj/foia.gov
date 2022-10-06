@@ -20,36 +20,6 @@
     max-width: 90%;
   }
 
-  .cfoc-attachments {
-    a {
-      padding-right: 12px;
-
-      &:after {
-        display: none !important;
-      }
-
-      span {
-        display: inline-block;
-        position: relative;
-        width: 20px;
-        height: 13px;
-        margin-left: 10px;
-
-        &:after {
-          content: " ";
-          background-image: url('/img/save_alt.svg');
-          position: absolute;
-          width: 17px;
-          height: 17px;
-          background-size: 16px;
-          background-repeat: no-repeat;
-          left: 0;
-          top: 0;
-        }
-      }
-    }
-  }
-
   .cfoc-page-committees {
     margin-top: 4.6875rem;
 
@@ -94,6 +64,12 @@
 
     > ul {
       margin-top: 0;
+    }
+
+    a {
+      @extend %a-colors;
+      text-decoration: none;
+      border-bottom: 2px solid $color-primary-alt;
     }
   }
 
