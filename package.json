@@ -31,7 +31,7 @@
   "dependencies": {
     "@rjsf/core": "4.x",
     "assert": "2.x",
-    "axios": "0.x",
+    "axios": "1.x",
     "babel-polyfill": "6.x",
     "bluebird": "^3.7.2",
     "cucumber-mink": "2.x",
