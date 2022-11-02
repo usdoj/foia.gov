@@ -79,7 +79,7 @@ function CFOCPageComponent(props) {
                 <ul className="cfoc-page-past-meetings-list usa-accordion">
                   {
                   meetingsPast.map((meeting, index) => {
-                    const key = meeting.meeting_title.length * index;
+                    const key = index;
                     const id = `past-${key.toString()}`;
                     const date = new Date(meeting.meeting_timestamp * 1000);
 
