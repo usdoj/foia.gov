@@ -195,7 +195,7 @@
             "in": "query",
             "type": "string",
             "required": false,
-            "description": "Embed related entities in the JSON response under <code>relationships</code>. <p><a href=\"https://www.drupal.org/docs/8/modules/jsonapi/includes\" target=\"_blank\">Learn more in the documentation</a>.</p><p><h5>Possible values:</h5><code>agency, foia_officers, field_misc, public_liaisons, paper_receiver, request_form, service_centers</code></p>"
+            "description": "Embed related entities in the JSON response under <code>relationships</code>. <p><a href=\"https://www.drupal.org/docs/8/modules/jsonapi/includes\" target=\"_blank\">Learn more in the documentation</a>.</p><p><h5>Possible values:</h5><code>revision_user, category</code></p>"
           }
         ],
         "tags": [
@@ -480,7 +480,7 @@
             "in": "query",
             "type": "string",
             "required": false,
-            "description": "Embed related entities in the JSON response under <code>relationships</code>. <p><a href=\"https://www.drupal.org/docs/8/modules/jsonapi/includes\" target=\"_blank\">Learn more in the documentation</a>.</p><p><h5>Possible values:</h5><code>field_agency, field_agency_components, field_quarterly_component_data</code>.</p>"
+            "description": "Embed related entities in the JSON response under <code>relationships</code>. <p><a href=\"https://www.drupal.org/docs/8/modules/jsonapi/includes\" target=\"_blank\">Learn more in the documentation</a>.</p><p><h5>Possible values:</h5><code>field_agency, field_agency_components, field_quarterly_component_data</code></p>"
           }
         ],
         "tags": [
