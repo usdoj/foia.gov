@@ -2,7 +2,7 @@ extends: airbnb
 settings:
   import/resolver: webpack
 env:
-  browser: yes
+  browser: true
 globals:
   $: true
   jQuery: true
