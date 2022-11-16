@@ -11,9 +11,9 @@ bundle: contact_download
 
 ## FOIA API
 
-The FOIA request Portal is powered by an API. This API is available to the
-public. In order to use the API, you must [signup for an API key here](#api-key-signup).
-
+The FOIA request Portal is powered by a public API.
+In order to use the API, you must [signup for an API key here](#api-key-signup).
+Visit the [Swagger page](/swagger.html) to view the structure of the FOIA API.
 ### Agency components
 
 Agencies of the federal government submit information about their FOIA process
