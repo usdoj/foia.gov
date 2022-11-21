@@ -18,6 +18,9 @@ module.exports = {
     new webpack.ProvidePlugin({
       process: 'process/browser',
     }),
+    new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    }),
   ],
   entry: {
     landing: './js/landing.jsx',
@@ -28,6 +31,7 @@ module.exports = {
     annual_report_data: './js/annual_report_data.jsx',
     quarterly_report_data: './js/quarterly_report_data.jsx',
     chief_foia_officers_council: './js/chief_foia_officers_council.jsx',
+    swagger: './js/swagger.jsx',
   },
   output: {
     path: path.resolve(__dirname, 'www.foia.gov/assets/js'),
@@ -63,6 +67,10 @@ module.exports = {
     modules: [path.join(__dirname, 'js'), 'node_modules'],
     alias: {
       settings$: path.join(__dirname, 'js', 'settings', `${env}.js`),
+    },
+    fallback: {
+      stream: require.resolve('stream-browserify'),
+      buffer: require.resolve('buffer'),
     },
   },
 };
