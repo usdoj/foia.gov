@@ -9,3 +9,24 @@
     display: none;
   }
 }
+
+@media print {
+ .usa-grid-full.grid-flex.grid-left.request-form{
+    display: block!important;
+    justify-content:inherit!important;
+    .confirmation_title{
+      margin: 0!important;
+      clear: none!important;
+    }
+    .sidebar_content{
+      flex-basis:inherit!important;
+      flex-grow:inherit!important;
+      margin-bottom:inherit!important;
+      .confirmation.sidebar_content-inner{
+        margin-top:inherit!important;
+        max-width:100%!important;
+      }
+    }
+ }
+
+}
