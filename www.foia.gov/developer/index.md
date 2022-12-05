@@ -6,15 +6,15 @@ grid: usa-grid
 permalink: /developer/
 bundle: contact_download
 ---
-# Developer resources
+# Developer Resources
 
-
-## FOIA API
-
-The FOIA request Portal is powered by a public API.
-In order to use the API, you must [signup for an API key here](#api-key-signup).
+The FOIA request Portal is powered by a public API.  In order to use the API, you must [signup for an API key here](#api-key-signup).
 Visit the [Swagger page](/swagger.html) to view the structure of the FOIA API.
-### Agency components
+
+If your agency is interested in receiving requests from the Portal via an API, please check out
+our [Agency API spec](/developer/agency-api/) and [get in touch with us](mailto:{{ site.email }}).
+
+### Agency Components
 
 Agencies of the federal government submit information about their FOIA process
 in a machine-readable format to the Portal. This information is available through
@@ -120,31 +120,6 @@ curl -v -H 'X-Api-Key: <your-api-key>' -H 'Content-Type: application/json' https
 EOF
 ```
 
-
-## The FOIA XML Schema
-
-  <p>Federal agencies publish FOIA information   in accordance with guidelines prepared by the U. S. Department of Justice   Office of Information Policy. These guidelines, available <a href="http://www.justice.gov/oip/foiapost/guidance-annualreport-052008.pdf" target="_blank">here</a>,   describe the format and meaning of FOIA annual report information. In   addition, a <em>FOIA Annual Report XML schema</em> has been developed   allowing agency FOIA annual report information to be represented and   exchanged in a standardized format. This XML schema closely follows   the structure and terminology of the guidance document, and conforms   to the NIEM standard (<a href="http://niem.gov" target="_blank">http://niem.gov</a>).&nbsp;</p>
-  <p>All agency data available through reports and graphs on the <a href="{{ site.baseurl }}/data.html">FOIA.gov</a> website is also available  for public download as XML documents conforming to the FOIA Annual Report XML schema at the link below. This enables any kind of  offline processing, storage, comparison, or mashup which may be desired.&nbsp;&nbsp; </p>
-  <p>The entire IEPD package may also be downloaded directly by clicking on the following link [<a href="{{ site.baseurl }}/iepd/FOIA_Annual_Report_v2.2.zip">Download IEPD</a>].</p>
-  <p>Within this IEPD package you can find the XML schema defined in <em>exchange_files/schema/extension/FoiaAnnualReportExtensions.xsd</em>. Note that this definition inherits from others, which can be found in the package as well, under <em>exchange_files/schema/Subset/niem/</em>.</p>
-  <h3>FOIA Data Set Downloads</h3>
-  <p>The following compressed files are complete archives of the  FOIA Data sets for the years 2008 through 2019.</p>
-  <ul>
-    <li><a href="{{ site.baseurl }}/2020-FOIASetFull.zip">Download the full 2020 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2019-FOIASetFull.zip">Download the full 2019 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2018-FOIASetFull.zip">Download the full 2018 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2017-FOIASetFull.zip">Download the full 2017 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2016-FOIASetFull.zip">Download the full 2016 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2015-FOIASetFull.zip">Download the full 2015 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2014-FOIASetFull.zip">Download the full 2014 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2013-FOIASetFull.zip">Download the full 2013 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2012-FOIASetFull.zip">Download the full 2012 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2011-FOIASetFull.zip">Download the full 2011 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2010-FOIASetFull.zip">Download the full 2010 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2009-FOIASetFull.zip">Download the full 2009 FOIA Data set</a> (.zip format)</li>
-    <li><a href="{{ site.baseurl }}/2008-FOIASetFull.zip">Download the full 2008 FOIA Data set</a> (.zip format)</li>
-  </ul>
-
 ### Annual Report XML API
 
 Individual annual reports, in XML format, are available via an API endpoint:
@@ -155,19 +130,8 @@ For example, to receive the Department of Justice (DOJ) annual report for 2021, 
 
 `curl -H 'X-API-Key: <your-api-key>' https://api.foia.gov/api/annual-report-xml/DOJ/2021`
 
-## Agency resources
-
-If your agency is interested in receiving requests from the Portal via an API, please check out
-our [API spec](/developer/agency-api/) and [get in touch with us](mailto:{{ site.email }}).
-
 ## API Key Signup
 
 {% include api-key-signup-form.html %}
 
-## FOIA Contacts Download
-
-The following file is the complete listing of all FOIA contacts across federal departments and agencies.
-
-<div id="contact-download-react-app"></div>
-
-<p align="right"><a href="#top">Return to Top</a></p>
+<p class="float-right"><a href="#top">Return to Top</a></p>
