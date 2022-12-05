@@ -6,7 +6,6 @@ import { createBrowserHistory } from 'history';
 import FoiaDatasetDownload from 'pages/foia_dataset_download';
 
 const history = createBrowserHistory();
-history.push('/foia-dataset-download.html');
 
 render(
   <Router history={history}>

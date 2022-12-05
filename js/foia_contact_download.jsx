@@ -6,7 +6,6 @@ import FoiaContactDownload from 'pages/foia_contact_download';
 import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
-history.push('/foia-contact-download.html');
 
 render(
   <Router history={history}>
