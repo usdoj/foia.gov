@@ -120,6 +120,14 @@ curl -v -H 'X-Api-Key: <your-api-key>' -H 'Content-Type: application/json' https
 EOF
 ```
 
+## The FOIA XML Schema
+
+  <p>Federal agencies publish FOIA information   in accordance with guidelines prepared by the U. S. Department of Justice   Office of Information Policy. These guidelines, available <a href="http://www.justice.gov/oip/foiapost/guidance-annualreport-052008.pdf" target="_blank">here</a>,   describe the format and meaning of FOIA annual report information. In   addition, a <em>FOIA Annual Report XML schema</em> has been developed   allowing agency FOIA annual report information to be represented and   exchanged in a standardized format. This XML schema closely follows   the structure and terminology of the guidance document, and conforms   to the NIEM standard (<a href="http://niem.gov" target="_blank">http://niem.gov</a>).&nbsp;</p>
+  <p>All agency data available through reports and graphs on the <a href="{{ site.baseurl }}/data.html">FOIA.gov</a> website is also available  for public download as XML documents conforming to the FOIA Annual Report XML schema at the link below. This enables any kind of  offline processing, storage, comparison, or mashup which may be desired.&nbsp;&nbsp; </p>
+  <p>The entire IEPD package may also be downloaded directly by clicking on the following link [<a href="{{ site.baseurl }}/iepd/FOIA_Annual_Report_v2.2.zip">Download IEPD</a>].</p>
+  <p>Within this IEPD package you can find the XML schema defined in <em>exchange_files/schema/extension/FoiaAnnualReportExtensions.xsd</em>. Note that this definition inherits from others, which can be found in the package as well, under <em>exchange_files/schema/Subset/niem/</em>.</p>
+  <p>You can download the <a href="{{ site.baseurl }}/foia-dataset-download.html">FOIA Data Set here</a>.</p>  
+
 ### Annual Report XML API
 
 Individual annual reports, in XML format, are available via an API endpoint:
