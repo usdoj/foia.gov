@@ -193,7 +193,7 @@ class AnnualReportDataPage extends Component {
                 and agencies. For full data sets from agency Annual Reports, please
                 visit
                 {' '}
-                <a href="/developer/">the Developer page</a>
+                <a href="/foia-dataset-download.html">the dataset download page</a>
                 .
               </p>
               <form>
