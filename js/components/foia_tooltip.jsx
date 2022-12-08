@@ -14,7 +14,7 @@ class FoiaTooltip extends Component {
 
   render() {
     return (
-      <button type="button" className="tooltip-trigger button-as-link" ref={(trigger) => { this.trigger = trigger; }} title={this.props.text}>
+      <button type="button" className="tooltip-trigger button-as-link" ref={(trigger) => { this.trigger = trigger; }} data-tooltip={this.props.text}>
         <span className="visually-hidden">Tooltip</span>
       </button>
     );

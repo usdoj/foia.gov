@@ -123,7 +123,7 @@ class AgencyComponentRequestPage extends Component {
     }
 
     return (
-      <div className="usa-grid-full grid-flex grid-left" ref={(ref) => { this.element = ref; }}>
+      <div className="usa-grid-full grid-flex grid-left request-form" ref={(ref) => { this.element = ref; }}>
         {
           agencyComponent && requestForm
             ? (

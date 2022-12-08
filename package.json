@@ -8,7 +8,8 @@
     "build": "webpack",
     "lint": "eslint --ext jsx,js js/",
     "test": "mochapack --webpack-config webpack.config.test.js js/**.test.js*",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "dev": "make build && make serve"
   },
   "repository": {
     "type": "git",
@@ -51,6 +52,8 @@
     "react-modal": "3.x",
     "react-router-dom": "5.x",
     "react-url-query": "1.x",
+    "swagger-ui": "^3.52.5",
+    "swagger-ui-react": "^3.52.5",
     "tabulator-tables": "5.x",
     "tooltip.js": "1.x",
     "typeahead.js": "0.x",
@@ -61,8 +64,9 @@
     "@babel/core": "7.x",
     "@babel/preset-env": "7.x",
     "@babel/preset-react": "7.x",
-    "@cucumber/cucumber": "^8.x",
+    "@cucumber/cucumber": "^8.7.0",
     "babel-loader": "8.x",
+    "btoa": "^1.2.1",
     "chai": "4.x",
     "css-loader": "6.x",
     "enzyme": "3.x",

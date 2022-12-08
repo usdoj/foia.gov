@@ -49,7 +49,7 @@ function CFOCPageComponent(props) {
                 <ul className="cfoc-page-upcoming-meetings-list usa-accordion">
                   {
                   meetingsUpcoming.reverse().map((meeting, index) => {
-                    const key = meeting.meeting_title.length * index;
+                    const key = index;
                     const id = `upcoming-${key.toString()}`;
                     const date = new Date(meeting.meeting_timestamp * 1000);
 
@@ -79,7 +79,7 @@ function CFOCPageComponent(props) {
                 <ul className="cfoc-page-past-meetings-list usa-accordion">
                   {
                   meetingsPast.map((meeting, index) => {
-                    const key = meeting.meeting_title.length * index;
+                    const key = index;
                     const id = `past-${key.toString()}`;
                     const date = new Date(meeting.meeting_timestamp * 1000);
 
