@@ -19,3 +19,13 @@ ul.list-of-exemptions > li > ul{
 .usa-header-extended{
   border-bottom: 1px solid #DEF0FF !important;
 }
+
+.video {
+  width: 640px;
+  height:360px;
+  @media (max-width: 1180px)
+  {
+    width: 100%;
+    min-width: 100%;
+  }
+}
