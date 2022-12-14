@@ -45,7 +45,7 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 //Tabulator Containing Element
 .tabulator{
   overflow:auto;
-  height: 100vh;
+  height: 100%;
   min-height: 100%;
   border: 1px solid $borderColor;
   background-color: $backgroundColor;
