@@ -45,15 +45,12 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 //Tabulator Containing Element
 .tabulator{
   position: relative;
-
   border: 1px solid $borderColor;
-
   background-color: $backgroundColor;
-
   font-size:$textSize;
   text-align: left;
-  overflow:hidden;
-
+  overflow:auto;
+  max-height: 500px;
   -webkit-transform: translatez(0);
   -moz-transform: translatez(0);
   -ms-transform: translatez(0);
@@ -74,19 +71,17 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 
   //column header containing element
   .tabulator-header{
-    position:relative;
+    position:sticky;
+    top: 0px;
+    z-index: 100;
     box-sizing: border-box;
-
     width:100%;
-
     border-bottom:1px solid $headerSeparatorColor;
     background-color: $headerBackgroundColor;
     color: $headerTextColor;
     font-weight:bold;
-
     white-space: nowrap;
-    overflow:hidden;
-
+    overflow:visible;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -357,7 +352,7 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
     position:relative;
     width:100%;
     white-space: nowrap;
-    overflow:auto;
+    overflow:visible;
     -webkit-overflow-scrolling: touch;
 
     &:focus{

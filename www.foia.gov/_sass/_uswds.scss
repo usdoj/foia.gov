@@ -32,6 +32,12 @@ $small-screen: 481px;
 $medium-screen: 600px;
 $large-screen: 1201px;
 
+// Mobile First Height Breakpoints
+$small-screen-height:  360px !default;
+$medium-screen-height: 600px !default;
+$large-screen-height:  850px !default;
+
+
 // Relative font and image file paths
 $font-path:   '/assets/fonts' !default;
 $image-path:  '/assets/img' !default;
