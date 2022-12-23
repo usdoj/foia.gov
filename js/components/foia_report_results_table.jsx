@@ -29,6 +29,7 @@ class FoiaReportResultsTable extends Component {
       columns: tableColumns,
       reactiveData: true,
       layout: 'fitDataStretch',
+      renderVertical: 'basic',
     });
     this.tabulator.on('tableBuilt', () => {
       const selector = `#${tableId} .tabulator-header button`;

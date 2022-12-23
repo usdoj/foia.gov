@@ -44,47 +44,18 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 
 //Tabulator Containing Element
 .tabulator{
-  height: 100%;
-  max-height: 300px;
-  overflow:auto;
+  position: relative;
   border: 1px solid $borderColor;
   background-color: $backgroundColor;
   font-size:$textSize;
   text-align: left;
+  overflow:auto;
+  max-height: 500px;
   -webkit-transform: translatez(0);
   -moz-transform: translatez(0);
   -ms-transform: translatez(0);
   -o-transform: translatez(0);
   transform: translatez(0);
-
-  @media screen and (min-height: $small-screen-height) {
-    height: 100%;
-    max-height: 300px;
-  }
-  @media screen and (min-height: $medium-screen-height) {
-    height: 100%;
-    max-height: 390px;
-  }
-
-  @media screen and (min-height: $large-screen-height) {
-    height: 100%;
-    max-height: 500px;
-  }
-
-  .tabulator-tableholder{
-    height: 100%;
-    max-height: 300px;
-    @media screen and (min-height: $small-screen-height) {
-      height: 300px;
-    }
-    @media screen and (min-height: $medium-screen-height) {
-      height: 390px;
-    }
-
-    @media screen and (min-height: $large-screen-height) {
-      height: 500px;
-    }
-  }
 
   &[tabulator-layout="fitDataFill"]{
     .tabulator-tableholder{
@@ -100,12 +71,9 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
 
   //column header containing element
   .tabulator-header{
-    //position:relative;
-    height: 50px;
-    z-index: 1;
-    max-height: 100%;
-    position: sticky;
+    position:sticky;
     top: 0px;
+    z-index: 100;
     box-sizing: border-box;
     width:100%;
     border-bottom:1px solid $headerSeparatorColor;
@@ -113,6 +81,7 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
     color: $headerTextColor;
     font-weight:bold;
     white-space: nowrap;
+    overflow:visible;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -383,7 +352,7 @@ $footerActiveColor:#d00 !default; //footer bottom active text color
     position:relative;
     width:100%;
     white-space: nowrap;
-    overflow:initial;
+    overflow:visible;
     -webkit-overflow-scrolling: touch;
 
     &:focus{
