@@ -58,11 +58,11 @@ This is why `WebpackWatchPlugin` is used to add the SASS folders to Webpack watc
 
 The `WatchRun` hook then runs the `make build.reload` command every time a change is detected in the SCSS files.  The site is still recompiled using Jekyll instead of Webpack.
 
-### Caveats 
+### Jekkyl Details 
 
 Jekyll has an Auto-regeneration feature, but it does not watch and recompile the `js` folder.  If you're only working on SCSS files then the `make build.dev` command can be used to start Jekyll with the `--watch --incremental` flags.
 
-Adding the `--incremental` flag to the `make build.reload` script interfered with the compiler hook and caused Jekyll to crash. These Jekyll flags cannot be used as the same time as Webpack Watch.
+However, adding the `--incremental` flag to the `make build.reload` script interfered with the compiler hook and caused Jekyll to crash.
 
 There is no need for sass loaders in the webpack config file since Jekyll is rebuilding the JS and SCSS.
 
@@ -75,3 +75,5 @@ The entry point for the SCSS should be placed in `www.foia.gov/_sass/main.scss` 
 Instead of the current location in `www.foia.gov/foia-style.scss`.  This will allow Webpack to process the SCSS instead of Jekyll.
 
 Webpack's `sass-loader` has many options such as advanced source maps and compression which can further speed up development.
+
+Webpack can also detect changes to and recompile other assets such as images, fonts and SVG files.

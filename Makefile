@@ -41,17 +41,12 @@ clean:
 	rm -rf www.foia.gov/assets
 	rm -rf _site
 
-serve:
-	-pkill -9 -f "node js/dev-server.js"
-	node js/dev-server.js
-
 serve.dev:
 	-pkill -9 -f "node js/dev-server.js"
 	APP_ENV=development node js/dev-server.js
 
-dev:
-	-pkill -9 -f "node js/dev-server.js"
-	npm-run-all --parallel build:dev serve:dev
+serve:
+	npx npm-run-all --parallel serve:watch serve:dev
 
 serve.detached:
 	-pkill -9 -f "node js/dev-server.js"
