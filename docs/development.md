@@ -44,7 +44,7 @@ To build for production, set the `NODE_ENV` and `APP_ENV` environment variables.
 
 ## Dev Environment
 
-The new `make dev` command will spin up a dev environment using port `4000` by running Webpack and node in parallel. 
+The `make serve` command will spin up a dev environment using port `4000` by running Webpack and node in parallel. 
 
 Webpack will then run with the watch flag enabled using the `webpack.config.dev.js` config file.
 
