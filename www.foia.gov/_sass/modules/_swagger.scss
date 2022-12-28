@@ -3924,6 +3924,18 @@ $border-top-color_1: rgba(0,0,0,.6);
       font-weight: 400;
       padding: 0 10px;
     }
+
+    @media (max-width: 640px) {
+      small
+      {
+        flex: 1;
+      }
+
+      >div
+      {
+        flex: 1;
+      }
+    }
   }
   .opblock-tag.no-desc {
     span {
@@ -4076,6 +4088,13 @@ $border-top-color_1: rgba(0,0,0,.6);
       word-break: break-word;
       flex-shrink: 0;
       max-width: calc(100% - 110px - 15rem);
+    }
+    @media (max-width: 640px) {
+      .opblock-summary-path
+      {
+        flex-shrink: 1;
+        max-width: 100%;
+      }
     }
     .opblock-summary-path__deprecated {
       align-items: center;
@@ -4760,6 +4779,14 @@ $border-top-color_1: rgba(0,0,0,.6);
     background: none;
     border: none;
     padding: 0 10px;
+    @media (max-width: 768px)
+    {
+      width: 10%;
+    }
+    @media (max-width: 640px)
+    {
+      width: 10%;
+    }
   }
   .authorization__btn.locked {
     opacity: 1;
@@ -4882,8 +4909,14 @@ $border-top-color_1: rgba(0,0,0,.6);
       border-color: #f93e3e;
     }
 
-    .swagger-ui .opblock-body select {
+    .opblock-body select
+    {
       min-width: 230px;
+      @media (max-width: 1180px)
+      {
+        width: 100%;
+        min-width: 100%;
+      }
     }
 
     @media
@@ -5390,6 +5423,7 @@ $border-top-color_1: rgba(0,0,0,.6);
       select {
         max-width: 100%;
         min-width: 130px;
+        width: 100%;
       }
     }
     h4.message {
@@ -5450,7 +5484,7 @@ $border-top-color_1: rgba(0,0,0,.6);
   .parameters-col_description {
     margin-bottom: 2em;
     width: 99%;
-    input[type=text] {
+    input {
       max-width: 340px;
       width: 100%;
       margin-bottom: 10px;
@@ -5844,6 +5878,14 @@ $border-top-color_1: rgba(0,0,0,.6);
       font-size: 14px;
       font-weight: 600;
       padding: 5px 7px;
+      @media (max-width: 1180px)
+      {
+        display: inline-block;
+        white-space: normal;
+        max-width:100%;
+        word-break:break-all;
+        word-wrap:break-word;
+      }
     }
     ul {
       li {
