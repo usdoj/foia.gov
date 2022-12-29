@@ -85,7 +85,7 @@
     "webpack-watch-files-plugin": "^1.2.1",
     "process": "0.x",
     "react-test-renderer": "16.x",
-    "sinon": "14.x",
+    "sinon": "15.x",
     "sinon-chai": "3.x",
     "style-loader": "3.x",
     "webpack": "5.x",
