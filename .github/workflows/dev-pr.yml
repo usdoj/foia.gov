@@ -1,4 +1,4 @@
-name: Pull Request into dev-test
+name: Test Pull Requests
 on: [pull_request]  
 jobs:
   # Build for the Acquia Cloud development environment
