@@ -1,0 +1,17 @@
+name: Pull Request into dev-test
+on: [pull_request]  
+jobs:
+  # Build for the Acquia Cloud development environment
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        name: Setup RUBY
+      - name: Install dependencies
+        run: | 
+          npm i
+          bundle install
+      - name: Run tests
+        run: | 
+          make test
