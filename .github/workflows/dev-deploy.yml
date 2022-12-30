@@ -1,0 +1,75 @@
+name: Deploy to dev environment - dev-www.foia.gov
+on:
+  push:
+    branches:
+      - dev-test
+jobs:
+  # Build for the Acquia Cloud development environment
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      # Setting up node
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Setting up NODE 16
+        env:
+          NODE_ENV: production
+          APP_ENV: development
+        with:
+          node-version: 16
+          cache: 'npm'
+        run: |
+          node -v #npm i did not work here
+      # Setup RUBY and install openssl
+      - uses: actions/checkout@v3
+#      - uses: ruby/setup-ruby@8a6667e214803d030def654bc64a71ceeec500d1
+      - uses: ruby/setup-ruby@v1
+      - name: Setup RUBY
+        with:
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically,doesn't seem to work  #
+          cache-version: 1
+        run: |
+          bundle config set --local path 'vendor/bundle' && bundle install
+      # Install SSH Key
+      # https://github.com/marketplace/actions/webfactory-ssh-agent
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+#          ssh-private-key: ${{ secrets.SSH_KEY }}
+          ssh-private-key: git@github.com:ameshkin/foia.gov.git
+      - name: Acquia known hosts
+        run: |
+          echo "${{ secrets.KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+      # Install NPM pacakges and build the static site
+      - name: Install npm packages
+        run: |
+          npm i
+      - name: Building front end site
+        run: |
+          make build
+      - name: Finished
+        run: echo "::notice Build is complete!"
+        # Saves the build files so they can be recalled in other jobs
+      - name: Set static folder to _site
+        uses: actions/upload-artifact@v3
+        with:
+          name: setsite
+          path: _site
+#        # attach_workspace from config.yml
+#      - name: attach_workspace
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: setsite
+  # Test code will build again
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Running tests
+        run: |
+          make test
+      - name: attach_workspace test
+        uses: actions/download-artifact@v3
+        with:
+          name: setsite
