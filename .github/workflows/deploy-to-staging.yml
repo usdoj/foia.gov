@@ -1,15 +1,15 @@
-name: Deploy to dev environment - dev-www.foia.gov
+name: Deploy to staging environment - stg-www.foia.gov
 on:
   push:
     branches:
-      - dev-test
+      - release*
 jobs:
-  # Build for the Acquia Cloud development environment
+  # Build for the Acquia Cloud Staging environment
   build:
     env:
       GIT_REPO: ${{ secrets.GIT_REPO }}
       NODE_ENV: production
-      APP_ENV: development
+      APP_ENV: staging
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -36,4 +36,4 @@ jobs:
       - name: Run tests
         run: make test
       - name: Deploy to Acquia development
-        run: sh bin/git-deploy.sh _site dev-test
+        run: sh bin/git-deploy.sh _site staging
