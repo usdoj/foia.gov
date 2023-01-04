@@ -27,9 +27,6 @@ jobs:
       - name: Acquia known hosts
         run: |
           echo "${{ secrets.KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
-      - name: Install npm packages
-        run: |
-          npm i
       - name: Building front end site
         run: |
           make build
