@@ -8,7 +8,7 @@ jobs:
   build:
     env:
       GIT_REPO: ${{ secrets.GIT_REPO }}
-#      NODE_ENV: production
+      NODE_ENV: production
       APP_ENV: development
     runs-on: ubuntu-20.04
     steps:
