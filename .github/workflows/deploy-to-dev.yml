@@ -31,4 +31,7 @@ jobs:
         run: |
           echo "${{ secrets.KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
       - name: Deploy to Acquia development
-        run: sh bin/git-deploy.sh _site dev-test
+        run: |
+          chmod +x ./bin/git-deploy.sh
+          ./bin/git-deploy.sh _site dev-test
+        shell: bash
