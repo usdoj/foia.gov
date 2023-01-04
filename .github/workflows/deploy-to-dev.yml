@@ -8,7 +8,7 @@ jobs:
   build:
     env:
       GIT_REPO: ${{ secrets.GIT_REPO }}
-      NODE_ENV: production
+#      NODE_ENV: production
       APP_ENV: development
     runs-on: ubuntu-20.04
     steps:
@@ -33,5 +33,5 @@ jobs:
       - name: Deploy to Acquia development
         run: |
           chmod +x ./bin/git-deploy.sh
-          ./bin/git-deploy.sh _site dev-test
+          ./bin/git-deploy.sh _site development
         shell: bash
