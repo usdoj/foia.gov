@@ -8,17 +8,19 @@ jobs:
   build:
     env:
       GIT_REPO: ${{ secrets.GIT_REPO }}
-      NODE_ENV: production
       APP_ENV: staging
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - name: Setup RUBY
-        uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
+        name: Setup RUBY
       - name: Install dependencies
-        run: | 
+        run: |
           npm i
           bundle install
+      - name: Run tests
+        run: |
+          NODE_ENV=production make test
       # Install SSH Key
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.7.0
@@ -27,10 +29,8 @@ jobs:
       - name: Acquia known hosts
         run: |
           echo "${{ secrets.KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
-      - name: Building front end site
-        run: |
-          make build
-      - name: Run tests
-        run: make test
       - name: Deploy to Acquia development
-        run: sh bin/git-deploy.sh _site staging
+        run: |
+          chmod +x ./bin/git-deploy.sh
+          ./bin/git-deploy.sh _site staging
+        shell: bash

@@ -2,13 +2,12 @@ name: Deploy to dev environment - dev-www.foia.gov
 on:
   push:
     branches:
-      - dev-test
+      - develop
 jobs:
   # Build and deploy to the Acquia Cloud development environment
   build:
     env:
       GIT_REPO: ${{ secrets.GIT_REPO }}
-#      NODE_ENV: production
       APP_ENV: development
     runs-on: ubuntu-20.04
     steps:
@@ -21,7 +20,7 @@ jobs:
           bundle install
       - name: Run tests
         run: |
-          make test
+          NODE_ENV=production make test
       # Install SSH Key
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.7.0
