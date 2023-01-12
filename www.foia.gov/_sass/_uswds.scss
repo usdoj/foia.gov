@@ -19,6 +19,7 @@ $color-primary-alt-light: #92C8F6;
 $color-primary-alt-lightest: #DEF0FF;
 $color-primary-alt-darker: #306092;
 $color-primary-darkest: #122E51;
+$color-link-visited: #4c2c92;
 $color-gray-dark: #212121; // same as USWDS $color-base
 $color-gray: #5B616A;
 $color-gray-light: #D0D0D0;
@@ -31,6 +32,12 @@ $color-focus: $color-primary-alt-light;
 $small-screen: 481px;
 $medium-screen: 600px;
 $large-screen: 1201px;
+
+// Mobile First Height Breakpoints
+$small-screen-height:  360px !default;
+$medium-screen-height: 600px !default;
+$large-screen-height:  850px !default;
+
 
 // Relative font and image file paths
 $font-path:   '/assets/fonts' !default;

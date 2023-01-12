@@ -31,13 +31,22 @@ build:
 	cp node_modules/exitscript/exitscript.min.js www.foia.gov/assets/js/
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS)
 
+build.reload:
+	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS)
+
+build.dev:
+	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS) --watch --incremental
+
 clean:
 	rm -rf www.foia.gov/assets
 	rm -rf _site
 
-serve:
+serve.dev:
 	-pkill -9 -f "node js/dev-server.js"
-	node js/dev-server.js
+	APP_ENV=development node js/dev-server.js
+
+serve:
+	npx npm-run-all --parallel serve:watch serve:dev
 
 serve.detached:
 	-pkill -9 -f "node js/dev-server.js"

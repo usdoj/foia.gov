@@ -577,6 +577,48 @@
         }
       }
     },
+    "/annual-report-xml/{agency}/{year}": {
+      "get": {
+        "summary": "Individual Annual Reports in XML format are available via the Annual Report XML Endpoint.",
+        "description": "<p>Annual Report XML</p>",
+        "parameters": [{
+          "name": "agency",
+          "in": "path",
+          "type": "string",
+          "required": true,
+          "description": "<p>Agency Abbreviation such as <code>DOJ</code>.</p>"
+        },
+          {
+            "name": "year",
+            "in": "path",
+            "type": "number",
+            "required": true,
+            "description": "<p>The four digit year to return data from.</p>"
+          }
+        ],
+        "tags": [
+          "Annual FOIA Report Data"
+        ],
+        "produces": [
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          }
+        }
+      }
+    },
     "/node/cfo_meeting": {
       "get": {
         "summary": "List CFO Meetings",
@@ -682,6 +724,9 @@
               },
               "additionalProperties": true
             }
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
           }
         }
       }
@@ -744,6 +789,15 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -824,6 +878,15 @@
               },
               "additionalProperties": true
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -904,6 +967,15 @@
               },
               "additionalProperties": true
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -984,6 +1056,15 @@
               },
               "additionalProperties": true
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1093,6 +1174,15 @@
               },
               "additionalProperties": true
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1117,6 +1207,9 @@
             "schema": {
               "$ref": "#/definitions/node--cfo_committee"
             }
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
           }
         }
       }
@@ -1197,6 +1290,15 @@
               },
               "additionalProperties": true
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1277,6 +1379,9 @@
               },
               "additionalProperties": true
             }
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
           }
         }
       }
@@ -1386,6 +1491,9 @@
               },
               "additionalProperties": true
             }
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
           }
         }
       }
@@ -1410,6 +1518,15 @@
             "schema": {
               "$ref": "#/definitions/node--cfo_council"
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1512,6 +1629,15 @@
               },
               "additionalProperties": true
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1536,6 +1662,15 @@
             "schema": {
               "$ref": "#/definitions/node--cfo_page"
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1616,6 +1751,15 @@
               },
               "additionalProperties": true
             }
+          },
+          "400": {
+            "description": "Syntax error"
+          },
+          "403": {
+            "description": "Forbidden: The api_key is missing"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
