@@ -147,11 +147,40 @@ p {
   }
 }
 
-#main {
-  a[href^='http']:not([href*='foia.gov/']),
-  a[target=_blank] {
-    @extend %external-url;
+// Removing external links in main content via css
+//#main {
+//  a[href^='http']:not([href*='foia.gov/']),
+//  a[target=_blank] {
+//    @extend %external-url;
+//  }
+//}
+
+// external links elsewhere
+.no-underline {
+  text-decoration: none;
+  border-bottom: 0!important;
+}
+
+.ext {
+  background: url(/assets/img/external-link.svg) no-repeat 0 0;
+  background-size: 100%;
+  display: inline-block;
+  margin-bottom: -1px;
+  margin-left: 4px;
+  margin-right: 4px;
+  width: 14px;
+  height: 14px;
+
+  &.alt {
+    background: url(/assets/img/external-link-alt.svg) no-repeat 0 0;
+    background-size: 100%;
   }
+}
+
+
+//usa-link usa-link--alt usa-link--external
+.usa-link--external {
+  position: relative;
 }
 
 %a-colors {

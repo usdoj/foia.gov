@@ -28,7 +28,6 @@ build:
 	mkdir -p www.foia.gov/assets
 	cp -R _fonts/ www.foia.gov/assets/fonts
 	cp -R node_modules/uswds/dist/img www.foia.gov/assets
-	cp node_modules/exitscript/exitscript.min.js www.foia.gov/assets/js/
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS)
 
 build.reload:

@@ -107,3 +107,72 @@ $icon-arrow-both-up: '/img/fontawesome/arrow-both-up.svg';
 $icon-arrow-both-none: '/img/fontawesome/arrow-both-none.svg';
 
 @import '../../node_modules/uswds/src/stylesheets/uswds';
+
+
+//
+//
+//.usa-link--external::after {
+//  //background: url(/assets/img/external-link.svg) no-repeat 0 0;
+//  -webkit-mask: url(/assets/img/external-link.svg) no-repeat center/contain;
+//  background: url(/assets/img/external-link.svg) no-repeat center/contain;
+//  //background: url(/assets/img/external.svg) no-repeat 0 0;
+//  //-webkit-mask: url(/assets/img/external.svg) no-repeat center/contain;
+//  background-size: 100%;
+//  content: '';
+//  display: inline-block;
+//  height: 1em;
+//  width: 1em;
+//  margin-bottom: -1px;
+//  margin-left: 4px;
+//
+//}
+//
+//.usa-link--external.usa-link--alt::after {
+//  //background: 0 0;
+//  background: url(/assets/img/external-link-alt.svg) no-repeat center/contain;
+//  -webkit-mask: url(/assets/img/external-link-alt.svg) no-repeat center/contain;
+//  mask: url(/assets/img/external-link-alt.svg) no-repeat center/contain;
+//}
+
+
+
+//@supports ((-webkit-mask:url()) or (mask:url()))
+//[href^=http]:not([href*="designsystem.digital.gov"])::after {
+//  background: 0 0;
+//  background-color: currentColor;
+//  -webkit-mask: url(../img/usa-icons/launch.svg) no-repeat center/contain;
+//  mask: url(../img/usa-icons/launch.svg) no-repeat center/contain;
+//}
+//@supports ((-webkit-mask:url()) or (mask:url()))
+//.usa-link--external.usa-link--alt::after {
+//  background: 0 0;
+//  background-color: currentColor;
+//  -webkit-mask: url(../img/usa-icons/launch.svg) no-repeat center/contain;
+//  mask: url(../img/usa-icons/launch.svg) no-repeat center/contain;
+//}
+//.usa-link--external.usa-link--alt::after {
+//  background: url(../img/usa-icons-bg/launch--white.svg) no-repeat center/contain;
+//}
+//.usa-link--external.usa-link--alt::after, .usa-link--external::after {
+//  width: 1.75ex;
+//  background-position: center;
+//  content: "";
+//  display: inline-block;
+//  height: 1.75ex;
+//  margin-left: 2px;
+//  margin-top: .7ex;
+//  position: absolute;
+//}
+//@supports ((-webkit-mask:url()) or (mask:url()))
+//.usa-link--external::after {
+//  background: 0 0;
+//  background-color: currentColor;
+//  -webkit-mask: url(../img/usa-icons/launch.svg) no-repeat center/contain;
+//  mask: url(../img/usa-icons/launch.svg) no-repeat center/contain;
+//}
+//.usa-link--external::after {
+//  background: url(../img/usa-icons/launch.svg) no-repeat center/contain;
+//}
+//*, ::after, ::before {
+//  box-sizing: inherit;
+//}

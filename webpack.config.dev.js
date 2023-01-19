@@ -17,7 +17,8 @@ module.exports = {
     // Needed to watch SCSS folders since not importing from JS file will not trigger webpack
     new WebpackWatchPlugin({
       files: [
-        'www.foia.gov/_sass/**/*.scss',
+        'www.foia.gov/*',
+        'www.foia.gov/**/*.*',
       ],
     }),
     new webpack.ProvidePlugin({
