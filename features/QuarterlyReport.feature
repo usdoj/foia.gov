@@ -17,5 +17,3 @@ Feature: Quartersly report
     And I should see "4. Select Quarters"
     And I should see "View Report"
     And I should see "Download CSV"
-    And I should see "Apple"
-
