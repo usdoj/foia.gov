@@ -1,5 +1,5 @@
 @report
-Feature: Quartersly report
+Feature: Quarterly report
 
   As site visitor
   I need to be able to run quarterly reports of agency FOIA data
