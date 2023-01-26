@@ -71,7 +71,7 @@ component API and provide any relevant data to Agency.
 Get the Office of Information Policy's form id.
 
 ```
-$ curl -H 'X-API-Key: <your-api-key>' https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/request_form | jq '.data.attributes.id'
+$ curl -H 'X-API-Key: <your-api-key>' https://api.foia.gov/api/agency_components/8216158f-8089-431d-b866-dc334e8d4758/request_form | jq '.data.attributes.drupal_internal__id'
 "test_form"
 ```
 
