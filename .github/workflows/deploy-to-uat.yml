@@ -2,7 +2,7 @@ name: Deploy to uat environment - uat-www.foia.gov
 on:
   push:
     branches:
-      - uat*
+      - gh-uat*
 jobs:
   # Build for the Acquia Cloud UAT environment
   build:
