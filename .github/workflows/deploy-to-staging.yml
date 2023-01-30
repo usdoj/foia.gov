@@ -2,7 +2,7 @@ name: Deploy to staging environment - stg-www.foia.gov
 on:
   push:
     branches:
-      - release*
+      - gh-release*
 jobs:
   # Build for the Acquia Cloud Staging environment
   build:
