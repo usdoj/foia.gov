@@ -2,7 +2,7 @@ name: Deploy to dev environment - dev-www.foia.gov
 on:
   push:
     branches:
-      - develop
+      - gh-develop
 jobs:
   # Build and deploy to the Acquia Cloud development environment
   build:
