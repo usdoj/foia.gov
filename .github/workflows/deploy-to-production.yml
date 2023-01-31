@@ -2,7 +2,7 @@ name: Deploy to production environment - www.foia.gov
 on:
   push:
     branches:
-      - gh-master
+      - master
 jobs:
   # Build for the Acquia Cloud production environment
   build:
