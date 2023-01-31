@@ -31,6 +31,7 @@
   "homepage": "https://github.com/18F/beta.foia.gov#readme",
   "dependencies": {
     "@rjsf/core": "4.x",
+    "@usdoj/uswds-external-link": "github:ameshkin/uswds-external-link",
     "assert": "2.x",
     "axios": "0.x",
     "babel-polyfill": "6.x",

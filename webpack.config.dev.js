@@ -19,6 +19,7 @@ module.exports = {
       files: [
         'www.foia.gov/*',
         'www.foia.gov/**/*.*',
+        'js/**/*.*',
       ],
     }),
     new webpack.ProvidePlugin({

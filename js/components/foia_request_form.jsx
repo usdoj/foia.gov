@@ -142,7 +142,7 @@ function FoiaRequestForm({
             using the contact information provided to you on this site.
           </p>
         </div>
-        { upload.get('inProgress')
+        {upload.get('inProgress')
           ? (
             <UploadProgress
               progressTotal={upload.get('progressTotal')}
