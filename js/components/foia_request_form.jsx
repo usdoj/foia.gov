@@ -31,12 +31,6 @@ function FoiaRequestForm({
   // Custom validation function, which runs after jsonSchema validation.
   function validate(data, errors) {
     const honField = 'website';
-    const contactFields = ['email', 'address_line1', 'phone_number'];
-    if (contactFields.every((field) => !data.requester_contact[field])) {
-      contactFields.forEach((field) => {
-        errors.requester_contact[field].addError('Please provide at least one form of contact information.');
-      });
-    }
     if (data.requester_contact[honField]) {
       errors.addError('Error');
     }
@@ -157,13 +151,13 @@ function FoiaRequestForm({
               Submit request
             </button>
           )}
-        { submissionResult.errorMessage
+        {submissionResult.errorMessage
           && (
-          <p>
-            <span className="usa-input-error-message" role="alert">
-              {submissionResult.errorMessage}
-            </span>
-          </p>
+            <p>
+              <span className="usa-input-error-message" role="alert">
+                {submissionResult.errorMessage}
+              </span>
+            </p>
           )}
       </div>
     </Form>
@@ -179,7 +173,7 @@ FoiaRequestForm.propTypes = {
 };
 
 FoiaRequestForm.defaultProps = {
-  onSubmit: () => {},
+  onSubmit: () => { },
 };
 
 export default FoiaRequestForm;

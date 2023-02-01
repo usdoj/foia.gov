@@ -66,6 +66,10 @@
     "@babel/preset-react": "7.x",
     "@cucumber/cucumber": "^8.x",
     "babel-loader": "9.x",
+<<<<<<< HEAD
+=======
+    "chai": "4.x",
+>>>>>>> develop
     "btoa": "^1.2.1",
     "buffer": "^6.0.3",
     "chai": "4.x",
