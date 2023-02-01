@@ -33,6 +33,12 @@ class ChiefFoiaOfficersCouncilPage extends Component {
     requestActions.fetchCFOCouncilData();
   }
 
+  componentDidUpdate() {
+    // Run the external link script after data is fetched
+    // eslint-disable-next-line no-undef
+    runExtlink();
+  }
+
   render() {
     const {
       title,

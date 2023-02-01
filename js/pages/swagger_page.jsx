@@ -7,8 +7,8 @@ import SwaggerSpec from '../../swagger.json';
 function handleResponse(response) {
   if (response.status !== 200) {
     if (response.body.error.code === 'API_KEY_MISSING') {
-      // eslint-disable-next-line no-alert
-      alert(`API Authorization Required\n${response.body.error.message}`);
+      // Click on authorize button
+      document.querySelector('.authorize').click();
     }
   }
   return response;

@@ -147,11 +147,29 @@ p {
   }
 }
 
-#main {
-  a[href^='http']:not([href*='foia.gov/']),
-  a[target=_blank] {
-    @extend %external-url;
+.usa-footer {
+  .ext {
+    .stroke-color {
+      stroke: #C6ECFC;
+    }
   }
+}
+
+.svg-icon {
+  margin: 0 4px;
+  width: 10px;
+  height: 10px;
+}
+
+.stroke-color {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+
+.usa-link--external {
+  position: relative;
 }
 
 %a-colors {
