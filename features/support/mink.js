@@ -19,6 +19,7 @@ const driver = new mink.Mink({
     "the View Report button": "button[value='view']",
     "the data type dropdown": "select[name='data_type']",
     "the Select All Agencies button": ".select-all-agencies > a",
+    "the Technology Committee accordion": "#chief-foia-officers-council-react-app > div > div > ul:nth-child(4) > li > button",
   }
 });
 

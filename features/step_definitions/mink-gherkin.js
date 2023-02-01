@@ -3,6 +3,7 @@ const cucumber = require('@cucumber/cucumber');
 const { After, Status } = require('@cucumber/cucumber');
 const mink = require('cucumber-mink');
 const Promise = require('bluebird');
+const definitions = require("cucumber-mink/src/step_definitions");
 
 const customSteps = [
   {
@@ -57,7 +58,7 @@ After((testCase) => {
 });
 
 customSteps.forEach((step) => {
-  cucumber.defineStep(step.pattern, step.callback);
+  cucumber.Given(step.pattern, step.callback);
 });
 
 mink.gherkin(cucumber);
