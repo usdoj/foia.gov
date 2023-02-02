@@ -6,9 +6,9 @@ Feature: Chief FOIA Officers Council
   So that I can make sure there is at least one item in past meetings
 
   Background:
-    Given I am on "/chief-foia-officers-council"
+    Given I am on "/chief-foia-officers-council/"
     And I wait 25 seconds
 
   Scenario: The headers are visible
     Then I should see "Chief FOIA Officers Council"
-    And I should see at least one "PAST MEETINGS:"
+    And I should see "PAST MEETINGS:"
