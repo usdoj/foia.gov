@@ -1,3 +1,4 @@
+/* eslint-disable  react/jsx-one-expression-per-line */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -23,9 +24,7 @@ function displayName(foiaPersonnel) {
   if (name && title) {
     return (
       <span>
-        {name}
-        ,
-        {title}
+        {name},  {title}
       </span>
     );
   }
