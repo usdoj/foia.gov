@@ -4,11 +4,11 @@ const webpack = require('webpack');
 const exec = require('child_process').exec;
 const WebpackWatchPlugin = require('webpack-watch-files-plugin').default;
 
-const env = 'development';
+const env = process.env.APP_ENV || 'development';
 assert(['local', 'cloud-gov', 'development', 'staging', 'uat', 'production', 'ddev'].includes(env), `${env} is not an acceptable environment.`);
 
 module.exports = {
-  mode: env,
+  mode: 'development',
   devtool: 'eval-source-map',
   watchOptions: {
     ignored: /node_modules/,
