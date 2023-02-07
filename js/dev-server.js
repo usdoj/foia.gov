@@ -8,7 +8,7 @@ const port = process.env.PORT || '4000';
 
 // Serve static files from the Jekyll build
 const static_path = path.resolve(path.join(__dirname), '..', '_site');
-
+const assets_path = path.resolve(path.join(__dirname), '..', 'www.foia.gov', 'assets');
 
 /**
  * Event listener for HTTP server "error" event.
@@ -54,6 +54,7 @@ const app = express();
 
 app.set('port', port);
 
+app.use('/assets', express.static(assets_path));
 app.use(express.static(static_path));
 
 // Serve the request single-page app from all endpoints.
