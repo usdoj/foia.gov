@@ -43,7 +43,7 @@ clean:
 
 serve.dev:
 	-pkill -9 -f "node js/dev-server.js"
-	APP_ENV=development node js/dev-server.js
+	node js/dev-server.js
 
 serve:
 	npx npm-run-all --parallel serve:watch serve:dev
