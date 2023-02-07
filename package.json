@@ -50,7 +50,7 @@
     "react": "16.x",
     "react-dom": "16.x",
     "react-modal": "3.x",
-    "react-router-dom": "5.x",
+    "react-router-dom": "6.x",
     "react-url-query": "1.x",
     "swagger-ui": "^3.52.5",
     "swagger-ui-react": "^3.52.5",
