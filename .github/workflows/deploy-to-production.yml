@@ -1,0 +1,36 @@
+name: Deploy to production environment - www.foia.gov
+on:
+  push:
+    branches:
+      - master
+jobs:
+  # Build for the Acquia Cloud production environment
+  build:
+    env:
+      GIT_REPO: ${{ secrets.GIT_REPO }}
+      APP_ENV: production
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        name: Setup RUBY
+      - name: Install dependencies
+        run: |
+          npm i
+          bundle install
+      - name: Run tests
+        run: |
+          NODE_ENV=production make test
+      # Install SSH Key
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+      - name: Acquia known hosts
+        run: |
+          echo "${{ secrets.KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+      - name: Deploy to Acquia development
+        run: |
+          chmod +x ./bin/git-deploy.sh
+          ./bin/git-deploy.sh _site master
+        shell: bash
