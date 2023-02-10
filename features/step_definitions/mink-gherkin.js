@@ -34,6 +34,7 @@ const customSteps = [
     async callback(value) {
       const inputSelector = `label[for="${value}"]`;
       const inputHandle = await this.mink.page.$(inputSelector);
+      await Promise.delay(1 * 1000);
       await inputHandle.click();
       return inputHandle.dispose();
     },

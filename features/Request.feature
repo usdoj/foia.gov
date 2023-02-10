@@ -7,7 +7,7 @@ Feature: Request
 
   Background:
     Given I am on "/request/agency-component/8216158f-8089-431d-b866-dc334e8d4758/"
-    And I wait 3 seconds
+    And I wait 5 seconds
 
   Scenario: The 6 sections of the request are visible
     Then I should see "Contact information"
