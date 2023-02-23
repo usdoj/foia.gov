@@ -6,6 +6,15 @@ const Promise = require('bluebird');
 
 const customSteps = [
   {
+    pattern: /^(?:|I )hard click on "([^"]*)"/,
+    async callback(value) {
+      const inputSelector = this.mink.getSelector(value);
+      const inputHandle = await this.mink.page.$(inputSelector);
+      await inputHandle.evaluate(b => b.click());
+      return inputHandle.dispose();
+    },
+  },
+  {
     pattern: /^(?:|I )enter "([^"]*)" into the homepage agency search box/,
     async callback(value) {
       const inputSelector = this.mink.getSelector('the homepage search box');
@@ -32,10 +41,10 @@ const customSteps = [
   {
     pattern: /^(?:|I )check the box for the year "([^"]*)"/,
     async callback(value) {
-      const inputSelector = `label[for="${value}"]`;
+      const inputSelector = `input[name="${value}"]`;
       const inputHandle = await this.mink.page.$(inputSelector);
       await Promise.delay(1 * 1000);
-      await inputHandle.click();
+      await inputHandle.evaluate(b => b.click());
       return inputHandle.dispose();
     },
   },
@@ -54,11 +63,12 @@ After((testCase) => {
   if (testCase.result.status === Status.FAILED) {
     console.log(`FAILED: ${testCase.pickle.name}`);
     console.log(`PAGE: ${testCase.pickle.uri}`);
+    console.log(`MESSAGE: ${testCase.result.message}`);
   }
 });
 
 customSteps.forEach((step) => {
-  cucumber.defineStep(step.pattern, step.callback);
+  cucumber.Given(step.pattern, step.callback);
 });
 
 mink.gherkin(cucumber);
