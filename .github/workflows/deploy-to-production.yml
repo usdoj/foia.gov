@@ -32,5 +32,5 @@ jobs:
       - name: Deploy to Acquia development
         run: |
           chmod +x ./bin/git-deploy.sh
-          ./bin/git-deploy.sh _site master
+          ./bin/git-deploy.sh _site production
         shell: bash

@@ -1,4 +1,4 @@
-@report
+@quarterlyreport
 Feature: Quarterly report
 
   As site visitor
@@ -7,7 +7,7 @@ Feature: Quarterly report
 
   Background:
     Given I am on "/quarterly.html"
-    And I wait 15 seconds
+    And I wait 20 seconds
 
   Scenario: The input sections are visible
     Then I should see "Create a Quarterly Report"
