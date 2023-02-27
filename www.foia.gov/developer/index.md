@@ -141,5 +141,3 @@ For example, to receive the Department of Justice (DOJ) annual report for 2021, 
 ## API Key Signup
 
 {% include api-key-signup-form.html %}
-
-<p class="float-right"><a href="#top">Return to Top</a></p>
