@@ -13,4 +13,5 @@ topButton.onclick = () => {
   document.body.scrollIntoView({
     behavior: "smooth",
   });
+  document.getElementById("skipnav").focus();
 };
