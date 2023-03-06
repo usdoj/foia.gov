@@ -1,4 +1,5 @@
 let topButton = document.getElementById("return-top");
+let skipnav = document.getElementById("skipnav");
 
 // Show the Return to Top button if scroll position is higher than the user's screen height
 window.onscroll = () => {
@@ -13,5 +14,6 @@ topButton.onclick = () => {
   document.body.scrollIntoView({
     behavior: "smooth",
   });
-  document.getElementById("skipnav").focus();
+  skipnav.focus();
+  skipnav.blur();
 };
