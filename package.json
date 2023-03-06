@@ -64,7 +64,7 @@
     "@babel/core": "7.x",
     "@babel/preset-env": "7.x",
     "@babel/preset-react": "7.x",
-    "@cucumber/cucumber": "^8.11.1",
+    "@cucumber/cucumber": "^9.0.0",
     "babel-loader": "9.x",
     "btoa": "^1.2.1",
     "buffer": "^6.0.3",
