@@ -1,0 +1,33 @@
+.usa-footer__return-to-top {
+  line-height: .9;
+
+  .return-top {
+    border-radius: 0;
+    bottom: 4rem;
+    margin: 0 0 10px 0;
+    position: fixed;
+    left: 0;
+    opacity: 0;
+    @include transition(opacity .7s .7s, background-color .5s);
+    .svg-wrapper {
+      display: inline-block;
+      svg {
+        padding-top: 7px;
+        width: 21px;
+        height: 21px;
+        display: inline-block;
+      }
+    }
+    @media all and (min-width: $small-screen) {
+      left: 2rem;
+      bottom: 0;
+      margin: 0;
+    }
+
+    @media print {
+      display: none;
+    }
+
+  }
+}
+
