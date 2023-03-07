@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/usdoj/foia.gov.svg?style=svg)](https://circleci.com/gh/usdoj/foia.gov)
+![Github Actions deploy-to-dev workflow](https://github.com/usdoj/foia.gov/actions/workflows/deploy-to-dev.yml/badge.svg)
 
 # foia
 
