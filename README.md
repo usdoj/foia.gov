@@ -1,5 +1,3 @@
-![Github Actions deploy-to-dev workflow](https://github.com/usdoj/foia.gov/actions/workflows/deploy-to-dev.yml/badge.svg)
-
 # foia
 
 New FOIA beta site + national portal. The site is based off of
