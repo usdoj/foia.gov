@@ -116,6 +116,17 @@ $background-color: $color-primary-darkest;
   @media print {
     display: none;
   }
+
+
+  .svg-wrapper {
+    display: inline-block;
+    svg {
+      padding-top: 7px;
+      width: 21px;
+      height: 21px;
+      display: inline-block;
+    }
+  }
 }
 
 .glossary-search {

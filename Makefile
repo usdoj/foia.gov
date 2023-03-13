@@ -46,7 +46,7 @@ serve.dev:
 	APP_ENV=development node js/dev-server.js
 
 serve:
-	npx npm-run-all --parallel serve:watch serve:dev
+	./node_modules/.bin/npm-run-all --parallel serve:watch serve:dev
 
 serve.detached:
 	-pkill -9 -f "node js/dev-server.js"

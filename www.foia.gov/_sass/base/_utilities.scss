@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .clearfix::after {
     clear: both;
     content: '';
