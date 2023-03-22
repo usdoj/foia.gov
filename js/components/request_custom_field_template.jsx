@@ -20,6 +20,8 @@ function CustomFieldTemplate(props) {
   // - formContext.errors: This is where errors returned from Drupal would be.
   // - rawErrors: This is where jsonSchema validation errors would be.
   const error = formContext.errors[id] || ((rawErrors.length) ? rawErrors[0] : false);
+
+  console.log("request",error);
   if (error) {
     classes.push('usa-input-error');
   }

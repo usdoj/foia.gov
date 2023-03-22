@@ -143,7 +143,6 @@ describe('webformFieldsToJsonSchema()', () => {
           contract_number: { type: 'string' },
           request_origin: {
             type: 'string',
-            enumNames: ['Company', 'Individual/Self', 'Organization'],
             enum: ['company', 'individual', 'organization'],
           },
         });

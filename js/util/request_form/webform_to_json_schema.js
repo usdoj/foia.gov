@@ -69,11 +69,9 @@ function toJsonSchemaProperty(webformField) {
   // If options is present, translate them to enums
   if (webformField.options && typeof webformField.options === 'object') {
     property.enum = [];
-    property.enumNames = [];
 
     Object.keys(webformField.options).forEach((key) => {
       property.enum.push(key);
-      property.enumNames.push(webformField.options[key]);
     });
   }
 
