@@ -9,6 +9,8 @@ function FoiaDatasetDownload() {
         <h1>FOIA Data Set Downloads</h1>
         <p>The following compressed files are complete archives of the  FOIA Data sets for the years 2008 through 2019.</p>
         <ul>
+          <li><a href="/2022-FOIASetFull.zip">Download the full 2022 FOIA Data set</a> (.zip format)</li>
+          <li><a href="/2021-FOIASetFull.zip">Download the full 2021 FOIA Data set</a> (.zip format)</li>
           <li><a href="/2020-FOIASetFull.zip">Download the full 2020 FOIA Data set</a> (.zip format)</li>
           <li><a href="/2019-FOIASetFull.zip">Download the full 2019 FOIA Data set</a> (.zip format)</li>
           <li><a href="/2018-FOIASetFull.zip">Download the full 2018 FOIA Data set</a> (.zip format)</li>
