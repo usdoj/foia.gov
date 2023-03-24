@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function CustomFieldTemplate(props) {
+  console.log("CustomFieldTemplate.jsx dfr")
   const {
     children,
     classNames,
