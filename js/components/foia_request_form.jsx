@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '@rjsf/core';
-import { ArrayFieldTemplateProps, ErrorListProps, FieldTemplateProps, ObjectFieldTemplateProps, RJSFSchema } from "@rjsf/utils";
-import validator from "@rjsf/validator-ajv8";
+import validator from '@rjsf/validator-ajv8';
 import { Map } from 'immutable';
 import CustomFieldTemplate from 'components/request_custom_field_template';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
@@ -87,6 +86,7 @@ function FoiaRequestForm({
       })
       .catch((error) => {
         focusOnFirstError();
+        throw error;
       });
   }
 
@@ -105,7 +105,7 @@ function FoiaRequestForm({
   const formContext = { steps, errors };
   const { jsonSchema, uiSchema } = requestForm;
 
-  var templates = {
+  const templates = {
     FieldTemplate: CustomFieldTemplate,
     ObjectFieldTemplate: CustomObjectFieldTemplate,
   };
