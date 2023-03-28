@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function CustomFieldTemplate(props) {
-  console.log("CustomFieldTemplate.jsx dfr")
+
   const {
     children,
     classNames,
@@ -22,7 +22,6 @@ function CustomFieldTemplate(props) {
   // - rawErrors: This is where jsonSchema validation errors would be.
   const error = formContext.errors[id] || ((rawErrors.length) ? rawErrors[0] : false);
 
-  console.log("request",error);
   if (error) {
     classes.push('usa-input-error');
   }

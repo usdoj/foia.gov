@@ -30,7 +30,6 @@ class FoiaReportDataSubmit extends Component {
     event.preventDefault();
     const action = event.target.value;
     reportActions.validateForm();
-    console.log("handleSubmit validateForm");
     if (this.formIsValid()) {
       dispatcher.dispatch({
         type: types.REPORT_SUBMISSION_TYPE,

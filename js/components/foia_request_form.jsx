@@ -86,7 +86,6 @@ function FoiaRequestForm({
         onSubmit();
       })
       .catch((error) => {
-        console.log(error);
         focusOnFirstError();
       });
   }
