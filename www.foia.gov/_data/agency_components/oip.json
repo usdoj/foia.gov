@@ -588,7 +588,7 @@
                         "#type": "tel"
                     },
                     "request_category": {
-                        "#help": "Please select the category that best fits you. This information helps FOIA personnel determine what fees, if any, may be applicable.",
+                        "#help": "AAAPlease select the category that best fits you. This information helps FOIA personnel determine what fees, if any, may be applicable.",
                         "#options": {
                             "commercial": "Commercial requester",
                             "educational": "Educational",

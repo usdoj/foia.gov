@@ -114,7 +114,6 @@ function FoiaRequestForm({
     <Form
       className="foia-request-form sidebar_content-inner"
       disabled={upload.get('inProgress')}
-      // fields={fields}
       templates={templates}
       formContext={formContext}
       formData={formData.toJS()}

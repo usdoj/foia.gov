@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from 'react';
-import { ArrayFieldTemplateProps, ErrorListProps, FieldTemplateProps, ObjectFieldTemplateProps, RJSFSchema } from "@rjsf/utils";
 
 // Would be nice if this template was exported so we could just wrap it without
 // having to copy/paste it.
@@ -20,21 +19,7 @@ function CustomObjectFieldTemplate(ObjectFieldTemplateProps) {
       }
       <fieldset>
         {(ObjectFieldTemplateProps.uiSchema["ui:title"] || ObjectFieldTemplateProps.title) && (
-
           <legend id={`${ObjectFieldTemplateProps.idSchema.$id}__title`}>{ObjectFieldTemplateProps.title}</legend>
-
-          // <TitleField
-          //   id={`${ObjectFieldTemplateProps.idSchema.$id}__title`}
-          //   title={ObjectFieldTemplateProps.title || ObjectFieldTemplateProps.uiSchema["ui:title"]}
-          //   required={ObjectFieldTemplateProps.required}
-          //   formContext={ObjectFieldTemplateProps.formContext}
-          // />
-          // <TitleField
-          //   id={`${ObjectFieldTemplateProps.idSchema.$id}__title`}
-          //   title={ObjectFieldTemplateProps.title || ObjectFieldTemplateProps.uiSchema["ui:title"]}
-          //   //required={ObjectFieldTemplateProps.required}
-          //   //formContext={ObjectFieldTemplateProps.formContext}
-          // />
         )}
 
         {ObjectFieldTemplateProps.description && (
@@ -43,11 +28,6 @@ function CustomObjectFieldTemplate(ObjectFieldTemplateProps) {
               <p>{ObjectFieldTemplateProps.description}</p>
             </span>
           </div>
-          // <DescriptionField
-          //   id={`${ObjectFieldTemplateProps.idSchema.$id}__description`}
-          //   description={ObjectFieldTemplateProps.description}
-          //   formContext={ObjectFieldTemplateProps.formContext}
-          // />
         )}
         {ObjectFieldTemplateProps.properties.map(prop => prop.content)}
         <div className="foia-request-form_nav-top">
@@ -57,7 +37,5 @@ function CustomObjectFieldTemplate(ObjectFieldTemplateProps) {
     </div>
   );
 }
-// Check the render method of `CustomObjectFieldTemplate`.
-//     in CustomObjectFieldTemplate (created by ObjectField)
 
 export default CustomObjectFieldTemplate;
