@@ -128,7 +128,7 @@ class FoiaAnnualReportUtilities {
       emptyRow.field_foia_annual_report_yr = parseInt(year, 10);
       emptyRow.field_agency = 'All agencies';
       dataType.fields.forEach((field) => {
-        const value = (field.autosum) ? sums[year][field.id] : 'N/A';
+        const value = (field.autosum) ? sums[year][field.id].toFixed(2) : 'N/A';
         _set(emptyRow, field.id, value);
       });
       summedRows.push(emptyRow);
