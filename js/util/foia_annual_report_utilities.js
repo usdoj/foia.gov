@@ -133,7 +133,7 @@ class FoiaAnnualReportUtilities {
         if (field.type === 'currency') {
           formattedNumber = number.getNumber(sums[year][field.id]);
         } else {
-          formattedNumber = sums[year][field.id];
+          formattedNumber = number.getNumber(sums[year][field.id],0,2);
         }
         const value = (field.autosum) ? formattedNumber : 'N/A';
         _set(emptyRow, field.id, value);
