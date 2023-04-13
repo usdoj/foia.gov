@@ -28,22 +28,22 @@ function CustomFieldTemplate(props) {
     <div className={classes.join(' ')}>
       { displayLabel
         && (
-        <div>
-          <label htmlFor={id}>
-            {label}
-            <span className="foia-request-form_is-required">{required ? 'Required' : null}</span>
-          </label>
-          {description}
-        </div>
+          <div>
+            <label htmlFor={id}>
+              {label}
+              <span className="foia-request-form_is-required">{required ? 'Required' : null}</span>
+            </label>
+            {description}
+          </div>
         )}
       {children}
       { error
         && (
-        <div
-          className="usa-input-error-message"
-          role="alert"
-          dangerouslySetInnerHTML={{ __html: error }}
-        />
+          <div
+            className="usa-input-error-message"
+            role="alert"
+            dangerouslySetInnerHTML={{ __html: error }}
+          />
         )}
       {help}
     </div>

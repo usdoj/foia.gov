@@ -1,5 +1,3 @@
-[![CircleCI](https://circleci.com/gh/usdoj/foia.gov.svg?style=svg)](https://circleci.com/gh/usdoj/foia.gov)
-
 # foia
 
 New FOIA beta site + national portal. The site is based off of
