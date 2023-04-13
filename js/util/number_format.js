@@ -5,7 +5,7 @@
  * @param maxDec
  * @returns {*}
  */
-function getNumber(number, minDec = 1, maxDec = 2) {
+function getNumber(number, minDec = 2, maxDec = 2) {
   if (!Number.isInteger(number)) {
     const obj = Intl.NumberFormat('en-US', {
       minimumFractionDigits: minDec,
