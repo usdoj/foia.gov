@@ -6,7 +6,6 @@
  * @returns {*}
  */
 function getNumber(number, minDec = 2, maxDec = 2) {
-  debugger;
   if (!Number.isInteger(number)) {
     const obj = Intl.NumberFormat('en-US', {
       minimumFractionDigits: minDec,
