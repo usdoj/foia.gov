@@ -2036,8 +2036,7 @@
         "filter": true,
         "overall_field": "field_overall_ix_full_emp",
         "display": true,
-        "autosum": true,
-        "type": "currency"
+        "autosum": true
       },
       {
         "id": "field_foia_pers_costs_ix.field_eq_full_emp",
@@ -2045,8 +2044,7 @@
         "filter": true,
         "overall_field": "field_overall_ix_eq_full_emp",
         "display": true,
-        "autosum": true,
-        "type": "currency"
+        "autosum": true
       },
       {
         "id": "field_foia_pers_costs_ix.field_total_staff",
@@ -2054,8 +2052,7 @@
         "filter": true,
         "overall_field": "field_overall_ix_total_staff",
         "display": true,
-        "autosum": true,
-        "type": "currency"
+        "autosum": true
       },
       {
         "id": "field_footnotes_ix",
@@ -2063,8 +2060,7 @@
         "filter": false,
         "overall_field": false,
         "display": false,
-        "autosum": false,
-        "type": "currency"
+        "autosum": false
       }
     ],
     "includes": [
