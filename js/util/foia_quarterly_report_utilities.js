@@ -106,7 +106,7 @@ class FoiaQuarterlyReportUtilities {
         emptyRow.field_quarterly_quarter = parseInt(quarter, 10);
         emptyRow.field_agency = 'All agencies';
         dataType.fields.forEach((field) => {
-          const value = (field.autosum) ? sums[year][quarter][field.id].toFixed(2) : 'N/A';
+          const value = (field.autosum) ? sums[year][quarter][field.id] : 'N/A';
           _set(emptyRow, field.id, value);
         });
         summedRows.push(emptyRow);

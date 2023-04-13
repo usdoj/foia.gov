@@ -2036,7 +2036,8 @@
         "filter": true,
         "overall_field": "field_overall_ix_full_emp",
         "display": true,
-        "autosum": true
+        "autosum": true,
+        "type": "currency"
       },
       {
         "id": "field_foia_pers_costs_ix.field_eq_full_emp",
@@ -2044,7 +2045,8 @@
         "filter": true,
         "overall_field": "field_overall_ix_eq_full_emp",
         "display": true,
-        "autosum": true
+        "autosum": true,
+        "type": "currency"
       },
       {
         "id": "field_foia_pers_costs_ix.field_total_staff",
@@ -2052,7 +2054,8 @@
         "filter": true,
         "overall_field": "field_overall_ix_total_staff",
         "display": true,
-        "autosum": true
+        "autosum": true,
+        "type": "currency"
       },
       {
         "id": "field_footnotes_ix",
@@ -2060,7 +2063,8 @@
         "filter": false,
         "overall_field": false,
         "display": false,
-        "autosum": false
+        "autosum": false,
+        "type": "currency"
       }
     ],
     "includes": [
@@ -2079,7 +2083,8 @@
         "filter": true,
         "overall_field": "field_overall_ix_proc_costs",
         "display": true,
-        "autosum": true
+        "autosum": true,
+        "type": "currency"
       },
       {
         "id": "field_foia_pers_costs_ix.field_lit_costs",
@@ -2087,7 +2092,8 @@
         "filter": true,
         "overall_field": "field_overall_ix_lit_costs",
         "display": true,
-        "autosum": true
+        "autosum": true,
+        "type": "currency"
       },
       {
         "id": "field_foia_pers_costs_ix.field_total_costs",
@@ -2095,7 +2101,8 @@
         "filter": true,
         "overall_field": "field_overall_ix_total_costs",
         "display": true,
-        "autosum": true
+        "autosum": true,
+        "type": "currency"
       },
       {
         "id": "field_footnotes_ix",
@@ -2111,7 +2118,8 @@
         "filter": true,
         "overall_field": "field_overall_x_total_fees",
         "display": true,
-        "autosum": true
+        "autosum": true,
+        "type": "currency"
       },
       {
         "id": "field_fees_x.field_perc_costs",
