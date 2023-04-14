@@ -38,19 +38,17 @@ class FoiaReportResultsTable extends Component {
       Array.from(buttons).forEach((button) => {
         button.addEventListener('focusin', this.handleColumnFocus);
       });
+      if (this.props.displayMode === 'download' && this.props.tableData.length > 0) {
+        this.downloadCSV();
+      }
     });
-    if (this.props.displayMode === 'download' && this.props.tableData.length > 0) {
-      this.downloadCSV();
-    }
   }
 
   downloadCSV() {
     const { tableHeader } = this.props;
     const reportType = tableHeader.replace(/[^a-zA-Z ]/g, '').trim().replace(/[^A-Z0-9]+/ig, '-').toLowerCase();
     const table = this.tabulator;
-    table.on('tableBuilt', () => {
-      table.download('csv', `foia-${reportType}.csv`);
-    });
+    table.download('csv', `foia-${reportType}.csv`);
   }
 
   handleColumnFocus(event) {
