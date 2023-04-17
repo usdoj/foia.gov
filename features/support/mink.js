@@ -22,6 +22,7 @@ const driver = new mink.Mink({
     "the Hero image credit": "a[href='https://commons.wikimedia.org/wiki/File:Usdepartmentofjustice.jpg']",
     "the justice.gov link": "a[href='http://www.justice.gov']",
     "the external link script": "script[src='/assets/js/extlink.min.js']",
+    "the download csv button": "button[value='download']",
   }
 });
 

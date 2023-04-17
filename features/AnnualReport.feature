@@ -42,6 +42,7 @@ Feature: Annual report
     And I click on "the Select All Agencies button"
     And I choose "Requests" from the data type dropdown
     And I check the box for the year "2020"
+    And I hard click on "the download csv button"
     And I hard click on "the View Report button"
     And I wait 45 seconds
     Then I should see "Report Results"

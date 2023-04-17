@@ -49,7 +49,7 @@ class QuarterlyReportDataSubmit extends Component {
     return (
       <div className="form-group form-group_footer">
         <button onClick={this.handleSubmit} value="view" type="submit" className="usa-button usa-button-big usa-button-primary-alt with-siblings">View Report</button>
-        <button onClick={this.handleSubmit} value="download" type="button" className="usa-button usa-button-big usa-button-outline">Download CSV</button>
+        <button onClick={this.handleSubmit} value="download" type="button" className="usa-button usa-button-big usa-button-outline download">Download CSV</button>
         <button onClick={QuarterlyReportDataSubmit.handleClear} value="clear" type="button" className="button-as-link">Clear Search</button>
       </div>
     );

@@ -17,3 +17,4 @@ Feature: Quarterly report
     And I should see "4. Select Quarters"
     And I should see "View Report"
     And I should see "Download CSV"
+    And I hard click on "the download csv button"
