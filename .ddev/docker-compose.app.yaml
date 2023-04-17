@@ -1,0 +1,16 @@
+version: "3.6"
+services:
+  app:
+    container_name: ddev-${DDEV_SITENAME}-app
+    build: app-build
+    expose:
+      - 4000
+    command: "sleep infinity"
+    volumes:
+      - "../:/app"
+      -  ".:/mnt/ddev_config"
+    working_dir: /app
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    networks: [ default, ddev_default ]
