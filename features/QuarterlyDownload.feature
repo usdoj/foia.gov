@@ -1,9 +1,8 @@
-@quarterlyreport
-Feature: Quarterly report
+@quarterlydownload
+Feature: Quarterly download report
 
   As site visitor
-  I need to be able to run quarterly reports of agency FOIA data
-  So that I can learn how the agencies are doing with the FOIA
+  I need to be able to download quarterly report files
 
   Background:
     Given I am on "/quarterly.html"
@@ -15,5 +14,7 @@ Feature: Quarterly report
     And I should see "2. Select Data Type(s)"
     And I should see "3. Select Fiscal Years"
     And I should see "4. Select Quarters"
+    And I hard click on "the download csv button"
     And I should see "View Report"
     And I should see "Download CSV"
+    And I hard click on "the download csv button"

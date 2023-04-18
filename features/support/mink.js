@@ -23,6 +23,7 @@ const driver = new mink.Mink({
     "the justice.gov link": "a[href='http://www.justice.gov']",
     "the external link script": "script[src='/assets/js/extlink.min.js']",
     "the download csv button": "button[value='download']",
+    "the download csv button2": "button[class='download']",
   }
 });
 

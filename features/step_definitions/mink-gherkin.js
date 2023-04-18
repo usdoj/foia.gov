@@ -58,7 +58,26 @@ const customSteps = [
       return inputHandle.dispose();
     },
   },
-];
+  {
+    pattern: /^(?:|I )should get a download with the file type "([^"]*)"/,
+    async callback(value) {
+      // const inputSelector = this.mink.getSelector('the data type dropdown');
+      // console.log(`Field: ${inputSelector} \n`);
+      // const inputHandle = await this.mink.page.$(inputSelector);
+      // await inputHandle.type(value);
+
+      // const blah = this.mink.getHeaders();
+      const blah = this.mink.page.headers;
+
+      console.log(`blah: \n`,blah);
+      console.log(`value: \n`,value);
+      //page.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
+
+
+      return inputHandle.dispose();
+    },
+  },
+];// Then /^I should get a download with the file type
 After((testCase) => {
   if (testCase.result.status === Status.FAILED) {
     console.log(`FAILED: ${testCase.pickle.name}`);

@@ -172,7 +172,8 @@ class AnnualReportDataPage extends Component {
           <button
             onClick={this.triggerCSV.bind(this)}
             type="button"
-            className="print-hide usa-button usa-button-big usa-button-primary-alt download"
+            value="download"
+            className="print-hide usa-button usa-button-big usa-button-primary-alt"
           >
             Download
             CSV
