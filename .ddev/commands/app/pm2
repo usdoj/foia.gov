@@ -1,0 +1,7 @@
+#!/bin/sh
+
+## Description: Run make commands
+## Usage: pm2
+## Example: "ddev pm2"
+
+pm2 "$@"
