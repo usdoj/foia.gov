@@ -8,8 +8,10 @@ services:
     command: "sleep infinity"
     volumes:
       - "../:/app"
-      -  ".:/mnt/ddev_config"
+      - ".:/mnt/ddev_config"
     working_dir: /app
+    environment:
+      APP_ENV: ddev
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: $DDEV_APPROOT

@@ -18,16 +18,11 @@ composer_version: "2"
 web_environment: []
 nodejs_version: "16"
 hooks:
+  pre-start:
+    - exec-host: 'cp Gemfile Gemfile.lock .ddev/app-build/'
   post-start:
-    - exec: 'bundle install'
-      service: app
     - exec: 'sh -c "[ ! -d node_modules ] && npm ci || echo 0"'
       service: app
-    - exec: 'APP_ENV=ddev make build'
-      service: app
-    - exec: 'pm2 start --name test /usr/bin/make -- serve.dev'
-      service: app
-
 
 #hooks:
 #  post-start:

@@ -1,7 +1,11 @@
 # Development
 
+## Prerequisites (ddev)
 
-## Prerequisites
+* [DDEV](https://ddev.readthedocs.io/en/stable/)
+
+
+## Prerequisites (local)
 
 * [Ruby](https://www.ruby-lang.org/en/) 2.3.4
 * [Bundler](https://bundler.io/)
@@ -14,7 +18,26 @@ Once you've got Ruby installed, install bundler.
     $ gem install bundler
 
 
-## Setup
+## Setup (ddev)
+
+Build/start the containers.
+
+    $ ddev start
+
+Run the site locally, watching files for changes.
+
+    $ ddev make serve
+
+Or... run tests (fails at cucumber tests):
+
+    $ ddev make test
+
+To preview a production build:
+
+    $ ddev make build
+    $ ddev make serve.dev
+
+## Setup (local)
 
 Install the dependencies.
 

@@ -22,3 +22,10 @@ RUN npm install -g pm2
 # Building App
 
 RUN gem install bundler
+
+# These are copied into .ddev/app-build in a pre-start hook
+COPY Gemfile \
+     Gemfile.lock \
+     ./
+
+RUN bundle install
