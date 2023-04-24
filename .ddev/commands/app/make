@@ -1,0 +1,7 @@
+#!/bin/sh
+
+## Description: Run make commands
+## Usage: make
+## Example: "ddev make"
+
+make "$@"

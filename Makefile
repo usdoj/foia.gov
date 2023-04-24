@@ -30,12 +30,18 @@ build:
 	cp -R node_modules/uswds/dist/img www.foia.gov/assets
 	cp node_modules/@usdoj/uswds-external-link/extlink.min.js www.foia.gov/assets/js/
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS)
+	# Reset permissions for DDEV user
+	chown -R --reference=js _site
 
 build.reload:
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS)
+	# Reset permissions for DDEV user
+	chown -R --reference=js _site
 
 build.dev:
 	JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build $(JEKYLL_OPTS) --watch --incremental
+	# Reset permissions for DDEV user
+	chown -R --reference=js _site
 
 clean:
 	rm -rf www.foia.gov/assets
@@ -43,7 +49,7 @@ clean:
 
 serve.dev:
 	-pkill -9 -f "node js/dev-server.js"
-	APP_ENV=development node js/dev-server.js
+	node js/dev-server.js
 
 serve:
 	./node_modules/.bin/npm-run-all --parallel serve:watch serve:dev

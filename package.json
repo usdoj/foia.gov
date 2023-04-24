@@ -8,8 +8,8 @@
     "build": "webpack",
     "lint": "eslint --ext jsx,js js/",
     "test": "mochapack --webpack-config webpack.config.test.js js/**.test.js*",
-    "serve:watch": "APP_ENV=development webpack --watch --progress --config webpack.config.dev.js",
-    "serve:dev": "APP_ENV=development make serve.dev"
+    "serve:watch": "webpack --watch --progress --config webpack.config.dev.js",
+    "serve:dev": "make serve.dev"
   },
   "repository": {
     "type": "git",
