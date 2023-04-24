@@ -23,7 +23,9 @@ hooks:
   post-start:
     - exec: 'sh -c "[ ! -d node_modules ] && npm ci || echo 0"'
       service: app
-    - exec: 'pm2 start --name test /usr/bin/make -- serve.dev'
+    - exec: 'pm2 start --name node-serve /usr/local/bin/node -- js/dev-server.js'
+      service: app
+    - exec: 'pm2 start --name webpack /usr/local/bin/npm -- run serve:watch'
       service: app
 
 #hooks:

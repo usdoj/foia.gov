@@ -20,22 +20,29 @@ Once you've got Ruby installed, install bundler.
 
 ## Setup (ddev)
 
-Build/start the containers.
+Build/start the containers. This will run the dev-server.js and webpack in watch mode in two PM2 services. You can view the site: https://foia.gov.ddev.site/
 
     $ ddev start
 
-Run the site locally, watching files for changes.
+View webpack/jekyll logs, or status:
 
-    $ ddev make serve
+    $ ddev pm2 logs
+    $ ddev pm2 ls
 
-Or... run tests (fails at cucumber tests):
+Run tests (everything but cucumber tests are working):
 
     $ ddev make test
 
-To preview a production build:
+To preview a production build, stop the dev webpack service and do a prod build. This will update https://foia.gov.ddev.site/
 
+    $ ddev pm2 stop webpack
     $ ddev make build
-    $ ddev make serve.dev
+
+To return to development:
+
+    $ ddev pm2 start webpack
+
+**Tip:** With this setup, do not use `make` outside the container, as this will lead to permissions problems inside.
 
 ## Setup (local)
 
