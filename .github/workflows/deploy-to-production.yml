@@ -18,9 +18,9 @@ jobs:
         run: |
           npm i
           bundle install
-      - name: Build site
+      - name: Run tests
         run: |
-          NODE_ENV=production make build
+          NODE_ENV=production make test
       # Install SSH Key
       - name: Install SSH key
         uses: webfactory/ssh-agent@v0.7.0
