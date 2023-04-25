@@ -1,9 +1,12 @@
 <script src="{{ site.baseurl }}/assets/js/extlink.min.js"></script>
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
-    runExtlink();
-  }, false);
 
+    if(!window.location.href.includes("chief-foia-officers-council")) {
+      runExtlink();
+    }
+
+  }, false);
   function runExtlink() {
     extlink({
       title: '',

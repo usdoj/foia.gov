@@ -1,6 +1,7 @@
 import { Map } from 'immutable';
 import { get as _get, set as _set, cloneDeep as _cloneDeep } from 'lodash';
 import annualReportDataTypesStore from '../stores/annual_report_data_types';
+import number from './number_format';
 
 /**
  * Utility functions for working with report data.
@@ -128,7 +129,13 @@ class FoiaAnnualReportUtilities {
       emptyRow.field_foia_annual_report_yr = parseInt(year, 10);
       emptyRow.field_agency = 'All agencies';
       dataType.fields.forEach((field) => {
-        const value = (field.autosum) ? sums[year][field.id] : 'N/A';
+        let formattedNumber;
+        if (field.type === 'currency') {
+          formattedNumber = number.getNumber(sums[year][field.id]);
+        } else {
+          formattedNumber = number.getNumber(sums[year][field.id], 0, 2);
+        }
+        const value = (field.autosum) ? formattedNumber : 'N/A';
         _set(emptyRow, field.id, value);
       });
       summedRows.push(emptyRow);
