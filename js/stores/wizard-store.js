@@ -7,6 +7,7 @@
 import { create } from 'zustand';
 
 const defaultWizardState = {
+  currentPageDisplayed: 1,
   userKeywords: [],
   isSeekingOwnRecords: false,
   isVeteran: false,
@@ -15,6 +16,7 @@ const defaultWizardState = {
 };
 
 const useWizardStore = create((set) => ({
+  setCurrentPageDisplayed: (pageNumber) => set(() => ({ currentPageDisplayed: pageNumber })),
   wizardState: defaultWizardState,
   addKeywords: (keyword) => set((state) => ({ userKeywords: state.wizardState.push(keyword) })),
   removeKeyword: (keyword) => set((state) => {
