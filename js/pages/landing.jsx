@@ -7,6 +7,7 @@ import { createBrowserHistory } from 'history';
 import { requestActions } from 'actions';
 import LandingComponent from '../components/landing';
 import agencyComponentStore from '../stores/agency_component';
+import useWizardStore from '../stores/wizard_store';
 
 const urlPropsQueryConfig = {
   typeQueryString: { type: UrlQueryParamTypes.string, queryParam: 'type' },
@@ -55,6 +56,7 @@ class LandingPage extends Component {
   }
 
   render() {
+    const wizardState = useWizardStore((state) => state.wizardState);
     const {
       agencies,
       agencyComponents,
