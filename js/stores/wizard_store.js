@@ -7,28 +7,30 @@
 import { create } from 'zustand';
 
 const initialWizardState = {
-  currentPageDisplayed: null,
-  userKeywords: null,
-  isSeekingOwnRecords: null,
-  isVeteran: null,
-  returnedAgencyAndLinkList: null,
-  agencyDetailPage: null,
+  page: /** @type string */ 'init',
+  userKeywords: /** @type null | string[] */ null,
+  isSeekingOwnRecords: /** @type null | boolean */ null,
+  isVeteran: /** @type null | boolean */ null,
+  returnedAgencyAndLinkList: /** @type null | unknown[] */ null,
+  agencyDetailPage: /** @type null | string */ null,
 };
 
-const useWizardStore = create()((set, get) => ({
+const useWizardStore = create((set) => ({
   ...initialWizardState,
-  setCurrentPageDisplayed: (pageName) => set({ currentPageDisplayed: pageName }),
-  wizardState: initialWizardState,
-  addKeywords: (keyword) => set({ userKeywords: [...get().keywords, keyword] }),
-  removeKeyword: (keyword) => set({
-    userKeywords: get().userKeywords.filter((word) => word !== keyword),
+  setPage: (pageName) => set({ page: pageName }),
+  addKeywords: (keyword) => set((state) => {
+    if (Array.isArray(keyword)) {
+      return { userKeywords: [...state.keywords, ...keyword] };
+    }
+    return { userKeywords: [...state.keywords, keyword] };
   }),
+  removeKeyword: (keyword) => set((state) => ({
+    userKeywords: state.userKeywords.filter((word) => word !== keyword),
+  })),
   clearKeywords: () => set({ userKeywords: [] }),
   toggleIsVeteran: () => set((state) => ({ isVeteran: !state.isVeteran })),
   toggleIsSeekingOwnRecords: () => set((state) => ({ isSeekingOwnRecords: !state.isSeekingOwnRecords })),
-  resetWizardState: () => {
-    set(initialWizardState);
-  },
+  resetWizardState: () => set(initialWizardState),
 }));
 
 export default useWizardStore;
