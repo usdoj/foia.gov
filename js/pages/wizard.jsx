@@ -1,51 +1,20 @@
-import React, { useMemo } from 'react';
-import wizardPages, { WizardCtx } from '../components/wizard_pages';
-import useReducerWithThunk from '../util/use_reducer_with_thunk';
-
-const initState = {
-  loading: false,
-  page: 'One',
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'API_CALL':
-      return { ...state, loading: true };
-    case 'API_SUCCESS':
-      return {
-        ...state,
-        loading: false,
-        page: state.page === 'One' ? 'Two' : 'Three',
-      };
-    default:
-      return state;
-  }
-}
+import React from 'react';
+import wizardPages from '../components/wizard_pages';
+import { useRawWizardStore, useWizard } from '../stores/wizard_store';
 
 function WizardPage() {
-  // To be replaced by Zustand store hooks
-  const [state, dispatch] = useReducerWithThunk(reducer, initState);
+  // Start loading UI stuff...
+  useWizard().actions.initLoad();
 
-  const ctxValue = useMemo(() => ({
-    loading: state.loading,
-    callApi() {
-      dispatch(async () => {
-        dispatch({ type: 'API_CALL' });
-        // Delay
-        setTimeout(() => dispatch({ type: 'API_SUCCESS' }), 1e3);
-      });
-    },
-  }), [state]);
-  const ActivePageComponent = wizardPages[state.page];
+  const page = useRawWizardStore((state) => state.page);
+  const ActivePageComponent = wizardPages[page];
 
   return (
-    <WizardCtx.Provider value={ctxValue}>
-      <div className="usa-grid usa-section-dark">
-        <div className="usa-width-one-whole">
-          <ActivePageComponent />
-        </div>
+    <div className="usa-grid usa-section-dark">
+      <div className="usa-width-one-whole">
+        <ActivePageComponent />
       </div>
-    </WizardCtx.Provider>
+    </div>
   );
 }
 

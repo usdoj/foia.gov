@@ -1,19 +1,14 @@
-import { createContext } from 'react';
-import One from './wizard_page_one';
+import Init from './wizard_page_init';
 import Two from './wizard_page_two';
 import Three from './wizard_page_three';
 
 /**
- * @type {Record<WizardPageKey, React.FC>}
+ * @type {Record<WizardPage, React.FC>}
  */
 const wizardPages = {
-  One,
+  Init,
   Two,
   Three,
 };
 
-// Temporary. Will be replaced with Zustand store.
-const WizardCtx = createContext({});
-
-export { WizardCtx };
 export default wizardPages;

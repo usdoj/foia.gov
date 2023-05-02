@@ -1,15 +1,23 @@
-import React, { useContext } from 'react';
-import { WizardCtx } from './wizard_pages';
+import React from 'react';
+import { useWizard } from '../stores/wizard_store';
 
 function Two() {
-  const { callApi, loading } = useContext(WizardCtx);
+  const {
+    actions, ui,
+  } = useWizard();
+
   return (
     <div>
-      <h1>Page Two</h1>
+      <div dangerouslySetInnerHTML={{ __html: ui.intro2 || '' }} />
 
       <p>
-        <button type="button" className="usa-button" onClick={callApi}>Continue</button>
-        {loading && ' Loading...'}
+        <button
+          type="button"
+          className="usa-button"
+          onClick={actions.nextPage}
+        >
+          Continue
+        </button>
       </p>
     </div>
   );
