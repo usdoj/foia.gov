@@ -16,16 +16,16 @@ const initialWizardState = {
   allTopics: null,
 
   // How many async operations are we waiting on?
-  // Use isLoading() to show a loading indicator.
+  // Use useWizard().loading instead of reading this.
   numLoading: 0,
 
+  // Current react component rendered.
+  // See js/components/wizard_pages.jsx
   page: 'Init',
 
-  // Current query being worked on.
+  // After submitting the first page this will be created to track progress through the app.
+  // This design allows us to, in the future, separate the UX into multiple requests.
   request: null,
-
-  // Queued queries to help the user with later.
-  remainingRequests: [],
 
   // UI text loaded from Drupal
   ui: null,
@@ -43,7 +43,7 @@ const WizardJourney = {
  * Example:
  *   const page = useRawWizardStore((state) => state.page);
  */
-const useRawWizardStore = create((set, get) => {
+const useRawWizardStore = create((set) => {
   // Actions separated from state vars.
 
   /**
@@ -73,10 +73,6 @@ const useRawWizardStore = create((set, get) => {
       },
     );
   };
-
-  const isLoading = () => get().numLoading > 0;
-
-  const isReady = () => get().ui !== null;
 
   const nextPage = () => set((state) => {
     switch (state.page) {
@@ -175,8 +171,6 @@ const useRawWizardStore = create((set, get) => {
 
   return ({
     ...initialWizardState,
-    isLoading,
-    isReady,
     actions,
   });
 });
@@ -191,7 +185,6 @@ const useRawWizardStore = create((set, get) => {
  *   ready: boolean;
  *   ui: WizardVars['ui'];
  *   request: WizardVars['request'];
- *   remainingRequests: WizardVars['remainingRequests'];
  * }}
  */
 function useWizard() {
@@ -202,7 +195,6 @@ function useWizard() {
     ready: state.ui !== null,
     ui: state.ui,
     request: state.request,
-    remainingRequests: state.remainingRequests,
   }), shallow);
 }
 
