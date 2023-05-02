@@ -14,14 +14,14 @@ interface WizardAgency {
   url: string;
 }
 
-type WizardQueryType = 'unknown' | 'courtRecs' | 'medRecs';
+type WizardJourney = 'Unrecognized' | 'CourtRecords' | 'MedRecords';
 
 interface WizardRequest {
   isSeekingOwnRecords: null | boolean;
   isVeteran: null | boolean;
+  journey: WizardJourney;
   query: string;
   recommendedAgencies: null | WizardAgency[];
-  type: WizardQueryType;
   userTopics: Set<WizardTopic>;
 }
 

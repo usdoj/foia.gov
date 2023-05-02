@@ -31,6 +31,12 @@ const initialWizardState = {
   ui: null,
 };
 
+const WizardJourney = {
+  Unrecognized: 'Unrecognized',
+  CourtRecords: 'CourtRecords',
+  MedRecords: 'MedRecords',
+};
+
 /**
  * Low-level hook to manage state. Use useWizard instead...
  *
@@ -105,9 +111,9 @@ const useRawWizardStore = create((set, get) => {
       request: {
         isSeekingOwnRecords: null,
         isVeteran: null,
+        journey: WizardJourney.Unrecognized,
         query,
         recommendedAgencies: [],
-        type: 'unknown',
         userTopics: topics,
       },
       numLoading: Math.max(0, state.numLoading - 1),
@@ -200,4 +206,4 @@ function useWizard() {
   }), shallow);
 }
 
-export { useWizard, useRawWizardStore };
+export { useWizard, useRawWizardStore, WizardJourney };
