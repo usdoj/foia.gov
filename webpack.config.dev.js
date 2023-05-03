@@ -53,6 +53,7 @@ module.exports = {
     annual_report_data: './js/annual_report_data.jsx',
     quarterly_report_data: './js/quarterly_report_data.jsx',
     chief_foia_officers_council: './js/chief_foia_officers_council.jsx',
+    wizard: './js/wizard.jsx',
   },
   output: {
     path: path.resolve(__dirname, 'www.foia.gov/assets/js'),
