@@ -6,3 +6,23 @@
     }
   }
 }
+
+.stroke-color {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+
+#main {
+  .stroke-color {
+    stroke: #122E51;
+  }
+}
+.usa-footer {
+  .ext {
+    .stroke-color {
+      stroke: #C6ECFC;
+    }
+  }
+}
