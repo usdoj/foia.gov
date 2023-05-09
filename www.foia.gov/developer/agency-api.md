@@ -6,8 +6,7 @@ permalink: /developer/agency-api/
 # FOIA.gov Draft RESTful HTTPS API Spec
 
 This is [a draft spec](https://github.com/18F/beta.foia.gov/issues/32) for integrating
-the FOIA.gov portal with existing FOIA case management systems (_e.g._,
-[FOIAonline](https://foiaonline.gov/foiaonline/action/public/home))
+the FOIA.gov portal with existing FOIA case management systems
 operated by individual agencies in the federal government. This work stems from
 the interviews and research that led to our [FOIA Portal Discovery
 Recommendations](https://github.com/18F/foia-recommendations/blob/master/recommendations.md).
