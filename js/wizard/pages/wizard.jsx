@@ -1,6 +1,6 @@
 import React from 'react';
 import wizardPages from '../components/wizard_pages';
-import { useRawWizardStore, useWizard } from '../stores/wizard_store';
+import { useRawWizardStore, useWizard } from '../../stores/wizard_store';
 
 function WizardPage() {
   // Start loading UI stuff...

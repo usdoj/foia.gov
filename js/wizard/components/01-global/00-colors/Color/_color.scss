@@ -1,0 +1,39 @@
+// Storybook: Color Swatches
+
+$swatch-size: rem(150px);
+$swatch-padding: 1rem;
+
+.storybook-color__group {
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: $swatch-padding;
+}
+
+.storybook-color-swatch {
+  border: 1px solid #c1c1c1;
+  flex: 0 0 ($swatch-size + 2 * $swatch-padding);
+  margin: 0 ($swatch-padding / 2) $swatch-padding;
+  max-width: ($swatch-size + 2 * $swatch-padding);
+  padding: $swatch-padding;
+}
+
+.storybook-color-swatch__indicator {
+  height: $swatch-size;
+  margin-bottom: $swatch-padding;
+  width: $swatch-size;
+}
+
+.storybook-color-swatch__meta {
+  line-height: 1.2;
+}
+
+.storybook-color-swatch__name {
+  margin-bottom: 8px;
+}
+
+.storybook-color-swatch__hex {
+  font-family: Menlo, Consolas, 'Lucida Console', 'Liberation Mono',
+    'Courier New', monospace, sans-serif;
+  font-size: 14px;
+}

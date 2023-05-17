@@ -1,0 +1,41 @@
+// Functions: Gesso
+@use 'sass:meta';
+@use 'sass:map';
+@use '../theme-settings.artifact' as *;
+
+// Fetch nested keys
+// @param {Map} $map - Map
+// @param {Arglist} $keys - Keys to fetch
+// @return {*}
+@function map-deep-get($map, $keys...) {
+  $arg-type: meta.type-of($map);
+
+  @if ($arg-type != map) {
+    @error "A valid sass map is required as the first argument. Argument #{$map} is type #{$arg-type}";
+  }
+
+  @each $key in $keys {
+    @if (map-has-key($map, $key)) {
+      $map: map.get($map, $key);
+    } @else {
+      @warn "Key `#{$key}` not found in map";
+    }
+  }
+
+  @return $map;
+}
+
+// Retrieve Main Theme Key
+@function settings-get-map($map-key, $keys...) {
+  @return map-deep-get($settings, $map-key, $keys...);
+}
+
+// Get Color
+@function settings-color($keys...) {
+  @return settings-get-map(colors, $keys...);
+}
+
+// Get Font Family
+@function settings-font-family($ff-type) {
+  @return unquote(settings-get-map(typography, font-family, $ff-type, stack));
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useWizard } from '../stores/wizard_store';
+import { useWizard } from '../../stores/wizard_store';
 
 function Init() {
   const {
