@@ -107,3 +107,13 @@ Instead of the current location in `www.foia.gov/foia-style.scss`.  This will al
 Webpack's `sass-loader` has many options such as advanced source maps and compression which can further speed up development.
 
 Webpack can also detect changes to and recompile other assets such as images, fonts and SVG files.
+
+### Type-check the Wizard app
+
+```
+# Install tsc in your global npm
+npm i -g typescript
+
+# Run type-checker
+tsc --project js/wizard.tsconfig.json
+```
