@@ -1,0 +1,17 @@
+// Layout: Site Container
+
+.l-app-container--blue {
+  background-color: settings-color(brand, blue, dark-1);
+}
+
+.l-app-container--purple {
+  background-color: settings-color(other, violet, 70v);
+}
+
+.l-app-container--white {
+  background-color: settings-color(grayscale, white);
+}
+
+.l-app-container--gray {
+  background-color: settings-color(grayscale, gray-6);
+}

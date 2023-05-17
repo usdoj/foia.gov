@@ -1,7 +1,7 @@
-// Functions: Gesso
+// Functions: Settings
 @use 'sass:meta';
 @use 'sass:map';
-@use '../theme-settings.artifact' as *;
+@import '../theme-settings.artifact';
 
 // Fetch nested keys
 // @param {Map} $map - Map
@@ -30,6 +30,16 @@
   @return map-deep-get($settings, $map-key, $keys...);
 }
 
+// Get Constrain
+@function settings-constrain($keys...) {
+  @return settings-get-map(constrains, $keys...);
+}
+
+// Get Breakpoint
+@function settings-breakpoint($keys...) {
+  @return settings-get-map(breakpoints, $keys...);
+}
+
 // Get Color
 @function settings-color($keys...) {
   @return settings-get-map(colors, $keys...);
@@ -38,4 +48,9 @@
 // Get Font Family
 @function settings-font-family($ff-type) {
   @return unquote(settings-get-map(typography, font-family, $ff-type, stack));
+}
+
+// Get Site margins
+@function settings-site-margins($keys...) {
+  @return settings-get-map(site-margins, $keys...);
 }

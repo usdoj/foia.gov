@@ -1,0 +1,31 @@
+// Mixins: Breakpoint
+
+@import '../functions';
+
+// Create a min-width media query.
+// @param {Number} $breakpoint - width value.
+@mixin breakpoint-min($breakpoint) {
+  @media (min-width: #{$breakpoint}) {
+    @content;
+  }
+}
+
+// Assume min-width if shorthand breakpoint mixin is used.
+// @param {Number} $breakpoint - width value.
+@mixin breakpoint($breakpoint) {
+  @include breakpoint-min($breakpoint) {
+    @content;
+  }
+}
+
+// Create a max-width media query.
+// @param {Number} $breakpoint - width value.
+// @param {Boolean} $subtract_1_from_max - whether to subtract 1px from $breakpoint value.
+@mixin breakpoint-max($breakpoint, $subtract_1_from_max: false) {
+  @if $subtract_1_from_max {
+    $breakpoint: px($breakpoint) - 1px;
+  }
+  @media (max-width: #{$breakpoint}) {
+    @content;
+  }
+}
