@@ -26,6 +26,10 @@ RUN gem install bundler
 # These are copied into .ddev/app-build in a pre-start hook
 COPY Gemfile \
      Gemfile.lock \
+     package.json \
+     package-lock.json \
      ./
+
+RUN npm ci
 
 RUN bundle install
