@@ -17,7 +17,7 @@ COPY --from=nodeJs /opt /opt
 RUN ln -s ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
 RUN ln -s ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
-RUN npm install -g pm2
+RUN npm install -g pm2 typescript
 
 # Building App
 

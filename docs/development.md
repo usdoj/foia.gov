@@ -111,9 +111,5 @@ Webpack can also detect changes to and recompile other assets such as images, fo
 ### Type-check the Wizard app
 
 ```
-# Install tsc in your global npm
-npm i -g typescript
-
-# Run type-checker
-tsc --project js/wizard.tsconfig.json
+ddev wizard-tsc
 ```
