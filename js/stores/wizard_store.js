@@ -65,9 +65,19 @@ const useRawWizardStore = create((set) => {
       [
         { label: 'Topic One', tid: 123 },
         { label: 'Topic Two', tid: 124 },
+        { label: 'Topic Three', tid: 125 },
+        { label: 'Topic Four', tid: 126 },
+        { label: 'Topic Five', tid: 127 },
+        { label: 'Topic Six', tid: 128 },
+        { label: 'Topic Seven', tid: 129 },
+        { label: 'Topic Eight', tid: 130 },
+        { label: 'Topic Nine', tid: 131 },
+        { label: 'Topic Ten', tid: 132 },
+        { label: 'Topic Eleven', tid: 133 },
+        { label: 'Topic Twelve', tid: 134 },
       ],
       {
-        intro1: '<h1>Page One</h1>',
+        intro1: '<h1>Let\'s dive in...</h1>',
         intro2: '<h1>Page Two</h1>',
         intro3: '<h1>Page Three</h1>',
       },
@@ -93,9 +103,9 @@ const useRawWizardStore = create((set) => {
 
   /**
    * @param {string} query
-   * @param {WizardTopic[]} topics
+   * @param {WizardTopic} selectedTopic
    */
-  const submitRequest = async (query, topics) => {
+  const submitRequest = async (query, selectedTopic) => {
     set((state) => ({ numLoading: state.numLoading + 1 }));
 
     // Emulate API call
@@ -110,7 +120,7 @@ const useRawWizardStore = create((set) => {
         journey: WizardJourney.Unrecognized,
         query,
         recommendedAgencies: [],
-        userTopics: topics,
+        userTopic: selectedTopic,
       },
       numLoading: Math.max(0, state.numLoading - 1),
       page: 'Two',
@@ -182,6 +192,7 @@ const useRawWizardStore = create((set) => {
  *   actions: WizardActions;
  *   allTopics: WizardVars['allTopics'];
  *   loading: boolean;
+ *   page: WizardPage;
  *   ready: boolean;
  *   ui: WizardVars['ui'];
  *   request: WizardVars['request'];
@@ -192,6 +203,7 @@ function useWizard() {
     actions: /** WizardActions */ state.actions,
     allTopics: state.allTopics,
     loading: state.numLoading > 0,
+    page: state.page,
     ready: state.ui !== null,
     ui: state.ui,
     request: state.request,

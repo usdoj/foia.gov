@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import wizardPages from '../components/wizard_pages';
-import { useRawWizardStore, useWizard } from '../stores/wizard_store';
+import { useWizard } from '../stores/wizard_store';
 
 function WizardPage() {
   // Start loading UI stuff...
-  useWizard().actions.initLoad();
+  const { page, actions } = useWizard();
 
-  const page = useRawWizardStore((state) => state.page);
+  useEffect(() => {
+    actions.initLoad();
+  }, []);
+
   const ActivePageComponent = wizardPages[page];
 
   return (
