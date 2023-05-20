@@ -19,6 +19,9 @@ const driver = new mink.Mink({
     "the View Report button": "button[value='view']",
     "the data type dropdown": "select[name='data_type']",
     "the Select All Agencies button": ".select-all-agencies > a",
+    "the Hero image credit": "a[href='https://commons.wikimedia.org/wiki/File:Usdepartmentofjustice.jpg']",
+    "the justice.gov link": "a[href='http://www.justice.gov']",
+    "the external link script": "script[src='/assets/js/extlink.min.js']",
   }
 });
 

@@ -10,3 +10,7 @@ _site
 node_modules/
 npm-debug.log*
 /www.foia.gov/assets/
+
+# These copied from root in DDEV pre-start hook
+.ddev/app-build/Gemfile
+.ddev/app-build/Gemfile.lock

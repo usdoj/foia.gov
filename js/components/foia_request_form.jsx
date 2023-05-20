@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '@rjsf/core';
+import validator from '@rjsf/validator-ajv8';
 import { Map } from 'immutable';
-
 import CustomFieldTemplate from 'components/request_custom_field_template';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
 import { requestActions } from '../actions';
 import { SubmissionResult } from '../models';
-import ObjectFieldTemplate from './object_field_template';
+import CustomObjectFieldTemplate from './object_field_template';
 import rf from '../util/request_form';
 import FoiaFileWidget from './foia_file_widget';
 import { dataUrlToAttachment, findFileFields } from '../util/attachment';
@@ -70,7 +70,6 @@ function FoiaRequestForm({
       .forEach((fileFieldName) => {
         payload[fileFieldName] = dataUrlToAttachment(payload[fileFieldName]);
       });
-
     // Submit the request
     return requestActions
       .submitRequestForm(
@@ -105,20 +104,26 @@ function FoiaRequestForm({
     : submissionResult.errors;
   const formContext = { steps, errors };
   const { jsonSchema, uiSchema } = requestForm;
+
+  const templates = {
+    FieldTemplate: CustomFieldTemplate,
+    ObjectFieldTemplate: CustomObjectFieldTemplate,
+  };
+
   return (
     <Form
       className="foia-request-form sidebar_content-inner"
       disabled={upload.get('inProgress')}
-      FieldTemplate={CustomFieldTemplate}
+      templates={templates}
       formContext={formContext}
       formData={formData.toJS()}
-      ObjectFieldTemplate={ObjectFieldTemplate}
       onChange={onChange}
       onSubmit={onFormSubmit}
       schema={jsonSchema}
       uiSchema={uiSchema}
       widgets={widgets}
-      validate={validate}
+      customValidate={validate}
+      validator={validator}
       onError={onError}
       showErrorList={false}
       transformErrors={transformErrors}

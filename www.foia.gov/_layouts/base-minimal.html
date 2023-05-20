@@ -1,0 +1,19 @@
+---
+---
+<!DOCTYPE html>
+{% if page.spanish %}
+{% assign language = 'es' %}
+{% else %}
+{% assign language = 'en' %}
+{% endif %}
+<html lang="{{language}}">
+{% include head.html %}
+<body {% if page.bundle contains '_report_data' %} tabindex="0"{% endif %}>
+{% include header-minimal.html %}
+{{ content }}
+<script src="{{ site.baseurl }}/assets/js/uswds.bundle.js"></script>
+{% include extlink.html %}
+{% if page.bundle %}<script type="text/javascript" src="{{ page.bundle | append: ".bundle.js" | prepend: "/assets/js/" | prepend: site.baseurl }}" ></script>{% endif %}
+{% include siteimprove.html %}
+</body>
+</html>
