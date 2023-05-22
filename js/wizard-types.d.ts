@@ -126,6 +126,7 @@ declare global {
     allTopics: WizardVars['allTopics'];
     canGoBack: boolean;
     loading: boolean;
+    page: WizardPageName;
     ready: boolean;
     ui: WizardVars['ui'];
     request: WizardVars['request'];

@@ -98,7 +98,7 @@ const useRawWizardStore = create((
 
       // Move all this to be delivered by Drupal
       {
-        intro1: '<h1>Page One</h1>',
+        intro1: '<h1>Let\'s dive in...</h1>',
         intro2: '<h1>Page Two</h1>',
         intro3: '<h1>Page Three</h1>',
         m1: 'If you are seeking records on yourself you will be required ...',
@@ -250,7 +250,16 @@ const useRawWizardStore = create((
 /**
  * Hook for simplified operation within wizard pages.
  *
- * @returns {UseWizard}
+ * @returns {{
+ *   actions: WizardActions;
+ *   allTopics: WizardVars['allTopics'];
+ *   canGoBack: boolean;
+ *   loading: boolean;
+ *   page: WizardPageName;
+ *   ready: boolean;
+ *   ui: WizardVars['ui'];
+ *   request: WizardVars['request'];
+ * }}
  */
 function useWizard() {
   return useRawWizardStore((/** WizardState */ state) => ({
@@ -258,6 +267,7 @@ function useWizard() {
     allTopics: state.allTopics,
     canGoBack: state.history.length > 0,
     loading: state.numLoading > 0,
+    page: state.page,
     ready: state.ui !== null,
     ui: state.ui,
     request: state.request,
