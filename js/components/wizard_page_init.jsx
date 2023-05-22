@@ -74,7 +74,7 @@ function Init() {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={modalStyles}
-        contentLabel="Example Modal"
+        contentLabel="All topics"
       >
         <button
           onClick={closeModal}
@@ -93,7 +93,10 @@ function Init() {
           <button
             type="button"
             className="usa-button"
-            onClick={() => actions.submitRequest(query || '', selectedTopic)}
+            onClick={() => actions.submitRequest({
+              query: query || '',
+              topic: selectedTopic,
+            })}
           >
             Submit
           </button>
@@ -105,11 +108,11 @@ function Init() {
 }
 
 /**
- * @param props
+ * @param {Object} props
  * @param {WizardTopic[]} props.topics
  * @param {(topic: WizardTopic) => boolean} props.isTopicSelected
  * @param {(topic: WizardTopic) => void} props.onClickTopicButton
- * @returns {JSX.Element|null}
+ * @returns {React.ReactNode}
  */
 function TopicsButtons({ topics, isTopicSelected, onClickTopicButton }) {
   if (topics && topics.length) {
@@ -122,7 +125,7 @@ function TopicsButtons({ topics, isTopicSelected, onClickTopicButton }) {
             type="button"
             onClick={() => onClickTopicButton(topic)}
           >
-            {topic.label}
+            {topic.title}
           </button>
         ))}
       </div>

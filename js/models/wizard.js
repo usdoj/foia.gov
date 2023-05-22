@@ -20,6 +20,27 @@ export const allTopics = [
   {
     tid: 't5', title: 'Social Security Records', introMid: null, firstQid: null,
   },
+  {
+    tid: 't6', title: 'Six', introMid: null, firstQid: null,
+  },
+  {
+    tid: 't7', title: 'Seven', introMid: null, firstQid: null,
+  },
+  {
+    tid: 't8', title: 'Eight', introMid: null, firstQid: null,
+  },
+  {
+    tid: 't9', title: 'Nine', introMid: null, firstQid: null,
+  },
+  {
+    tid: 't10', title: 'Ten', introMid: null, firstQid: null,
+  },
+  {
+    tid: 't11', title: 'Eleven', introMid: null, firstQid: null,
+  },
+  {
+    tid: 't12', title: 'Twelve', introMid: null, firstQid: null,
+  },
 ];
 
 /**
