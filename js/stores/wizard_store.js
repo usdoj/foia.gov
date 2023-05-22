@@ -98,7 +98,7 @@ const useRawWizardStore = create((
 
       // Move all this to be delivered by Drupal
       {
-        intro1: '<h1>Let\'s dive in...</h1>',
+        intro1: '<h1>Let\'s dive in...</h1><h2>What information are you looking for?</h2>',
         intro2: '<h1>Page Two</h1>',
         intro3: '<h1>Page Three</h1>',
         m1: 'If you are seeking records on yourself you will be required ...',

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
 import WizardHtml from './wizard_html';
 
 Modal.setAppElement('#wizard-react-app');
+
+/** @type {{content:React.CSSProperties, overlay:React.CSSProperties}} */
 const modalStyles = {
   content: {
     top: '50%',
@@ -13,6 +15,10 @@ const modalStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    maxWidth: '100rem',
+  },
+  overlay: {
+    backgroundColor: '#122e51cc',
   },
 };
 
@@ -40,17 +46,27 @@ function Init() {
     displayedTopics.push(selectedTopic);
   }
 
-  const isTopicSelected = (topic) => selectedTopic && selectedTopic.tid === topic.tid;
+  const isTopicSelected = (topic) => selectedTopic && (selectedTopic.tid === topic.tid);
 
   function onClickTopicButton(topic) {
-    setSelectedTopic(isTopicSelected(topic) ? topic : null);
+    setSelectedTopic(isTopicSelected(topic) ? null : topic);
   }
 
   return (
     <div>
+      <p>
+        <a href="/" style={{ color: '#fff' }}>
+          <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
+            <use xlinkHref="/img/uswds-3.2.0-sprite.svg#navigate_before" />
+          </svg>
+          {' '}
+          Back
+        </a>
+      </p>
+
       <WizardHtml mid="intro1" />
 
-      <label htmlFor="user-query">What information are you looking for?</label>
+      <label htmlFor="user-query" className="visually-hidden">Query</label>
       <input
         id="user-query"
         onChange={(e) => setQuery(e.target.value)}
@@ -58,17 +74,20 @@ function Init() {
         value={query || ''}
       />
 
-      {allTopics && allTopics.length > 10 ? (
-        <button onClick={openModal} className="button-as-link">
-          See all
-        </button>
-      ) : null}
-
-      <TopicsButtons
-        topics={displayedTopics}
-        isTopicSelected={isTopicSelected}
-        onClickTopicButton={onClickTopicButton}
-      />
+      <div style={{ margin: '2rem 0' }}>
+        Common topics
+        {' '}
+        <TopicsButtons
+          topics={displayedTopics}
+          isTopicSelected={isTopicSelected}
+          onClickTopicButton={onClickTopicButton}
+        />
+        {allTopics.length > 10 ? (
+          <button onClick={openModal} className="button-as-link" style={{ color: '#fff' }}>
+            See all
+          </button>
+        ) : null}
+      </div>
 
       <Modal
         isOpen={modalIsOpen}
@@ -76,11 +95,13 @@ function Init() {
         style={modalStyles}
         contentLabel="All topics"
       >
-        <button
-          onClick={closeModal}
-          className="close-button"
-          aria-label="Close Modal"
-        />
+        <div style={{ textAlign: 'right' }}>
+          <button
+            onClick={closeModal}
+            className="close-button"
+            aria-label="Close Modal"
+          />
+        </div>
         <TopicsButtons
           topics={allTopics}
           isTopicSelected={isTopicSelected}
@@ -117,18 +138,19 @@ function Init() {
 function TopicsButtons({ topics, isTopicSelected, onClickTopicButton }) {
   if (topics && topics.length) {
     return (
-      <div>
+      <>
         {topics.map((topic) => (
           <button
             key={topic.tid}
-            className={isTopicSelected(topic) ? 'usa-button-primary-alt' : ''}
+            className="wizard-topic-button"
+            data-selected={Number(isTopicSelected(topic))}
             type="button"
             onClick={() => onClickTopicButton(topic)}
           >
             {topic.title}
           </button>
         ))}
-      </div>
+      </>
     );
   }
 
@@ -136,9 +158,9 @@ function TopicsButtons({ topics, isTopicSelected, onClickTopicButton }) {
 }
 
 TopicsButtons.propTypes = {
-  topics: PropTypes.array,
-  isTopicSelected: PropTypes.func,
-  onClickTopicButton: PropTypes.func,
+  topics: PropTypes.array.isRequired,
+  isTopicSelected: PropTypes.func.isRequired,
+  onClickTopicButton: PropTypes.func.isRequired,
 };
 
 export default Init;
