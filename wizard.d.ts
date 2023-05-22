@@ -25,7 +25,7 @@ interface WizardRequest {
   journey: WizardJourney;
   query: string;
   recommendedAgencies: null | WizardAgency[];
-  userTopics: Set<WizardTopic>;
+  userTopic: Set<WizardTopic>;
 }
 
 interface WizardVars {
@@ -43,7 +43,7 @@ interface WizardActions {
   reset(): void;
   setIsSeekingOwnRecords(val: boolean): void;
   setIsVeteran(val: boolean): void;
-  submitRequest(query: string, topics: WizardTopic[]): void;
+  submitRequest(query: string, selectedTopic: WizardTopic): void;
 }
 
 interface WizardState extends WizardVars {
