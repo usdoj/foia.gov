@@ -1,13 +1,13 @@
 import React from 'react';
-import PageComponent from '.';
+import Page from '.';
 
 export default {
   title: 'Templates/Page',
-  component: PageComponent,
+  component: Page,
 };
 
 function Template(args) {
-  return <PageComponent {...args} />;
+  return <Page {...args} />;
 }
 
 export const Default = Template.bind({});

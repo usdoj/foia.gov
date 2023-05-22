@@ -1,0 +1,12 @@
+// Component: Back Link
+
+.c-back-link {
+  font-family: settings-font-family(body);
+  font-size: 18px;
+
+  .l-app-container--blue &,
+  .l-app-container--purple &,
+  .l-app-container--gray & {
+    color: settings-color(grayscale,white);
+  }
+}

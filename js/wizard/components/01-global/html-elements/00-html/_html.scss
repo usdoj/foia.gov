@@ -1,0 +1,10 @@
+// HTML Element: HTML
+
+html {
+  font-family: settings-font-family(body);
+  font-size: 10px;
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+}

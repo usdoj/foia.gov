@@ -50,6 +50,11 @@
   @return unquote(settings-get-map(typography, font-family, $ff-type, stack));
 }
 
+// Get Font Weight
+@function settings-font-weight($keys...) {
+  @return settings-get-map(typography, font-weight, $keys...);
+}
+
 // Get Site margins
 @function settings-site-margins($keys...) {
   @return settings-get-map(site-margins, $keys...);

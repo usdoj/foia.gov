@@ -1,5 +1,9 @@
 // Layout: Site Container
 
+.l-app-container {
+  height: 100vh;
+}
+
 .l-app-container--blue {
   background-color: settings-color(brand, blue, dark-1);
 }

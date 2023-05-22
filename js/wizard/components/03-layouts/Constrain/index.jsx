@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Constrain({ children }) {
+function Constrain({ children, width }) {
   return (
-    <div className="l-constrain">
+    <div className={`l-constrain${width ? ` l-constrain--${width}` : ''}`}>
       {children}
     </div>
   );
@@ -11,6 +11,7 @@ function Constrain({ children }) {
 
 Constrain.propTypes = {
   children: PropTypes.node.isRequired,
+  width: PropTypes.string,
 };
 
 export default Constrain;

@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Constrain from '../../03-layouts/Constrain';
 import AppContainer from '../../03-layouts/AppContainer';
+import Header from '../../04-components/Header';
 
 function Page({ children, color }) {
   return (
     <AppContainer color={color || 'blue'}>
-      <Constrain>
-        {children}
-      </Constrain>
+      <Header isLight={color !== 'white'} />
+      {children}
     </AppContainer>
   );
 }
