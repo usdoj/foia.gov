@@ -23,6 +23,4 @@ function WizardPage() {
 
 WizardPage.propTypes = {};
 
-WizardPage.defaultProps = {};
-
 export default WizardPage;

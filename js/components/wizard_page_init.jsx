@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
 
 Modal.setAppElement('#wizard-react-app');
-const customStyles = {
+const modalStyles = {
   content: {
     top: '50%',
     left: '50%',
@@ -20,24 +20,21 @@ function Init() {
     actions, allTopics, ready, loading, ui,
   } = useWizard();
 
-  const [query, setQuery] = useState(null);
-  const [selectedTopic, setSelectedTopic] = useState(null);
+  const [query, setQuery] = useState(/** @type string | null */ null);
+  const [selectedTopic, setSelectedTopic] = useState(/** @type WizardTopic | null */ null);
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
-  function closeModal() {
-    setIsOpen(false);
-  }
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   if (!ready) {
     return <div>Loading app...</div>;
   }
 
-  // displayed topics list will be derived from allTopics and whatever the current topic is set to
+  // Modal has all topics, but the page is limited to 10...
   const displayedTopics = allTopics.slice(0, 10);
   if (selectedTopic && !displayedTopics.find((t) => t.tid === selectedTopic.tid)) {
+    // ...and must include the selected topic
     displayedTopics.pop();
     displayedTopics.push(selectedTopic);
   }
@@ -45,11 +42,7 @@ function Init() {
   const isTopicSelected = (topic) => selectedTopic && selectedTopic.tid === topic.tid;
 
   function onClickTopicButton(topic) {
-    if (isTopicSelected(topic)) {
-      setSelectedTopic(null);
-    } else {
-      setSelectedTopic(topic);
-    }
+    setSelectedTopic(isTopicSelected(topic) ? topic : null);
   }
 
   return (
@@ -79,7 +72,7 @@ function Init() {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customStyles}
+        style={modalStyles}
         contentLabel="Example Modal"
       >
         <button
@@ -99,10 +92,7 @@ function Init() {
           <button
             type="button"
             className="usa-button"
-            onClick={() => actions.submitRequest({
-              query: query || '',
-              topics: selectedTopic,
-            })}
+            onClick={() => actions.submitRequest(query || '', selectedTopic)}
           >
             Submit
           </button>
@@ -113,6 +103,13 @@ function Init() {
   );
 }
 
+/**
+ * @param props
+ * @param {WizardTopic[]} props.topics
+ * @param {(topic: WizardTopic) => boolean} props.isTopicSelected
+ * @param {(topic: WizardTopic) => void} props.onClickTopicButton
+ * @returns {JSX.Element|null}
+ */
 function TopicsButtons({ topics, isTopicSelected, onClickTopicButton }) {
   if (topics && topics.length) {
     return (
@@ -129,7 +126,9 @@ function TopicsButtons({ topics, isTopicSelected, onClickTopicButton }) {
         ))}
       </div>
     );
-  } return null;
+  }
+
+  return null;
 }
 
 TopicsButtons.propTypes = {
