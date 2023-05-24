@@ -1,5 +1,3 @@
-import '../js/wizard/components/_styles.scss';
-
 const preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },

@@ -1,10 +1,5 @@
 const config = {
-  stories: ["../js/**/*.mdx", "../js/**/*.stories.@(js|jsx|ts|tsx)"],
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-  ],
+  stories: ["../js/stories/*.mdx", "../js/stories/*.stories.@(js|jsx|ts|tsx)"],
   framework: {
     name: "@storybook/react-webpack5",
     options: {},
@@ -13,15 +8,6 @@ const config = {
     autodocs: "tag",
   },
   webpackFinal: async (config, { configType }) => {
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        'sass-loader',
-      ],
-    });
-
     return config;
   },
 };
