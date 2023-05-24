@@ -5,6 +5,7 @@ services:
     build: app-build
     expose:
       - 4000
+      - 6006
     command: "sleep infinity"
     volumes:
       - "../:/app"
