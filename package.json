@@ -91,7 +91,7 @@
     "sinon-chai": "3.x",
     "stream-browserify": "^3.0.0",
     "style-loader": "^3.3.2",
-    "webpack": "^5.77.0",
+    "webpack": "^5.84.1",
     "webpack-cli": "^5.0.1",
     "webpack-node-externals": "3.x",
     "webpack-watch-files-plugin": "^1.2.1"
