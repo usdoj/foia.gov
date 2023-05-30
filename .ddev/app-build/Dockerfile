@@ -17,7 +17,7 @@ COPY --from=nodeJs /opt /opt
 RUN ln -s ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
 RUN ln -s ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
-RUN npm install -g pm2
+RUN npm install -g pm2 typescript
 
 # Building App
 
@@ -26,6 +26,10 @@ RUN gem install bundler
 # These are copied into .ddev/app-build in a pre-start hook
 COPY Gemfile \
      Gemfile.lock \
+     package.json \
+     package-lock.json \
      ./
+
+RUN npm ci
 
 RUN bundle install

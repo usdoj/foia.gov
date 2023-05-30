@@ -7,6 +7,8 @@
 
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
+import { allTopics, getQuestion } from '../models/wizard';
+import { WizardPageName } from '../components/wizard_pages';
 
 /**
  * @type {WizardVars}
@@ -29,12 +31,8 @@ const initialWizardState = {
 
   // UI text loaded from Drupal
   ui: null,
-};
 
-const WizardJourney = {
-  Unrecognized: 'Unrecognized',
-  CourtRecords: 'CourtRecords',
-  MedRecords: 'MedRecords',
+  history: [],
 };
 
 /**
@@ -43,15 +41,49 @@ const WizardJourney = {
  * Example:
  *   const page = useRawWizardStore((state) => state.page);
  */
-const useRawWizardStore = create((set) => {
+const useRawWizardStore = create((
+  /** ZustandSet<WizardState> */ set,
+  /** ZustandGet<WizardState> */ get,
+) => {
   // Actions separated from state vars.
 
   /**
-   * @param {WizardTopic[]} allTopics
-   * @param {Record<string, string>} ui
+   * Decorate full state with updated history
+   *
+   * @param {Partial<WizardVars>} newState
+   * @returns {WizardState}
    */
-  const initLoadSuccess = (allTopics, ui) => set({
-    allTopics,
+  const withCapturedHistory = (newState) => {
+    const currentState = get();
+    const { history, page, request } = currentState;
+    /** @type {WizardHistorySnapshot} */
+    const snapshot = { page, request };
+    return {
+      ...currentState,
+      ...newState,
+      history: [...history, snapshot],
+    };
+  };
+
+  /**
+   * Pop history to return to last page
+   */
+  const prevPage = () => set((state) => {
+    const { history } = state;
+    if (!history.length) {
+      throw new Error('No history snapshots available!');
+    }
+    const { page, request } = history[history.length - 1];
+    return {
+      page,
+      request,
+      history: history.slice(0, history.length - 1),
+    };
+  });
+
+  /** @type {WizardActions['initLoadSuccess']} */
+  const initLoadSuccess = (topics, ui) => set({
+    allTopics: topics,
     ui,
   });
 
@@ -62,35 +94,91 @@ const useRawWizardStore = create((set) => {
     });
 
     initLoadSuccess(
-      [
-        { label: 'Topic One', tid: 123 },
-        { label: 'Topic Two', tid: 124 },
-        { label: 'Topic Three', tid: 125 },
-        { label: 'Topic Four', tid: 126 },
-        { label: 'Topic Five', tid: 127 },
-        { label: 'Topic Six', tid: 128 },
-        { label: 'Topic Seven', tid: 129 },
-        { label: 'Topic Eight', tid: 130 },
-        { label: 'Topic Nine', tid: 131 },
-        { label: 'Topic Ten', tid: 132 },
-        { label: 'Topic Eleven', tid: 133 },
-        { label: 'Topic Twelve', tid: 134 },
-      ],
+      allTopics,
+
+      // Move all this to be delivered by Drupal
       {
-        intro1: '<h1>Let\'s dive in...</h1>',
+        intro1: '<h1>Let\'s dive in...</h1><h2>What information are you looking for?</h2>',
         intro2: '<h1>Page Two</h1>',
         intro3: '<h1>Page Three</h1>',
+        m1: 'If you are seeking records on yourself you will be required ...',
+        m2: 'Generally, when requesting information about another person ...',
+        m3: 'If you are seeking medical records from the Department of Veterans Affairs (VA), you may ...',
+        m4: 'Select specific branch of the military to start FOIA request ...',
+        m5: 'The following agencies may have the information you seek:...',
+        m6: 'If you are seeking medical records from the Department of Veterans Affairs (VA), you may ...',
+        m7: 'Select specific branch of the military to start FOIA request ...',
+        m8: 'The following agencies may have the information you seek: ...',
       },
     );
   };
 
   const nextPage = () => set((state) => {
-    switch (state.page) {
-      case 'Two':
-        return { page: 'Three' };
-      default:
-        return {};
+    const { request, page } = state;
+    const { answerIdx, question, userTopic } = request;
+
+    if (!question) {
+      // Move to summary.
+      return withCapturedHistory({
+        page: WizardPageName.Summary,
+      });
     }
+
+    if (page === WizardPageName.TopicIntro) {
+      // Move to question
+      return withCapturedHistory({
+        page: userTopic && userTopic.firstQid ? WizardPageName.Question : WizardPageName.Summary,
+      });
+    }
+
+    if (page === WizardPageName.Continue) {
+      const answer = question.answers[answerIdx];
+      if (answer.nextQid) {
+        return withCapturedHistory({
+          page: WizardPageName.Question,
+          request: { ...request, question: getQuestion(answer.nextQid), answerIdx: null },
+        });
+      }
+
+      // Done!
+      return withCapturedHistory({
+        page: WizardPageName.Summary,
+      });
+    }
+
+    if (page === WizardPageName.Question) {
+      if (answerIdx === null) {
+        throw new Error('Cannot continue without an answer');
+      }
+
+      const answer = question.answers[answerIdx];
+      if (answer.showContinue) {
+        // Move to continue page
+        return withCapturedHistory({
+          page: WizardPageName.Continue,
+        });
+      }
+
+      if (answer.nextQid) {
+        // Move to next question
+        return withCapturedHistory({
+          ...state,
+          request: {
+            ...request,
+            question: getQuestion(answer.nextQid),
+            answerIdx: null,
+          },
+          page: WizardPageName.Question,
+        });
+      }
+
+      // Done!
+      return withCapturedHistory({
+        page: WizardPageName.Summary,
+      });
+    }
+
+    throw new Error('Next page cannot be determined');
   });
 
   const reset = () => set((state) => ({
@@ -101,11 +189,8 @@ const useRawWizardStore = create((set) => {
     ui: state.ui,
   }));
 
-  /**
-   * @param {string} query
-   * @param {WizardTopic} selectedTopic
-   */
-  const submitRequest = async (query, selectedTopic) => {
+  /** @type {WizardActions['submitRequest']} */
+  const submitRequest = async ({ query, topic }) => {
     set((state) => ({ numLoading: state.numLoading + 1 }));
 
     // Emulate API call
@@ -113,69 +198,46 @@ const useRawWizardStore = create((set) => {
       setTimeout(res, 1e3);
     });
 
-    set((state) => ({
-      request: {
-        isSeekingOwnRecords: null,
-        isVeteran: null,
-        journey: WizardJourney.Unrecognized,
-        query,
-        recommendedAgencies: [],
-        userTopic: selectedTopic,
-      },
+    const question = topic ? getQuestion(topic.firstQid) : null;
+
+    /** @type {WizardRequest} */
+    const request = {
+      query,
+      answerIdx: null,
+      question,
+      recommendedAgencies: [],
+      recommendedLinks: [],
+      userTopic: topic,
+    };
+
+    let page = WizardPageName.Summary;
+    if (topic && topic.introMid) {
+      // Topic has an intro page
+      page = WizardPageName.TopicIntro;
+    } else if (question) {
+      page = WizardPageName.Question;
+    }
+
+    set((state) => withCapturedHistory({
+      request,
       numLoading: Math.max(0, state.numLoading - 1),
-      page: 'Two',
-      remainingRequests: [],
+      page,
     }));
   };
 
-  /**
-   * @param {boolean} isSeekingOwnRecords
-   */
-  const setIsSeekingOwnRecords = (isSeekingOwnRecords) => set(
-    (state) => {
-      const { request } = state;
-      if (!request) {
-        return {};
-      }
+  /** @type {WizardActions['selectAnswer']} */
+  const selectAnswer = (answerIdx) => set((state) => ({
+    request: { ...state.request, answerIdx },
+  }));
 
-      return {
-        request: {
-          ...request,
-          isSeekingOwnRecords,
-        },
-      };
-    },
-  );
-
-  /**
-   * @param {boolean} isVeteran
-   */
-  const setIsVeteran = (isVeteran) => set(
-    (state) => {
-      const { request } = state;
-      if (!request) {
-        return {};
-      }
-
-      return {
-        request: {
-          ...request,
-          isVeteran,
-        },
-      };
-    },
-  );
-
-  /**
-   * @type {WizardActions}
-   */
+  /** @type {WizardActions} */
   const actions = {
     initLoad,
     initLoadSuccess,
     nextPage,
+    prevPage,
     reset,
-    setIsSeekingOwnRecords,
-    setIsVeteran,
+    selectAnswer,
     submitRequest,
   };
 
@@ -191,17 +253,19 @@ const useRawWizardStore = create((set) => {
  * @returns {{
  *   actions: WizardActions;
  *   allTopics: WizardVars['allTopics'];
+ *   canGoBack: boolean;
  *   loading: boolean;
- *   page: WizardPage;
+ *   page: WizardPageName;
  *   ready: boolean;
  *   ui: WizardVars['ui'];
  *   request: WizardVars['request'];
  * }}
  */
 function useWizard() {
-  return useRawWizardStore((state) => ({
-    actions: /** WizardActions */ state.actions,
+  return useRawWizardStore((/** WizardState */ state) => ({
+    actions: state.actions,
     allTopics: state.allTopics,
+    canGoBack: state.history.length > 0,
     loading: state.numLoading > 0,
     page: state.page,
     ready: state.ui !== null,
@@ -210,4 +274,4 @@ function useWizard() {
   }), shallow);
 }
 
-export { useWizard, useRawWizardStore, WizardJourney };
+export { useWizard, useRawWizardStore };

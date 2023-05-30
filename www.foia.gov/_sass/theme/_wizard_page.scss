@@ -7,6 +7,15 @@
   padding-bottom:4.6875rem;
 }
 
+.wizard-topic-button {
+  &:hover {
+    background-color: #5EAFF8;
+  }
+  &[data-selected='1'] {
+    background-color: green !important;
+  }
+}
+
 // App Container Layout
 .l-app-container {
   min-height: 100vh;

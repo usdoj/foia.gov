@@ -20,7 +20,7 @@ Once you've got Ruby installed, install bundler.
 
 ## Setup (ddev)
 
-Build/start the containers. This will run the dev-server.js and webpack in watch mode in two PM2 services. You can view the site: https://foia.gov.ddev.site/
+Build/start the containers. This will run the dev-server.js and webpack in watch mode in two PM2 services. You can view the site: https://foia.gov.ddev.site/ (Storybook is at: http://foia.gov.ddev.site:6006/)
 
     $ ddev start
 
@@ -107,3 +107,9 @@ Instead of the current location in `www.foia.gov/foia-style.scss`.  This will al
 Webpack's `sass-loader` has many options such as advanced source maps and compression which can further speed up development.
 
 Webpack can also detect changes to and recompile other assets such as images, fonts and SVG files.
+
+### Type-check the Wizard app
+
+```
+ddev wizard-tsc
+```

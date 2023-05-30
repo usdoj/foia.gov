@@ -14,3 +14,5 @@ npm-debug.log*
 # These copied from root in DDEV pre-start hook
 .ddev/app-build/Gemfile
 .ddev/app-build/Gemfile.lock
+.ddev/app-build/package.json
+.ddev/app-build/package-lock.json
