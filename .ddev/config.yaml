@@ -25,6 +25,8 @@ hooks:
       service: app
     - exec: 'pm2 start --name webpack /usr/local/bin/npm -- run serve:watch'
       service: app
+    - exec: 'pm2 start --name storybook /usr/local/bin/npm -- run storybook'
+      service: app
 
 #hooks:
 #  post-start:

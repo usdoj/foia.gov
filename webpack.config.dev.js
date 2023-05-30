@@ -23,6 +23,7 @@ module.exports = {
         'www.foia.gov/*',
         'www.foia.gov/**/*.*',
         'js/**/*.*',
+        'js/wizard/components/*',
       ],
     }),
     new webpack.ProvidePlugin({
