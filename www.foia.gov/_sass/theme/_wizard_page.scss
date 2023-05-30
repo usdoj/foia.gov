@@ -7,3 +7,140 @@
   padding-bottom:4.6875rem;
 }
 
+// App Container Layout
+.l-app-container {
+  min-height: 100vh;
+}
+
+.l-app-container--blue {
+  background-color: $color-primary-darkest;
+}
+
+.l-app-container--purple {
+  background-color: $color-purple;
+}
+
+.l-app-container--white {
+  background-color: $color-white;
+}
+
+.l-app-container--gray {
+  background-color: $color-gray-dark-medium;
+}
+
+// Constrain Layout
+.l-constrain {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1168px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media screen and (min-width: 1024px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  // Just in case .l-constrain is nested within another .l-constrain.
+  & & {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.l-constrain--x-small {
+  max-width: 664px;
+}
+
+.l-constrain--small {
+  max-width: 864px;
+}
+
+.l-constrain--medium {
+  max-width: 1112px;
+}
+
+.l-constrain--large {
+  max-width: 1464px;
+}
+
+.l-constrain--x-large {
+  max-width: 1800px;
+}
+
+.l-constrain--no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// Header Layout
+// .usa-navbar
+.l-header__upper {
+  padding-bottom: 36px;
+  padding-top: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.l-header__lower {
+  padding-bottom: 16px;
+  padding-top: 4px;
+}
+
+// Back Link Component
+.c-back-link {
+  // font-family: settings-font-family(body);
+  font-size: 18px;
+
+  .l-app-container--blue &,
+  .l-app-container--purple &,
+  .l-app-container--gray & {
+    color: $color-white;
+  }
+}
+
+// Body Text Component
+.c-body-text {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 1.5rem 0;
+  max-width: unset;
+
+  .l-app-container--blue &,
+  .l-app-container--purple &,
+  .l-app-container--gray & {
+    color: $color-white;
+  }
+}
+
+// Heading Component
+.c-heading {
+  font-size: 60px;
+  font-weight: 400;
+
+  .l-app-container--blue &,
+  .l-app-container--purple &,
+  .l-app-container--gray & {
+    color: $color-white;
+  }
+}
+
+// Logo Component
+.c-logo {
+  float: unset;
+}
+
+.c-logo__link {
+  gap: 1rem;
+}
+
+.c-logo__text {
+  font-weight: 400;
+
+  .l-app-container--blue &,
+  .l-app-container--purple &,
+  .l-app-container--gray & {
+    color: $color-white;
+  }
+}
