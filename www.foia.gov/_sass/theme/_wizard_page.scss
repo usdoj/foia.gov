@@ -18,23 +18,8 @@
 
 // App Container Layout
 .l-app-container {
-  min-height: 100vh;
-}
-
-.l-app-container--blue {
   background-color: $color-primary-darkest;
-}
-
-.l-app-container--purple {
-  background-color: $color-purple;
-}
-
-.l-app-container--white {
-  background-color: $color-white;
-}
-
-.l-app-container--gray {
-  background-color: $color-gray-dark-medium;
+  min-height: 100vh;
 }
 
 // Constrain Layout
@@ -83,7 +68,6 @@
 }
 
 // Header Layout
-// .usa-navbar
 .l-header__upper {
   padding-bottom: 36px;
   padding-top: 36px;
@@ -98,40 +82,59 @@
 
 // Back Link Component
 .c-back-link {
-  // font-family: settings-font-family(body);
+  color: $color-white;
   font-size: 18px;
-
-  .l-app-container--blue &,
-  .l-app-container--purple &,
-  .l-app-container--gray & {
-    color: $color-white;
-  }
 }
 
 // Body Text Component
 .c-body-text {
+  color: $color-white;
   font-size: 28px;
   font-weight: 500;
   line-height: 1.2;
   margin: 1.5rem 0;
   max-width: unset;
+}
 
-  .l-app-container--blue &,
-  .l-app-container--purple &,
-  .l-app-container--gray & {
-    color: $color-white;
+// Form Item Component
+.c-form-item__label {
+  color: $color-white;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.c-form-item__element {
+  border: 0;
+  color: $color-gray-dark;
+  font-size: 22px;
+  max-width: 100%;
+  padding: 24px 22px;
+  
+  &::placeholder {
+    color: inherit;
+    font-size: inherit;
+  }
+
+  &textarea {
+    height: 142px;
   }
 }
 
 // Heading Component
 .c-heading {
+  color: $color-white;
   font-size: 60px;
   font-weight: 400;
+}
 
-  .l-app-container--blue &,
-  .l-app-container--purple &,
-  .l-app-container--gray & {
-    color: $color-white;
+// Button Component
+.c-button--link {
+  border-bottom: 1px solid;
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    border-bottom-color: transparent;
   }
 }
 
@@ -145,11 +148,6 @@
 }
 
 .c-logo__text {
+  color: $color-white;
   font-weight: 400;
-
-  .l-app-container--blue &,
-  .l-app-container--purple &,
-  .l-app-container--gray & {
-    color: $color-white;
-  }
 }

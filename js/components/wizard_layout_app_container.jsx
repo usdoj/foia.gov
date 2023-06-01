@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function AppContainer({ children, color }) {
+function AppContainer({ children }) {
   return (
-    <div className={`l-app-container${color ? ` l-app-container--${color}` : ''}`}>
+    <div className="l-app-container">
       {children}
     </div>
   );
@@ -11,7 +11,6 @@ function AppContainer({ children, color }) {
 
 AppContainer.propTypes = {
   children: PropTypes.node.isRequired,
-  color: PropTypes.string,
 };
 
 export default AppContainer;

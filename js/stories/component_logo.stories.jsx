@@ -1,6 +1,6 @@
 import React from 'react';
 import LogoComponent from '../components/wizard_component_logo';
-import img from '../../www.foia.gov/img/foia-doj-logo.svg';
+import img from '../../www.foia.gov/img/foia-doj-logo-light.svg';
 
 export default {
   title: 'Components/Logo',
