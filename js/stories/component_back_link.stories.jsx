@@ -11,3 +11,6 @@ function Template(args) {
 }
 
 export const BackLink = Template.bind({});
+BackLink.args = {
+  text: 'Back Link',
+};

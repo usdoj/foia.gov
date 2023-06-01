@@ -1,34 +1,16 @@
 import React from 'react';
-import Page from '../components/wizard_template_page';
+import PageComponent from '../components/wizard_template_page';
 
 export default {
   title: 'Templates/Page',
-  component: Page,
+  component: PageComponent,
 };
 
 function Template(args) {
-  return <Page {...args} />;
+  return <PageComponent {...args} />;
 }
 
-export const Default = Template.bind({});
-Default.args = {
-  children: <h1>Page</h1>,
-};
-
-export const Purple = Template.bind({});
-Purple.args = {
-  color: 'purple',
-  children: <h1>Page</h1>,
-};
-
-export const White = Template.bind({});
-White.args = {
-  color: 'white',
-  children: <h1>Page</h1>,
-};
-
-export const Gray = Template.bind({});
-Gray.args = {
-  color: 'gray',
+export const Page = Template.bind({});
+Page.args = {
   children: <h1>Page</h1>,
 };
