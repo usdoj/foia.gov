@@ -155,6 +155,7 @@
 // Pill Component
 .c-pill {
   background-color: $color-white;
+  border-radius: 10px;
   color: $color-primary-darkest;
   font-size: 18px;
   font-weight: 500;
@@ -169,7 +170,9 @@
 
 // Pill Group Component
 .c-pill-group__label {
+  color: $color-white;
   display: inline;
+  font-size: 18px;
   margin-right: 30px;
 }
 
@@ -181,4 +184,49 @@
     margin-right: 30px;
     margin-top: 15px;
   }
+}
+
+// Modal Component
+.c-modal__overlay {
+  background-color: #{$color-gray-light}99;
+  inset: 0px;
+  position: fixed;
+}
+
+.c-modal__content {
+  background: $color-blue-light;
+  bottom: auto;
+  inset: 50% auto auto 50%;
+  left: 50%;
+  margin-right: -50%;
+  max-width: 100rem;
+  outline: none;
+  overflow: auto;
+  padding: 50px;
+  position: absolute;
+  right: auto;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.c-modal__close-button {
+  text-align: right;
+
+  button {
+    background-color: transparent;
+    background-image: url($icon-close-button-white);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 28px;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    width: 28px;
+  }
+}
+
+.c-modal__title {
+  color: $color-white;
+  font-size: 32px;
+  margin-top: 0;
 }
