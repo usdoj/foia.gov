@@ -1,3 +1,8 @@
+$icon-checkbox-unchecked: '/img/icon-checkbox-unchecked.svg';
+$icon-checkbox-checked: '/img/icon-checkbox-checked.svg';
+$icon-radio-unchecked: '/img/icon-radio-unchecked.svg';
+$icon-radio-checked: '/img/icon-radio-checked.svg';
+
 .wizard-page {
   min-height: 100vh;
 }
@@ -103,20 +108,86 @@
   margin-bottom: 24px;
 }
 
-.c-form-item__element {
-  border: 0;
-  color: $color-gray-dark;
-  font-size: 22px;
-  max-width: 100%;
-  padding: 24px 22px;
-  
-  &::placeholder {
-    color: inherit;
-    font-size: inherit;
+.c-form-item--text,
+.c-form-item--textarea {
+  .c-form-item__element {
+    border: 0;
+    color: $color-gray-dark;
+    font-size: 22px;
+    max-width: 100%;
+    padding: 24px 22px;
+
+    &::placeholder {
+      color: inherit;
+      font-size: inherit;
+    }
+  }
+}
+
+.c-form-item--textarea {
+  .c-form-item__element {
+    height: 142px;
+  }
+}
+
+.c-form-item--checkbox {
+  .c-form-item__label {
+    &::before {
+      background-color: transparent;
+      background-image: url($icon-checkbox-unchecked);
+      background-repeat: no-repeat;
+      background-size: 30px;
+      box-shadow: unset;
+      content: '\a0';
+      display: inline-block;
+      height: 36px;
+      margin-right: 28px;
+      text-indent: 0.15em;
+      vertical-align: middle;
+      width: 30px;
+    }
   }
 
-  &textarea {
-    height: 142px;
+  .c-form-item__element {
+    &:checked {
+      + .c-form-item__label {
+        &::before {
+          background-color: transparent;
+          background-image: url($icon-checkbox-checked);
+        }
+      }
+    }
+  }
+}
+
+.c-form-item--radio {
+  .c-form-item__label {
+    &::before {
+      background-color: transparent;
+      background-image: url($icon-radio-unchecked);
+      background-repeat: no-repeat;
+      background-size: 30px;
+      box-shadow: unset;
+      content: '\a0';
+      cursor: pointer;
+      height: 36px;
+      margin-right: 28px;
+      outline: none;
+      position: relative;
+      vertical-align: middle;
+      width: 30px;
+    }
+  }
+
+  .c-form-item__element {
+    &:checked {
+      + .c-form-item__label {
+        &::before {
+          background-color: transparent;
+          background-image: url($icon-radio-checked);
+        }
+      }
+    }
   }
 }
 
