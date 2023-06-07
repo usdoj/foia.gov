@@ -55,7 +55,7 @@ function Init() {
   return (
     <div>
       <p>
-        <a href="/" style={{ color: '#fff' }}>
+        <a href="#" aria-label="Go to previous page of wizard" tabIndex={0} style={{ color: '#fff' }} onClick={actions.prevPage}>
           <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
             <use xlinkHref="/img/uswds-3.2.0-sprite.svg#navigate_before" />
           </svg>
