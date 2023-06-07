@@ -23,3 +23,17 @@ Textarea.args = {
   label: 'Textarea Field Label',
   placeholder: 'Placeholder...',
 };
+
+export const Checkbox = Template.bind({});
+Checkbox.args = {
+  type: 'checkbox',
+  label: 'Checkbox Field Label',
+  name: 'Test',
+};
+
+export const Radio = Template.bind({});
+Radio.args = {
+  type: 'radio',
+  label: 'Radio Field Label',
+  name: 'Test',
+};
