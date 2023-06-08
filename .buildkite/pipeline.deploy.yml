@@ -54,7 +54,6 @@ steps:
           files:
             force-add:
               - client/node_modules
-              - client/www.foia.gov/assets
             ignore:
               - .git/
               - .gitignore
