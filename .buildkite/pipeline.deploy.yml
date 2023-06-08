@@ -29,7 +29,7 @@ steps:
       # local filesystem for further operations.
       - forumone/extract#v0.2.0:
           image: ${ECR_NAMESPACE}:${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_COMMIT}
-          from: /var/www/html
+          from: /app
           to: ${ARTIFACT_LOCATION}/client
 
       # Execute an artifact deployment using the defined branch to
