@@ -1,7 +1,12 @@
+// Colors
+$color-green-warm: #f5fbc1;
+
+// Icons
 $icon-checkbox-unchecked: '/img/icon-checkbox-unchecked.svg';
 $icon-checkbox-checked: '/img/icon-checkbox-checked.svg';
 $icon-radio-unchecked: '/img/icon-radio-unchecked.svg';
 $icon-radio-checked: '/img/icon-radio-checked.svg';
+$icon-check-circle-green: '/img/icon-check-circle-green.svg';
 
 
 // App Container Layout
@@ -226,7 +231,23 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
   }
 
   &[data-selected='1'] {
-    background-color: $color-primary-alt;
+    background-color: $color-green-warm;
+    position: relative;
+
+    &::after {
+      background-color: $color-primary-darkest;
+      background-image: url($icon-check-circle-green);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 31px;
+      border-radius: 50%;
+      content: '';
+      height: 28px;
+      position: absolute;
+      right: -7px;
+      top: -12px;
+      width: 28px;
+    }
   }
 }
 
