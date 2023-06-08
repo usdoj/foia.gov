@@ -1,19 +1,18 @@
 import React from 'react';
-import img from '../../www.foia.gov/img/foia-doj-logo-light.svg';
+import PropTypes from 'prop-types';
 import HeaderLayout from './wizard_layout_header';
 import Logo from './wizard_component_logo';
 import BackLink from './wizard_component_back_link';
 
-function Header() {
-  const imgSrc = `${PATHS.images}/foia-doj-logo-light.svg`;
-  const imgSrcDemo = img;
+function Header({ isDemo }) {
+  const imgSrc = '/img/foia-doj-logo-light.svg';
 
   return (
     <HeaderLayout
       headerUpper={(
         <Logo
           url="/"
-          logoSrc={IS_DEMO ? imgSrcDemo : imgSrc}
+          logoSrc={isDemo ? `//foia.gov.ddev.site${imgSrc}` : imgSrc}
           text="FOIA.gov"
         />
       )}
@@ -23,5 +22,9 @@ function Header() {
     />
   );
 }
+
+Header.propTypes = {
+  isDemo: PropTypes.bool,
+};
 
 export default Header;

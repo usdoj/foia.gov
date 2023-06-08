@@ -99,7 +99,7 @@ const useRawWizardStore = create((
       // Move all this to be delivered by Drupal
       {
         intro0: '<h1>Hello,</h1><p>The government hosts a vast amount of information, with records spread across many different agencies, and even across different offices within agencies.</p><p>To help you figure out which federal agency might have the information you seek, we\'ve developed this tool.  If you\'re looking for non-federal records, such as from your local police department, we suggest contact the appropriate state or local authorities.</p><p>We recommend giving yourself at least 5 minutes to explore this tool.</p>',
-        intro1: '<h1>Let\'s dive in...</h1><h2>What information are you looking for?</h2>',
+        intro1: '<h1>Let\'s dive in...</h1><p>What information are you looking for?</p>',
         intro2: '<h1>Page Two</h1>',
         intro3: '<h1>Page Three</h1>',
         m1: 'If you are seeking records on yourself you will be required ...',

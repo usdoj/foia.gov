@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function BackLink({ text }) {
   return (
-    <a className="c-back-link">{text}</a>
+    <a className="w-component-back-link">{text}</a>
   );
 }
 

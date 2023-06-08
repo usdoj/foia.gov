@@ -9,7 +9,7 @@ function Button({
 }) {
   return (
     <a
-      className={`c-button${!isLink ? ' usa-button usa-button-primary-alt' : ' c-button--link'}${size ? ` usa-button-${size}` : ''}`}
+      className={`w-component-button${!isLink ? ' usa-button usa-button-primary-alt' : ' w-component-button--link'}${size ? ` usa-button-${size}` : ''}`}
       href={url}
     >
       {children}

@@ -3,32 +3,15 @@ $icon-checkbox-checked: '/img/icon-checkbox-checked.svg';
 $icon-radio-unchecked: '/img/icon-radio-unchecked.svg';
 $icon-radio-checked: '/img/icon-radio-checked.svg';
 
-.wizard-page {
-  min-height: 100vh;
-}
-
-#wizard-react-app {
-  padding-top: 2rem;
-  padding-bottom:4.6875rem;
-}
-
-.wizard-topic-button {
-  &:hover {
-    background-color: #5EAFF8;
-  }
-  &[data-selected='1'] {
-    background-color: green !important;
-  }
-}
 
 // App Container Layout
-.l-app-container {
+.w-layout-app-container {
   background-color: $color-primary-darkest;
   min-height: 100vh;
 }
 
 // Constrain Layout
-.l-constrain {
+.w-layout-constrain {
   margin-left: auto;
   margin-right: auto;
   max-width: 1168px;
@@ -47,52 +30,52 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
   }
 }
 
-.l-constrain--x-small {
+.w-layout-constrain--x-small {
   max-width: 664px;
 }
 
-.l-constrain--small {
+.w-layout-constrain--small {
   max-width: 864px;
 }
 
-.l-constrain--medium {
+.w-layout-constrain--medium {
   max-width: 1112px;
 }
 
-.l-constrain--large {
+.w-layout-constrain--large {
   max-width: 1464px;
 }
 
-.l-constrain--x-large {
+.w-layout-constrain--x-large {
   max-width: 1800px;
 }
 
-.l-constrain--no-padding {
+.w-layout-constrain--no-padding {
   padding-left: 0;
   padding-right: 0;
 }
 
 // Header Layout
-.l-header__upper {
+.w-layout-header__upper {
   padding-bottom: 36px;
   padding-top: 36px;
   position: relative;
   z-index: 1;
 }
 
-.l-header__lower {
+.w-layout-header__lower {
   padding-bottom: 16px;
   padding-top: 4px;
 }
 
 // Back Link Component
-.c-back-link {
+.w-component-back-link {
   color: $color-white;
   font-size: 18px;
 }
 
 // Body Text Component
-.c-body-text {
+.w-component-body-text {
   color: $color-white;
   font-size: 28px;
   font-weight: 500;
@@ -102,15 +85,19 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
 }
 
 // Form Item Component
-.c-form-item__label {
+.w-component-form-item {
+  margin-bottom: 3rem;
+}
+
+.w-component-form-item__label {
   color: $color-white;
   font-size: 28px;
   margin-bottom: 24px;
 }
 
-.c-form-item--text,
-.c-form-item--textarea {
-  .c-form-item__element {
+.w-component-form-item--text,
+.w-component-form-item--textarea {
+  .w-component-form-item__element {
     border: 0;
     color: $color-gray-dark;
     font-size: 22px;
@@ -124,14 +111,14 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
   }
 }
 
-.c-form-item--textarea {
-  .c-form-item__element {
+.w-component-form-item--textarea {
+  .w-component-form-item__element {
     height: 142px;
   }
 }
 
-.c-form-item--checkbox {
-  .c-form-item__label {
+.w-component-form-item--checkbox {
+  .w-component-form-item__label {
     &::before {
       background-color: transparent;
       background-image: url($icon-checkbox-unchecked);
@@ -148,9 +135,9 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
     }
   }
 
-  .c-form-item__element {
+  .w-component-form-item__element {
     &:checked {
-      + .c-form-item__label {
+      + .w-component-form-item__label {
         &::before {
           background-color: transparent;
           background-image: url($icon-checkbox-checked);
@@ -160,8 +147,8 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
   }
 }
 
-.c-form-item--radio {
-  .c-form-item__label {
+.w-component-form-item--radio {
+  .w-component-form-item__label {
     &::before {
       background-color: transparent;
       background-image: url($icon-radio-unchecked);
@@ -179,9 +166,9 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
     }
   }
 
-  .c-form-item__element {
+  .w-component-form-item__element {
     &:checked {
-      + .c-form-item__label {
+      + .w-component-form-item__label {
         &::before {
           background-color: transparent;
           background-image: url($icon-radio-checked);
@@ -192,14 +179,14 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
 }
 
 // Heading Component
-.c-heading {
+.w-component-heading {
   color: $color-white;
   font-size: 60px;
   font-weight: 400;
 }
 
 // Button Component
-.c-button--link {
+.w-component-button--link {
   border-bottom: 1px solid;
   color: inherit;
 
@@ -210,21 +197,21 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
 }
 
 // Logo Component
-.c-logo {
+.w-component-logo {
   float: unset;
 }
 
-.c-logo__link {
+.w-component-logo__link {
   gap: 1rem;
 }
 
-.c-logo__text {
+.w-component-logo__text {
   color: $color-white;
   font-weight: 400;
 }
 
 // Pill Component
-.c-pill {
+.w-component-pill {
   background-color: $color-white;
   border-radius: 10px;
   color: $color-primary-darkest;
@@ -237,17 +224,25 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
     background-color: $color-gray-light;
     color: inherit;
   }
+
+  &[data-selected='1'] {
+    background-color: $color-primary-alt;
+  }
 }
 
 // Pill Group Component
-.c-pill-group__label {
+.w-component-pill-group {
+  margin-bottom: 3rem;
+}
+
+.w-component-pill-group__label {
   color: $color-white;
   display: inline;
   font-size: 18px;
   margin-right: 30px;
 }
 
-.c-pill-group__list {
+.w-component-pill-group__list {
   display: inline;
 
   > * {
@@ -258,19 +253,20 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
 }
 
 // Modal Component
-.c-modal__overlay {
+.w-component-modal__overlay {
   background-color: #{$color-gray-light}99;
   inset: 0px;
   position: fixed;
 }
 
-.c-modal__content {
+.w-component-modal__content {
   background: $color-blue-light;
   bottom: auto;
   inset: 50% auto auto 50%;
   left: 50%;
   margin-right: -50%;
-  max-width: 100rem;
+  max-width: 1168px;
+  min-height: 65%;
   outline: none;
   overflow: auto;
   padding: 50px;
@@ -280,7 +276,7 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
   transform: translate(-50%, -50%);
 }
 
-.c-modal__close-button {
+.w-component-modal__close-button {
   text-align: right;
 
   button {
@@ -296,8 +292,35 @@ $icon-radio-checked: '/img/icon-radio-checked.svg';
   }
 }
 
-.c-modal__title {
+.w-component-modal__title {
   color: $color-white;
   font-size: 32px;
   margin-top: 0;
+}
+
+// Rich Text Component
+.w-component-rich-text {
+  color: $color-white;
+
+  p,
+  h1,
+  h2 {
+    color: inherit;
+  }
+
+  h1 {
+    font-size: 60px;
+  }
+
+  p {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 1.5rem 0;
+    max-width: unset;
+
+    &:last-child {
+      margin-bottom: 3rem;
+    }
+  }
 }
