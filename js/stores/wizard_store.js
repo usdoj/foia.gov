@@ -119,7 +119,7 @@ const useRawWizardStore = create((
 
     if (page === WizardPageName.Intro) {
       return withCapturedHistory({
-        page: WizardPageName.Init,
+        page: WizardPageName.Query,
       });
     }
 

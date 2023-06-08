@@ -3,7 +3,7 @@
 import React from 'react';
 
 import Intro from './wizard_page_intro';
-import Init from './wizard_page_init';
+import Query from './wizard_page_query';
 import Question from './wizard_page_question';
 import Continue from './wizard_page_continue';
 import Summary from './wizard_page_summary';
@@ -11,7 +11,7 @@ import TopicIntro from './wizard_page_topicintro';
 
 const wizardPages = {
   Intro,
-  Init,
+  Query,
   Question,
   Continue,
   Summary,
@@ -23,7 +23,7 @@ const wizardPages = {
  */
 export const WizardPageName = {
   Intro: 'Intro',
-  Init: 'Init',
+  Query: 'Query',
   Question: 'Question',
   Continue: 'Continue',
   Summary: 'Summary',
