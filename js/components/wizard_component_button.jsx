@@ -6,15 +6,33 @@ function Button({
   url,
   isLink,
   size,
+  isButtonElement,
+  onClick,
 }) {
-  return (
-    <a
-      className={`w-component-button${!isLink ? ' usa-button usa-button-primary-alt' : ' w-component-button--link'}${size ? ` usa-button-${size}` : ''}`}
-      href={url}
-    >
-      {children}
-    </a>
-  );
+  let button;
+
+  if (isButtonElement) {
+    button = (
+      <button
+        className={`w-component-button${!isLink ? ' usa-button usa-button-primary-alt' : ' w-component-button--link'}${size ? ` usa-button-${size}` : ''}`}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    );
+  } else {
+    button = (
+      <a
+        className={`w-component-button${!isLink ? ' usa-button usa-button-primary-alt' : ' w-component-button--link'}${size ? ` usa-button-${size}` : ''}`}
+        href={url}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{button}</>;
 }
 
 Button.propTypes = {
@@ -22,6 +40,8 @@ Button.propTypes = {
   url: PropTypes.string,
   isLink: PropTypes.bool,
   size: PropTypes.string,
+  isButtonElement: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 export default Button;

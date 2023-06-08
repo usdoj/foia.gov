@@ -31,6 +31,7 @@ function FormItem({
     default:
       break;
   }
+
   return (
     <div className={`w-component-form-item${type ? ` w-component-form-item--${type}` : ''}`}>
       {(type === 'checkbox' || type === 'radio') && element}

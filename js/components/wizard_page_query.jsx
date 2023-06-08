@@ -51,7 +51,7 @@ function Query() {
           label="Query"
           onChange={(e) => setQuery(e.target.value)}
           value={query || ''}
-          placeholder="Type 1-2 sentences or keywords..."
+          placeholder={selectedTopic ? selectedTopic.title : 'Type 1-2 sentences or keywords...'}
         />
         <PillGroup
           label="Common topics"
@@ -79,6 +79,7 @@ function Query() {
         {(query && query !== '') || selectedTopic ? (
           <Button
             size="big"
+            isButtonElement
             onClick={() => actions.submitRequest({
               query: query || '',
               topic: selectedTopic,
