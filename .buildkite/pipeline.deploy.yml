@@ -63,7 +63,7 @@ steps:
               - .platform.drupal.yml
               - Dockerfile
               - README.md
-              - client/
+              - api/
               - header.svg
               - client/.gitignore
               - client/.platform.app.yaml
