@@ -33,3 +33,5 @@ COPY Gemfile \
 RUN npm ci
 
 RUN bundle install
+
+RUN make build
