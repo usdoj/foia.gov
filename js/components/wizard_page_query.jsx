@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
@@ -22,7 +22,7 @@ const modalStyles = {
   },
 };
 
-function Init() {
+function Query() {
   const {
     actions, allTopics, ready, loading,
   } = useWizard();
@@ -55,7 +55,7 @@ function Init() {
   return (
     <div>
       <p>
-        <a href="/" style={{ color: '#fff' }}>
+        <a href="/wizard" tabIndex={0} style={{ color: '#fff' }}>
           <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
             <use xlinkHref="/img/uswds-3.2.0-sprite.svg#navigate_before" />
           </svg>
@@ -163,4 +163,4 @@ TopicsButtons.propTypes = {
   onClickTopicButton: PropTypes.func.isRequired,
 };
 
-export default Init;
+export default Query;
