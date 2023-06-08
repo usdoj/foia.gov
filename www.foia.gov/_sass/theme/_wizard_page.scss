@@ -7,6 +7,7 @@ $icon-checkbox-checked: '/img/icon-checkbox-checked.svg';
 $icon-radio-unchecked: '/img/icon-radio-unchecked.svg';
 $icon-radio-checked: '/img/icon-radio-checked.svg';
 $icon-check-circle-green: '/img/icon-check-circle-green.svg';
+$icon-chevron-left: '/img/icon-chevron-left.svg';
 
 
 // App Container Layout
@@ -75,8 +76,32 @@ $icon-check-circle-green: '/img/icon-check-circle-green.svg';
 
 // Back Link Component
 .w-component-back-link {
+  background-color: unset;
   color: $color-white;
+  display: inline;
+  font-family: inherit;
   font-size: 18px;
+  font-weight: initial;
+  line-height: initial;
+  padding: unset;
+  padding-left: 18px;
+  position: relative;
+  text-align: unset;
+
+  &:hover {
+    background-color: unset;
+  }
+
+  &::before {
+    background-image: url($icon-chevron-left);
+    background-repeat: no-repeat;
+    content: '';
+    height: 14px;
+    left: 0;
+    position: absolute;
+    top: 4px;
+    width: 14px;
+  }
 }
 
 // Body Text Component
@@ -132,9 +157,10 @@ $icon-check-circle-green: '/img/icon-check-circle-green.svg';
       box-shadow: unset;
       content: '\a0';
       display: inline-block;
-      height: 36px;
+      height: 30px;
       margin-right: 28px;
       text-indent: 0.15em;
+      top: -3px;
       vertical-align: middle;
       width: 30px;
     }
@@ -162,10 +188,11 @@ $icon-check-circle-green: '/img/icon-check-circle-green.svg';
       box-shadow: unset;
       content: '\a0';
       cursor: pointer;
-      height: 36px;
+      height: 30px;
       margin-right: 28px;
       outline: none;
       position: relative;
+      top: -3px;
       vertical-align: middle;
       width: 30px;
     }

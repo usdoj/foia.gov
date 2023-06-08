@@ -6,7 +6,7 @@ function WizardHtml({ mid }) {
   const { ui } = useWizard();
 
   return (
-    <div dangerouslySetInnerHTML={{ __html: ui[mid] || '' }} />
+    <span dangerouslySetInnerHTML={{ __html: ui[mid] || '' }} />
   );
 }
 

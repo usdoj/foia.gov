@@ -1,6 +1,10 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
 import WizardHtml from './wizard_html';
+import PageTemplate from './wizard_template_page';
+import Button from './wizard_component_button';
+import Constrain from './wizard_layout_constrain';
+import RichText from './wizard_component_rich_text';
 
 function TopicIntro() {
   const {
@@ -13,28 +17,21 @@ function TopicIntro() {
   }
 
   return (
-    <div>
-      <WizardHtml mid={userTopic.introMid} />
+    <PageTemplate>
+      <Constrain>
+        <RichText>
+          <WizardHtml mid={userTopic.introMid} />
+        </RichText>
 
-      <p>
-        {canGoBack && (
-          <button
-            type="button"
-            className="usa-button"
-            onClick={actions.prevPage}
-          >
-            Back
-          </button>
-        )}
-        <button
-          type="button"
-          className="usa-button"
+        <Button
+          size="big"
+          isButtonElement
           onClick={actions.nextPage}
         >
           Continue
-        </button>
-      </p>
-    </div>
+        </Button>
+      </Constrain>
+    </PageTemplate>
   );
 }
 

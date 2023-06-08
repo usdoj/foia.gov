@@ -7,6 +7,7 @@ function Button({
   isLink,
   size,
   isButtonElement,
+  disabled,
   onClick,
 }) {
   let button;
@@ -15,6 +16,8 @@ function Button({
     button = (
       <button
         className={`w-component-button${!isLink ? ' usa-button usa-button-primary-alt' : ' w-component-button--link'}${size ? ` usa-button-${size}` : ''}`}
+        type="button"
+        disabled={disabled}
         onClick={onClick}
       >
         {children}
@@ -41,6 +44,7 @@ Button.propTypes = {
   isLink: PropTypes.bool,
   size: PropTypes.string,
   isButtonElement: PropTypes.bool,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
 };
 

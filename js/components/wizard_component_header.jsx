@@ -3,8 +3,43 @@ import PropTypes from 'prop-types';
 import HeaderLayout from './wizard_layout_header';
 import Logo from './wizard_component_logo';
 import BackLink from './wizard_component_back_link';
+import { useWizard } from '../stores/wizard_store';
 
 function Header({ isDemo }) {
+  const {
+    page,
+    actions,
+    canGoBack,
+  } = useWizard();
+
+  let backLinkAction;
+  let backLinkText;
+
+  switch (page) {
+    // This is probably meant to go back to the home page of the site.
+    // TODO: May remove as it could be unnecessarily redundant.
+    case 'Init':
+      backLinkAction = (e) => {
+        e.preventDefault();
+        actions.reset();
+      };
+      backLinkText = 'Home';
+      break;
+    case 'Question':
+    case 'Continue':
+    case 'Summary':
+    case 'TopicIntro':
+      backLinkAction = (e) => {
+        e.preventDefault();
+        actions.prevPage();
+      };
+      backLinkText = 'Back';
+      break;
+
+    default:
+      break;
+  }
+
   const imgSrc = '/img/foia-doj-logo-light.svg';
 
   return (
@@ -17,7 +52,9 @@ function Header({ isDemo }) {
         />
       )}
       headerLower={
-        <BackLink text="Home" />
+        canGoBack && (
+          <BackLink text={backLinkText} onClick={backLinkAction} />
+        )
       }
     />
   );
