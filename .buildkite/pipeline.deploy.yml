@@ -54,6 +54,7 @@ steps:
           files:
             force-add:
               - client/node_modules
+              - client/_site
             ignore:
               - .git/
               - .gitignore
