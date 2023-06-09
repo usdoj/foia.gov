@@ -8,7 +8,7 @@ import RichText from './wizard_component_rich_text';
 
 function TopicIntro() {
   const {
-    actions, canGoBack, request,
+    actions, request,
   } = useWizard();
 
   const { userTopic } = request || {};

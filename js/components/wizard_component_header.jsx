@@ -18,13 +18,14 @@ function Header({ isDemo }) {
   switch (page) {
     // This is probably meant to go back to the home page of the site.
     // TODO: May remove as it could be unnecessarily redundant.
-    case 'Init':
+    case 'Intro':
       backLinkAction = (e) => {
         e.preventDefault();
         actions.reset();
       };
       backLinkText = 'Home';
       break;
+    case 'Query':
     case 'Question':
     case 'Continue':
     case 'Summary':

@@ -8,7 +8,7 @@ import RichText from './wizard_component_rich_text';
 
 function Continue() {
   const {
-    actions, canGoBack, request,
+    actions, request,
   } = useWizard();
 
   const { question, answerIdx } = request || {};

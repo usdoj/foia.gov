@@ -8,7 +8,7 @@ import FormItem from './wizard_component_form_item';
 
 function Question() {
   const {
-    actions, canGoBack, request,
+    actions, request,
   } = useWizard();
 
   const { question } = request || {};

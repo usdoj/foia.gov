@@ -9,7 +9,6 @@ function Summary() {
   const {
     actions,
     request,
-    canGoBack,
   } = useWizard();
 
   return (

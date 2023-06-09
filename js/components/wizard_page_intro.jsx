@@ -1,5 +1,9 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
+import PageTemplate from './wizard_template_page';
+import Constrain from './wizard_layout_constrain';
+import RichText from './wizard_component_rich_text';
+import Button from './wizard_component_button';
 import WizardHtml from './wizard_html';
 
 function Intro() {
@@ -12,25 +16,21 @@ function Intro() {
   }
 
   return (
-    <div>
-      <p>
-        <a href="/" tabIndex={0} style={{ color: '#fff' }}>
-          <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
-            <use xlinkHref="/img/uswds-3.2.0-sprite.svg#navigate_before" />
-          </svg>
-          {' '}
-          Back
-        </a>
-      </p>
-      <WizardHtml mid="intro0" />
-      <button
-        type="button"
-        className="usa-button"
-        onClick={actions.nextPage}
-      >
-        Begin
-      </button>
-    </div>
+    <PageTemplate>
+      <Constrain>
+        <RichText>
+          <WizardHtml mid="intro0" />
+        </RichText>
+
+        <Button
+          size="big"
+          isButtonElement
+          onClick={actions.nextPage}
+        >
+          Begin
+        </Button>
+      </Constrain>
+    </PageTemplate>
   );
 }
 
