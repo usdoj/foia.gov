@@ -4,7 +4,6 @@ import WizardHtml from './wizard_html';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
-import RichText from './wizard_component_rich_text';
 
 function Continue() {
   const {
@@ -21,12 +20,9 @@ function Continue() {
   return (
     <PageTemplate>
       <Constrain>
-        <RichText>
-          <WizardHtml mid={answer.showMid} />
-        </RichText>
+        <WizardHtml mid={answer.showMid} />
 
         <Button
-          size="big"
           isButtonElement
           onClick={actions.nextPage}
         >

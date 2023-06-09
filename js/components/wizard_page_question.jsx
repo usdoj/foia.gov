@@ -46,7 +46,6 @@ function Question() {
         ))}
 
         <Button
-          size="big"
           isButtonElement
           disabled={request.answerIdx === null}
           onClick={actions.nextPage}

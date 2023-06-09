@@ -7,6 +7,7 @@ const config = {
   docs: {
     autodocs: "tag",
   },
+  staticDirs: ["../_site"],
   webpackFinal: async (config, { configType }) => {
     return config;
   },

@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContainer from '../components/wizard_layout_app_container';
 import PageComponent from '../components/wizard_template_page';
 
 export default {
@@ -7,7 +8,11 @@ export default {
 };
 
 function Template(args) {
-  return <PageComponent {...args} />;
+  return (
+    <AppContainer>
+      <PageComponent {...args} />
+    </AppContainer>
+  );
 }
 
 export const Page = Template.bind({});

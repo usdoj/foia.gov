@@ -7,7 +7,6 @@ import FormItem from './wizard_component_form_item';
 import Modal from './wizard_component_modal';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
-import RichText from './wizard_component_rich_text';
 
 function Query() {
   const {
@@ -42,9 +41,7 @@ function Query() {
   return (
     <PageTemplate>
       <Constrain>
-        <RichText>
-          <WizardHtml mid="intro1" />
-        </RichText>
+        <WizardHtml mid="intro1" />
         <FormItem
           type="textarea"
           isLabelHidden
@@ -78,7 +75,6 @@ function Query() {
 
         {(query && query !== '') || selectedTopic ? (
           <Button
-            size="big"
             isButtonElement
             onClick={() => actions.submitRequest({
               query: query || '',

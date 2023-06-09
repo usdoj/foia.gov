@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 
-ReactModal.setAppElement('#wizard-react-app');
+const rootEl = document.querySelector('#wizard-react-app');
+if (rootEl) {
+  ReactModal.setAppElement(rootEl);
+}
 function Modal({
   children,
   title,

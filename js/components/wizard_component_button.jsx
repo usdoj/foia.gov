@@ -3,19 +3,15 @@ import PropTypes from 'prop-types';
 
 function Button({
   children,
-  url,
+  href,
   isLink,
-  size,
-  isButtonElement,
   disabled,
   onClick,
 }) {
-  let button;
-
-  if (isButtonElement) {
-    button = (
+  if (typeof href !== 'string') {
+    return (
       <button
-        className={`w-component-button${!isLink ? ' usa-button usa-button-primary-alt' : ' w-component-button--link'}${size ? ` usa-button-${size}` : ''}`}
+        className={`w-component-button${!isLink ? ' usa-button usa-button-primary-alt usa-button-big' : ' w-component-button--link'}`}
         type="button"
         disabled={disabled}
         onClick={onClick}
@@ -23,27 +19,22 @@ function Button({
         {children}
       </button>
     );
-  } else {
-    button = (
-      <a
-        className={`w-component-button${!isLink ? ' usa-button usa-button-primary-alt' : ' w-component-button--link'}${size ? ` usa-button-${size}` : ''}`}
-        href={url}
-      >
-        {children}
-      </a>
-    );
   }
 
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{button}</>;
+  return (
+    <a
+      className={`w-component-button${!isLink ? ' usa-button usa-button-primary-alt usa-button-big' : ' w-component-button--link'}`}
+      href={href}
+    >
+      {children}
+    </a>
+  );
 }
 
 Button.propTypes = {
   children: PropTypes.node,
-  url: PropTypes.string,
+  href: PropTypes.string,
   isLink: PropTypes.bool,
-  size: PropTypes.string,
-  isButtonElement: PropTypes.bool,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
 };

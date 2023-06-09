@@ -47,7 +47,10 @@ FormItem.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   name: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   checked: PropTypes.bool,
   placeholder: PropTypes.string,
 };

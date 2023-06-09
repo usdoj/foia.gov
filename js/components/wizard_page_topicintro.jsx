@@ -19,12 +19,9 @@ function TopicIntro() {
   return (
     <PageTemplate>
       <Constrain>
-        <RichText>
-          <WizardHtml mid={userTopic.introMid} />
-        </RichText>
+        <WizardHtml mid={userTopic.introMid} />
 
         <Button
-          size="big"
           isButtonElement
           onClick={actions.nextPage}
         >

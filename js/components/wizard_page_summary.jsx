@@ -25,7 +25,6 @@ function Summary() {
         </RichText>
 
         <Button
-          size="big"
           isButtonElement
           onClick={actions.reset}
         >
