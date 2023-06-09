@@ -7,7 +7,7 @@ function WizardHtml({ mid }) {
   const { ui } = useWizard();
 
   return (
-    <RichText dangerouslySetInnerHTML={{ __html: ui[mid] || '' }} />
+    <RichText html={ui[mid] || ''} />
   );
 }
 

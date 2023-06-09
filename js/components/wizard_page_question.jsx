@@ -7,9 +7,7 @@ import RichText from './wizard_component_rich_text';
 import FormItem from './wizard_component_form_item';
 
 function Question() {
-  const {
-    actions, request,
-  } = useWizard();
+  const { actions, request } = useWizard();
 
   const { question } = request || {};
 
@@ -46,7 +44,6 @@ function Question() {
         ))}
 
         <Button
-          isButtonElement
           disabled={request.answerIdx === null}
           onClick={actions.nextPage}
         >

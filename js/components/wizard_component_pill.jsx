@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @param {import('prop-types').InferProps<typeof Pill.propTypes>} props
+ */
 function Pill({
   children,
   selected,

@@ -6,6 +6,10 @@ const rootEl = document.querySelector('#wizard-react-app');
 if (rootEl) {
   ReactModal.setAppElement(rootEl);
 }
+
+/**
+ * @param {import('prop-types').InferProps<typeof Modal.propTypes>} props
+ */
 function Modal({
   children,
   title,

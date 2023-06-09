@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @param {import('prop-types').InferProps<typeof FormItem.propTypes>} props
+ */
 function FormItem({
   type,
   isLabelHidden,

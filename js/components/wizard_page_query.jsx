@@ -75,7 +75,6 @@ function Query() {
 
         {(query && query !== '') || selectedTopic ? (
           <Button
-            isButtonElement
             onClick={() => actions.submitRequest({
               query: query || '',
               topic: selectedTopic,
