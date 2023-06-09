@@ -6,10 +6,7 @@ import RichText from './wizard_component_rich_text';
 import Constrain from './wizard_layout_constrain';
 
 function Summary() {
-  const {
-    actions,
-    request,
-  } = useWizard();
+  const { actions, request } = useWizard();
 
   return (
     <PageTemplate>
@@ -24,10 +21,7 @@ function Summary() {
           <pre>{JSON.stringify(request, null, 2)}</pre>
         </RichText>
 
-        <Button
-          isButtonElement
-          onClick={actions.reset}
-        >
+        <Button onClick={actions.reset}>
           Reset
         </Button>
       </Constrain>

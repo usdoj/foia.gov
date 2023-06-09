@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './wizard_component_header';
 
-function Page({ children, isDemo }) {
+/**
+ * @param {Object} props
+ * @param {import('react').ReactNode=} props.children
+ * @param {boolean=} props.isDemo
+ * @return {React.ElementType}
+ */
+function PageTemplate({ children, isDemo }) {
   return (
     <>
       <Header isDemo={isDemo} />
@@ -11,9 +17,9 @@ function Page({ children, isDemo }) {
   );
 }
 
-Page.propTypes = {
+PageTemplate.propTypes = {
   children: PropTypes.node.isRequired,
   isDemo: PropTypes.bool,
 };
 
-export default Page;
+export default PageTemplate;

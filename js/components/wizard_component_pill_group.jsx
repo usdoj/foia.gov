@@ -4,8 +4,10 @@ import Pill from './wizard_component_pill';
 
 /**
  * @param {Object} props
+ * @param {string=} props.label
  * @param {WizardTopic[]} props.topics
  * @param {(topic: WizardTopic) => boolean} props.isTopicSelected
+ * @param {React.ReactNode=} props.suffix
  * @param {(topic: WizardTopic) => void} props.onClickTopicButton
  * @returns {React.ReactNode}
  */

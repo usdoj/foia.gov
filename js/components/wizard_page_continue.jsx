@@ -6,9 +6,7 @@ import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
 
 function Continue() {
-  const {
-    actions, request,
-  } = useWizard();
+  const { actions, request } = useWizard();
 
   const { question, answerIdx } = request || {};
   if (!question || typeof answerIdx !== 'number') {
@@ -22,10 +20,7 @@ function Continue() {
       <Constrain>
         <WizardHtml mid={answer.showMid} />
 
-        <Button
-          isButtonElement
-          onClick={actions.nextPage}
-        >
+        <Button onClick={actions.nextPage}>
           Continue
         </Button>
       </Constrain>

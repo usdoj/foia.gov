@@ -6,9 +6,7 @@ import Button from './wizard_component_button';
 import WizardHtml from './wizard_html';
 
 function Intro() {
-  const {
-    actions, ready,
-  } = useWizard();
+  const { actions, ready } = useWizard();
 
   if (!ready) {
     return <div>Loading app...</div>;
@@ -19,10 +17,7 @@ function Intro() {
       <Constrain>
         <WizardHtml mid="intro0" />
 
-        <Button
-          isButtonElement
-          onClick={actions.nextPage}
-        >
+        <Button onClick={actions.nextPage}>
           Begin
         </Button>
       </Constrain>
