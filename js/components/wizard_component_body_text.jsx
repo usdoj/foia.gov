@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function BodyText({ children }) {
   return (
-    <p className="c-body-text">{children}</p>
+    <p className="w-component-body-text">{children}</p>
   );
 }
 

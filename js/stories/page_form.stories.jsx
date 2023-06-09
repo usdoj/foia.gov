@@ -1,4 +1,5 @@
 import React from 'react';
+import AppContainer from '../components/wizard_layout_app_container';
 import Constrain from '../components/wizard_layout_constrain';
 import BodyText from '../components/wizard_component_body_text';
 import Heading from '../components/wizard_component_heading';
@@ -10,7 +11,11 @@ export default {
 };
 
 function Template(args) {
-  return <PageComponent {...args} />;
+  return (
+    <AppContainer>
+      <PageComponent {...args} />
+    </AppContainer>
+  );
 }
 
 const content = (
@@ -23,4 +28,5 @@ const content = (
 export const Form = Template.bind({});
 Form.args = {
   children: content,
+  isDemo: true,
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function AppContainer({ children }) {
   return (
-    <div className="l-app-container">
+    <div className="w-layout-app-container">
       {children}
     </div>
   );

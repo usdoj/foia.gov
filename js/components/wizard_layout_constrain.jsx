@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Constrain({ children, width }) {
   return (
-    <div className={`l-constrain${width ? ` l-constrain--${width}` : ''}`}>
+    <div className={`w-layout-constrain${width ? ` w-layout-constrain--${width}` : ''}`}>
       {children}
     </div>
   );

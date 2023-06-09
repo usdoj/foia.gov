@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppContainer from './wizard_layout_app_container';
 import Header from './wizard_component_header';
 
-function Page({ children }) {
+function Page({ children, isDemo }) {
   return (
-    <AppContainer>
-      <Header />
+    <>
+      <Header isDemo={isDemo} />
       {children}
-    </AppContainer>
+    </>
   );
 }
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
+  isDemo: PropTypes.bool,
 };
 
 export default Page;

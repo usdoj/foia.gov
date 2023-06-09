@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import wizardPages from '../components/wizard_pages';
 import { useWizard } from '../stores/wizard_store';
+import AppContainer from '../components/wizard_layout_app_container';
 
 function WizardPage() {
   // Start loading UI stuff...
@@ -13,11 +14,9 @@ function WizardPage() {
   const ActivePageComponent = wizardPages[page];
 
   return (
-    <div className="usa-grid usa-section-dark">
-      <div className="usa-width-one-whole">
-        <ActivePageComponent />
-      </div>
-    </div>
+    <AppContainer>
+      <ActivePageComponent />
+    </AppContainer>
   );
 }
 

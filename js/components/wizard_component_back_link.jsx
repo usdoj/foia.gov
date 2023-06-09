@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function BackLink({ text }) {
+function BackLink({ text, onClick }) {
   return (
-    <a className="c-back-link">{text}</a>
+    <button className="w-component-back-link" onClick={onClick}>{text}</button>
   );
 }
 
 BackLink.propTypes = {
   text: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default BackLink;

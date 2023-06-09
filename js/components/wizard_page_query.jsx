@@ -1,26 +1,12 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
-import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
 import WizardHtml from './wizard_html';
-
-Modal.setAppElement('#wizard-react-app');
-
-/** @type {{content:React.CSSProperties, overlay:React.CSSProperties}} */
-const modalStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    maxWidth: '100rem',
-  },
-  overlay: {
-    backgroundColor: '#122e51cc',
-  },
-};
+import PillGroup from './wizard_component_pill_group';
+import PageTemplate from './wizard_template_page';
+import FormItem from './wizard_component_form_item';
+import Modal from './wizard_component_modal';
+import Constrain from './wizard_layout_constrain';
+import Button from './wizard_component_button';
 
 function Query() {
   const {
@@ -53,114 +39,55 @@ function Query() {
   }
 
   return (
-    <div>
-      <p>
-        <a href="/wizard" tabIndex={0} style={{ color: '#fff' }}>
-          <svg className="usa-icon" aria-hidden="true" focusable="false" role="img">
-            <use xlinkHref="/img/uswds-3.2.0-sprite.svg#navigate_before" />
-          </svg>
-          {' '}
-          Back
-        </a>
-      </p>
-
-      <WizardHtml mid="intro1" />
-
-      <label htmlFor="user-query" className="visually-hidden">Query</label>
-      <input
-        id="user-query"
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Type 1-2 sentences or keywords..."
-        value={query || ''}
-      />
-
-      <div style={{ margin: '2rem 0' }}>
-        Common topics
-        {' '}
-        <TopicsButtons
+    <PageTemplate>
+      <Constrain>
+        <WizardHtml mid="intro1" />
+        <FormItem
+          type="textarea"
+          isLabelHidden
+          label="Query"
+          onChange={(e) => setQuery(e.target.value)}
+          value={query || ''}
+          placeholder={selectedTopic ? selectedTopic.title : 'Type 1-2 sentences or keywords...'}
+        />
+        <PillGroup
+          label="Common topics"
           topics={displayedTopics}
           isTopicSelected={isTopicSelected}
           onClickTopicButton={onClickTopicButton}
+          suffix={allTopics.length > 10 ? (
+            <button onClick={openModal} className="button-as-link" style={{ color: '#fff' }}>
+              See all
+            </button>
+          ) : null}
         />
-        {allTopics.length > 10 ? (
-          <button onClick={openModal} className="button-as-link" style={{ color: '#fff' }}>
-            See all
-          </button>
-        ) : null}
-      </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={modalStyles}
-        contentLabel="All topics"
-      >
-        <div style={{ textAlign: 'right' }}>
-          <button
-            onClick={closeModal}
-            className="close-button"
-            aria-label="Close Modal"
+        <Modal
+          title="Common topics"
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+        >
+          <PillGroup
+            topics={allTopics}
+            isTopicSelected={isTopicSelected}
+            onClickTopicButton={onClickTopicButton}
           />
-        </div>
-        <TopicsButtons
-          topics={allTopics}
-          isTopicSelected={isTopicSelected}
-          onClickTopicButton={onClickTopicButton}
-        />
-      </Modal>
+        </Modal>
 
-      <p>
         {(query && query !== '') || selectedTopic ? (
-          <button
-            type="button"
-            className="usa-button"
+          <Button
+            isButtonElement
             onClick={() => actions.submitRequest({
               query: query || '',
               topic: selectedTopic,
             })}
           >
             Submit
-          </button>
+          </Button>
         ) : null}
         {loading && ' Loading...'}
-      </p>
-    </div>
+      </Constrain>
+    </PageTemplate>
   );
 }
-
-/**
- * @param {Object} props
- * @param {WizardTopic[]} props.topics
- * @param {(topic: WizardTopic) => boolean} props.isTopicSelected
- * @param {(topic: WizardTopic) => void} props.onClickTopicButton
- * @returns {React.ReactNode}
- */
-function TopicsButtons({ topics, isTopicSelected, onClickTopicButton }) {
-  if (topics && topics.length) {
-    return (
-      <>
-        {topics.map((topic) => (
-          <button
-            key={topic.tid}
-            className="wizard-topic-button"
-            data-selected={Number(isTopicSelected(topic))}
-            type="button"
-            onClick={() => onClickTopicButton(topic)}
-          >
-            {topic.title}
-          </button>
-        ))}
-      </>
-    );
-  }
-
-  return null;
-}
-
-TopicsButtons.propTypes = {
-  topics: PropTypes.array.isRequired,
-  isTopicSelected: PropTypes.func.isRequired,
-  onClickTopicButton: PropTypes.func.isRequired,
-};
 
 export default Query;

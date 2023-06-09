@@ -1,9 +1,14 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
+import PageTemplate from './wizard_template_page';
+import Constrain from './wizard_layout_constrain';
+import Button from './wizard_component_button';
+import RichText from './wizard_component_rich_text';
+import FormItem from './wizard_component_form_item';
 
 function Question() {
   const {
-    actions, canGoBack, request,
+    actions, request,
   } = useWizard();
 
   const { question } = request || {};
@@ -13,56 +18,42 @@ function Question() {
   }
 
   return (
-    <div>
-      <p>One more question about:</p>
+    <PageTemplate>
+      <Constrain>
+        <RichText>
+          <p>One more question about:</p>
 
-      <blockquote>
-        {request.query}
-      </blockquote>
+          <blockquote>
+            {request.query}
+          </blockquote>
 
-      <h2>{question.title}</h2>
+          <h2>{question.title}</h2>
+        </RichText>
 
-      {question.answers.map((answer, idx) => {
-        const inputId = `question-${question.qid}-${idx}`;
-        return (
+        {question.answers.map((answer, idx) => (
           <div key={answer.title}>
-            <input
+            <FormItem
               type="radio"
               name={question.qid}
+              label={answer.title}
               value={idx}
-              id={inputId}
               checked={idx === request.answerIdx}
               onChange={() => {
                 actions.selectAnswer(idx);
               }}
             />
-            <label htmlFor={inputId}>
-              {answer.title}
-            </label>
           </div>
-        );
-      })}
+        ))}
 
-      <p>
-        {canGoBack && (
-          <button
-            type="button"
-            className="usa-button"
-            onClick={actions.prevPage}
-          >
-            Back
-          </button>
-        )}
-        <button
-          type="button"
-          className="usa-button"
+        <Button
+          isButtonElement
           disabled={request.answerIdx === null}
           onClick={actions.nextPage}
         >
           Next
-        </button>
-      </p>
-    </div>
+        </Button>
+      </Constrain>
+    </PageTemplate>
   );
 }
 

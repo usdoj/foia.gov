@@ -15,20 +15,9 @@ Default.args = {
   children: 'Button',
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  children: 'Button',
-  size: 'small',
-};
-
-export const Big = Template.bind({});
-Big.args = {
-  children: 'Button',
-  size: 'big',
-};
-
 export const Link = Template.bind({});
 Link.args = {
   children: 'Button',
+  href: '#0',
   isLink: true,
 };

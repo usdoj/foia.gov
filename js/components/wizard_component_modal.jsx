@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactModal from 'react-modal';
 
+const rootEl = document.querySelector('#wizard-react-app');
+if (rootEl) {
+  ReactModal.setAppElement(rootEl);
+}
 function Modal({
   children,
   title,
@@ -10,20 +14,20 @@ function Modal({
 }) {
   return (
     <ReactModal
-      className="c-modal__content"
-      overlayClassName="c-modal__overlay"
-      portalClassName="c-modal"
+      className="w-component-modal__content"
+      overlayClassName="w-component-modal__overlay"
+      portalClassName="w-component-modal"
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       contentLabel="All topics"
     >
-      <div className="c-modal__close-button">
+      <div className="w-component-modal__close-button">
         <button
           onClick={closeModal}
           aria-label="Close Modal"
         />
       </div>
-      <h2 className="c-modal__title">{title}</h2>
+      <h2 className="w-component-modal__title">{title}</h2>
       {children}
     </ReactModal>
   );

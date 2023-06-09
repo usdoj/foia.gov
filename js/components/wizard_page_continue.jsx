@@ -1,10 +1,13 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
 import WizardHtml from './wizard_html';
+import PageTemplate from './wizard_template_page';
+import Constrain from './wizard_layout_constrain';
+import Button from './wizard_component_button';
 
 function Continue() {
   const {
-    actions, canGoBack, request,
+    actions, request,
   } = useWizard();
 
   const { question, answerIdx } = request || {};
@@ -15,28 +18,18 @@ function Continue() {
   const answer = question.answers[answerIdx];
 
   return (
-    <div>
-      <WizardHtml mid={answer.showMid} />
+    <PageTemplate>
+      <Constrain>
+        <WizardHtml mid={answer.showMid} />
 
-      <p>
-        {canGoBack && (
-          <button
-            type="button"
-            className="usa-button"
-            onClick={actions.prevPage}
-          >
-            Back
-          </button>
-        )}
-        <button
-          type="button"
-          className="usa-button"
+        <Button
+          isButtonElement
           onClick={actions.nextPage}
         >
           Continue
-        </button>
-      </p>
-    </div>
+        </Button>
+      </Constrain>
+    </PageTemplate>
   );
 }
 

@@ -5,7 +5,7 @@ function Heading({ children, tag, weight }) {
   const HeadingTag = tag || 'h1';
 
   return (
-    <HeadingTag className={`c-heading${weight ? ` c-heading--${weight}` : ''}`}>{children}</HeadingTag>
+    <HeadingTag className={`w-component-heading${weight ? ` w-component-heading--${weight}` : ''}`}>{children}</HeadingTag>
   );
 }
 
