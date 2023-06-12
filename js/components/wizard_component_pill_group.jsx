@@ -4,34 +4,38 @@ import Pill from './wizard_component_pill';
 
 /**
  * @param {Object} props
+ * @param {string=} props.label
  * @param {WizardTopic[]} props.topics
  * @param {(topic: WizardTopic) => boolean} props.isTopicSelected
+ * @param {React.ReactNode=} props.suffix
  * @param {(topic: WizardTopic) => void} props.onClickTopicButton
  * @returns {React.ReactNode}
  */
 function PillGroup({
   label,
   topics,
+  suffix,
   isTopicSelected,
   onClickTopicButton,
 }) {
   if (topics && topics.length) {
     return (
-      <div className="c-pill-group">
+      <div className="w-component-pill-group">
         {label && (
-          <div className="c-pill-group__label">{label}</div>
+          <div className="w-component-pill-group__label">{label}</div>
         )}
-        <ul className="c-pill-group__list">
+        <ul className="w-component-pill-group__list">
           {topics.map((topic) => (
             <Pill
               key={topic.tid}
-              data-selected={Number(isTopicSelected(topic))}
+              selected={Number(isTopicSelected(topic))}
               onClick={() => onClickTopicButton(topic)}
             >
               {topic.title}
             </Pill>
           ))}
         </ul>
+        {suffix}
       </div>
     );
   }
@@ -42,6 +46,7 @@ function PillGroup({
 PillGroup.propTypes = {
   label: PropTypes.string,
   topics: PropTypes.array.isRequired,
+  suffix: PropTypes.node,
   isTopicSelected: PropTypes.func.isRequired,
   onClickTopicButton: PropTypes.func.isRequired,
 };

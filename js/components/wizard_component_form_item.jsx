@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @param {import('prop-types').InferProps<typeof FormItem.propTypes>} props
+ */
 function FormItem({
   type,
   isLabelHidden,
   label,
   onChange,
+  name,
   value,
+  checked,
   placeholder,
 }) {
   const id = label.toLowerCase().replaceAll(' ', '-');
@@ -14,19 +19,27 @@ function FormItem({
 
   switch (type) {
     case 'text':
-      element = <input id={id} className="c-form-item__element" onChange={onChange} value={value} placeholder={placeholder} />;
+      element = <input id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} />;
       break;
     case 'textarea':
-      element = <textarea id={id} className="c-form-item__element" onChange={onChange} value={value} placeholder={placeholder} />;
+      element = <textarea id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} />;
+      break;
+    case 'checkbox':
+      element = <input type="checkbox" id={id} className="w-component-form-item__element" onChange={onChange} name={name} value={value} checked={checked} />;
+      break;
+    case 'radio':
+      element = <input type="radio" id={id} className="w-component-form-item__element" onChange={onChange} name={name} value={value} checked={checked} />;
       break;
 
     default:
       break;
   }
+
   return (
-    <div className="c-form-item">
-      <label htmlFor={id} className={`c-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}>{label}</label>
-      {element}
+    <div className={`w-component-form-item${type ? ` w-component-form-item--${type}` : ''}`}>
+      {(type === 'checkbox' || type === 'radio') && element}
+      <label htmlFor={id} className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}>{label}</label>
+      {(type === 'text' || type === 'textarea') && element}
     </div>
   );
 }
@@ -36,7 +49,12 @@ FormItem.propTypes = {
   isLabelHidden: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  checked: PropTypes.bool,
   placeholder: PropTypes.string,
 };
 

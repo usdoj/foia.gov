@@ -11,3 +11,6 @@ function Template(args) {
 }
 
 export const Header = Template.bind({});
+Header.args = {
+  isDemo: true,
+};

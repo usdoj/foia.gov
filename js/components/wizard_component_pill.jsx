@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @param {import('prop-types').InferProps<typeof Pill.propTypes>} props
+ */
 function Pill({
   children,
-  key,
+  selected,
   onClick,
 }) {
   return (
     <button
-      key={key}
-      className="c-pill"
+      className="w-component-pill"
       type="button"
+      data-selected={selected}
       onClick={onClick}
     >
       {children}
@@ -20,7 +23,7 @@ function Pill({
 
 Pill.propTypes = {
   children: PropTypes.node,
-  key: PropTypes.string,
+  selected: PropTypes.number,
   onClick: PropTypes.func,
 };
 

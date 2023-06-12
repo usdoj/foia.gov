@@ -1,31 +1,28 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
-import WizardHtml from './wizard_html';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
+import WizardHtml from './wizard_html';
 
-function Continue() {
-  const { actions, request } = useWizard();
+function Intro() {
+  const { actions, ready } = useWizard();
 
-  const { question, answerIdx } = request || {};
-  if (!question || typeof answerIdx !== 'number') {
-    return null;
+  if (!ready) {
+    return <div>Loading app...</div>;
   }
-
-  const answer = question.answers[answerIdx];
 
   return (
     <PageTemplate>
       <Constrain>
-        <WizardHtml mid={answer.showMid} />
+        <WizardHtml mid="intro0" />
 
         <Button onClick={actions.nextPage}>
-          Continue
+          Begin
         </Button>
       </Constrain>
     </PageTemplate>
   );
 }
 
-export default Continue;
+export default Intro;

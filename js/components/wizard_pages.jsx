@@ -2,14 +2,16 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import Init from './wizard_page_init';
+import Intro from './wizard_page_intro';
+import Query from './wizard_page_query';
 import Question from './wizard_page_question';
 import Continue from './wizard_page_continue';
 import Summary from './wizard_page_summary';
 import TopicIntro from './wizard_page_topicintro';
 
 const wizardPages = {
-  Init,
+  Intro,
+  Query,
   Question,
   Continue,
   Summary,
@@ -20,7 +22,8 @@ const wizardPages = {
  * @enum {string}
  */
 export const WizardPageName = {
-  Init: 'Init',
+  Intro: 'Intro',
+  Query: 'Query',
   Question: 'Question',
   Continue: 'Continue',
   Summary: 'Summary',

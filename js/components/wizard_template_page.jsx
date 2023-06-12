@@ -1,19 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppContainer from './wizard_layout_app_container';
 import Header from './wizard_component_header';
 
-function Page({ children }) {
+/**
+ * @param {Object} props
+ * @param {import('react').ReactNode=} props.children
+ * @param {boolean=} props.isDemo
+ * @return {React.ElementType}
+ */
+function PageTemplate({ children, isDemo }) {
   return (
-    <AppContainer>
-      <Header />
+    <>
+      <Header isDemo={isDemo} />
       {children}
-    </AppContainer>
+    </>
   );
 }
 
-Page.propTypes = {
+PageTemplate.propTypes = {
   children: PropTypes.node.isRequired,
+  isDemo: PropTypes.bool,
 };
 
-export default Page;
+export default PageTemplate;

@@ -1,42 +1,31 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
+import PageTemplate from './wizard_template_page';
+import Button from './wizard_component_button';
+import RichText from './wizard_component_rich_text';
+import Constrain from './wizard_layout_constrain';
 
 function Summary() {
-  const {
-    actions,
-    request,
-    canGoBack,
-  } = useWizard();
+  const { actions, request } = useWizard();
 
   return (
-    <div>
-      <p>Your query:</p>
+    <PageTemplate>
+      <Constrain>
+        <RichText>
+          <p>Your query:</p>
 
-      <blockquote>
-        {request.query}
-      </blockquote>
+          <blockquote>
+            {request.query}
+          </blockquote>
 
-      <pre>{JSON.stringify(request, null, 2)}</pre>
+          <pre>{JSON.stringify(request, null, 2)}</pre>
+        </RichText>
 
-      <p>
-        {canGoBack && (
-          <button
-            type="button"
-            className="usa-button"
-            onClick={actions.prevPage}
-          >
-            Back
-          </button>
-        )}
-        <button
-          type="button"
-          className="usa-button"
-          onClick={actions.reset}
-        >
+        <Button onClick={actions.reset}>
           Reset
-        </button>
-      </p>
-    </div>
+        </Button>
+      </Constrain>
+    </PageTemplate>
   );
 }
 

@@ -4,13 +4,13 @@ import Constrain from './wizard_layout_constrain';
 
 function Header({ headerUpper, headerLower }) {
   return (
-    <header className="l-header">
-      <div className="l-header__upper">
+    <header className="w-layout-header">
+      <div className="w-layout-header__upper">
         <Constrain width="large">
           {headerUpper}
         </Constrain>
       </div>
-      <div className="l-header__lower">
+      <div className="w-layout-header__lower">
         <Constrain width="large">
           {headerLower}
         </Constrain>
