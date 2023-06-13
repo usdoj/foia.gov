@@ -5,13 +5,13 @@ import AppContainer from '../components/wizard_layout_app_container';
 
 function WizardPage() {
   // Start loading UI stuff...
-  const { page, actions } = useWizard();
+  const { actions, activity } = useWizard();
 
   useEffect(() => {
     actions.initLoad();
   }, []);
 
-  const ActivePageComponent = wizardPages[page];
+  const ActivePageComponent = wizardPages[activity.type];
 
   return (
     <AppContainer>
