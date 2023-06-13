@@ -1,10 +1,10 @@
 /**
  * @type {WizardQuestion}
  */
-const militaryRecordsJourney = {
+const socsecRecordsJourney = {
   type: 'question',
   titleMid: 'q1',
   answers: [],
 };
 
-export default militaryRecordsJourney;
+export default socsecRecordsJourney;
