@@ -13,8 +13,8 @@
     "./wizard_types.d.ts",
     "./wizard.jsx",
     "./components/wizard_*.js",
-    "./models/wizard.js",
     "./models/wizard_*.js",
+    "./pages/wizard.jsx",
     "./stores/wizard_*.js"
   ],
   "exclude": ["node_modules"]
