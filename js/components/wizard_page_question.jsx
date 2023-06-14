@@ -20,10 +20,9 @@ function Question() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          <p>One more question about:</p>
-
+          <p>Your request:</p>
           <blockquote>
-            {request.query}
+            {request.query || request.topic.title}
           </blockquote>
 
           <h2><WizardHtml mid={activity.titleMid} /></h2>

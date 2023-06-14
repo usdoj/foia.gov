@@ -17,20 +17,22 @@ function Summary() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          <p>Your query:</p>
-
-          <blockquote>
-            {request.query}
-          </blockquote>
-
-          {typeof activity.titleMid === 'string' && (
+          {typeof activity.titleMid === 'string' ? (
+            // Topic/answer-specific content
             <WizardHtml mid={activity.titleMid} />
+          ) : (
+            // Show agencies & links from model
+            <>
+              <p>Your request:</p>
+              <blockquote>
+                {request.query}
+              </blockquote>
+
+              <pre>{JSON.stringify(request.agencies, null, 2)}</pre>
+              <pre>{JSON.stringify(request.links, null, 2)}</pre>
+            </>
           )}
         </RichText>
-
-        <pre>{JSON.stringify(request.agencies, null, 2)}</pre>
-
-        <pre>{JSON.stringify(request.links, null, 2)}</pre>
 
         <Button onClick={actions.reset}>
           Reset
