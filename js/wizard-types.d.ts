@@ -55,10 +55,13 @@ declare global {
   type WizardContinue = {
     type: 'continue';
     /**
-     * Text MID
+     * MID of text to display
      */
     titleMid: string;
-    next: WizardActivity;
+    /**
+     * The next activity: a question, continue, or the summary
+     */
+    next: WizardQuestion | WizardContinue | WizardSummary;
   };
 
   type WizardSummary = {
@@ -73,7 +76,10 @@ declare global {
      * Answer text MID (in wizard_extra_messages.js)
      */
     titleMid: string;
-    next: WizardActivity;
+    /**
+     * The next activity: a question, continue, or the summary
+     */
+    next: WizardQuestion | WizardContinue | WizardSummary;
   };
 
   type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'history' | 'ui' | 'numLoading'>;
