@@ -21,11 +21,11 @@ hooks:
   pre-start:
     - exec-host: 'cp Gemfile Gemfile.lock package.json package-lock.json .ddev/app-build/'
   post-start:
-    - exec: 'pm2 start --name node-serve /usr/local/bin/node -- js/dev-server.js'
+    - exec: 'pm2 restart --name node-serve /usr/local/bin/node -- js/dev-server.js'
       service: app
-    - exec: 'pm2 start --name webpack /usr/local/bin/npm -- run serve:watch'
+    - exec: 'pm2 restart --name webpack /usr/local/bin/npm -- run serve:watch'
       service: app
-    - exec: 'pm2 start --name storybook /usr/local/bin/npm -- run storybook'
+    - exec: 'pm2 restart --name storybook /usr/local/bin/npm -- run storybook'
       service: app
 
 #hooks:
