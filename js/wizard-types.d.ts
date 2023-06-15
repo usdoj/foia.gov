@@ -16,13 +16,17 @@ declare global {
   type ZustandGet<T> = () => T;
 
   type WizardAgency = {
-    name: string;
+    agency: string;
+    agency_abbrev: string;
+    confidence_score: number;
     url: string;
-    dept: string;
   };
 
   type WizardLink = {
-    name: string;
+    agency: string;
+    score: number;
+    sentence: string;
+    tag: string;
     url: string;
   };
 

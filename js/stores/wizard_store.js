@@ -9,6 +9,7 @@ import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
+import polydeltaAPIsample from '../../samples/polydelta_api_sample.json';
 
 /** @type {WizardVars} */
 const initialWizardState = {
@@ -167,17 +168,18 @@ const useRawWizardStore = create((
   const submitRequest = async ({ query, topic }) => {
     set((state) => ({ numLoading: state.numLoading + 1 }));
 
-    // Emulate API call
-    await new Promise((res) => {
-      setTimeout(res, 1e3);
-    });
+    let recommendedAgencies = [];
+    let recommendedLinks = [];
+
+    recommendedAgencies = polydeltaAPIsample.model_output.agency_finder_predictions[0];
+    recommendedLinks = polydeltaAPIsample.model_output.freqdoc_predictions;
 
     set((state) => withCapturedHistory({
       activity: topic ? topic.journey : { type: 'summary' },
       numLoading: Math.max(0, state.numLoading - 1),
       query,
-      recommendedLinks: [],
-      recommendedAgencies: [],
+      recommendedLinks,
+      recommendedAgencies,
       userTopic: topic,
     }));
   };
