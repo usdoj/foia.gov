@@ -4,10 +4,10 @@ import { useWizard } from '../stores/wizard_store';
 import RichText from './wizard_component_rich_text';
 
 function WizardHtml({ mid }) {
-  const { ui } = useWizard();
+  const { getMessage } = useWizard();
 
   return (
-    <RichText html={ui[mid] || ''} />
+    <RichText html={getMessage(mid)} />
   );
 }
 

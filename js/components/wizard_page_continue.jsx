@@ -6,19 +6,16 @@ import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
 
 function Continue() {
-  const { actions, request } = useWizard();
+  const { actions, activity } = useWizard();
 
-  const { question, answerIdx } = request || {};
-  if (!question || typeof answerIdx !== 'number') {
-    return null;
+  if (activity.type !== 'continue') {
+    throw new Error('Activity is not continue');
   }
-
-  const answer = question.answers[answerIdx];
 
   return (
     <PageTemplate>
       <Constrain>
-        <WizardHtml mid={answer.showMid} />
+        <WizardHtml mid={activity.titleMid} />
 
         <Button onClick={actions.nextPage}>
           Continue

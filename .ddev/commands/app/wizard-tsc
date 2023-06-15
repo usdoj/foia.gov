@@ -4,4 +4,4 @@
 ## Usage: wizard-tsc
 ## Example: "ddev wizard-tsc"
 
-tsc --project js/wizard.tsconfig.json
+tsc --watch --project js/wizard.tsconfig.json

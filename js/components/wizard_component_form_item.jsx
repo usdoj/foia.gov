@@ -13,6 +13,7 @@ function FormItem({
   value,
   checked,
   placeholder,
+  disabled,
 }) {
   const id = label.toLowerCase().replaceAll(' ', '-');
   let element;
@@ -22,7 +23,7 @@ function FormItem({
       element = <input id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} />;
       break;
     case 'textarea':
-      element = <textarea id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} />;
+      element = <textarea id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} disabled={disabled} />;
       break;
     case 'checkbox':
       element = <input type="checkbox" id={id} className="w-component-form-item__element" onChange={onChange} name={name} value={value} checked={checked} />;
@@ -56,6 +57,7 @@ FormItem.propTypes = {
   ]),
   checked: PropTypes.bool,
   placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default FormItem;

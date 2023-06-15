@@ -9,7 +9,6 @@
  */
 
 import { SetState } from 'zustand';
-import { WizardPageName } from './components/wizard_pages';
 
 declare global {
   type ZustandSet<T> = SetState<T>;
@@ -31,65 +30,59 @@ declare global {
     tid: string;
     title: string;
     /**
-     * Reference to the first follow-up question
+     * Reference to the first question
      */
-    firstQid: string;
-    /**
-     * If specified, show an initial message before the first question
-     */
-    introMid: string | null;
+    journey: WizardQuestion;
   };
 
+  type WizardIntro = {
+    type: 'intro';
+  }
+
+  type WizardQuery = {
+    type: 'query';
+  }
+
   type WizardQuestion = {
-    qid: string;
-    title: string;
+    type: 'question';
+    /**
+     * Question text MID (in wizard_extra_messages.js)
+     */
+    titleMid: string;
     answers: WizardAnswer[];
   };
 
+  type WizardContinue = {
+    type: 'continue';
+    /**
+     * MID of text to display
+     */
+    titleMid: string;
+    /**
+     * The next activity: a question, continue, or the summary
+     */
+    next: WizardQuestion | WizardContinue | WizardSummary;
+  };
+
+  type WizardSummary = {
+    type: 'summary';
+    titleMid?: string;
+  }
+
+  type WizardActivity = WizardIntro | WizardQuery | WizardQuestion | WizardContinue | WizardSummary;
+
   type WizardAnswer = {
-    title: string;
     /**
-     * If specified, this answer will be followed by another question
+     * Answer text MID (in wizard_extra_messages.js)
      */
-    nextQid: string | null;
+    titleMid: string;
     /**
-     * If specified, show the message (maybe with a Continue button or a follow-up)
+     * The next activity: a question, continue, or the summary
      */
-    showMid: string | null;
-    /**
-     * If true, and showMid is specified, show the message on its own page with a [Continue] button.
-     */
-    showContinue: boolean | null;
+    next: WizardQuestion | WizardContinue | WizardSummary;
   };
 
-  type WizardMessage = {
-    mid: string;
-    html: string;
-    /**
-     * Drupal node ID (may not be needed)
-     */
-    nid: string;
-  };
-
-  type WizardRequest = {
-    query: string;
-    /**
-     * Displayed question (or after on a continue page)
-     */
-    question: WizardQuestion | null;
-    /**
-     * User selected answer
-     */
-    answerIdx: number | null;
-    recommendedAgencies: WizardAgency[] | null;
-    recommendedLinks: WizardLink[] | null;
-    userTopic: WizardTopic | null;
-  };
-
-  type WizardHistorySnapshot = {
-    page: WizardPageName;
-    request: WizardRequest | null;
-  };
+  type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'history' | 'ui' | 'numLoading'>;
 
   type WizardActions = {
     initLoad: () => void;
@@ -105,30 +98,24 @@ declare global {
   };
 
   type WizardVars = {
+    activity: WizardActivity;
     allTopics: WizardTopic[] | null;
-    numLoading: number;
-    page: WizardPageName;
-    request: WizardRequest | null;
-    ui: Record<string, string> | null;
+    /**
+     * User selected answer
+     */
+    answerIdx: number | null;
     history: WizardHistorySnapshot[];
+    numLoading: number;
+    query: string | null;
+    recommendedAgencies: WizardAgency[] | null;
+    recommendedLinks: WizardLink[] | null;
+    ui: Record<string, string> | null;
+    userTopic: WizardTopic | null;
   };
 
   type WizardNonVars = {
     actions: WizardActions;
-    isLoading: () => void;
-    isReady: () => void;
   };
 
   type WizardState = WizardVars & WizardNonVars;
-
-  type UseWizard = {
-    actions: WizardActions;
-    allTopics: WizardVars['allTopics'];
-    canGoBack: boolean;
-    loading: boolean;
-    page: WizardPageName;
-    ready: boolean;
-    ui: WizardVars['ui'];
-    request: WizardVars['request'];
-  };
 }
