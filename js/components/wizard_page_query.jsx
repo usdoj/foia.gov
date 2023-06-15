@@ -35,6 +35,7 @@ function Query() {
   const isTopicSelected = (topic) => selectedTopic && (selectedTopic.tid === topic.tid);
 
   function onClickTopicButton(topic) {
+    setQuery('');
     setSelectedTopic(isTopicSelected(topic) ? null : topic);
   }
 
@@ -48,10 +49,11 @@ function Query() {
           label="Query"
           onChange={(e) => setQuery(e.target.value)}
           value={query || ''}
-          placeholder={selectedTopic ? selectedTopic.title : 'Type 1-2 sentences or keywords...'}
+          placeholder={selectedTopic ? '' : 'Type 1-2 sentences or keywords...'}
+          disabled={Boolean(selectedTopic)}
         />
         <PillGroup
-          label="Common topics"
+          label="Or choose a common topic"
           topics={displayedTopics}
           isTopicSelected={isTopicSelected}
           onClickTopicButton={onClickTopicButton}
