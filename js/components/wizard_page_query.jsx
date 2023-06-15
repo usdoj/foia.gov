@@ -50,7 +50,7 @@ function Query() {
           onChange={(e) => setQuery(e.target.value)}
           value={query || ''}
           placeholder={selectedTopic ? '' : 'Type 1-2 sentences or keywords...'}
-          disabled={selectedTopic && true}
+          disabled={Boolean(selectedTopic)}
         />
         <PillGroup
           label="Or choose a common topic"
