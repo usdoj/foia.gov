@@ -223,6 +223,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 }
 
 // Button Component
+.w-component-button {
+  background-color: $color-primary-alt-lightest !important;
+}
+
 .w-component-button--link {
   border-bottom: 1px solid;
   color: inherit;
