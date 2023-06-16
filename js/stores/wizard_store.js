@@ -96,9 +96,21 @@ const useRawWizardStore = create((
   });
 
   const initLoad = async () => {
-    const response = await fetch(`${settings.api.requestApiBaseURL}/foia_wizard`);
-    // ToDo: error handling, show an error page?
-    const data = await response.json();
+    let data;
+    try {
+      data = await fetch(`${settings.api.requestApiBaseURL}/foia_wizard`).then((r) => r.json());
+    } catch (err) {
+      throw new Error(`API call to fetch wizard strings failed: ${err}`);
+    }
+
+    const lang = 'es';
+    try {
+      // Basic validation
+      data.language[lang].messages.m1.indexOf('');
+      data.language[lang].intro_slide.indexOf('');
+    } catch (err) {
+      throw new Error('Unexpected wizard strings format');
+    }
 
     initLoadSuccess(
       allTopics,
@@ -106,9 +118,10 @@ const useRawWizardStore = create((
       {
         // These will remain hardcoded and merged here.
         ...extraMessages,
-        intro_slide: data.language.es.intro_slide,
-        query_slide: data.language.es.query_slide,
-        ...data.language.es.messages,
+
+        intro_slide: data.language[lang].intro_slide,
+        query_slide: data.language[lang].query_slide,
+        ...data.language[lang].messages,
       },
     );
   };
