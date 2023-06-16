@@ -83,6 +83,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   font-size: 18px;
   font-weight: initial;
   line-height: initial;
+  margin: 0;
   padding: unset;
   padding-left: 18px;
   position: relative;
@@ -90,6 +91,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 
   &:hover {
     background-color: unset;
+  }
+
+  &:visited {
+    color: $color-white;
   }
 
   &::before {

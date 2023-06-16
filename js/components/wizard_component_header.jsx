@@ -8,6 +8,7 @@ function Header() {
   const {
     actions,
     canGoBack,
+    isInit,
   } = useWizard();
 
   return (
@@ -19,17 +20,25 @@ function Header() {
           text="FOIA.gov"
         />
       )}
-      headerLower={
-        canGoBack && (
-          <BackLink
-            text="Back"
-            onClick={(e) => {
-              e.preventDefault();
-              actions.prevPage();
-            }}
-          />
-        )
-      }
+      headerLower={(
+        <>
+          {canGoBack && (
+            <BackLink
+              text="Back"
+              onClick={(e) => {
+                e.preventDefault();
+                actions.prevPage();
+              }}
+            />
+          )}
+          {isInit && (
+            <BackLink
+              text="Home"
+              href="/"
+            />
+          )}
+        </>
+      )}
     />
   );
 }
