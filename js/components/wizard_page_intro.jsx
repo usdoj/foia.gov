@@ -15,7 +15,7 @@ function Intro() {
   return (
     <PageTemplate>
       <Constrain>
-        <WizardHtml mid="intro0" />
+        <WizardHtml mid="intro_slide" />
 
         <Button onClick={actions.nextPage}>
           Begin

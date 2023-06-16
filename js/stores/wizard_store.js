@@ -5,6 +5,7 @@
  * decisions throughout the UX.
  */
 
+import settings from 'settings';
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import allTopics from '../models/wizard_topics';
@@ -95,31 +96,19 @@ const useRawWizardStore = create((
   });
 
   const initLoad = async () => {
-    // Emulate API call
-    await new Promise((res) => {
-      setTimeout(res, 1e3);
-    });
+    const response = await fetch(`${settings.api.requestApiBaseURL}/foia_wizard`);
+    // ToDo: error handling, show an error page?
+    const data = await response.json();
 
     initLoadSuccess(
       allTopics,
 
       {
-        // Move all this to be delivered by Drupal
-        intro0: '<h1>Hello,</h1><p>The government hosts a vast amount of information, with records spread across many different agencies, and even across different offices within agencies.</p><p>To help you figure out which federal agency might have the information you seek, we\'ve developed this tool.  If you\'re looking for non-federal records, such as from your local police department, we suggest contact the appropriate state or local authorities.</p><p>We recommend giving yourself at least 5 minutes to explore this tool.</p>',
-        intro1: '<h1>Let\'s dive in...</h1><p>What information are you looking for?</p>',
-        intro2: '<h1>Page Two</h1>',
-        intro3: '<h1>Page Three</h1>',
-        m1: '<p>If you are seeking records on yourself you will be required ...</p>',
-        m2: '<p>Generally, when requesting information about another person ...</p>',
-        m3: '<p>If you are seeking medical records from the Department of Veterans Affairs (VA), you may ...</p>',
-        m4: '<p>Select specific branch of the military to start FOIA request ...</p>',
-        m5: '<p>The following agencies may have the information you seek:...</p>',
-        m6: '<p>If you are seeking medical records from the Department of Veterans Affairs (VA), you may ...</p>',
-        m7: '<p>Select specific branch of the military to start FOIA request ...</p>',
-        m8: '<p>The following agencies may have the information you seek: ...</p>',
-
         // These will remain hardcoded and merged here.
         ...extraMessages,
+        intro_slide: data.language.es.intro_slide,
+        query_slide: data.language.es.query_slide,
+        ...data.language.es.messages,
       },
     );
   };
