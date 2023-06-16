@@ -5,6 +5,7 @@
  * decisions throughout the UX.
  */
 
+// @ts-ignore
 import settings from 'settings';
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
@@ -14,7 +15,7 @@ import extraMessages from '../models/wizard_extra_messages';
 /** @type {WizardVars} */
 const initialWizardState = {
   activity: { type: 'intro' },
-  allTopics: null,
+  allTopics,
   answerIdx: null,
   history: [],
 
@@ -23,9 +24,10 @@ const initialWizardState = {
   numLoading: 0,
 
   query: '',
+  ready: false,
   recommendedAgencies: null,
   recommendedLinks: null,
-  ui: null,
+  ui: extraMessages,
   userTopic: null,
 };
 
@@ -89,12 +91,6 @@ const useRawWizardStore = create((
     };
   });
 
-  /** @type {WizardActions['initLoadSuccess']} */
-  const initLoadSuccess = (topics, ui) => set({
-    allTopics: topics,
-    ui,
-  });
-
   const initLoad = async () => {
     let data;
     try {
@@ -112,18 +108,15 @@ const useRawWizardStore = create((
       throw new Error('Unexpected wizard strings format');
     }
 
-    initLoadSuccess(
-      allTopics,
+    const ui = {
+      // These will remain hardcoded and merged here.
+      ...extraMessages,
 
-      {
-        // These will remain hardcoded and merged here.
-        ...extraMessages,
-
-        intro_slide: data.language[lang].intro_slide,
-        query_slide: data.language[lang].query_slide,
-        ...data.language[lang].messages,
-      },
-    );
+      intro_slide: data.language[lang].intro_slide,
+      query_slide: data.language[lang].query_slide,
+      ...data.language[lang].messages,
+    };
+    set({ ready: true, ui });
   };
 
   const nextPage = () => set((state) => {
@@ -192,7 +185,6 @@ const useRawWizardStore = create((
   /** @type {WizardActions} */
   const actions = {
     initLoad,
-    initLoadSuccess,
     nextPage,
     prevPage,
     reset,
@@ -235,7 +227,7 @@ function useWizard() {
     canGoBack: state.history.length > 0,
     loading: state.numLoading > 0,
     activity: state.activity,
-    ready: state.ui !== null,
+    ready: state.ready,
     request: {
       agencies: state.recommendedAgencies,
       links: state.recommendedLinks,
