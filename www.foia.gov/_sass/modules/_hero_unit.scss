@@ -11,7 +11,6 @@ $hero-h2: 2.2rem;
   }
   @media screen and (min-width: $small-screen) {
     background-image: url('../img/Usdepartmentofjustice-1.jpg');
-    padding-top: 3rem;
     padding-bottom: 3rem;
   }
   @media screen and (max-width: $small-screen) {
@@ -20,7 +19,9 @@ $hero-h2: 2.2rem;
     }
   }
 }
+
 .usa-hero-callout {
+  background-color: #{$color-primary-darkest}e5;
   min-width: 100%;
   @media screen and (min-width: $medium-large-screen){
     min-width: 55%;
@@ -68,39 +69,37 @@ $hero-h2: 2.2rem;
   }
 }
 
-.hero-unit_button-group {
-  text-align: center;
-  @media screen and (min-width: $medium-screen) {
-    display: flex;
-    text-align: left;
-  }
-  font-size: $hero-text-size;
-  a {
-    display: block;
-    padding-top: $space-2x;
-    margin-bottom: $space-4x;
-    @media screen and (min-width: $medium-screen) {
-      display: inline;
-      margin-bottom: $space-2x;
-    }
-  }
-  .usa-button {
-    @media screen and (min-width: $medium-screen) {
-      flex-grow: 1;
-      display: inline;
-      width: auto;
-      margin-top: 0;
-    }
-    margin-top: 1rem;
-    font-size: $hero-text-size;
-  }
-  > span {
-    flex-grow: 1;
-    line-height: 1;
+.usa-hero-callout-nav {
+  background-color: #{$color-primary-darkest}e5;
+  margin-top: 4.5rem;
+  min-width: 100%;
+  padding: 3rem 6.5rem;
+
+  .usa-hero-callout-nav__heading {
+    color: $color-white;
+    font-family: $font-sans;
+    font-size: 2.2rem;
+    margin-bottom: 2.6rem;
+    margin-top: unset;
+    max-width: unset;
     text-align: center;
-    padding: $space-2x;
-    @media screen and (max-width: $medium-screen) {
-      display: none;
-    }
+  }
+
+  .usa-hero-callout-nav__cards {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .usa-hero-callout-nav__button-card {
+    align-items: center;
+    background-color: $color-primary-alt-lightest;
+    border-radius: 10px;
+    color: $color-primary-darkest;
+    display: flex;
+    flex: 1;
+    font-size: 2rem;
+    font-weight: 500;
+    padding: 2.5rem;
+    text-align: center;
   }
 }
