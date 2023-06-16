@@ -7,5 +7,5 @@ const api = {
 
 export default {
   api,
-  appEnv: 'ddev',
+  appEnv: 'platform',
 };

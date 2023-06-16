@@ -54,7 +54,7 @@ steps:
       manual:
         permit_on_passed: true
     command:
-      - "docker build -t ${ECR_NAMESPACE}:${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_COMMIT} ${DOCKERFILE_LOCATION}"
+      - "docker build --build-arg APP_ENV=platform -t ${ECR_NAMESPACE}:${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_COMMIT} ${DOCKERFILE_LOCATION}"
     plugins:
       - *aws-sm
 
@@ -71,7 +71,7 @@ steps:
       manual:
         permit_on_passed: true
     command:
-      - "docker build -t ${ECR_NAMESPACE}:${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_COMMIT} ${DOCKERFILE_LOCATION}"
+      - "docker build --build-arg APP_ENV=platform -t ${ECR_NAMESPACE}:${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_COMMIT} ${DOCKERFILE_LOCATION}"
       - "docker push ${ECR_NAMESPACE}:${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_COMMIT}"
     plugins:
       - *ecr

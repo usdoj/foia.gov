@@ -32,6 +32,9 @@ COPY Gemfile \
 
 RUN npm ci
 
+ARG APP_ENV
+ENV APP_ENV ${APP_ENV}
+
 RUN bundle install
 
 RUN make build
