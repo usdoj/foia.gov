@@ -34,7 +34,7 @@ function Summary() {
               </blockquote>
 
               { (!links || links.length === 0) && (!agencies || agencies.length === 0) ? (
-                <p>No agencies or information found for this query, please try a different query or select a common topic.</p>
+                <WizardHtml mid="polydeltaNoResults" />
               ) : (
                 null
               )}
