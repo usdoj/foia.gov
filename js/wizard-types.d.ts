@@ -90,7 +90,6 @@ declare global {
 
   type WizardActions = {
     initLoad: () => void;
-    initLoadSuccess: (allTopics: WizardTopic[], ui: Record<string, string>) => void;
     nextPage: () => void;
     prevPage: () => void;
     reset: () => void;
@@ -111,9 +110,10 @@ declare global {
     history: WizardHistorySnapshot[];
     numLoading: number;
     query: string | null;
+    ready: boolean;
     recommendedAgencies: WizardAgency[] | null;
     recommendedLinks: WizardLink[] | null;
-    ui: Record<string, string> | null;
+    ui: Record<string, string>;
     userTopic: WizardTopic | null;
   };
 

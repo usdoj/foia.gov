@@ -46,6 +46,7 @@ const extraMessages = {
   a19: '',
   a20: '',
   polydeltaNoResults: 'We didn\'t find anything from this query, please try a different search.',
+  loading: '<p>Loading...</p>',
 };
 
 export default extraMessages;

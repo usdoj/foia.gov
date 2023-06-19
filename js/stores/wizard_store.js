@@ -5,6 +5,8 @@
  * decisions throughout the UX.
  */
 
+// @ts-ignore
+import settings from 'settings';
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import allTopics from '../models/wizard_topics';
@@ -14,7 +16,7 @@ import polydeltaAPIsample from '../../samples/polydelta_api_sample.json';
 /** @type {WizardVars} */
 const initialWizardState = {
   activity: { type: 'intro' },
-  allTopics: null,
+  allTopics,
   answerIdx: null,
   history: [],
 
@@ -23,9 +25,10 @@ const initialWizardState = {
   numLoading: 0,
 
   query: '',
+  ready: false,
   recommendedAgencies: null,
   recommendedLinks: null,
-  ui: null,
+  ui: extraMessages,
   userTopic: null,
 };
 
@@ -89,40 +92,32 @@ const useRawWizardStore = create((
     };
   });
 
-  /** @type {WizardActions['initLoadSuccess']} */
-  const initLoadSuccess = (topics, ui) => set({
-    allTopics: topics,
-    ui,
-  });
-
   const initLoad = async () => {
-    // Emulate API call
-    await new Promise((res) => {
-      setTimeout(res, 1e3);
-    });
+    let data;
+    try {
+      data = await fetch(`${settings.api.requestApiBaseURL}/foia_wizard`).then((r) => r.json());
+    } catch (err) {
+      throw new Error(`API call to fetch wizard strings failed: ${err}`);
+    }
 
-    initLoadSuccess(
-      allTopics,
+    const lang = 'es';
+    try {
+      // Basic validation
+      data.language[lang].messages.m1.indexOf('');
+      data.language[lang].intro_slide.indexOf('');
+    } catch (err) {
+      throw new Error('Unexpected wizard strings format');
+    }
 
-      {
-        // Move all this to be delivered by Drupal
-        intro0: '<h1>Hello,</h1><p>The government hosts a vast amount of information, with records spread across many different agencies, and even across different offices within agencies.</p><p>To help you figure out which federal agency might have the information you seek, we\'ve developed this tool.  If you\'re looking for non-federal records, such as from your local police department, we suggest contact the appropriate state or local authorities.</p><p>We recommend giving yourself at least 5 minutes to explore this tool.</p>',
-        intro1: '<h1>Let\'s dive in...</h1><p>What information are you looking for?</p>',
-        intro2: '<h1>Page Two</h1>',
-        intro3: '<h1>Page Three</h1>',
-        m1: '<p>If you are seeking records on yourself you will be required ...</p>',
-        m2: '<p>Generally, when requesting information about another person ...</p>',
-        m3: '<p>If you are seeking medical records from the Department of Veterans Affairs (VA), you may ...</p>',
-        m4: '<p>Select specific branch of the military to start FOIA request ...</p>',
-        m5: '<p>The following agencies may have the information you seek:...</p>',
-        m6: '<p>If you are seeking medical records from the Department of Veterans Affairs (VA), you may ...</p>',
-        m7: '<p>Select specific branch of the military to start FOIA request ...</p>',
-        m8: '<p>The following agencies may have the information you seek: ...</p>',
+    const ui = {
+      // These will remain hardcoded and merged here.
+      ...extraMessages,
 
-        // These will remain hardcoded and merged here.
-        ...extraMessages,
-      },
-    );
+      intro_slide: data.language[lang].intro_slide,
+      query_slide: data.language[lang].query_slide,
+      ...data.language[lang].messages,
+    };
+    set({ ready: true, ui });
   };
 
   const nextPage = () => set((state) => {
@@ -192,7 +187,6 @@ const useRawWizardStore = create((
   /** @type {WizardActions} */
   const actions = {
     initLoad,
-    initLoadSuccess,
     nextPage,
     prevPage,
     reset,
@@ -235,7 +229,7 @@ function useWizard() {
     canGoBack: state.history.length > 0,
     loading: state.numLoading > 0,
     activity: state.activity,
-    ready: state.ui !== null,
+    ready: state.ready,
     request: {
       agencies: state.recommendedAgencies,
       links: state.recommendedLinks,
