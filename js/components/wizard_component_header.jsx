@@ -5,11 +5,7 @@ import BackLink from './wizard_component_back_link';
 import { useWizard } from '../stores/wizard_store';
 
 function Header() {
-  const {
-    actions,
-    canGoBack,
-    isInit,
-  } = useWizard();
+  const { actions, activity, canGoBack } = useWizard();
 
   return (
     <HeaderLayout
@@ -31,7 +27,7 @@ function Header() {
               }}
             />
           )}
-          {isInit && (
+          {activity.type === 'intro' && (
             <BackLink
               text="Home"
               href="/"
