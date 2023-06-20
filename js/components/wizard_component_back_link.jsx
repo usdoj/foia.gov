@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function BackLink({
-  text,
-  href,
-  onClick,
-}) {
+/**
+ * @param {import('prop-types').InferProps<typeof BackLink.propTypes>} props
+ */
+function BackLink({ text, href, onClick }) {
   if (typeof href !== 'string') {
     return (
       <button

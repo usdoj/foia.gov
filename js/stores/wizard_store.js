@@ -99,7 +99,7 @@ const useRawWizardStore = create((
       throw new Error(`API call to fetch wizard strings failed: ${err}`);
     }
 
-    const lang = 'es';
+    const lang = 'en';
     try {
       // Basic validation
       data.language[lang].messages.m1.indexOf('');
@@ -205,7 +205,6 @@ const useRawWizardStore = create((
  *   actions: WizardActions;
  *   allTopics: WizardVars['allTopics'];
  *   canGoBack: boolean;
- *   isInit: boolean;
  *   loading: boolean;
  *   activity: WizardVars['activity'];
  *   answerIdx: WizardVars['answerIdx'];
@@ -226,7 +225,6 @@ function useWizard() {
     allTopics: state.allTopics,
     answerIdx: state.answerIdx,
     canGoBack: state.history.length > 0,
-    isInit: state.history.length === 0,
     loading: state.numLoading > 0,
     activity: state.activity,
     ready: state.ready,
