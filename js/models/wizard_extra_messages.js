@@ -45,6 +45,7 @@ const extraMessages = {
   a18: '',
   a19: '',
   a20: '',
+  loading: '<p>Loading...</p>',
 };
 
 export default extraMessages;

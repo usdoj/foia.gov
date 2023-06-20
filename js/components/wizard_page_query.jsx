@@ -42,7 +42,7 @@ function Query() {
   return (
     <PageTemplate>
       <Constrain>
-        <WizardHtml mid="intro1" />
+        <WizardHtml mid="query_slide" />
         <FormItem
           type="textarea"
           isLabelHidden
