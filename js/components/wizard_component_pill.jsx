@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * @param {import('prop-types').InferProps<typeof Pill.propTypes>} props
  */
-function Pill({
-  children,
-  selected,
-  onClick,
-}) {
+function Pill({ children, selected, onClick }) {
   return (
     <button
       className="w-component-pill"
