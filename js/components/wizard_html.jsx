@@ -7,7 +7,7 @@ function WizardHtml({ mid }) {
   const { getMessage } = useWizard();
 
   return (
-    <RichText html={getMessage(mid)} />
+    <RichText mid={mid} html={getMessage(mid)} />
   );
 }
 
