@@ -35,6 +35,7 @@ function Question() {
               name="question"
               label={getMessage(answer.titleMid)}
               value={idx}
+              mid={answer.titleMid}
               checked={idx === answerIdx}
               onChange={() => {
                 actions.selectAnswer(idx);
