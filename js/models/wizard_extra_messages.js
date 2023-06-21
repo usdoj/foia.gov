@@ -9,13 +9,13 @@ const extraMessages = {
   q3: 'Select the type of IRS record you are seeking from the list below.',
   q4: 'Select the type of social security record you are seeking from the list below.',
   q5: 'Are you a Veteran?',
-  q6: 'Select the type of medical records you are seeking from the list below.',
-  q7: '',
-  q8: '',
-  q9: '',
-  q10: '',
-  q11: '',
-  q12: '',
+  q6: 'Are you looking for medical records of a Veteran?',
+  q7: 'Select the type of medical records you are seeking from the list below.',
+  q8: 'What kind of personnel records are you looking for?',
+  q9: 'Are you a current or former civilian employee?',
+  q10: 'Are you seeking records regarding a current or former military service member?',
+  q11: 'Are you seeking to verify the active duty status of a military service member?',
+  q12: 'Which of these are you looking for?',
   q13: '',
   q14: '',
   q15: '',
@@ -46,6 +46,7 @@ const extraMessages = {
   a19: '',
   a20: '',
   loading: '<p>Loading...</p>',
+  TBD: '<p>[Content to be determined]</p>',
 };
 
 export default extraMessages;
