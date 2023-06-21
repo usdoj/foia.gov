@@ -44,6 +44,10 @@ function Question() {
           </div>
         ))}
 
+        {typeof activity.addendumMid === 'string' && (
+          <WizardHtml mid={activity.addendumMid} />
+        )}
+
         <Button
           disabled={answerIdx === null}
           onClick={actions.nextPage}

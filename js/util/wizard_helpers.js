@@ -1,10 +1,13 @@
 /**
  * @param {string} titleMid
  * @param {WizardAnswer[]} answers
+ * @param {string=} addendumMid
  * @returns {WizardQuestion}
  */
-export function question(titleMid, answers) {
-  return { type: 'question', titleMid, answers };
+export function question(titleMid, answers, addendumMid) {
+  return {
+    type: 'question', titleMid, answers, addendumMid,
+  };
 }
 
 /**
@@ -21,13 +24,14 @@ export function answer(titleMid, next) {
  * @param {object} yesNo
  * @param {WizardQuestion | WizardContinue | WizardSummary} yesNo.yes
  * @param {WizardQuestion | WizardContinue | WizardSummary} yesNo.no
+ * @param {string=} addendumMid
  * @returns {WizardQuestion}
  */
-export function yesNoQuestion(titleMid, yesNo) {
+export function yesNoQuestion(titleMid, yesNo, addendumMid) {
   return question(titleMid, [
     answer('a1', yesNo.yes),
     answer('a2', yesNo.no),
-  ]);
+  ], addendumMid);
 }
 
 /**
