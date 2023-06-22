@@ -1,0 +1,13 @@
+.foia-component-card-group__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.5rem;
+  position: relative;
+  z-index: 0;
+
+  > * {
+    flex-basis: calc((100% - 7rem) / 3);
+  }
+}
+
+
