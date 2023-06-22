@@ -9,8 +9,8 @@ function CardGroup({ cardContent }) {
         <ul className="foia-component-card-group__list">
           {cardContent.map((card) => (
             <Card
-              category={card.category}
-              title={card.title}
+              key={card.id}
+              card={card}
             />
           ))}
         </ul>

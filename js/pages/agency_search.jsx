@@ -1,60 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AgencySearch from '../components/agency_search';
-
-const agencies = [
-  {
-    title: 'Placeholder Title',
-    agency: {
-      name: 'Placeholder Agency Name',
-    },
-  },
-  {
-    title: 'Placeholder Title',
-    agency: {
-      name: 'Placeholder Agency Name',
-    },
-  },
-  {
-    title: 'Placeholder Title',
-    agency: {
-      name: 'Placeholder Agency Name',
-    },
-  },
-  {
-    title: 'Placeholder Title',
-    agency: {
-      name: 'Placeholder Agency Name',
-    },
-  },
-  {
-    title: 'Placeholder Title',
-    agency: {
-      name: 'Placeholder Agency Name',
-    },
-  },
-  {
-    title: 'Placeholder Title',
-    agency: {
-      name: 'Placeholder Agency Name',
-    },
-  },
-  {
-    title: 'Placeholder Title',
-    agency: {
-      name: 'Placeholder Agency Name',
-    },
-  },
-  {
-    title: 'Placeholder Title',
-    agency: {
-      name: 'Placeholder Agency Name',
-    },
-  },
-];
+import useAgencyStore from '../stores/agency_store';
 
 function AgencySearchPage() {
+  const { init } = useAgencyStore();
+
+  useEffect(() => {
+    init();
+  }, []);
+
   return (
-    <AgencySearch agencies={agencies} />
+    <AgencySearch />
   );
 }
 
