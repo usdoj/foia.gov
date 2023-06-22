@@ -1,18 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Card({ category, title }) {
+function Card({ card }) {
+  const {
+    title, category, url,
+  } = card;
+
   return (
     <div className="foia-component-card">
-      <span className="foia-component-card__category">{category}</span>
-      <h2 className="foia-component-card__title">{title}</h2>
+      <a href={url}>
+        <span className="foia-component-card__category">{category}</span>
+        <h2 className="foia-component-card__title">{title}</h2>
+      </a>
     </div>
   );
 }
 
 Card.propTypes = {
-  category: PropTypes.string,
-  title: PropTypes.string,
+  card: PropTypes.object.isRequired,
 };
 
 export default Card;
