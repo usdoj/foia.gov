@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { List, Map } from 'immutable';
 import { Agency, AgencyComponent } from '../models';
 import jsonapi from '../util/json_api';
+import agencyComponentStore from './agency_component';
 
 // In order to show progress of the agency finder, we need to know the total
 // number of agency components we're waiting for. We don't have that number, so
@@ -19,9 +20,11 @@ const initialAgencyState = {
   datums: [],
 };
 
-// Expects agencies as a sequence type
-function datums({ agencies, agencyComponents }) {
+const collator = new Intl.Collator('en');
+
+function buildDatums({ agencies, agencyComponents }) {
   // Keep an index of centralized agencies for quick lookup
+  /** @type {Record<string, true>} */
   const centralizedAgencyIndex = {};
 
   return agencies
@@ -33,7 +36,7 @@ function datums({ agencies, agencyComponents }) {
       }
 
       // Add a title property for common displayKey
-      return Object.assign(agency.toJS(), { title: agency.name });
+      return { ...agency.toJS(), title: agency.name };
     })
     .toJS()
     // Include decentralized agency components in typeahead
@@ -41,7 +44,8 @@ function datums({ agencies, agencyComponents }) {
       agencyComponents.toJS().filter(
         (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
       ),
-    );
+    )
+    .sort((a, b) => collator.compare(a.title, b.title));
 }
 
 const useRawAgencyStore = create((
@@ -104,7 +108,7 @@ const useRawAgencyStore = create((
       return ({
         agencyFinderDataComplete: true,
         agencyComponents,
-        datums: datums({
+        datums: buildDatums({
           agencies: state.agencies.valueSeq(), // Pull the values, convert to sequence
           agencyComponents,
         }),
@@ -200,6 +204,24 @@ const useRawAgencyStore = create((
         .filter((agencyComponent) => agencyComponent.agency.id === agencyId);
     },
 
+    getDatumUrl(datum) {
+      if (datum.type === 'agency_component') {
+        return `/?${new URLSearchParams({ type: 'component', id: datum.id })}`;
+      }
+
+      const agency = get().agencies.get(datum.id);
+
+      if (agency.isCentralized()) {
+        const component = get()
+          .agencyComponents
+          .find((c) => c.agency.id === agency.id);
+
+        return `/?${new URLSearchParams({ type: 'component', id: component.id })}`;
+      }
+
+      return `/?${new URLSearchParams({ type: 'agency', id: agency.id })}`;
+    },
+
     init() {
       if (get().initCalled) {
         return;
@@ -214,26 +236,45 @@ const useRawAgencyStore = create((
 });
 
 /**
+ * @typedef {object} Datum
+ * @property {string} Datum.id
+ * @property {string} Datum.title
+ * @property {string} Datum.abbreviation
+ * @property {string} Datum.type
+ * @property {{ id: string; title: string}=} Datum.agency
+ */
+
+/**
  * @returns {{
  *   agencies: import('immutable').Map<string, Agency>;
  *   agencyComponents: import('immutable').List<AgencyComponent>;
  *   agencyFinderDataComplete: boolean;
  *   agencyFinderDataProgress: number;
- *   datums: Array<{
- *     id: string;
- *     title: string;
- *     abbreviation: string;
- *     agency?: {
- *       id: string;
- *       title: string;
- *     };
- *     type: string;
- *   }>;
+ *   datums: Datum[];
  *   init(): void;
+ *   getDatumUrl(datum: Datum): string;
  * }}
  */
 function useAgencyStore() {
-  return useRawAgencyStore((s) => s);
+  return useRawAgencyStore((state) => ({
+    ...state,
+    getDatumUrl: (datum) => {
+      if (datum.type === 'agency_component') {
+        return `/?${new URLSearchParams({ type: 'component', id: datum.id })}`;
+      }
+
+      const agency = state.agencies.get(datum.id);
+
+      if (agency.isCentralized()) {
+        const component = state.agencyComponents
+          .find((c) => c.agency.id === agency.id);
+
+        return `/?${new URLSearchParams({ type: 'component', id: component.id })}`;
+      }
+
+      return `/?${new URLSearchParams({ type: 'agency', id: agency.id })}`;
+    },
+  }));
 }
 
 export default useAgencyStore;

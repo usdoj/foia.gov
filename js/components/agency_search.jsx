@@ -11,16 +11,17 @@ if (typeof window !== 'undefined') {
 }
 
 function AgencySearch() {
-  const isIndexed = useRef(false);
   const {
     agencyFinderDataComplete,
     agencyFinderDataProgress,
     datums,
+    getDatumUrl,
   } = useAgencyStore();
 
   const [search, setSearch] = useState('');
   const [filteredDatums, setFilteredDatums] = useState(datums);
 
+  // Adapted from AgencyComponentFinder
   const bloodhound = useRef(new Bloodhound({
     local: [],
     sorter: (a, b) => {
@@ -65,30 +66,20 @@ function AgencySearch() {
     ),
   })).current;
 
-  function index() {
-    if (isIndexed.current) {
-      return;
-    }
-
-    // There is no update, only initialize. We assume that the component is only
-    // initialized after all the data is ready. Any updates are not significant
-    // enough to warrant an update. We only need title and abbreviation to
-    // render which should be available once the agency finder data fetch is
-    // complete.
-    isIndexed.current = true;
-
-    bloodhound.clear(); // Just in case
-    bloodhound.add(datums);
-    setFilteredDatums(datums);
-  }
-
+  // Adapted from AgencyComponentFinder
   useEffect(() => {
     // Indexing the typeahead is expensive and if we do it in batches, it gets
     // complicated to calculate which agencies are centralized vs
     // decentralized. Wait until we've received all the agency finder data
     // before indexing.
     if (agencyFinderDataComplete) {
-      index();
+      bloodhound.clear(); // Just in case
+
+      // Unlike in AgencyComponentFinder, we've moved Datum generation to
+      // the agency_store.
+      bloodhound.add(datums);
+
+      setFilteredDatums(datums);
     }
   }, [agencyFinderDataComplete]);
 
@@ -117,18 +108,11 @@ function AgencySearch() {
     ...datum,
     // TODO this is not a category. Not sure how we get that yet.
     category: datum.agency ? datum.agency.title : '',
-    // TODO this is not always correct. See js/components/landing.jsx "agencyChange" method
-    url: `/?${new URLSearchParams({ id: datum.id, type: datum.type })}`,
+    url: getDatumUrl(datum),
   }));
 
   return (
     <>
-      <div>
-        Loading progress:
-        {agencyFinderDataProgress}
-        %
-      </div>
-
       <div>
         <label className="usa-sr-only" htmlFor="search-field-big">Search an agency name or keyword</label>
         <input
@@ -142,11 +126,17 @@ function AgencySearch() {
       </div>
 
       {cards.length > 0
-        && (
+        ? (
           <p>
             {cards.length}
             {' '}
             results
+          </p>
+        ) : (
+          <p>
+            Loading...
+            {agencyFinderDataProgress}
+            %
           </p>
         )}
       <CardGroup
