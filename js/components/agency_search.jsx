@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import useAgencyStore from '../stores/agency_store';
+import PropTypes from 'prop-types';
 // import Pager from './foia_component_pager';
 import CardGroup from './foia_component_card_group';
 import tokenizers from '../util/tokenizers';
@@ -10,16 +10,49 @@ if (typeof window !== 'undefined') {
   Bloodhound = require('typeahead.js/dist/bloodhound'); // eslint-disable-line global-require
 }
 
-function AgencySearch() {
-  const {
-    agencyFinderDataComplete,
-    agencyFinderDataProgress,
-    datums,
-    getDatumUrl,
-  } = useAgencyStore();
+const collator = new Intl.Collator('en');
 
+function buildDatums({ agencies, agencyComponents }) {
+  // Keep an index of centralized agencies for quick lookup
+  /** @type {Record<string, true>} */
+  const centralizedAgencyIndex = {};
+
+  return agencies
+    .map((agency) => {
+      if (agency.isCentralized()) {
+        // Warning: Side-effect
+        // Add the agency to the index of centralized agencies
+        centralizedAgencyIndex[agency.id] = true;
+      }
+
+      // Add a title property for common displayKey
+      return { ...agency.toJS(), title: agency.name };
+    })
+    .toJS()
+    // Include decentralized agency components in typeahead
+    .concat(
+      agencyComponents.toJS().filter(
+        (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
+      ),
+    )
+    .sort((a, b) => collator.compare(a.title, b.title));
+}
+
+function AgencySearch({
+  agencies,
+  agencyComponents,
+  agencyFinderDataComplete,
+  agencyFinderDataProgress,
+  getDatumUrl,
+}) {
   const [search, setSearch] = useState('');
-  const [filteredDatums, setFilteredDatums] = useState(datums);
+  const [datums, setDatums] = useState([]);
+  const [filteredDatums, setFilteredDatums] = useState([]);
+
+  // Store state without re-rendering.
+  const fakeThis = useRef({
+    indexed: false,
+  }).current;
 
   // Adapted from AgencyComponentFinder
   const bloodhound = useRef(new Bloodhound({
@@ -73,15 +106,25 @@ function AgencySearch() {
     // decentralized. Wait until we've received all the agency finder data
     // before indexing.
     if (agencyFinderDataComplete) {
+      // Index once
+      if (fakeThis.indexed) {
+        return;
+      }
+      fakeThis.indexed = true;
+
       bloodhound.clear(); // Just in case
 
       // Unlike in AgencyComponentFinder, we've moved Datum generation to
       // the agency_store.
-      bloodhound.add(datums);
-
-      setFilteredDatums(datums);
+      const initialDatums = buildDatums({
+        agencies: agencies.valueSeq(), // Pull the values, convert to sequence,
+        agencyComponents,
+      });
+      bloodhound.add(initialDatums);
+      setDatums(initialDatums);
+      setFilteredDatums(initialDatums);
     }
-  }, [agencyFinderDataComplete]);
+  }, [agencyFinderDataComplete, agencies, agencyComponents]);
 
   useEffect(() => {
     if (datums.length) {
@@ -151,5 +194,13 @@ function AgencySearch() {
     </>
   );
 }
+
+AgencySearch.propTypes = {
+  agencies: PropTypes.object.isRequired,
+  agencyComponents: PropTypes.object.isRequired,
+  agencyFinderDataComplete: PropTypes.bool.isRequired,
+  agencyFinderDataProgress: PropTypes.number.isRequired,
+  getDatumUrl: PropTypes.func.isRequired,
+};
 
 export default AgencySearch;
