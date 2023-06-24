@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Pager({ postsPerPage, totalPages, paginate }) {
+function Pager({ postsPerPage, totalPosts, setCurrentPage }) {
   const pageNumbers = [];
-  
+
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
@@ -14,10 +14,9 @@ function Pager({ postsPerPage, totalPages, paginate }) {
         {pageNumbers.map((number) => (
           <li
             key={number}
-            onClick={() => paginate(number)}
             className="page-number"
           >
-            {number}
+            <button type="button" onClick={() => setCurrentPage(number)}>{number}</button>
           </li>
         ))}
       </ul>
@@ -26,7 +25,9 @@ function Pager({ postsPerPage, totalPages, paginate }) {
 }
 
 Pager.propTypes = {
-  children: PropTypes.string,
+  postsPerPage: PropTypes.number.isRequired,
+  totalPosts: PropTypes.number.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
 };
 
 export default Pager;

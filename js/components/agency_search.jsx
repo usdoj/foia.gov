@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-// import Pager from './foia_component_pager';
+import Pager from './foia_component_pager';
 import CardGroup from './foia_component_card_group';
 import tokenizers from '../util/tokenizers';
 
@@ -126,33 +126,31 @@ function AgencySearch({
     }
   }, [agencyFinderDataComplete, agencies, agencyComponents]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 18;
+
   useEffect(() => {
     if (datums.length) {
       if (search) {
-        bloodhound.search(search, setFilteredDatums);
+        bloodhound.search(search, (filtered) => {
+          setFilteredDatums(filtered);
+          setCurrentPage(1);
+        });
       } else {
         setFilteredDatums(datums);
       }
     }
   }, [datums, search]);
 
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage] = useState(18);
-
-  // const indexOfLastPost = currentPage * postsPerPage;
-  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentPosts = agencies ? agencies.slice(indexOfFirstPost, indexOfLastPost) : {};
-
-  // const paginate = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
-
   const cards = filteredDatums.map((datum) => ({
     ...datum,
-    // TODO this is not a category. Not sure how we get that yet.
-    category: datum.agency ? datum.agency.title : '',
+    agencyName: datum.agency ? datum.agency.name : '',
     url: getDatumUrl(datum),
   }));
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentCards = cards ? cards.slice(indexOfFirstPost, indexOfLastPost) : [];
 
   return (
     <>
@@ -182,15 +180,13 @@ function AgencySearch({
             %
           </p>
         )}
-      <CardGroup
-        cardContent={cards}
-      />
+      <CardGroup cardContent={currentCards} />
 
-      {/* <Pager
+      <Pager
         postsPerPage={postsPerPage}
-        totalPosts={agencies.length}
-        paginate={paginate}
-      /> */}
+        totalPosts={cards.length}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 }

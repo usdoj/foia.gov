@@ -24,13 +24,11 @@ class LandingPage extends Component {
 
   static calculateState() {
     const {
-      agencies,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
     } = agencyComponentStore.getState();
 
     return {
-      agencies,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
     };
@@ -54,7 +52,6 @@ class LandingPage extends Component {
 
   render() {
     const {
-      agencies,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
     } = this.state;
@@ -66,7 +63,6 @@ class LandingPage extends Component {
 
     return (
       <LandingComponent
-        agencies={agencies}
         agencyFinderDataComplete={agencyFinderDataComplete}
         agencyFinderDataProgress={agencyFinderDataProgress}
         idQueryString={idQueryString}

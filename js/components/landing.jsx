@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import { requestActions } from 'actions';
 import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
-import AgenciesByAlphabet from 'components/agencies_by_alphabet';
 import agencyComponentStore from '../stores/agency_component';
 
 function LandingComponent({
-  agencies,
   agencyFinderDataComplete,
   onChangeUrlQueryParams,
   idQueryString = null,
@@ -120,12 +118,13 @@ function LandingComponent({
     return null;
   }
 
+  // TODO the old styles were tied to this class. Still needed?
   // <section className="agency-component-search" id="agency-search">
 
   return (
     <div className="usa-grid">
       <p>
-        <a href="/">Close</a>
+        <a href="/agency-search.html">&lt; Agency Search</a>
       </p>
 
       {
@@ -148,18 +147,6 @@ function LandingComponent({
           />
         )
       }
-      <AgenciesByAlphabet
-        agencies={agencies}
-        agencyFinderDataComplete={agencyFinderDataComplete}
-        onAgencySelect={(newAgencyComponent) => {
-          agencyChange(newAgencyComponent);
-          /** @type {HTMLElement} */
-          const el = $('#landing-react-app')[0];
-          if (el) {
-            el.scrollIntoView();
-          }
-        }}
-      />
       {
         !agencyComponent && !agency
         && (
@@ -179,7 +166,6 @@ function LandingComponent({
 }
 
 LandingComponent.propTypes = {
-  agencies: PropTypes.object.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   onChangeUrlQueryParams: PropTypes.func.isRequired,
   idQueryString: PropTypes.string,
