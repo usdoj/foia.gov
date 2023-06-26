@@ -1,0 +1,31 @@
+.foia-component-card {
+  background-color: $color-blue-light;
+  border-radius: 10px;
+  padding: 2.4rem;
+  position: relative;
+
+  &::before {
+    background-color: $color-primary-alt-light;
+    border-radius: 10px;
+    bottom: -10px;
+    content: '';
+    height: 100%;
+    position: absolute;
+    right: -10px;
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+.foia-component-card__category {
+  color: $color-white;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.foia-component-card__title {
+  color: $color-white;
+  font-size: 2.8rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
