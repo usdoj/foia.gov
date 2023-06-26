@@ -127,7 +127,7 @@ function AgencySearch({
   }, [agencyFinderDataComplete, agencies, agencyComponents]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 18;
+  const cardsPerPage = 18;
 
   useEffect(() => {
     if (datums.length) {
@@ -148,46 +148,75 @@ function AgencySearch({
     url: getDatumUrl(datum),
   }));
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentCards = cards ? cards.slice(indexOfFirstPost, indexOfLastPost) : [];
+  const indexOfLastCard = currentPage * cardsPerPage;
+  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+  const currentCards = cards ? cards.slice(indexOfFirstCard, indexOfLastCard) : {};
+
+  function setPageAndScrollUp(page) {
+    setCurrentPage(page);
+    const el = $('#agency-search-react-app')[0];
+    if (el) {
+      el.scrollIntoView();
+    }
+  }
+
+  const previousPage = () => {
+    if (currentPage !== 1) {
+      setPageAndScrollUp(currentPage - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (currentPage !== Math.ceil(cards.length / cardsPerPage)) {
+      setPageAndScrollUp(currentPage + 1);
+    }
+  };
+
+  if (!agencyFinderDataComplete) {
+    return (
+      <div className="foia-component-agency-search__loading">
+        Loading progress:
+        {agencyFinderDataProgress}
+        %
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div>
-        <label className="usa-sr-only" htmlFor="search-field-big">Search an agency name or keyword</label>
+    <div className="foia-component-agency-search">
+      <div className="foia-component-agency-search__search-field">
+        <label htmlFor="agency-search">Search an agency name or keyword</label>
         <input
           type="text"
-          id="search-field-big"
+          id="agency-search"
           name="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Type agency name"
+          placeholder="Type name or keyword"
         />
       </div>
 
       {cards.length > 0
-        ? (
-          <p>
+        && (
+          <p className="foia-component-agency-search__results">
             {cards.length}
             {' '}
             results
           </p>
-        ) : (
-          <p>
-            Loading...
-            {agencyFinderDataProgress}
-            %
-          </p>
         )}
-      <CardGroup cardContent={currentCards} />
+      <CardGroup
+        cardContent={currentCards}
+      />
 
       <Pager
-        postsPerPage={postsPerPage}
+        postsPerPage={cardsPerPage}
         totalPosts={cards.length}
-        setCurrentPage={setCurrentPage}
+        paginate={setPageAndScrollUp}
+        currentPage={currentPage}
+        previousPage={previousPage}
+        nextPage={nextPage}
       />
-    </>
+    </div>
   );
 }
 
