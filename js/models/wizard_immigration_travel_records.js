@@ -1,77 +1,34 @@
-/** @type {WizardQuestion} */
-const selectTypeQuestion = {
-  type: 'question',
-  titleMid: 'q2',
-  answers: [
-    {
-      titleMid: 'a3',
-      next: { type: 'summary', titleMid: 'm3' },
-    },
-    {
-      titleMid: 'a4',
-      next: { type: 'summary', titleMid: 'm4' },
-    },
-    {
-      titleMid: 'a5',
-      next: { type: 'summary', titleMid: 'm5' },
-    },
-    {
-      titleMid: 'a6',
-      next: { type: 'summary', titleMid: 'm6' },
-    },
-    {
-      titleMid: 'a7',
-      next: { type: 'summary', titleMid: 'm7' },
-    },
-    {
-      titleMid: 'a8',
-      next: { type: 'summary', titleMid: 'm8' },
-    },
-    {
-      titleMid: 'a9',
-      next: { type: 'summary', titleMid: 'm9' },
-    },
-    {
-      titleMid: 'a10',
-      next: { type: 'summary', titleMid: 'm10' },
-    },
-    {
-      titleMid: 'a11',
-      next: { type: 'summary', titleMid: 'm11' },
-    },
-    {
-      titleMid: 'a12',
-      next: { type: 'summary', titleMid: 'm12' },
-    },
-    {
-      titleMid: 'a13',
-      next: { type: 'summary', titleMid: 'm13' },
-    },
-    {
-      titleMid: 'a14-1',
-      next: { type: 'summary', titleMid: 'm14' },
-    },
-    {
-      titleMid: 'a14-2',
-      next: { type: 'summary', titleMid: 'm15' },
-    },
-  ],
-};
+import {
+  answer, question, summary, yesNoQuestion,
+} from '../util/wizard_helpers';
 
 /** @type {WizardQuestion} */
-const immigrationOrTravelRecordsJourney = {
-  type: 'question',
-  titleMid: 'q1',
-  answers: [
-    {
-      titleMid: 'a1',
-      next: selectTypeQuestion,
-    },
-    {
-      titleMid: 'a2',
-      next: selectTypeQuestion,
-    },
+const selectTypeQuestion = question(
+  'q2',
+  [
+    answer('a3', summary('m3')),
+    answer('a4', summary('m4')),
+    answer('a5', summary('m5')),
+    answer('a6', summary('m6')),
+    answer('a7', summary('m7')),
+    answer('a8', summary('m8')),
+    answer('a9', summary('m9')),
+    answer('a10', summary('m10')),
+    answer('a11', summary('m11')),
+    answer('a12', summary('m12')),
+    answer('a13', summary('m13')),
+    answer('a14-1', summary('m14')),
+    answer('a14-2', summary('m15')),
   ],
-};
+);
+
+/** @type {WizardQuestion} */
+const immigrationOrTravelRecordsJourney = yesNoQuestion(
+  'q1',
+  {
+    yes: selectTypeQuestion,
+    no: selectTypeQuestion,
+  },
+);
 
 export default immigrationOrTravelRecordsJourney;

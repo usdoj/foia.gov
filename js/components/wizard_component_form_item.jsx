@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+let idCounter = 0;
+
 /**
  * @param {import('prop-types').InferProps<typeof FormItem.propTypes>} props
  */
@@ -12,10 +14,11 @@ function FormItem({
   name,
   value,
   checked,
+  mid,
   placeholder,
   disabled,
 }) {
-  const id = label.toLowerCase().replaceAll(' ', '-');
+  const id = `FormItem${idCounter++}`;
   let element;
 
   switch (type) {
@@ -37,7 +40,10 @@ function FormItem({
   }
 
   return (
-    <div className={`w-component-form-item${type ? ` w-component-form-item--${type}` : ''}`}>
+    <div
+      data-mid={mid}
+      className={`w-component-form-item${type ? ` w-component-form-item--${type}` : ''}`}
+    >
       {(type === 'checkbox' || type === 'radio') && element}
       <label htmlFor={id} className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}>{label}</label>
       {(type === 'text' || type === 'textarea') && element}
@@ -56,6 +62,7 @@ FormItem.propTypes = {
     PropTypes.number,
   ]),
   checked: PropTypes.bool,
+  mid: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
 };
