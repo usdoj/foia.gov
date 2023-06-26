@@ -176,6 +176,7 @@ function AgencySearch({
     return (
       <div className="foia-component-agency-search__loading">
         Loading progress:
+        {' '}
         {agencyFinderDataProgress}
         %
       </div>

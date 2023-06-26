@@ -35,11 +35,6 @@ class LandingPage extends Component {
   }
 
   componentDidMount() {
-    // If there is any agency data, assume all the data is fetched.
-    if (this.state.agencies.size) {
-      return;
-    }
-
     // Pre-fetch the list of agencies and components for typeahead
     requestActions.fetchAgencyFinderData();
 

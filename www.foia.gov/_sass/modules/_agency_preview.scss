@@ -1,6 +1,6 @@
 .agency-preview {
-  @extend .use-dark-icons;
   margin-top: $space-4x;
+  min-height: 40rem;
 
   h2 {
     font-family: $font-serif;
