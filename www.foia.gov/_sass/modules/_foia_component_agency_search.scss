@@ -1,0 +1,37 @@
+.foia-component-agency-search__loading {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: 6rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.foia-component-agency-search__search-field {
+  margin-bottom: 4rem;
+  max-width: 62.4rem;
+
+  label,
+  input {
+    max-width: unset;
+  }
+
+  label {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.6rem;
+  }
+
+  input {
+    background-color: #f8f8f8;
+    border: 2px solid $color-black;
+
+    &::placeholder {
+       font-weight: 500;
+    }
+  }
+}
+
+.foia-component-agency-search__results {
+  font-weight: 500;
+  margin-bottom: 4.8rem;
+}

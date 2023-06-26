@@ -1,1 +1,98 @@
-.foia-component-pager {}
+// Icons
+$icon-pager-arrow: '/img/icon-pager-arrow.svg';
+
+.foia-component-pager {
+  margin: 6rem auto;
+  width: fit-content;
+}
+
+.foia-component-pager__list {
+  list-style-type: none;
+  margin: 0;
+}
+
+.foia-component-pager__page-number {
+  color: $color-gray-dark;
+  display: inline-block;
+  font-size: 1.6rem;
+  margin: 0 0.4rem;
+  text-align: center;
+}
+
+.foia-component-pager__page-number--previous {
+  margin-right: 3.6rem;
+  position: relative;
+
+  .foia-component-pager__page-number-link {
+    padding-left: 2.6rem;
+
+    &::before {
+      background-image: url($icon-pager-arrow);
+      background-repeat: no-repeat;
+      content: '';
+      height: 14px;
+      left: 8px;
+      position: absolute;
+      top: 36%;
+      width: 14px;
+    }
+  }
+}
+
+.foia-component-pager__page-number--next {
+  margin-left: 3.6rem;
+  position: relative;
+
+  .foia-component-pager__page-number-link {
+    padding-right: 2.6rem;
+
+    &::after {
+      background-image: url($icon-pager-arrow);
+      background-repeat: no-repeat;
+      content: '';
+      height: 14px;
+      right: 8px;
+      position: absolute;
+      top: 12%;
+      transform: rotate(180deg);
+      width: 14px;
+    }
+  }
+}
+
+.foia-component-pager__page-number--current {
+  .foia-component-pager__page-number-link {
+    background-color: $color-blue-light;
+    color: $color-white;
+
+    &:visited {
+      color: $color-white;
+    }
+  }
+}
+
+.foia-component-pager__page-number-link {
+  color: inherit;
+  height: 24px;
+  min-width: 24px;
+  padding: 0.4rem 0.8rem;
+
+  &:visited {
+    color: inherit;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $color-blue-light;
+    color: $color-white;
+  }
+}
+
+.foia-component-pager__elipses {
+  display: inline-block;
+  font-size: 1.6rem;
+  height: 24px;
+  min-width: 24px;
+  padding: 0.4rem 0.8rem;
+  text-align: center;
+}

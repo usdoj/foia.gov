@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useAgencyStore from '../stores/agency_store';
-// import Pager from './foia_component_pager';
+import Pager from './foia_component_pager';
 import CardGroup from './foia_component_card_group';
 import tokenizers from '../util/tokenizers';
 
@@ -102,17 +102,6 @@ function AgencySearch() {
     }
   }, [datums, search]);
 
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage] = useState(18);
-
-  // const indexOfLastPost = currentPage * postsPerPage;
-  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentPosts = agencies ? agencies.slice(indexOfFirstPost, indexOfLastPost) : {};
-
-  // const paginate = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
-
   const cards = filteredDatums.map((datum) => ({
     ...datum,
     // TODO this is not a category. Not sure how we get that yet.
@@ -121,44 +110,74 @@ function AgencySearch() {
     url: `/?${new URLSearchParams({ id: datum.id, type: datum.type })}`,
   }));
 
-  return (
-    <>
-      <div>
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(18);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = cards ? cards.slice(indexOfFirstPost, indexOfLastPost) : {};
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const previousPage = () => {
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (currentPage !== Math.ceil(cards.length / postsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  if (!agencyFinderDataComplete) {
+    return (
+      <div className="foia-component-agency-search__loading">
         Loading progress:
         {agencyFinderDataProgress}
         %
       </div>
+    );
+  }
 
-      <div>
-        <label className="usa-sr-only" htmlFor="search-field-big">Search an agency name or keyword</label>
+  return (
+    <div className="foia-component-agency-search">
+      <div className="foia-component-agency-search__search-field">
+        <label htmlFor="agency-search">Search an agency name or keyword</label>
         <input
           type="text"
-          id="search-field-big"
+          id="agency-search"
           name="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Type agency name"
+          placeholder="Type name or keyword"
         />
       </div>
 
       {cards.length > 0
         && (
-          <p>
+          <p className="foia-component-agency-search__results">
             {cards.length}
             {' '}
             results
           </p>
         )}
       <CardGroup
-        cardContent={cards}
+        cardContent={currentPosts}
       />
 
-      {/* <Pager
+      <Pager
         postsPerPage={postsPerPage}
-        totalPosts={agencies.length}
+        totalPosts={cards.length}
         paginate={paginate}
-      /> */}
-    </>
+        currentPage={currentPage}
+        previousPage={previousPage}
+        nextPage={nextPage}
+      />
+    </div>
   );
 }
 
