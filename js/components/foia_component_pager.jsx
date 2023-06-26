@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 function Pager({
   postsPerPage,
   totalPosts,
-  paginate,
+  setPage,
   currentPage,
-  previousPage,
-  nextPage,
+  showPrevious,
+  showNext,
 }) {
   const pageNumbers = [];
 
@@ -58,7 +58,7 @@ function Pager({
             className="foia-component-pager__page-number-link"
             onClick={(event) => {
               event.preventDefault();
-              previousPage();
+              showPrevious();
             }}
             href=""
             rel="prev"
@@ -77,7 +77,7 @@ function Pager({
                   className="foia-component-pager__page-number-link"
                   onClick={(event) => {
                     event.preventDefault();
-                    paginate(1);
+                    setPage(1);
                   }}
                   href=""
                 >
@@ -101,7 +101,7 @@ function Pager({
               className="foia-component-pager__page-number-link"
               onClick={(event) => {
                 event.preventDefault();
-                paginate(number);
+                setPage(number);
               }}
               href=""
             >
@@ -126,7 +126,7 @@ function Pager({
                   className="foia-component-pager__page-number-link"
                   onClick={(event) => {
                     event.preventDefault();
-                    paginate(pageNumbers.length);
+                    setPage(pageNumbers.length);
                   }}
                   href=""
                 >
@@ -143,7 +143,7 @@ function Pager({
             className="foia-component-pager__page-number-link"
             onClick={(event) => {
               event.preventDefault();
-              nextPage();
+              showNext();
             }}
             href=""
             rel="next"
@@ -159,10 +159,10 @@ function Pager({
 Pager.propTypes = {
   postsPerPage: PropTypes.number,
   totalPosts: PropTypes.number,
-  paginate: PropTypes.func,
+  setPage: PropTypes.func,
   currentPage: PropTypes.number,
-  previousPage: PropTypes.func,
-  nextPage: PropTypes.func,
+  showPrevious: PropTypes.func,
+  showNext: PropTypes.func,
 };
 
 export default Pager;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import useAgencyStore from '../stores/agency_store';
+import PropTypes from 'prop-types';
 import Pager from './foia_component_pager';
 import CardGroup from './foia_component_card_group';
 import tokenizers from '../util/tokenizers';
@@ -10,17 +10,51 @@ if (typeof window !== 'undefined') {
   Bloodhound = require('typeahead.js/dist/bloodhound'); // eslint-disable-line global-require
 }
 
-function AgencySearch() {
-  const isIndexed = useRef(false);
-  const {
-    agencyFinderDataComplete,
-    agencyFinderDataProgress,
-    datums,
-  } = useAgencyStore();
+const collator = new Intl.Collator('en');
 
+function buildDatums({ agencies, agencyComponents }) {
+  // Keep an index of centralized agencies for quick lookup
+  /** @type {Record<string, true>} */
+  const centralizedAgencyIndex = {};
+
+  return agencies
+    .map((agency) => {
+      if (agency.isCentralized()) {
+        // Warning: Side-effect
+        // Add the agency to the index of centralized agencies
+        centralizedAgencyIndex[agency.id] = true;
+      }
+
+      // Add a title property for common displayKey
+      return { ...agency.toJS(), title: agency.name };
+    })
+    .toJS()
+    // Include decentralized agency components in typeahead
+    .concat(
+      agencyComponents.toJS().filter(
+        (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
+      ),
+    )
+    .sort((a, b) => collator.compare(a.title, b.title));
+}
+
+function AgencySearch({
+  agencies,
+  agencyComponents,
+  agencyFinderDataComplete,
+  agencyFinderDataProgress,
+  getDatumUrl,
+}) {
   const [search, setSearch] = useState('');
-  const [filteredDatums, setFilteredDatums] = useState(datums);
+  const [datums, setDatums] = useState([]);
+  const [filteredDatums, setFilteredDatums] = useState([]);
 
+  // Store state without re-rendering.
+  const fakeThis = useRef({
+    indexed: false,
+  }).current;
+
+  // Adapted from AgencyComponentFinder
   const bloodhound = useRef(new Bloodhound({
     local: [],
     sorter: (a, b) => {
@@ -65,37 +99,43 @@ function AgencySearch() {
     ),
   })).current;
 
-  function index() {
-    if (isIndexed.current) {
-      return;
-    }
-
-    // There is no update, only initialize. We assume that the component is only
-    // initialized after all the data is ready. Any updates are not significant
-    // enough to warrant an update. We only need title and abbreviation to
-    // render which should be available once the agency finder data fetch is
-    // complete.
-    isIndexed.current = true;
-
-    bloodhound.clear(); // Just in case
-    bloodhound.add(datums);
-    setFilteredDatums(datums);
-  }
-
+  // Adapted from AgencyComponentFinder
   useEffect(() => {
     // Indexing the typeahead is expensive and if we do it in batches, it gets
     // complicated to calculate which agencies are centralized vs
     // decentralized. Wait until we've received all the agency finder data
     // before indexing.
     if (agencyFinderDataComplete) {
-      index();
+      // Index once
+      if (fakeThis.indexed) {
+        return;
+      }
+      fakeThis.indexed = true;
+
+      bloodhound.clear(); // Just in case
+
+      // Unlike in AgencyComponentFinder, we've moved Datum generation to
+      // the agency_store.
+      const initialDatums = buildDatums({
+        agencies: agencies.valueSeq(), // Pull the values, convert to sequence,
+        agencyComponents,
+      });
+      bloodhound.add(initialDatums);
+      setDatums(initialDatums);
+      setFilteredDatums(initialDatums);
     }
-  }, [agencyFinderDataComplete]);
+  }, [agencyFinderDataComplete, agencies, agencyComponents]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 18;
 
   useEffect(() => {
     if (datums.length) {
       if (search) {
-        bloodhound.search(search, setFilteredDatums);
+        bloodhound.search(search, (filtered) => {
+          setFilteredDatums(filtered);
+          setCurrentPage(1);
+        });
       } else {
         setFilteredDatums(datums);
       }
@@ -104,32 +144,31 @@ function AgencySearch() {
 
   const cards = filteredDatums.map((datum) => ({
     ...datum,
-    // TODO this is not a category. Not sure how we get that yet.
-    category: datum.agency ? datum.agency.title : '',
-    // TODO this is not always correct. See js/components/landing.jsx "agencyChange" method
-    url: `/?${new URLSearchParams({ id: datum.id, type: datum.type })}`,
+    agencyName: datum.agency ? datum.agency.name : '',
+    url: getDatumUrl(datum),
   }));
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(18);
+  const indexOfLastCard = currentPage * cardsPerPage;
+  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+  const currentCards = cards ? cards.slice(indexOfFirstCard, indexOfLastCard) : {};
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = cards ? cards.slice(indexOfFirstPost, indexOfLastPost) : {};
+  function setPageAndScrollUp(page) {
+    setCurrentPage(page);
+    const el = $('#agency-search-react-app')[0];
+    if (el) {
+      el.scrollIntoView();
+    }
+  }
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const previousPage = () => {
+  const showPrevious = () => {
     if (currentPage !== 1) {
-      setCurrentPage(currentPage - 1);
+      setPageAndScrollUp(currentPage - 1);
     }
   };
 
-  const nextPage = () => {
-    if (currentPage !== Math.ceil(cards.length / postsPerPage)) {
-      setCurrentPage(currentPage + 1);
+  const showNext = () => {
+    if (currentPage !== Math.ceil(cards.length / cardsPerPage)) {
+      setPageAndScrollUp(currentPage + 1);
     }
   };
 
@@ -166,19 +205,27 @@ function AgencySearch() {
           </p>
         )}
       <CardGroup
-        cardContent={currentPosts}
+        cardContent={currentCards}
       />
 
       <Pager
-        postsPerPage={postsPerPage}
+        postsPerPage={cardsPerPage}
         totalPosts={cards.length}
-        paginate={paginate}
+        setPage={setPageAndScrollUp}
         currentPage={currentPage}
-        previousPage={previousPage}
-        nextPage={nextPage}
+        showPrevious={showPrevious}
+        showNext={showNext}
       />
     </div>
   );
 }
+
+AgencySearch.propTypes = {
+  agencies: PropTypes.object.isRequired,
+  agencyComponents: PropTypes.object.isRequired,
+  agencyFinderDataComplete: PropTypes.bool.isRequired,
+  agencyFinderDataProgress: PropTypes.number.isRequired,
+  getDatumUrl: PropTypes.func.isRequired,
+};
 
 export default AgencySearch;

@@ -42,6 +42,24 @@ class AgencyComponentStore extends Store {
       .filter((agencyComponent) => agencyComponent.agency.id === agencyId);
   }
 
+  getDatumUrl(datum) {
+    if (datum.type === 'agency_component') {
+      return `/?${new URLSearchParams({ type: 'component', id: datum.id })}`;
+    }
+
+    const agency = this.state.agencies.get(datum.id);
+
+    if (agency.isCentralized()) {
+      const component = this.state
+        .agencyComponents
+        .find((c) => c.agency.id === agency.id);
+
+      return `/?${new URLSearchParams({ type: 'component', id: component.id })}`;
+    }
+
+    return `/?${new URLSearchParams({ type: 'agency', id: agency.id })}`;
+  }
+
   __onDispatch(payload) {
     switch (payload.type) {
       case types.AGENCY_FINDER_DATA_RECEIVE: {
