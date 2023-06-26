@@ -160,13 +160,13 @@ function AgencySearch({
     }
   }
 
-  const previousPage = () => {
+  const showPrevious = () => {
     if (currentPage !== 1) {
       setPageAndScrollUp(currentPage - 1);
     }
   };
 
-  const nextPage = () => {
+  const showNext = () => {
     if (currentPage !== Math.ceil(cards.length / cardsPerPage)) {
       setPageAndScrollUp(currentPage + 1);
     }
@@ -211,10 +211,10 @@ function AgencySearch({
       <Pager
         postsPerPage={cardsPerPage}
         totalPosts={cards.length}
-        paginate={setPageAndScrollUp}
+        setPage={setPageAndScrollUp}
         currentPage={currentPage}
-        previousPage={previousPage}
-        nextPage={nextPage}
+        showPrevious={showPrevious}
+        showNext={showNext}
       />
     </div>
   );
