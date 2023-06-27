@@ -7,7 +7,8 @@
     "alwaysStrict": true,
     "target": "es5",
     "jsx": "react",
-    "noEmit": true
+    "noEmit": true,
+    "resolveJsonModule": true
   },
   "include": [
     "./wizard_types.d.ts",
