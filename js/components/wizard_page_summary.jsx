@@ -108,6 +108,8 @@ function WizardLinks({ links }) {
         <li key={link.agency + link.tag + link.url} data-score={link.score}>
           <p>{`${link.agency}: ${link.tag}`}</p>
           <a href={link.url}>{link.sentence}</a>
+          {' '}
+          {`(Confidence Score: ${link.score.toFixed(4)})`}
         </li>
       ))}
     </ul>
@@ -127,6 +129,8 @@ function WizardAgencies({ agencies }) {
       {agencies.map((agency) => (
         <li key={agency.agency} data-score={agency.confidence_score}>
           <a href={agency.url}>{`${agency.agency_abbrev}: ${agency.agency}`}</a>
+          <br />
+          {`(Confidence Score: ${agency.confidence_score.toFixed(4)})`}
         </li>
       ))}
     </ul>
