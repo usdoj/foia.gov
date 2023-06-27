@@ -16,13 +16,17 @@ declare global {
   type ZustandGet<T> = () => T;
 
   type WizardAgency = {
-    name: string;
+    agency: string;
+    agency_abbrev: string;
+    confidence_score: number;
     url: string;
-    dept: string;
   };
 
   type WizardLink = {
-    name: string;
+    agency: string;
+    score: number;
+    sentence: string;
+    tag: string;
     url: string;
   };
 
@@ -108,6 +112,8 @@ declare global {
     numLoading: number;
     query: string | null;
     ready: boolean;
+    isError: boolean;
+    isLoading: boolean;
     recommendedAgencies: WizardAgency[] | null;
     recommendedLinks: WizardLink[] | null;
     ui: Record<string, string>;
