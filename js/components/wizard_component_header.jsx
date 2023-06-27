@@ -5,10 +5,7 @@ import BackLink from './wizard_component_back_link';
 import { useWizard } from '../stores/wizard_store';
 
 function Header() {
-  const {
-    actions,
-    canGoBack,
-  } = useWizard();
+  const { actions, activity, canGoBack } = useWizard();
 
   return (
     <HeaderLayout
@@ -19,17 +16,25 @@ function Header() {
           text="FOIA.gov"
         />
       )}
-      headerLower={
-        canGoBack && (
-          <BackLink
-            text="Back"
-            onClick={(e) => {
-              e.preventDefault();
-              actions.prevPage();
-            }}
-          />
-        )
-      }
+      headerLower={(
+        <>
+          {canGoBack && (
+            <BackLink
+              text="Back"
+              onClick={(e) => {
+                e.preventDefault();
+                actions.prevPage();
+              }}
+            />
+          )}
+          {activity.type === 'intro' && (
+            <BackLink
+              text="Home"
+              href="/"
+            />
+          )}
+        </>
+      )}
     />
   );
 }

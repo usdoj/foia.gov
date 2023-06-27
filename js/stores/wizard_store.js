@@ -100,7 +100,7 @@ const useRawWizardStore = create((
       throw new Error(`API call to fetch wizard strings failed: ${err}`);
     }
 
-    const lang = 'es';
+    const lang = 'en';
     try {
       // Basic validation
       data.language[lang].messages.m1.indexOf('');

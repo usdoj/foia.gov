@@ -54,6 +54,7 @@ declare global {
      */
     titleMid: string;
     answers: WizardAnswer[];
+    addendumMid?: string;
   };
 
   type WizardContinue = {

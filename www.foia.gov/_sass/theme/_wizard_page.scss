@@ -83,6 +83,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   font-size: 18px;
   font-weight: initial;
   line-height: initial;
+  margin: 0;
   padding: unset;
   padding-left: 18px;
   position: relative;
@@ -90,6 +91,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 
   &:hover {
     background-color: unset;
+  }
+
+  &:visited {
+    color: $color-white;
   }
 
   &::before {
@@ -218,6 +223,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 }
 
 // Button Component
+.w-component-button {
+  background-color: $color-primary-alt-lightest !important;
+}
+
 .w-component-button--link {
   border-bottom: 1px solid;
   color: inherit;
