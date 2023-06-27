@@ -11,7 +11,6 @@ import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
-import polydeltaAPIsample from '../../samples/polydelta_api_sample.json';
 
 /** @type {WizardVars} */
 const initialWizardState = {
@@ -28,6 +27,8 @@ const initialWizardState = {
   ready: false,
   recommendedAgencies: null,
   recommendedLinks: null,
+  isError: false,
+  isLoading: false,
   ui: extraMessages,
   userTopic: null,
 };
@@ -163,11 +164,33 @@ const useRawWizardStore = create((
   const submitRequest = async ({ query, topic }) => {
     set((state) => ({ numLoading: state.numLoading + 1 }));
 
+    let isError = false;
+    let isLoading = true;
     let recommendedAgencies = [];
     let recommendedLinks = [];
 
-    recommendedAgencies = polydeltaAPIsample.model_output.agency_finder_predictions[0];
-    recommendedLinks = polydeltaAPIsample.model_output.freqdoc_predictions;
+    if (query && !topic) {
+      const polydeltaOptions = {
+        method: 'POST',
+        headers: {
+          Authorization: 'Api-Key RQmvMuDs.vS8ziJy9FeFlrxUoAji4or840T576esG',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ input: [query] }),
+      };
+      await fetch('https://app.polydelta.ai/doj-foia/models/ZBA2ow0/predict', polydeltaOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          recommendedAgencies = data.model_output.agency_finder_predictions[0];
+          recommendedLinks = data.model_output.freqdoc_predictions;
+          isLoading = false;
+        })
+        .catch((err) => {
+          console.error(err);
+          isError = true;
+          isLoading = false;
+        });
+    }
 
     set((state) => withCapturedHistory({
       activity: topic ? topic.journey : { type: 'summary' },
@@ -175,6 +198,8 @@ const useRawWizardStore = create((
       query,
       recommendedLinks,
       recommendedAgencies,
+      isError,
+      isLoading,
       userTopic: topic,
     }));
   };
@@ -216,6 +241,8 @@ const useRawWizardStore = create((
  *     links: WizardVars['recommendedLinks'];
  *     query: WizardVars['query'];
  *     topic: WizardVars['userTopic'];
+ *     isError: WizardVars['isError'];
+ *     isLoading: WizardVars['isLoading'];
  *   };
  *   ui: WizardVars['ui'];
  *   getMessage: (mid: string) => string;
@@ -235,6 +262,8 @@ function useWizard() {
       links: state.recommendedLinks,
       query: state.query,
       topic: state.userTopic,
+      isError: state.isError,
+      isLoading: state.isLoading,
     },
     ui: state.ui,
     getMessage: (mid) => (mid.startsWith('literal:') ? mid.substring(8) : state.ui[mid] || `(missing message: ${mid})`),

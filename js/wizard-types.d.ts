@@ -112,6 +112,8 @@ declare global {
     numLoading: number;
     query: string | null;
     ready: boolean;
+    isError: boolean;
+    isLoading: boolean;
     recommendedAgencies: WizardAgency[] | null;
     recommendedLinks: WizardLink[] | null;
     ui: Record<string, string>;

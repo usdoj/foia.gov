@@ -10,10 +10,32 @@ import FormItem from './wizard_component_form_item';
 
 function Summary() {
   const { actions, activity, request } = useWizard();
-  const { agencies, links } = request;
+  const {
+    agencies, links, isLoading, isError,
+  } = request;
 
   if (activity.type !== 'summary') {
     throw new Error('Not a summary activity');
+  }
+
+  if (isError) {
+    return (
+      <PageTemplate>
+        <Constrain>
+          <p>There was an error, please try again later.</p>
+        </Constrain>
+      </PageTemplate>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <PageTemplate>
+        <Constrain>
+          <p>Loading...</p>
+        </Constrain>
+      </PageTemplate>
+    );
   }
 
   return (
@@ -81,7 +103,9 @@ function WizardLinks({ links }) {
   return (
     <ul>
       {links.map((link) => (
-        <li key={link.url} data-score={link.score}>
+        /** this key is a lot, but sometimes the urls are not unique
+            and the agency + tag combo is also typically not unique */
+        <li key={link.agency + link.tag + link.url} data-score={link.score}>
           <p>{`${link.agency}: ${link.tag}`}</p>
           <a href={link.url}>{link.sentence}</a>
         </li>
