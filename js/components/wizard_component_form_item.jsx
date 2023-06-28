@@ -17,6 +17,7 @@ function FormItem({
   mid,
   placeholder,
   disabled,
+  maxLength,
 }) {
   const id = `FormItem${idCounter++}`;
   let element;
@@ -26,7 +27,7 @@ function FormItem({
       element = <input id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} />;
       break;
     case 'textarea':
-      element = <textarea id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} disabled={disabled} />;
+      element = <textarea id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} disabled={disabled} maxLength={maxLength} />;
       break;
     case 'checkbox':
       element = <input type="checkbox" id={id} className="w-component-form-item__element" onChange={onChange} name={name} value={value} checked={checked} />;
@@ -65,6 +66,7 @@ FormItem.propTypes = {
   mid: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
+  maxLength: PropTypes.number,
 };
 
 export default FormItem;
