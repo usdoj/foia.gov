@@ -10,9 +10,11 @@ import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
 
 function Summary() {
-  const { actions, activity, request } = useWizard();
   const {
-    agencies, links, isLoading, isError,
+    actions, activity, loading, request,
+  } = useWizard();
+  const {
+    agencies, links, isError,
   } = request;
 
   if (activity.type !== 'summary') {
@@ -31,7 +33,7 @@ function Summary() {
     );
   }
 
-  if (isLoading) {
+  if (loading) {
     return (
       <PageTemplate>
         <Constrain>
