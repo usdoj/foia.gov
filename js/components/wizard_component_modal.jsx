@@ -15,6 +15,7 @@ function Modal({
   title,
   modalIsOpen,
   closeModal,
+  contentLabel = 'All topics',
 }) {
   return (
     <ReactModal
@@ -23,7 +24,7 @@ function Modal({
       portalClassName="w-component-modal"
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
-      contentLabel="All topics"
+      contentLabel={contentLabel}
     >
       <div className="w-component-modal__close-button">
         <button
@@ -42,6 +43,7 @@ Modal.propTypes = {
   title: PropTypes.string,
   modalIsOpen: PropTypes.bool,
   closeModal: PropTypes.func,
+  contentLabel: PropTypes.string,
 };
 
 export default Modal;

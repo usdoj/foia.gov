@@ -137,13 +137,13 @@ const useRawWizardStore = create((
       });
     }
 
-    if (activity.type === 'intro') {
+    if (activity.type === 'intro' || activity.type === 'summary') {
       return withCapturedHistory({
         activity: { type: 'query' },
       });
     }
 
-    if (activity.type === 'summary' || activity.type === 'query') {
+    if (activity.type === 'query') {
       throw new Error('Next page not allowed');
     }
 
@@ -165,11 +165,12 @@ const useRawWizardStore = create((
     set((state) => ({ numLoading: state.numLoading + 1 }));
 
     let isError = false;
-    let isLoading = true;
+    let isLoading = false;
     let recommendedAgencies = [];
     let recommendedLinks = [];
 
     if (query && !topic) {
+      isLoading = true;
       const polydeltaOptions = {
         method: 'POST',
         headers: {
