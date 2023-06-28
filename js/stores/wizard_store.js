@@ -165,11 +165,12 @@ const useRawWizardStore = create((
     set((state) => ({ numLoading: state.numLoading + 1 }));
 
     let isError = false;
-    let isLoading = true;
+    let isLoading = false;
     let recommendedAgencies = [];
     let recommendedLinks = [];
 
     if (query && !topic) {
+      isLoading = true;
       const polydeltaOptions = {
         method: 'POST',
         headers: {
