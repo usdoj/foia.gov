@@ -35,6 +35,7 @@ function Question() {
               name="question"
               label={getMessage(answer.titleMid)}
               value={idx}
+              mid={answer.titleMid}
               checked={idx === answerIdx}
               onChange={() => {
                 actions.selectAnswer(idx);
@@ -42,6 +43,10 @@ function Question() {
             />
           </div>
         ))}
+
+        {typeof activity.addendumMid === 'string' && (
+          <WizardHtml mid={activity.addendumMid} />
+        )}
 
         <Button
           disabled={answerIdx === null}

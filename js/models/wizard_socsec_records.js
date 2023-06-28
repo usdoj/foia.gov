@@ -26,15 +26,15 @@ const socsecRecordsJourney = {
           titleMid: 'q4',
           answers: [
             {
-              titleMid: 'a18-1',
+              titleMid: 'a18',
               next: { type: 'summary', titleMid: 'm20' },
             },
             {
-              titleMid: 'a18-2',
+              titleMid: 'a19',
               next: { type: 'summary', titleMid: 'm21' },
             },
             {
-              titleMid: 'a18-3',
+              titleMid: 'a20',
               next: { type: 'summary', titleMid: 'm22' },
             },
           ],
