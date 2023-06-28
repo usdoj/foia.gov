@@ -9,9 +9,11 @@ import WizardHtml from './wizard_html';
 import FormItem from './wizard_component_form_item';
 
 function Summary() {
-  const { actions, activity, request } = useWizard();
   const {
-    agencies, links, isLoading, isError,
+    actions, activity, loading, request,
+  } = useWizard();
+  const {
+    agencies, links, isError,
   } = request;
 
   if (activity.type !== 'summary') {
@@ -22,17 +24,21 @@ function Summary() {
     return (
       <PageTemplate>
         <Constrain>
-          <p>There was an error, please try again later.</p>
+          <RichText>
+            <p>There was an error, please try again later.</p>
+          </RichText>
         </Constrain>
       </PageTemplate>
     );
   }
 
-  if (isLoading) {
+  if (loading) {
     return (
       <PageTemplate>
         <Constrain>
-          <p>Loading...</p>
+          <RichText>
+            <p>Loading...</p>
+          </RichText>
         </Constrain>
       </PageTemplate>
     );
