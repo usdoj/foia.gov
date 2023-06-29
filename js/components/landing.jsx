@@ -122,12 +122,13 @@ class LandingComponent extends Component {
     return (
       <div className="usa-grid agency-preview">
         <p>
-          <a href="/agency-search.html">&lt; Agency Search</a>
+          <a href="/agency-search.html" className="agency-preview_back">Agency Search</a>
         </p>
 
         {!agencyFinderDataComplete && (
           <div className="foia-component-agency-search__loading">
             Loading progress:
+            {' '}
             {agencyFinderDataProgress}
             %
           </div>

@@ -13,7 +13,7 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
   const onSelect = () => onAgencySelect(agencyComponent.agency);
 
   return (
-    <div className="agency-preview usa-grid-full">
+    <div className="agency-preview usa-grid-full use-dark-icons">
       <div className="usa-width-one-whole">
         {
           !isCentralized && (
@@ -76,10 +76,10 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         { agencyComponent.request_form
           && (
           <a
-            className="usa-button usa-button-primary start-request"
+            className="usa-button usa-button-big usa-button-primary-alt start-request"
             href={requestUrl}
           >
-            Start FOIA request
+            Continue the FOIA request process
           </a>
           )}
       </div>
