@@ -17,7 +17,7 @@ function LastStepsBlock() {
   const options = [
     {
       label: 'Yes, I would like to refine my search.',
-      action: actions.nextPage,
+      action: actions.jumpBackToQueryPage,
     },
     {
       label: 'Yes, I would like to browse the full list of agencies.',

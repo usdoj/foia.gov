@@ -145,13 +145,13 @@ const useRawWizardStore = create((
       });
     }
 
-    if (activity.type === 'intro' || activity.type === 'summary') {
+    if (activity.type === 'intro') {
       return withCapturedHistory({
         activity: { type: 'query' },
       });
     }
 
-    if (activity.type === 'query') {
+    if (activity.type === 'summary' || activity.type === 'query') {
       throw new Error('Next page not allowed');
     }
 
@@ -163,6 +163,15 @@ const useRawWizardStore = create((
   const reset = () => set((state) => ({
     ...initialWizardState,
 
+    // Preserve loaded stuff
+    allTopics: state.allTopics,
+    ui: state.ui,
+    ready: state.ready,
+  }));
+
+  const jumpBackToQueryPage = () => set((state) => ({
+    ...initialWizardState,
+    activity: { type: 'query' },
     // Preserve loaded stuff
     allTopics: state.allTopics,
     ui: state.ui,
@@ -219,6 +228,7 @@ const useRawWizardStore = create((
     nextPage,
     prevPage,
     reset,
+    jumpBackToQueryPage,
     selectAnswer,
     submitRequest,
   };
