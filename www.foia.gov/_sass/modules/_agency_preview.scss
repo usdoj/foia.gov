@@ -16,12 +16,64 @@
 
   h4 {
     font-family: $font-sans;
-    font-size: $base-font-size;
+    font-size: 2.8rem;
+    font-weight: 500;
+  }
+
+  .use-dark-icons {
+    .agency-info_processing-time h4 + p::before,
+    .agency-info_personnel::before,
+    .agency-info_mailing-address::before,
+    .agency-info_website::before,
+    .agency-info_reading-rooms h4 + p::before {
+      background-size: 4.5rem;
+      height: 4.5rem;
+      margin: 0 2.5rem 0 -4.5rem;
+      width: 4.5rem;
+    }
+  }
+
+  .agency-info_mailing-address,
+  .agency-info_processing-time,
+  .agency-info_reading-rooms,
+  .agency-info_personnel,
+  .agency-info_phone,
+  .agency-info_email,
+  .agency-info_website,
+  .submission-help_research {
+    padding-left: 4.5rem;
+
+    h4 {
+      margin-left: -4.5rem;
+    }
+  }
+
+  .agency-info_mailing-address {
+    span {
+      display: block;
+      margin-bottom: 1em;
+      margin-top: 1em;
+    }
+  }
+}
+
+.agency-preview_back {
+  border-bottom: 0;
+  color: $color-primary-darkest;
+  font-size: 1.8rem;
+
+  &:visited {
+    color: inherit;
+  }
+
+  &::before {
+    @include has-icon($icon-caret, $width: 0.7em, $height: 0.7em, $float: none, $display: inline-block, $margins: 0 $space-1x 0 0);
+    transform: rotate(180deg);
   }
 }
 
 .agency-preview_agency-back {
-  &:after {
+  &::after {
     @include has-icon($icon-caret, $width: 0.7em, $height: 0.7em, $float: none, $display: inline-block, $margins: 0 0 0 $space-2x);
   }
   &:hover {
