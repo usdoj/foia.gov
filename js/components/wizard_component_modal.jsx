@@ -15,7 +15,7 @@ function Modal({
   title,
   modalIsOpen,
   closeModal,
-  contentLabel = 'All topics',
+  contentLabel,
 }) {
   return (
     <ReactModal
@@ -39,11 +39,11 @@ function Modal({
 }
 
 Modal.propTypes = {
-  children: PropTypes.node,
-  title: PropTypes.string,
-  modalIsOpen: PropTypes.bool,
-  closeModal: PropTypes.func,
-  contentLabel: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  modalIsOpen: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  contentLabel: PropTypes.string.isRequired,
 };
 
 export default Modal;

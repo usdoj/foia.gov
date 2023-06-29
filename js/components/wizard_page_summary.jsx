@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
 import PageTemplate from './wizard_template_page';
-import Button from './wizard_component_button';
-import BodyText from './wizard_component_body_text';
 import Constrain from './wizard_layout_constrain';
+import Button from './wizard_component_button';
 import LastStepsBlock from './wizard_component_last_steps_block';
 import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
@@ -25,9 +24,7 @@ function Summary() {
     return (
       <PageTemplate>
         <Constrain>
-          <BodyText>
-            There was an error, please try again later.
-          </BodyText>
+          <WizardHtml mid="apiError" />
         </Constrain>
       </PageTemplate>
     );
@@ -37,9 +34,7 @@ function Summary() {
     return (
       <PageTemplate>
         <Constrain>
-          <BodyText>
-            Loading...
-          </BodyText>
+          <WizardHtml mid="loading" />
         </Constrain>
       </PageTemplate>
     );
@@ -63,7 +58,7 @@ function Summary() {
               </blockquote>
 
               { (!links || links.length === 0) && (!agencies || agencies.length === 0) ? (
-                <WizardHtml mid="polydeltaNoResults" />
+                <WizardHtml mid="noResults" />
               ) : (
                 null
               )}

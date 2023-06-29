@@ -8,57 +8,57 @@ import Modal from './wizard_component_modal';
 function LastStepsBlock() {
   const { actions } = useWizard();
 
-  const [value, setValue] = useState(/** @type string | null */ null);
+  const [selectedLabel, setSelectedLabel] = useState(/** @type string | null */ null);
   const [modalIsOpen, setIsOpen] = useState(/** @type boolean */ false);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  function handleChange(e) {
-    setValue(e.target.value);
-  }
+  const options = [
+    {
+      label: 'Yes, I would like to refine my search.',
+      action: actions.nextPage,
+    },
+    {
+      label: 'Yes, I would like to browse the full list of agencies.',
+      action: () => { window.location = '/agency-search.html'; },
+    },
+    {
+      label: 'Yes, I would like to go back to the FOIA.gov home page.',
+      action: () => { window.location = '/'; },
+    },
+    {
+      label: 'No.',
+      action: openModal,
+    },
+  ];
 
-  function doSelectedAction() {
-    let selectedAction;
-    switch (value) {
-      case 'Refine Search':
-        return actions.nextPage();
-      case 'Go to foia.gov':
-        window.location = '/';
-        break;
-      case 'Go to Agency Listing Page':
-        window.location = '/#agency-search';
-        break;
-      case 'Say Thank You':
-        return openModal();
-      default: break;
-    }
-    return selectedAction;
+  function handleSubmit() {
+    const option = options.find((opt) => opt.label === selectedLabel);
+    option.action();
   }
 
   return (
     <form aria-label="Can we help you with anything else?">
       <fieldset>
         <legend>Can we help you with anything else?</legend>
-
-        <FormItem type="radio" label="Yes, I would like to refine my search." name="help-anything-else" value="Refine Search" onChange={handleChange} />
-
-        <FormItem type="radio" label="Yes, I would like to browse the full list of agencies." name="help-anything-else" value="Go to Agency Listing Page" onChange={handleChange} />
-
-        <FormItem type="radio" label="Yes, I would like to go back to the FOIA.gov home page." name="help-anything-else" value="Go to foia.gov" onChange={handleChange} />
-
-        <FormItem type="radio" label="No" name="help-anything-else" value="Say Thank You" onChange={handleChange} />
-
-        <Button
-          onClick={doSelectedAction}
-        >
-          Submit
-        </Button>
+        {options.map(({ label }) => (
+          <FormItem
+            type="radio"
+            name="help-anything-else"
+            key={label}
+            label={label}
+            value={label}
+            onChange={() => setSelectedLabel(label)}
+          />
+        ))}
+        <Button onClick={handleSubmit}>Submit</Button>
       </fieldset>
       <Modal
         title="Thank you for using our tool!"
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
+        contentLabel="Thank you for using our tool!"
       >
         <BodyText>You may close this browser window.</BodyText>
       </Modal>
