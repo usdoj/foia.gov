@@ -111,5 +111,5 @@ Webpack can also detect changes to and recompile other assets such as images, fo
 ### Type-check the Wizard app
 
 ```
-ddev wizard-tsc
+npx tsc --watch --project js/wizard.tsconfig.json
 ```

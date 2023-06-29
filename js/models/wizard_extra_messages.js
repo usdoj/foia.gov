@@ -46,6 +46,8 @@ const extraMessages = {
   a19: 'Records of another Living Individual',
   a20: 'Earnings Records',
   polydeltaNoResults: '<p>We didn\'t find anything from this query, please try a different search.</p>',
+  noResults: '<p>We didn\'t find anything from this query, please try a different search.</p>',
+  apiError: '<p>There was an error, please try again later.</p>',
   loading: '<p>Loading...</p>',
   TBD: '<p>[Content to be determined]</p>',
 };

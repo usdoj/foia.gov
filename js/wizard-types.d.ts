@@ -91,6 +91,7 @@ declare global {
 
   type WizardActions = {
     initLoad: () => void;
+    jumpBackToQueryPage: () => void;
     nextPage: () => void;
     prevPage: () => void;
     reset: () => void;
@@ -113,7 +114,6 @@ declare global {
     query: string | null;
     ready: boolean;
     isError: boolean;
-    isLoading: boolean;
     recommendedAgencies: WizardAgency[] | null;
     recommendedLinks: WizardLink[] | null;
     ui: Record<string, string>;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useWizard } from '../stores/wizard_store';
 import WizardHtml from './wizard_html';
 import PillGroup from './wizard_component_pill_group';
@@ -8,12 +8,15 @@ import Modal from './wizard_component_modal';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
 
+const MAX_QUERY_LENGTH = 500;
+
 function Query() {
   const {
     actions, allTopics, ready, loading,
   } = useWizard();
 
   const [query, setQuery] = useState(/** @type string | null */ null);
+  const [exceededMaxLengthQuery, setExceededMaxLengthQuery] = useState(/** @type boolean */ false);
   const [selectedTopic, setSelectedTopic] = useState(/** @type WizardTopic | null */ null);
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -23,6 +26,14 @@ function Query() {
   if (!ready || !allTopics) {
     return <div>Loading app...</div>;
   }
+
+  useLayoutEffect(() => {
+    if (query && query !== '' && query.length > MAX_QUERY_LENGTH) {
+      setExceededMaxLengthQuery(true);
+    } else {
+      setExceededMaxLengthQuery(false);
+    }
+  }, [query, MAX_QUERY_LENGTH]);
 
   // Modal has all topics, but the page is limited to 10...
   const displayedTopics = allTopics.slice(0, 10);
@@ -65,6 +76,7 @@ function Query() {
         />
         <Modal
           title="Common topics"
+          contentLabel="All topics"
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
         >
@@ -75,7 +87,8 @@ function Query() {
           />
         </Modal>
 
-        {(query && query !== '') || selectedTopic ? (
+        {exceededMaxLengthQuery && <p style={{ color: 'white' }}>Query is limited to 500 characters</p>}
+        {(query && query !== '' && !exceededMaxLengthQuery) || selectedTopic ? (
           <Button
             onClick={() => actions.submitRequest({
               query: query || '',

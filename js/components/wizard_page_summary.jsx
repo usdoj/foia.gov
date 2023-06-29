@@ -2,16 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
 import PageTemplate from './wizard_template_page';
-import Button from './wizard_component_button';
-import RichText from './wizard_component_rich_text';
 import Constrain from './wizard_layout_constrain';
+import Button from './wizard_component_button';
+import LastStepsBlock from './wizard_component_last_steps_block';
+import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
-import FormItem from './wizard_component_form_item';
 
 function Summary() {
-  const { actions, activity, request } = useWizard();
   const {
-    agencies, links, isLoading, isError,
+    actions, activity, loading, request,
+  } = useWizard();
+  const {
+    agencies, links, isError,
   } = request;
 
   if (activity.type !== 'summary') {
@@ -22,17 +24,17 @@ function Summary() {
     return (
       <PageTemplate>
         <Constrain>
-          <p>There was an error, please try again later.</p>
+          <WizardHtml mid="apiError" />
         </Constrain>
       </PageTemplate>
     );
   }
 
-  if (isLoading) {
+  if (loading) {
     return (
       <PageTemplate>
         <Constrain>
-          <p>Loading...</p>
+          <WizardHtml mid="loading" />
         </Constrain>
       </PageTemplate>
     );
@@ -56,7 +58,7 @@ function Summary() {
               </blockquote>
 
               { (!links || links.length === 0) && (!agencies || agencies.length === 0) ? (
-                <WizardHtml mid="polydeltaNoResults" />
+                <WizardHtml mid="noResults" />
               ) : (
                 null
               )}
@@ -77,16 +79,10 @@ function Summary() {
               ) : (
                 null
               )}
-
-              <h2>Can we help you with anything else?</h2>
-              <FormItem type="radio" label="Yes, I would like to refine my search." name="help-anything-else" onChange={() => {}} />
-              <FormItem type="radio" label="Yes, I would like to browse the full list of agencies." name="help-anything-else" onChange={() => {}} />
-              <FormItem type="radio" label="Yes, I would like to go back to the FOIA.gov home page." name="help-anything-else" onChange={() => {}} />
-              <FormItem type="radio" label="No" name="help-anything-else" onChange={() => {}} />
             </>
           )}
+          <LastStepsBlock />
         </RichText>
-
         <Button onClick={actions.reset}>
           Reset
         </Button>

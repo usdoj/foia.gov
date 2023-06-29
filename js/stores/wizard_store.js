@@ -28,7 +28,6 @@ const initialWizardState = {
   recommendedAgencies: null,
   recommendedLinks: null,
   isError: false,
-  isLoading: false,
   ui: extraMessages,
   userTopic: null,
 };
@@ -60,6 +59,13 @@ const useRawWizardStore = create((
   /** ZustandGet<WizardState> */ get,
 ) => {
   // Actions separated from state vars.
+
+  /**
+   * @param {number} delta
+   */
+  function nudgeLoading(delta) {
+    set((prev) => ({ numLoading: Math.max(0, prev.numLoading + delta) }));
+  }
 
   /**
    * Decorate full state with updated history
@@ -94,12 +100,14 @@ const useRawWizardStore = create((
   });
 
   const initLoad = async () => {
+    nudgeLoading(1);
     let data;
     try {
       data = await fetch(`${settings.api.requestApiBaseURL}/foia_wizard`).then((r) => r.json());
     } catch (err) {
       throw new Error(`API call to fetch wizard strings failed: ${err}`);
     }
+    nudgeLoading(-1);
 
     const lang = 'en';
     try {
@@ -158,18 +166,26 @@ const useRawWizardStore = create((
     // Preserve loaded stuff
     allTopics: state.allTopics,
     ui: state.ui,
+    ready: state.ready,
+  }));
+
+  const jumpBackToQueryPage = () => set((state) => ({
+    ...initialWizardState,
+    activity: { type: 'query' },
+    // Preserve loaded stuff
+    allTopics: state.allTopics,
+    ui: state.ui,
+    ready: state.ready,
   }));
 
   /** @type {WizardActions['submitRequest']} */
   const submitRequest = async ({ query, topic }) => {
-    set((state) => ({ numLoading: state.numLoading + 1 }));
-
     let isError = false;
-    let isLoading = true;
     let recommendedAgencies = [];
     let recommendedLinks = [];
 
     if (query && !topic) {
+      nudgeLoading(1);
       const polydeltaOptions = {
         method: 'POST',
         headers: {
@@ -183,23 +199,20 @@ const useRawWizardStore = create((
         .then((data) => {
           recommendedAgencies = data.model_output.agency_finder_predictions[0];
           recommendedLinks = data.model_output.freqdoc_predictions;
-          isLoading = false;
         })
         .catch((err) => {
           console.error(err);
           isError = true;
-          isLoading = false;
         });
+      nudgeLoading(-1);
     }
 
-    set((state) => withCapturedHistory({
+    set(withCapturedHistory({
       activity: topic ? topic.journey : { type: 'summary' },
-      numLoading: Math.max(0, state.numLoading - 1),
       query,
       recommendedLinks,
       recommendedAgencies,
       isError,
-      isLoading,
       userTopic: topic,
     }));
   };
@@ -215,6 +228,7 @@ const useRawWizardStore = create((
     nextPage,
     prevPage,
     reset,
+    jumpBackToQueryPage,
     selectAnswer,
     submitRequest,
   };
@@ -242,7 +256,6 @@ const useRawWizardStore = create((
  *     query: WizardVars['query'];
  *     topic: WizardVars['userTopic'];
  *     isError: WizardVars['isError'];
- *     isLoading: WizardVars['isLoading'];
  *   };
  *   ui: WizardVars['ui'];
  *   getMessage: (mid: string) => string;
@@ -263,7 +276,6 @@ function useWizard() {
       query: state.query,
       topic: state.userTopic,
       isError: state.isError,
-      isLoading: state.isLoading,
     },
     ui: state.ui,
     getMessage: (mid) => (mid.startsWith('literal:') ? mid.substring(8) : state.ui[mid] || `(missing message: ${mid})`),
