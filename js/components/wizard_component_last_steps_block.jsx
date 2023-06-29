@@ -8,7 +8,7 @@ import Modal from './wizard_component_modal';
 function LastStepsBlock() {
   const { actions } = useWizard();
 
-  const [selectedLabel, setSelectedLabel] = useState(/** @type string | null */ null);
+  const [selectedAction, setSelectedAction] = useState(/** @type function */ () => {});
   const [modalIsOpen, setIsOpen] = useState(/** @type boolean */ false);
 
   const openModal = () => setIsOpen(true);
@@ -21,11 +21,11 @@ function LastStepsBlock() {
     },
     {
       label: 'Yes, I would like to browse the full list of agencies.',
-      action: () => { window.location = '/agency-search.html'; },
+      action: () => { location.href = '/agency-search.html'; },
     },
     {
       label: 'Yes, I would like to go back to the FOIA.gov home page.',
-      action: () => { window.location = '/'; },
+      action: () => { location.href = '/'; },
     },
     {
       label: 'No.',
@@ -33,26 +33,23 @@ function LastStepsBlock() {
     },
   ];
 
-  function handleSubmit() {
-    const option = options.find((opt) => opt.label === selectedLabel);
-    option.action();
-  }
-
   return (
     <form aria-label="Can we help you with anything else?">
       <fieldset>
         <legend>Can we help you with anything else?</legend>
-        {options.map(({ label }) => (
+        {options.map(({ action, label }) => (
           <FormItem
             type="radio"
             name="help-anything-else"
             key={label}
             label={label}
             value={label}
-            onChange={() => setSelectedLabel(label)}
+            // Must give setSelectedAction a function so react doesn't interepret
+            // it as a setter.
+            onChange={() => setSelectedAction(() => action)}
           />
         ))}
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button onClick={selectedAction}>Submit</Button>
       </fieldset>
       <Modal
         title="Thank you for using our tool!"
