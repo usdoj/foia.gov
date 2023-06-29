@@ -1,7 +1,0 @@
-#!/bin/sh
-
-## Description: Type-check the wizard app
-## Usage: wizard-tsc
-## Example: "ddev wizard-tsc"
-
-tsc --watch --project js/wizard.tsconfig.json
