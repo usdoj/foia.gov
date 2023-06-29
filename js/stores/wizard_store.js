@@ -169,6 +169,15 @@ const useRawWizardStore = create((
     ready: state.ready,
   }));
 
+  const jumpBackToQueryPage = () => set((state) => ({
+    ...initialWizardState,
+    activity: { type: 'query' },
+    // Preserve loaded stuff
+    allTopics: state.allTopics,
+    ui: state.ui,
+    ready: state.ready,
+  }));
+
   /** @type {WizardActions['submitRequest']} */
   const submitRequest = async ({ query, topic }) => {
     let isError = false;
@@ -219,6 +228,7 @@ const useRawWizardStore = create((
     nextPage,
     prevPage,
     reset,
+    jumpBackToQueryPage,
     selectAnswer,
     submitRequest,
   };

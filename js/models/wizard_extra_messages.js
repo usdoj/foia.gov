@@ -45,7 +45,8 @@ const extraMessages = {
   a18: '',
   a19: '',
   a20: '',
-  polydeltaNoResults: '<p>We didn\'t find anything from this query, please try a different search.</p>',
+  noResults: '<p>We didn\'t find anything from this query, please try a different search.</p>',
+  apiError: '<p>There was an error, please try again later.</p>',
   loading: '<p>Loading...</p>',
   TBD: '<p>[Content to be determined]</p>',
 };
