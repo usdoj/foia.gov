@@ -91,6 +91,7 @@ declare global {
 
   type WizardActions = {
     initLoad: () => void;
+    jumpBackToQueryPage: () => void;
     nextPage: () => void;
     prevPage: () => void;
     reset: () => void;

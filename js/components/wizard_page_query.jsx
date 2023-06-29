@@ -76,6 +76,7 @@ function Query() {
         />
         <Modal
           title="Common topics"
+          contentLabel="All topics"
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
         >
