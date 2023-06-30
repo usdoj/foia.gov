@@ -5,10 +5,9 @@
  * decisions throughout the UX.
  */
 
-// @ts-ignore
-import settings from 'settings';
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
+import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
 
@@ -103,7 +102,7 @@ const useRawWizardStore = create((
     nudgeLoading(1);
     let data;
     try {
-      data = await fetch(`${settings.api.requestApiBaseURL}/foia_wizard`).then((r) => r.json());
+      data = await fetchWizardInitData();
     } catch (err) {
       throw new Error(`API call to fetch wizard strings failed: ${err}`);
     }
@@ -186,16 +185,7 @@ const useRawWizardStore = create((
 
     if (query && !topic) {
       nudgeLoading(1);
-      const polydeltaOptions = {
-        method: 'POST',
-        headers: {
-          Authorization: 'Api-Key RQmvMuDs.vS8ziJy9FeFlrxUoAji4or840T576esG',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ input: [query] }),
-      };
-      await fetch('https://app.polydelta.ai/doj-foia/models/ZBA2ow0/predict', polydeltaOptions)
-        .then((response) => response.json())
+      await fetchWizardPredictions(query)
         .then((data) => {
           recommendedAgencies = data.model_output.agency_finder_predictions[0];
           recommendedLinks = data.model_output.freqdoc_predictions;

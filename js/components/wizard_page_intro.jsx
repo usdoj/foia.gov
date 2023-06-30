@@ -16,13 +16,13 @@ function Intro() {
         )}
 
         {ready && (
-          <>
+          <div className="w-component-intro">
             <WizardHtml mid="intro_slide" />
 
             <Button onClick={actions.nextPage}>
               Begin
             </Button>
-          </>
+          </div>
         )}
       </Constrain>
     </PageTemplate>

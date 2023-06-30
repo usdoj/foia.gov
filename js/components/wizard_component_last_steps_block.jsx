@@ -34,9 +34,9 @@ function LastStepsBlock() {
   ];
 
   return (
-    <form aria-label="Can we help you with anything else?">
+    <form className="w-component-last-steps">
       <fieldset>
-        <legend>Can we help you with anything else?</legend>
+        <legend className="w-legend">Can we help you with anything else?</legend>
         {options.map(({ action, label }) => (
           <FormItem
             type="radio"

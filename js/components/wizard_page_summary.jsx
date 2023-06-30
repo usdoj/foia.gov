@@ -10,7 +10,7 @@ import WizardHtml from './wizard_html';
 
 function Summary() {
   const {
-    actions, activity, loading, request,
+    activity, loading, request,
   } = useWizard();
   const {
     agencies, links, isError,
@@ -40,52 +40,47 @@ function Summary() {
     );
   }
 
+  const hasLinks = links && links.length > 0;
+  const hasAgencies = agencies && agencies.length > 0;
+
   return (
     <PageTemplate>
       <Constrain>
         <RichText>
+          <h1><WizardHtml mid="lookingFor" /></h1>
+          <blockquote>
+            &ldquo;
+            {request.query || request.topic.title}
+            &rdquo;
+          </blockquote>
+
           {typeof activity.titleMid === 'string' ? (
             // Topic/answer-specific content
             <WizardHtml mid={activity.titleMid} />
           ) : (
-          // Show agencies & links from model
+            // Show agencies & links from model
             <>
-              <p>We did a quick search for:</p>
-              <blockquote>
-                &ldquo;
-                {request.query}
-                &ldquo;
-              </blockquote>
-
-              { (!links || links.length === 0) && (!agencies || agencies.length === 0) ? (
+              {!hasLinks && !hasAgencies && (
                 <WizardHtml mid="noResults" />
-              ) : (
-                null
               )}
-              {links && links.length > 0 ? (
+
+              {hasLinks && (
                 <>
                   <h2>We found the following public information:</h2>
                   <WizardLinks links={links} />
                 </>
-              ) : (
-                null
               )}
-              {agencies && agencies.length > 0 ? (
+              {hasAgencies && (
                 <>
-                  <h2>The following agencies may have the records you seek.</h2>
+                  <h2>The following agencies may have the records you seek:</h2>
                   <p>Click each agency to learn more or to submit a FOIA request.</p>
                   <WizardAgencies agencies={agencies} />
                 </>
-              ) : (
-                null
               )}
             </>
           )}
           <LastStepsBlock />
         </RichText>
-        <Button onClick={actions.reset}>
-          Reset
-        </Button>
       </Constrain>
     </PageTemplate>
   );

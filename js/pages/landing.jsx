@@ -7,6 +7,7 @@ import { createBrowserHistory } from 'history';
 import { requestActions } from 'actions';
 import LandingComponent from '../components/landing';
 import agencyComponentStore from '../stores/agency_component';
+import { fetchWizardInitData } from '../util/wizard_api';
 
 const urlPropsQueryConfig = {
   typeQueryString: { type: UrlQueryParamTypes.string, queryParam: 'type' },
@@ -46,6 +47,8 @@ class LandingPage extends Component {
 
     // Pre-fetch the list of agencies and components for typeahead
     requestActions.fetchAgencyFinderData();
+    // Pre-fetch data for wizard
+    fetchWizardInitData();
 
     // Pre-fetch any component indicated by query strings.
     if (this.props.typeQueryString === 'component') {
