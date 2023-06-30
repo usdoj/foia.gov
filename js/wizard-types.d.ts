@@ -3,6 +3,8 @@
  * This file is not used in compilation, but provides type-checking for the wizard
  * app. Use the project file "wizard.tsconfig.json".
  *
+ * npx tsc --watch --project js/wizard.tsconfig.json
+ *
  * We tried hard to keep these defined in JSDoc but the mix of tsx and WebStorm support
  * proved unworkable. Either WebStorm would fail to understand the types in use, or tsc
  * would fail to find the types.

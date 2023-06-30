@@ -18,11 +18,11 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
             summary('m24'),
           ),
           answer(
-            'literal:Medicaid/Medicare',
+            'literal:My Medicaid/Medicare participant records',
             summary('m25'),
           ),
           answer(
-            'literal:Indian Health Services',
+            'literal:My Indian Health Service participant records',
             summary('m26'),
           ),
         ],
@@ -42,15 +42,15 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
             summary('m28'),
           ),
           answer(
-            'literal:Medicaid/Medicare',
+            'literal:Medicaid/Medicare participant records',
             summary('m29'),
           ),
           answer(
-            'literal:Indian Health Services',
+            'literal:Indian Health Service participant records',
             summary('m30'),
           ),
         ],
-        'literal:<p>For other information, we suggest you contact your medical provider directly.</p>',
+        'literal:<p>For other information, we suggest contacting the medical provider directly.</p>',
       ),
     }),
   ),

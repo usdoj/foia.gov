@@ -50,7 +50,6 @@ const extraMessages = {
   apiError: '<p>There was an error, please try again later.</p>',
   loading: '<p>Loading...</p>',
   lookingFor: 'Okay, you\'re looking for:',
-  TBD: '<p>[Content to be determined]</p>',
 };
 
 export default extraMessages;
