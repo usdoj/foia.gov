@@ -20,34 +20,38 @@ function Question() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          <p>Your request:</p>
+          <h1><WizardHtml mid="lookingFor" /></h1>
           <blockquote>
+            &ldquo;
             {request.query || request.topic.title}
+            &rdquo;
           </blockquote>
 
-          <h2><WizardHtml mid={activity.titleMid} /></h2>
+          <form>
+            <fieldset>
+              <legend className="w-legend"><WizardHtml mid={activity.titleMid} /></legend>
+              {activity.answers.map((answer, idx) => (
+                <div key={answer.titleMid}>
+                  <FormItem
+                    type="radio"
+                    name="question"
+                    label={getMessage(answer.titleMid)}
+                    value={idx}
+                    mid={answer.titleMid}
+                    checked={idx === answerIdx}
+                    onChange={() => {
+                      actions.selectAnswer(idx);
+                    }}
+                  />
+                </div>
+              ))}
+            </fieldset>
+          </form>
+
+          {typeof activity.addendumMid === 'string' && (
+            <WizardHtml mid={activity.addendumMid} />
+          )}
         </RichText>
-
-        {activity.answers.map((answer, idx) => (
-          <div key={answer.titleMid}>
-            <FormItem
-              type="radio"
-              name="question"
-              label={getMessage(answer.titleMid)}
-              value={idx}
-              mid={answer.titleMid}
-              checked={idx === answerIdx}
-              onChange={() => {
-                actions.selectAnswer(idx);
-              }}
-            />
-          </div>
-        ))}
-
-        {typeof activity.addendumMid === 'string' && (
-          <WizardHtml mid={activity.addendumMid} />
-        )}
-
         <Button
           disabled={answerIdx === null}
           onClick={actions.nextPage}
