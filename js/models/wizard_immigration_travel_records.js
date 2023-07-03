@@ -1,5 +1,5 @@
 import {
-  answer, question, summary, yesNoQuestion,
+  answer, continueStep, question, summary, yesNoQuestion,
 } from '../util/wizard_helpers';
 
 /** @type {WizardQuestion} */
@@ -26,8 +26,8 @@ const selectTypeQuestion = question(
 const immigrationOrTravelRecordsJourney = yesNoQuestion(
   'q1',
   {
-    yes: selectTypeQuestion,
-    no: selectTypeQuestion,
+    yes: continueStep('m1', selectTypeQuestion),
+    no: continueStep('m2', selectTypeQuestion),
   },
 );
 
