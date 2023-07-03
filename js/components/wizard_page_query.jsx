@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useWizard } from '../stores/wizard_store';
 import WizardHtml from './wizard_html';
 import PillGroup from './wizard_component_pill_group';
@@ -12,7 +12,7 @@ const MAX_QUERY_LENGTH = 500;
 
 function Query() {
   const {
-    actions, allTopics, ready, loading,
+    actions, allTopics, loading,
   } = useWizard();
 
   const [query, setQuery] = useState(/** @type string | null */ null);
@@ -23,11 +23,7 @@ function Query() {
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  if (!ready || !allTopics) {
-    return <div>Loading app...</div>;
-  }
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (query && query !== '' && query.length > MAX_QUERY_LENGTH) {
       setExceededMaxLengthQuery(true);
     } else {
@@ -89,16 +85,19 @@ function Query() {
 
         {exceededMaxLengthQuery && <p style={{ color: 'white' }}>Query is limited to 500 characters</p>}
         {(query && query !== '' && !exceededMaxLengthQuery) || selectedTopic ? (
-          <Button
-            onClick={() => actions.submitRequest({
-              query: query || '',
-              topic: selectedTopic,
-            })}
-          >
-            Submit
-          </Button>
+          <div className="w-component-submit">
+            <Button
+              onClick={() => actions.submitRequest({
+                query: query || '',
+                topic: selectedTopic,
+              })}
+              disabled={loading}
+            >
+              Submit
+            </Button>
+            {loading && <WizardHtml mid="loading" />}
+          </div>
         ) : null}
-        {loading && ' Loading...'}
       </Constrain>
     </PageTemplate>
   );

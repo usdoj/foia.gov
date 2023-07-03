@@ -312,6 +312,12 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   }
 }
 
+// Submit button
+.w-component-submit {
+  display: flex;
+  align-items: baseline;
+}
+
 // Last Steps
 .w-component-last-steps {
   margin-block-start: 7rem;
