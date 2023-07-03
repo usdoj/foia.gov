@@ -59,6 +59,11 @@ class LandingPage extends Component {
       onChangeUrlQueryParams,
     } = this.props;
 
+    if (!idQueryString || !typeQueryString) {
+      // LandingComponent only used for displaying agencies.
+      return null;
+    }
+
     return (
       <LandingComponent
         agencyFinderDataComplete={agencyFinderDataComplete}
