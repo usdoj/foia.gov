@@ -6,6 +6,10 @@ import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
 import agencyComponentStore from '../stores/agency_component';
 
+/**
+ * Load and display an Agency or Agency Component and allow navigation
+ * between them.
+ */
 class LandingComponent extends Component {
   constructor(props) {
     super(props);
@@ -13,22 +17,16 @@ class LandingComponent extends Component {
       agency: null,
       agencyComponent: null,
       agencyComponentsForAgency: null,
-      showHome: props.typeQueryString === null,
+      notFound: false,
+      isCentralized: false,
     };
   }
 
-  syncHomeContentVisibility() {
-    const method = this.state.showHome ? 'show' : 'hide';
-    $('#main > .usa-hero, #learn-more')[method]();
-  }
-
   componentDidMount() {
-    this.syncHomeContentVisibility();
+    $('#main > .usa-hero, #learn-more').hide();
   }
 
   componentDidUpdate() {
-    this.syncHomeContentVisibility();
-
     if (!this.props.agencyFinderDataComplete) {
       return;
     }
@@ -72,15 +70,26 @@ class LandingComponent extends Component {
       idQueryString,
     } = this.props;
 
-    if (typeQueryString === 'agency') {
-      const agency = agencyComponentStore.getAgency(idQueryString);
-      const agencyComponentsForAgency = agencyComponentStore.getAgencyComponentsForAgency(agency.id);
-      this.setStateForAgency(agency, agencyComponentsForAgency);
-    }
-    if (typeQueryString === 'component') {
-      const component = agencyComponentStore.getAgencyComponent(idQueryString);
-      const agency = agencyComponentStore.getAgency(component.agency.id);
-      this.setStateForComponent(component, agency.isCentralized());
+    try {
+      switch (typeQueryString) {
+        case 'agency': {
+          const agency = agencyComponentStore.getAgency(idQueryString);
+          const agencyComponentsForAgency = agencyComponentStore.getAgencyComponentsForAgency(agency.id);
+          this.setStateForAgency(agency, agencyComponentsForAgency);
+          break;
+        }
+        case 'component': {
+          const component = agencyComponentStore.getAgencyComponent(idQueryString);
+          const agency = agencyComponentStore.getAgency(component.agency.id);
+          this.setStateForComponent(component, agency.isCentralized());
+          break;
+        }
+        default:
+          location.href = '/';
+      }
+    } catch (err) {
+      console.error(err);
+      this.setState({ notFound: true });
     }
   }
 
@@ -118,12 +127,17 @@ class LandingComponent extends Component {
     };
 
     const { agencyFinderDataComplete, agencyFinderDataProgress } = this.props;
+    const {
+      agency, agencyComponent, agencyComponentsForAgency, isCentralized, notFound,
+    } = this.state;
 
     return (
       <div className="usa-grid agency-preview">
         <p>
           <a href="/agency-search.html" className="agency-preview_back">Agency Search</a>
         </p>
+
+        {notFound && (<h2>This agency could not be found.</h2>)}
 
         {!agencyFinderDataComplete && (
           <div className="foia-component-agency-search__loading">
@@ -134,26 +148,20 @@ class LandingComponent extends Component {
           </div>
         )}
 
-        {
-          this.state.agencyComponent
-          && (
-            <AgencyComponentPreview
-              agencyComponent={this.state.agencyComponent.toJS()}
-              isCentralized={this.state.isCentralized}
-              onAgencySelect={agencyChange}
-            />
-          )
-        }
-        {
-          this.state.agency
-          && (
-            <AgencyPreview
-              agency={this.state.agency}
-              agencyComponentsForAgency={this.state.agencyComponentsForAgency}
-              onAgencySelect={agencyChange}
-            />
-          )
-        }
+        {agencyComponent && (
+          <AgencyComponentPreview
+            agencyComponent={agencyComponent.toJS()}
+            isCentralized={isCentralized}
+            onAgencySelect={agencyChange}
+          />
+        )}
+        {agency && (
+          <AgencyPreview
+            agency={agency}
+            agencyComponentsForAgency={agencyComponentsForAgency}
+            onAgencySelect={agencyChange}
+          />
+        )}
       </div>
     );
   }
