@@ -25,26 +25,17 @@ class LandingPage extends Component {
 
   static calculateState() {
     const {
-      agencies,
-      agencyComponents,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
     } = agencyComponentStore.getState();
 
     return {
-      agencies,
-      agencyComponents,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
     };
   }
 
   componentDidMount() {
-    // If there is any agency data, assume all the data is fetched.
-    if (this.state.agencies.size) {
-      return;
-    }
-
     // Pre-fetch the list of agencies and components for typeahead
     requestActions.fetchAgencyFinderData();
     // Pre-fetch data for wizard
@@ -59,8 +50,6 @@ class LandingPage extends Component {
 
   render() {
     const {
-      agencies,
-      agencyComponents,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
     } = this.state;
@@ -72,8 +61,6 @@ class LandingPage extends Component {
 
     return (
       <LandingComponent
-        agencies={agencies}
-        agencyComponents={agencyComponents}
         agencyFinderDataComplete={agencyFinderDataComplete}
         agencyFinderDataProgress={agencyFinderDataProgress}
         idQueryString={idQueryString}
