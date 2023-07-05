@@ -1,3 +1,7 @@
+/**
+ * Load /agency-search.html?-export=1 to download agencies JSON.
+ */
+
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Pager from './foia_component_pager';
@@ -48,6 +52,9 @@ function AgencySearch({
   const [search, setSearch] = useState('');
   const [datums, setDatums] = useState([]);
   const [filteredDatums, setFilteredDatums] = useState([]);
+
+  const isExport = new URLSearchParams(window.location.search).get('-export');
+  const exportRef = useRef(null);
 
   // Store state without re-rendering.
   const fakeThis = useRef({
@@ -148,6 +155,36 @@ function AgencySearch({
     url: getDatumUrl(datum),
   }));
 
+  useEffect(() => {
+    let objectUrl;
+    if (isExport && cards.length && exportRef.current) {
+      const json = JSON.stringify(cards.map((card) => {
+        const {
+          abbreviation, id, name, type,
+        } = card.agency || {};
+        return {
+          abbreviation: card.abbreviation,
+          parent: card.agency ? {
+            abbreviation, id, name, type,
+          } : null,
+          id: card.id,
+          title: card.title,
+          type: card.type,
+          url: card.url,
+        };
+      }), null, 2);
+      const blob = new Blob([json], { type: 'application/json' });
+      objectUrl = window.URL.createObjectURL(blob);
+      exportRef.current.href = objectUrl;
+    }
+
+    return () => {
+      if (objectUrl) {
+        window.URL.revokeObjectURL(objectUrl);
+      }
+    };
+  }, [cards, exportRef.current]);
+
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = cards ? cards.slice(indexOfFirstCard, indexOfLastCard) : {};
@@ -180,6 +217,16 @@ function AgencySearch({
         {agencyFinderDataProgress}
         %
       </div>
+    );
+  }
+
+  if (isExport) {
+    return (
+      <p>
+        Download
+        {' '}
+        <a ref={exportRef} download="agencies.json"><code>agencies.json</code></a>
+      </p>
     );
   }
 

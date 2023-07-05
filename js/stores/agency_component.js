@@ -44,20 +44,21 @@ class AgencyComponentStore extends Store {
 
   getDatumUrl(datum) {
     if (datum.type === 'agency_component') {
-      return `/?${new URLSearchParams({ type: 'component', id: datum.id })}`;
+      return `/?${new URLSearchParams({ id: datum.id, type: 'component' })}`;
     }
 
     const agency = this.state.agencies.get(datum.id);
 
+    // Agency is represented by its single component
     if (agency.isCentralized()) {
       const component = this.state
         .agencyComponents
         .find((c) => c.agency.id === agency.id);
 
-      return `/?${new URLSearchParams({ type: 'component', id: component.id })}`;
+      return `/?${new URLSearchParams({ id: component.id, type: 'component' })}`;
     }
 
-    return `/?${new URLSearchParams({ type: 'agency', id: agency.id })}`;
+    return `/?${new URLSearchParams({ id: agency.id, type: 'agency' })}`;
   }
 
   __onDispatch(payload) {
