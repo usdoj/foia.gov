@@ -184,11 +184,16 @@ const useRawWizardStore = create((
     let recommendedLinks = [];
 
     if (query && !topic) {
+      const CONFIDENCE_THRESHOLD_AGENCIES = 0.5;
+      const CONFIDENCE_THRESHOLD_LINKS = 0.5;
+
       nudgeLoading(1);
       await fetchWizardPredictions(query)
         .then((data) => {
-          recommendedAgencies = data.model_output.agency_finder_predictions[0];
-          recommendedLinks = data.model_output.freqdoc_predictions;
+          recommendedAgencies = data.model_output.agency_finder_predictions[0]
+            .filter((agency) => agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES);
+          recommendedLinks = data.model_output.freqdoc_predictions
+            .filter((link) => link.score >= CONFIDENCE_THRESHOLD_LINKS);
         })
         .catch((err) => {
           console.error(err);

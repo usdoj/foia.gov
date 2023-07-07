@@ -44,7 +44,7 @@ function LastStepsBlock() {
             key={label}
             label={label}
             value={label}
-            // Must give setSelectedAction a function so react doesn't interepret
+            // Must give setSelectedAction a function so react doesn't interpret
             // it as a setter.
             onChange={() => setSelectedAction(() => action)}
           />
