@@ -45,6 +45,7 @@ function Summary() {
     );
   }
 
+  const hasTopicContent = typeof activity.titleMid === 'string';
   const hasLinks = links && links.length > 0;
   const hasAgencies = agencies && agencies.length > 0;
 
@@ -59,9 +60,11 @@ function Summary() {
             &rdquo;
           </blockquote>
 
-          {typeof activity.titleMid === 'string' ? (
-            // Topic/answer-specific content
-            <WizardHtml mid={activity.titleMid} />
+          {hasTopicContent ? (
+            <>
+              <WizardHtml mid={activity.titleMid} />
+              <LastStepsBlock />
+            </>
           ) : (
             // Show agencies & links from model
             <>
