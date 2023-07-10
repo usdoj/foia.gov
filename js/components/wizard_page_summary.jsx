@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
-import Button from './wizard_component_button';
 import LastStepsBlock from './wizard_component_last_steps_block';
+import NoResults from './wizard_component_no_results';
 import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
 
@@ -61,7 +61,7 @@ function Summary() {
             // Show agencies & links from model
             <>
               {!hasLinks && !hasAgencies && (
-                <WizardHtml mid="noResults" />
+                <NoResults />
               )}
 
               {hasLinks && (
@@ -77,9 +77,11 @@ function Summary() {
                   <WizardAgencies agencies={agencies} />
                 </>
               )}
+              {(hasLinks || hasAgencies) ? (
+                <LastStepsBlock />
+              ) : null}
             </>
           )}
-          <LastStepsBlock />
         </RichText>
       </Constrain>
     </PageTemplate>
