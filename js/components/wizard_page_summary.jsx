@@ -11,6 +11,8 @@ import NoResults from './wizard_component_no_results';
 import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
 
+const limit = parseInt(new URLSearchParams(location.search).get('limit') || '6', 10);
+
 function Summary() {
   const {
     activity, loading, request,
@@ -70,18 +72,21 @@ function Summary() {
               {hasLinks && (
                 <>
                   <Heading tag="h2">We found the following public information:</Heading>
-                  <WizardLinks links={links.slice(0, 6)} />
+                  <WizardLinks links={links.slice(0, limit)} />
                 </>
               )}
               {hasAgencies && (
                 <>
                   {hasLinks ? (
-                    <Heading tag="h2">If the information above is not what you&#39;re looking for, the following agencies may have it.</Heading>
+                    <Heading tag="h2">
+                      If the information above is not what you&#39;re looking for, the following agencies
+                      may have it.
+                    </Heading>
                   ) : (
                     <Heading tag="h2">The following agencies may have the records you seek:</Heading>
                   )}
                   <BodyText>Click each agency to learn more or to submit a FOIA request.</BodyText>
-                  <WizardAgencies agencies={agencies.slice(0, 6)} />
+                  <WizardAgencies agencies={agencies.slice(0, limit)} />
                 </>
               )}
               {(hasLinks || hasAgencies) ? (
