@@ -50,3 +50,12 @@ export function continueStep(titleMid, next) {
 export function summary(titleMid) {
   return { type: 'summary', titleMid };
 }
+
+/**
+ * @returns {URLSearchParams}
+ */
+export function urlParams() {
+  return new URLSearchParams(
+    typeof document === 'undefined' ? '' : location.search,
+  );
+}

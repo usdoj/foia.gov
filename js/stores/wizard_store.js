@@ -8,11 +8,12 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
+import { urlParams } from '../util/wizard_helpers';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
 
 const DEFAULT_CONFIDENCE_THRESHOLD = Number(
-  new URLSearchParams(location.search).get('confidence-threshold') || 0.5,
+  urlParams().get('confidence-threshold') || 0.5,
 );
 
 const CONFIDENCE_THRESHOLD_AGENCIES = DEFAULT_CONFIDENCE_THRESHOLD;

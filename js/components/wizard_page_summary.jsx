@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
+import { urlParams } from '../util/wizard_helpers';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
 import Heading from './wizard_component_heading';
@@ -11,7 +12,7 @@ import NoResults from './wizard_component_no_results';
 import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
 
-const limit = parseInt(new URLSearchParams(location.search).get('limit') || '6', 10);
+const limit = parseInt(urlParams().get('limit') || '6', 10);
 
 function Summary() {
   const {
@@ -45,6 +46,7 @@ function Summary() {
     );
   }
 
+  const hasTopicContent = typeof activity.titleMid === 'string';
   const hasLinks = links && links.length > 0;
   const hasAgencies = agencies && agencies.length > 0;
 
@@ -59,9 +61,11 @@ function Summary() {
             &rdquo;
           </blockquote>
 
-          {typeof activity.titleMid === 'string' ? (
-            // Topic/answer-specific content
-            <WizardHtml mid={activity.titleMid} />
+          {hasTopicContent ? (
+            <>
+              <WizardHtml mid={activity.titleMid} />
+              <LastStepsBlock />
+            </>
           ) : (
             // Show agencies & links from model
             <>

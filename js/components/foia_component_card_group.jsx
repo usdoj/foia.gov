@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './foia_component_card';
 
+/**
+ * @param {import('prop-types').InferProps<typeof CardGroup>} props
+ */
 function CardGroup({ cardContent }) {
   if (cardContent && cardContent.length) {
     return (

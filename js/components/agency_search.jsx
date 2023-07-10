@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Pager from './foia_component_pager';
 import CardGroup from './foia_component_card_group';
 import tokenizers from '../util/tokenizers';
+import { urlParams } from '../util/wizard_helpers';
 
 // Only load bloodhound in the browser (avoid loading it for tests)
 let Bloodhound;
@@ -53,7 +54,7 @@ function AgencySearch({
   const [datums, setDatums] = useState([]);
   const [filteredDatums, setFilteredDatums] = useState([]);
 
-  const isExport = new URLSearchParams(window.location.search).get('-export');
+  const isExport = urlParams().get('-export');
   const exportRef = useRef(null);
 
   // Store state without re-rendering.
