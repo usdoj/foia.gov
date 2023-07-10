@@ -21,6 +21,7 @@ declare global {
     agency: string;
     agency_abbrev: string;
     confidence_score: number;
+    department?: string;
     url: string;
   };
 

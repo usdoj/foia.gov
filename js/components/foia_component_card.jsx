@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @param {import('prop-types').InferProps<typeof Card>} props
+ */
 function Card({ card }) {
   const {
     agencyName, title, url, subtitle, confidenceScore,
