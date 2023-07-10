@@ -7,6 +7,7 @@ import Heading from './wizard_component_heading';
 import BodyText from './wizard_component_body_text';
 import CardGroup from './foia_component_card_group';
 import LastStepsBlock from './wizard_component_last_steps_block';
+import NoResults from './wizard_component_no_results';
 import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
 
@@ -63,7 +64,7 @@ function Summary() {
             // Show agencies & links from model
             <>
               {!hasLinks && !hasAgencies && (
-                <WizardHtml mid="noResults" />
+                <NoResults />
               )}
 
               {hasLinks && (
@@ -83,9 +84,11 @@ function Summary() {
                   <WizardAgencies agencies={agencies.slice(0, 6)} />
                 </>
               )}
+              {(hasLinks || hasAgencies) ? (
+                <LastStepsBlock />
+              ) : null}
             </>
           )}
-          <LastStepsBlock />
         </RichText>
       </Constrain>
     </PageTemplate>

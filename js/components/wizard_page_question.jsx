@@ -52,12 +52,11 @@ function Question() {
             <WizardHtml mid={activity.addendumMid} />
           )}
         </RichText>
-        <Button
-          disabled={answerIdx === null}
-          onClick={actions.nextPage}
-        >
-          Next
-        </Button>
+        {answerIdx !== null && (
+          <Button onClick={actions.nextPage}>
+            Next
+          </Button>
+        )}
       </Constrain>
     </PageTemplate>
   );

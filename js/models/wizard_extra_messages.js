@@ -45,8 +45,6 @@ const extraMessages = {
   a18: 'Deceased Individual/’s Application for a Social Security Card (SS-5) or Numident record',
   a19: 'Records of another Living Individual',
   a20: 'Earnings Records',
-  polydeltaNoResults: '<p>We didn\'t find anything from this query, please try a different search.</p>',
-  noResults: '<p>We didn\'t find anything from this query, please try a different search.</p>',
   apiError: '<p>There was an error, please try again later.</p>',
   loading: '<p>Loading...</p>',
   lookingFor: 'Okay, you\'re looking for:',

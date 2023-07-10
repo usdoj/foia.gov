@@ -11,6 +11,13 @@ import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api'
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
 
+const DEFAULT_CONFIDENCE_THRESHOLD = Number(
+  new URLSearchParams(location.search).get('confidence-threshold') || 0.5,
+);
+
+const CONFIDENCE_THRESHOLD_AGENCIES = DEFAULT_CONFIDENCE_THRESHOLD;
+const CONFIDENCE_THRESHOLD_LINKS = DEFAULT_CONFIDENCE_THRESHOLD;
+
 /** @type {WizardVars} */
 const initialWizardState = {
   activity: { type: 'intro' },
@@ -187,8 +194,10 @@ const useRawWizardStore = create((
       nudgeLoading(1);
       await fetchWizardPredictions(query)
         .then((data) => {
-          recommendedAgencies = data.model_output.agency_finder_predictions[0];
-          recommendedLinks = data.model_output.freqdoc_predictions;
+          recommendedAgencies = data.model_output.agency_finder_predictions[0]
+            .filter((agency) => agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES);
+          recommendedLinks = data.model_output.freqdoc_predictions
+            .filter((link) => link.score >= CONFIDENCE_THRESHOLD_LINKS);
         })
         .catch((err) => {
           console.error(err);
