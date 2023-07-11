@@ -5,6 +5,7 @@ import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
 import agencyComponentStore from '../stores/agency_component';
 import { pushUrl } from '../util/use_url';
+import { requestActions } from '../actions';
 
 function jumpToUrl(id, type) {
   const params = new URLSearchParams({ id, type });
@@ -38,11 +39,11 @@ class AgencyDisplay extends Component {
   }
 
   checkLoaded() {
-    if (!this.props.agencyFinderDataComplete) {
+    const { id, type, agencyFinderDataComplete } = this.props;
+    if (!agencyFinderDataComplete) {
       return;
     }
 
-    const { id, type } = this.props;
     if (this.state.id === id && this.state.type === type) {
       // Already loaded this entity
       return;
@@ -57,9 +58,16 @@ class AgencyDisplay extends Component {
           break;
         }
         case 'component': {
-          const component = agencyComponentStore.getAgencyComponent(id);
-          const agency = agencyComponentStore.getAgency(component.agency.id);
-          this.setStateForComponent(component, agency.isCentralized());
+          // Not clear why this is required and no one remembers flux in 2023.
+          setTimeout(() => {
+            requestActions.fetchAgencyComponent(id)
+              .then(requestActions.receiveAgencyComponent)
+              .then(() => {
+                const component = agencyComponentStore.getAgencyComponent(id);
+                const agency = agencyComponentStore.getAgency(component.agency.id);
+                this.setStateForComponent(component, agency.isCentralized());
+              });
+          }, 0);
           break;
         }
         default:
@@ -78,6 +86,7 @@ class AgencyDisplay extends Component {
       agencyComponentsForAgency,
       id: agency.id,
       type: 'agency',
+      notFound: false,
     });
   }
 
@@ -89,6 +98,7 @@ class AgencyDisplay extends Component {
       isCentralized,
       id: agencyComponent.id,
       type: 'component',
+      notFound: false,
     });
   }
 
@@ -114,7 +124,6 @@ class AgencyDisplay extends Component {
       jumpToUrl(agency.id, 'agency');
     };
 
-    const { agencyFinderDataComplete, agencyFinderDataProgress } = this.props;
     const {
       agency, agencyComponent, agencyComponentsForAgency, isCentralized, notFound,
     } = this.state;
@@ -138,15 +147,6 @@ class AgencyDisplay extends Component {
 
         {notFound && (<h2>This agency could not be found.</h2>)}
 
-        {!agencyFinderDataComplete && (
-          <div className="foia-component-agency-search__loading">
-            Loading progress:
-            {' '}
-            {agencyFinderDataProgress}
-            %
-          </div>
-        )}
-
         {agencyComponent && (
           <AgencyComponentPreview
             agencyComponent={agencyComponent.toJS()}
@@ -169,7 +169,6 @@ class AgencyDisplay extends Component {
 AgencyDisplay.propTypes = {
   agencyComponents: PropTypes.object.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
-  agencyFinderDataProgress: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
