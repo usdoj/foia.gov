@@ -5,6 +5,9 @@ import { useUrlParams } from '../util/use_url';
 import AgencySearch from './agency_search';
 import AgencyDisplay from './agency_display';
 
+/**
+ * Show either the agency search or display an agency.
+ */
 function AgencySwitch(props) {
   const params = useUrlParams();
 

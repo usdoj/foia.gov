@@ -49,6 +49,7 @@ class AgencyDisplay extends Component {
       return;
     }
 
+    // Load agency or component based on the URL
     try {
       switch (type) {
         case 'agency': {
@@ -58,7 +59,7 @@ class AgencyDisplay extends Component {
           break;
         }
         case 'component': {
-          // Not clear why this is required and no one remembers flux in 2023.
+          // Not clear why this is required, and few remember flux in 2023.
           setTimeout(() => {
             requestActions.fetchAgencyComponent(id)
               .then(requestActions.receiveAgencyComponent)
@@ -106,7 +107,7 @@ class AgencyDisplay extends Component {
     // Note that the agencyComponent comes from two different sources, so the
     // properties might not be consistent.
     const agencyChange = (agencyComponent) => {
-      // We're going to push a URL and let the component load it.
+      // We're going to push a URL so checkLoaded() can handle it
       if (agencyComponent.type === 'agency_component') {
         jumpToUrl(agencyComponent.id, 'component');
         return;
@@ -137,6 +138,7 @@ class AgencyDisplay extends Component {
             href={searchPath}
             className="agency-preview_back"
             onClick={(e) => {
+              // Push URL so we don't have to reload the page.
               e.preventDefault();
               pushUrl(searchPath);
             }}

@@ -23,7 +23,6 @@ function AgencySearch({
   agencies,
   agencyComponents,
   agencyFinderDataComplete,
-  agencyFinderDataProgress,
   flatList,
 }) {
   const [search, setSearch] = useState('');
@@ -105,6 +104,7 @@ function AgencySearch({
       agencyName: flatItem.agency ? flatItem.agency.name : '',
       url,
       onClick(e) {
+        // Push URL so we don't have to reload the page.
         e.preventDefault();
         pushUrl(url);
       },
@@ -166,17 +166,6 @@ function AgencySearch({
       setPageAndScrollUp(currentPage + 1);
     }
   };
-
-  if (!agencyFinderDataComplete) {
-    return (
-      <div className="foia-component-agency-search__loading">
-        Loading progress:
-        {' '}
-        {agencyFinderDataProgress}
-        %
-      </div>
-    );
-  }
 
   if (isExport) {
     return (
@@ -244,7 +233,6 @@ AgencySearch.propTypes = {
   agencies: PropTypes.object.isRequired,
   agencyComponents: PropTypes.object.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
-  agencyFinderDataProgress: PropTypes.number.isRequired,
   flatList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
