@@ -12,15 +12,33 @@ import dispatcher from '../util/dispatcher';
 // loaded or, it sits on 100% for longer than it should.
 const GUESS_TOTAL_AGENCY_COMPONENTS = 400;
 
+const collator = new Intl.Collator('en');
+
+/**
+ * An object created from an Agency or AgencyComponent (maybe with parent Agency)
+ * @typedef {Array<{
+ *   id: string;
+ *   type: 'agency' | 'agency_component';
+ *   title: string;
+ *   abbreviation: string;
+ *   agency?: {
+ *     id: string;
+ *     name: string;
+ *     abbreviation: string;
+ *   };
+ * }>} FlatListItem
+ */
+
 class AgencyComponentStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
 
     this.state = {
-      agencies: new Map(),
-      agencyComponents: new List(),
+      agencies: /** @type Map<Agency> */ new Map(),
+      agencyComponents: /** @type List<AgencyComponent> */ new List(),
       agencyFinderDataComplete: false,
       agencyFinderDataProgress: 0,
+      flatList: /** @type FlatListItem[] */ [],
     };
   }
 
@@ -42,12 +60,46 @@ class AgencyComponentStore extends Store {
       .filter((agencyComponent) => agencyComponent.agency.id === agencyId);
   }
 
-  getDatumUrl(datum) {
-    if (datum.type === 'agency_component') {
-      return `/?${new URLSearchParams({ id: datum.id, type: 'component' })}`;
+  /**
+   * Create a list of agencies (sorted by name) followed by agency components
+   * (sorted by title) in a common shape for display.
+   *
+   * @returns {Array<FlatListItem>}
+   */
+  buildFlatList() {
+    // Keep an index of centralized agencies for quick lookup
+    /** @type {Record<string, true>} */
+    const centralizedAgencyIndex = {};
+
+    return this.state.agencies
+      .valueSeq()
+      .map((agency) => {
+        if (agency.isCentralized()) {
+          // Warning: Side-effect
+          // Add the agency to the index of centralized agencies
+          centralizedAgencyIndex[agency.id] = true;
+        }
+
+        // Add a title property for common displayKey
+        return { ...agency.toJS(), title: agency.name };
+      })
+      .toJS()
+      .sort((a, b) => collator.compare(a.title, b.title))
+      // Include decentralized agency components in typeahead
+      .concat(
+        this.state.agencyComponents.toJS().filter(
+          (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
+        )
+          .sort((a, b) => collator.compare(a.title, b.title)),
+      );
+  }
+
+  getFlatItemUrl(flatItem) {
+    if (flatItem.type === 'agency_component') {
+      return `/agency-search.html?${new URLSearchParams({ id: flatItem.id, type: 'component' })}`;
     }
 
-    const agency = this.state.agencies.get(datum.id);
+    const agency = this.state.agencies.get(flatItem.id);
 
     // Agency is represented by its single component
     if (agency.isCentralized()) {
@@ -55,10 +107,10 @@ class AgencyComponentStore extends Store {
         .agencyComponents
         .find((c) => c.agency.id === agency.id);
 
-      return `/?${new URLSearchParams({ id: component.id, type: 'component' })}`;
+      return `/agency-search.html?${new URLSearchParams({ id: component.id, type: 'component' })}`;
     }
 
-    return `/?${new URLSearchParams({ id: agency.id, type: 'agency' })}`;
+    return `/agency-search.html?${new URLSearchParams({ id: agency.id, type: 'agency' })}`;
   }
 
   __onDispatch(payload) {
@@ -116,6 +168,7 @@ class AgencyComponentStore extends Store {
         // Make sure there are no duplicates. This can happen if a specific
         // agency component is fetched before the full list is received.
         this.state.agencyComponents = this.state.agencyComponents.filter((component, idx, self) => idx === self.findIndex((possibleDuplicate) => possibleDuplicate.id === component.id));
+        this.state.flatList = this.buildFlatList();
 
         this.__emitChange();
         break;

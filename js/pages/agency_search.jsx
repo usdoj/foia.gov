@@ -11,19 +11,7 @@ class AgencySearchPage extends Component {
   }
 
   static calculateState() {
-    const {
-      agencies,
-      agencyComponents,
-      agencyFinderDataComplete,
-      agencyFinderDataProgress,
-    } = agencyComponentStore.getState();
-
-    return {
-      agencies,
-      agencyComponents,
-      agencyFinderDataComplete,
-      agencyFinderDataProgress,
-    };
+    return agencyComponentStore.getState();
   }
 
   componentDidMount() {
@@ -42,6 +30,7 @@ class AgencySearchPage extends Component {
       agencyComponents,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
+      flatList,
     } = this.state;
 
     return (
@@ -50,7 +39,7 @@ class AgencySearchPage extends Component {
         agencyComponents={agencyComponents}
         agencyFinderDataComplete={agencyFinderDataComplete}
         agencyFinderDataProgress={agencyFinderDataProgress}
-        getDatumUrl={(datum) => agencyComponentStore.getDatumUrl(datum)}
+        flatList={flatList}
       />
     );
   }
