@@ -11,6 +11,7 @@ import CardGroup from './foia_component_card_group';
 import tokenizers from '../util/tokenizers';
 import { urlParams } from '../util/wizard_helpers';
 import agencyComponentStore from '../stores/agency_component';
+import { pushUrl } from '../util/use_url';
 
 // Only load bloodhound in the browser (avoid loading it for tests)
 let Bloodhound;
@@ -97,11 +98,18 @@ function AgencySearch({
     }
   }, [flatList, search]);
 
-  const cards = filteredList.map((flatItem) => ({
-    ...flatItem,
-    agencyName: flatItem.agency ? flatItem.agency.name : '',
-    url: agencyComponentStore.getFlatItemUrl(flatItem),
-  }));
+  const cards = filteredList.map((flatItem) => {
+    const url = agencyComponentStore.getFlatItemUrl(flatItem);
+    return {
+      ...flatItem,
+      agencyName: flatItem.agency ? flatItem.agency.name : '',
+      url,
+      onClick(e) {
+        e.preventDefault();
+        pushUrl(url);
+      },
+    };
+  });
 
   useEffect(() => {
     let objectUrl;

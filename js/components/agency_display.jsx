@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { requestActions } from 'actions';
 import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
 import agencyComponentStore from '../stores/agency_component';
+import { pushUrl } from '../util/use_url';
+
+function jumpToUrl(id, type) {
+  const params = new URLSearchParams({ id, type });
+  pushUrl(`?${params}`);
+}
 
 /**
  * Load and display an Agency or Agency Component and allow navigation
  * between them.
  */
-class LandingComponent extends Component {
+class AgencyDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: '',
+      type: '',
       agency: null,
       agencyComponent: null,
       agencyComponentsForAgency: null,
@@ -23,14 +30,45 @@ class LandingComponent extends Component {
   }
 
   componentDidMount() {
-    $('#main > .usa-hero, #learn-more').hide();
+    this.checkLoaded();
   }
 
   componentDidUpdate() {
+    this.checkLoaded();
+  }
+
+  checkLoaded() {
     if (!this.props.agencyFinderDataComplete) {
       return;
     }
-    this.consultQueryString();
+
+    const { id, type } = this.props;
+    if (this.state.id === id && this.state.type === type) {
+      // Already loaded this entity
+      return;
+    }
+
+    try {
+      switch (type) {
+        case 'agency': {
+          const agency = agencyComponentStore.getAgency(id);
+          const agencyComponentsForAgency = agencyComponentStore.getAgencyComponentsForAgency(agency.id);
+          this.setStateForAgency(agency, agencyComponentsForAgency);
+          break;
+        }
+        case 'component': {
+          const component = agencyComponentStore.getAgencyComponent(id);
+          const agency = agencyComponentStore.getAgency(component.agency.id);
+          this.setStateForComponent(component, agency.isCentralized());
+          break;
+        }
+        default:
+          this.setState({ notFound: true });
+      }
+    } catch (err) {
+      console.error(err);
+      this.setState({ notFound: true });
+    }
   }
 
   setStateForAgency(agency, agencyComponentsForAgency) {
@@ -38,10 +76,8 @@ class LandingComponent extends Component {
       agency,
       agencyComponent: null,
       agencyComponentsForAgency,
-    });
-    this.props.onChangeUrlQueryParams({
-      idQueryString: agency.id,
-      typeQueryString: 'agency',
+      id: agency.id,
+      type: 'agency',
     });
   }
 
@@ -51,61 +87,18 @@ class LandingComponent extends Component {
       agencyComponent,
       agencyComponentsForAgency: null,
       isCentralized,
+      id: agencyComponent.id,
+      type: 'component',
     });
-    this.props.onChangeUrlQueryParams({
-      idQueryString: agencyComponent.id,
-      typeQueryString: 'component',
-    });
-  }
-
-  consultQueryString() {
-    // We only want to do this one time.
-    if (this.queryStringConsulted) {
-      return;
-    }
-    this.queryStringConsulted = true;
-
-    const {
-      typeQueryString,
-      idQueryString,
-    } = this.props;
-
-    try {
-      switch (typeQueryString) {
-        case 'agency': {
-          const agency = agencyComponentStore.getAgency(idQueryString);
-          const agencyComponentsForAgency = agencyComponentStore.getAgencyComponentsForAgency(agency.id);
-          this.setStateForAgency(agency, agencyComponentsForAgency);
-          break;
-        }
-        case 'component': {
-          const component = agencyComponentStore.getAgencyComponent(idQueryString);
-          const agency = agencyComponentStore.getAgency(component.agency.id);
-          this.setStateForComponent(component, agency.isCentralized());
-          break;
-        }
-        default:
-          location.href = '/';
-      }
-    } catch (err) {
-      console.error(err);
-      this.setState({ notFound: true });
-    }
   }
 
   render() {
     // Note that the agencyComponent comes from two different sources, so the
     // properties might not be consistent.
     const agencyChange = (agencyComponent) => {
-      function fetchAgencyComponent(agencyComponentId) {
-        return requestActions.fetchAgencyComponent(agencyComponentId)
-          .then(requestActions.receiveAgencyComponent)
-          .then(() => agencyComponentStore.getAgencyComponent(agencyComponentId));
-      }
-
+      // We're going to push a URL and let the component load it.
       if (agencyComponent.type === 'agency_component') {
-        fetchAgencyComponent(agencyComponent.id)
-          .then((component) => this.setStateForComponent(component, false));
+        jumpToUrl(agencyComponent.id, 'component');
         return;
       }
 
@@ -113,17 +106,12 @@ class LandingComponent extends Component {
 
       // Treat centralized agencies as components
       if (agency.isCentralized()) {
-        const component = agencyComponentStore
-          .getState()
-          .agencyComponents
-          .find((c) => c.agency.id === agency.id);
-        fetchAgencyComponent(component.id)
-          .then((c) => this.setStateForComponent(c, true));
+        const component = this.props.agencyComponents.find((c) => c.agency.id === agency.id);
+        jumpToUrl(component.id, 'component');
         return;
       }
 
-      const agencyComponentsForAgency = agencyComponentStore.getAgencyComponentsForAgency(agency.id);
-      this.setStateForAgency(agency, agencyComponentsForAgency);
+      jumpToUrl(agency.id, 'agency');
     };
 
     const { agencyFinderDataComplete, agencyFinderDataProgress } = this.props;
@@ -131,10 +119,21 @@ class LandingComponent extends Component {
       agency, agencyComponent, agencyComponentsForAgency, isCentralized, notFound,
     } = this.state;
 
+    const searchPath = '/agency-search.html';
+
     return (
       <div className="usa-grid agency-preview">
         <p>
-          <a href="/agency-search.html" className="agency-preview_back">Agency Search</a>
+          <a
+            href={searchPath}
+            className="agency-preview_back"
+            onClick={(e) => {
+              e.preventDefault();
+              pushUrl(searchPath);
+            }}
+          >
+            Agency Search
+          </a>
         </p>
 
         {notFound && (<h2>This agency could not be found.</h2>)}
@@ -167,18 +166,12 @@ class LandingComponent extends Component {
   }
 }
 
-LandingComponent.propTypes = {
+AgencyDisplay.propTypes = {
+  agencyComponents: PropTypes.object.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
   agencyFinderDataProgress: PropTypes.number.isRequired,
-  onChangeUrlQueryParams: PropTypes.func.isRequired,
-  idQueryString: PropTypes.string,
-  typeQueryString: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
-LandingComponent.defaultProps = {
-  agencyFinderDataProgress: 0,
-  idQueryString: null,
-  typeQueryString: null,
-};
-
-export default LandingComponent;
+export default AgencyDisplay;

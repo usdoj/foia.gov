@@ -3,7 +3,7 @@ import { Container } from 'flux/utils';
 
 import { requestActions } from 'actions';
 import agencyComponentStore from '../stores/agency_component';
-import AgencySearch from '../components/agency_search';
+import AgencySwitch from '../components/agency_switch';
 
 class AgencySearchPage extends Component {
   static getStores() {
@@ -34,7 +34,7 @@ class AgencySearchPage extends Component {
     } = this.state;
 
     return (
-      <AgencySearch
+      <AgencySwitch
         agencies={agencies}
         agencyComponents={agencyComponents}
         agencyFinderDataComplete={agencyFinderDataComplete}
