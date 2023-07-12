@@ -73,7 +73,11 @@ $hero-h2: 2.2rem;
   background-color: #{$color-primary-darkest}e5;
   margin-top: 4.5rem;
   min-width: 100%;
-  padding: 3rem 6.5rem;
+  padding: 3rem;
+
+  @media screen and (min-width: $medium-large-screen) {
+    padding: 3rem 6.5rem;
+  }
 
   .usa-hero-callout-nav__heading {
     color: $color-white;
@@ -87,7 +91,12 @@ $hero-h2: 2.2rem;
 
   .usa-hero-callout-nav__cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 3rem;
+
+    @media screen and (min-width: $medium-large-screen) {
+      flex-wrap: nowrap;
+    }
   }
 
   .usa-hero-callout-nav__button-card {
@@ -95,12 +104,16 @@ $hero-h2: 2.2rem;
     background-color: $color-primary-alt-lightest;
     border-radius: 10px;
     color: $color-primary-darkest;
-    display: flex;
-    flex: 1;
+    flex-basis: 100%;
     font-size: 2rem;
     font-weight: 500;
     padding: 2.5rem;
     text-align: center;
+
+    @media screen and (min-width: $medium-large-screen) {
+      display: flex;
+      flex: 1;
+    }
 
     &:hover {
       background-color: $color-primary-alt-light;
