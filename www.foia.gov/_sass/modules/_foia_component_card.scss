@@ -4,6 +4,10 @@
   padding: 2.4rem;
   position: relative;
 
+  &:hover {
+    background-color: $color-primary-darkest;
+  }
+
   &::before {
     background-color: $color-primary-alt-light;
     border-radius: 10px;
