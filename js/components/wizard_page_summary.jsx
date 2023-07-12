@@ -112,7 +112,7 @@ function WizardLinks({ links }) {
   const linkObjects = links.map((link) => (
     {
       id: link.agency + link.tag + link.url,
-      agencyName: link.agency,
+      tag: link.agency,
       title: link.tag,
       subtitle: link.sentence,
       url: link.url,
@@ -138,7 +138,7 @@ function WizardAgencies({ agencies }) {
       id: `${agency.agency}{agency.confidence_score}`,
 
       // this is actually the Department, but the card refers to it as agency
-      agencyName: agency.department || 'Department of Administrating',
+      tag: agency.department || 'Department of Administrating',
       /* TODO Replace with actual department */
 
       title: agency.agency,
