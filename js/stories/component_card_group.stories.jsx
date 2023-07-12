@@ -12,32 +12,46 @@ function Template(args) {
 
 const cardContent = [
   {
-    category: 'Category',
+    tag: 'Tag',
     title: 'Card Title Content',
   },
   {
-    category: 'Category',
+    tag: 'Tag',
     title: 'Card Title Content',
   },
   {
-    category: 'Category',
+    tag: 'Tag',
     title: 'Card Title Content',
   },
   {
-    category: 'Category',
+    tag: 'Tag',
     title: 'Card Title Content',
   },
   {
-    category: 'Category',
+    tag: 'Tag',
     title: 'Card Title Content',
   },
   {
-    category: 'Category',
+    tag: 'Tag',
     title: 'Card Title Content',
   },
 ];
 
+const cardContentAlt = cardContent.map((card) => {
+  const newCard = {
+    ...card,
+    alt: true,
+  };
+  return newCard;
+});
+
 export const CardGroup = Template.bind({});
 CardGroup.args = {
   cardContent,
+};
+
+export const CardGroupAlt = Template.bind({});
+CardGroupAlt.args = {
+  cardContent: cardContentAlt,
+  alt: true,
 };

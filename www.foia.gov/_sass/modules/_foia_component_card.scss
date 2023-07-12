@@ -4,6 +4,10 @@
   padding: 2.4rem;
   position: relative;
 
+  &:hover {
+    background-color: $color-primary-darkest;
+  }
+
   &::before {
     background-color: $color-primary-alt-light;
     border-radius: 10px;
@@ -17,10 +21,22 @@
   }
 }
 
-.foia-component-card__category {
+.foia-component-card--alt {
+  border-left: 10px solid $color-primary-alt-light;
+
+  &::before {
+    content: unset;
+  }
+}
+
+.foia-component-card__tag {
   color: $color-white;
   font-size: 1.8rem;
   font-weight: 700;
+
+  .foia-component-card--alt & {
+    font-weight: 400;
+  }
 }
 
 .foia-component-card__title {
@@ -28,6 +44,25 @@
   font-size: 2.8rem;
   font-weight: 500;
   margin-top: 1rem;
+  position: relative;
+  width: fit-content;
+
+  &::before {
+    .foia-component-card--alt & {
+      background-image: url($icon-external-link-white);
+      background-repeat: no-repeat;
+      content: '';
+      height: 18px;
+      position: absolute;
+      right: -30px;
+      top: 10px;
+      width: 18px;
+    }
+  }
+
+  .foia-component-card--alt & {
+    margin-bottom: 0;
+  }
 }
 
 .foia-component-card__subtitle {

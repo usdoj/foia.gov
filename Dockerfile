@@ -1,36 +1,40 @@
-ARG PHP_VERSION="8.0"
-ARG COMPOSER_VERSION="2.3"
-ARG NODE_VERSION="16"
+ARG NODE_VERSION=16
 
-FROM forumone/composer:${COMPOSER_VERSION}-php-${PHP_VERSION} AS base
+FROM node:${NODE_VERSION}-buster as nodeJs
 
-# In some instances this is required.
-WORKDIR /var/www/html
+FROM ruby:3.0.4
 
-# This will copy everything into the dockerfile other than
-# those excluded in the .dockerignore
-COPY . .
-
-# Install without dev dependencies
-RUN set -ex \
-  && composer install --no-dev --optimize-autoloader --ignore-platform-reqs \
-  && composer drupal:scaffold
-
-#Gesso
-FROM forumone/gesso:5-node-v${NODE_VERSION}-php-${PHP_VERSION} AS theme-base
+RUN mkdir /app
 
 WORKDIR /app
 
-COPY ["docroot/themes", "./"]
+COPY . .
 
-FROM theme-base AS theme
+# Instead of building node from source, just pulling a compiled version already
+COPY --from=nodeJs /usr/local/bin/node /usr/local/bin/node
+COPY --from=nodeJs /usr/local/lib/node_modules /usr/local/lib/node_modules
+COPY --from=nodeJs /opt /opt
 
-# Building artifact
-FROM busybox AS artifact
+# Making the correct symlinks needed for node
+RUN ln -s ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
+RUN ln -s ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
 
-WORKDIR /var/www/html
+# Building App
 
-COPY --from=base ["/var/www/html", "./"]
-COPY --from=theme ["/app", "docroot/themes"]
+RUN gem install bundler
 
-FROM artifact
+# These are copied into .ddev/app-build in a pre-start hook
+COPY Gemfile \
+     Gemfile.lock \
+     package.json \
+     package-lock.json \
+     ./
+
+RUN npm ci
+
+ARG APP_ENV
+ENV APP_ENV ${APP_ENV}
+
+RUN bundle install
+
+RUN make build
