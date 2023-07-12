@@ -12,11 +12,12 @@ function Card({ card }) {
     url,
     confidenceScore,
     alt,
+    onClick,
   } = card;
 
   return (
     <div className={`foia-component-card ${alt ? 'foia-component-card--alt' : ''}`}>
-      <a href={url}>
+      <a href={url} onClick={onClick}>
         {tag
           && <span className="foia-component-card__tag">{tag}</span>}
         <h2 className="foia-component-card__title">{title}</h2>
@@ -41,6 +42,7 @@ Card.propTypes = {
     url: PropTypes.string.isRequired,
     confidenceScore: PropTypes.string,
     alt: PropTypes.string,
+    onClick: PropTypes.func,
   }).isRequired,
 };
 

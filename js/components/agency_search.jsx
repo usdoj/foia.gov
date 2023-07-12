@@ -2,12 +2,16 @@
  * Load /agency-search.html?-export=1 to download agencies JSON.
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  useEffect, useRef, useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import Pager from './foia_component_pager';
 import CardGroup from './foia_component_card_group';
 import tokenizers from '../util/tokenizers';
 import { urlParams } from '../util/wizard_helpers';
+import agencyComponentStore from '../stores/agency_component';
+import { pushUrl } from '../util/use_url';
 
 // Only load bloodhound in the browser (avoid loading it for tests)
 let Bloodhound;
@@ -15,44 +19,14 @@ if (typeof window !== 'undefined') {
   Bloodhound = require('typeahead.js/dist/bloodhound'); // eslint-disable-line global-require
 }
 
-const collator = new Intl.Collator('en');
-
-function buildDatums({ agencies, agencyComponents }) {
-  // Keep an index of centralized agencies for quick lookup
-  /** @type {Record<string, true>} */
-  const centralizedAgencyIndex = {};
-
-  return agencies
-    .map((agency) => {
-      if (agency.isCentralized()) {
-        // Warning: Side-effect
-        // Add the agency to the index of centralized agencies
-        centralizedAgencyIndex[agency.id] = true;
-      }
-
-      // Add a title property for common displayKey
-      return { ...agency.toJS(), title: agency.name };
-    })
-    .toJS()
-    // Include decentralized agency components in typeahead
-    .concat(
-      agencyComponents.toJS().filter(
-        (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
-      ),
-    )
-    .sort((a, b) => collator.compare(a.title, b.title));
-}
-
 function AgencySearch({
   agencies,
   agencyComponents,
   agencyFinderDataComplete,
-  agencyFinderDataProgress,
-  getDatumUrl,
+  flatList,
 }) {
   const [search, setSearch] = useState('');
-  const [datums, setDatums] = useState([]);
-  const [filteredDatums, setFilteredDatums] = useState([]);
+  const [filteredList, setFilteredList] = useState(/** @type FlatListItem[] */ flatList);
 
   const isExport = urlParams().get('-export');
   const exportRef = useRef(null);
@@ -65,44 +39,26 @@ function AgencySearch({
   // Adapted from AgencyComponentFinder
   const bloodhound = useRef(new Bloodhound({
     local: [],
-    sorter: (a, b) => {
-      // Ensure that agencies come before components and vice versa.
-      if (a.type === 'agency' && b.type !== 'agency') {
-        return -1;
-      }
-      if (a.type !== 'agency' && b.type === 'agency') {
-        return 1;
-      }
-      // Otherwise sort by title/name.
-      const aName = (a.type === 'agency') ? a.name : a.title;
-      const bName = (b.type === 'agency') ? b.name : b.title;
-      if (aName < bName) {
-        return -1;
-      } if (aName > bName) {
-        return 1;
-      }
-      return 0;
-    },
-    identify: (datum) => datum.id,
+    identify: (item) => item.id,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    datumTokenizer: (datum) => (
-      datum.type === 'agency'
+    datumTokenizer: (item) => (
+      item.type === 'agency'
         ? (
           // For agencies
           []
-            .concat(Bloodhound.tokenizers.nonword(datum.name))
-            .concat(Bloodhound.tokenizers.whitespace(datum.abbreviation))
+            .concat(Bloodhound.tokenizers.nonword(item.name))
+            .concat(Bloodhound.tokenizers.whitespace(item.abbreviation))
         ) : (
           // For agency components
           []
-            .concat(Bloodhound.tokenizers.nonword(datum.title))
+            .concat(Bloodhound.tokenizers.nonword(item.title))
             .concat(
-              datum.abbreviation
-                ? Bloodhound.tokenizers.whitespace(datum.abbreviation)
-                : tokenizers.firstLetterOfEachCapitalizedWord(datum.title),
+              item.abbreviation
+                ? Bloodhound.tokenizers.whitespace(item.abbreviation)
+                : tokenizers.firstLetterOfEachCapitalizedWord(item.title),
             )
-            .concat(Bloodhound.tokenizers.whitespace(datum.agency.name))
-            .concat(Bloodhound.tokenizers.whitespace(datum.agency.abbreviation))
+            .concat(Bloodhound.tokenizers.whitespace(item.agency.name))
+            .concat(Bloodhound.tokenizers.whitespace(item.agency.abbreviation))
         )
     ),
   })).current;
@@ -121,16 +77,7 @@ function AgencySearch({
       fakeThis.indexed = true;
 
       bloodhound.clear(); // Just in case
-
-      // Unlike in AgencyComponentFinder, we've moved Datum generation to
-      // the agency_store.
-      const initialDatums = buildDatums({
-        agencies: agencies.valueSeq(), // Pull the values, convert to sequence,
-        agencyComponents,
-      });
-      bloodhound.add(initialDatums);
-      setDatums(initialDatums);
-      setFilteredDatums(initialDatums);
+      bloodhound.add(flatList);
     }
   }, [agencyFinderDataComplete, agencies, agencyComponents]);
 
@@ -138,26 +85,36 @@ function AgencySearch({
   const cardsPerPage = 18;
 
   useEffect(() => {
-    if (datums.length) {
+    if (flatList.length) {
       if (search) {
         bloodhound.search(search, (filtered) => {
-          setFilteredDatums(filtered);
+          setFilteredList(filtered);
           setCurrentPage(1);
         });
       } else {
-        setFilteredDatums(datums);
+        setFilteredList(flatList);
       }
     }
-  }, [datums, search]);
+  }, [flatList, search]);
 
-  const cards = filteredDatums.map((datum) => ({
-    ...datum,
-    tag: datum.agency ? datum.agency.name : '',
-    url: getDatumUrl(datum),
-  }));
+  const cards = filteredList.map((flatItem) => {
+    const url = agencyComponentStore.getFlatItemUrl(flatItem);
+    return {
+      ...flatItem,
+      tag: flatItem.agency ? flatItem.agency.name : '',
+      url,
+      onClick(e) {
+        // Push URL so we don't have to reload the page.
+        e.preventDefault();
+        pushUrl(url);
+      },
+    };
+  });
 
   useEffect(() => {
     let objectUrl;
+
+    // Allow exporting flat item list
     if (isExport && cards.length && exportRef.current) {
       const json = JSON.stringify(cards.map((card) => {
         const {
@@ -210,17 +167,6 @@ function AgencySearch({
     }
   };
 
-  if (!agencyFinderDataComplete) {
-    return (
-      <div className="foia-component-agency-search__loading">
-        Loading progress:
-        {' '}
-        {agencyFinderDataProgress}
-        %
-      </div>
-    );
-  }
-
   if (isExport) {
     return (
       <p>
@@ -233,6 +179,20 @@ function AgencySearch({
 
   return (
     <div className="foia-component-agency-search">
+      <h1>Identify an agency to request from</h1>
+      <p>
+        It’s important that you identify the correct agency for your request. There
+        are over 100 agencies and each is responsible for handling its own FOIA
+        requests. You can find a breakdown of agencies by topic on USA.gov to help
+        you identify the correct agency. You may also search for agencies using
+        the search bar below.
+      </p>
+      <p>
+        When choosing an agency, remember that some agencies can’t yet receive FOIA
+        requests through FOIA.gov. For those agencies, this site will provide you
+        with the information you need to submit a request directly to the agency.
+      </p>
+
       <div className="foia-component-agency-search__search-field">
         <label htmlFor="agency-search">Search an agency name or keyword</label>
         <input
@@ -273,8 +233,7 @@ AgencySearch.propTypes = {
   agencies: PropTypes.object.isRequired,
   agencyComponents: PropTypes.object.isRequired,
   agencyFinderDataComplete: PropTypes.bool.isRequired,
-  agencyFinderDataProgress: PropTypes.number.isRequired,
-  getDatumUrl: PropTypes.func.isRequired,
+  flatList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default AgencySearch;

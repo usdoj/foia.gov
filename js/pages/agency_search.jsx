@@ -3,7 +3,7 @@ import { Container } from 'flux/utils';
 
 import { requestActions } from 'actions';
 import agencyComponentStore from '../stores/agency_component';
-import AgencySearch from '../components/agency_search';
+import AgencySwitch from '../components/agency_switch';
 
 class AgencySearchPage extends Component {
   static getStores() {
@@ -11,19 +11,7 @@ class AgencySearchPage extends Component {
   }
 
   static calculateState() {
-    const {
-      agencies,
-      agencyComponents,
-      agencyFinderDataComplete,
-      agencyFinderDataProgress,
-    } = agencyComponentStore.getState();
-
-    return {
-      agencies,
-      agencyComponents,
-      agencyFinderDataComplete,
-      agencyFinderDataProgress,
-    };
+    return agencyComponentStore.getState();
   }
 
   componentDidMount() {
@@ -42,15 +30,16 @@ class AgencySearchPage extends Component {
       agencyComponents,
       agencyFinderDataComplete,
       agencyFinderDataProgress,
+      flatList,
     } = this.state;
 
     return (
-      <AgencySearch
+      <AgencySwitch
         agencies={agencies}
         agencyComponents={agencyComponents}
         agencyFinderDataComplete={agencyFinderDataComplete}
         agencyFinderDataProgress={agencyFinderDataProgress}
-        getDatumUrl={(datum) => agencyComponentStore.getDatumUrl(datum)}
+        flatList={flatList}
       />
     );
   }
