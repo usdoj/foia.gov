@@ -1,9 +1,15 @@
 .foia-component-card-group__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 3.5rem;
+  gap: 3.4rem;
   position: relative;
   z-index: 0;
+
+  .foia-component-card-group--alt & {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 2.4rem;
+  }
 
   > * {
     flex-basis: calc((100% - 7rem) / 3);

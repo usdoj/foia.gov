@@ -152,7 +152,7 @@ function AgencySearch({
 
   const cards = filteredDatums.map((datum) => ({
     ...datum,
-    agencyName: datum.agency ? datum.agency.name : '',
+    tag: datum.agency ? datum.agency.name : '',
     url: getDatumUrl(datum),
   }));
 
