@@ -12,6 +12,17 @@ function Template(args) {
 
 export const Card = Template.bind({});
 Card.args = {
-  category: 'Department of Homeland Security',
-  title: 'Placeholder Agency Name',
+  card: {
+    tag: 'Department of Homeland Security',
+    title: 'Placeholder Agency Name',
+  },
+};
+
+export const CardAlt = Template.bind({});
+CardAlt.args = {
+  card: {
+    tag: 'fbi.gov',
+    title: 'Placeholder name of link lorem ipsum',
+    alt: true,
+  },
 };
