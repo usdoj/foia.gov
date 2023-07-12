@@ -19,6 +19,8 @@ steps:
     branches:
       - main
       - develop
+      - uat-forumone
+      - buildkite
     plugins:
       # Log into ECR for this build step to access and push images.
       - *ecr
@@ -27,17 +29,19 @@ steps:
       # local filesystem for further operations.
       - forumone/extract#v0.2.0:
           image: ${ECR_NAMESPACE}:${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_COMMIT}
-          from: /var/www/html
-          to: ${ARTIFACT_LOCATION}
+          from: /app
+          to: ${ARTIFACT_LOCATION}/client
 
       # Execute an artifact deployment using the defined branch to
       # environment mapping.
       - forumone/artifact-push#v0.3.1:
-          verbose: false
+          verbose: true
           source-directory: ${ARTIFACT_LOCATION}
           remote: oafzps2pqxjxw@git.us-2.platform.sh:oafzps2pqxjxw.git
           branches:
-            - match: develop
+            # - match: develop
+            #   target: main
+            - match: buildkite
               target: main
 #            - match: main
 #              target: main
@@ -49,6 +53,21 @@ steps:
 
           files:
             force-add:
-              - vendor
-              - docroot
-              - docroot/sites/default/settings.php
+              - client/node_modules
+              - client/_site
+            ignore:
+              - .git/
+              - .gitignore
+              - .lando.yml
+              - .platform/
+              - .platform.drupal.yml
+              - Dockerfile
+              - README.md
+              - api/
+              - header.svg
+              - client/.gitignore
+              - client/.platform.app.yaml
+              - client/.lando.upstream.yml
+              - client/.env.example
+              - client/get_local_config.sh
+              - client/platformsh-scripts/
