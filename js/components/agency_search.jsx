@@ -101,7 +101,7 @@ function AgencySearch({
     const url = agencyComponentStore.getFlatItemUrl(flatItem);
     return {
       ...flatItem,
-      agencyName: flatItem.agency ? flatItem.agency.name : '',
+      tag: flatItem.agency ? flatItem.agency.name : '',
       url,
       onClick(e) {
         // Push URL so we don't have to reload the page.
