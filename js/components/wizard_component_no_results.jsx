@@ -19,11 +19,15 @@ function NoResults() {
           <li>If your initial search was narrow, try broadening your search term.</li>
           <li>Try using a different phrase or another word to describe what you are seeking.</li>
         </ol>
-      </RichText>
 
-      <RichText>
-        <Button onClick={actions.jumpBackToQueryPage}>Update your search</Button>
-        <a href="/agency-search.html" style={{ textDecoration: 'underline' }}>Browse the list of agencies</a>
+        <p style={{ fontSize: '24px' }}>
+          <span style={{ marginRight: '3rem' }}>
+            <Button onClick={actions.jumpBackToQueryPage}>
+              Update your search
+            </Button>
+          </span>
+          <a href="/agency-search.html">Browse the list of agencies</a>
+        </p>
       </RichText>
     </div>
   );
