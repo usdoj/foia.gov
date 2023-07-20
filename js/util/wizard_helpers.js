@@ -43,9 +43,7 @@ export function yesNoQuestion(titleMid, yesNo, addendumMid) {
  * @returns {WizardContinue}
  */
 export function continueStep(titleMid, next) {
-  return {
-    type: 'continue', titleMid, next,
-  };
+  return { type: 'continue', titleMid, next };
 }
 
 /**
