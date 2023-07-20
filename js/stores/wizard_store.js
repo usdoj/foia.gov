@@ -24,7 +24,7 @@ const initialWizardState = {
   activity: { type: 'intro' },
   allTopics,
   answerIdx: null,
-  displayedTopic: undefined,
+  displayedTopic: '',
   history: [],
 
   // How many async operations are we waiting on?
@@ -138,7 +138,7 @@ const useRawWizardStore = create((
   };
 
   const nextPage = () => set((state) => {
-    const { activity, answerIdx } = state;
+    const { activity, answerIdx, displayedTopic } = state;
 
     if (activity.type === 'question') {
       // Check for an answer
@@ -150,7 +150,7 @@ const useRawWizardStore = create((
       return withCapturedHistory({
         answerIdx: null,
         activity: answer.next,
-        displayedTopic: activity.displayedTopic,
+        displayedTopic: answer.newDisplayedTopic || displayedTopic,
       });
     }
 
@@ -166,7 +166,6 @@ const useRawWizardStore = create((
 
     return withCapturedHistory({
       activity: activity.next,
-      displayedTopic: activity.displayedTopic,
     });
   });
 
@@ -212,6 +211,7 @@ const useRawWizardStore = create((
 
     set(withCapturedHistory({
       activity: topic ? topic.journey : { type: 'summary' },
+      displayedTopic: topic ? topic.title : '',
       query,
       recommendedLinks,
       recommendedAgencies,
@@ -252,7 +252,7 @@ const useRawWizardStore = create((
  *   loading: boolean;
  *   activity: WizardVars['activity'];
  *   answerIdx: WizardVars['answerIdx'];
- *   displayedTopic?: string;
+ *   displayedTopic: string;
  *   ready: boolean;
  *   request: {
  *     agencies: WizardVars['recommendedAgencies'];

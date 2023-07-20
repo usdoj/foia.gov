@@ -9,18 +9,20 @@ const irsTypeQuestion = {
   answers: [
     {
       titleMid: 'a15',
-      next: { type: 'summary', titleMid: 'm16', displayedTopic: extraMessages.a15 },
+      newDisplayedTopic: extraMessages.a15,
+      next: { type: 'summary', titleMid: 'm16' },
     },
     {
       titleMid: 'a16',
-      next: { type: 'summary', titleMid: 'm17', displayedTopic: extraMessages.a16 },
+      newDisplayedTopic: extraMessages.a16,
+      next: { type: 'summary', titleMid: 'm17' },
     },
     {
       titleMid: 'a17',
-      next: { type: 'summary', titleMid: 'm18', displayedTopic: extraMessages.a17 },
+      newDisplayedTopic: extraMessages.a17,
+      next: { type: 'summary', titleMid: 'm18' },
     },
   ],
-  // displayedTopic: 'Your own or someone else\'s IRS records',
 };
 
 /** @type {WizardQuestion} */
@@ -30,20 +32,20 @@ const irsRecordsJourney = {
   answers: [
     {
       titleMid: 'a1',
+      newDisplayedTopic: 'Your own IRS records',
       next: {
         type: 'continue',
         titleMid: 'm1',
         next: irsTypeQuestion,
-        displayedTopic: 'Your own IRS records',
       },
     },
     {
       titleMid: 'a2',
+      newDisplayedTopic: 'Someone else\'s IRS records',
       next: {
         type: 'continue',
         titleMid: 'm2',
         next: irsTypeQuestion,
-        displayedTopic: 'Someone else\'s IRS records',
       },
     },
   ],

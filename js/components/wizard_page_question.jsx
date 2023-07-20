@@ -20,25 +20,13 @@ function Question() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          {activity.displayedTopic || displayedTopic ? (
-            <>
-              <h1><WizardHtml mid="youSelected" /></h1>
-              <blockquote>
-                &ldquo;
-                {activity.displayedTopic || displayedTopic}
-                &rdquo;
-              </blockquote>
-            </>
-          ) : (
-            <>
-              <h1><WizardHtml mid="lookingFor" /></h1>
-              <blockquote>
-                &ldquo;
-                {request.query || request.topic.title}
-                &rdquo;
-              </blockquote>
-            </>
-          )}
+          <h1><WizardHtml mid="lookingFor" /></h1>
+          <blockquote>
+            &ldquo;
+            {request.query || displayedTopic}
+            &rdquo;
+          </blockquote>
+
           <form>
             <fieldset>
               <legend className="w-legend"><WizardHtml mid={activity.titleMid} /></legend>

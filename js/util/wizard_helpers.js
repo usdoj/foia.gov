@@ -2,60 +2,58 @@
  * @param {string} titleMid
  * @param {WizardAnswer[]} answers
  * @param {string=} addendumMid
- * @param {string=} displayedTopic
  * @returns {WizardQuestion}
  */
-export function question(titleMid, answers, addendumMid, displayedTopic) {
+export function question(titleMid, answers, addendumMid) {
   return {
-    type: 'question', titleMid, answers, addendumMid, displayedTopic,
+    type: 'question', titleMid, answers, addendumMid,
   };
 }
 
 /**
  * @param {string} titleMid
  * @param {WizardQuestion | WizardContinue | WizardSummary} next
- * @param {string=} displayedTopic
+ * @param {string=} newDisplayedTopic
  * @returns {WizardAnswer}
  */
-export function answer(titleMid, next, displayedTopic) {
-  return { titleMid, next, displayedTopic };
+export function answer(titleMid, next, newDisplayedTopic) {
+  return { titleMid, next, newDisplayedTopic };
 }
 
 /**
  * @param {string} titleMid
  * @param {object} yesNo
  * @param {WizardQuestion | WizardContinue | WizardSummary} yesNo.yes
+ * @param {string=} yesNo.topicIfYes
  * @param {WizardQuestion | WizardContinue | WizardSummary} yesNo.no
+ * @param {string=} yesNo.topicIfNo
  * @param {string=} addendumMid
- * @param {string=} displayedTopic
  * @returns {WizardQuestion}
  */
-export function yesNoQuestion(titleMid, yesNo, addendumMid, displayedTopic) {
+export function yesNoQuestion(titleMid, yesNo, addendumMid) {
   return question(titleMid, [
-    answer('a1', yesNo.yes, displayedTopic),
-    answer('a2', yesNo.no, displayedTopic),
-  ], addendumMid, displayedTopic);
+    answer('a1', yesNo.yes, yesNo.topicIfYes),
+    answer('a2', yesNo.no, yesNo.topicIfNo),
+  ], addendumMid);
 }
 
 /**
  * @param {string} titleMid
  * @param {WizardQuestion | WizardContinue | WizardSummary} next
- * @param {string=} displayedTopic
  * @returns {WizardContinue}
  */
-export function continueStep(titleMid, next, displayedTopic) {
+export function continueStep(titleMid, next) {
   return {
-    type: 'continue', titleMid, next, displayedTopic,
+    type: 'continue', titleMid, next,
   };
 }
 
 /**
  * @param {string | undefined} titleMid
- * @param {string=} displayedTopic
  * @returns {WizardSummary}
  */
-export function summary(titleMid, displayedTopic) {
-  return { type: 'summary', titleMid, displayedTopic };
+export function summary(titleMid) {
+  return { type: 'summary', titleMid };
 }
 
 /**

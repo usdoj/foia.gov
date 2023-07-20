@@ -70,16 +70,11 @@ declare global {
      * The next activity: a question, continue, or the summary
      */
     next: WizardQuestion | WizardContinue | WizardSummary;
-    displayedTopic?: string;
-    /**
-     * The next activity: a question, continue, or the summary
-     */
   };
 
   type WizardSummary = {
     type: 'summary';
     titleMid?: string;
-    displayedTopic?: string;
   }
 
   type WizardActivity = WizardIntro | WizardQuery | WizardQuestion | WizardContinue | WizardSummary;
@@ -90,9 +85,9 @@ declare global {
      */
     titleMid: string;
     /**
-     * An optional subtopic or subtitle
+     * If set, selecting this answer will change the displayed topic
      */
-    displayedTopic?: string;
+    newDisplayedTopic?: string;
     /**
      * The next activity: a question, continue, or the summary
      */
@@ -130,7 +125,7 @@ declare global {
     recommendedLinks: WizardLink[] | null;
     ui: Record<string, string>;
     userTopic: WizardTopic | null;
-    displayedTopic?: string;
+    displayedTopic: string;
   };
 
   type WizardNonVars = {

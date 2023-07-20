@@ -9,6 +9,7 @@ const socsecRecordsJourney = {
   answers: [
     {
       titleMid: 'a1',
+      newDisplayedTopic: 'My Social Security records',
       next: {
         type: 'continue',
         titleMid: 'm1',
@@ -16,11 +17,11 @@ const socsecRecordsJourney = {
           type: 'summary',
           titleMid: 'm19',
         },
-        displayedTopic: 'My Social Security records',
       },
     },
     {
       titleMid: 'a2',
+      newDisplayedTopic: 'Someone else\'s Social Security records',
       next: {
         type: 'continue',
         titleMid: 'm2',
@@ -30,19 +31,21 @@ const socsecRecordsJourney = {
           answers: [
             {
               titleMid: 'a18',
-              next: { type: 'summary', titleMid: 'm20', displayedTopic: extraMessages.a18 },
+              newDisplayedTopic: extraMessages.a18,
+              next: { type: 'summary', titleMid: 'm20' },
             },
             {
               titleMid: 'a19',
-              next: { type: 'summary', titleMid: 'm21', displayedTopic: extraMessages.a19 },
+              newDisplayedTopic: extraMessages.a19,
+              next: { type: 'summary', titleMid: 'm21' },
             },
             {
               titleMid: 'a20',
-              next: { type: 'summary', titleMid: 'm22', displayedTopic: `Someone else's ${extraMessages.a20}` },
+              newDisplayedTopic: `Someone else's ${extraMessages.a20}`,
+              next: { type: 'summary', titleMid: 'm22' },
             },
           ],
         },
-        displayedTopic: 'Someone else\'s Social Security records',
       },
     },
   ],
