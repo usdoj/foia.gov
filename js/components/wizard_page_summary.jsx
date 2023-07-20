@@ -16,7 +16,7 @@ const limit = parseInt(urlParams().get('limit') || '6', 10);
 
 function Summary() {
   const {
-    activity, loading, request,
+    activity, displayedTopic, loading, request,
   } = useWizard();
   const {
     agencies, links, isError,
@@ -54,12 +54,25 @@ function Summary() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          <h1><WizardHtml mid="lookingFor" /></h1>
-          <blockquote>
-            &ldquo;
-            {request.query || request.topic.title}
-            &rdquo;
-          </blockquote>
+          {activity.displayedTopic || displayedTopic ? (
+            <>
+              <h1><WizardHtml mid="youSelected" /></h1>
+              <blockquote>
+                &ldquo;
+                {activity.displayedTopic || displayedTopic}
+                &rdquo;
+              </blockquote>
+            </>
+          ) : (
+            <>
+              <h1><WizardHtml mid="lookingFor" /></h1>
+              <blockquote>
+                &ldquo;
+                {request.query || request.topic.title}
+                &rdquo;
+              </blockquote>
+            </>
+          )}
 
           {hasTopicContent ? (
             <>

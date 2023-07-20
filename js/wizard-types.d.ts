@@ -70,11 +70,16 @@ declare global {
      * The next activity: a question, continue, or the summary
      */
     next: WizardQuestion | WizardContinue | WizardSummary;
+    displayedTopic?: string;
+    /**
+     * The next activity: a question, continue, or the summary
+     */
   };
 
   type WizardSummary = {
     type: 'summary';
     titleMid?: string;
+    displayedTopic?: string;
   }
 
   type WizardActivity = WizardIntro | WizardQuery | WizardQuestion | WizardContinue | WizardSummary;
@@ -84,6 +89,10 @@ declare global {
      * Answer text MID (in wizard_extra_messages.js)
      */
     titleMid: string;
+    /**
+     * An optional subtopic or subtitle
+     */
+    displayedTopic?: string;
     /**
      * The next activity: a question, continue, or the summary
      */
@@ -121,6 +130,7 @@ declare global {
     recommendedLinks: WizardLink[] | null;
     ui: Record<string, string>;
     userTopic: WizardTopic | null;
+    displayedTopic?: string;
   };
 
   type WizardNonVars = {

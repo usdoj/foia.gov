@@ -1,3 +1,5 @@
+import extraMessages from './wizard_extra_messages';
+
 /**
  * @type {WizardQuestion}
  */
@@ -14,6 +16,7 @@ const socsecRecordsJourney = {
           type: 'summary',
           titleMid: 'm19',
         },
+        displayedTopic: 'My Social Security records',
       },
     },
     {
@@ -27,18 +30,19 @@ const socsecRecordsJourney = {
           answers: [
             {
               titleMid: 'a18',
-              next: { type: 'summary', titleMid: 'm20' },
+              next: { type: 'summary', titleMid: 'm20', displayedTopic: extraMessages.a18 },
             },
             {
               titleMid: 'a19',
-              next: { type: 'summary', titleMid: 'm21' },
+              next: { type: 'summary', titleMid: 'm21', displayedTopic: extraMessages.a19 },
             },
             {
               titleMid: 'a20',
-              next: { type: 'summary', titleMid: 'm22' },
+              next: { type: 'summary', titleMid: 'm22', displayedTopic: `Someone else's ${extraMessages.a20}` },
             },
           ],
         },
+        displayedTopic: 'Someone else\'s Social Security records',
       },
     },
   ],

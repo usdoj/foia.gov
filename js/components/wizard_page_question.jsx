@@ -9,7 +9,7 @@ import WizardHtml from './wizard_html';
 
 function Question() {
   const {
-    actions, activity, answerIdx, request, getMessage,
+    actions, activity, answerIdx, displayedTopic, request, getMessage,
   } = useWizard();
 
   if (activity.type !== 'question') {
@@ -20,13 +20,25 @@ function Question() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          <h1><WizardHtml mid="lookingFor" /></h1>
-          <blockquote>
-            &ldquo;
-            {request.query || request.topic.title}
-            &rdquo;
-          </blockquote>
-
+          {activity.displayedTopic || displayedTopic ? (
+            <>
+              <h1><WizardHtml mid="youSelected" /></h1>
+              <blockquote>
+                &ldquo;
+                {activity.displayedTopic || displayedTopic}
+                &rdquo;
+              </blockquote>
+            </>
+          ) : (
+            <>
+              <h1><WizardHtml mid="lookingFor" /></h1>
+              <blockquote>
+                &ldquo;
+                {request.query || request.topic.title}
+                &rdquo;
+              </blockquote>
+            </>
+          )}
           <form>
             <fieldset>
               <legend className="w-legend"><WizardHtml mid={activity.titleMid} /></legend>

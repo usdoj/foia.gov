@@ -24,6 +24,7 @@ const initialWizardState = {
   activity: { type: 'intro' },
   allTopics,
   answerIdx: null,
+  displayedTopic: undefined,
   history: [],
 
   // How many async operations are we waiting on?
@@ -149,6 +150,7 @@ const useRawWizardStore = create((
       return withCapturedHistory({
         answerIdx: null,
         activity: answer.next,
+        displayedTopic: activity.displayedTopic,
       });
     }
 
@@ -164,6 +166,7 @@ const useRawWizardStore = create((
 
     return withCapturedHistory({
       activity: activity.next,
+      displayedTopic: activity.displayedTopic,
     });
   });
 
@@ -249,6 +252,7 @@ const useRawWizardStore = create((
  *   loading: boolean;
  *   activity: WizardVars['activity'];
  *   answerIdx: WizardVars['answerIdx'];
+ *   displayedTopic?: string;
  *   ready: boolean;
  *   request: {
  *     agencies: WizardVars['recommendedAgencies'];
@@ -266,6 +270,7 @@ function useWizard() {
     actions: state.actions,
     allTopics: state.allTopics,
     answerIdx: state.answerIdx,
+    displayedTopic: state.displayedTopic,
     canGoBack: state.history.length > 0,
     loading: state.numLoading > 0,
     activity: state.activity,
