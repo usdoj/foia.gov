@@ -42,12 +42,13 @@ const extraMessages = {
   a15: 'Copy or transcript of tax return',
   a16: 'Information from Open Case Files',
   a17: 'Other IRS Records',
-  a18: 'Deceased Individual/’s Application for a Social Security Card (SS-5) or Numident record',
+  a18: 'Deceased Individual\'s Application for a Social Security Card (SS-5) or Numident record',
   a19: 'Records of another Living Individual',
   a20: 'Earnings Records',
   apiError: '<p>There was an error, please try again later.</p>',
   loading: '<p>Loading...</p>',
   lookingFor: 'Okay, you\'re looking for:',
+  youSelected: 'You selected:',
 };
 
 export default extraMessages;

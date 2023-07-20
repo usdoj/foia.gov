@@ -9,7 +9,7 @@ import WizardHtml from './wizard_html';
 
 function Question() {
   const {
-    actions, activity, answerIdx, request, getMessage,
+    actions, activity, answerIdx, displayedTopic, request, getMessage,
   } = useWizard();
 
   if (activity.type !== 'question') {
@@ -23,7 +23,7 @@ function Question() {
           <h1><WizardHtml mid="lookingFor" /></h1>
           <blockquote>
             &ldquo;
-            {request.query || request.topic.title}
+            {request.query || displayedTopic}
             &rdquo;
           </blockquote>
 

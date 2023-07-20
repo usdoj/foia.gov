@@ -7,7 +7,9 @@ import Button from './wizard_component_button';
 import RichText from './wizard_component_rich_text';
 
 function Continue() {
-  const { actions, activity, request } = useWizard();
+  const {
+    actions, activity, displayedTopic, request,
+  } = useWizard();
 
   if (activity.type !== 'continue') {
     throw new Error('Activity is not continue');
@@ -20,7 +22,7 @@ function Continue() {
           <h1><WizardHtml mid="lookingFor" /></h1>
           <blockquote>
             &ldquo;
-            {request.query || request.topic.title}
+            {request.query || displayedTopic}
             &rdquo;
           </blockquote>
         </RichText>

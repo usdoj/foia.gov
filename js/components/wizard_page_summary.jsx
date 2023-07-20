@@ -16,7 +16,7 @@ const limit = parseInt(urlParams().get('limit') || '6', 10);
 
 function Summary() {
   const {
-    activity, loading, request,
+    activity, displayedTopic, loading, request,
   } = useWizard();
   const {
     agencies, links, isError,
@@ -57,7 +57,7 @@ function Summary() {
           <h1><WizardHtml mid="lookingFor" /></h1>
           <blockquote>
             &ldquo;
-            {request.query || request.topic.title}
+            {request.query || displayedTopic}
             &rdquo;
           </blockquote>
 
