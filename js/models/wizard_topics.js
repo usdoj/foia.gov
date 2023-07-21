@@ -1,4 +1,4 @@
-import immigrationOrTravelRecordsJourney from './wizard_immigration_travel_records';
+import { travelRecordsJourney, immigrationRecordsJourney } from './wizard_immigration_travel_records';
 import irsRecordsJourney from './wizard_irs_records';
 import medicalRecordsJourney from './wizard_medical_records';
 import militaryRecordsJourney from './wizard_military_records';
@@ -10,10 +10,10 @@ import socsecRecordsJourney from './wizard_socsec_records';
  */
 const allTopics = [
   {
-    tid: 't1', title: 'Immigration records', journey: immigrationOrTravelRecordsJourney,
+    tid: 't1', title: 'Immigration records', journey: immigrationRecordsJourney,
   },
   {
-    tid: 't2', title: 'Travel Records', journey: immigrationOrTravelRecordsJourney,
+    tid: 't2', title: 'Travel Records', journey: travelRecordsJourney,
   },
   {
     tid: 't3', title: 'IRS records', journey: irsRecordsJourney,

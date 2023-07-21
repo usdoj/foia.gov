@@ -85,6 +85,10 @@ declare global {
      */
     titleMid: string;
     /**
+     * If set, selecting this answer will change the displayed topic
+     */
+    newDisplayedTopic?: string;
+    /**
      * The next activity: a question, continue, or the summary
      */
     next: WizardQuestion | WizardContinue | WizardSummary;
@@ -121,6 +125,7 @@ declare global {
     recommendedLinks: WizardLink[] | null;
     ui: Record<string, string>;
     userTopic: WizardTopic | null;
+    displayedTopic: string;
   };
 
   type WizardNonVars = {

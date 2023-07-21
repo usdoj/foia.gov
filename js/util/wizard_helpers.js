@@ -13,24 +13,27 @@ export function question(titleMid, answers, addendumMid) {
 /**
  * @param {string} titleMid
  * @param {WizardQuestion | WizardContinue | WizardSummary} next
+ * @param {string=} newDisplayedTopic
  * @returns {WizardAnswer}
  */
-export function answer(titleMid, next) {
-  return { titleMid, next };
+export function answer(titleMid, next, newDisplayedTopic) {
+  return { titleMid, next, newDisplayedTopic };
 }
 
 /**
  * @param {string} titleMid
  * @param {object} yesNo
  * @param {WizardQuestion | WizardContinue | WizardSummary} yesNo.yes
+ * @param {string=} yesNo.topicIfYes
  * @param {WizardQuestion | WizardContinue | WizardSummary} yesNo.no
+ * @param {string=} yesNo.topicIfNo
  * @param {string=} addendumMid
  * @returns {WizardQuestion}
  */
 export function yesNoQuestion(titleMid, yesNo, addendumMid) {
   return question(titleMid, [
-    answer('a1', yesNo.yes),
-    answer('a2', yesNo.no),
+    answer('a1', yesNo.yes, yesNo.topicIfYes),
+    answer('a2', yesNo.no, yesNo.topicIfNo),
   ], addendumMid);
 }
 
