@@ -118,6 +118,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   line-height: 1.2;
   margin: 1.5rem 0;
   max-width: unset;
+  
+  .w-component-modal--alt & {
+    font-weight: 400;
+  }
 }
 
 // Form Item Component
@@ -427,10 +431,6 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 
     &:last-child {
       margin-bottom: 3rem;
-    }
-  
-    .w-component-modal--alt & {
-      font-weight: 400;
     }
   }
 

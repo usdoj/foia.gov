@@ -60,6 +60,7 @@ function LastStepsBlock() {
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
         contentLabel="Thank you for using our tool!"
+        isAlt
       >
         <BodyText>You may close this browser window.</BodyText>
       </Modal>
