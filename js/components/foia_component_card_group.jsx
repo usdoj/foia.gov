@@ -14,6 +14,7 @@ function CardGroup({ cardContent, alt }) {
             <Card
               key={card.id}
               card={card}
+              alt={alt}
             />
           ))}
         </ul>
