@@ -345,6 +345,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   right: auto;
   top: 50%;
   transform: translate(-50%, -50%);
+
+  .w-component-modal--alt & {
+    min-height: 25%;
+  }
 }
 
 .w-component-modal__close-button {
@@ -367,6 +371,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   color: $color-white;
   font-size: 32px;
   margin-top: 0;
+
+  .w-component-modal--alt & {
+    font-family: $font-serif;
+  }
 }
 
 // Rich Text Component
@@ -420,7 +428,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
     &:last-child {
       margin-bottom: 3rem;
     }
-  }
+  
+    .w-component-modal--alt & {
+      font-weight: 400;
+    }
 
   ol, ul {
     padding-left: 3rem;
