@@ -6,6 +6,7 @@ import AgencyPreview from 'components/agency_preview';
 import agencyComponentStore from '../stores/agency_component';
 import { pushUrl } from '../util/use_url';
 import { requestActions } from '../actions';
+import AgencyRequestWritingTips from './agency_request_writing_tips';
 
 function jumpToUrl(id, type) {
   const params = new URLSearchParams({ id, type });
@@ -27,7 +28,9 @@ class AgencyDisplay extends Component {
       agencyComponentsForAgency: null,
       notFound: false,
       isCentralized: false,
+      showTips: true,
     };
+    this.closeTips = this.closeTips.bind(this);
   }
 
   componentDidMount() {
@@ -80,6 +83,12 @@ class AgencyDisplay extends Component {
     }
   }
 
+  closeTips() {
+    this.setState({
+      showTips: false,
+    });
+  }
+
   setStateForAgency(agency, agencyComponentsForAgency) {
     this.setState({
       agency,
@@ -126,7 +135,7 @@ class AgencyDisplay extends Component {
     };
 
     const {
-      agency, agencyComponent, agencyComponentsForAgency, isCentralized, notFound,
+      agency, agencyComponent, agencyComponentsForAgency, isCentralized, notFound, showTips,
     } = this.state;
 
     const searchPath = '/agency-search.html';
@@ -149,19 +158,25 @@ class AgencyDisplay extends Component {
 
         {notFound && (<h2>This agency could not be found.</h2>)}
 
-        {agencyComponent && (
-          <AgencyComponentPreview
-            agencyComponent={agencyComponent.toJS()}
-            isCentralized={isCentralized}
-            onAgencySelect={agencyChange}
-          />
-        )}
-        {agency && (
-          <AgencyPreview
-            agency={agency}
-            agencyComponentsForAgency={agencyComponentsForAgency}
-            onAgencySelect={agencyChange}
-          />
+        { showTips ? (
+          <AgencyRequestWritingTips closeTips={this.closeTips} />
+        ) : (
+          <>
+            {agencyComponent && (
+              <AgencyComponentPreview
+                agencyComponent={agencyComponent.toJS()}
+                isCentralized={isCentralized}
+                onAgencySelect={agencyChange}
+              />
+            )}
+            {agency && (
+              <AgencyPreview
+                agency={agency}
+                agencyComponentsForAgency={agencyComponentsForAgency}
+                onAgencySelect={agencyChange}
+              />
+            )}
+          </>
         )}
       </div>
     );
