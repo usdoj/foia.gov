@@ -62,3 +62,28 @@ export function urlParams() {
     typeof document === 'undefined' ? '' : location.search,
   );
 }
+
+/**
+ * If an anchor is the only content inside a paragraph, convert the paragraph into
+ * component card markup.
+ *
+ * @param {string} html
+ * @returns {string}
+ */
+export function convertSomeLinksToCards(html) {
+  return html.replace(/<p>(.+?)<\/p>/sg, (m0, pInnerHtml) => {
+    const [n0, linkOpenTag, linkInnerHtml] = pInnerHtml.trim().match(/^(<a [^>]+>)(.+?)<\/a>$/s) || [];
+    if (!n0) {
+      // No modification
+      return m0;
+    }
+    return `
+      <div class="foia-component-card">
+        ${linkOpenTag}
+          <span class="foia-component-card__tag"></span>
+          <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
+        </a>
+      </div>
+    `;
+  });
+}

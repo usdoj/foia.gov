@@ -63,7 +63,7 @@ function Summary() {
 
           {hasTopicContent ? (
             <>
-              <WizardHtml mid={activity.titleMid} />
+              <WizardHtml mid={activity.titleMid} isSummaryAdvice />
               <LastStepsBlock />
             </>
           ) : (
