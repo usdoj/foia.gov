@@ -135,15 +135,16 @@ WizardLinks.propTypes = {
 function WizardAgencies({ agencies }) {
   const agencyObjects = agencies.map((agency) => (
     {
-      id: `${agency.agency}{agency.confidence_score}`,
+      id: agency.id,
+      title: agency.title,
+      confidenceScore: agency.confidence_score.toFixed(4),
 
       // this is actually the Department, but the card refers to it as agency
-      tag: agency.department || 'Department of Administrating',
+      tag: agency.parent ? agency.parent.name : '',
       /* TODO Replace with actual department */
 
-      title: agency.agency,
-      url: agency.url,
-      confidenceScore: agency.confidence_score.toFixed(4),
+      // Polydelta has old URLs, update them as needed.
+      url: agency.url.replace(/\/\?id=/, '/agency-search.html?id='),
     }
   ));
   return (
