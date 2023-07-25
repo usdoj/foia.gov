@@ -407,7 +407,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
     font-weight: 400;
   }
 
-  h2 {
+  h2:not(.foia-component-card__title) {
     font-family: $font-serif;
     font-size: 40px;
     font-weight: 400;
