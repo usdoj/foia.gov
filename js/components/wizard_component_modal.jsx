@@ -16,12 +16,13 @@ function Modal({
   modalIsOpen,
   closeModal,
   contentLabel,
+  isAlt,
 }) {
   return (
     <ReactModal
       className="w-component-modal__content"
       overlayClassName="w-component-modal__overlay"
-      portalClassName="w-component-modal"
+      portalClassName={`w-component-modal${isAlt ? ' w-component-modal--alt' : ''}`}
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
       contentLabel={contentLabel}
@@ -44,6 +45,7 @@ Modal.propTypes = {
   modalIsOpen: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
   contentLabel: PropTypes.string.isRequired,
+  isAlt: PropTypes.bool,
 };
 
 export default Modal;

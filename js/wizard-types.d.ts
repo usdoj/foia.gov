@@ -18,8 +18,14 @@ declare global {
   type ZustandGet<T> = () => T;
 
   type WizardAgency = {
-    agency: string;
-    agency_abbrev: string;
+    id: string;
+    title: string;
+    parent?: {
+      id: string;
+      abbreviation: string;
+      name: string;
+    };
+    abbreviation: string;
     confidence_score: number;
     department?: string;
     url: string;

@@ -10,13 +10,15 @@ function CardGroup({ cardContent, alt }) {
     return (
       <div className={`foia-component-card-group ${alt ? 'foia-component-card-group--alt' : ''}`}>
         <ul className="foia-component-card-group__list">
-          {cardContent.map((card) => (
-            <Card
-              key={card.id}
-              card={card}
-              alt={alt}
-            />
-          ))}
+          {cardContent.map((card) => {
+            card.alt = alt;
+            return (
+              <Card
+                key={card.id}
+                card={card}
+              />
+            );
+          })}
         </ul>
       </div>
     );

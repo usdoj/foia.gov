@@ -118,6 +118,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   line-height: 1.2;
   margin: 1.5rem 0;
   max-width: unset;
+  
+  .w-component-modal--alt & {
+    font-weight: 400;
+  }
 }
 
 // Form Item Component
@@ -345,6 +349,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   right: auto;
   top: 50%;
   transform: translate(-50%, -50%);
+
+  .w-component-modal--alt & {
+    min-height: 25%;
+  }
 }
 
 .w-component-modal__close-button {
@@ -367,6 +375,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   color: $color-white;
   font-size: 32px;
   margin-top: 0;
+
+  .w-component-modal--alt & {
+    font-family: $font-serif;
+  }
 }
 
 // Rich Text Component
@@ -395,7 +407,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
     font-weight: 400;
   }
 
-  h2 {
+  h2:not(.foia-component-card__title) {
     font-family: $font-serif;
     font-size: 40px;
     font-weight: 400;

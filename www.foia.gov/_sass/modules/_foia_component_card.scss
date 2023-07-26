@@ -4,7 +4,8 @@
   padding: 2.4rem;
   position: relative;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $color-cool-blue-light;
   }
 
@@ -46,6 +47,7 @@
   margin-top: 1rem;
   position: relative;
   width: fit-content;
+  word-break: break-word;
 
   &::before {
     .foia-component-card--alt & {
@@ -61,6 +63,9 @@
   }
 
   .foia-component-card--alt & {
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin-top: 1rem;
     margin-bottom: 0;
   }
 }

@@ -8,7 +8,7 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
-import { urlParams } from '../util/wizard_helpers';
+import { convertSomeLinksToCards, urlParams } from '../util/wizard_helpers';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
 
@@ -262,7 +262,7 @@ const useRawWizardStore = create((
  *     isError: WizardVars['isError'];
  *   };
  *   ui: WizardVars['ui'];
- *   getMessage: (mid: string) => string;
+ *   getMessage: (mid: string, isSummaryAdvice?: boolean) => string;
  * }}
  */
 function useWizard() {
@@ -283,7 +283,12 @@ function useWizard() {
       isError: state.isError,
     },
     ui: state.ui,
-    getMessage: (mid) => (mid.startsWith('literal:') ? mid.substring(8) : state.ui[mid] || `(missing message: ${mid})`),
+    getMessage: (mid, isSummaryAdvice = false) => {
+      const html = mid.startsWith('literal:')
+        ? mid.substring(8)
+        : (state.ui[mid] || `(missing message: ${mid})`);
+      return isSummaryAdvice ? convertSomeLinksToCards(html) : html;
+    },
   }), shallow);
 }
 
