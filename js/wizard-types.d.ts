@@ -100,7 +100,7 @@ declare global {
     next: WizardQuestion | WizardContinue | WizardSummary;
   };
 
-  type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'history' | 'ui' | 'numLoading'>;
+  type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'numLoading'>;
 
   type WizardActions = {
     initLoad: () => void;
@@ -122,7 +122,6 @@ declare global {
      * User selected answer
      */
     answerIdx: number | null;
-    history: WizardHistorySnapshot[];
     numLoading: number;
     query: string | null;
     ready: boolean;

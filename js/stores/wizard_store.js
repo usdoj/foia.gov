@@ -25,7 +25,6 @@ const initialWizardState = {
   allTopics,
   answerIdx: null,
   displayedTopic: '',
-  history: [],
 
   // How many async operations are we waiting on?
   // Use useWizard().loading instead of reading this.
@@ -46,10 +45,9 @@ const initialWizardState = {
  */
 function createSnapshot(state) {
   const snapshot = { ...state };
-  // Omit<WizardVars, 'actions' | 'allTopics' | 'history' | 'ui' | 'numLoading'>;
+  // Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'numLoading'>;
   delete snapshot.allTopics;
   delete snapshot.actions;
-  delete snapshot.history;
   delete snapshot.ui;
   delete snapshot.numLoading;
 
@@ -76,35 +74,56 @@ const useRawWizardStore = create((
   }
 
   /**
-   * Decorate full state with updated history
+   * Decorate full state with updated history and pushState
    *
    * @param {Partial<WizardVars>} newState
    * @returns {WizardState}
    */
   const withCapturedHistory = (newState) => {
-    const activityState = get();
-    return {
-      ...activityState,
+    const combined = {
+      ...get(),
       ...newState,
-      history: [...activityState.history, createSnapshot(activityState)],
     };
+
+    const snapshot = createSnapshot(combined);
+
+    // There may be a better place to put this.
+    window.history.pushState(snapshot, '', location.href);
+
+    return combined;
   };
+
+  const reset = () => set((state) => ({
+    ...initialWizardState,
+
+    // Preserve loaded stuff
+    allTopics: state.allTopics,
+    ui: state.ui,
+    ready: state.ready,
+  }));
 
   /**
    * Pop history to return to last page
    */
-  const prevPage = () => set((state) => {
-    const { history } = state;
-    if (!history.length) {
-      throw new Error('No history snapshots available!');
+  const prevPage = () => {
+    try {
+      window.history.back();
+    } catch (err) {
+      location.reload();
     }
-    const snapshot = history[history.length - 1];
+  };
 
-    return {
+  window.addEventListener('popstate', (e) => {
+    const snapshot = e.state;
+    if (typeof snapshot !== 'object' || !snapshot) {
+      reset();
+      return;
+    }
+
+    set((state) => ({
       ...state,
       ...snapshot,
-      history: history.slice(0, history.length - 1),
-    };
+    }));
   });
 
   const initLoad = async () => {
@@ -168,15 +187,6 @@ const useRawWizardStore = create((
       activity: activity.next,
     });
   });
-
-  const reset = () => set((state) => ({
-    ...initialWizardState,
-
-    // Preserve loaded stuff
-    allTopics: state.allTopics,
-    ui: state.ui,
-    ready: state.ready,
-  }));
 
   const jumpBackToQueryPage = () => set((state) => ({
     ...initialWizardState,
@@ -271,7 +281,7 @@ function useWizard() {
     allTopics: state.allTopics,
     answerIdx: state.answerIdx,
     displayedTopic: state.displayedTopic,
-    canGoBack: state.history.length > 0,
+    canGoBack: state.activity.type !== 'intro',
     loading: state.numLoading > 0,
     activity: state.activity,
     ready: state.ready,
