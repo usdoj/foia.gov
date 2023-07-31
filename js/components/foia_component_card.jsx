@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
  */
 function Card({ card }) {
   const {
-    tag, title, url, onClick, subtitle, confidenceScore,
+    tag, title, url, onClick, subtitle, confidenceScore, alt,
   } = card;
 
   return (
-    <a className="foia-component-card" href={url} onClick={onClick}>
+    <a className={`foia-component-card ${alt ? 'foia-component-card--alt' : ''}`} href={url} onClick={onClick}>
       <span className="foia-component-card__tag">{tag}</span>
       <h2 className="foia-component-card__title">{title}</h2>
       {subtitle && <span className="foia-component-card__subtitle">{subtitle}</span>}
@@ -32,6 +32,7 @@ Card.propTypes = {
     subtitle: PropTypes.string,
     url: PropTypes.string.isRequired,
     confidenceScore: PropTypes.string,
+    alt: PropTypes.string,
     onClick: PropTypes.func,
   }).isRequired,
 };

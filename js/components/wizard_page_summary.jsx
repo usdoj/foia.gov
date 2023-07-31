@@ -121,7 +121,7 @@ function WizardLinks({ links }) {
   ));
 
   return (
-    <CardGroup cardContent={linkObjects} />
+    <CardGroup cardContent={linkObjects} alt />
   );
 }
 WizardLinks.propTypes = {
