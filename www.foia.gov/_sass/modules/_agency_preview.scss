@@ -21,6 +21,11 @@
     font-weight: 500;
   }
 
+  ol,
+  ul {
+    padding-left: 1.94em;
+  }
+
   .use-dark-icons {
     .agency-info_processing-time h4 + p::before,
     .agency-info_personnel::before,
