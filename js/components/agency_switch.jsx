@@ -1,7 +1,7 @@
-import React, {
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useUrlParams } from '../util/use_url';
+import { useWait } from '../util/wizard_helpers';
 import AgencySearch from './agency_search';
 import AgencyDisplay from './agency_display';
 
@@ -10,15 +10,22 @@ import AgencyDisplay from './agency_display';
  */
 function AgencySwitch(props) {
   const params = useUrlParams();
-
   const { agencyFinderDataComplete, agencyFinderDataProgress } = props;
+
+  // Don't show loader until a second has passed
+  const { hasWaited } = useWait(1000);
+
   if (!agencyFinderDataComplete) {
     return (
       <div className="foia-component-agency-search__loading">
-        Loading progress:
-        {' '}
-        {agencyFinderDataProgress}
-        %
+        {hasWaited && (
+          <>
+            Loading progress:
+            {' '}
+            {agencyFinderDataProgress}
+            %
+          </>
+        )}
       </div>
     );
   }
