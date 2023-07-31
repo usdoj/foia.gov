@@ -87,3 +87,24 @@ export function convertSomeLinksToCards(html) {
     `;
   });
 }
+
+/**
+ * Ensure obj.confidence_score exists. Move from obj.score or set as 0;
+ *
+ * @param {object} obj
+ * @returns {object}
+ */
+export function normalizeScore(obj) {
+  const { score, confidence_score, ...rest } = obj;
+
+  if (typeof confidence_score === 'number') {
+    return { confidence_score, ...rest };
+  }
+
+  if (typeof score === 'number') {
+    return { confidence_score: score, ...rest };
+  }
+
+  console.warn('obj missing confidence_score', obj);
+  return { confidence_score: 0, ...rest };
+}

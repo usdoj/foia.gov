@@ -8,7 +8,7 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
-import { convertSomeLinksToCards, urlParams } from '../util/wizard_helpers';
+import { convertSomeLinksToCards, normalizeScore, urlParams } from '../util/wizard_helpers';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
 
@@ -207,10 +207,30 @@ const useRawWizardStore = create((
       nudgeLoading(1);
       await fetchWizardPredictions(query)
         .then((data) => {
-          recommendedAgencies = data.model_output.agency_finder_predictions[0]
-            .filter((agency) => agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES);
+          const ids = new Set();
+          recommendedAgencies = data.model_output.agency_mission_match
+            .map(normalizeScore)
+            .filter((agency) => {
+              if (agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES) {
+                ids.add(agency.id);
+                return true;
+              }
+              return false;
+            });
+          recommendedAgencies.push(
+            ...data.model_output.agency_finder_predictions[0]
+              .map(normalizeScore)
+              .filter(
+                (agency) => !ids.has(agency.id) && agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES,
+              ),
+          );
+
+          // DESC score order
+          recommendedAgencies.sort((a, b) => b.confidence_score - a.confidence_score);
+
           recommendedLinks = data.model_output.freqdoc_predictions
-            .filter((link) => link.score >= CONFIDENCE_THRESHOLD_LINKS);
+            .map(normalizeScore)
+            .filter((link) => link.confidence_score >= CONFIDENCE_THRESHOLD_LINKS);
         })
         .catch((err) => {
           console.error(err);

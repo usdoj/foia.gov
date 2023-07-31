@@ -33,7 +33,7 @@ declare global {
 
   type WizardLink = {
     agency: string;
-    score: number;
+    confidence_score: number;
     sentence: string;
     tag: string;
     url: string;
