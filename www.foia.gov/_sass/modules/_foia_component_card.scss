@@ -49,24 +49,25 @@
   width: fit-content;
   word-break: break-word;
 
-  &::before {
+  &::after {
     .foia-component-card--alt & {
+      align-self: center;
       background-image: url($icon-external-link-white);
       background-repeat: no-repeat;
       content: '';
+      flex-shrink: 0;
       height: 18px;
-      position: absolute;
-      right: -30px;
-      top: 10px;
       width: 18px;
     }
   }
 
   .foia-component-card--alt & {
+    display: flex;
     font-size: 2.8rem;
     font-weight: 500;
-    margin-top: 1rem;
+    gap: 1.5rem;
     margin-bottom: 0;
+    margin-top: 1rem;
   }
 }
 
