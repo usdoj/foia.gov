@@ -32,7 +32,7 @@ Card.propTypes = {
     subtitle: PropTypes.string,
     url: PropTypes.string.isRequired,
     confidenceScore: PropTypes.string,
-    alt: PropTypes.string,
+    alt: PropTypes.bool,
     onClick: PropTypes.func,
   }).isRequired,
 };
