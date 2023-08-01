@@ -183,7 +183,7 @@ function AgencySearch({
       <p>
         It’s important that you identify the correct agency for your request. There
         are over 100 agencies and each is responsible for handling its own FOIA
-        requests. You can find a breakdown of agencies by topic on USA.gov to help
+        requests. You can find a breakdown of agencies by topic on <a href="//www.usa.gov">USA.gov</a> to help
         you identify the correct agency. You may also search for agencies using
         the search bar below.
       </p>
