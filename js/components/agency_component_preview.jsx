@@ -10,6 +10,10 @@ import domify from '../util/request_form/domify';
 function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized }) {
   const description = AgencyComponent.agencyMission(agencyComponent);
   const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
+  const recordsHeld = (agencyComponent.field_commonly_requested_records || '')
+    .split(/\r?\n/)
+    .map((el) => el.trim())
+    .filter((el) => el !== '');
   const onSelect = () => onAgencySelect(agencyComponent.agency);
 
   return (
@@ -47,6 +51,16 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         <ContactInformation agencyComponent={agencyComponent} />
       </div>
       <div className="usa-width-one-half start-request-container">
+        {recordsHeld.length > 0 && (
+          <div>
+            <h4>Records that we hold</h4>
+            <ul>
+              {recordsHeld.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         { agencyComponent.request_data_year
           && <AgencyComponentProcessingTime agencyComponent={agencyComponent} />}
         <div className="agency-info_reading-rooms">

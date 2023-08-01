@@ -62,3 +62,49 @@ export function urlParams() {
     typeof document === 'undefined' ? '' : location.search,
   );
 }
+
+/**
+ * If an anchor is the only content inside a paragraph, convert the paragraph into
+ * component card markup.
+ *
+ * @param {string} html
+ * @returns {string}
+ */
+export function convertSomeLinksToCards(html) {
+  return html.replace(/<p>(.+?)<\/p>/sg, (m0, pInnerHtml) => {
+    const [n0, linkOpenTag, linkInnerHtml] = pInnerHtml.trim().match(/^(<a [^>]+>)(.+?)<\/a>$/s) || [];
+    if (!n0) {
+      // No modification
+      return m0;
+    }
+    return `
+      <div class="foia-component-card">
+        ${linkOpenTag}
+          <span class="foia-component-card__tag"></span>
+          <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
+        </a>
+      </div>
+    `;
+  });
+}
+
+/**
+ * Ensure obj.confidence_score exists. Move from obj.score or set as 0;
+ *
+ * @param {object} obj
+ * @returns {object}
+ */
+export function normalizeScore(obj) {
+  const { score, confidence_score, ...rest } = obj;
+
+  if (typeof confidence_score === 'number') {
+    return { confidence_score, ...rest };
+  }
+
+  if (typeof score === 'number') {
+    return { confidence_score: score, ...rest };
+  }
+
+  console.warn('obj missing confidence_score', obj);
+  return { confidence_score: 0, ...rest };
+}

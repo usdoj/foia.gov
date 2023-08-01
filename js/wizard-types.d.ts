@@ -18,8 +18,14 @@ declare global {
   type ZustandGet<T> = () => T;
 
   type WizardAgency = {
-    agency: string;
-    agency_abbrev: string;
+    id: string;
+    title: string;
+    parent?: {
+      id: string;
+      abbreviation: string;
+      name: string;
+    };
+    abbreviation: string;
     confidence_score: number;
     department?: string;
     url: string;
@@ -27,7 +33,7 @@ declare global {
 
   type WizardLink = {
     agency: string;
-    score: number;
+    confidence_score: number;
     sentence: string;
     tag: string;
     url: string;
@@ -94,7 +100,7 @@ declare global {
     next: WizardQuestion | WizardContinue | WizardSummary;
   };
 
-  type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'history' | 'ui' | 'numLoading'>;
+  type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'numLoading'>;
 
   type WizardActions = {
     initLoad: () => void;
@@ -116,7 +122,6 @@ declare global {
      * User selected answer
      */
     answerIdx: number | null;
-    history: WizardHistorySnapshot[];
     numLoading: number;
     query: string | null;
     ready: boolean;
