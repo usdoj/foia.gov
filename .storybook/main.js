@@ -1,6 +1,3 @@
-const path = require('path');
-const settings$ = path.join(__dirname, '..', 'js', 'settings', `development.js`);
-
 const config = {
   stories: ["../js/stories/*.mdx", "../js/stories/*.stories.@(js|jsx|ts|tsx)"],
   framework: {
@@ -12,16 +9,7 @@ const config = {
   },
   staticDirs: ["../_site"],
   webpackFinal: async (config, { configType }) => {
-    return {
-      ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve?.alias,
-          settings$,
-        },
-      },
-    };
+    return config;
   },
 };
 export default config;

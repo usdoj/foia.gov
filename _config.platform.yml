@@ -1,5 +1,0 @@
-app_env: platform
-navigation:
-  secondary:
-    - href: https://api.main-bvxea6i-oafzps2pqxjxw.us-2.platformsh.site/user/login
-      title: Agency login
