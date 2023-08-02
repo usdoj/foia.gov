@@ -202,6 +202,7 @@ const useRawWizardStore = create((
     let isError = false;
     let recommendedAgencies = [];
     let recommendedLinks = [];
+    let effectiveTopic = topic;
 
     if (query && !topic) {
       nudgeLoading(1);
@@ -231,6 +232,13 @@ const useRawWizardStore = create((
           recommendedLinks = data.model_output.freqdoc_predictions
             .map(normalizeScore)
             .filter((link) => link.confidence_score >= CONFIDENCE_THRESHOLD_LINKS);
+
+          const { confidence_score, flow } = data.model_output.predefined_flow || {};
+          if (typeof confidence_score === 'number' && confidence_score >= 0.9 && typeof flow === 'string') {
+            effectiveTopic = allTopics.find(
+              (el) => el.title.toUpperCase() === flow.toUpperCase(),
+            );
+          }
         })
         .catch((err) => {
           console.error(err);
@@ -240,13 +248,13 @@ const useRawWizardStore = create((
     }
 
     set(withCapturedHistory({
-      activity: topic ? topic.journey : { type: 'summary' },
-      displayedTopic: topic ? topic.title : '',
+      activity: effectiveTopic ? effectiveTopic.journey : { type: 'summary' },
+      displayedTopic: effectiveTopic ? effectiveTopic.title : '',
       query,
       recommendedLinks,
       recommendedAgencies,
       isError,
-      userTopic: topic,
+      userTopic: effectiveTopic,
     }));
   };
 

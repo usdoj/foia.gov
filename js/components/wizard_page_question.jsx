@@ -23,7 +23,7 @@ function Question() {
           <h1><WizardHtml mid="lookingFor" /></h1>
           <blockquote>
             &ldquo;
-            {request.query || displayedTopic}
+            {displayedTopic || request.query}
             &rdquo;
           </blockquote>
 
