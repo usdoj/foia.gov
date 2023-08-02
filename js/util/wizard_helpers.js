@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 /**
  * @param {string} titleMid
  * @param {WizardAnswer[]} answers
@@ -107,4 +109,30 @@ export function normalizeScore(obj) {
 
   console.warn('obj missing confidence_score', obj);
   return { confidence_score: 0, ...rest };
+}
+
+export function useWait(waitMs) {
+  const [hasWaited, setHasWaited] = useState(false);
+  useEffect(() => {
+    if (hasWaited) {
+      return () => 0;
+    }
+
+    const timeout = window.setTimeout(() => {
+      setHasWaited(true);
+    }, waitMs);
+
+    return () => {
+      window.clearTimeout(timeout);
+    };
+  }, [hasWaited]);
+
+  function reset() {
+    setHasWaited(false);
+  }
+
+  return {
+    hasWaited,
+    reset,
+  };
 }
