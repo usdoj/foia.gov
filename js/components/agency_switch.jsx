@@ -18,14 +18,14 @@ function AgencySwitch(props) {
   if (!agencyFinderDataComplete) {
     return (
       <div className="foia-component-agency-search__loading">
-        {hasWaited && (
+        {hasWaited ? (
           <>
             Loading progress:
             {' '}
             {agencyFinderDataProgress}
             %
           </>
-        )}
+        ) : 'Loading...'}
       </div>
     );
   }
