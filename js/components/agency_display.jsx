@@ -6,6 +6,7 @@ import AgencyPreview from 'components/agency_preview';
 import agencyComponentStore from '../stores/agency_component';
 import { pushUrl } from '../util/use_url';
 import { requestActions } from '../actions';
+import { titlePrefix } from '../util/dom';
 
 function jumpToUrl(id, type) {
   const params = new URLSearchParams({ id, type });
@@ -81,6 +82,7 @@ class AgencyDisplay extends Component {
   }
 
   setStateForAgency(agency, agencyComponentsForAgency) {
+    document.title = titlePrefix + agency.name;
     this.setState({
       agency,
       agencyComponent: null,
@@ -92,6 +94,8 @@ class AgencyDisplay extends Component {
   }
 
   setStateForComponent(agencyComponent, isCentralized = false) {
+    const title = isCentralized ? agencyComponent.agency.name : agencyComponent.title;
+    document.title = titlePrefix + title;
     this.setState({
       agency: null,
       agencyComponent,
