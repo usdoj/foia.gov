@@ -13,10 +13,11 @@ function CardGroup({ cardContent, alt }) {
           {cardContent.map((card) => {
             card.alt = alt;
             return (
-              <Card
-                key={card.id}
-                card={card}
-              />
+              <li key={card.id}>
+                <Card
+                  card={card}
+                />
+              </li>
             );
           })}
         </ul>
