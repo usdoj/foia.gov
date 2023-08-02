@@ -16,6 +16,7 @@ const defaults = {
   request_data_expedited_median_days: null,
   request_data_year: null,
   field_misc: [], // foia_personnel
+  field_commonly_requested_records: null,
   foia_officers: [], // foia_personnel
   formFields: new List(),
   id: null,

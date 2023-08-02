@@ -63,7 +63,7 @@ function Summary() {
 
           {hasTopicContent ? (
             <>
-              <WizardHtml mid={activity.titleMid} />
+              <WizardHtml mid={activity.titleMid} isSummaryAdvice />
               <LastStepsBlock />
             </>
           ) : (
@@ -116,12 +116,12 @@ function WizardLinks({ links }) {
       title: link.tag,
       subtitle: link.sentence,
       url: link.url,
-      confidenceScore: link.score.toFixed(4),
+      confidenceScore: link.confidence_score.toFixed(4),
     }
   ));
 
   return (
-    <CardGroup cardContent={linkObjects} />
+    <CardGroup cardContent={linkObjects} alt />
   );
 }
 WizardLinks.propTypes = {
@@ -135,15 +135,15 @@ WizardLinks.propTypes = {
 function WizardAgencies({ agencies }) {
   const agencyObjects = agencies.map((agency) => (
     {
-      id: `${agency.agency}{agency.confidence_score}`,
+      id: agency.id,
+      title: agency.title,
+      confidenceScore: agency.confidence_score.toFixed(4),
 
       // this is actually the Department, but the card refers to it as agency
-      tag: agency.department || 'Department of Administrating',
-      /* TODO Replace with actual department */
+      tag: agency.parent ? agency.parent.name : '',
 
-      title: agency.agency,
-      url: agency.url,
-      confidenceScore: agency.confidence_score.toFixed(4),
+      // Polydelta has old URLs, update them as needed.
+      url: agency.url.replace(/\/\?id=/, '/agency-search.html?id='),
     }
   ));
   return (

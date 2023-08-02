@@ -23,12 +23,28 @@ function RichText({ children = '', html = '', mid }) {
   }
 
   if (html) {
+    // Rewrite links: if origin doesn't match current, add target.
+    const newHtml = html.replace(/<a ([^>]+)>(.+?)<\/a>/sg, (m0, attrs, inner) => {
+      const [, href] = attrs.match(/\bhref="([^"]+)"/) || [];
+      if (!href) {
+        return m0;
+      }
+
+      const hrefOrigin = href.split('/').slice(0, 3).join('/');
+      if (hrefOrigin !== location.origin) {
+        return `<a ${attrs} target="_blank">${inner}</a>`;
+      }
+
+      return m0;
+    });
+
     return (
       <div
         className="w-component-rich-text"
         data-mid={mid}
         title={title || undefined}
-        dangerouslySetInnerHTML={{ __html: html }}
+        /* eslint-disable-next-line react/no-danger */
+        dangerouslySetInnerHTML={{ __html: newHtml }}
       />
     );
   }

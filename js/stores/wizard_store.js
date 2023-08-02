@@ -8,7 +8,7 @@
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
-import { urlParams } from '../util/wizard_helpers';
+import { convertSomeLinksToCards, normalizeScore, urlParams } from '../util/wizard_helpers';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
 
@@ -25,7 +25,6 @@ const initialWizardState = {
   allTopics,
   answerIdx: null,
   displayedTopic: '',
-  history: [],
 
   // How many async operations are we waiting on?
   // Use useWizard().loading instead of reading this.
@@ -46,10 +45,9 @@ const initialWizardState = {
  */
 function createSnapshot(state) {
   const snapshot = { ...state };
-  // Omit<WizardVars, 'actions' | 'allTopics' | 'history' | 'ui' | 'numLoading'>;
+  // Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'numLoading'>;
   delete snapshot.allTopics;
   delete snapshot.actions;
-  delete snapshot.history;
   delete snapshot.ui;
   delete snapshot.numLoading;
 
@@ -76,35 +74,56 @@ const useRawWizardStore = create((
   }
 
   /**
-   * Decorate full state with updated history
+   * Decorate full state with updated history and pushState
    *
    * @param {Partial<WizardVars>} newState
    * @returns {WizardState}
    */
   const withCapturedHistory = (newState) => {
-    const activityState = get();
-    return {
-      ...activityState,
+    const combined = {
+      ...get(),
       ...newState,
-      history: [...activityState.history, createSnapshot(activityState)],
     };
+
+    const snapshot = createSnapshot(combined);
+
+    // There may be a better place to put this.
+    window.history.pushState(snapshot, '', location.href);
+
+    return combined;
   };
+
+  const reset = () => set((state) => ({
+    ...initialWizardState,
+
+    // Preserve loaded stuff
+    allTopics: state.allTopics,
+    ui: state.ui,
+    ready: state.ready,
+  }));
 
   /**
    * Pop history to return to last page
    */
-  const prevPage = () => set((state) => {
-    const { history } = state;
-    if (!history.length) {
-      throw new Error('No history snapshots available!');
+  const prevPage = () => {
+    try {
+      window.history.back();
+    } catch (err) {
+      location.reload();
     }
-    const snapshot = history[history.length - 1];
+  };
 
-    return {
+  window.addEventListener('popstate', (e) => {
+    const snapshot = e.state;
+    if (typeof snapshot !== 'object' || !snapshot) {
+      reset();
+      return;
+    }
+
+    set((state) => ({
       ...state,
       ...snapshot,
-      history: history.slice(0, history.length - 1),
-    };
+    }));
   });
 
   const initLoad = async () => {
@@ -169,15 +188,6 @@ const useRawWizardStore = create((
     });
   });
 
-  const reset = () => set((state) => ({
-    ...initialWizardState,
-
-    // Preserve loaded stuff
-    allTopics: state.allTopics,
-    ui: state.ui,
-    ready: state.ready,
-  }));
-
   const jumpBackToQueryPage = () => set((state) => ({
     ...initialWizardState,
     activity: { type: 'query' },
@@ -197,10 +207,30 @@ const useRawWizardStore = create((
       nudgeLoading(1);
       await fetchWizardPredictions(query)
         .then((data) => {
-          recommendedAgencies = data.model_output.agency_finder_predictions[0]
-            .filter((agency) => agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES);
+          const ids = new Set();
+          recommendedAgencies = data.model_output.agency_mission_match
+            .map(normalizeScore)
+            .filter((agency) => {
+              if (agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES) {
+                ids.add(agency.id);
+                return true;
+              }
+              return false;
+            });
+          recommendedAgencies.push(
+            ...data.model_output.agency_finder_predictions[0]
+              .map(normalizeScore)
+              .filter(
+                (agency) => !ids.has(agency.id) && agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES,
+              ),
+          );
+
+          // DESC score order
+          recommendedAgencies.sort((a, b) => b.confidence_score - a.confidence_score);
+
           recommendedLinks = data.model_output.freqdoc_predictions
-            .filter((link) => link.score >= CONFIDENCE_THRESHOLD_LINKS);
+            .map(normalizeScore)
+            .filter((link) => link.confidence_score >= CONFIDENCE_THRESHOLD_LINKS);
         })
         .catch((err) => {
           console.error(err);
@@ -262,7 +292,7 @@ const useRawWizardStore = create((
  *     isError: WizardVars['isError'];
  *   };
  *   ui: WizardVars['ui'];
- *   getMessage: (mid: string) => string;
+ *   getMessage: (mid: string, isSummaryAdvice?: boolean) => string;
  * }}
  */
 function useWizard() {
@@ -271,7 +301,7 @@ function useWizard() {
     allTopics: state.allTopics,
     answerIdx: state.answerIdx,
     displayedTopic: state.displayedTopic,
-    canGoBack: state.history.length > 0,
+    canGoBack: state.activity.type !== 'intro',
     loading: state.numLoading > 0,
     activity: state.activity,
     ready: state.ready,
@@ -283,7 +313,12 @@ function useWizard() {
       isError: state.isError,
     },
     ui: state.ui,
-    getMessage: (mid) => (mid.startsWith('literal:') ? mid.substring(8) : state.ui[mid] || `(missing message: ${mid})`),
+    getMessage: (mid, isSummaryAdvice = false) => {
+      const html = mid.startsWith('literal:')
+        ? mid.substring(8)
+        : (state.ui[mid] || `(missing message: ${mid})`);
+      return isSummaryAdvice ? convertSomeLinksToCards(html) : html;
+    },
   }), shallow);
 }
 
