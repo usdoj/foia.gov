@@ -80,9 +80,8 @@ export function convertSomeLinksToCards(html) {
       return m0;
     }
     return `
-      <div class="foia-component-card">
+      <div class="foia-component-card foia-component-card--alt">
         ${linkOpenTag}
-          <span class="foia-component-card__tag"></span>
           <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
         </a>
       </div>
