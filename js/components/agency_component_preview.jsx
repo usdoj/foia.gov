@@ -7,7 +7,9 @@ import NonInteroperableInfo from './non_interoperable_info';
 import { AgencyComponent } from '../models';
 import domify from '../util/request_form/domify';
 
-function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized }) {
+function AgencyComponentPreview({
+  onAgencySelect, agencyComponent, isCentralized, setShowTips, setDestinationHref,
+}) {
   const description = AgencyComponent.agencyMission(agencyComponent);
   const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
   const recordsHeld = (agencyComponent.field_commonly_requested_records || '')
@@ -89,12 +91,15 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         </div>
         { agencyComponent.request_form
           && (
-          <a
-            className="usa-button usa-button-big usa-button-primary-alt start-request"
-            href={requestUrl}
-          >
-            Continue the FOIA request process
-          </a>
+            <button
+              className="usa-button usa-button-big usa-button-primary-alt start-request"
+              onClick={() => {
+                setShowTips(true);
+                setDestinationHref(requestUrl);
+              }}
+            >
+              Continue the FOIA request process
+            </button>
           )}
       </div>
     </div>
@@ -105,6 +110,8 @@ AgencyComponentPreview.propTypes = {
   onAgencySelect: PropTypes.func.isRequired,
   agencyComponent: PropTypes.object.isRequired,
   isCentralized: PropTypes.bool.isRequired,
+  setShowTips: PropTypes.func.isRequired,
+  setDestinationHref: PropTypes.func.isRequired,
 };
 
 export default AgencyComponentPreview;

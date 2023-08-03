@@ -13,6 +13,11 @@ function jumpToUrl(id, type) {
   pushUrl(`?${params}`);
 }
 
+function returnUrl(id, type) {
+  const params = new URLSearchParams({ id, type });
+  return `?${params}`;
+}
+
 /**
  * Load and display an Agency or Agency Component and allow navigation
  * between them.
@@ -28,9 +33,11 @@ class AgencyDisplay extends Component {
       agencyComponentsForAgency: null,
       notFound: false,
       isCentralized: false,
-      showTips: true,
+      showTips: false,
+      destinationHref: null,
     };
-    this.closeTips = this.closeTips.bind(this);
+    this.setShowTips = this.setShowTips.bind(this);
+    this.setDestinationHref = this.setDestinationHref.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +50,7 @@ class AgencyDisplay extends Component {
 
   checkLoaded() {
     const { id, type, agencyFinderDataComplete } = this.props;
+
     if (!agencyFinderDataComplete) {
       return;
     }
@@ -83,9 +91,15 @@ class AgencyDisplay extends Component {
     }
   }
 
-  closeTips() {
+  setDestinationHref(url) {
     this.setState({
-      showTips: false,
+      destinationHref: url,
+    });
+  }
+
+  setShowTips(boolean) {
+    this.setState({
+      showTips: boolean,
     });
   }
 
@@ -118,6 +132,8 @@ class AgencyDisplay extends Component {
     const agencyChange = (agencyComponent) => {
       // We're going to push a URL so checkLoaded() can handle it
       if (agencyComponent.type === 'agency_component') {
+        const destinationHref = returnUrl(agencyComponent.id, 'component');
+        this.setDestinationHref(destinationHref);
         jumpToUrl(agencyComponent.id, 'component');
         return;
       }
@@ -125,17 +141,22 @@ class AgencyDisplay extends Component {
       const agency = agencyComponentStore.getAgency(agencyComponent.id);
 
       // Treat centralized agencies as components
-      if (agency.isCentralized()) {
+      if (agency && agency.isCentralized()) {
         const component = this.props.agencyComponents.find((c) => c.agency.id === agency.id);
+        const destinationHref = returnUrl(component.id, 'component');
+        this.setDestinationHref(destinationHref);
         jumpToUrl(component.id, 'component');
         return;
       }
 
-      jumpToUrl(agency.id, 'agency');
+      if (agency) {
+        const destinationHref = returnUrl(agency.id, 'agency');
+        this.setDestinationHref(destinationHref);
+      }
     };
 
     const {
-      agency, agencyComponent, agencyComponentsForAgency, isCentralized, notFound, showTips,
+      agency, agencyComponent, agencyComponentsForAgency, isCentralized, notFound, destinationHref, showTips,
     } = this.state;
 
     const searchPath = '/agency-search.html';
@@ -159,7 +180,7 @@ class AgencyDisplay extends Component {
         {notFound && (<h2>This agency could not be found.</h2>)}
 
         { showTips ? (
-          <AgencyRequestWritingTips closeTips={this.closeTips} />
+          <AgencyRequestWritingTips destinationHref={destinationHref} />
         ) : (
           <>
             {agencyComponent && (
@@ -167,6 +188,8 @@ class AgencyDisplay extends Component {
                 agencyComponent={agencyComponent.toJS()}
                 isCentralized={isCentralized}
                 onAgencySelect={agencyChange}
+                setDestinationHref={this.setDestinationHref}
+                setShowTips={this.setShowTips}
               />
             )}
             {agency && (
