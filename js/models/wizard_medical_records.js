@@ -6,7 +6,7 @@ import {
  * @type {WizardQuestion}
  */
 const medicalRecordsJourney = yesNoQuestion('q1', {
-  topicIfYes: 'My medical records',
+  topicIfYes: 'Your own medical records',
   topicIfNo: 'Someone else\'s medical records',
   yes: continueStep(
     'm1',
@@ -18,19 +18,19 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
         'q7',
         [
           answer(
-            'literal:Medical records for an active duty or reserve military servicemember',
+            'literal:My active duty or reserve medical records',
             summary('m24'),
-            'Medical records for an active duty or reserve military servicemember',
+            'Your own active duty or reserve medical records',
           ),
           answer(
             'literal:My Medicaid/Medicare participant records',
             summary('m25'),
-            'My Medicaid/Medicare participant records',
+            'Your own Medicaid/Medicare participant records',
           ),
           answer(
             'literal:My Indian Health Service participant records',
             summary('m26'),
-            'My Indian Health Service participant records',
+            'Your own Indian Health Service participant records',
           ),
           answer(
             'literal:None of the Above (I want to start over)',
@@ -44,8 +44,8 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
   no: continueStep(
     'm2',
     yesNoQuestion('q6', {
-      topicIfYes: 'Someone else\'s medical records, veteran',
-      topicIfNo: 'Someone else\'s medical records, civilian',
+      topicIfYes: 'Someone else’s VA Medical records',
+      topicIfNo: 'Someone else\'s medical records',
       yes: summary('m27'),
       no: question(
         'q7',
@@ -58,12 +58,12 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
           answer(
             'literal:Medicaid/Medicare participant records',
             summary('m29'),
-            'Someone else\'s Medicaid/Medicare participant records',
+            'Medicaid/Medicare participant records',
           ),
           answer(
             'literal:Indian Health Service participant records',
             summary('m30'),
-            'Someone else\'s Indian Health Service participant records',
+            'Indian Health Service participant records',
           ),
           answer(
             'literal:None of the Above (I want to start over)',
