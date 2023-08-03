@@ -32,6 +32,10 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
             summary('m26'),
             'My Indian Health Service participant records',
           ),
+          answer(
+            'literal:None of the Above (I want to start over)',
+            { type: 'start-over' },
+          ),
         ],
         'literal:<p>For other information, we suggest you contact your medical provider directly.</p>',
       ),
@@ -60,6 +64,10 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
             'literal:Indian Health Service participant records',
             summary('m30'),
             'Someone else\'s Indian Health Service participant records',
+          ),
+          answer(
+            'literal:None of the Above (I want to start over)',
+            { type: 'start-over' },
           ),
         ],
         'literal:<p>For other information, we suggest contacting the medical provider directly.</p>',

@@ -156,6 +156,23 @@ const useRawWizardStore = create((
     set({ ready: true, ui });
   };
 
+  /**
+   * @param {WizardVars} state
+   * @returns {WizardVars}
+   */
+  function getJumpBackState(state) {
+    return {
+      ...initialWizardState,
+      activity: { type: 'query' },
+      // Preserve loaded stuff
+      allTopics: state.allTopics,
+      ui: state.ui,
+      ready: state.ready,
+    };
+  }
+
+  const jumpBackToQueryPage = () => set((state) => getJumpBackState(state));
+
   const nextPage = () => set((state) => {
     const { activity, answerIdx, displayedTopic } = state;
 
@@ -166,6 +183,10 @@ const useRawWizardStore = create((
       }
 
       const answer = activity.answers[answerIdx];
+      if (answer.next.type === 'start-over') {
+        return getJumpBackState(state);
+      }
+
       return withCapturedHistory({
         answerIdx: null,
         activity: answer.next,
@@ -187,15 +208,6 @@ const useRawWizardStore = create((
       activity: activity.next,
     });
   });
-
-  const jumpBackToQueryPage = () => set((state) => ({
-    ...initialWizardState,
-    activity: { type: 'query' },
-    // Preserve loaded stuff
-    allTopics: state.allTopics,
-    ui: state.ui,
-    ready: state.ready,
-  }));
 
   /** @type {WizardActions['submitRequest']} */
   const submitRequest = async ({ query, topic }) => {

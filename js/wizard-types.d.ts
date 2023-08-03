@@ -83,7 +83,17 @@ declare global {
     titleMid?: string;
   }
 
-  type WizardActivity = WizardIntro | WizardQuery | WizardQuestion | WizardContinue | WizardSummary;
+  type WizardStartOver = {
+    type: 'start-over';
+  }
+
+  type WizardActivity =
+      | WizardIntro
+      | WizardQuery
+      | WizardQuestion
+      | WizardContinue
+      | WizardSummary
+      | WizardStartOver;
 
   type WizardAnswer = {
     /**
@@ -97,7 +107,7 @@ declare global {
     /**
      * The next activity: a question, continue, or the summary
      */
-    next: WizardQuestion | WizardContinue | WizardSummary;
+    next: WizardQuestion | WizardContinue | WizardSummary | WizardStartOver;
   };
 
   type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'numLoading'>;

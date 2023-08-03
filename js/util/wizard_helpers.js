@@ -14,7 +14,7 @@ export function question(titleMid, answers, addendumMid) {
 
 /**
  * @param {string} titleMid
- * @param {WizardQuestion | WizardContinue | WizardSummary} next
+ * @param {WizardAnswer['next']} next
  * @param {string=} newDisplayedTopic
  * @returns {WizardAnswer}
  */
@@ -25,9 +25,9 @@ export function answer(titleMid, next, newDisplayedTopic) {
 /**
  * @param {string} titleMid
  * @param {object} yesNo
- * @param {WizardQuestion | WizardContinue | WizardSummary} yesNo.yes
+ * @param {WizardAnswer['next']} yesNo.yes
  * @param {string=} yesNo.topicIfYes
- * @param {WizardQuestion | WizardContinue | WizardSummary} yesNo.no
+ * @param {WizardAnswer['next']} yesNo.no
  * @param {string=} yesNo.topicIfNo
  * @param {string=} addendumMid
  * @returns {WizardQuestion}
