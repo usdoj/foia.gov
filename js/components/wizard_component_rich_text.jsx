@@ -36,7 +36,9 @@ function RichText({ children = '', html = '', mid }) {
       }
 
       return m0;
-    });
+    })
+      // Rewrite links: Make www.foia.gov links root-relative, so they work on dev sites.
+      .replace(/https:\/\/www\.foia\.gov\//g, '/');
 
     return (
       <div
