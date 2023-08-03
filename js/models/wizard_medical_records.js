@@ -7,7 +7,7 @@ import {
  */
 const medicalRecordsJourney = yesNoQuestion('q1', {
   topicIfYes: 'Your own medical records',
-  topicIfNo: 'Someone else\'s medical records',
+  topicIfNo: 'Someone else’s medical records',
   yes: continueStep(
     'm1',
     yesNoQuestion('q5', {
@@ -45,7 +45,7 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
     'm2',
     yesNoQuestion('q6', {
       topicIfYes: 'Someone else’s VA Medical records',
-      topicIfNo: 'Someone else\'s medical records',
+      topicIfNo: 'Someone else’s medical records',
       yes: summary('m27'),
       no: question(
         'q7',
