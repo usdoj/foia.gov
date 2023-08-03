@@ -12,6 +12,9 @@ import dispatcher from '../util/dispatcher';
 // loaded or, it sits on 100% for longer than it should.
 const GUESS_TOTAL_AGENCY_COMPONENTS = 400;
 
+// To find which agencies are centralized, set to true, and load /agency-search.html
+const DEBUG_CENTRALIZED_AGENCIES = false;
+
 const collator = new Intl.Collator('en');
 
 /**
@@ -70,6 +73,16 @@ class AgencyComponentStore extends Store {
     // Keep an index of centralized agencies for quick lookup
     /** @type {Record<string, true>} */
     const centralizedAgencyIndex = {};
+
+    if (DEBUG_CENTRALIZED_AGENCIES) {
+      const centralized = { centralized: [], multiComponent: [] };
+      this.state.agencies
+        .valueSeq()
+        .forEach((agency) => {
+          centralized[agency.isCentralized() ? 'centralized' : 'multiComponent'].push(agency.name);
+        });
+      console.log({ agencies: centralized });
+    }
 
     return this.state.agencies
       .valueSeq()

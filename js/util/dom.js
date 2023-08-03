@@ -8,3 +8,5 @@
 export function scrollOffset(element) {
   return element.offsetTop + (element.offsetParent ? scrollOffset(element.offsetParent) : 0);
 }
+
+export const titlePrefix = 'FOIA.gov - Freedom of Information Act: ';

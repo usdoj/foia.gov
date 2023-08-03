@@ -202,27 +202,57 @@ const useRawWizardStore = create((
     let isError = false;
     let recommendedAgencies = [];
     let recommendedLinks = [];
+    let effectiveTopic = topic;
 
-    if (query && !topic) {
+    if (query && !effectiveTopic) {
       nudgeLoading(1);
       await fetchWizardPredictions(query)
         .then((data) => {
+          // If a predefined flow is found, we switch to it, but we'll go ahead and populate
+          // the links and agencies anyway.
+          const { flow } = data.model_output.predefined_flow || {};
+          if (typeof flow === 'string') {
+            effectiveTopic = allTopics.find(
+              (el) => el.title.toUpperCase() === flow.toUpperCase(),
+            );
+          }
+
+          // Used to avoid agency duplicates.
           const ids = new Set();
-          recommendedAgencies = data.model_output.agency_mission_match
-            .map(normalizeScore)
-            .filter((agency) => {
-              if (agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES) {
+
+          // If name match, always include it.
+          recommendedAgencies = (data.model_output.agency_name_match || [])
+            .map((agency) => {
+              ids.add(agency.id);
+              // Show at the top.
+              agency.confidence_score = 9999;
+              return agency;
+            });
+
+          // Match from mission if above threshold.
+          recommendedAgencies.push(
+            ...data.model_output.agency_mission_match
+              .map(normalizeScore)
+              .filter((agency) => {
+                if (ids.has(agency.id) || agency.confidence_score < CONFIDENCE_THRESHOLD_AGENCIES) {
+                  return false;
+                }
                 ids.add(agency.id);
                 return true;
-              }
-              return false;
-            });
+              }),
+          );
+
+          // Match from finder if above threshold.
           recommendedAgencies.push(
             ...data.model_output.agency_finder_predictions[0]
               .map(normalizeScore)
-              .filter(
-                (agency) => !ids.has(agency.id) && agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES,
-              ),
+              .filter((agency) => {
+                if (ids.has(agency.id) || agency.confidence_score < CONFIDENCE_THRESHOLD_AGENCIES) {
+                  return false;
+                }
+                ids.add(agency.id);
+                return true;
+              }),
           );
 
           // DESC score order
@@ -240,13 +270,13 @@ const useRawWizardStore = create((
     }
 
     set(withCapturedHistory({
-      activity: topic ? topic.journey : { type: 'summary' },
-      displayedTopic: topic ? topic.title : '',
+      activity: effectiveTopic ? effectiveTopic.journey : { type: 'summary' },
+      displayedTopic: effectiveTopic ? effectiveTopic.title : '',
       query,
       recommendedLinks,
       recommendedAgencies,
       isError,
-      userTopic: topic,
+      userTopic: effectiveTopic,
     }));
   };
 

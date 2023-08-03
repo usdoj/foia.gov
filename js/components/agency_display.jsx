@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 import AgencyComponentPreview from 'components/agency_component_preview';
 import AgencyPreview from 'components/agency_preview';
+import AgencyRequestWritingTips from 'components/agency_request_writing_tips';
 import agencyComponentStore from '../stores/agency_component';
 import { pushUrl } from '../util/use_url';
+import { titlePrefix } from '../util/dom';
 import { requestActions } from '../actions';
-import AgencyRequestWritingTips from './agency_request_writing_tips';
 
 function jumpToUrl(id, type) {
   const params = new URLSearchParams({ id, type });
@@ -104,6 +105,7 @@ class AgencyDisplay extends Component {
   }
 
   setStateForAgency(agency, agencyComponentsForAgency) {
+    document.title = titlePrefix + agency.name;
     this.setState({
       agency,
       agencyComponent: null,
@@ -115,6 +117,8 @@ class AgencyDisplay extends Component {
   }
 
   setStateForComponent(agencyComponent, isCentralized = false) {
+    const title = isCentralized ? agencyComponent.agency.name : agencyComponent.title;
+    document.title = titlePrefix + title;
     this.setState({
       agency: null,
       agencyComponent,

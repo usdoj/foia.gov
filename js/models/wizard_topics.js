@@ -13,7 +13,7 @@ const allTopics = [
     tid: 't1', title: 'Immigration records', journey: immigrationRecordsJourney,
   },
   {
-    tid: 't2', title: 'Travel Records', journey: travelRecordsJourney,
+    tid: 't2', title: 'Travel records', journey: travelRecordsJourney,
   },
   {
     tid: 't3', title: 'IRS records', journey: irsRecordsJourney,
