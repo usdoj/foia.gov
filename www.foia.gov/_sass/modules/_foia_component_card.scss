@@ -29,6 +29,10 @@
   &::before {
     content: unset;
   }
+
+  + .foia-component-card--alt {
+    margin-top: 2rem;
+  }
 }
 
 .foia-component-card__tag {
