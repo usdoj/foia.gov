@@ -7,37 +7,60 @@ import {
  */
 const militaryRecordsJourney = question('q10', [
   answer(
-    'literal:Current',
+    'a22',
     yesNoQuestion('q11', {
-      topicIfYes: 'Military records, Current, active duty status',
+      topicIfYes: 'Active duty status of a military servicemember',
       topicIfNo: 'Military records, Current, not active duty',
       yes: summary('m36'),
       no: yesNoQuestion('q1', {
-        topicIfYes: 'Military records, Current, your own',
-        topicIfNo: 'Military records, Current, someone else\'s',
+        topicIfYes: 'Your own current active duty or reserve military servicemember records',
+        topicIfNo: 'Someone else’s current active duty or reserve military servicemember records',
         yes: continueStep('m1', summary('m37')),
         no: continueStep('m2', summary('m38')),
       }),
     }),
-    'Military records, Current',
+    'Current active duty or reserve military servicemember records',
   ),
   answer(
-    'literal:Former',
+    'a23',
     yesNoQuestion('q1', {
-      topicIfYes: 'Military records, former, your own',
-      topicIfNo: 'Military records, former, someone else\'s',
+      topicIfYes: 'Your own retired or former military servicemember Records',
+      topicIfNo: 'Someone else’s retired or former military servicemember records',
       yes: continueStep(
         'm1',
         question(
           'q12',
           [
-            answer('literal:OMPF', summary('m39'), 'Your own former military records: OMPF'),
-            answer('literal:Medical Records', summary('m25'), 'Your own former military records: Medical Records'),
-            answer('literal:DD Form 214 (Report of Separation)', summary('m40'), 'Your own former military records: DD Form 214 (Report of Separation)'),
-            answer("literal:Veteran's Benefits", summary('m41'), 'Your own former military records: Veteran\'s Benefits'),
-            answer('literal:National Guard', summary('m42'), 'Your own former military records: National Guard'),
+            answer(
+              'literal:Official Military Personnel File (OMPF)',
+              summary('m39'),
+              'Official Military Personnel File (OMPF)',
+            ),
+            answer(
+              'literal:Medical Records',
+              summary('m25'),
+              'Medical Records',
+            ),
+            answer(
+              'literal:DD Form 214 (Report of Separation)',
+              summary('m40'),
+              'DD Form 214 (Report of Separation)',
+            ),
+            answer(
+              "literal:Veteran's Benefits",
+              summary('m41'),
+              'Veteran’s Benefits',
+            ),
+            answer(
+              'literal:National Guard Records',
+              summary('m42'),
+              'National Guard Records',
+            ),
+            answer(
+              'literal:None of the above (I want to start over)',
+              { type: 'start-over' },
+            ),
           ],
-          'literal:<p>For other information, we suggest you contact your medical provider directly.</p>',
         ),
       ),
       no: continueStep(
@@ -45,17 +68,40 @@ const militaryRecordsJourney = question('q10', [
         question(
           'q12',
           [
-            answer('literal:OMPF', summary('m43'), 'Someone else\'s former military records: OMPF'),
-            answer('literal:Medical Records', summary('m27'), 'Someone else\'s former military records: Medical Records'),
-            answer('literal:DD Form 214 (Report of Separation)', summary('m44'), 'Someone else\'s former military records: DD Form 214 (Report of Separation)'),
-            answer("literal:Veteran's Benefits", summary('m45'), 'Someone else\'s former military records: Veteran\'s Benefits'),
-            answer('literal:National Guard', summary('m46'), 'Someone else\'s former military records: National Guard'),
+            answer(
+              'literal:Official Military Personnel File (OMPF)',
+              summary('m43'),
+              'Official Military Personnel File (OMPF)',
+            ),
+            answer(
+              'literal:Medical Records',
+              summary('m27'),
+              'Medical Records',
+            ),
+            answer(
+              'literal:DD Form 214 (Report of Separation)',
+              summary('m44'),
+              'DD Form 214 (Report of Separation)',
+            ),
+            answer(
+              "literal:Veteran's Benefits",
+              summary('m45'),
+              'Veteran’s Benefits',
+            ),
+            answer(
+              'literal:National Guard Records',
+              summary('m46'),
+              'National Guard Records',
+            ),
+            answer(
+              'literal:None of the above (I want to start over)',
+              { type: 'start-over' },
+            ),
           ],
-          'literal:<p>For other information, we suggest contacting the medical provider directly.</p>',
         ),
       ),
     }),
-    'Military records, Former',
+    'Retired or Former Military Servicemember Records',
   ),
 ]);
 
