@@ -36,7 +36,7 @@ const personnelRecordsJourney = question('q8', [
   ),
 
   answer(
-    'literal:None of the above (I want to start over)',
+    'startOver',
     { type: 'start-over' },
   ),
 ]);

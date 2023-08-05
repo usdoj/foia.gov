@@ -57,7 +57,7 @@ const socsecRecordsJourney = {
               next: { type: 'summary', titleMid: 'm22' },
             },
             {
-              titleMid: 'literal:None of the above (I want to start over)',
+              titleMid: 'startOver',
               next: { type: 'start-over' },
             },
           ],
