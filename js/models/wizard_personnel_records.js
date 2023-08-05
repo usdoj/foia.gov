@@ -8,24 +8,37 @@ import {
  */
 const personnelRecordsJourney = question('q8', [
   answer(
-    'literal:Civilian',
+    'literal:Civilian personnel or retirement service history records',
     yesNoQuestion('q1', {
-      topicIfYes: 'Personnel records, Civilian, your own',
-      topicIfNo: 'Personnel records, Civilian, someone else\'s',
+      topicIfYes: 'Your own civilian  personnel or retirement service history record',
+      topicIfNo: 'Someone else’s civilian personnel or retirement service history record',
       yes: question('q9', [
-        answer('literal:Current', summary('m31'), 'Your own Civilian Personnel Records, Current Employee'),
-        answer('literal:Former', summary('m32'), 'Your own Civilian Personnel Records, Former Employee'),
+        answer('literal:Current', summary('m31'), 'Your own civilian personnel or retirement service history record - current employee'),
+        answer('literal:Former', summary('m32'), 'Your own civilian personnel or retirement service history record - former employee'),
       ]),
       no: continueStep('m2', summary('m33')),
     }),
-    'Personnel Records, Civilian',
+    'Civilian personnel or retirement service history record',
   ),
 
-  answer('literal:Military', militaryRecordsJourney),
+  answer('literal:Military personnel records', militaryRecordsJourney),
 
-  answer('literal:Background investigations', summary('m34'), 'Background investigations'),
+  answer(
+    'literal:Background investigation and security clearance records',
+    summary('m34'),
+    'Background investigation and security clearance records',
+  ),
 
-  answer('literal:Federal Employment', summary('m35'), 'Federal Employment'),
+  answer(
+    'literal:Federal employment recruiting, examining, and placement records',
+    summary('m35'),
+    'Federal employment recruiting, examining, and placement records',
+  ),
+
+  answer(
+    'literal:None of the above (I want to start over)',
+    { type: 'start-over' },
+  ),
 ]);
 
 export default personnelRecordsJourney;

@@ -9,13 +9,25 @@ const socsecRecordsJourney = {
   answers: [
     {
       titleMid: 'a1',
-      newDisplayedTopic: 'My Social Security records',
+      newDisplayedTopic: 'Your own Social Security records',
       next: {
         type: 'continue',
         titleMid: 'm1',
         next: {
-          type: 'summary',
-          titleMid: 'm19',
+          type: 'question',
+          titleMid: 'q4',
+          answers: [
+            {
+              titleMid: 'a20',
+              newDisplayedTopic: `Your own ${extraMessages.a20}`,
+              next: { type: 'summary', titleMid: 'm47' },
+            },
+            {
+              titleMid: 'a21',
+              next: { type: 'summary', titleMid: 'm19' },
+
+            },
+          ],
         },
       },
     },
@@ -43,6 +55,10 @@ const socsecRecordsJourney = {
               titleMid: 'a20',
               newDisplayedTopic: `Someone else's ${extraMessages.a20}`,
               next: { type: 'summary', titleMid: 'm22' },
+            },
+            {
+              titleMid: 'literal:None of the above (I want to start over)',
+              next: { type: 'start-over' },
             },
           ],
         },
