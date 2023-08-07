@@ -55,7 +55,7 @@
   word-break: break-word;
 
   &::after {
-    .foia-component-card--alt & {
+    .foia-component-card--alt--ext & {
       align-self: center;
       background-image: url($icon-external-link-white);
       background-repeat: no-repeat;
