@@ -57,7 +57,7 @@ const militaryRecordsJourney = question('q10', [
               'National Guard Records',
             ),
             answer(
-              'literal:None of the above (I want to start over)',
+              'startOver',
               { type: 'start-over' },
             ),
           ],
@@ -94,7 +94,7 @@ const militaryRecordsJourney = question('q10', [
               'National Guard Records',
             ),
             answer(
-              'literal:None of the above (I want to start over)',
+              'startOver',
               { type: 'start-over' },
             ),
           ],

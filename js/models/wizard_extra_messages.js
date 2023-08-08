@@ -21,8 +21,8 @@ const extraMessages = {
   a3: 'A-File',
   a4: 'A-Number',
   a5: 'Naturalization Certificate',
-  a6: 'Records of apprehension, detention, deportation, legal international travel, illegal attempted entry, expedited removal, voluntary removal, or inspections by Customs and Border Protection',
-  a7: 'Student and Exchange Visitor System Records, medical or other records while someone was detained, bond obligator and investigation records by Immigration Customs Enforcement',
+  a6: 'Records of apprehension, detention, deportation, legal international travel, illegal attempted entry, expedited removal, voluntary removal, or inspections by Customs and Border Protection (CBP)',
+  a7: 'Student and Exchange Visitor System Records, medical or other records while someone was detained, bond obligator and investigation records by Immigration Customs Enforcement (ICE)',
   a8: 'International Travel Records, including Global Entry and travel history',
   a9: 'Domestic travel records',
   a10: 'Passenger Name Records, which contains certain travel reservation data on individuals',
@@ -44,6 +44,7 @@ const extraMessages = {
   loading: '<p>Loading...</p>',
   lookingFor: 'Okay, you’re looking for:',
   youSelected: 'You selected:',
+  startOver: 'None of the Above (I want to start over)',
 };
 
 export default extraMessages;

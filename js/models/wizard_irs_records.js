@@ -23,7 +23,7 @@ const irsTypeQuestion = question('q1', [
     extraMessages.a17,
   ),
   answer(
-    'literal:None of the Above (I want to start over)',
+    'startOver',
     { type: 'start-over' },
   ),
 ]);

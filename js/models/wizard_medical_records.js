@@ -11,8 +11,8 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
   yes: continueStep(
     'm1',
     yesNoQuestion('q5', {
-      topicIfYes: 'My medical records, veteran',
-      topicIfNo: 'My medical records, civilian',
+      topicIfYes: 'Your own VA records',
+      topicIfNo: 'Your own medical records',
       yes: summary('m23'),
       no: question(
         'q7',
@@ -33,7 +33,7 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
             'Your own Indian Health Service participant records',
           ),
           answer(
-            'literal:None of the Above (I want to start over)',
+            'startOver',
             { type: 'start-over' },
           ),
         ],

@@ -27,6 +27,10 @@ function createJourney(coreTopic) {
       answer('a13', summary('m13'), extraMessages.a13),
       answer('a14-1', summary('m14'), extraMessages['a14-1']),
       answer('a14-2', summary('m15'), extraMessages['a14-2']),
+      answer(
+        'startOver',
+        { type: 'start-over' },
+      ),
     ],
   );
 
