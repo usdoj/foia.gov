@@ -48,13 +48,11 @@ steps:
     branches:
       - "!develop"
       - "!main"
-      - "!uat-forumone"
-      - "!buildkite"
     retry:
       manual:
         permit_on_passed: true
     command:
-      - "docker build --build-arg APP_ENV=platform -t ${ECR_NAMESPACE}:${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_COMMIT} ${DOCKERFILE_LOCATION}"
+      - "docker build --target-artifact -t ${ECR_NAMESPACE}:${BUILDKITE_PIPELINE_SLUG}-${BUILDKITE_COMMIT} ${DOCKERFILE_LOCATION}"
     plugins:
       - *aws-sm
 
@@ -65,8 +63,6 @@ steps:
     branches:
       - "develop"
       - "main"
-      - "uat-forumone"
-      - "buildkite"
     retry:
       manual:
         permit_on_passed: true
