@@ -79,8 +79,14 @@ export function convertSomeLinksToCards(html) {
       // No modification
       return m0;
     }
+
+    function extClass() {
+    // If the link goes outside the foia domain, add an extra class name
+      return (linkOpenTag.startsWith('<a href="https://www.foia.gov')) ? '' : 'foia-component-card--alt--ext';
+    }
+
     return `
-      <div class="foia-component-card foia-component-card--alt">
+      <div class="foia-component-card foia-component-card--alt ${extClass()}">
         ${linkOpenTag}
           <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
         </a>
