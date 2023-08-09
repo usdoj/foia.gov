@@ -1,0 +1,457 @@
+// Colors
+$color-green-warm: #f5fbc1;
+
+// Icons
+$icon-checkbox-unchecked: '/img/icon-checkbox-unchecked.svg';
+$icon-checkbox-checked: '/img/icon-checkbox-checked.svg';
+$icon-radio-unchecked: '/img/icon-radio-unchecked.svg';
+$icon-radio-checked: '/img/icon-radio-checked.svg';
+$icon-check-circle-green: '/img/icon-check-circle-green.svg';
+$icon-chevron-left: '/img/icon-chevron-left.svg';
+
+
+// App Container Layout
+.w-layout-app-container {
+  background-color: $color-primary-darkest;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+// Constrain Layout
+.w-layout-constrain {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1168px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media screen and (min-width: 1024px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  // Just in case .l-constrain is nested within another .l-constrain.
+  & & {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.w-layout-constrain--x-small {
+  max-width: 664px;
+}
+
+.w-layout-constrain--small {
+  max-width: 864px;
+}
+
+.w-layout-constrain--medium {
+  max-width: 1112px;
+}
+
+.w-layout-constrain--large {
+  max-width: 1464px;
+}
+
+.w-layout-constrain--x-large {
+  max-width: 1800px;
+}
+
+.w-layout-constrain--no-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// Header Layout
+.w-layout-header__upper {
+  padding-bottom: 36px;
+  padding-top: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.w-layout-header__lower {
+  padding-bottom: 16px;
+  padding-top: 4px;
+}
+
+// Back Link Component
+.w-component-back-link {
+  background-color: unset;
+  color: $color-white;
+  display: inline;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: initial;
+  line-height: initial;
+  margin: 0;
+  padding: unset;
+  padding-left: 18px;
+  position: relative;
+  text-align: unset;
+
+  &:hover {
+    background-color: unset;
+  }
+
+  &:visited {
+    color: $color-white;
+  }
+
+  &::before {
+    background-image: url($icon-chevron-left);
+    background-repeat: no-repeat;
+    content: '';
+    height: 14px;
+    left: 0;
+    position: absolute;
+    top: 4px;
+    width: 14px;
+  }
+}
+
+// Body Text Component
+.w-component-body-text {
+  color: $color-white;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 1.5rem 0;
+  max-width: unset;
+  
+  .w-component-modal--alt & {
+    font-weight: 400;
+  }
+}
+
+// Form Item Component
+.w-component-form-item {
+  margin-bottom: 3rem;
+}
+
+.w-component-form-item__label {
+  color: $color-white;
+  font-size: 28px;
+  margin-bottom: 24px;
+  max-width: none;
+}
+
+.w-component-form-item--text,
+.w-component-form-item--textarea {
+  .w-component-form-item__element {
+    border: 0;
+    color: $color-gray-dark;
+    font-size: 22px;
+    max-width: 100%;
+    padding: 24px 22px;
+
+    &::placeholder {
+      color: inherit;
+      font-size: inherit;
+    }
+  }
+}
+
+.w-component-form-item--textarea {
+  .w-component-form-item__element {
+    height: 142px;
+  }
+}
+
+.w-component-form-item--checkbox {
+  .w-component-form-item__label {
+    &::before {
+      background-color: transparent;
+      background-image: url($icon-checkbox-unchecked);
+      background-repeat: no-repeat;
+      background-size: 30px;
+      box-shadow: unset;
+      content: '\a0';
+      display: inline-block;
+      height: 30px;
+      margin-right: 28px;
+      text-indent: 0.15em;
+      top: -3px;
+      vertical-align: middle;
+      width: 30px;
+    }
+  }
+
+  .w-component-form-item__element {
+    &:checked {
+      + .w-component-form-item__label {
+        &::before {
+          background-color: transparent;
+          background-image: url($icon-checkbox-checked);
+        }
+      }
+    }
+  }
+}
+
+.w-component-form-item--radio {
+  .w-component-form-item__label {
+    &::before {
+      background-color: transparent;
+      background-image: url($icon-radio-unchecked);
+      background-repeat: no-repeat;
+      background-size: 30px;
+      box-shadow: unset;
+      content: '\a0';
+      cursor: pointer;
+      height: 30px;
+      margin-right: 28px;
+      outline: none;
+      position: relative;
+      top: -3px;
+      vertical-align: middle;
+      width: 30px;
+    }
+  }
+
+  .w-component-form-item__element {
+    &:checked {
+      + .w-component-form-item__label {
+        &::before {
+          background-color: transparent;
+          background-image: url($icon-radio-checked);
+        }
+      }
+    }
+  }
+}
+
+// Heading Component
+.w-component-heading {
+  color: $color-white;
+  font-size: 60px;
+  font-weight: 400;
+}
+
+// Button Component
+.w-component-button {
+  background-color: $color-primary-alt-lightest !important;
+}
+
+.w-component-button--link {
+  background-color: unset;
+  border-bottom: 1px solid;
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    border-bottom-color: transparent;
+  }
+}
+
+// Logo Component
+.w-component-logo {
+  float: unset;
+}
+
+.w-component-logo__link {
+  gap: 1rem;
+}
+
+.w-component-logo__text {
+  color: $color-white;
+  font-weight: 400;
+}
+
+// Pill Component
+.w-component-pill {
+  background-color: $color-white;
+  border-radius: 10px;
+  color: $color-primary-darkest;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 20px;
+
+  &:hover,
+  &:focus {
+    background-color: $color-gray-light;
+    color: inherit;
+  }
+
+  &[data-selected='1'] {
+    background-color: $color-green-warm;
+    position: relative;
+
+    &::after {
+      background-color: $color-primary-darkest;
+      background-image: url($icon-check-circle-green);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 31px;
+      border-radius: 50%;
+      content: '';
+      height: 28px;
+      position: absolute;
+      right: -7px;
+      top: -12px;
+      width: 28px;
+    }
+  }
+}
+
+// Pill Group Component
+.w-component-pill-group {
+  margin-bottom: 3rem;
+}
+
+.w-component-pill-group__label {
+  color: $color-white;
+  display: inline;
+  font-size: 18px;
+  margin-right: 30px;
+}
+
+.w-component-pill-group__list {
+  display: inline;
+
+  > * {
+    margin-bottom: 15px;
+    margin-right: 30px;
+    margin-top: 15px;
+  }
+}
+
+// Submit button
+.w-component-submit {
+  display: flex;
+  align-items: baseline;
+}
+
+// Last Steps
+.w-component-last-steps {
+  margin-block-start: 7rem;
+}
+
+// Modal Component
+.w-component-modal__overlay {
+  background-color: #{$color-gray-light}99;
+  inset: 0px;
+  position: fixed;
+}
+
+.w-component-modal__content {
+  background: $color-blue-light;
+  bottom: auto;
+  inset: 50% auto auto 50%;
+  left: 50%;
+  margin-right: -50%;
+  max-width: 1168px;
+  min-height: 65%;
+  outline: none;
+  overflow: auto;
+  padding: 50px;
+  position: absolute;
+  right: auto;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .w-component-modal--alt & {
+    min-height: 25%;
+  }
+}
+
+.w-component-modal__close-button {
+  text-align: right;
+
+  button {
+    background-color: transparent;
+    background-image: url($icon-close-button-white);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 28px;
+    height: 28px;
+    margin: 0;
+    padding: 0;
+    width: 28px;
+  }
+}
+
+.w-component-modal__title {
+  color: $color-white;
+  font-size: 32px;
+  margin-top: 0;
+
+  .w-component-modal--alt & {
+    font-family: $font-serif;
+  }
+}
+
+// Rich Text Component
+.w-component-rich-text {
+  color: $color-white;
+
+  a:any-link {
+    color: $color-primary-alt;
+  }
+  a:visited {
+    color: $color-primary-alt-lightest;
+  }
+
+  p,
+  li,
+  h1,
+  h2,
+  h3,
+  div {
+    color: inherit;
+    max-width: none;
+  }
+
+  h1 {
+    font-size: 44px;
+    font-weight: 400;
+  }
+
+  h2:not(.foia-component-card__title) {
+    font-family: $font-serif;
+    font-size: 40px;
+    font-weight: 400;
+  }
+
+  h3 {
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  p,
+  li,
+  blockquote {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 1.5rem 0;
+
+    &:last-child {
+      margin-bottom: 3rem;
+    }
+  }
+
+  ol, ul {
+    padding-left: 3rem;
+  }
+
+  blockquote {
+    margin-block-end: 7rem;
+  }
+}
+
+.w-legend {
+  font-family: $font-serif;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1.2;
+}
+
+.w-component-intro {
+  p {
+    font-size: 24px;
+  }
+}

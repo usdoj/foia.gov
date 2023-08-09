@@ -7,8 +7,11 @@
 // visual design
 @import "foia-legacy.css";
 
-// USWDS
+// USWDS 1.x
 @import "uswds";
+
+// .usa-icon from USWDS 3.2.0
+@import "uswds3.2.0";
 
 // SMACSS https://smacss.com/
 @import "base";

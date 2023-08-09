@@ -1,14 +1,17 @@
 const assert = require('assert');
 const path = require('path');
+const { existsSync } = require('fs');
 const webpack = require('webpack');
 const exec = require('child_process').exec;
 const WebpackWatchPlugin = require('webpack-watch-files-plugin').default;
 
-const env = 'development';
-assert(['local', 'cloud-gov', 'development', 'staging', 'uat', 'production', 'ddev'].includes(env), `${env} is not an acceptable environment.`);
+const env = process.env.APP_ENV || 'development';
+const settings$ = path.join(__dirname, 'js', 'settings', `${env}.js`);
+
+assert(existsSync(settings$), `${env} is not an acceptable environment.`);
 
 module.exports = {
-  mode: env,
+  mode: 'development',
   devtool: 'eval-source-map',
   watchOptions: {
     ignored: /node_modules/,
@@ -50,6 +53,8 @@ module.exports = {
     annual_report_data: './js/annual_report_data.jsx',
     quarterly_report_data: './js/quarterly_report_data.jsx',
     chief_foia_officers_council: './js/chief_foia_officers_council.jsx',
+    wizard: './js/wizard.jsx',
+    agency_search: './js/agency_search.jsx',
   },
   output: {
     path: path.resolve(__dirname, 'www.foia.gov/assets/js'),
@@ -84,7 +89,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
     modules: [path.join(__dirname, 'js'), 'node_modules'],
     alias: {
-      settings$: path.join(__dirname, 'js', 'settings', `${env}.js`),
+      settings$,
     },
   },
 };

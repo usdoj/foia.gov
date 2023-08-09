@@ -14,7 +14,16 @@ function getGlossary() {
 document.addEventListener('DOMContentLoaded', () => {
   localApi.glossary()
     .then((terms) => {
-      glossary = new Glossary(terms, selectors, classes);
+      // Current template may not have glossary markup.
+      try {
+        glossary = new Glossary(terms, selectors, classes);
+      } catch (e) {
+        if (e.toString().includes("null (reading 'querySelector')")) {
+          // Markup wasn't on page. Just ignore.
+        } else {
+          console.error(e);
+        }
+      }
     });
 });
 

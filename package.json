@@ -8,8 +8,10 @@
     "build": "webpack",
     "lint": "eslint --ext jsx,js js/",
     "test": "mochapack --webpack-config webpack.config.test.js js/**.test.js*",
-    "serve:watch": "APP_ENV=development webpack --watch --progress --config webpack.config.dev.js",
-    "serve:dev": "APP_ENV=development make serve.dev"
+    "serve:watch": "webpack --watch --progress --config webpack.config.dev.js",
+    "serve:dev": "make serve.dev",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "repository": {
     "type": "git",
@@ -60,13 +62,18 @@
     "tooltip.js": "1.x",
     "typeahead.js": "0.x",
     "url": "0.x",
-    "uswds": "1.x"
+    "uswds": "1.x",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
-    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-env": "^7.21.5",
     "@babel/preset-react": "^7.22.3",
+    "@babel/preset-typescript": "^7.21.5",
     "@cucumber/cucumber": "^9.1.0",
+    "@storybook/react": "^7.0.6",
+    "@storybook/react-webpack5": "^7.0.17",
+    "@types/node": "^20.1.7",
     "babel-loader": "9.x",
     "btoa": "^1.2.1",
     "buffer": "^6.0.3",
@@ -89,6 +96,7 @@
     "react-test-renderer": "16.x",
     "sinon": "^15.0.3",
     "sinon-chai": "3.x",
+    "storybook": "^7.0.17",
     "stream-browserify": "^3.0.0",
     "style-loader": "^3.3.2",
     "webpack": "^5.85.0",

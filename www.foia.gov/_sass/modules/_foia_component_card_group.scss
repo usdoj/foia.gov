@@ -1,0 +1,40 @@
+.foia-component-card-group {
+  ul {
+    padding-left: 0 !important;
+  }
+}
+
+.foia-component-card-group__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.4rem;
+  list-style: none;
+  position: relative;
+  z-index: 0;
+
+  .foia-component-card-group--alt & {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 2.4rem;
+  }
+
+  > * {
+    flex-basis: 100%;
+
+    @media screen and (min-width: $medium-screen) {
+      flex-basis: calc((100% - 3.4rem) / 2);
+    }
+
+    @media screen and (min-width: $medium-large-screen) {
+      flex-basis: calc((100% - 6.8rem) / 3);
+    }
+  }
+
+  li {
+    > * {
+      height: 100%;
+    }
+  }
+}
+
+

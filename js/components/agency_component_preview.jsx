@@ -7,13 +7,19 @@ import NonInteroperableInfo from './non_interoperable_info';
 import { AgencyComponent } from '../models';
 import domify from '../util/request_form/domify';
 
-function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized }) {
+function AgencyComponentPreview({
+  onAgencySelect, agencyComponent, isCentralized, setShowTips, setDestinationHref,
+}) {
   const description = AgencyComponent.agencyMission(agencyComponent);
   const requestUrl = `/request/agency-component/${agencyComponent.id}/`;
+  const recordsHeld = (agencyComponent.field_commonly_requested_records || '')
+    .split(/\r?\n/)
+    .map((el) => el.trim())
+    .filter((el) => el !== '');
   const onSelect = () => onAgencySelect(agencyComponent.agency);
 
   return (
-    <div className="agency-preview usa-grid-full">
+    <div className="agency-preview usa-grid-full use-dark-icons">
       <div className="usa-width-one-whole">
         {
           !isCentralized && (
@@ -47,6 +53,16 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         <ContactInformation agencyComponent={agencyComponent} />
       </div>
       <div className="usa-width-one-half start-request-container">
+        {recordsHeld.length > 0 && (
+          <div>
+            <h4>Records that we hold</h4>
+            <ul>
+              {recordsHeld.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         { agencyComponent.request_data_year
           && <AgencyComponentProcessingTime agencyComponent={agencyComponent} />}
         <div className="agency-info_reading-rooms">
@@ -75,12 +91,15 @@ function AgencyComponentPreview({ onAgencySelect, agencyComponent, isCentralized
         </div>
         { agencyComponent.request_form
           && (
-          <a
-            className="usa-button usa-button-primary start-request"
-            href={requestUrl}
-          >
-            Start FOIA request
-          </a>
+            <button
+              className="usa-button usa-button-big usa-button-primary-alt start-request"
+              onClick={() => {
+                setShowTips(true);
+                setDestinationHref(requestUrl);
+              }}
+            >
+              Continue the FOIA request process
+            </button>
           )}
       </div>
     </div>
@@ -91,6 +110,8 @@ AgencyComponentPreview.propTypes = {
   onAgencySelect: PropTypes.func.isRequired,
   agencyComponent: PropTypes.object.isRequired,
   isCentralized: PropTypes.bool.isRequired,
+  setShowTips: PropTypes.func.isRequired,
+  setDestinationHref: PropTypes.func.isRequired,
 };
 
 export default AgencyComponentPreview;

@@ -25,6 +25,9 @@ class Agency extends Record(defaults) {
   // fires. If you use it before then, it is not accurate. This is because we
   // can't determine if an agency is centralized until we fetch _all_ agency
   // components so that we can count them.
+  //
+  // See DEBUG_CENTRALIZED_AGENCIES in js/stores/agency_component.js if you want
+  // to get a list of which are/are not centralized.
   isCentralized() {
     return this.component_count === 1;
   }

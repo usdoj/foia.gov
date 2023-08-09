@@ -1,0 +1,307 @@
+{
+	"model_id": "ZBA2ow0",
+	"model_version_id": "qzkl7pq",
+	"model_output": {
+		"agency_finder_predictions": [
+			[
+				{
+					"agency": "U.S. Immigration & Customs Enforcement",
+					"agency_abbrev": "ICE",
+					"confidence_score": 0.6351757049560547,
+					"url": "https://www.foia.gov/?id=66ee3d65-8282-4f24-8acb-dc0eb1a30080&type=component"
+				},
+				{
+					"agency": "Transportation Security Administration",
+					"agency_abbrev": "TSA",
+					"confidence_score": 0.23801088333129883,
+					"url": "https://www.foia.gov/?id=79dd660b-9fe5-412d-8d85-7b2975ebeab6&type=component"
+				},
+				{
+					"agency": "U.S. Customs & Border Protection",
+					"agency_abbrev": "CBP",
+					"confidence_score": 0.05913970619440079,
+					"url": "https://www.foia.gov/?id=33a1c54c-5548-4917-9575-bbf66fb4b524&type=component"
+				},
+				{
+					"agency": "Federal Emergency Management Agency",
+					"agency_abbrev": "FEMA",
+					"confidence_score": 0.04178136587142944,
+					"url": "https://www.foia.gov/?id=716e47df-ec30-4748-9b53-0055746b9490&type=component"
+				},
+				{
+					"agency": "United States Secret Service",
+					"agency_abbrev": "SCRTSRVC",
+					"confidence_score": 0.00922448467463255,
+					"url": "https://www.foia.gov/?id=22c9d344-1219-4ee1-8362-2294cb3d3687&type=component"
+				},
+				{
+					"agency": "Federal Protective Service",
+					"agency_abbrev": "FPS",
+					"confidence_score": 0.005861722398549318,
+					"url": "https://www.foia.gov/?id=18cd4af9-f703-448f-a4ce-042d812c184a&type=component"
+				},
+				{
+					"agency": "Office of the Inspector General",
+					"agency_abbrev": "OIG",
+					"confidence_score": 0.004442992620170116,
+					"url": "https://www.foia.gov/?id=79f3c267-7c29-439e-ac2b-61c9580d5a0e&type=component"
+				},
+				{
+					"agency": "Federal Law Enforcement Training Center",
+					"agency_abbrev": "FLETC",
+					"confidence_score": 0.0031763736624270678,
+					"url": "https://www.foia.gov/?id=7338c5c3-6925-4e3d-af04-0a06d4cea69f&type=component"
+				},
+				{
+					"agency": "Cybersecurity and Information Security Agency",
+					"agency_abbrev": "CISA",
+					"confidence_score": 0.0014476575888693333,
+					"url": "https://www.foia.gov/?id=f0e92737-fb97-42b8-85dd-c3374a879a0a&type=component"
+				},
+				{
+					"agency": "Office of Intelligence & Analysis",
+					"agency_abbrev": "IA",
+					"confidence_score": 0.0011302456259727478,
+					"url": "https://www.foia.gov/?id=f62c90b9-47e5-4422-83ca-ce5de18d4bfb&type=component"
+				},
+				{
+					"agency": "Science and Technology Directorate",
+					"agency_abbrev": "ST",
+					"confidence_score": 0.0003222505620215088,
+					"url": "https://www.foia.gov/?id=79f3c267-7c29-439e-ac2b-61c9580d5a0e&type=component"
+				},
+				{
+					"agency": "Office for Civil Rights and Civil Liberties",
+					"agency_abbrev": "CRCL",
+					"confidence_score": 0.00017391295114066452,
+					"url": "https://www.foia.gov/?id=b414fee6-d1b8-437a-b531-b0a66b6146c8&type=component"
+				},
+				{
+					"agency": "Office of Biometric Identity Management",
+					"agency_abbrev": "OBIM",
+					"confidence_score": 0.00006276750355027616,
+					"url": "https://www.foia.gov/?id=9139eccc-875f-4464-827b-3f0ef02b94d7&type=component"
+				},
+				{
+					"agency": "Drug Enforcement Administration",
+					"agency_abbrev": "DEA",
+					"confidence_score": 0.000030299919671961106,
+					"url": "https://www.foia.gov/?id=14312511-62da-4141-882b-7b2f64a2f1d1&type=component"
+				},
+				{
+					"agency": "U.S. Coast Guard",
+					"agency_abbrev": "USCG",
+					"confidence_score": 0.000018704839021665975,
+					"url": "https://www.foia.gov/?id=52ca77d2-005e-4231-9206-a2e7201a27e9&type=component"
+				},
+				{
+					"agency": "Management Directorate",
+					"agency_abbrev": "MGMT",
+					"confidence_score": 8.634112873551203e-7,
+					"url": "https://www.foia.gov/?id=79f3c267-7c29-439e-ac2b-61c9580d5a0e&type=component"
+				},
+				{
+					"agency": "Office of Homeland Security Situational Awareness",
+					"agency_abbrev": "OPS",
+					"confidence_score": 6.311230293931658e-8,
+					"url": "https://www.foia.gov/?id=79f3c267-7c29-439e-ac2b-61c9580d5a0e&type=component"
+				},
+				{
+					"agency": "Office of Information Policy",
+					"agency_abbrev": "OIP",
+					"confidence_score": 2.918333283363772e-11,
+					"url": "https://www.foia.gov/?id=8216158f-8089-431d-b866-dc334e8d4758&type=component"
+				},
+				{
+					"agency": "U.S. Citizenship & Immigration Services",
+					"agency_abbrev": "USCIS",
+					"confidence_score": 3.4650989624287684e-14,
+					"url": "https://www.foia.gov/?id=da7c02bc-3ae8-4a09-ad94-48fdbb2bcc6f&type=component"
+				},
+				{
+					"agency": "Executive Office for Immigration Review",
+					"agency_abbrev": "EOIR",
+					"confidence_score": 7.603956008591448e-20,
+					"url": "https://www.foia.gov/?id=bd36709d-06f3-4503-a9d9-8e5f54002ca9&type=component"
+				}
+			]
+		],
+		"freqdoc_predictions": [
+			{
+				"agency": "CRD",
+				"score": 0.5333988666534424,
+				"sentence": "Volkmer, Harold L. military academy barracks, etc",
+				"tag": "Americans with Disabilities Act Technical Assistance Letters",
+				"url": "https://www.justice.gov/crt/foia/readingroom/frequent_requests/ada_tal/tal525.txt"
+			},
+			{
+				"agency": "DEA",
+				"score": 0.5162134170532227,
+				"sentence": "James Soiles: After Withdrawal: The Way Forward in Afghanistan and Pakistan (Part III)",
+				"tag": "Drug Intelligence Bulletins",
+				"url": "https://www.dea.gov/documents/2014/2014-12/2014-12-10/james-soiles-after-withdrawal-way-forward-afghanistan-and"
+			},
+			{
+				"agency": "CRD",
+				"score": 0.5135833024978638,
+				"sentence": "Historical Documents- University of Mississippi",
+				"tag": "Civil Rights Division Documents from Boston JFK Library Collection",
+				"url": "https://www.justice.gov/crt/foia/readingroom/bostonjfk/text/University%20of%20Mississippi.php"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.5108391046524048,
+				"sentence": "07/02/1997: Correspondence",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/7-2-97.htm"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.5101017951965332,
+				"sentence": "07/17/1996: Correspondence",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/7-17-96.htm"
+			},
+			{
+				"agency": "CRD",
+				"score": 0.5093822479248047,
+				"sentence": "Saxton, Jim  medical institution interpreter",
+				"tag": "Americans with Disabilities Act Technical Assistance Letters",
+				"url": "https://www.justice.gov/crt/foia/readingroom/frequent_requests/ada_tal/tal374.txt"
+			},
+			{
+				"agency": "CRD",
+				"score": 0.4995313882827759,
+				"sentence": "Historical Documents- Departmental and Citizen Correspondence",
+				"tag": "Civil Rights Division Documents from Boston JFK Library Collection",
+				"url": "https://www.justice.gov/crt/foia/readingroom/bostonjfk/text/Departmental%20and%20Citizen%20Correspondence.php"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.4978119730949402,
+				"sentence": "05/15/1996: Correspondence, Transmission Information",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/5-15-96.htm"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.4942454695701599,
+				"sentence": "10/02/1996: Correspondence",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/10-2-96.htm"
+			},
+			{
+				"agency": "TSA",
+				"score": 0.4940630793571472,
+				"sentence": "1900.3 Training Records",
+				"tag": "Management Directives",
+				"url": "https://www.tsa.gov/sites/default/files/foia-readingroom/1900.3_training_records.pdf"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.49242788553237915,
+				"sentence": "10/02/1996a: Correspondence",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/10-2-96a.htm"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.492329478263855,
+				"sentence": "08/16/1996: Correspondence",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/8-16-96.htm"
+			},
+			{
+				"agency": "CRD",
+				"score": 0.4908424913883209,
+				"sentence": "procedure for veterans' disability comp & loan disputes Weldon",
+				"tag": "Americans with Disabilities Act Technical Assistance Letters",
+				"url": "https://www.justice.gov/crt/foia/readingroom/frequent_requests/ada_tal/tal743.txt"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.4894627332687378,
+				"sentence": "03/04/1997: Correspondence, Transmission Information",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/3-4-97.htm"
+			},
+			{
+				"agency": "CRD",
+				"score": 0.4892597794532776,
+				"sentence": "Historical Documents- Police Misconduct",
+				"tag": "Civil Rights Division Documents from Boston JFK Library Collection",
+				"url": "https://www.justice.gov/crt/foia/readingroom/bostonjfk/text/Police%20Misconduct.php"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.48883041739463806,
+				"sentence": "05/17/1996a: Memorandum: Telephone Interview",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/5-17-96a.htm"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.4879755973815918,
+				"sentence": "10/29/1996: Correspondence",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/10-29-96.htm"
+			},
+			{
+				"agency": "CRD",
+				"score": 0.48775234818458557,
+				"sentence": "Harkin, Tom  memory impairments - audio tapes written transcripts",
+				"tag": "Americans with Disabilities Act Technical Assistance Letters",
+				"url": "https://www.justice.gov/crt/foia/readingroom/frequent_requests/ada_tal/tal299.txt"
+			},
+			{
+				"agency": "DEA",
+				"score": 0.4873931407928467,
+				"sentence": "Thomas M. Harrigan: Counternarcotics Efforts in Afghanistan",
+				"tag": "Drug Intelligence Bulletins",
+				"url": "https://www.dea.gov/documents/2011/2011-07/2011-07-20/thomas-m-harrigan-counternarcotics-efforts-afghanistan"
+			},
+			{
+				"agency": "USCIS",
+				"score": 0.4871123433113098,
+				"sentence": "Genealogy",
+				"tag": "Genealogy",
+				"url": "https://www.uscis.gov/records/genealogy"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.4869576394557953,
+				"sentence": "05/09/1996a: Memorandum: Interview",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/5-9-96a.htm"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.4868757724761963,
+				"sentence": "07/03/1996: Memorandum: Interview",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/7-3-96.htm"
+			},
+			{
+				"agency": "USCG",
+				"score": 0.4855188727378845,
+				"sentence": "SIREN SONG MISSING PERSON REPORT 08 MARCH 2021.PDF",
+				"tag": "Frequently Requested Records ",
+				"url": "https://media.defense.gov/2021/Aug/12/2002830524/-1/-1/0/SIREN%20SONG%20MISSING%20PERSON%20REPORT%2008%20MARCH%202021.PDF"
+			},
+			{
+				"agency": "ATR",
+				"score": 0.48533758521080017,
+				"sentence": "07/16/1996: Memorandum: Telephone Interview",
+				"tag": "Frito-Lay Investigations",
+				"url": "https://www.justice.gov/atr/foia/frito-lay/7-16-96.htm"
+			},
+			{
+				"agency": "CRD",
+				"score": 0.48513221740722656,
+				"sentence": "Harris, James D. state government employment",
+				"tag": "Americans with Disabilities Act Technical Assistance Letters",
+				"url": "https://www.justice.gov/crt/foia/readingroom/frequent_requests/ada_tal/tal034.txt"
+			}
+		]
+	}
+}

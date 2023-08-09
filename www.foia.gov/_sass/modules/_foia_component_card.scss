@@ -1,0 +1,92 @@
+.foia-component-card {
+  background-color: $color-blue-light;
+  border-radius: 10px;
+  display: block;
+  padding: 2.4rem;
+  position: relative;
+
+  &:hover,
+  &:focus {
+    background-color: $color-cool-blue-light;
+  }
+
+  &::before {
+    background-color: $color-primary-alt-light;
+    border-radius: 10px;
+    bottom: -10px;
+    content: '';
+    height: 100%;
+    position: absolute;
+    right: -10px;
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+.foia-component-card--alt {
+  border-left: 10px solid $color-primary-alt-light;
+
+  &::before {
+    content: unset;
+  }
+
+  + .foia-component-card--alt {
+    margin-top: 2rem;
+  }
+}
+
+.foia-component-card__tag {
+  color: $color-white;
+  font-size: 1.8rem;
+  font-weight: 700;
+
+  .foia-component-card--alt & {
+    font-weight: 400;
+  }
+}
+
+.foia-component-card__title {
+  color: $color-white !important;
+  font-size: 2.8rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  position: relative;
+  width: fit-content;
+  word-break: break-word;
+
+  &::after {
+    .foia-component-card--alt--ext & {
+      align-self: center;
+      background-image: url($icon-external-link-white);
+      background-repeat: no-repeat;
+      content: '';
+      flex-shrink: 0;
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  .foia-component-card--alt & {
+    display: flex;
+    font-size: 2.8rem;
+    font-weight: 500;
+    gap: 1.5rem;
+    margin-bottom: 0;
+    margin-top: 1rem;
+  }
+}
+
+.foia-component-card__subtitle {
+  color: $color-white;
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding-bottom: 2rem;
+}
+
+.foia-component-card__score {
+  color: $color-white;
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
