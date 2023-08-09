@@ -10,7 +10,13 @@ function Card({ card }) {
   } = card;
 
   return (
-    <a className={`foia-component-card ${alt ? 'foia-component-card--alt' : ''}`} href={url} onClick={onClick}>
+    <a
+      className={`foia-component-card ${
+        alt ? 'foia-component-card--alt foia-component-card--alt--ext' : ''
+      }`}
+      href={url}
+      onClick={onClick}
+    >
       <span className="foia-component-card__tag">{tag}</span>
       <h2 className="foia-component-card__title">{title}</h2>
       {subtitle && <span className="foia-component-card__subtitle">{subtitle}</span>}
