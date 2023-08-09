@@ -49,7 +49,7 @@ export function continueStep(titleMid, next) {
 }
 
 /**
- * @param {string | undefined} titleMid
+ * @param {string=} titleMid
  * @returns {WizardSummary}
  */
 export function summary(titleMid) {

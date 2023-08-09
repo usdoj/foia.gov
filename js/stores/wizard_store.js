@@ -11,6 +11,7 @@ import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api'
 import { convertSomeLinksToCards, normalizeScore, urlParams } from '../util/wizard_helpers';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
+import { defaultSummary, stateLocalSummary, stateOrLocalFlow } from '../models/wizard_summaries';
 
 const DEFAULT_CONFIDENCE_THRESHOLD = Number(
   urlParams().get('confidence-threshold') || 0.5,
@@ -215,6 +216,7 @@ const useRawWizardStore = create((
     let recommendedAgencies = [];
     let recommendedLinks = [];
     let effectiveTopic = topic;
+    let isStateOrLocal = false;
 
     if (query && !effectiveTopic) {
       nudgeLoading(1);
@@ -224,9 +226,13 @@ const useRawWizardStore = create((
           // the links and agencies anyway.
           const { flow } = data.model_output.predefined_flow || {};
           if (typeof flow === 'string') {
-            effectiveTopic = allTopics.find(
-              (el) => el.title.toUpperCase() === flow.toUpperCase(),
-            );
+            if (flow === stateOrLocalFlow) {
+              isStateOrLocal = true;
+            } else {
+              effectiveTopic = allTopics.find(
+                (el) => el.title.toUpperCase() === flow.toUpperCase(),
+              );
+            }
           }
 
           // Used to avoid agency duplicates.
@@ -281,8 +287,11 @@ const useRawWizardStore = create((
       nudgeLoading(-1);
     }
 
+    // We use this if no topic is selected/predicted.
+    const summary = isStateOrLocal ? stateLocalSummary : defaultSummary;
+
     set(withCapturedHistory({
-      activity: effectiveTopic ? effectiveTopic.journey : { type: 'summary' },
+      activity: effectiveTopic ? effectiveTopic.journey : summary,
       displayedTopic: effectiveTopic ? effectiveTopic.title : '',
       query,
       recommendedLinks,
