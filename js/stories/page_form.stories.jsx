@@ -20,7 +20,7 @@ function Template(args) {
 
 const content = (
   <Constrain>
-    <Heading weight="normal">Let's dive in...</Heading>
+    <Heading weight="normal">Let&apos;s dive in...</Heading>
     <BodyText>What information are you looking for?</BodyText>
   </Constrain>
 );
