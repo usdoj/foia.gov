@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  */
 function AppContainer({ children }) {
   return (
-    <div className="w-layout-app-container">
+    <div className="w-layout-app-container" id="main">
       {children}
     </div>
   );
