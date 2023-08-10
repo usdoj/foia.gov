@@ -12,7 +12,8 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 
 // App Container Layout
 .w-layout-app-container {
-  background-color: $color-primary-darkest;
+  // important needed to override #main
+  background-color: $color-primary-darkest !important;
   min-height: 100vh;
   padding-bottom: 40px;
 }
