@@ -57,8 +57,9 @@ const socsecRecordsJourney = {
               next: { type: 'summary', titleMid: 'm22' },
             },
             {
-              titleMid: 'startOver',
-              next: { type: 'start-over' },
+              titleMid: 'literal:All other social security records',
+              newDisplayedTopic: 'All other social security records',
+              next: { type: 'summary', titleMid: 'm48' },
             },
           ],
         },

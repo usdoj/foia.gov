@@ -10,11 +10,11 @@ const personnelRecordsJourney = question('q8', [
   answer(
     'literal:Civilian personnel or retirement service history records',
     yesNoQuestion('q1', {
-      topicIfYes: 'Your own civilian  personnel or retirement service history record',
+      topicIfYes: 'Your own civilian personnel or retirement service history record',
       topicIfNo: 'Someone else’s civilian personnel or retirement service history record',
       yes: question('q9', [
-        answer('literal:Current', summary('m31'), 'Your own civilian personnel or retirement service history record - current employee'),
-        answer('literal:Former', summary('m32'), 'Your own civilian personnel or retirement service history record - former employee'),
+        answer('literal:Current', summary('m31'), 'Your own current civilian personnel service history record'),
+        answer('literal:Former', summary('m32'), 'Your own former or retired civilian personnel service history record'),
       ]),
       no: continueStep('m2', summary('m33')),
     }),
