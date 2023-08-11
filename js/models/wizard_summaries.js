@@ -8,6 +8,6 @@ export const defaultSummary = summary();
 /**
  * Summary if the intent model returns stateOrLocalFlow.
  */
-export const stateLocalSummary = summary('m48');
+export const stateLocalSummary = summary('m49');
 
 export const stateOrLocalFlow = 'State or Local';
