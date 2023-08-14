@@ -14,6 +14,7 @@ export function fetchWizardPredictions(query) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'X-Api-Key': settings.api.jsonApiKey,
     },
     body: JSON.stringify({ input: [query] }),
   };
