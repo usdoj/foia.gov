@@ -20,7 +20,7 @@ Once you've got Ruby installed, install bundler.
 
 ## Setup (ddev)
 
-Build/start the containers. This will run the dev-server.js and webpack in watch mode in two PM2 services. You can view the site: https://foia.gov.ddev.site/ (Storybook is at: http://foia.gov.ddev.site:6006/)
+Build/start the containers. This will run the dev-server.js and webpack in watch mode in two PM2 services. You can view the site: https://foia.gov.ddev.site/
 
     $ ddev start
 
