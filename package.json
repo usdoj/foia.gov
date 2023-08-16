@@ -9,9 +9,7 @@
     "lint": "eslint --ext jsx,js js/",
     "test": "mochapack --webpack-config webpack.config.test.js js/**.test.js*",
     "serve:watch": "webpack --watch --progress --config webpack.config.dev.js",
-    "serve:dev": "make serve.dev",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "serve:dev": "make serve.dev"
   },
   "repository": {
     "type": "git",
@@ -71,8 +69,6 @@
     "@babel/preset-react": "^7.22.3",
     "@babel/preset-typescript": "^7.21.5",
     "@cucumber/cucumber": "^9.1.0",
-    "@storybook/react": "^7.0.6",
-    "@storybook/react-webpack5": "^7.0.17",
     "@types/node": "^20.1.7",
     "babel-loader": "9.x",
     "btoa": "^1.2.1",
@@ -96,7 +92,6 @@
     "react-test-renderer": "16.x",
     "sinon": "^15.0.3",
     "sinon-chai": "3.x",
-    "storybook": "^7.0.17",
     "stream-browserify": "^3.0.0",
     "style-loader": "^3.3.2",
     "webpack": "^5.85.0",

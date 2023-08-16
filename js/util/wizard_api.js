@@ -13,8 +13,8 @@ export function fetchWizardPredictions(query) {
   const polydeltaOptions = {
     method: 'POST',
     headers: {
-      'X-Api-Key': settings.api.jsonApiKey,
       'Content-Type': 'application/json',
+      'X-Api-Key': settings.api.jsonApiKey,
     },
     body: JSON.stringify({ input: [query] }),
   };
