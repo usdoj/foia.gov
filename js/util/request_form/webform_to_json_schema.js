@@ -134,25 +134,25 @@ function toUiSchemaProperty(webformField) {
  */
 function conditionalStates(webformField, stateType) {
   if (webformField.states && webformField.states[stateType]) {
-    const conditions = (Array.isArray(webformField.states[stateType])) ?
-      webformField.states[stateType] : [webformField.states[stateType]];
-    const results = conditions.map(condition => {
+    const conditions = (Array.isArray(webformField.states[stateType])) ? webformField.states[stateType] : [webformField.states[stateType]];
+    const results = conditions.map((condition) => {
       if (typeof condition === 'object') {
-        return Object.keys(condition).map(key => {
-          const parentMatch = key.match(/:input\[name=\"(.*)\"\]/);
+        return Object.keys(condition).map((key) => {
+          const parentMatch = key.match(/:input\[name="(.*)"\]/);
           const parent = (parentMatch && parentMatch.length > 1) ? parentMatch[1] : false;
           const value = condition[key].value;
           if (parent && value) {
             return {
               child: webformField.name,
-              parent: parent,
-              value: value,
+              parent,
+              value,
             };
           }
-        }).filter(v => v);
+          return false;
+        }).filter((v) => v);
       }
       return false;
-    }).filter(v => v);
+    }).filter((v) => v);
     return results;
   }
   return [];
@@ -192,47 +192,47 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
 
   const conditionallyVisible = formFields
     .map(conditionalVisibility)
-    .filter(v => v.length);
+    .filter((v) => v.length);
 
   const conditionallyRequired = formFields
     .map(conditionalRequirement)
-    .filter(v => v.length);
+    .filter((v) => v.length);
 
   const dependencies = {};
-  for (const conditions of conditionallyVisible) {
-    for (const condition of conditions) {
-      for (const item of condition) {
+  conditionallyVisible.forEach((conditions) => {
+    conditions.forEach((condition) => {
+      condition.forEach((item) => {
         const dependencyKey = [item.parent, item.value].join('|');
         if (typeof dependencies[dependencyKey] === 'undefined') {
           const properties = {};
           properties[item.parent] = {
-            enum: [item.value]
+            enum: [item.value],
           };
           dependencies[dependencyKey] = {
-            properties: properties,
+            properties,
           };
         }
         dependencies[dependencyKey].properties[item.child] = {
-          type: jsonSchema.properties[item.child].type
+          type: jsonSchema.properties[item.child].type,
         };
-      }
-    }
-  }
-  for (const conditions of conditionallyRequired) {
-    for (const condition of conditions) {
-      for (const item of condition) {
+      });
+    });
+  });
+  conditionallyRequired.forEach((conditions) => {
+    conditions.forEach((condition) => {
+      condition.forEach((item) => {
         const dependencyKey = [item.parent, item.value].join('|');
         if (typeof dependencies[dependencyKey] === 'undefined') {
           const properties = {};
           properties[item.parent] = {
-            enum: [item.value]
+            enum: [item.value],
           };
           dependencies[dependencyKey] = {
-            properties: properties,
+            properties,
           };
         }
         dependencies[dependencyKey].properties[item.child] = {
-          type: jsonSchema.properties[item.child].type
+          type: jsonSchema.properties[item.child].type,
         };
         if (typeof dependencies[dependencyKey].required === 'undefined') {
           dependencies[dependencyKey].required = [];
@@ -240,54 +240,49 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
         if (!(dependencies[dependencyKey].required.includes(item.child))) {
           dependencies[dependencyKey].required.push(item.child);
         }
-      }
-    }
-  }
+      });
+    });
+  });
 
   if (typeof jsonSchema.dependencies === 'undefined') {
     jsonSchema.dependencies = {};
   }
-  for (const dependencyKey of Object.keys(dependencies)) {
+  Object.keys(dependencies).forEach((dependencyKey) => {
     const parent = dependencyKey.split('|')[0];
     if (typeof jsonSchema.dependencies[parent] === 'undefined') {
       jsonSchema.dependencies[parent] = { oneOf: [] };
     }
     jsonSchema.dependencies[parent].oneOf.push(dependencies[dependencyKey]);
-  }
+  });
 
   // Make sure that the dependencies have all available options.
-  //console.log(jsonSchema);
-  for (const dependencyKey of Object.keys(dependencies)) {
+  Object.keys(dependencies).forEach((dependencyKey) => {
     const parent = dependencyKey.split('|')[0];
     if (jsonSchema.properties[parent]) {
       const enumOptions = jsonSchema.properties[parent].enum;
-      for (const enumOption of enumOptions) {
+      enumOptions.forEach((enumOption) => {
         const oneOfItems = jsonSchema.dependencies[parent].oneOf;
-        const match = oneOfItems.find(oneOfItem => {
-          return oneOfItem.properties[parent] && oneOfItem.properties[parent].enum.includes(enumOption);
-        });
+        const match = oneOfItems.find((oneOfItem) => oneOfItem.properties[parent] && oneOfItem.properties[parent].enum.includes(enumOption));
         if (!match) {
           const emptyDependency = {
-            properties:{},
+            properties: {},
           };
           emptyDependency.properties[parent] = {
             enum: [enumOption],
           };
           oneOfItems.push(emptyDependency);
         }
-      }
+      });
     }
-  }
+  });
 
-  for (const conditions of conditionallyVisible) {
-    for (const condition of conditions) {
-      for (const item of condition) {
+  conditionallyVisible.forEach((conditions) => {
+    conditions.forEach((condition) => {
+      condition.forEach((item) => {
         delete jsonSchema.properties[item.child];
-      }
-    }
-  }
-
-  console.log(jsonSchema);
+      });
+    });
+  });
 
   // Add required fields to the `required` property
   jsonSchema.required = formFields
