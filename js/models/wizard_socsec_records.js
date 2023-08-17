@@ -19,13 +19,17 @@ const socsecRecordsJourney = {
           answers: [
             {
               titleMid: 'a20',
-              newDisplayedTopic: `Your own ${extraMessages.a20}`,
+              newDisplayedTopic: `Your ${extraMessages.a20.toLowerCase()}`,
               next: { type: 'summary', titleMid: 'm47' },
             },
             {
               titleMid: 'a21',
               next: { type: 'summary', titleMid: 'm19' },
 
+            },
+            {
+              titleMid: 'startOver',
+              next: { type: 'start-over' },
             },
           ],
         },
@@ -53,13 +57,17 @@ const socsecRecordsJourney = {
             },
             {
               titleMid: 'a20',
-              newDisplayedTopic: `Someone else's ${extraMessages.a20}`,
+              newDisplayedTopic: `Someone else's ${extraMessages.a20.toLowerCase()}`,
               next: { type: 'summary', titleMid: 'm22' },
             },
             {
               titleMid: 'literal:All other social security records',
               newDisplayedTopic: 'All other social security records',
               next: { type: 'summary', titleMid: 'm48' },
+            },
+            {
+              titleMid: 'startOver',
+              next: { type: 'start-over' },
             },
           ],
         },
