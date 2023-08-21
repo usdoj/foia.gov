@@ -35,6 +35,16 @@
   }
 }
 
+.foia-component-card--square {
+  display: inline-block;
+  margin-right: 1rem;
+  min-height: 14rem;
+  min-width: 29rem;
+  width: calc((100% - 4rem) / 3);
+
+  /* TODO style more like agency card */
+}
+
 .foia-component-card__tag {
   color: $color-white;
   font-size: 1.8rem;
