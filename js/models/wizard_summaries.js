@@ -10,4 +10,4 @@ export const defaultSummary = summary();
  */
 export const stateLocalSummary = summary('m49');
 
-export const stateOrLocalFlow = 'State or Local';
+export const stateOrLocalFlow = 'State or Local Records';
