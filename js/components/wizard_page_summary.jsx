@@ -111,10 +111,10 @@ function Summary() {
 function WizardLinks({ links }) {
   const linkObjects = links.map((link) => (
     {
-      id: link.agency + link.tag + link.url,
-      tag: link.agency,
-      title: link.tag,
-      subtitle: link.sentence,
+      id: link.abbreviation + link.parent_abbreviation + link.url,
+      tag: link.component,
+      title: link.parent_abbreviation,
+      subtitle: link.title,
       url: link.url,
       confidenceScore: link.confidence_score.toFixed(4),
     }

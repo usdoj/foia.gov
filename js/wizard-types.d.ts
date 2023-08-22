@@ -32,10 +32,11 @@ declare global {
   };
 
   type WizardLink = {
-    agency: string;
+    abbreviation: string;
+    component: string;
     confidence_score: number;
-    sentence: string;
-    tag: string;
+    title: string;
+    parent_abbreviation: string;
     url: string;
   };
 
