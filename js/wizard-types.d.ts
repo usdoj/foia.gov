@@ -149,4 +149,10 @@ declare global {
   };
 
   type WizardState = WizardVars & WizardNonVars;
+
+  type WizardTriggerPhrase = {
+    caseSensitive: boolean;
+    skip: string;
+    trigger: string;
+  };
 }
