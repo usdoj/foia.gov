@@ -16,7 +16,7 @@ import extraMessages from '../models/wizard_extra_messages';
 import { defaultSummary, stateLocalSummary, stateOrLocalFlow } from '../models/wizard_summaries';
 
 /** @type {WizardTriggerPhrase[]} */
-let triggerPrases = [];
+let triggerPhrases = [];
 
 const DEFAULT_CONFIDENCE_THRESHOLD = Number(
   urlParams().get('confidence-threshold') || 0.5,
@@ -152,7 +152,7 @@ const useRawWizardStore = create((
     }
 
     if (Array.isArray(data.trigger_phrases)) {
-      triggerPrases = data.trigger_phrases;
+      triggerPhrases = data.trigger_phrases;
     }
 
     const ui = {
@@ -226,7 +226,7 @@ const useRawWizardStore = create((
     let recommendedLinks = [];
     let effectiveTopic = topic;
     let isStateOrLocal = false;
-    const triggerMatch = scanForTriggers(query, triggerPrases);
+    const triggerMatch = scanForTriggers(query, triggerPhrases);
 
     if (query && !effectiveTopic && !triggerMatch) {
       nudgeLoading(1);
