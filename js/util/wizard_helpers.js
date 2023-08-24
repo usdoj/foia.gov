@@ -264,3 +264,39 @@ export function useWait(waitMs) {
     reset,
   };
 }
+
+/**
+ * @param {string} string
+ * @returns {string}
+ * @licence https://github.com/sindresorhus/escape-string-regexp/blob/main/license
+ */
+function escapeStringRegexp(string) {
+  // Escape characters with special meaning either inside or outside character sets.
+  // Use a simple backslash escape when it’s always valid, and a `\xnn` escape when the simpler form would be disallowed by Unicode patterns’ stricter grammar.
+  return string
+    .replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    .replace(/-/g, '\\x2d');
+}
+
+/**
+ * @param {string} query
+ * @param {WizardTriggerPhrase[]} phrases
+ * @returns {{ idx: number; matchLen: number; trigger: string; skip: string } | null}
+ */
+export function scanForTriggers(query, phrases) {
+  const queryNormalized = query.replace(/\s+/g, ' ');
+
+  for (let i = 0; i < phrases.length; i++) {
+    const { trigger, caseSensitive, skip } = phrases[i];
+    const pattern = `\\b${escapeStringRegexp(trigger)}\\b`;
+    const regex = new RegExp(pattern, caseSensitive ? '' : 'i');
+    const match = regex.exec(queryNormalized);
+    if (match) {
+      return {
+        idx: match.index, matchLen: match[0].length, trigger, skip,
+      };
+    }
+  }
+
+  return null;
+}

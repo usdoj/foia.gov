@@ -9,12 +9,15 @@ import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
 import {
-  convertSomeLinksToCards, normalizeScore, searchMatchingAgency, urlParams,
+  convertSomeLinksToCards, normalizeScore, scanForTriggers, searchMatchingAgency, urlParams,
 } from '../util/wizard_helpers';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
 import { defaultSummary, stateLocalSummary, stateOrLocalFlow } from '../models/wizard_summaries';
 import agencyComponentStore from './agency_component';
+
+/** @type {WizardTriggerPhrase[]} */
+let triggerPhrases = [];
 
 const DEFAULT_CONFIDENCE_THRESHOLD = Number(
   urlParams().get('confidence-threshold') || 0.5,
@@ -162,6 +165,10 @@ const useRawWizardStore = create((
       throw new Error('Unexpected wizard strings format');
     }
 
+    if (Array.isArray(data.trigger_phrases)) {
+      triggerPhrases = data.trigger_phrases;
+    }
+
     const ui = {
       // These will remain hardcoded and merged here.
       ...extraMessages,
@@ -236,8 +243,9 @@ const useRawWizardStore = create((
     let agenciesFirst = false;
 
     const matchingFlatAgency = searchMatchingAgency(query, get().flatList);
+    const triggerMatch = scanForTriggers(query, triggerPhrases);
 
-    if (query && !effectiveTopic) {
+    if (query && !effectiveTopic && !triggerMatch) {
       nudgeLoading(1);
       await fetchWizardPredictions(query)
         .then((data) => {
@@ -315,7 +323,10 @@ const useRawWizardStore = create((
     }
 
     // We use this if no topic is selected/predicted.
-    const summary = isStateOrLocal ? stateLocalSummary : defaultSummary;
+    let summary = isStateOrLocal ? stateLocalSummary : defaultSummary;
+    if (triggerMatch) {
+      summary = { type: 'summary', titleMid: triggerMatch.skip };
+    }
 
     set(withCapturedHistory({
       activity: effectiveTopic ? effectiveTopic.journey : summary,
