@@ -17,21 +17,6 @@ const DEBUG_CENTRALIZED_AGENCIES = false;
 
 const collator = new Intl.Collator('en');
 
-/**
- * An object created from an Agency or AgencyComponent (maybe with parent Agency)
- * @typedef {Array<{
- *   id: string;
- *   type: 'agency' | 'agency_component';
- *   title: string;
- *   abbreviation: string;
- *   agency?: {
- *     id: string;
- *     name: string;
- *     abbreviation: string;
- *   };
- * }>} FlatListItem
- */
-
 class AgencyComponentStore extends Store {
   constructor(_dispatcher) {
     super(_dispatcher);
