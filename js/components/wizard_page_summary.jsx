@@ -125,8 +125,8 @@ function WizardLinks({ links }) {
     {
       id: link.abbreviation + link.parent_abbreviation + link.url,
       tag: link.component,
-      title: link.parent_abbreviation,
-      subtitle: link.title,
+      title: link.title || '[title unavailable]',
+      subtitle: link.parent_abbreviation || '',
       url: link.url,
       confidenceScore: link.confidence_score.toFixed(4),
     }
