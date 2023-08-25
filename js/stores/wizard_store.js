@@ -9,11 +9,12 @@ import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
 import {
-  convertSomeLinksToCards, normalizeScore, scanForTriggers, urlParams,
+  convertSomeLinksToCards, normalizeScore, scanForTriggers, searchMatchingAgency, urlParams,
 } from '../util/wizard_helpers';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
 import { defaultSummary, stateLocalSummary, stateOrLocalFlow } from '../models/wizard_summaries';
+import agencyComponentStore from './agency_component';
 
 /** @type {WizardTriggerPhrase[]} */
 let triggerPhrases = [];
@@ -28,13 +29,16 @@ const CONFIDENCE_THRESHOLD_LINKS = DEFAULT_CONFIDENCE_THRESHOLD;
 /** @type {WizardVars} */
 const initialWizardState = {
   activity: { type: 'intro' },
+  agenciesFirst: false,
   allTopics,
   answerIdx: null,
   displayedTopic: '',
+  flatList: [],
 
   // How many async operations are we waiting on?
   // Use useWizard().loading instead of reading this.
-  numLoading: 0,
+  // Defaults to 1 because we'll be waiting for setFlatList() to be called.
+  numLoading: 1,
 
   query: '',
   ready: false,
@@ -51,9 +55,10 @@ const initialWizardState = {
  */
 function createSnapshot(state) {
   const snapshot = { ...state };
-  // Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'numLoading'>;
+  // Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'numLoading' | 'flatList'>;
   delete snapshot.allTopics;
   delete snapshot.actions;
+  delete snapshot.flatList;
   delete snapshot.ui;
   delete snapshot.numLoading;
 
@@ -77,6 +82,14 @@ const useRawWizardStore = create((
    */
   function nudgeLoading(delta) {
     set((prev) => ({ numLoading: Math.max(0, prev.numLoading + delta) }));
+  }
+
+  /**
+   * @param {FlatListItem[]} flatList
+   */
+  function setFlatList(flatList) {
+    set({ flatList });
+    nudgeLoading(-1);
   }
 
   /**
@@ -104,6 +117,7 @@ const useRawWizardStore = create((
 
     // Preserve loaded stuff
     allTopics: state.allTopics,
+    flatList: state.flatList,
     ui: state.ui,
     ready: state.ready,
   }));
@@ -226,6 +240,9 @@ const useRawWizardStore = create((
     let recommendedLinks = [];
     let effectiveTopic = topic;
     let isStateOrLocal = false;
+    let agenciesFirst = false;
+
+    const matchingFlatAgency = searchMatchingAgency(query, get().flatList);
     const triggerMatch = scanForTriggers(query, triggerPhrases);
 
     if (query && !effectiveTopic && !triggerMatch) {
@@ -245,46 +262,54 @@ const useRawWizardStore = create((
             }
           }
 
-          // Used to avoid agency duplicates.
-          const ids = new Set();
+          if (matchingFlatAgency) {
+            recommendedAgencies = [
+              {
+                ...matchingFlatAgency,
+                url: agencyComponentStore.getFlatItemUrl(matchingFlatAgency),
+                confidence_score: 10000,
+              },
+            ];
+            agenciesFirst = true;
+          }
 
           // If name match, always include it.
-          recommendedAgencies = (data.model_output.agency_name_match || [])
-            .map((agency) => {
-              ids.add(agency.id);
-              // Show at the top.
-              agency.confidence_score = 9999;
-              return agency;
-            });
+          recommendedAgencies.push(
+            ...(data.model_output.agency_name_match || [])
+              .map((agency) => {
+                // Show near top.
+                agency.confidence_score = 9999;
+                agenciesFirst = true;
+                return agency;
+              }),
+          );
 
           // Match from mission if above threshold.
           recommendedAgencies.push(
             ...data.model_output.agency_mission_match
               .map(normalizeScore)
-              .filter((agency) => {
-                if (ids.has(agency.id) || agency.confidence_score < CONFIDENCE_THRESHOLD_AGENCIES) {
-                  return false;
-                }
-                ids.add(agency.id);
-                return true;
-              }),
+              .filter((agency) => (agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES)),
           );
 
           // Match from finder if above threshold.
           recommendedAgencies.push(
             ...data.model_output.agency_finder_predictions[0]
               .map(normalizeScore)
-              .filter((agency) => {
-                if (ids.has(agency.id) || agency.confidence_score < CONFIDENCE_THRESHOLD_AGENCIES) {
-                  return false;
-                }
-                ids.add(agency.id);
-                return true;
-              }),
+              .filter((agency) => (agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES)),
           );
 
           // DESC score order
           recommendedAgencies.sort((a, b) => b.confidence_score - a.confidence_score);
+
+          // De-dupe agencies
+          const ids = new Set();
+          recommendedAgencies = recommendedAgencies.filter((el) => {
+            if (ids.has(el.id)) {
+              return false;
+            }
+            ids.add(el.id);
+            return true;
+          });
 
           recommendedLinks = data.model_output.freqdoc_predictions
             .map(normalizeScore)
@@ -305,6 +330,7 @@ const useRawWizardStore = create((
 
     set(withCapturedHistory({
       activity: effectiveTopic ? effectiveTopic.journey : summary,
+      agenciesFirst,
       displayedTopic: effectiveTopic ? effectiveTopic.title : '',
       query,
       recommendedLinks,
@@ -327,6 +353,7 @@ const useRawWizardStore = create((
     reset,
     jumpBackToQueryPage,
     selectAnswer,
+    setFlatList,
     submitRequest,
   };
 
@@ -341,6 +368,7 @@ const useRawWizardStore = create((
  *
  * @returns {{
  *   actions: WizardActions;
+ *   agenciesFirst: boolean;
  *   allTopics: WizardVars['allTopics'];
  *   canGoBack: boolean;
  *   loading: boolean;
@@ -362,6 +390,7 @@ const useRawWizardStore = create((
 function useWizard() {
   return useRawWizardStore((/** WizardState */ state) => ({
     actions: state.actions,
+    agenciesFirst: state.agenciesFirst,
     allTopics: state.allTopics,
     answerIdx: state.answerIdx,
     displayedTopic: state.displayedTopic,

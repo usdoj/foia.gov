@@ -17,6 +17,19 @@ declare global {
 
   type ZustandGet<T> = () => T;
 
+  // An object created from an Agency or AgencyComponent (maybe with parent Agency)
+  type FlatListItem = {
+    id: string;
+    type: 'agency' | 'agency_component';
+    title: string;
+    abbreviation: string;
+    agency?: {
+      id: string;
+      name: string;
+      abbreviation: string;
+    };
+  };
+
   type WizardAgency = {
     id: string;
     title: string;
@@ -120,6 +133,7 @@ declare global {
     prevPage: () => void;
     reset: () => void;
     selectAnswer: (answerIdx: number) => void;
+    setFlatList: (flatList: FlatListItem[]) => void;
     submitRequest: (arg: {
       query: string;
       topic: WizardTopic | null;
@@ -128,20 +142,22 @@ declare global {
 
   type WizardVars = {
     activity: WizardActivity;
+    agenciesFirst: boolean;
     allTopics: WizardTopic[] | null;
     /**
      * User selected answer
      */
     answerIdx: number | null;
+    displayedTopic: string;
+    isError: boolean;
+    flatList: FlatListItem[];
     numLoading: number;
     query: string | null;
     ready: boolean;
-    isError: boolean;
     recommendedAgencies: WizardAgency[] | null;
     recommendedLinks: WizardLink[] | null;
     ui: Record<string, string>;
     userTopic: WizardTopic | null;
-    displayedTopic: string;
   };
 
   type WizardNonVars = {
