@@ -70,7 +70,9 @@ error messages after form submission.
 because the "Required" label makes it immediately clear to the user what is
 required, and because it will not even let the user submit the form until the
 input is provided. However, this method is only supported when the webform
-"condition" uses a logic operator of "any" and a trigger of "value is". 
+"condition" uses a logic operator of "any" and a trigger of "value is". Also,
+this method only works on custom fields (fields that are not part of the
+starting webform "template").
 2. Return of error messages after form submission: If a condition is setup to
 make a field required, it will always result in error messages when required
 input is missing. This is a slightly worse user experience, because the user
@@ -84,7 +86,8 @@ the dynamic label (described above) will appear as well.
 Sometimes there are fields that are optional, and would ideally be visible under
 only certain circumstances. This is partially supported. However, it is similar
 to the dynamic "required" labels: it will work only if the logic operator is
-"any" and the trigger is "value is".
+"any" and the trigger is "value is", and it only works on custom fields (fields
+that are not part of the starting webform "template").
 
 #### Other conditions
 
