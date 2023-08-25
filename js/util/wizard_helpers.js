@@ -230,12 +230,6 @@ export function searchMatchingAgency(query, flatList) {
   indexItems.sort((a, b) => b.score - a.score);
   const first = indexItems[0];
 
-  console.table(indexItems.map((el) => ({
-    title: el.titleNormalized,
-    abbr: el.abbr,
-    score: el.score,
-  })).filter((el) => el.score > -1));
-
   return first && first.score ? first.item : null;
 }
 
