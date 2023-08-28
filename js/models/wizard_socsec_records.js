@@ -1,71 +1,54 @@
 import extraMessages from './wizard_extra_messages';
+import {
+  answer, continueStep, question, summary, yesNoQuestion,
+} from '../util/wizard_helpers';
 
 /**
  * @type {WizardQuestion}
  */
-const socsecRecordsJourney = {
-  type: 'question',
-  titleMid: 'q1',
-  answers: [
-    {
-      titleMid: 'a1',
-      newDisplayedTopic: 'Your own Social Security records',
-      next: {
-        type: 'continue',
-        titleMid: 'm1',
-        next: {
-          type: 'question',
-          titleMid: 'q4',
-          answers: [
-            {
-              titleMid: 'a20',
-              newDisplayedTopic: `Your own ${extraMessages.a20}`,
-              next: { type: 'summary', titleMid: 'm47' },
-            },
-            {
-              titleMid: 'a21',
-              next: { type: 'summary', titleMid: 'm19' },
-
-            },
-          ],
-        },
-      },
-    },
-    {
-      titleMid: 'a2',
-      newDisplayedTopic: 'Someone else\'s Social Security records',
-      next: {
-        type: 'continue',
-        titleMid: 'm2',
-        next: {
-          type: 'question',
-          titleMid: 'q4',
-          answers: [
-            {
-              titleMid: 'a18',
-              newDisplayedTopic: extraMessages.a18,
-              next: { type: 'summary', titleMid: 'm20' },
-            },
-            {
-              titleMid: 'a19',
-              newDisplayedTopic: extraMessages.a19,
-              next: { type: 'summary', titleMid: 'm21' },
-            },
-            {
-              titleMid: 'a20',
-              newDisplayedTopic: `Someone else's ${extraMessages.a20}`,
-              next: { type: 'summary', titleMid: 'm22' },
-            },
-            {
-              titleMid: 'literal:All other social security records',
-              newDisplayedTopic: 'All other social security records',
-              next: { type: 'summary', titleMid: 'm48' },
-            },
-          ],
-        },
-      },
-    },
-  ],
-};
+const socsecRecordsJourney = yesNoQuestion('q1', {
+  topicIfYes: 'Your own Social Security records',
+  topicIfNo: 'Someone else\'s Social Security records',
+  yes: continueStep(
+    'm1',
+    question(
+      'q4',
+      [
+        answer('a20', summary('m47'), `Your ${extraMessages.a20.toLowerCase()}`),
+        answer('a21', summary('m19')),
+        answer('startOver', { type: 'start-over' }),
+      ],
+    ),
+  ),
+  no: continueStep(
+    'm2',
+    question(
+      'q4',
+      [
+        answer(
+          'a18',
+          summary('m20'),
+          extraMessages.a18,
+        ),
+        answer(
+          'a19',
+          summary('m21'),
+          extraMessages.a19,
+        ),
+        answer(
+          'a20',
+          summary('m22'),
+          `Someone else's ${extraMessages.a20.toLowerCase()}`,
+        ),
+        answer(
+          'literal:All other social security records',
+          summary('m48'),
+          'All other social security records',
+        ),
+        answer('startOver', { type: 'start-over' }),
+      ],
+    ),
+  ),
+});
 
 export default socsecRecordsJourney;

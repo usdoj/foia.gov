@@ -35,16 +35,17 @@ const extraMessages = {
   a16: 'Information from Open Case Files',
   a17: 'Other IRS Records',
   a18: 'Deceased Individual’s Application for a Social Security Card or (SS-5) or Numident record.',
-  a19: 'Records of another Living Individual',
-  a20: 'Earnings Records',
+  a19: 'Records of another living individual',
+  a20: 'Earnings records',
   a21: 'Other personal Social Security records',
-  a22: 'Current active duty or Reserve military servicemember records',
+  a22: 'Current active duty or reserve military servicemember records',
   a23: 'Retired or former military servicemember records',
   apiError: '<p>There was an error, please try again later.</p>',
   loading: '<p>Loading...</p>',
   lookingFor: 'Okay, you’re looking for:',
+  soundsGood: 'Sounds good.',
   youSelected: 'You selected:',
-  startOver: 'None of the Above (I want to start over)',
+  startOver: 'None of the above (I want to start over)',
 };
 
 export default extraMessages;

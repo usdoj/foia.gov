@@ -25,6 +25,7 @@ function Continue() {
             {displayedTopic || request.query}
             &rdquo;
           </blockquote>
+          <h2><WizardHtml mid="soundsGood" /></h2>
         </RichText>
 
         <WizardHtml mid={activity.titleMid} />

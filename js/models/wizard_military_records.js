@@ -10,7 +10,7 @@ const militaryRecordsJourney = question('q10', [
     'a22',
     yesNoQuestion('q11', {
       topicIfYes: 'Active duty status of a military servicemember',
-      topicIfNo: 'Military records, Current, not active duty',
+      topicIfNo: 'Current active duty or reserve military service member records',
       yes: summary('m36'),
       no: yesNoQuestion('q1', {
         topicIfYes: 'Your own current active duty or reserve military servicemember records',
@@ -24,7 +24,7 @@ const militaryRecordsJourney = question('q10', [
   answer(
     'a23',
     yesNoQuestion('q1', {
-      topicIfYes: 'Your own retired or former military servicemember Records',
+      topicIfYes: 'Your own retired or former military servicemember records',
       topicIfNo: 'Someone else’s retired or former military servicemember records',
       yes: continueStep(
         'm1',
@@ -37,9 +37,9 @@ const militaryRecordsJourney = question('q10', [
               'Official Military Personnel File (OMPF)',
             ),
             answer(
-              'literal:Medical Records',
+              'literal:Medical records',
               summary('m25'),
-              'Medical Records',
+              'Medical records',
             ),
             answer(
               'literal:DD Form 214 (Report of Separation)',
@@ -52,9 +52,9 @@ const militaryRecordsJourney = question('q10', [
               'Veteran’s Benefits',
             ),
             answer(
-              'literal:National Guard Records',
+              'literal:National Guard records',
               summary('m42'),
-              'National Guard Records',
+              'National Guard records',
             ),
             answer(
               'startOver',
@@ -74,9 +74,9 @@ const militaryRecordsJourney = question('q10', [
               'Official Military Personnel File (OMPF)',
             ),
             answer(
-              'literal:Medical Records',
+              'literal:Medical records',
               summary('m27'),
-              'Medical Records',
+              'Medical records',
             ),
             answer(
               'literal:DD Form 214 (Report of Separation)',
@@ -89,9 +89,9 @@ const militaryRecordsJourney = question('q10', [
               'Veteran’s Benefits',
             ),
             answer(
-              'literal:National Guard Records',
+              'literal:National Guard records',
               summary('m46'),
-              'National Guard Records',
+              'National Guard records',
             ),
             answer(
               'startOver',
@@ -101,7 +101,7 @@ const militaryRecordsJourney = question('q10', [
         ),
       ),
     }),
-    'Retired or Former Military Servicemember Records',
+    'Retired or former military servicemember records',
   ),
 ]);
 
