@@ -80,13 +80,24 @@ export function convertSomeLinksToCards(html) {
       return m0;
     }
 
-    function extClass() {
-    // If the link goes outside the foia domain, add an extra class name
-      return (linkOpenTag.startsWith('<a href="https://www.foia.gov')) ? '' : 'foia-component-card--alt--ext';
-    }
+    // Non-external links
+    const localChecks = [
+      ' href="/',
+      ` href="${location.origin}`,
+      ' href="https://www.foia.gov/',
+    ];
+
+    const classes = [
+      'foia-component-card',
+      'foia-component-card--alt',
+      // If the link goes outside the foia domain, add an extra class name
+      localChecks.some((check) => linkOpenTag.includes(check)) ? '' : 'foia-component-card--alt--ext',
+      // Square-type cards, like agencies
+      linkOpenTag.includes('class="square"') ? 'foia-component-card--square' : '',
+    ];
 
     return `
-      <div class="foia-component-card foia-component-card--alt ${extClass()}">
+      <div class="${classes.join(' ')}">
         ${linkOpenTag}
           <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
         </a>
