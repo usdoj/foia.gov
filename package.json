@@ -45,7 +45,7 @@
     "glossary-panel": "1.x",
     "history": "4.x",
     "immutable": "^3.8.2",
-    "jquery": "^3.6.4",
+    "jquery": "^3.7.1",
     "jsonapi-parse": "1.x",
     "lodash": "4.x",
     "prop-types": "15.x",
