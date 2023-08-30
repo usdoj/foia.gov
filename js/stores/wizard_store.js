@@ -20,6 +20,7 @@ import agencyComponentStore from './agency_component';
 /** @type {WizardTriggerPhrase[]} */
 let triggerPhrases = [];
 
+const debug = true;
 const DEFAULT_CONFIDENCE_THRESHOLD = Number(
   urlParams().get('confidence-threshold') || 0.5,
 );
@@ -242,24 +243,53 @@ const useRawWizardStore = create((
     let effectiveTopic = topic;
     let isStateOrLocal = false;
     let agenciesFirst = false;
+    let trustAgencyMatch = false;
+    let matchingFlatAgency = null;
 
-    const matchingFlatAgency = searchMatchingAgency(query, get().flatList);
     const triggerMatch = scanForTriggers(query, triggerPhrases);
+    if (triggerMatch) {
+      if (debug) {
+        console.log(`Found trigger phrase "${triggerMatch.trigger}": Sending the user to message ${triggerMatch.skip}.`);
+      }
+    } else {
+      const {
+        item,
+        wordsMatched,
+        queryWords,
+      } = searchMatchingAgency(query, get().flatList, CONSOLE_LOG_SEARCH_DECISIONS);
+      matchingFlatAgency = item;
+
+      if (matchingFlatAgency && queryWords - wordsMatched <= 1) {
+        trustAgencyMatch = true;
+      }
+    }
 
     if (query && !effectiveTopic && !triggerMatch) {
       nudgeLoading(1);
       await fetchWizardPredictions(query)
         .then((data) => {
-          // If a predefined flow is found, we switch to it, but we'll go ahead and populate
-          // the links and agencies anyway.
-          const { flow } = data.model_output.predefined_flow || {};
-          if (typeof flow === 'string') {
-            if (flow === stateOrLocalFlow) {
-              isStateOrLocal = true;
-            } else {
-              effectiveTopic = allTopics.find(
-                (el) => el.title.toUpperCase() === flow.toUpperCase(),
-              );
+          if (trustAgencyMatch) {
+            if (debug) {
+              console.log('An agency match was most of user\'s query: Skipping intent model.');
+            }
+          } else {
+            // If a predefined flow is found, we switch to it, but we'll go ahead and populate
+            // the links and agencies anyway.
+            const { flow } = data.model_output.predefined_flow || {};
+            if (typeof flow === 'string') {
+              if (flow === stateOrLocalFlow) {
+                if (debug) {
+                  console.log('Moving user to state/local summary page due to intent model result.');
+                }
+                isStateOrLocal = true;
+              } else {
+                effectiveTopic = allTopics.find(
+                  (el) => el.title.toUpperCase() === flow.toUpperCase(),
+                );
+                if (effectiveTopic && debug) {
+                  console.log(`Moving user to flow for topic "${effectiveTopic.title}" due to intent model result.`);
+                }
+              }
             }
           }
 
