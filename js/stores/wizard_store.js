@@ -9,8 +9,9 @@ import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
 import {
-  convertSomeLinksToCards, normalizeScore, scanForTriggers, searchMatchingAgency, urlParams,
+  convertSomeLinksToCards, normalizeScore, scanForTriggers, urlParams,
 } from '../util/wizard_helpers';
+import searchMatchingAgency from '../util/wizard_agency_search';
 import allTopics from '../models/wizard_topics';
 import extraMessages from '../models/wizard_extra_messages';
 import { defaultSummary, stateLocalSummary, stateOrLocalFlow } from '../models/wizard_summaries';

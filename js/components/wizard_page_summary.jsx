@@ -126,7 +126,10 @@ function WizardLinks({ links }) {
       id: link.abbreviation + link.parent_abbreviation + link.url,
       tag: link.component,
       title: link.title || '[title unavailable]',
-      subtitle: link.parent_abbreviation || '',
+
+      // parent_abbreviation is sometimes "nan", don't show this.
+      subtitle: (link.parent_abbreviation || '').replace(/^nan$/, ''),
+
       url: link.url,
       confidenceScore: link.confidence_score.toFixed(4),
     }
