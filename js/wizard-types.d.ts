@@ -28,6 +28,9 @@ declare global {
       name: string;
       abbreviation: string;
     };
+    description: {
+      processed?: string;
+    }
   };
 
   type WizardAgency = {
