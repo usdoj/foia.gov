@@ -5,29 +5,26 @@ bundle: wizard
 ---
 <div id="wizard-react-app">
     <!-- Initial content to be replaced by React. Update as necessary -->
-    <div class="w-layout-app-container">
+    <div class="w-layout-app-container" id="main">
         <header class="w-layout-header">
             <div class="w-layout-header__upper">
                 <div class="w-layout-constrain w-layout-constrain--large">
-                    <div class="w-component-logo usa-logo">
-                        <a class="w-component-logo__link" href="/" accesskey="1" title="Home">
-                            <img class="w-component-logo__image" src="/img/foia-doj-logo-light.svg" alt="Foia.gov">
-                            <h1 class="w-component-logo__text usa-header-title">FOIA.gov</h1>
-                        </a>
-                    </div>
+                    <div class="w-component-logo usa-logo"><a class="w-component-logo__link" href="/" accesskey="1"
+                                                              title="Home"><img class="w-component-logo__image"
+                                                                                src="/img/foia-doj-logo-light.svg"
+                                                                                alt="Foia.gov">
+                        <h1 class="w-component-logo__text usa-header-title">FOIA.gov</h1></a></div>
                 </div>
             </div>
             <div class="w-layout-header__lower">
-                <div class="w-layout-constrain w-layout-constrain--large">
-                    <a class="w-component-back-link" href="/">Home</a>
+                <div class="w-layout-constrain w-layout-constrain--large"><a class="w-component-back-link"
+                                                                             href="/">Home</a>
                 </div>
             </div>
         </header>
-        <div class="w-layout-constrain" id="main">
-            <div class="w-component-rich-text">
-                <p>Loading...</p>
-
-            </div>
+        <div class="w-layout-constrain">
+            <div class="w-component-rich-text" data-mid="loading"><p>Loading...</p></div>
         </div>
     </div>
 </div>
+
