@@ -127,7 +127,7 @@ declare global {
     next: WizardQuestion | WizardContinue | WizardSummary | WizardStartOver;
   };
 
-  type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'numLoading'>;
+  type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'modelLoading'>;
 
   type WizardActions = {
     initLoad: () => void;
@@ -153,12 +153,12 @@ declare global {
     answerIdx: number | null;
     displayedTopic: string;
     isError: boolean;
-    flatList: FlatListItem[];
-    numLoading: number;
+    flatList: FlatListItem[] | null;
+    modelLoading: boolean;
     query: string | null;
-    ready: boolean;
     recommendedAgencies: WizardAgency[] | null;
     recommendedLinks: WizardLink[] | null;
+    triggerPhrases: WizardTriggerPhrase[] | null;
     ui: Record<string, string>;
     userTopic: WizardTopic | null;
   };
