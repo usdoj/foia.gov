@@ -17,7 +17,7 @@ import extraMessages from '../models/wizard_extra_messages';
 import { defaultSummary, stateLocalSummary, stateOrLocalFlow } from '../models/wizard_summaries';
 import agencyComponentStore from './agency_component';
 
-const debug = true;
+const DEBUG_TO_CONSOLE = true;
 const DEFAULT_CONFIDENCE_THRESHOLD = Number(
   urlParams().get('confidence-threshold') || 0.5,
 );
@@ -42,6 +42,8 @@ const initialWizardState = {
   ui: extraMessages,
   userTopic: null,
 };
+
+const log = (...args) => DEBUG_TO_CONSOLE && console.log(...args);
 
 /**
  * Keys of state to preserve on a reset.
@@ -250,19 +252,32 @@ const useRawWizardStore = create((
 
     const triggerMatch = scanForTriggers(query, triggerPhrases);
     if (triggerMatch) {
-      if (debug) {
-        console.log(`Found trigger phrase "${triggerMatch.trigger}": Sending the user to message ${triggerMatch.skip}.`);
-      }
+      log(`Found trigger phrase "${triggerMatch.trigger}": Sending the user to message ${triggerMatch.skip}.`);
     } else {
       const {
         item,
-        wordsMatched,
+        matchedAbbr,
         queryWords,
-      } = searchMatchingAgency(query, flatList, debug);
+        wordsMatched,
+      } = searchMatchingAgency(query, flatList, DEBUG_TO_CONSOLE);
       matchingFlatAgency = item;
 
-      if (matchingFlatAgency && queryWords - wordsMatched <= 1) {
-        trustAgencyMatch = true;
+      if (matchingFlatAgency) {
+        log(`Found matching agency ${item.title} matching ${wordsMatched} words.`);
+        log(`User's query (stop words removed) was ${queryWords} words.`);
+
+        // See if it's a close enough match to bypass intent model
+        if (matchedAbbr) {
+          trustAgencyMatch = true;
+          log('User\'s query had a matching agency abbreviation. Skipping intent model check.');
+        } else {
+          const nonMatchWords = (queryWords - wordsMatched);
+          log(`User's query had ${nonMatchWords} non-match words.`);
+          if (nonMatchWords <= 2) {
+            trustAgencyMatch = true;
+            log('Since this is <= 2, the query is deemed "mostly" matching words. Skipping intent model check.');
+          }
+        }
       }
     }
 
@@ -271,25 +286,21 @@ const useRawWizardStore = create((
       await fetchWizardPredictions(query)
         .then((data) => {
           if (trustAgencyMatch) {
-            if (debug) {
-              console.log('An agency match was most of user\'s query: Skipping intent model.');
-            }
+            log('An agency match was most of user\'s query: Skipping intent model.');
           } else {
             // If a predefined flow is found, we switch to it, but we'll go ahead and populate
             // the links and agencies anyway.
             const { flow } = data.model_output.predefined_flow || {};
             if (typeof flow === 'string') {
               if (flow === stateOrLocalFlow) {
-                if (debug) {
-                  console.log('Moving user to state/local summary page due to intent model result.');
-                }
+                log('Moving user to state/local summary page due to intent model result.');
                 isStateOrLocal = true;
               } else {
                 effectiveTopic = allTopics.find(
                   (el) => el.title.toUpperCase() === flow.toUpperCase(),
                 );
-                if (effectiveTopic && debug) {
-                  console.log(`Moving user to flow for topic "${effectiveTopic.title}" due to intent model result.`);
+                if (effectiveTopic) {
+                  log(`Moving user to flow for topic "${effectiveTopic.title}" due to intent model result.`);
                 }
               }
             }
