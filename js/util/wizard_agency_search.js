@@ -1,9 +1,17 @@
 /**
  * @param {string} query
  * @param {FlatListItem[]} flatList
- * @returns {FlatListItem|null}
+ * @param {boolean=} debug to console
+ * @returns {{
+ *   item: FlatListItem | null;
+ *   matchedAbbr: boolean;
+ *   queryWords: number;
+ *   wordsMatched: number;
+ * }}
  */
-function searchMatchingAgency(query, flatList) {
+function searchMatchingAgency(query, flatList, debug = false) {
+  const log = (...args) => debug && console.log(...args);
+
   // Remove words search engines often disregard
   const stopWords = ('a able about across after all almost also am among an and any are as at'
     + ' be because been but by can cannot could dear did do does either else ever every for from get'
@@ -87,6 +95,7 @@ function searchMatchingAgency(query, flatList) {
   /**
    * @type {Array<{
    *   score: number;
+   *   wordsMatched: number;
    *   item: FlatListItem;
    *   abbr: string;
    *   titleNormalized: string;
@@ -102,7 +111,10 @@ function searchMatchingAgency(query, flatList) {
       normalize(removeLinksFromMission(item.description.processed || ''), true),
     ),
     score: 0,
+    wordsMatched: 0,
   }));
+
+  let matchedAbbr = false;
 
   // Score matching abbreviations by how long they are. We're generally giving a
   // bigger score because the user had to give us uppercase.
@@ -111,11 +123,16 @@ function searchMatchingAgency(query, flatList) {
       indexItems.forEach((item) => {
         if (word === item.abbr.toUpperCase()) {
           item.score += word.length;
+          item.wordsMatched += 1;
+          matchedAbbr = true;
+          log(`Added ${word.length}pts to ${item.item.title} because user's query had word "${word}" matching item.abbr`, item);
         }
       });
     });
 
   const words = normalize(query, true);
+
+  log(`User's query normalized and with stop words removed: [${words.join()}]`);
 
   for (let i = 0; i < words.length; i++) {
     // Case-insensitive matches against title words
@@ -131,6 +148,8 @@ function searchMatchingAgency(query, flatList) {
         const needle = joinWithCommas(wordsToCheck);
         if (item.titleNormalized.includes(needle)) {
           item.score += 1;
+          item.wordsMatched = Math.max(item.wordsMatched, matchLen);
+          log(`Added 1pt to ${item.item.title} because ${matchLen} consecutive non-stop words matched item.titleNormalized`, item);
         } else {
           return;
         }
@@ -150,6 +169,8 @@ function searchMatchingAgency(query, flatList) {
         const needle = joinWithCommas(wordsToCheck);
         if (item.missionNormalized.includes(needle)) {
           item.score += 1;
+          item.wordsMatched = Math.max(item.wordsMatched, matchLen);
+          log(`Added 1pt to ${item.item.title} because ${matchLen} consecutive non-stop words matched item.missionNormalized`, item);
         } else {
           return;
         }
@@ -160,7 +181,21 @@ function searchMatchingAgency(query, flatList) {
   indexItems.sort((a, b) => b.score - a.score);
   const first = indexItems[0];
 
-  return first && first.score ? first.item : null;
+  if (!first || !first.score) {
+    // No match
+    return {
+      item: null,
+      wordsMatched: 0,
+      queryWords: words.length,
+    };
+  }
+
+  return {
+    item: first.item,
+    matchedAbbr,
+    queryWords: words.length,
+    wordsMatched: first.wordsMatched,
+  };
 }
 
 export default searchMatchingAgency;

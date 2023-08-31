@@ -12,6 +12,7 @@ import NoResults from './wizard_component_no_results';
 import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
 
+const debug = true;
 const limit = parseInt(urlParams().get('limit') || '6', 10);
 
 function Summary() {
@@ -77,6 +78,10 @@ function Summary() {
       <WizardLinks links={links.slice(0, limit)} />
     </>
   );
+
+  if (hasTopicContent && debug) {
+    console.log('Since topic content is shown, model-provided agencies and docs are not displayed:', { agencies, links });
+  }
 
   return (
     <PageTemplate>

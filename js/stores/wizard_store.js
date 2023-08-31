@@ -17,9 +17,7 @@ import extraMessages from '../models/wizard_extra_messages';
 import { defaultSummary, stateLocalSummary, stateOrLocalFlow } from '../models/wizard_summaries';
 import agencyComponentStore from './agency_component';
 
-/** @type {WizardTriggerPhrase[]} */
-let triggerPhrases = [];
-
+const DEBUG_TO_CONSOLE = true;
 const DEFAULT_CONFIDENCE_THRESHOLD = Number(
   urlParams().get('confidence-threshold') || 0.5,
 );
@@ -34,21 +32,25 @@ const initialWizardState = {
   allTopics,
   answerIdx: null,
   displayedTopic: '',
-  flatList: [],
-
-  // How many async operations are we waiting on?
-  // Use useWizard().loading instead of reading this.
-  // Defaults to 1 because we'll be waiting for setFlatList() to be called.
-  numLoading: 1,
-
+  flatList: null,
+  modelLoading: false,
   query: '',
-  ready: false,
   recommendedAgencies: null,
   recommendedLinks: null,
+  triggerPhrases: null,
   isError: false,
   ui: extraMessages,
   userTopic: null,
 };
+
+const log = (...args) => DEBUG_TO_CONSOLE && console.log(...args);
+
+/**
+ * Keys of state to preserve on a reset.
+ *
+ * @type {Array<keyof WizardVars>}
+ */
+const preserveKeys = ['allTopics', 'flatList', 'triggerPhrases', 'ui'];
 
 /**
  * @param {WizardState} state
@@ -56,12 +58,8 @@ const initialWizardState = {
  */
 function createSnapshot(state) {
   const snapshot = { ...state };
-  // Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'numLoading' | 'flatList'>;
-  delete snapshot.allTopics;
   delete snapshot.actions;
-  delete snapshot.flatList;
-  delete snapshot.ui;
-  delete snapshot.numLoading;
+  preserveKeys.forEach((key) => delete snapshot[key]);
 
   return snapshot;
 }
@@ -79,18 +77,10 @@ const useRawWizardStore = create((
   // Actions separated from state vars.
 
   /**
-   * @param {number} delta
-   */
-  function nudgeLoading(delta) {
-    set((prev) => ({ numLoading: Math.max(0, prev.numLoading + delta) }));
-  }
-
-  /**
    * @param {FlatListItem[]} flatList
    */
   function setFlatList(flatList) {
     set({ flatList });
-    nudgeLoading(-1);
   }
 
   /**
@@ -113,15 +103,14 @@ const useRawWizardStore = create((
     return combined;
   };
 
-  const reset = () => set((state) => ({
-    ...initialWizardState,
-
-    // Preserve loaded stuff
-    allTopics: state.allTopics,
-    flatList: state.flatList,
-    ui: state.ui,
-    ready: state.ready,
-  }));
+  const reset = () => set((state) => {
+    const obj = { ...initialWizardState };
+    // preserve loaded stuff
+    preserveKeys.forEach((key) => {
+      obj[key] = state[key];
+    });
+    return obj;
+  });
 
   /**
    * Pop history to return to last page
@@ -148,14 +137,13 @@ const useRawWizardStore = create((
   });
 
   const initLoad = async () => {
-    nudgeLoading(1);
     let data;
+    let triggerPhrases = null;
     try {
       data = await fetchWizardInitData();
     } catch (err) {
       throw new Error(`API call to fetch wizard strings failed: ${err}`);
     }
-    nudgeLoading(-1);
 
     const lang = 'en';
     try {
@@ -178,7 +166,7 @@ const useRawWizardStore = create((
       query_slide: data.language[lang].query_slide,
       ...data.language[lang].messages,
     };
-    set({ ready: true, ui });
+    set({ ui, triggerPhrases });
   };
 
   /**
@@ -186,14 +174,15 @@ const useRawWizardStore = create((
    * @returns {WizardVars}
    */
   function getJumpBackState(state) {
-    return {
+    const obj = {
       ...initialWizardState,
       activity: { type: 'query' },
-      // Preserve loaded stuff
-      allTopics: state.allTopics,
-      ui: state.ui,
-      ready: state.ready,
     };
+    // Preserve loaded stuff
+    preserveKeys.forEach((key) => {
+      obj[key] = state[key];
+    });
+    return obj;
   }
 
   const jumpBackToQueryPage = () => set((state) => getJumpBackState(state));
@@ -236,30 +225,84 @@ const useRawWizardStore = create((
 
   /** @type {WizardActions['submitRequest']} */
   const submitRequest = async ({ query, topic }) => {
+    // Wait for agencies to load...
+    await new Promise((res) => {
+      let interval;
+      function checkLoaded() {
+        if (get().flatList) {
+          window.clearInterval(interval);
+          res();
+        }
+      }
+
+      interval = window.setInterval(checkLoaded, 250);
+      checkLoaded();
+    });
+
+    const flatList = get().flatList;
+    const triggerPhrases = get().triggerPhrases || [];
     let isError = false;
     let recommendedAgencies = [];
     let recommendedLinks = [];
     let effectiveTopic = topic;
     let isStateOrLocal = false;
     let agenciesFirst = false;
+    let trustAgencyMatch = false;
+    let matchingFlatAgency = null;
 
-    const matchingFlatAgency = searchMatchingAgency(query, get().flatList);
     const triggerMatch = scanForTriggers(query, triggerPhrases);
+    if (triggerMatch) {
+      log(`Found trigger phrase "${triggerMatch.trigger}": Sending the user to message ${triggerMatch.skip}.`);
+    } else {
+      const {
+        item,
+        matchedAbbr,
+        queryWords,
+        wordsMatched,
+      } = searchMatchingAgency(query, flatList, DEBUG_TO_CONSOLE);
+      matchingFlatAgency = item;
+
+      if (matchingFlatAgency) {
+        log(`Found matching agency ${item.title} matching ${wordsMatched} words.`);
+        log(`User's query (stop words removed) was ${queryWords} words.`);
+
+        // See if it's a close enough match to bypass intent model
+        if (matchedAbbr) {
+          trustAgencyMatch = true;
+          log('User\'s query had a matching agency abbreviation. Skipping intent model check.');
+        } else {
+          const nonMatchWords = (queryWords - wordsMatched);
+          log(`User's query had ${nonMatchWords} non-match words.`);
+          if (nonMatchWords <= 2) {
+            trustAgencyMatch = true;
+            log('Since this is <= 2, the query is deemed "mostly" matching words. Skipping intent model check.');
+          }
+        }
+      }
+    }
 
     if (query && !effectiveTopic && !triggerMatch) {
-      nudgeLoading(1);
+      set({ modelLoading: true });
       await fetchWizardPredictions(query)
         .then((data) => {
-          // If a predefined flow is found, we switch to it, but we'll go ahead and populate
-          // the links and agencies anyway.
-          const { flow } = data.model_output.predefined_flow || {};
-          if (typeof flow === 'string') {
-            if (flow === stateOrLocalFlow) {
-              isStateOrLocal = true;
-            } else {
-              effectiveTopic = allTopics.find(
-                (el) => el.title.toUpperCase() === flow.toUpperCase(),
-              );
+          if (trustAgencyMatch) {
+            log('An agency match was most of user\'s query: Skipping intent model.');
+          } else {
+            // If a predefined flow is found, we switch to it, but we'll go ahead and populate
+            // the links and agencies anyway.
+            const { flow } = data.model_output.predefined_flow || {};
+            if (typeof flow === 'string') {
+              if (flow === stateOrLocalFlow) {
+                log('Moving user to state/local summary page due to intent model result.');
+                isStateOrLocal = true;
+              } else {
+                effectiveTopic = allTopics.find(
+                  (el) => el.title.toUpperCase() === flow.toUpperCase(),
+                );
+                if (effectiveTopic) {
+                  log(`Moving user to flow for topic "${effectiveTopic.title}" due to intent model result.`);
+                }
+              }
             }
           }
 
@@ -320,8 +363,9 @@ const useRawWizardStore = create((
           console.error(err);
           isError = true;
         });
-      nudgeLoading(-1);
     }
+
+    set({ modelLoading: false });
 
     // We use this if no topic is selected/predicted.
     let summary = isStateOrLocal ? stateLocalSummary : defaultSummary;
@@ -369,14 +413,14 @@ const useRawWizardStore = create((
  *
  * @returns {{
  *   actions: WizardActions;
+ *   activity: WizardVars['activity'];
  *   agenciesFirst: boolean;
  *   allTopics: WizardVars['allTopics'];
- *   canGoBack: boolean;
- *   loading: boolean;
- *   activity: WizardVars['activity'];
  *   answerIdx: WizardVars['answerIdx'];
+ *   canGoBack: boolean;
  *   displayedTopic: string;
- *   ready: boolean;
+ *   introReady: boolean;
+ *   loading: boolean;
  *   request: {
  *     agencies: WizardVars['recommendedAgencies'];
  *     links: WizardVars['recommendedLinks'];
@@ -391,14 +435,14 @@ const useRawWizardStore = create((
 function useWizard() {
   return useRawWizardStore((/** WizardState */ state) => ({
     actions: state.actions,
+    activity: state.activity,
     agenciesFirst: state.agenciesFirst,
     allTopics: state.allTopics,
     answerIdx: state.answerIdx,
-    displayedTopic: state.displayedTopic,
     canGoBack: state.activity.type !== 'intro',
-    loading: state.numLoading > 0,
-    activity: state.activity,
-    ready: state.ready,
+    displayedTopic: state.displayedTopic,
+    introReady: Boolean(state.triggerPhrases),
+    loading: Boolean(state.modelLoading || !state.flatList || !state.triggerPhrases),
     request: {
       agencies: state.recommendedAgencies,
       links: state.recommendedLinks,
