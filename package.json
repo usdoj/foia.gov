@@ -63,7 +63,7 @@
     "uswds": "1.x"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
+    "@babel/core": "^7.22.15",
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.22.3",
     "@cucumber/cucumber": "^9.1.0",
