@@ -16,8 +16,8 @@ function Card({ card }) {
       }`}
       href={url}
       onClick={onClick}
-      target={alt ? '_blank' : '_self'}
-      rel={alt ? 'noreferrer' : ''}
+      target={alt ? '_blank' : undefined}
+      rel={alt ? 'noreferrer' : undefined}
     >
       <span className="foia-component-card__tag">{tag}</span>
       <h2 className="foia-component-card__title">{title}</h2>
