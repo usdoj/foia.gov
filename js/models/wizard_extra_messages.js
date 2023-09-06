@@ -6,7 +6,7 @@
 const extraMessages = {
   q1: 'Are you seeking your own records?',
   q2: 'Select the type of immigration or travel record you are seeking from the list below:',
-  q3: 'Select the type of IRS record you are seeking from the list below:',
+  q3: 'Select the type of tax record you are seeking from the list below:',
   q4: 'Select the type of Social Security record you are seeking from the list below:',
   q5: 'Are you a Veteran?',
   q6: 'Are you seeking medical records of a Veteran?',
@@ -33,7 +33,7 @@ const extraMessages = {
   'a14-2': 'Record of Proceeding (ROP)',
   a15: 'Copy or transcript of tax return',
   a16: 'Information from Open Case Files',
-  a17: 'Other IRS Records',
+  a17: 'Other Tax Records',
   a18: 'Deceased Individual’s Application for a Social Security Card or (SS-5) or Numident record.',
   a19: 'Records of another living individual',
   a20: 'Earnings records',
