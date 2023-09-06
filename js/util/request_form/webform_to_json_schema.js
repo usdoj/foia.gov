@@ -212,9 +212,8 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
             properties,
           };
         }
-        dependencies[dependencyKey].properties[item.child] = {
-          type: jsonSchema.properties[item.child].type,
-        };
+        const clonedElement = { ...jsonSchema.properties[item.child] };
+        dependencies[dependencyKey].properties[item.child] = clonedElement;
       });
     });
   });
@@ -231,9 +230,8 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
             properties,
           };
         }
-        dependencies[dependencyKey].properties[item.child] = {
-          type: jsonSchema.properties[item.child].type,
-        };
+        const clonedElement = { ...jsonSchema.properties[item.child] };
+        dependencies[dependencyKey].properties[item.child] = clonedElement;
         if (typeof dependencies[dependencyKey].required === 'undefined') {
           dependencies[dependencyKey].required = [];
         }
