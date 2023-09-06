@@ -6,16 +6,16 @@ import Button from './wizard_component_button';
 import WizardHtml from './wizard_html';
 
 function Intro() {
-  const { actions, ready } = useWizard();
+  const { actions, introReady } = useWizard();
 
   return (
     <PageTemplate>
       <Constrain>
-        {!ready && (
+        {!introReady && (
           <WizardHtml mid="loading" />
         )}
 
-        {ready && (
+        {introReady && (
           <div className="w-component-intro">
             <WizardHtml mid="intro_slide" />
 

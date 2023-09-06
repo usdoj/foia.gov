@@ -12,6 +12,7 @@ import NoResults from './wizard_component_no_results';
 import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
 
+const debug = true;
 const limit = parseInt(urlParams().get('limit') || '6', 10);
 
 function Summary() {
@@ -78,6 +79,10 @@ function Summary() {
     </>
   );
 
+  if (hasTopicContent && debug) {
+    console.log('Since topic content is shown, model-provided agencies and docs are not displayed:', { agencies, links });
+  }
+
   return (
     <PageTemplate>
       <Constrain>
@@ -126,7 +131,10 @@ function WizardLinks({ links }) {
       id: link.abbreviation + link.parent_abbreviation + link.url,
       tag: link.component,
       title: link.title || '[title unavailable]',
-      subtitle: link.parent_abbreviation || '',
+
+      // parent_abbreviation is sometimes "nan", don't show this.
+      subtitle: (link.parent_abbreviation || '').replace(/^nan$/, ''),
+
       url: link.url,
       confidenceScore: link.confidence_score.toFixed(4),
     }

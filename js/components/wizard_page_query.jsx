@@ -12,13 +12,14 @@ const MAX_QUERY_LENGTH = 500;
 
 function Query() {
   const {
-    actions, allTopics, loading,
+    actions, allTopics,
   } = useWizard();
 
   const [query, setQuery] = useState(/** @type string | null */ null);
   const [exceededMaxLengthQuery, setExceededMaxLengthQuery] = useState(/** @type boolean */ false);
   const [selectedTopic, setSelectedTopic] = useState(/** @type WizardTopic | null */ null);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -87,15 +88,18 @@ function Query() {
         {(query && query !== '' && !exceededMaxLengthQuery) || selectedTopic ? (
           <div className="w-component-submit">
             <Button
-              onClick={() => actions.submitRequest({
-                query: query || '',
-                topic: selectedTopic,
-              })}
-              disabled={loading}
+              onClick={() => {
+                setSubmitted(true);
+                actions.submitRequest({
+                  query: query || '',
+                  topic: selectedTopic,
+                });
+              }}
+              disabled={submitted}
             >
               Submit
             </Button>
-            {loading && <WizardHtml mid="loading" />}
+            {submitted && <WizardHtml mid="loading" />}
           </div>
         ) : null}
       </Constrain>
