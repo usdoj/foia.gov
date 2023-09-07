@@ -290,12 +290,13 @@ const useRawWizardStore = create((
           } else {
             // If a predefined flow is found, we switch to it, but we'll go ahead and populate
             // the links and agencies anyway.
-            const { flow } = data.model_output.predefined_flow || {};
+            let { flow } = data.model_output.predefined_flow || {};
             if (typeof flow === 'string') {
               if (flow === stateOrLocalFlow) {
                 log('Moving user to state/local summary page due to intent model result.');
                 isStateOrLocal = true;
               } else {
+                flow = flow.replace(/IRS records/i, 'Tax records');
                 effectiveTopic = allTopics.find(
                   (el) => el.title.toUpperCase() === flow.toUpperCase(),
                 );

@@ -6,7 +6,7 @@ import {
 /**
  * @type {WizardQuestion}
  */
-const irsTypeQuestion = question('q1', [
+const taxTypeQuestion = question('q1', [
   answer(
     'a15',
     summary('m16'),
@@ -29,11 +29,11 @@ const irsTypeQuestion = question('q1', [
 ]);
 
 /** @type {WizardQuestion} */
-const irsRecordsJourney = yesNoQuestion('q1', {
-  topicIfYes: 'Your own Internal Revenue Service (IRS) records',
-  topicIfNo: 'Someone else’s Internal Revenue Service (IRS) records',
-  yes: continueStep('m1', irsTypeQuestion),
-  no: continueStep('m2', irsTypeQuestion),
+const taxRecordsJourney = yesNoQuestion('q1', {
+  topicIfYes: 'Your own tax records',
+  topicIfNo: 'Someone else’s tax records',
+  yes: continueStep('m1', taxTypeQuestion),
+  no: continueStep('m2', taxTypeQuestion),
 });
 
-export default irsRecordsJourney;
+export default taxRecordsJourney;
