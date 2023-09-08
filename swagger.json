@@ -33,14 +33,14 @@
           "required": false,
           "in": "query",
           "type": "string",
-          "description": "You can choose which fields to include by using comma separated values in this parameter.</p><h5>For Example:</h5><p>This endpoint will return only the title and description. <br> https://api.foia.gov/api/agency_components?fields[agency_component]=title,description&api_key=N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N</p><h5>Possible values:</h5><code>title, status, abbreviation, moderation_state, description, email, submission_address</code>"
+          "description": "You can choose which fields to include by using comma separated values in this parameter.</p><h5>For Example:</h5><p>This endpoint will return only the title and description. <br> https://api.foia.gov/api/agency_components?fields[agency_component]=title,description&api_key=N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N</p><h5>Possible values:</h5><code>title, status, abbreviation, moderation_state, description, email, submission_address, agency, telephone, commonly_requested_records, request_data_complex_average_days, request_data_complex_highest_days, request_data_complex_lowest_days, request_data_complex_median_days, request_data_expedited_average_days, request_data_expedited_highest_days, request_data_expedited_lowest_days, request_data_expedited_median_days, foia_officers, is_centralized, field_misc, portal_submission_format, public_liaisons, reading_rooms, paper_receiver, field_rep_exp, field_rep_start, request_data_year, request_form, field_require_manual_processing, service_centers, request_data_simple_average_days, request_data_simple_highest_days, request_data_simple_lowest_days, request_data_simple_median_days, submission_address, submission_fax, submission_web, website </code>"
         },
           {
             "name": "fields[agency]",
             "required": false,
             "in": "query",
             "type": "string",
-            "description": "You can choose which fields to include by using comma separated values in this parameter.</p><h5>For Example:</h5><p>This endpoint will return only the title and description. <br> https://api.foia.gov/api/agency_components?fields[agency_component]=title,description&api_key=N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N</p><h5>Possible values:</h5><code>title, status, abbreviation, moderation_state, description, email, submission_address</code>"
+            "description": "You can choose which fields to include by using comma separated values in this parameter.</p><h5>For Example:</h5><p>This endpoint will return only the title and description. <br> https://api.foia.gov/api/agency_components?fields[agency_component]=title,description&api_key=N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N</p><h5>Possible values:</h5><code>title, status, abbreviation, moderation_state, name, description, email, submission_address, revision_id, revision_created, metatag, category</code>"
           },
           {
             "name": "page[limit]",
