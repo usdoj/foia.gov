@@ -296,7 +296,9 @@ const useRawWizardStore = create((
                 log('Moving user to state/local summary page due to intent model result.');
                 isStateOrLocal = true;
               } else {
+                // In case the intent model hasn't already been updated, check for these two cases:
                 flow = flow.replace(/IRS records/i, 'Tax records');
+                flow = flow.replace(/(Immigration records)|(Travel records)/i, 'Immigration or Travel records');
                 effectiveTopic = allTopics.find(
                   (el) => el.title.toUpperCase() === flow.toUpperCase(),
                 );
