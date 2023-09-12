@@ -14,11 +14,6 @@ function jumpToUrl(id, type) {
   pushUrl(`?${params}`);
 }
 
-function returnUrl(id, type) {
-  const params = new URLSearchParams({ id, type });
-  return `?${params}`;
-}
-
 /**
  * Load and display an Agency or Agency Component and allow navigation
  * between them.
@@ -136,8 +131,6 @@ class AgencyDisplay extends Component {
     const agencyChange = (agencyComponent) => {
       // We're going to push a URL so checkLoaded() can handle it
       if (agencyComponent.type === 'agency_component') {
-        const destinationHref = returnUrl(agencyComponent.id, 'component');
-        this.setDestinationHref(destinationHref);
         jumpToUrl(agencyComponent.id, 'component');
         return;
       }
@@ -147,15 +140,12 @@ class AgencyDisplay extends Component {
       // Treat centralized agencies as components
       if (agency && agency.isCentralized()) {
         const component = this.props.agencyComponents.find((c) => c.agency.id === agency.id);
-        const destinationHref = returnUrl(component.id, 'component');
-        this.setDestinationHref(destinationHref);
         jumpToUrl(component.id, 'component');
         return;
       }
 
       if (agency) {
-        const destinationHref = returnUrl(agency.id, 'agency');
-        this.setDestinationHref(destinationHref);
+        jumpToUrl(agency.id, 'agency');
       }
     };
 

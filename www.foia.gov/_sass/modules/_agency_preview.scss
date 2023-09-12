@@ -102,6 +102,8 @@
 }
 
 .agency-preview_agency-back {
+  display: block !important;
+
   &::after {
     @include has-icon($icon-caret, $width: 0.7em, $height: 0.7em, $float: none, $display: inline-block, $margins: 0 0 0 $space-2x);
   }
