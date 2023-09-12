@@ -18,17 +18,11 @@ function Card({ card }) {
       onClick={onClick}
       target={alt ? '_blank' : undefined}
       rel={alt ? 'noreferrer' : undefined}
+      data-score={confidenceScore}
     >
       <span className="foia-component-card__tag">{tag}</span>
       <h2 className="foia-component-card__title">{title}</h2>
       {subtitle && <span className="foia-component-card__subtitle">{subtitle}</span>}
-      {confidenceScore && (
-        <span className="foia-component-card__score">
-          Score:
-          {' '}
-          {confidenceScore}
-        </span>
-      )}
     </a>
   );
 }
