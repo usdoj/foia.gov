@@ -313,8 +313,9 @@ const useRawWizardStore = create((
             recommendedAgencies = [
               {
                 ...matchingFlatAgency,
-                url: agencyComponentStore.getFlatItemUrl(matchingFlatAgency),
                 confidence_score: 10000,
+                parent: matchingFlatAgency.agency,
+                url: agencyComponentStore.getFlatItemUrl(matchingFlatAgency),
               },
             ];
             agenciesFirst = true;
