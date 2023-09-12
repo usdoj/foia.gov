@@ -57,7 +57,6 @@ function Query() {
           label="Query"
           onChange={(e) => setQuery(e.target.value)}
           value={query || ''}
-          placeholder={selectedTopic ? '' : 'Type 1-2 sentences or keywords...'}
           disabled={Boolean(selectedTopic)}
         />
         <PillGroup
