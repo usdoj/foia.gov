@@ -290,12 +290,15 @@ const useRawWizardStore = create((
           } else {
             // If a predefined flow is found, we switch to it, but we'll go ahead and populate
             // the links and agencies anyway.
-            const { flow } = data.model_output.predefined_flow || {};
+            let { flow } = data.model_output.predefined_flow || {};
             if (typeof flow === 'string') {
               if (flow === stateOrLocalFlow) {
                 log('Moving user to state/local summary page due to intent model result.');
                 isStateOrLocal = true;
               } else {
+                // In case the intent model hasn't already been updated, check for these two cases:
+                flow = flow.replace(/IRS records/i, 'Tax records');
+                flow = flow.replace(/(Immigration records)|(Travel records)/i, 'Immigration or Travel records');
                 effectiveTopic = allTopics.find(
                   (el) => el.title.toUpperCase() === flow.toUpperCase(),
                 );
@@ -310,8 +313,9 @@ const useRawWizardStore = create((
             recommendedAgencies = [
               {
                 ...matchingFlatAgency,
-                url: agencyComponentStore.getFlatItemUrl(matchingFlatAgency),
                 confidence_score: 10000,
+                parent: matchingFlatAgency.agency,
+                url: agencyComponentStore.getFlatItemUrl(matchingFlatAgency),
               },
             ];
             agenciesFirst = true;
