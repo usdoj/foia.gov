@@ -12,7 +12,7 @@ function Card({ card }) {
   return (
     <a
       className={`foia-component-card ${
-        alt ? 'foia-component-card--alt foia-component-card--alt--ext' : ''
+        alt ? 'foia-component-card--alt foia-component-card--ext' : ''
       }`}
       href={url}
       onClick={onClick}
