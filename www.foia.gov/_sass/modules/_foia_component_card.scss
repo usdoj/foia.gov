@@ -37,16 +37,17 @@
 
 .foia-component-card--inline {
   display: inline-block;
+  margin-top: 3rem;
   min-height: 14rem;
   width: 100%;
 
   @media screen and (min-width: $medium-screen) {
     margin-right: 3.4rem;
-    width: calc((100% - 3.4rem) / 2);
+    width: calc((100% - 7.4rem) / 2);
   }
 
   @media screen and (min-width: $medium-large-screen) {
-    width: calc((100% - 6.8rem) / 3);
+    width: calc((100% - 11rem) / 3);
   }
 }
 
