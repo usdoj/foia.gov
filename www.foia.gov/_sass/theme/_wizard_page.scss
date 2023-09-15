@@ -385,6 +385,8 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 // Rich Text Component
 .w-component-rich-text {
   color: $color-white;
+  position: relative;
+  z-index: 0;
 
   a:any-link {
     color: $color-primary-alt;

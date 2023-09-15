@@ -89,19 +89,23 @@ export function convertSomeLinksToCards(html) {
 
     const classes = [
       'foia-component-card',
-      'foia-component-card--alt',
-      // If the link goes outside the foia domain, add an extra class name
-      localChecks.some((check) => linkOpenTag.includes(check)) ? '' : 'foia-component-card--alt--ext',
       // Square-type cards, like agencies
-      linkOpenTag.includes('class="square"') ? 'foia-component-card--square' : '',
+      linkOpenTag.includes('class="square"') ? 'foia-component-card--inline' : 'foia-component-card--alt',
+      // If the link goes outside the foia domain, add an extra class name
+      localChecks.some((check) => linkOpenTag.includes(check)) ? '' : 'foia-component-card--ext',
     ];
 
+    let linkOpenTagNew;
+    if (linkOpenTag.includes('class="square')) {
+      linkOpenTagNew = linkOpenTag.replace('class="square"', `class="${classes.join(' ')}"`);
+    } else {
+      linkOpenTagNew = linkOpenTag.replace('<a ', `<a class="${classes.join(' ')}" `);
+    }
+
     return `
-      <div class="${classes.join(' ')}">
-        ${linkOpenTag}
-          <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
-        </a>
-      </div>
+      ${linkOpenTagNew}
+        <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
+      </a>
     `;
   });
 }
