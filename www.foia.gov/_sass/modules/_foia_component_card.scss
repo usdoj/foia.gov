@@ -35,6 +35,21 @@
   }
 }
 
+.foia-component-card--inline {
+  display: inline-block;
+  min-height: 14rem;
+  width: 100%;
+
+  @media screen and (min-width: $medium-screen) {
+    margin-right: 3.4rem;
+    width: calc((100% - 3.4rem) / 2);
+  }
+
+  @media screen and (min-width: $medium-large-screen) {
+    width: calc((100% - 6.8rem) / 3);
+  }
+}
+
 .foia-component-card__tag {
   color: $color-white;
   font-size: 1.8rem;
@@ -47,6 +62,7 @@
 
 .foia-component-card__title {
   color: $color-white !important;
+  display: flex;
   font-size: 2.8rem;
   font-weight: 500;
   margin-top: 1rem;
