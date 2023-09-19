@@ -18,7 +18,7 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
         'q7',
         [
           answer(
-            'literal:My active duty or reserve medical records',
+            'literal:Active duty or reserve medical records',
             summary('m24'),
             'Your own active duty or reserve medical records',
           ),
@@ -33,11 +33,15 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
             'Your own Indian Health Service participant records',
           ),
           answer(
+            'literal:For other records, we recommend you contact your medical provider directly',
+            summary('m50'),
+            'All other medical records',
+          ),
+          answer(
             'startOver',
             { type: 'start-over' },
           ),
         ],
-        'literal:<p>For other information, we suggest you contact your medical provider directly.</p>',
       ),
     }),
   ),
@@ -51,9 +55,9 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
         'q7',
         [
           answer(
-            'literal:Medical records for an active duty or reserve military servicemember',
+            'literal:Active duty or reserve military servicemember medical records',
             summary('m28'),
-            'Medical records for an active duty or reserve military servicemember',
+            'Active duty or reserve military servicemember medical records',
           ),
           answer(
             'literal:Medicaid/Medicare participant records',
@@ -66,11 +70,15 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
             'Indian Health Service participant records',
           ),
           answer(
+            'literal:For other records, we recommend you contact the medical provider directly',
+            summary('m51'),
+            'All other medical records',
+          ),
+          answer(
             'literal:None of the Above (I want to start over)',
             { type: 'start-over' },
           ),
         ],
-        'literal:<p>For other information, we suggest contacting the medical provider directly.</p>',
       ),
     }),
   ),
