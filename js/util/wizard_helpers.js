@@ -158,6 +158,18 @@ export function useWait(waitMs) {
 }
 
 /**
+ * @param {string} str
+ * @returns {string}
+ */
+function normalizeForTriggers(str) {
+  return str
+    .replace(/\s+/g, ' ')
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/(\w)s'($|\s)/, "$1's$2");
+}
+
+/**
  * @param {string} string
  * @returns {string}
  * @licence https://github.com/sindresorhus/escape-string-regexp/blob/main/license
@@ -176,11 +188,11 @@ function escapeStringRegexp(string) {
  * @returns {{ idx: number; matchLen: number; trigger: string; skip: string } | null}
  */
 export function scanForTriggers(query, phrases) {
-  const queryNormalized = query.replace(/\s+/g, ' ');
+  const queryNormalized = normalizeForTriggers(query);
 
   for (let i = 0; i < phrases.length; i++) {
     const { trigger, caseSensitive, skip } = phrases[i];
-    const pattern = `\\b${escapeStringRegexp(trigger)}\\b`;
+    const pattern = `\\b${escapeStringRegexp(normalizeForTriggers(trigger))}\\b`;
     const regex = new RegExp(pattern, caseSensitive ? '' : 'i');
     const match = regex.exec(queryNormalized);
     if (match) {
