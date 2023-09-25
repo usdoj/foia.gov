@@ -24,6 +24,15 @@ function WizardPage({ flatList }) {
     }
   }, [flatList]);
 
+  // Scroll to top whenever page changes
+  useEffect(() => {
+    try {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    } catch (err) {
+      // NOOP
+    }
+  }, [activity]);
+
   const ActivePageComponent = wizardPages[activity.type];
 
   return (
