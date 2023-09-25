@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { isSingular, plural } from 'pluralize';
 
 /**
  * @param {string} titleMid
@@ -166,7 +167,10 @@ function normalizeForTriggers(str) {
     .replace(/\s+/g, ' ')
     .replace(/[\u2018\u2019]/g, "'")
     .replace(/[\u201C\u201D]/g, '"')
-    .replace(/(\w)s'($|\s)/, "$1's$2");
+    .replace(/(\w)s'($|\s)/, "$1's$2")
+    .split(/ /g)
+    .map((word) => (isSingular(word) ? plural(word) : word))
+    .join(' ');
 }
 
 /**

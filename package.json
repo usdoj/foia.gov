@@ -48,6 +48,7 @@
     "jquery": "^3.6.4",
     "jsonapi-parse": "1.x",
     "lodash": "4.x",
+    "pluralize": "^8.0.0",
     "prop-types": "15.x",
     "react": "16.x",
     "react-dom": "16.x",

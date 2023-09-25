@@ -1,3 +1,5 @@
+import { isSingular, plural } from 'pluralize';
+
 /**
  * @param {string} query
  * @param {FlatListItem[]} flatList
@@ -22,26 +24,24 @@ function searchMatchingAgency(query, flatList, debug = false) {
     + ' would yet you your').split(' ');
 
   const replacementMap = {
-    administration: 'admin',
-    assistant: 'asst',
-    attorneys: 'attorney',
-    corporation: 'corp',
+    admin: 'administration',
+    asst: 'assistant',
+    corp: 'corporation',
     defence: 'defense',
-    department: 'dept',
-    disability: 'disabled',
+    dept: 'department',
+    disabled: 'disability',
     environmental: 'environment',
-    executive: 'exec',
-    forces: 'force',
-    government: 'govt',
-    institute: 'inst',
-    intelligence: 'intel',
-    liberties: 'liberty',
-    management: 'mgmt',
-    national: 'natl',
-    operations: 'ops',
+    exec: 'executive',
+    govt: 'government',
+    inst: 'institute',
+    intel: 'intelligence',
+    mgmt: 'management',
+    natl: 'national',
+    ops: 'operations',
     policing: 'police',
-    services: 'svcs',
-    technology: 'tech',
+    svc: 'service',
+    svcs: 'service',
+    tech: 'technology',
   };
 
   /**
@@ -84,7 +84,14 @@ function searchMatchingAgency(query, flatList, debug = false) {
       // Mixed or lowercase words, don't allow stop words
       return !stopWords.includes(el.toLowerCase());
     })
-    .map((el) => (replaceWords ? (replacementMap[el.toLowerCase()] || el) : el));
+    .map((el) => {
+      if (!replaceWords) {
+        return el;
+      }
+
+      const word = replacementMap[el.toLowerCase()] || el;
+      return isSingular(word) ? plural(word) : word;
+    });
 
   /**
    * @param {string[]} words
@@ -135,6 +142,7 @@ function searchMatchingAgency(query, flatList, debug = false) {
 
   log(`User's query normalized and with stop words removed: [${words.join()}]`);
 
+  // Loop through first word in the potential match
   for (let i = 0; i < words.length; i++) {
     // Case-insensitive matches against title words
     indexItems.forEach((item) => {
