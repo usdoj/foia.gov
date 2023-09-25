@@ -116,12 +116,13 @@ function searchMatchingAgency(query, flatList, debug = false) {
 
   let matchedAbbr = false;
 
-  // Score matching abbreviations by how long they are. We're generally giving a
-  // bigger score because the user had to give us uppercase.
+  // Score matching abbreviations by how long they are. We hope regular words are not
+  // accidentally matched as abbreviations, but there's not much we can do about it.
   normalize(query, false)
+    .map((word) => word.toUpperCase())
     .forEach((word) => {
       indexItems.forEach((item) => {
-        if (word === item.abbr.toUpperCase()) {
+        if (word === item.abbr || word === `US${item.abbr}`) {
           item.score += word.length;
           item.wordsMatched += 1;
           matchedAbbr = true;
