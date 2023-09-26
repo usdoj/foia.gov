@@ -109,17 +109,20 @@ function searchMatchingAgency(query, flatList, debug = false) {
    *   missionNormalized: string;
    *   }>}
    */
-  const indexItems = flatList.map((item) => ({
-    item,
-    titleNormalized: joinWithCommas(normalize(item.title, true)),
-    // missionNormalized: joinWithCommas(normalize(item))
-    abbr: item.abbreviation.toUpperCase(),
-    missionNormalized: joinWithCommas(
-      normalize(removeLinksFromMission(item.description.processed || ''), true),
-    ),
-    score: 0,
-    wordsMatched: 0,
-  }));
+  const indexItems = flatList.map((item) => {
+    const { processed = '' } = item.description || {};
+    return {
+      item,
+      titleNormalized: joinWithCommas(normalize(item.title, true)),
+      // missionNormalized: joinWithCommas(normalize(item))
+      abbr: item.abbreviation.toUpperCase(),
+      missionNormalized: joinWithCommas(
+        normalize(removeLinksFromMission(processed), true),
+      ),
+      score: 0,
+      wordsMatched: 0,
+    };
+  });
 
   let matchedAbbr = false;
 
