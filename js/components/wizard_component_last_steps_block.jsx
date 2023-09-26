@@ -16,7 +16,7 @@ function LastStepsBlock() {
 
   const options = [
     {
-      label: 'Yes, I would like to refine my search.',
+      label: 'Yes, I would like to restart my search.',
       action: actions.jumpBackToQueryPage,
     },
     {
