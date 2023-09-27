@@ -187,6 +187,14 @@ JSON payload that contains the form fields.
 **Required:** | no
 **Example:** | `"Virginia"`
 
+**Field:** | `address_state_province_international`
+:--- |:---
+**Type:** | string
+**Description:** | Optional non-US state or province for requester’s mailing address.
+**Required:** | no
+**Example:** | `"Ontario"`
+
+
 **Field:** | `address_zip_postal_code`
 :--- |:---
 **Type:** | string

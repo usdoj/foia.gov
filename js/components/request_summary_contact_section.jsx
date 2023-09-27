@@ -42,6 +42,8 @@ function RequestSummaryContactSection({ formData, section }) {
                 {' '}
                 { requesterContact.address_state_province }
                 {' '}
+                { requesterContact.address_state_province_international }
+                {' '}
                 { requesterContact.address_zip_postal_code }
               </p>
               <p>{ requesterContact.address_country }</p>
