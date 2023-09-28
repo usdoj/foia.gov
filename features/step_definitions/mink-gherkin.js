@@ -39,9 +39,31 @@ const customSteps = [
     },
   },
   {
+    pattern: /^(?:|I )enter "([^"]*)" into the agency search box/,
+    async callback(value) {
+      const inputSelector = this.mink.getSelector('the agency search box');
+      const inputHandle = await this.mink.page.$(inputSelector);
+      await inputHandle.type(value);
+      await Promise.delay(1 * 1000);
+      await inputHandle.press('Enter');
+      await Promise.delay(1 * 1000);
+      return inputHandle.dispose();
+    },
+  },
+  {
     pattern: /^(?:|I )check the box for the year "([^"]*)"/,
     async callback(value) {
       const inputSelector = `input[name="${value}"]`;
+      const inputHandle = await this.mink.page.$(inputSelector);
+      await Promise.delay(1 * 1000);
+      await inputHandle.evaluate(b => b.click());
+      return inputHandle.dispose();
+    },
+  },
+  {
+    pattern: /^(?:|I )select the radio option for the answer "([^"]*)"/,
+    async callback(value) {
+      const inputSelector = `input:has(+ label[text="${value}"])`;
       const inputHandle = await this.mink.page.$(inputSelector);
       await Promise.delay(1 * 1000);
       await inputHandle.evaluate(b => b.click());
