@@ -7,6 +7,7 @@ import FormItem from './wizard_component_form_item';
 import Modal from './wizard_component_modal';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
+import Heading from './wizard_component_heading';
 
 const MAX_QUERY_LENGTH = 500;
 
@@ -47,20 +48,30 @@ function Query() {
     setSelectedTopic(isTopicSelected(topic) ? null : topic);
   }
 
+  const submitButton = (
+    <div className="w-component-submit">
+      <Button
+        onClick={() => {
+          setSubmitted(true);
+          actions.submitRequest({
+            query: query || '',
+            topic: selectedTopic,
+          });
+        }}
+        disabled={submitted}
+      >
+        Submit
+      </Button>
+      {submitted && <WizardHtml mid="loading" />}
+    </div>
+  );
+
   return (
     <PageTemplate>
       <Constrain>
-        <WizardHtml mid="query_slide" />
-        <FormItem
-          type="textarea"
-          isLabelHidden
-          label="Query"
-          onChange={(e) => setQuery(e.target.value)}
-          value={query || ''}
-          disabled={Boolean(selectedTopic)}
-        />
+        <WizardHtml mid="query_slide_1" />
         <PillGroup
-          label="Or choose a common topic"
+          label="Select a common topic"
           topics={displayedTopics}
           isTopicSelected={isTopicSelected}
           onClickTopicButton={onClickTopicButton}
@@ -82,25 +93,29 @@ function Query() {
             onClickTopicButton={onClickTopicButton}
           />
         </Modal>
+        {selectedTopic ? submitButton : null}
 
-        {exceededMaxLengthQuery && <p style={{ color: 'white' }}>Query is limited to 500 characters</p>}
-        {(query && query !== '' && !exceededMaxLengthQuery) || selectedTopic ? (
-          <div className="w-component-submit">
-            <Button
-              onClick={() => {
-                setSubmitted(true);
-                actions.submitRequest({
-                  query: query || '',
-                  topic: selectedTopic,
-                });
-              }}
-              disabled={submitted}
-            >
-              Submit
-            </Button>
-            {submitted && <WizardHtml mid="loading" />}
-          </div>
-        ) : null}
+        <div style={{
+          opacity: selectedTopic ? 0.5 : 1,
+          transition: 'opacity 1s',
+          paddingTop: '2rem',
+        }}
+        >
+          <Heading tag="h2">Or search for something else</Heading>
+          <WizardHtml mid="query_slide_2" />
+
+          {exceededMaxLengthQuery && <p style={{ color: 'white' }}>Query is limited to 500 characters</p>}
+          <FormItem
+            type="textarea"
+            isLabelHidden
+            label="Query"
+            onChange={(e) => setQuery(e.target.value)}
+            value={query || ''}
+            disabled={Boolean(selectedTopic)}
+          />
+
+          {(query && query !== '' && !exceededMaxLengthQuery) ? submitButton : null}
+        </div>
       </Constrain>
     </PageTemplate>
   );
