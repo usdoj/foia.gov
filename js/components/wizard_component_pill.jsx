@@ -6,14 +6,16 @@ import PropTypes from 'prop-types';
  */
 function Pill({ children, selected, onClick }) {
   return (
-    <button
-      className="w-component-pill"
-      type="button"
-      data-selected={selected}
-      onClick={onClick}
-    >
-      {children}
-    </button>
+    <li>
+      <button
+        className="w-component-pill"
+        type="button"
+        data-selected={selected}
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    </li>
   );
 }
 
