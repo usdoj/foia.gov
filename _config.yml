@@ -48,6 +48,8 @@ navigation:
           title: Research
         - href: /opengov.html
           title: Additional government resources
+    - href: /wizard.html
+      title: Use our Search Tool
     - href: /agency-search.html
       title: Create a request
     - href: /data.html

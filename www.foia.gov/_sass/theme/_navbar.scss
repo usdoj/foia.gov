@@ -31,8 +31,12 @@ $hide-secondary-nav-breakpoint: 900px;
     }
   }
 
+  // .usa-nav-container {
+  // }
+
   .usa-nav-primary {
-    display: inline;
+    display: inline-block;
+    margin-top: 3rem; // to accomodate the Agency Login link above it
   }
 
   .usa-nav-primary button {
@@ -110,8 +114,8 @@ $hide-secondary-nav-breakpoint: 900px;
 }
 
 .usa-nav-secondary {
-  display: inline;
-  float: right;
+  display: inline-block;
+  // float: right;
   font-weight: $font-normal;
   top: 0;
   a {
