@@ -27,13 +27,14 @@ function PillGroup({
         )}
         <ul className="w-component-pill-group__list">
           {topics.map((topic) => (
-            <Pill
-              key={topic.tid}
-              selected={Number(isTopicSelected(topic))}
-              onClick={() => onClickTopicButton(topic)}
-            >
-              {topic.title}
-            </Pill>
+            <li key={topic.tid}>
+              <Pill
+                selected={Number(isTopicSelected(topic))}
+                onClick={() => onClickTopicButton(topic)}
+              >
+                {topic.title}
+              </Pill>
+            </li>
           ))}
         </ul>
         {suffix}
