@@ -48,21 +48,39 @@ function Query() {
     setSelectedTopic(isTopicSelected(topic) ? null : topic);
   }
 
+  const submitButton = (
+    <div className="w-component-submit">
+      <Button
+        onClick={() => {
+          setSubmitted(true);
+          actions.submitRequest({
+            query: query || '',
+            topic: selectedTopic,
+          });
+        }}
+        disabled={submitted}
+      >
+        Submit
+      </Button>
+      {submitted && <WizardHtml mid="loading" />}
+    </div>
+  );
+
   return (
     <PageTemplate>
       <Constrain>
         <WizardHtml mid="query_slide_1" />
         <PillGroup
-            label="Select a common topic"
-            topics={displayedTopics}
-            isTopicSelected={isTopicSelected}
-            onClickTopicButton={onClickTopicButton}
-            suffix={allTopics.length > 10 ? (
-              <button onClick={openModal} className="button-as-link" style={{ color: '#fff' }}>
-                See all
-              </button>
-            ) : null}
-          />
+          label="Select a common topic"
+          topics={displayedTopics}
+          isTopicSelected={isTopicSelected}
+          onClickTopicButton={onClickTopicButton}
+          suffix={allTopics.length > 10 ? (
+            <button onClick={openModal} className="button-as-link" style={{ color: '#fff' }}>
+              See all
+            </button>
+          ) : null}
+        />
         <Modal
           title="Common topics"
           contentLabel="All topics"
@@ -75,55 +93,32 @@ function Query() {
             onClickTopicButton={onClickTopicButton}
           />
         </Modal>
-        {selectedTopic ?
-          <SubmitButton
-            setSubmitted={setSubmitted}
-            submitRequest={actions.submitRequest}
-            query={query}
-            selectedTopic={selectedTopic}
-            submitted={submitted}
-          /> : null}
+        {selectedTopic ? submitButton : null}
 
-        <Heading tag="h2">Or search for something else</Heading>
-        <WizardHtml mid="query_slide_2" />
-        {exceededMaxLengthQuery && <p style={{ color: 'white' }}>Query is limited to 500 characters</p>}
-        {(query && query !== '' && !exceededMaxLengthQuery) ?
-          <SubmitButton
-            setSubmitted={setSubmitted}
-            submitRequest={actions.submitRequest}
-            query={query}
-            selectedTopic={selectedTopic}
-            submitted={submitted}
-          /> : null}
-        <FormItem
-          type="textarea"
-          isLabelHidden
-          label="Query"
-          onChange={(e) => setQuery(e.target.value)}
-          value={query || ''}
-          disabled={Boolean(selectedTopic)}
-        />
+        <div style={{
+          opacity: selectedTopic ? 0.5 : 1,
+          transition: 'opacity 1s',
+          paddingTop: '2rem',
+        }}
+        >
+          <Heading tag="h2">Or search for something else</Heading>
+          <WizardHtml mid="query_slide_2" />
+
+          {exceededMaxLengthQuery && <p style={{ color: 'white' }}>Query is limited to 500 characters</p>}
+          <FormItem
+            type="textarea"
+            isLabelHidden
+            label="Query"
+            onChange={(e) => setQuery(e.target.value)}
+            value={query || ''}
+            disabled={Boolean(selectedTopic)}
+          />
+
+          {(query && query !== '' && !exceededMaxLengthQuery) ? submitButton : null}
+        </div>
       </Constrain>
     </PageTemplate>
   );
-}
-
-function SubmitButton({ setSubmitted, submitRequest, query, selectedTopic, submitted }) {
-  return <div className="w-component-submit">
-    <Button
-      onClick={() => {
-        setSubmitted(true);
-        submitRequest({
-          query: query || '',
-          topic: selectedTopic,
-        });
-      }}
-      disabled={submitted}
-    >
-      Submit
-    </Button>
-    {submitted && <WizardHtml mid="loading" />}
-  </div>
 }
 
 export default Query;
