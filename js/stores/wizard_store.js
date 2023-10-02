@@ -163,7 +163,8 @@ const useRawWizardStore = create((
       ...extraMessages,
 
       intro_slide: data.language[lang].intro_slide,
-      query_slide: data.language[lang].query_slide,
+      query_slide_1: data.language[lang].query_slide_1,
+      query_slide_2: data.language[lang].query_slide_2,
       ...data.language[lang].messages,
     };
     set({ ui, triggerPhrases });

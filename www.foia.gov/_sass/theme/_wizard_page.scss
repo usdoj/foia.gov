@@ -225,8 +225,9 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 // Heading Component
 .w-component-heading {
   color: $color-white;
-  font-size: 60px;
+  font-size: 30px;
   font-weight: 400;
+  margin-top: 0;
 }
 
 // Button Component
@@ -301,10 +302,11 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 }
 
 .w-component-pill-group__label {
+  // where else is this used? If only here, make it a little smaller
   color: $color-white;
-  display: inline;
-  font-size: 18px;
+  font-size: 30px;
   margin-right: 30px;
+  margin-top: 0;
 }
 
 .w-component-pill-group__list {
@@ -424,7 +426,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   p,
   li,
   blockquote {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 1.2;
   }
