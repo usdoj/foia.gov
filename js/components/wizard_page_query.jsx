@@ -108,7 +108,7 @@ function Query() {
   );
 }
 
-function SubmitButton(setSubmitted, submitRequest, query, selectedTopic, submitted) {
+function SubmitButton({ setSubmitted, submitRequest, query, selectedTopic, submitted }) {
   return <div className="w-component-submit">
     <Button
       onClick={() => {
