@@ -20,7 +20,6 @@ rules:
   'react/forbid-prop-types': 0
   'react/jsx-no-bind': 0
   semi: ["error", "always"]
-  quotes: "double"
 
   # TODO: Turn on the following and resolve the many instances.
   'import/no-cycle': 0
