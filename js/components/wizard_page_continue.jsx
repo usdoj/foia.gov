@@ -1,10 +1,12 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
+import { hasTopicContent } from '../util/wizard_helpers';
 import WizardHtml from './wizard_html';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
 import RichText from './wizard_component_rich_text';
+import MoreResults from './wizard_component_more_results';
 
 function Continue() {
   const {
@@ -33,6 +35,7 @@ function Continue() {
         <Button onClick={actions.nextPage}>
           Continue
         </Button>
+        {hasTopicContent(activity) && request.query ? <MoreResults /> : null}
       </Constrain>
     </PageTemplate>
   );

@@ -1,11 +1,13 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
+import { hasTopicContent } from '../util/wizard_helpers';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
 import RichText from './wizard_component_rich_text';
 import FormItem from './wizard_component_form_item';
 import WizardHtml from './wizard_html';
+import MoreResults from './wizard_component_more_results';
 
 function Question() {
   const {
@@ -57,6 +59,7 @@ function Question() {
             Next
           </Button>
         )}
+        {hasTopicContent(activity) && request.query ? <MoreResults /> : null}
       </Constrain>
     </PageTemplate>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
-import { urlParams } from '../util/wizard_helpers';
+import { hasTopicContent, urlParams } from '../util/wizard_helpers';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
 import Heading from './wizard_component_heading';
@@ -11,13 +11,14 @@ import LastStepsBlock from './wizard_component_last_steps_block';
 import NoResults from './wizard_component_no_results';
 import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
+import MoreResults from './wizard_component_more_results';
 
 const debug = true;
 const limit = parseInt(urlParams().get('limit') || '6', 10);
 
 function Summary() {
   const {
-    activity, agenciesFirst, displayedTopic, loading, request,
+    activity, agenciesFirst, bypassPresetJourney, displayedTopic, loading, request,
   } = useWizard();
   const {
     agencies, links, isError,
@@ -47,7 +48,6 @@ function Summary() {
     );
   }
 
-  const hasTopicContent = typeof activity.titleMid === 'string';
   const hasLinks = links && links.length > 0;
   const hasAgencies = agencies && agencies.length > 0;
 
@@ -79,8 +79,8 @@ function Summary() {
     </>
   );
 
-  if (hasTopicContent && debug) {
-    console.log('Since topic content is shown, model-provided agencies and docs are not displayed:', { agencies, links });
+  if (hasTopicContent(activity) && debug && !bypassPresetJourney) {
+    console.log('Since topic content is shown and user has not opted to bypass the pre-set journey, model-provided agencies and docs are not displayed:', { agencies, links });
   }
 
   return (
@@ -94,9 +94,10 @@ function Summary() {
             &rdquo;
           </blockquote>
 
-          {hasTopicContent ? (
+          {hasTopicContent(activity) && !bypassPresetJourney ? (
             <>
               <WizardHtml mid={activity.titleMid} isSummaryAdvice />
+              {hasTopicContent && request.query && <MoreResults />}
               <LastStepsBlock />
             </>
           ) : (

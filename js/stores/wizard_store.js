@@ -31,6 +31,7 @@ const initialWizardState = {
   agenciesFirst: false,
   allTopics,
   answerIdx: null,
+  bypassPresetJourney: false,
   displayedTopic: '',
   flatList: null,
   modelLoading: false,
@@ -178,6 +179,7 @@ const useRawWizardStore = create((
     const obj = {
       ...initialWizardState,
       activity: { type: 'query' },
+      bypassPresetJourney: false,
     };
     // Preserve loaded stuff
     preserveKeys.forEach((key) => {
@@ -390,6 +392,11 @@ const useRawWizardStore = create((
     }));
   };
 
+  const switchToModelResults = () => set(({
+    activity: { type: 'summary' },
+    bypassPresetJourney: true,
+  }));
+
   /** @type {WizardActions['selectAnswer']} */
   const selectAnswer = (answerIdx) => set(({
     answerIdx,
@@ -405,6 +412,7 @@ const useRawWizardStore = create((
     selectAnswer,
     setFlatList,
     submitRequest,
+    switchToModelResults,
   };
 
   return ({
@@ -444,6 +452,7 @@ function useWizard() {
     agenciesFirst: state.agenciesFirst,
     allTopics: state.allTopics,
     answerIdx: state.answerIdx,
+    bypassPresetJourney: state.bypassPresetJourney,
     canGoBack: state.activity.type !== 'intro',
     displayedTopic: state.displayedTopic,
     introReady: Boolean(state.triggerPhrases),

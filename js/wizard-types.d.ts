@@ -151,6 +151,7 @@ declare global {
      * User selected answer
      */
     answerIdx: number | null;
+    bypassPresetJourney: boolean;
     displayedTopic: string;
     isError: boolean;
     flatList: FlatListItem[] | null;
