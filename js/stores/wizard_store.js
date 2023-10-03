@@ -31,13 +31,13 @@ const initialWizardState = {
   agenciesFirst: false,
   allTopics,
   answerIdx: null,
-  bypassPresetJourney: false,
   displayedTopic: '',
   flatList: null,
   modelLoading: false,
   query: '',
   recommendedAgencies: null,
   recommendedLinks: null,
+  showModelResults: true,
   triggerPhrases: null,
   isError: false,
   ui: extraMessages,
@@ -284,11 +284,15 @@ const useRawWizardStore = create((
       }
     }
 
-    if (query && !effectiveTopic && !triggerMatch) {
+    // Even if we have a trigger match, we want to collect model results so the user can
+    // switch to them if they prefer.
+    if (query && !topic) {
       set({ modelLoading: true });
       await fetchWizardPredictions(query)
         .then((data) => {
-          if (trustAgencyMatch) {
+          if (triggerMatch) {
+            log('Collecting model results in case user chooses to switch to them.');
+          } else if (trustAgencyMatch) {
             log('An agency match was most of user\'s query: Skipping intent model.');
           } else {
             // If a predefined flow is found, we switch to it, but we'll go ahead and populate
@@ -387,15 +391,23 @@ const useRawWizardStore = create((
       query,
       recommendedLinks,
       recommendedAgencies,
+      showModelResults: !(effectiveTopic || isStateOrLocal || triggerMatch),
       isError,
       userTopic: effectiveTopic,
     }));
   };
 
-  const switchToModelResults = () => set(({
-    activity: { type: 'summary' },
-    bypassPresetJourney: true,
-  }));
+  const switchToModelResults = () => {
+    if (get().activity.type === 'summary') {
+      // Don't leave page, just show more
+      set({ showModelResults: true });
+    } else {
+      set(withCapturedHistory({
+        activity: { type: 'summary' },
+        showModelResults: true,
+      }));
+    }
+  };
 
   /** @type {WizardActions['selectAnswer']} */
   const selectAnswer = (answerIdx) => set(({
@@ -431,6 +443,7 @@ const useRawWizardStore = create((
  *   allTopics: WizardVars['allTopics'];
  *   answerIdx: WizardVars['answerIdx'];
  *   canGoBack: boolean;
+ *   canSwitchToModelResults: boolean;
  *   displayedTopic: string;
  *   introReady: boolean;
  *   loading: boolean;
@@ -441,6 +454,7 @@ const useRawWizardStore = create((
  *     topic: WizardVars['userTopic'];
  *     isError: WizardVars['isError'];
  *   };
+ *   showModelResults: WizardVars['showModelResults'];
  *   ui: WizardVars['ui'];
  *   getMessage: (mid: string, isSummaryAdvice?: boolean) => string;
  * }}
@@ -452,8 +466,8 @@ function useWizard() {
     agenciesFirst: state.agenciesFirst,
     allTopics: state.allTopics,
     answerIdx: state.answerIdx,
-    bypassPresetJourney: state.bypassPresetJourney,
     canGoBack: state.activity.type !== 'intro',
+    canSwitchToModelResults: Boolean(!state.showModelResults && state.query),
     displayedTopic: state.displayedTopic,
     introReady: Boolean(state.triggerPhrases),
     loading: Boolean(state.modelLoading || !state.flatList || !state.triggerPhrases),
@@ -464,6 +478,7 @@ function useWizard() {
       topic: state.userTopic,
       isError: state.isError,
     },
+    showModelResults: state.showModelResults,
     ui: state.ui,
     getMessage: (mid, isSummaryAdvice = false) => {
       const html = mid.startsWith('literal:')

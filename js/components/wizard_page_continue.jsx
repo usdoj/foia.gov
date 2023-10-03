@@ -1,6 +1,5 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
-import { hasTopicContent } from '../util/wizard_helpers';
 import WizardHtml from './wizard_html';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
@@ -10,7 +9,7 @@ import MoreResults from './wizard_component_more_results';
 
 function Continue() {
   const {
-    actions, activity, displayedTopic, request,
+    actions, activity, canSwitchToModelResults, displayedTopic, request,
   } = useWizard();
 
   if (activity.type !== 'continue') {
@@ -35,7 +34,7 @@ function Continue() {
         <Button onClick={actions.nextPage}>
           Continue
         </Button>
-        {hasTopicContent(activity) && request.query ? <MoreResults /> : null}
+        {canSwitchToModelResults && <MoreResults />}
       </Constrain>
     </PageTemplate>
   );

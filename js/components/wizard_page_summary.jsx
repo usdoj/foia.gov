@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useWizard } from '../stores/wizard_store';
-import { hasTopicContent, urlParams } from '../util/wizard_helpers';
+import { urlParams } from '../util/wizard_helpers';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
 import Heading from './wizard_component_heading';
@@ -13,12 +13,11 @@ import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
 import MoreResults from './wizard_component_more_results';
 
-const debug = true;
 const limit = parseInt(urlParams().get('limit') || '6', 10);
 
 function Summary() {
   const {
-    activity, agenciesFirst, bypassPresetJourney, displayedTopic, loading, request,
+    activity, agenciesFirst, canSwitchToModelResults, displayedTopic, loading, showModelResults, request,
   } = useWizard();
   const {
     agencies, links, isError,
@@ -79,10 +78,6 @@ function Summary() {
     </>
   );
 
-  if (hasTopicContent(activity) && debug && !bypassPresetJourney) {
-    console.log('Since topic content is shown and user has not opted to bypass the pre-set journey, model-provided agencies and docs are not displayed:', { agencies, links });
-  }
-
   return (
     <PageTemplate>
       <Constrain>
@@ -94,13 +89,13 @@ function Summary() {
             &rdquo;
           </blockquote>
 
-          {hasTopicContent(activity) && !bypassPresetJourney ? (
-            <>
-              <WizardHtml mid={activity.titleMid} isSummaryAdvice />
-              {hasTopicContent && request.query && <MoreResults />}
-              <LastStepsBlock />
-            </>
-          ) : (
+          {Boolean(activity.titleMid) && (
+            <WizardHtml mid={activity.titleMid} isSummaryAdvice />
+          )}
+
+          {canSwitchToModelResults && <MoreResults />}
+
+          {showModelResults && (
             // Show agencies & links from model
             <>
               {!hasLinks && !hasAgencies && (
@@ -110,12 +105,9 @@ function Summary() {
               {agenciesFirst && hasAgencies && agencySection}
               {hasLinks && linksSection}
               {!agenciesFirst && hasAgencies && agencySection}
-
-              {(hasLinks || hasAgencies) ? (
-                <LastStepsBlock />
-              ) : null}
             </>
           )}
+          <LastStepsBlock />
         </RichText>
       </Constrain>
     </PageTemplate>

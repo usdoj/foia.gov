@@ -141,6 +141,7 @@ declare global {
       query: string;
       topic: WizardTopic | null;
     }) => void;
+    switchToModelResults: () => void;
   };
 
   type WizardVars = {
@@ -151,7 +152,6 @@ declare global {
      * User selected answer
      */
     answerIdx: number | null;
-    bypassPresetJourney: boolean;
     displayedTopic: string;
     isError: boolean;
     flatList: FlatListItem[] | null;
@@ -159,6 +159,7 @@ declare global {
     query: string | null;
     recommendedAgencies: WizardAgency[] | null;
     recommendedLinks: WizardLink[] | null;
+    showModelResults: boolean;
     triggerPhrases: WizardTriggerPhrase[] | null;
     ui: Record<string, string>;
     userTopic: WizardTopic | null;

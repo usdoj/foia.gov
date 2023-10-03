@@ -1,16 +1,19 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
+import Button from './wizard_component_button';
 
 function MoreResults() {
   const { actions } = useWizard();
   return (
     <div>
-      <button onClick={actions.switchToModelResults} className="wizard-button-switch-to-model">
-        I’m looking for something else,
-        <br />
-        {' '}
-        show me more results.
-      </button>
+      <Button onClick={actions.switchToModelResults}>
+        <div className="wizard-button-switch-to-model">
+          I’m looking for something else,
+          <br />
+          {' '}
+          show me more results.
+        </div>
+      </Button>
     </div>
   );
 }

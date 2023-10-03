@@ -208,11 +208,3 @@ export function scanForTriggers(query, phrases) {
 
   return null;
 }
-
-/**
- * @param {WizardActivity} activity
- * @returns boolean
- */
-export function hasTopicContent(activity) {
-  return typeof activity.titleMid === 'string';
-}

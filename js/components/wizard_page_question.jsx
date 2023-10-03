@@ -1,6 +1,5 @@
 import React from 'react';
 import { useWizard } from '../stores/wizard_store';
-import { hasTopicContent } from '../util/wizard_helpers';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
@@ -11,7 +10,7 @@ import MoreResults from './wizard_component_more_results';
 
 function Question() {
   const {
-    actions, activity, answerIdx, displayedTopic, request, getMessage,
+    actions, activity, answerIdx, canSwitchToModelResults, displayedTopic, request, getMessage,
   } = useWizard();
 
   if (activity.type !== 'question') {
@@ -59,7 +58,7 @@ function Question() {
             Next
           </Button>
         )}
-        {hasTopicContent(activity) && request.query ? <MoreResults /> : null}
+        {canSwitchToModelResults && <MoreResults />}
       </Constrain>
     </PageTemplate>
   );
