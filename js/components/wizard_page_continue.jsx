@@ -5,10 +5,11 @@ import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
 import RichText from './wizard_component_rich_text';
+import MoreResults from './wizard_component_more_results';
 
 function Continue() {
   const {
-    actions, activity, displayedTopic, request,
+    actions, activity, canSwitchToModelResults, displayedTopic, request,
   } = useWizard();
 
   if (activity.type !== 'continue') {
@@ -33,6 +34,7 @@ function Continue() {
         <Button onClick={actions.nextPage}>
           Continue
         </Button>
+        {canSwitchToModelResults && <MoreResults />}
       </Constrain>
     </PageTemplate>
   );

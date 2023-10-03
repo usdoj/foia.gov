@@ -331,6 +331,14 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   align-items: baseline;
 }
 
+// Show me more results button
+.wizard-button-switch-to-model {
+  font-size: 22px;
+  line-height: 1.25;
+  width: 350px;
+  text-align: left;
+}
+
 // Last Steps
 .w-component-last-steps {
   margin-block-start: 7rem;
