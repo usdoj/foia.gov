@@ -44,7 +44,7 @@ const initialWizardState = {
   userTopic: null,
 };
 
-const log = (...args) => DEBUG_TO_CONSOLE && console.log(...args);
+export const log = (...args) => DEBUG_TO_CONSOLE && console.log(...args);
 
 /**
  * Keys of state to preserve on a reset.

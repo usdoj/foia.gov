@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useWizard } from '../stores/wizard_store';
+import { log, useWizard } from '../stores/wizard_store';
 import { urlParams } from '../util/wizard_helpers';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
@@ -77,6 +77,10 @@ function Summary() {
       <WizardLinks links={links.slice(0, limit)} />
     </>
   );
+
+  if (activity.titleMid && !showModelResults) {
+    log('Since topic content is shown, model-provided agencies and docs are not displayed:', { agencies, links });
+  }
 
   return (
     <PageTemplate>
