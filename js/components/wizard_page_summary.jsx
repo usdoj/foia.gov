@@ -102,6 +102,17 @@ function Summary() {
           {showModelResults && (
             // Show agencies & links from model
             <>
+              {!canSwitchToModelResults && displayedTopic && (
+                <>
+                  {/* If we're showing a journey message AND model results, and there's a "displayed topic" from a pre-set user journey, repeat the user's query here, since it will no longer be displayed above */}
+                  <h2><WizardHtml mid="lookedFor" /></h2>
+                  <blockquote>
+                    &ldquo;
+                    {request.query}
+                    &rdquo;
+                  </blockquote>
+                </>
+              )}
               {!hasLinks && !hasAgencies && (
                 <NoResults />
               )}

@@ -43,6 +43,7 @@ const extraMessages = {
   apiError: '<p>There was an error, please try again later.</p>',
   loading: '<p>Loading...</p>',
   lookingFor: 'Okay, you’re looking for:',
+  lookedFor: 'Your original query was:',
   soundsGood: 'Sounds good.',
   youSelected: 'You selected:',
   startOver: 'None of the above (I want to start over)',
