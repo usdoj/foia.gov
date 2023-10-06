@@ -398,15 +398,10 @@ const useRawWizardStore = create((
   };
 
   const switchToModelResults = () => {
-    if (get().activity.type === 'summary') {
-      // Don't leave page, just show more
-      set({ showModelResults: true });
-    } else {
-      set(withCapturedHistory({
-        activity: { type: 'summary' },
-        showModelResults: true,
-      }));
-    }
+    set(withCapturedHistory({
+      activity: { type: 'summary' },
+      showModelResults: true,
+    }));
   };
 
   /** @type {WizardActions['selectAnswer']} */
