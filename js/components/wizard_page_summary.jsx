@@ -111,7 +111,13 @@ function Summary() {
               {!agenciesFirst && hasAgencies && agencySection}
             </>
           )}
-          <a href="/how-wizard-works.html" className="w-how-wizard-works">Learn more about why you got these results.</a>
+          <a
+            href="/how-wizard-works.html"
+            target="_blank"
+            className="w-how-wizard-works"
+          >
+            Learn more about why you got these results.
+          </a>
           <LastStepsBlock />
         </RichText>
       </Constrain>
