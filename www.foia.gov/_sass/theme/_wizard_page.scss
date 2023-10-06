@@ -474,3 +474,17 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
     font-size: 24px;
   }
 }
+
+.w-how-wizard-works {
+  color: $color-white !important;
+  display: block;
+  font-size: 24px;
+  margin-top: 3rem;
+  padding: unset;
+  padding-left: 20px;
+  text-decoration: underline;
+
+  &:hover {
+    color: $color-primary-alt-light !important;
+  }
+}
