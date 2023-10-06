@@ -89,11 +89,11 @@ function Summary() {
           <h1><WizardHtml mid="lookingFor" /></h1>
           <blockquote>
             &ldquo;
-            {displayedTopic || request.query}
+            {showModelResults ? request.query : (displayedTopic || request.query)}
             &rdquo;
           </blockquote>
 
-          {Boolean(activity.titleMid) && (
+          {Boolean(activity.titleMid) && !showModelResults && (
             <WizardHtml mid={activity.titleMid} isSummaryAdvice />
           )}
 
@@ -105,7 +105,6 @@ function Summary() {
               {!hasLinks && !hasAgencies && (
                 <NoResults />
               )}
-
               {agenciesFirst && hasAgencies && agencySection}
               {hasLinks && linksSection}
               {!agenciesFirst && hasAgencies && agencySection}
