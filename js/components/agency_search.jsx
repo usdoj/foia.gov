@@ -90,6 +90,15 @@ function AgencySearch({
   const cardsPerPage = 18;
 
   useEffect(() => {
+    // Scroll to top whenever page changes
+    try {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    } catch (err) {
+      // NOOP
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
     if (flatList.length) {
       if (search) {
         bloodhound.search(search, (filtered) => {
