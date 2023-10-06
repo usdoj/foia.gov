@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -36,23 +37,23 @@ function AgencyComponentPreview({
             </h2>
           )
         }
-        <h3>{isCentralized ? agencyComponent.agency.name : agencyComponent.title }</h3>
+        <h3 tabIndex={0}>{isCentralized ? agencyComponent.agency.name : agencyComponent.title }</h3>
         { !agencyComponent.request_form
           && <NonInteroperableInfo agencyComponent={agencyComponent} />}
       </div>
       <div className="usa-width-one-half">
         { description
           && (
-          <div>
+          <div tabIndex={0}>
             <h4>Agency mission</h4>
             <p>{domify(description)}</p>
           </div>
           )}
 
-        <h4>Contact</h4>
+        <h4 tabIndex={0}>Contact</h4>
         <ContactInformation agencyComponent={agencyComponent} />
       </div>
-      <div className="usa-width-one-half start-request-container">
+      <div className="usa-width-one-half start-request-container" tabIndex={0}>
         {recordsHeld.length > 0 && (
           <div>
             <h4>Commonly requested documents</h4>
@@ -74,7 +75,7 @@ function AgencyComponentPreview({
             <p>
               Visit the agency&rsquo;s
               {' '}
-              <a href={agencyComponent.website.uri}>website</a>
+              <a href={agencyComponent.website.uri} tabIndex={0}>website</a>
               {' '}
               to learn more.
             </p>
@@ -84,7 +85,7 @@ function AgencyComponentPreview({
             <p>
               To see what&rsquo;s been made available, you can visit an agency&rsquo;s
               {' '}
-              <a href={agencyComponent.reading_rooms[0].uri}>FOIA library</a>
+              <a href={agencyComponent.reading_rooms[0].uri} tabIndex={0}>FOIA library</a>
               .
             </p>
             )}

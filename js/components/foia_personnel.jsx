@@ -51,7 +51,7 @@ function FoiaPersonnel({ foiaPersonnel }) {
       { foiaPersonnel.email
         && (
         <p className="agency-info_email">
-          <a href={`mailto:${email}`}>{ email }</a>
+          <a href={`mailto:${email}`} tabIndex={0}>{ email }</a>
         </p>
         )}
     </div>
