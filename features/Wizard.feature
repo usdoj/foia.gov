@@ -29,16 +29,16 @@ Feature: wizard
     And I hard click on "the wizard primary button"
     And I wait 1 second
     Then I should see "Okay, you’re looking for:"
-    And I should see "Your own tax records”
+    And I should see "Your own tax records"
     And I hard click on "the wizard primary button"
     And I wait 1 second
     Then I select the radio option for the answer "Copy or transcript of tax return"
     And I hard click on "the wizard primary button"
     And I wait 1 second
-    Then I should see Visit the Internal Revenue Service (IRS) website to obtain routine access to frequently requested IRS records without needing to file a FOIA request."
+    Then I should see "Visit the Internal Revenue Service (IRS) website to obtain routine access to frequently requested IRS records without needing to file a FOIA request."
     And I should see 1 "external link card" element
     And I should see "Can we help you with anything else?"
-    Then I select the radio option for the answer "Yes, I would like to restart my search."
+    Then I select the radio option for the answer "Yes, I would like to do another search."
     And I hard click on "the wizard primary button"
     And I wait 1 second
 
@@ -46,12 +46,12 @@ Feature: wizard
     Then I hard click on "the wizard primary button"
     Then I wait 1 second
     Then the "wizard primary button" element should not exist
-    Then I enter “John Lewis Voting Rights Act” into the wizard query box
-    Then the "wizard primary button" element should exist
-    And I hard click on the "wizard primary button"
+    Then I enter "John Lewis Voting Rights Act" into the wizard query box
+    Then the "the wizard primary button" element should exist
+    And I hard click on "the wizard primary button"
     And I wait 5 seconds
     Then I should see "Okay, you’re looking for:"
-    And I should see "“John Lewis Voting Rights Act”"
+    And I should see "John Lewis Voting Rights Act"
     And I should see "We found the following public information:"
     And the "external link card" element should exist
     And I should see "If the information above is not what you're looking for, the following agencies may have it."
