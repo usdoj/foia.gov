@@ -17,6 +17,7 @@ const driver = new mink.Mink({
     "the last item in the A section": "#A li:last-child span",
     "the start request button": ".start-request",
     "the first agency suggestion": ".foia-component-card:first-of-type",
+    "the first radio option": "input[type='radio']:first-of-type",
     "the View Report button": "button[value='view']",
     "the data type dropdown": "select[name='data_type']",
     "the Select All Agencies button": ".select-all-agencies > a",
@@ -24,7 +25,7 @@ const driver = new mink.Mink({
     "the justice.gov link": "a[href='http://www.justice.gov']",
     "the external link script": "script[src='/assets/js/extlink.min.js']",
     "the wizard primary button": "button.w-component-button.usa-button.usa-button-primary-alt.usa-button-big",
-    "the Tax records topic button": "//button[contains(text(), 'Tax records')]",
+    "the Tax records topic button": "div.w-component-pill-group > ul > li:nth-child(2) > button",
     "the wizard query box": "textarea.w-component-form-item__element",
     "external link card": "a.foia-component-card.foia-component-card--alt.foia-component-card--ext"
   }
