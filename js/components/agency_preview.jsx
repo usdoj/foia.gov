@@ -49,11 +49,10 @@ function AgencyPreview({ agency, agencyComponentsForAgency, onAgencySelect }) {
           }
         </ul>
       </div>
-      <div className="usa-width-one-half">
+      <div aria-live="polite" className="usa-width-one-half">
         { description
           && (
-          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-          <div tabIndex={0}>
+          <div>
             <h4>Agency mission</h4>
             <p>{domify(description)}</p>
           </div>

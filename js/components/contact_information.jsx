@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,17 +8,17 @@ import foiaPersonnel from '../util/foia_personnel';
 function ContactInformation({ agencyComponent }) {
   // Grab contacts
   const foiaOfficerFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'foia_officers').map((item) => (
-    <div key={item.id} className="contact-information_section" tabIndex={0}>
+    <div key={item.id} className="contact-information_section">
       <FoiaPersonnel foiaPersonnel={item} />
     </div>
   ));
   const serviceCenterFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'service_centers').map((item) => (
-    <div key={item.id} className="contact-information_section" tabIndex={0}>
+    <div key={item.id} className="contact-information_section">
       <FoiaPersonnel foiaPersonnel={item} />
     </div>
   ));
   const publicLiaisonFoiaPersonnel = foiaPersonnel.personnel(agencyComponent, 'public_liaisons').map((item) => (
-    <div key={item.id} className="contact-information_section" tabIndex={0}>
+    <div key={item.id} className="contact-information_section">
       <FoiaPersonnel foiaPersonnel={item} />
     </div>
   ));
@@ -29,7 +28,7 @@ function ContactInformation({ agencyComponent }) {
       {foiaOfficerFoiaPersonnel}
       {serviceCenterFoiaPersonnel}
       {publicLiaisonFoiaPersonnel}
-      <div className="contact-information_section" tabIndex={0}>
+      <div className="contact-information_section">
         <FoiaSubmissionAddress
           submissionAddress={agencyComponent.submission_address}
           paperReceiver={agencyComponent.paper_receiver}

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -21,7 +20,7 @@ function AgencyComponentPreview({
 
   return (
     <div className="agency-preview usa-grid-full use-dark-icons">
-      <div className="usa-width-one-whole">
+      <div aria-live="polite" className="usa-width-one-whole">
         {
           !isCentralized && (
             <h2>
@@ -37,23 +36,23 @@ function AgencyComponentPreview({
             </h2>
           )
         }
-        <h3 tabIndex={0}>{isCentralized ? agencyComponent.agency.name : agencyComponent.title }</h3>
+        <h3>{isCentralized ? agencyComponent.agency.name : agencyComponent.title }</h3>
         { !agencyComponent.request_form
           && <NonInteroperableInfo agencyComponent={agencyComponent} />}
       </div>
-      <div className="usa-width-one-half">
+      <div aria-live="polite" className="usa-width-one-half">
         { description
           && (
-          <div tabIndex={0}>
+          <div>
             <h4>Agency mission</h4>
             <p>{domify(description)}</p>
           </div>
           )}
 
-        <h4 tabIndex={0}>Contact</h4>
+        <h4>Contact</h4>
         <ContactInformation agencyComponent={agencyComponent} />
       </div>
-      <div className="usa-width-one-half start-request-container" tabIndex={0}>
+      <div className="usa-width-one-half start-request-container">
         {recordsHeld.length > 0 && (
           <div>
             <h4>Commonly requested documents</h4>
@@ -66,7 +65,7 @@ function AgencyComponentPreview({
         )}
         { agencyComponent.request_data_year
           && <AgencyComponentProcessingTime agencyComponent={agencyComponent} />}
-        <div className="agency-info_reading-rooms">
+        <div aria-live="polite" className="agency-info_reading-rooms">
           <h4>
             The records or information you&rsquo;re looking for may already be public.
           </h4>

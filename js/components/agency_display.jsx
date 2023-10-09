@@ -161,7 +161,6 @@ class AgencyDisplay extends Component {
           <a
             href={searchPath}
             className="agency-preview_back"
-            tabIndex={0}
             onClick={(e) => {
               // Push URL so we don't have to reload the page.
               e.preventDefault();
