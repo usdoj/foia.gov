@@ -27,7 +27,7 @@ function AgencySearch({
   flatList,
 }) {
   useEffect(() => {
-    document.title = `${titlePrefix}Identify an agency to request from`;
+    document.title = `${titlePrefix}Search for an agency`;
   }, []);
 
   const [search, setSearch] = useState('');
@@ -193,22 +193,9 @@ function AgencySearch({
 
   return (
     <div className="foia-component-agency-search">
-      <h1>Identify an agency to request from</h1>
+      <h1>Search for an agency</h1>
       <p>
-        It’s important that you identify the correct agency for your request. There
-        are over 100 agencies and each is responsible for handling its own FOIA
-        requests. You can find a breakdown of agencies by topic on
-        {' '}
-        <a href="//www.usa.gov">USA.gov</a>
-        {' '}
-        to help
-        you identify the correct agency. You may also search for agencies using
-        the search bar below.
-      </p>
-      <p>
-        When choosing an agency, remember that some agencies can’t yet receive FOIA
-        requests through FOIA.gov. For those agencies, this site will provide you
-        with the information you need to submit a request directly to the agency.
+        It’s important that you identify the correct agency for your request. There are over 100 agencies and each is responsible for handling its own FOIA requests. You can start your request, learn more about an agency, or see an agency’s contact information using the search bar below.
       </p>
 
       <div className="foia-component-agency-search__search-field">
