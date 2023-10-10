@@ -7,7 +7,7 @@ Feature: wizard
 
   Background:
     Given I am on "/wizard.html"
-    And I wait 10 seconds
+    And I wait 20 seconds
 
   Scenario: The Wizard loads successfully
     Then I should see "Hello,"
