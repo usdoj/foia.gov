@@ -2,8 +2,9 @@
 start=$SECONDS
 set -B
 
+# Generate xml dataset by year
 # USAGE: bash xml-dataset-download.sh <year> <api_key>
-# EXAMPLE: bash xml-dataset-download.sh 2008 N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N
+# EXAMPLE: bash xml-dataset-download.sh 2022 N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N
 
 YEAR=$1
 API_KEY=$2
