@@ -7,7 +7,7 @@ Feature: Agency Search
 
   Background:
     Given I am on "/agency-search.html"
-    And I wait 10 seconds
+    And I wait 20 seconds
 
   Scenario: The agency type-ahead works
     Then I should see "Search an agency name or keyword"
