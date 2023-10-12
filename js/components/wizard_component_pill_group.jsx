@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Pill from './wizard_component_pill';
+import Heading from './wizard_component_heading';
 
 /**
  * @param {Object} props
@@ -22,17 +23,18 @@ function PillGroup({
     return (
       <div className="w-component-pill-group">
         {label && (
-          <div className="w-component-pill-group__label">{label}</div>
+          <Heading tag="h2" className="w-component-pill-group__label">{label}</Heading>
         )}
         <ul className="w-component-pill-group__list">
           {topics.map((topic) => (
-            <Pill
-              key={topic.tid}
-              selected={Number(isTopicSelected(topic))}
-              onClick={() => onClickTopicButton(topic)}
-            >
-              {topic.title}
-            </Pill>
+            <li key={topic.tid}>
+              <Pill
+                selected={Number(isTopicSelected(topic))}
+                onClick={() => onClickTopicButton(topic)}
+              >
+                {topic.title}
+              </Pill>
+            </li>
           ))}
         </ul>
         {suffix}

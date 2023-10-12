@@ -136,7 +136,7 @@ export const requestActions = {
     });
 
     const referenceFields = includeReferenceFields || {
-      agency_component: ['title', 'abbreviation', 'agency', 'status'],
+      agency_component: ['title', 'abbreviation', 'agency', 'description', 'status'],
       agency: ['name', 'abbreviation', 'description', 'category'],
       'agency.category': ['name'],
     };

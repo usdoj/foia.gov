@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { isSingular, plural } from 'pluralize';
 
 /**
  * @param {string} titleMid
@@ -89,19 +90,23 @@ export function convertSomeLinksToCards(html) {
 
     const classes = [
       'foia-component-card',
-      'foia-component-card--alt',
-      // If the link goes outside the foia domain, add an extra class name
-      localChecks.some((check) => linkOpenTag.includes(check)) ? '' : 'foia-component-card--alt--ext',
       // Square-type cards, like agencies
-      linkOpenTag.includes('class="square"') ? 'foia-component-card--square' : '',
+      linkOpenTag.includes('class="square"') ? 'foia-component-card--inline' : 'foia-component-card--alt',
+      // If the link goes outside the foia domain, add an extra class name
+      localChecks.some((check) => linkOpenTag.includes(check)) ? '' : 'foia-component-card--ext',
     ];
 
+    let linkOpenTagNew;
+    if (linkOpenTag.includes('class="square')) {
+      linkOpenTagNew = linkOpenTag.replace('class="square"', `class="${classes.join(' ')}"`);
+    } else {
+      linkOpenTagNew = linkOpenTag.replace('<a ', `<a class="${classes.join(' ')}" `);
+    }
+
     return `
-      <div class="${classes.join(' ')}">
-        ${linkOpenTag}
-          <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
-        </a>
-      </div>
+      ${linkOpenTagNew}
+        <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
+      </a>
     `;
   });
 }
@@ -154,6 +159,21 @@ export function useWait(waitMs) {
 }
 
 /**
+ * @param {string} str
+ * @returns {string}
+ */
+function normalizeForTriggers(str) {
+  return str
+    .replace(/\s+/g, ' ')
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/(\w)s'($|\s)/, "$1's$2")
+    .split(/ /g)
+    .map((word) => (isSingular(word) ? plural(word) : word))
+    .join(' ');
+}
+
+/**
  * @param {string} string
  * @returns {string}
  * @licence https://github.com/sindresorhus/escape-string-regexp/blob/main/license
@@ -172,11 +192,11 @@ function escapeStringRegexp(string) {
  * @returns {{ idx: number; matchLen: number; trigger: string; skip: string } | null}
  */
 export function scanForTriggers(query, phrases) {
-  const queryNormalized = query.replace(/\s+/g, ' ');
+  const queryNormalized = normalizeForTriggers(query);
 
   for (let i = 0; i < phrases.length; i++) {
     const { trigger, caseSensitive, skip } = phrases[i];
-    const pattern = `\\b${escapeStringRegexp(trigger)}\\b`;
+    const pattern = `\\b${escapeStringRegexp(normalizeForTriggers(trigger))}\\b`;
     const regex = new RegExp(pattern, caseSensitive ? '' : 'i');
     const match = regex.exec(queryNormalized);
     if (match) {

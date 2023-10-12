@@ -49,7 +49,7 @@ function AgencyPreview({ agency, agencyComponentsForAgency, onAgencySelect }) {
           }
         </ul>
       </div>
-      <div className="usa-width-one-half">
+      <div aria-live="polite" className="usa-width-one-half">
         { description
           && (
           <div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useWizard } from '../stores/wizard_store';
+import { log, useWizard } from '../stores/wizard_store';
 import { urlParams } from '../util/wizard_helpers';
 import PageTemplate from './wizard_template_page';
 import Constrain from './wizard_layout_constrain';
@@ -11,13 +11,13 @@ import LastStepsBlock from './wizard_component_last_steps_block';
 import NoResults from './wizard_component_no_results';
 import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
+import MoreResults from './wizard_component_more_results';
 
-const debug = true;
 const limit = parseInt(urlParams().get('limit') || '6', 10);
 
 function Summary() {
   const {
-    activity, agenciesFirst, displayedTopic, loading, request,
+    activity, agenciesFirst, canSwitchToModelResults, displayedTopic, loading, showModelResults, request,
   } = useWizard();
   const {
     agencies, links, isError,
@@ -47,7 +47,6 @@ function Summary() {
     );
   }
 
-  const hasTopicContent = typeof activity.titleMid === 'string';
   const hasLinks = links && links.length > 0;
   const hasAgencies = agencies && agencies.length > 0;
 
@@ -79,8 +78,8 @@ function Summary() {
     </>
   );
 
-  if (hasTopicContent && debug) {
-    console.log('Since topic content is shown, model-provided agencies and docs are not displayed:', { agencies, links });
+  if (activity.titleMid && !showModelResults) {
+    log('Since topic content is shown, model-provided agencies and docs are not displayed:', { agencies, links });
   }
 
   return (
@@ -90,31 +89,35 @@ function Summary() {
           <h1><WizardHtml mid="lookingFor" /></h1>
           <blockquote>
             &ldquo;
-            {displayedTopic || request.query}
+            {showModelResults ? request.query : (displayedTopic || request.query)}
             &rdquo;
           </blockquote>
 
-          {hasTopicContent ? (
-            <>
-              <WizardHtml mid={activity.titleMid} isSummaryAdvice />
-              <LastStepsBlock />
-            </>
-          ) : (
+          {Boolean(activity.titleMid) && !showModelResults && (
+            <WizardHtml mid={activity.titleMid} isSummaryAdvice />
+          )}
+
+          {canSwitchToModelResults && <MoreResults />}
+
+          {showModelResults && (
             // Show agencies & links from model
             <>
               {!hasLinks && !hasAgencies && (
                 <NoResults />
               )}
-
               {agenciesFirst && hasAgencies && agencySection}
               {hasLinks && linksSection}
               {!agenciesFirst && hasAgencies && agencySection}
-
-              {(hasLinks || hasAgencies) ? (
-                <LastStepsBlock />
-              ) : null}
             </>
           )}
+          <a
+            href="/how-wizard-works.html"
+            target="_blank"
+            className="w-how-wizard-works"
+          >
+            Learn more about why you got these results.
+          </a>
+          <LastStepsBlock />
         </RichText>
       </Constrain>
     </PageTemplate>

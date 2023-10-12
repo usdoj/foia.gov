@@ -6,10 +6,11 @@ import Button from './wizard_component_button';
 import RichText from './wizard_component_rich_text';
 import FormItem from './wizard_component_form_item';
 import WizardHtml from './wizard_html';
+import MoreResults from './wizard_component_more_results';
 
 function Question() {
   const {
-    actions, activity, answerIdx, displayedTopic, request, getMessage,
+    actions, activity, answerIdx, canSwitchToModelResults, displayedTopic, request, getMessage,
   } = useWizard();
 
   if (activity.type !== 'question') {
@@ -57,6 +58,7 @@ function Question() {
             Next
           </Button>
         )}
+        {canSwitchToModelResults && <MoreResults />}
       </Constrain>
     </PageTemplate>
   );

@@ -20,7 +20,7 @@ function AgencyComponentPreview({
 
   return (
     <div className="agency-preview usa-grid-full use-dark-icons">
-      <div className="usa-width-one-whole">
+      <div aria-live="polite" className="usa-width-one-whole">
         {
           !isCentralized && (
             <h2>
@@ -40,7 +40,7 @@ function AgencyComponentPreview({
         { !agencyComponent.request_form
           && <NonInteroperableInfo agencyComponent={agencyComponent} />}
       </div>
-      <div className="usa-width-one-half">
+      <div aria-live="polite" className="usa-width-one-half">
         { description
           && (
           <div>
@@ -65,7 +65,7 @@ function AgencyComponentPreview({
         )}
         { agencyComponent.request_data_year
           && <AgencyComponentProcessingTime agencyComponent={agencyComponent} />}
-        <div className="agency-info_reading-rooms">
+        <div aria-live="polite" className="agency-info_reading-rooms">
           <h4>
             The records or information you&rsquo;re looking for may already be public.
           </h4>
@@ -74,7 +74,7 @@ function AgencyComponentPreview({
             <p>
               Visit the agency&rsquo;s
               {' '}
-              <a href={agencyComponent.website.uri}>website</a>
+              <a href={agencyComponent.website.uri} tabIndex={0}>website</a>
               {' '}
               to learn more.
             </p>
@@ -84,7 +84,7 @@ function AgencyComponentPreview({
             <p>
               To see what&rsquo;s been made available, you can visit an agency&rsquo;s
               {' '}
-              <a href={agencyComponent.reading_rooms[0].uri}>FOIA library</a>
+              <a href={agencyComponent.reading_rooms[0].uri} tabIndex={0}>FOIA library</a>
               .
             </p>
             )}

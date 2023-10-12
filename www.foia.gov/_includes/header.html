@@ -1,4 +1,9 @@
 <!-- Start Header -->
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WSH5Z5MT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
 <script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOJ"></script>
 <script type="text/javascript" src="{{ site.baseurl }}/scripts/breakout.js"></script>
 <a id="skipnav" class="usa-skipnav" href="#main">Skip to main content</a>
@@ -21,36 +26,38 @@
       <button class="usa-nav-close">
         <img src="{{ site.baseurl }}/assets/img/close.svg" alt="close">
       </button>
-      <ul class="usa-nav-primary usa-accordion">
-      {% for link in site.navigation.primary %}
-        {% if link.children %}
-          <li>
-          <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-{{ forloop.index }}">
-            <span>{{ link.title }}</span>
-          </button>
-          <ul id="sidenav-{{ forloop.index }}" class="usa-nav-submenu usa-unstyled-list" aria-hidden="true">
-          {% for child in link.children %}
-            <li>
-              <a href="{{ child.href | prepend: site.baseurl }}">{{ child.title }}</a>
+      <div>
+        <ul class="usa-nav-primary usa-accordion">
+          {% for link in site.navigation.primary %}
+            {% if link.children %}
+              <li>
+              <button class="usa-accordion-button usa-nav-link" aria-expanded="false" aria-controls="sidenav-{{ forloop.index }}">
+                <span>{{ link.title }}</span>
+              </button>
+              <ul id="sidenav-{{ forloop.index }}" class="usa-nav-submenu usa-unstyled-list" aria-hidden="true">
+              {% for child in link.children %}
+                <li>
+                  <a href="{{ child.href | prepend: site.baseurl }}">{{ child.title }}</a>
+                </li>
+              {% endfor %}
+              </ul>
             </li>
+            {% else %}
+              <li>
+                <a class="usa-nav-link" href="{{ link.href | prepend: site.baseurl }}"><span>{{ link.title }}</span></a>
+              </li>
+            {% endif %}
           {% endfor %}
           </ul>
-        </li>
-        {% else %}
-          <li>
-            <a class="usa-nav-link" href="{{ link.href | prepend: site.baseurl }}"><span>{{ link.title }}</span></a>
-          </li>
-        {% endif %}
-      {% endfor %}
-      </ul>
-      <div class="usa-nav-secondary">
-        <ul class="usa-unstyled-list usa-nav-secondary-links">
-        {% for link in site.navigation.secondary %}
-          <li>
-            <a href="{{ link.href | prepend: site.baseurl }}"><span>{{ link.title }}</span></a>
-          </li>
-          {% endfor %}
-        </ul>
+          <div class="usa-nav-secondary">
+            <ul class="usa-unstyled-list usa-nav-secondary-links">
+            {% for link in site.navigation.secondary %}
+              <li>
+                <a href="{{ link.href | prepend: site.baseurl }}"><span>{{ link.title }}</span></a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
       </div>
     </div>
   </nav>

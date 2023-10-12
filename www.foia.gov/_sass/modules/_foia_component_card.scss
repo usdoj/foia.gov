@@ -35,14 +35,20 @@
   }
 }
 
-.foia-component-card--square {
+.foia-component-card--inline {
   display: inline-block;
-  margin-right: 1rem;
+  margin-top: 3rem;
   min-height: 14rem;
-  min-width: 29rem;
-  width: calc((100% - 4rem) / 3);
+  width: 100%;
 
-  /* TODO style more like agency card */
+  @media screen and (min-width: $medium-screen) {
+    margin-right: 3.4rem;
+    width: calc((100% - 7.4rem) / 2);
+  }
+
+  @media screen and (min-width: $medium-large-screen) {
+    width: calc((100% - 11rem) / 3);
+  }
 }
 
 .foia-component-card__tag {
@@ -57,6 +63,7 @@
 
 .foia-component-card__title {
   color: $color-white !important;
+  display: flex;
   font-size: 2.8rem;
   font-weight: 500;
   margin-top: 1rem;
@@ -65,7 +72,7 @@
   word-break: break-word;
 
   &::after {
-    .foia-component-card--alt--ext & {
+    .foia-component-card--ext & {
       align-self: center;
       background-image: url($icon-external-link-white);
       background-repeat: no-repeat;

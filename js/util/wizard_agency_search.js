@@ -1,3 +1,5 @@
+import { isSingular, plural } from 'pluralize';
+
 /**
  * @param {string} query
  * @param {FlatListItem[]} flatList
@@ -22,26 +24,24 @@ function searchMatchingAgency(query, flatList, debug = false) {
     + ' would yet you your').split(' ');
 
   const replacementMap = {
-    administration: 'admin',
-    assistant: 'asst',
-    attorneys: 'attorney',
-    corporation: 'corp',
+    admin: 'administration',
+    asst: 'assistant',
+    corp: 'corporation',
     defence: 'defense',
-    department: 'dept',
-    disability: 'disabled',
+    dept: 'department',
+    disabled: 'disability',
     environmental: 'environment',
-    executive: 'exec',
-    forces: 'force',
-    government: 'govt',
-    institute: 'inst',
-    intelligence: 'intel',
-    liberties: 'liberty',
-    management: 'mgmt',
-    national: 'natl',
-    operations: 'ops',
+    exec: 'executive',
+    govt: 'government',
+    inst: 'institute',
+    intel: 'intelligence',
+    mgmt: 'management',
+    natl: 'national',
+    ops: 'operations',
     policing: 'police',
-    services: 'svcs',
-    technology: 'tech',
+    svc: 'service',
+    svcs: 'service',
+    tech: 'technology',
   };
 
   /**
@@ -84,7 +84,14 @@ function searchMatchingAgency(query, flatList, debug = false) {
       // Mixed or lowercase words, don't allow stop words
       return !stopWords.includes(el.toLowerCase());
     })
-    .map((el) => (replaceWords ? (replacementMap[el.toLowerCase()] || el) : el));
+    .map((el) => {
+      if (!replaceWords) {
+        return el;
+      }
+
+      const word = replacementMap[el.toLowerCase()] || el;
+      return isSingular(word) ? plural(word) : word;
+    });
 
   /**
    * @param {string[]} words
@@ -102,26 +109,30 @@ function searchMatchingAgency(query, flatList, debug = false) {
    *   missionNormalized: string;
    *   }>}
    */
-  const indexItems = flatList.map((item) => ({
-    item,
-    titleNormalized: joinWithCommas(normalize(item.title, true)),
-    // missionNormalized: joinWithCommas(normalize(item))
-    abbr: item.abbreviation.toUpperCase(),
-    missionNormalized: joinWithCommas(
-      normalize(removeLinksFromMission(item.description.processed || ''), true),
-    ),
-    score: 0,
-    wordsMatched: 0,
-  }));
+  const indexItems = flatList.map((item) => {
+    const { processed = '' } = item.description || {};
+    return {
+      item,
+      titleNormalized: joinWithCommas(normalize(item.title, true)),
+      // missionNormalized: joinWithCommas(normalize(item))
+      abbr: item.abbreviation.toUpperCase(),
+      missionNormalized: joinWithCommas(
+        normalize(removeLinksFromMission(processed), true),
+      ),
+      score: 0,
+      wordsMatched: 0,
+    };
+  });
 
   let matchedAbbr = false;
 
-  // Score matching abbreviations by how long they are. We're generally giving a
-  // bigger score because the user had to give us uppercase.
+  // Score matching abbreviations by how long they are. We hope regular words are not
+  // accidentally matched as abbreviations, but there's not much we can do about it.
   normalize(query, false)
+    .map((word) => word.toUpperCase())
     .forEach((word) => {
       indexItems.forEach((item) => {
-        if (word === item.abbr.toUpperCase()) {
+        if (word === item.abbr || word === `US${item.abbr}`) {
           item.score += word.length;
           item.wordsMatched += 1;
           matchedAbbr = true;
@@ -134,6 +145,7 @@ function searchMatchingAgency(query, flatList, debug = false) {
 
   log(`User's query normalized and with stop words removed: [${words.join()}]`);
 
+  // Loop through first word in the potential match
   for (let i = 0; i < words.length; i++) {
     // Case-insensitive matches against title words
     indexItems.forEach((item) => {
