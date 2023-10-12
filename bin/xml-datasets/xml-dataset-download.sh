@@ -4,26 +4,30 @@ set -B
 
 # Generate xml dataset by year
 # USAGE: bash xml-dataset-download.sh <year> <api_key>
-# EXAMPLE: bash xml-dataset-download.sh 2022 N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N
+# EXAMPLE: bash xml-dataset-download.sh 2000 N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N
+# curl -H "X-API-Key: N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N" https://api.foia.gov/api/annual-report-xml/ibwc/2022 -o test.xml
 
 YEAR=$1
 API_KEY=$2
 
 case $YEAR in
+    2000)
+    declare -a agencies=(usibwc)
+    ;;
     2011 | 2010 | 2009 | 2008)
-    declare -a agencies=(abmc acus nrpc usagm ceq cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nlrb nsf ntsb odni oge omb ondcp onhir opic opm oshrc ostp pbgc pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usadf usaid usccr co usda usitc usps ustda ustr va osc sigir)
+    declare -a agencies=(usibwc abmc acus nrpc usagm ceq cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nlrb nsf ntsb odni oge omb ondcp onhir opic opm oshrc ostp pbgc pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usadf usaid usccr co usda usitc usps ustda ustr va osc sigir)
     ;;
   2012)
-    declare -a agencies=(abmc acus nrpc usagm ceq cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nlrb nsf ntsb odni oge omb ondcp onhir opic opm oshrc ostp pbgc pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usadf usaid usccr co usda usitc usps ustda ustr va osc sigir)
+    declare -a agencies=(usibwc ratb afrh abmc acus nrpc usagm ceq cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nlrb nsf ntsb odni oge omb ondcp onhir opic opm oshrc ostp pbgc pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usadf usaid usccr co usda usitc usps ustda ustr va osc sigir)
     ;;
   2013)
-    declare -a agencies=(abmc acus nrpc afrh usagm ceq cfpb cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nlrb nsf ntsb odni oge omb ondcp onhir dfc opm oshrc ostp pbgc pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usadf usaid usccr co usda usitc usps ustda ustr va ratb osc)
+    declare -a agencies=(opic usibwc abmc acus nrpc afrh usagm ceq cfpb cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nlrb nsf ntsb odni oge omb ondcp onhir dfc opm oshrc ostp pbgc pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usadf usaid usccr co usda usitc usps ustda ustr va ratb osc)
     ;;
   2014)
-    declare -a agencies=(abmc acus afrh usagm ceq cfpb cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nlrb nsf ntsb odni oge omb ondcp onhir dfc opm oshrc ostp pbgc pclob pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usadf usaid usccr co usda usitc usps ustda ustr va ratb)
+    declare -a agencies=(opic usibwc abmc acus afrh usagm ceq cfpb cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nlrb nsf ntsb odni oge omb ondcp onhir dfc opm oshrc ostp pbgc pclob pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usadf usaid usccr co usda usitc usps ustda ustr va ratb)
     ;;
   2015)
-    declare -a agencies=(abmc acus afrh usagm ceq cfpb cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa  fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nrcp nlrb nsf ntsb odni oge omb ondcp onhir dfc opm osc oshrc ostp pbgc pclob pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usab usadf usaid usccr co usda usitc usps ustda ustr va)
+    declare -a agencies=(opic usibwc abmc acus afrh usagm ceq cfpb cftc cia cigie cncs cppbsd cpsc csb csosa dhs dnfsb doc dod doe doi doj dol dot ed eeoc epa  fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gsa hhs hud iaf ibwc imls lsc mcc mspb nara nasa ncpc ncua nea neh nigc nmb nrc nrcp nlrb nsf ntsb odni oge omb ondcp onhir dfc opm osc oshrc ostp pbgc pclob pc prc usrrb sba sec sigar ssa sss dos stb treasury tva usab usadf usaid usccr co usda usitc usps ustda ustr va)
     ;;
   2016 | 2017)
     declare -a agencies=(abmc acus afrh asc ceq cfa cfpb cftc cia cigie co cncs cppbsd cpsc csb csosa dc dfc dhs dnfsb doc dod doe doi doj dol dos dot eac ed eeoc epa  fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmshrc fmcs fomc frb frtib ftc tva gcerc gsa hhs hstsf hud iaf imls jmmff lsc mcc mkuf mmc mspb nara nasa ncd ncpc ncua nea neh nigc nlrb nmb nrc nrpc nsf ntsb nw nwtrb odni oge omb ondcp onhir opm osc oshrc ostp pbgc pc pclob prc pt sba sec sigar ssa ssab sss stb treasury usab usadf usagm usaid usccr usda usibwc usich usip usitc usps usrrb ustda ustr va)
