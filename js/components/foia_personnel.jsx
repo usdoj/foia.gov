@@ -18,7 +18,8 @@ function displayName(foiaPersonnel) {
 
   if (titleIsGlossaryTerm(title)) {
     // Highlight the title as a glossary term
-    title = <span data-term={title.toLowerCase()}>{title}</span>;
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+    title = <span data-term={title.toLowerCase()} tabIndex="0">{title}</span>;
   }
 
   if (name && title) {
@@ -50,7 +51,7 @@ function FoiaPersonnel({ foiaPersonnel }) {
       { foiaPersonnel.email
         && (
         <p className="agency-info_email">
-          <a href={`mailto:${email}`}>{ email }</a>
+          <a href={`mailto:${email}`} tabIndex={0}>{ email }</a>
         </p>
         )}
     </div>

@@ -36,7 +36,7 @@ function ContactInformation({ agencyComponent }) {
         { agencyComponent.email
           && (
           <p className="agency-info_email">
-            <a href={`mailto:${agencyComponent.email}`}>{ agencyComponent.email }</a>
+            <a tabIndex={0} href={`mailto:${agencyComponent.email}`}>{ agencyComponent.email }</a>
           </p>
           )}
       </div>

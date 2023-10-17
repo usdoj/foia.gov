@@ -31,8 +31,29 @@ $hide-secondary-nav-breakpoint: 900px;
     }
   }
 
+  .usa-nav-inner > div {
+    display: flex;
+
+    > div {
+      display: block;
+      position: relative !important;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  // .usa-nav-container {
+  // }
+
   .usa-nav-primary {
-    display: inline;
+    flex: 1;
+    order: unset;
+    margin-top: 0;
+    padding-bottom: 0.5rem;
+
+    .usa-nav-submenu {
+      margin-left: 0;
+    }
   }
 
   .usa-nav-primary button {
@@ -67,6 +88,7 @@ $hide-secondary-nav-breakpoint: 900px;
   .usa-nav-primary {
     button,
     .usa-nav-link {
+      padding-left: 0;
       &:focus {
         span {
           // match WDS
@@ -110,8 +132,8 @@ $hide-secondary-nav-breakpoint: 900px;
 }
 
 .usa-nav-secondary {
-  display: inline;
-  float: right;
+  display: inline-block;
+  // float: right;
   font-weight: $font-normal;
   top: 0;
   a {

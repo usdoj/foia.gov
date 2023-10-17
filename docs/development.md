@@ -1,7 +1,11 @@
 # Development
 
+## Prerequisites (ddev)
 
-## Prerequisites
+* [DDEV](https://ddev.readthedocs.io/en/stable/)
+
+
+## Prerequisites (local)
 
 * [Ruby](https://www.ruby-lang.org/en/) 2.3.4
 * [Bundler](https://bundler.io/)
@@ -14,7 +18,33 @@ Once you've got Ruby installed, install bundler.
     $ gem install bundler
 
 
-## Setup
+## Setup (ddev)
+
+Build/start the containers. This will run the dev-server.js and webpack in watch mode in two PM2 services. You can view the site: https://foia.gov.ddev.site/
+
+    $ ddev start
+
+View webpack/jekyll logs, or status:
+
+    $ ddev pm2 logs
+    $ ddev pm2 ls
+
+Run tests (everything but cucumber tests are working):
+
+    $ ddev make test
+
+To preview a production build, stop the dev webpack service and do a prod build. This will update https://foia.gov.ddev.site/
+
+    $ ddev pm2 stop webpack
+    $ ddev make build
+
+To return to development:
+
+    $ ddev pm2 start webpack
+
+**Tip:** With this setup, do not use `make` outside the container, as this will lead to permissions problems inside.
+
+## Setup (local)
 
 Install the dependencies.
 
@@ -77,3 +107,9 @@ Instead of the current location in `www.foia.gov/foia-style.scss`.  This will al
 Webpack's `sass-loader` has many options such as advanced source maps and compression which can further speed up development.
 
 Webpack can also detect changes to and recompile other assets such as images, fonts and SVG files.
+
+### Type-check the Wizard app
+
+```
+npx tsc --watch --project js/wizard.tsconfig.json
+```

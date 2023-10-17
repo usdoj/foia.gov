@@ -1,6 +1,7 @@
 .agency-preview {
-  @extend .use-dark-icons;
   margin-top: $space-4x;
+  margin-bottom: 9.6rem;
+  min-height: 40rem;
 
   h2 {
     font-family: $font-serif;
@@ -16,12 +17,94 @@
 
   h4 {
     font-family: $font-sans;
-    font-size: $base-font-size;
+    font-size: 2.8rem;
+    font-weight: 500;
+  }
+
+  ol,
+  ul {
+    padding-left: 1.94em;
+  }
+
+  .use-dark-icons {
+    .agency-info_processing-time h4 + p::before,
+    .agency-info_personnel::before,
+    .agency-info_mailing-address::before,
+    .agency-info_website::before,
+    .agency-info_reading-rooms h4 + p::before {
+      background-size: 4.5rem;
+      height: 4.5rem;
+      left: 0;
+      margin: unset;
+      position: absolute;
+      width: 4.5rem;
+    }
+  }
+
+  .agency-info_mailing-address,
+  .agency-info_processing-time,
+  .agency-info_reading-rooms,
+  .agency-info_personnel,
+  .agency-info_phone,
+  .agency-info_email,
+  .agency-info_website,
+  .submission-help_research {
+    padding-left: 7rem;
+    position: relative;
+
+    h4 {
+      margin-left: -7rem;
+    }
+  }
+
+  .agency-info_mailing-address {
+    span {
+      display: block;
+      margin-bottom: 1em;
+      margin-top: 1em;
+    }
+  }
+
+  .usa-grid-full {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 8rem;
+  }
+    
+  .usa-width-one-half {
+    flex-basis: 100%;
+    margin-right: unset;
+    width: unset;
+
+    @media screen and (min-width: $medium-large-screen) {
+      flex-basis: calc(50% - 4rem);
+    }
+  }
+
+  .usa-button {
+    margin-top: 5rem
+  }
+}
+
+.agency-preview_back {
+  border-bottom: 0;
+  color: $color-primary-darkest;
+  font-size: 1.8rem;
+
+  &:visited {
+    color: inherit;
+  }
+
+  &::before {
+    @include has-icon($icon-caret, $width: 0.7em, $height: 0.7em, $float: none, $display: inline-block, $margins: 0 $space-1x 0 0);
+    transform: rotate(180deg);
   }
 }
 
 .agency-preview_agency-back {
-  &:after {
+  display: block !important;
+
+  &::after {
     @include has-icon($icon-caret, $width: 0.7em, $height: 0.7em, $float: none, $display: inline-block, $margins: 0 0 0 $space-2x);
   }
   &:hover {
