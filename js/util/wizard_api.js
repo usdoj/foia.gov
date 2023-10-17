@@ -4,7 +4,6 @@ import settings from 'settings';
 export function fetchWizardInitData() {
   const options = {
     headers: {
-      'Content-Type': 'application/json',
       'X-Api-Key': settings.api.apiProxyKey,
     },
   };
