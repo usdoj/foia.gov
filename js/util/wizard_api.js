@@ -2,7 +2,12 @@
 import settings from 'settings';
 
 export function fetchWizardInitData() {
-  return fetch(`${settings.api.requestApiBaseURL}/foia_wizard`)
+  const options = {
+    headers: {
+      'X-Api-Key': settings.api.apiProxyKey,
+    },
+  };
+  return fetch(`${settings.api.requestApiBaseURL}/foia_wizard`, options)
     .then((r) => r.json());
 }
 
