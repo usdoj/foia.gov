@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "lib": ["dom", "es2015"],
+    "moduleResolution": "node",
+    "alwaysStrict": true,
+    "target": "es5",
+    "jsx": "react",
+    "noEmit": true,
+    "resolveJsonModule": true
+  },
+  "include": [
+    "./wizard_types.d.ts",
+    "./wizard.jsx",
+    "./components/wizard_*.js",
+    "./models/wizard_*.js",
+    "./pages/wizard.jsx",
+    "./stores/wizard_*.js"
+  ],
+  "exclude": ["node_modules"]
+}

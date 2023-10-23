@@ -48,7 +48,14 @@ navigation:
           title: Research
         - href: /opengov.html
           title: Additional government resources
-    - href: /#agency-search
+    - href: /wizard.html
+      title: Search tool
+      children:
+        - href: /wizard.html
+          title: Use our search tool
+        - href: /how-wizard-works.html
+          title: How it works
+    - href: /agency-search.html
       title: Create a request
     - href: /data.html
       title: Agency FOIA data

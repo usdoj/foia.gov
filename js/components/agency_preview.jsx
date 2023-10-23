@@ -14,7 +14,7 @@ import domify from '../util/request_form/domify';
 function AgencyPreview({ agency, agencyComponentsForAgency, onAgencySelect }) {
   const description = agency.mission();
   return (
-    <div className="agency-preview usa-grid-full">
+    <div className="agency-preview usa-grid-full use-dark-icons">
       <div className="usa-width-one-whole">
         <h3>{agency.name}</h3>
       </div>
@@ -49,7 +49,7 @@ function AgencyPreview({ agency, agencyComponentsForAgency, onAgencySelect }) {
           }
         </ul>
       </div>
-      <div className="usa-width-one-half">
+      <div aria-live="polite" className="usa-width-one-half">
         { description
           && (
           <div>

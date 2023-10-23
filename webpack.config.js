@@ -34,6 +34,8 @@ module.exports = {
     swagger: './js/swagger.jsx',
     foia_contact_download: './js/foia_contact_download.jsx',
     foia_dataset_download: './js/foia_dataset_download.jsx',
+    wizard: './js/wizard.jsx',
+    agency_search: './js/agency_search.jsx',
   },
   output: {
     path: path.resolve(__dirname, 'www.foia.gov/assets/js'),

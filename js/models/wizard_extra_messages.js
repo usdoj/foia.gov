@@ -1,0 +1,51 @@
+/**
+ * These will remain hardcoded.
+ *
+ * @type {Record<string, string>}
+ */
+const extraMessages = {
+  q1: 'Are you seeking your own records?',
+  q2: 'Select the type of immigration or travel record you are seeking from the list below:',
+  q3: 'Select the type of tax record you are seeking from the list below:',
+  q4: 'Select the type of Social Security record you are seeking from the list below:',
+  q5: 'Are you a Veteran?',
+  q6: 'Are you seeking medical records of a Veteran?',
+  q7: 'Select the type of medical records you are seeking from the list below:',
+  q8: 'What kind of personnel records are you seeking?',
+  q9: 'Are you a current or former/retired civilian federal employee?',
+  q10: 'Are you seeking records regarding a current or former military servicemember?',
+  q11: 'Are you seeking to verify the active duty status of a military servicemember?',
+  q12: 'Select the type of military record you are seeking from the list below:',
+  a1: 'Yes',
+  a2: 'No',
+  a3: 'A-File',
+  a4: 'A-Number',
+  a5: 'Naturalization Certificate',
+  a6: 'Records of apprehension, detention, deportation, legal international travel, illegal attempted entry, expedited removal, voluntary removal, or inspections by Customs and Border Protection (CBP)',
+  a7: 'Student and Exchange Visitor System records, medical or other records while someone was detained, bond obligator and investigation records by Immigration Customs Enforcement (ICE)',
+  a8: 'International travel records, including Global Entry and travel history',
+  a9: 'Domestic travel records',
+  a10: 'Passenger Name Records, which contains certain travel reservation data on individuals',
+  a11: 'Visa records',
+  a12: 'Passport records',
+  a13: 'Correction to Global Entry records',
+  'a14-1': 'Transportation Security Administration (TSA) Pre-Check Program',
+  'a14-2': 'Record of Proceeding (ROP)',
+  a15: 'Copy or transcript of tax return',
+  a16: 'Information from open case files',
+  a17: 'Other tax records',
+  a18: 'Deceased Individual’s Application for a Social Security Card or (SS-5) or Numident record.',
+  a19: 'Records of another living individual',
+  a20: 'Earnings records',
+  a21: 'Other personal Social Security records',
+  a22: 'Current active duty or reserve military servicemember records',
+  a23: 'Retired or former military servicemember records',
+  apiError: '<p>There was an error, please try again later.</p>',
+  loading: '<p>Loading...</p>',
+  lookingFor: 'Okay, you’re looking for:',
+  soundsGood: 'Sounds good.',
+  youSelected: 'You selected:',
+  startOver: 'None of the above (I want to start over)',
+};
+
+export default extraMessages;
