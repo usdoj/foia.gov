@@ -33,8 +33,8 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
             'Your own Indian Health Service participant records',
           ),
           answer(
-            'literal:For other records, we recommend you contact your medical provider directly',
-            summary('m50'),
+            'literal:For all other records, we recommend you contact your medical provider directly',
+            summary('literal:For all other records, we recommend you contact your medical provider directly'),
             'All other medical records',
           ),
           answer(
@@ -70,8 +70,8 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
             'Indian Health Service participant records',
           ),
           answer(
-            'literal:For other records, we recommend you contact the medical provider directly',
-            summary('m51'),
+            'literal:For all other records, we recommend you contact your medical provider directly',
+            summary('literal:For all other records, we recommend you contact the medical provider directly'),
             'All other medical records',
           ),
           answer(
