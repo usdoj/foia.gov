@@ -71,7 +71,7 @@ const medicalRecordsJourney = yesNoQuestion('q1', {
           ),
           answer(
             'literal:Other medical records',
-            summary('m50'),
+            summary('m51'),
             'All other medical records',
           ),
           answer(
