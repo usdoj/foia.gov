@@ -54,7 +54,7 @@ function Query() {
         onClick={() => {
           setSubmitted(true);
           actions.submitRequest({
-            query: query || '',
+            query: (query || '').trim(),
             topic: selectedTopic,
           });
         }}
@@ -114,7 +114,7 @@ function Query() {
             disabled={Boolean(selectedTopic)}
           />
 
-          {(query && query !== '' && !exceededMaxLengthQuery) ? submitButton : null}
+          {(query && query.trim() !== '' && !exceededMaxLengthQuery) ? submitButton : null}
         </div>
       </Constrain>
     </PageTemplate>
