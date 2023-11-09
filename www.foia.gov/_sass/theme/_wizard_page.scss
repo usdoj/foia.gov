@@ -373,7 +373,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 }
 
 .w-component-modal__close-button {
+  position: absolute;
   text-align: right;
+  top: 1em;
+  right: 1em;
 
   button {
     background-color: transparent;
@@ -391,7 +394,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 .w-component-modal__title {
   color: $color-white;
   font-size: 32px;
-  margin-top: 0;
+  margin-top: 0.5em;
 
   .w-component-modal--alt & {
     font-family: $font-serif;
