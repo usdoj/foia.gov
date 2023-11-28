@@ -9,7 +9,7 @@ import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
 import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
 import {
-  convertSomeLinksToCards, normalizeScore, scanForTriggers, urlParams,
+  convertSomeLinksToCards, normalizeScore, scanForTriggers,
 } from '../util/wizard_helpers';
 import searchMatchingAgency from '../util/wizard_agency_search';
 import allTopics from '../models/wizard_topics';
@@ -18,12 +18,11 @@ import { defaultSummary, stateLocalSummary, stateOrLocalFlow } from '../models/w
 import agencyComponentStore from './agency_component';
 
 const DEBUG_TO_CONSOLE = true;
-const DEFAULT_CONFIDENCE_THRESHOLD = Number(
-  urlParams().get('confidence-threshold') || 0.5,
-);
-
-const CONFIDENCE_THRESHOLD_AGENCIES = DEFAULT_CONFIDENCE_THRESHOLD;
-const CONFIDENCE_THRESHOLD_LINKS = DEFAULT_CONFIDENCE_THRESHOLD;
+const THRESHOLDS = {
+  missionMatch: 0.7,
+  agencyFinder: 0.2,
+  freqdoc: 0.65,
+};
 
 /** @type {WizardVars} */
 const initialWizardState = {
@@ -339,18 +338,20 @@ const useRawWizardStore = create((
               }),
           );
 
+          log('Using thresholds', THRESHOLDS);
+
           // Match from mission if above threshold.
           recommendedAgencies.push(
             ...data.model_output.agency_mission_match
               .map(normalizeScore)
-              .filter((agency) => (agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES)),
+              .filter((agency) => (agency.confidence_score >= THRESHOLDS.missionMatch)),
           );
 
           // Match from finder if above threshold.
           recommendedAgencies.push(
             ...data.model_output.agency_finder_predictions[0]
               .map(normalizeScore)
-              .filter((agency) => (agency.confidence_score >= CONFIDENCE_THRESHOLD_AGENCIES)),
+              .filter((agency) => (agency.confidence_score >= THRESHOLDS.agencyFinder)),
           );
 
           // DESC score order
@@ -368,7 +369,7 @@ const useRawWizardStore = create((
 
           recommendedLinks = data.model_output.freqdoc_predictions
             .map(normalizeScore)
-            .filter((link) => link.confidence_score >= CONFIDENCE_THRESHOLD_LINKS);
+            .filter((link) => link.confidence_score >= THRESHOLDS.freqdoc);
         })
         .catch((err) => {
           console.error(err);
