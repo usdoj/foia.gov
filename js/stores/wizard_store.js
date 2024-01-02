@@ -289,6 +289,9 @@ const useRawWizardStore = create((
       set({ modelLoading: true });
       await fetchWizardPredictions(query)
         .then((data) => {
+          // Support both V1.1 and V1.0 API output.
+          const modelOutput = data.model_output || data;
+
           if (triggerMatch) {
             log('Collecting model results in case user chooses to switch to them.');
           } else if (trustAgencyMatch) {
@@ -296,7 +299,7 @@ const useRawWizardStore = create((
           } else {
             // If a predefined flow is found, we switch to it, but we'll go ahead and populate
             // the links and agencies anyway.
-            let { flow } = data.model_output.predefined_flow || {};
+            let { flow } = modelOutput.predefined_flow || {};
             if (typeof flow === 'string') {
               if (flow === stateOrLocalFlow) {
                 log('Moving user to state/local summary page due to intent model result.');
@@ -329,7 +332,7 @@ const useRawWizardStore = create((
 
           // If name match, always include it.
           recommendedAgencies.push(
-            ...(data.model_output.agency_name_match || [])
+            ...(modelOutput.agency_name_match || [])
               .map((agency) => {
                 // Show near top.
                 agency.confidence_score = 9999;
@@ -342,14 +345,14 @@ const useRawWizardStore = create((
 
           // Match from mission if above threshold.
           recommendedAgencies.push(
-            ...data.model_output.agency_mission_match
+            ...modelOutput.agency_mission_match
               .map(normalizeScore)
               .filter((agency) => (agency.confidence_score >= THRESHOLDS.missionMatch)),
           );
 
           // Match from finder if above threshold.
           recommendedAgencies.push(
-            ...data.model_output.agency_finder_predictions[0]
+            ...modelOutput.agency_finder_predictions[0]
               .map(normalizeScore)
               .filter((agency) => (agency.confidence_score >= THRESHOLDS.agencyFinder)),
           );
@@ -367,7 +370,7 @@ const useRawWizardStore = create((
             return true;
           });
 
-          recommendedLinks = data.model_output.freqdoc_predictions
+          recommendedLinks = modelOutput.freqdoc_predictions
             .map(normalizeScore)
             .filter((link) => link.confidence_score >= THRESHOLDS.freqdoc);
         })
