@@ -20,6 +20,7 @@ fieldNames:
 - address_city
 - city
 - address_state_province
+- address_state_province_international
 - state_province
 - address_zip_postal_code
 - zip_postal_code

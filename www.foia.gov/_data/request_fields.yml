@@ -76,6 +76,13 @@ address_state_province:
   required: no
   example: '"Virginia"'
 
+address_state_province_international:
+  name: address_state_province_international
+  type: string
+  description: Optional non-U.S. state or province for requester’s mailing address.
+  required: no
+  example: '"Ontario"'
+
 address_zip_postal_code:
   name: address_zip_postal_code
   type: string
