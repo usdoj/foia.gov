@@ -55,7 +55,7 @@
     "react-modal": "3.x",
     "react-router-dom": "5.x",
     "react-url-query": "1.x",
-    "swagger-ui": "^3.52.5",
+    "swagger-ui": "^5.15.1",
     "swagger-ui-react": "^3.52.5",
     "tabulator-tables": "5.x",
     "tooltip.js": "1.x",
