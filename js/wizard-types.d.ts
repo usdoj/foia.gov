@@ -122,6 +122,10 @@ declare global {
      */
     newDisplayedTopic?: string;
     /**
+     * If set, tooltip MID
+     */
+    tooltipMid?: string;
+    /**
      * The next activity: a question, continue, or the summary
      */
     next: WizardQuestion | WizardContinue | WizardSummary | WizardStartOver;

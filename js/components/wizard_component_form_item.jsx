@@ -15,6 +15,8 @@ function FormItem({
   value,
   checked,
   mid,
+  tooltip,
+  tooltipMid,
   placeholder,
   disabled,
   maxLength,
@@ -43,11 +45,19 @@ function FormItem({
   return (
     <div
       data-mid={mid}
+      data-tooltip-mid={tooltipMid}
       className={`w-component-form-item${type ? ` w-component-form-item--${type}` : ''}`}
     >
       {(type === 'checkbox' || type === 'radio') && element}
       <label htmlFor={id} className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}>{label}</label>
       {(type === 'text' || type === 'textarea') && element}
+      {tooltipMid ? (
+        <div>
+          {'(Tooltip: '}
+          <em>{tooltip}</em>
+          )
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -56,6 +66,7 @@ FormItem.propTypes = {
   type: PropTypes.string.isRequired,
   isLabelHidden: PropTypes.bool,
   label: PropTypes.string.isRequired,
+  tooltip: PropTypes.string,
   onChange: PropTypes.func,
   name: PropTypes.string,
   value: PropTypes.oneOfType([
@@ -64,6 +75,7 @@ FormItem.propTypes = {
   ]),
   checked: PropTypes.bool,
   mid: PropTypes.string,
+  tooltipMid: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   maxLength: PropTypes.number,

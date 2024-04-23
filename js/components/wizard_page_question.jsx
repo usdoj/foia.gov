@@ -37,8 +37,10 @@ function Question() {
                     type="radio"
                     name="question"
                     label={getMessage(answer.titleMid)}
+                    tooltip={answer.tooltipMid ? getMessage(answer.tooltipMid) : undefined}
                     value={idx}
                     mid={answer.titleMid}
+                    tooltipMid={answer.tooltipMid}
                     checked={idx === answerIdx}
                     onChange={() => {
                       actions.selectAnswer(idx);
