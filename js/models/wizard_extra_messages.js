@@ -49,7 +49,7 @@ const extraMessages = {
   a21: 'Other personal Social Security records',
   a22: 'Current active duty or reserve military servicemember records',
   a23: 'Retired or former military servicemember records',
-  tt1: 'Any law enforcement agency with the word County in its title is a local agency. For example, Clark County or Orange County or Miami-Dade County, etc. are all local law enforcement, not federal. Similarly, law enforcement agencies such as LAPD or NYPD are not federal law enforcement agencies, they are also local law enforcement agencies.',
+  tt1: 'Any law enforcement agency with the word County in its title is a local agency. For example, <i>Clark County</i> or <i>Orange County</i> or <i>Miami-Dade County</i>, etc. are all local law enforcement, not federal. Similarly, law enforcement agencies such as <i>LAPD</i> or <i>NYPD</i> are not federal law enforcement agencies, they are also local law enforcement agencies.',
   apiError: '<p>There was an error, please try again later.</p>',
   loading: '<p>Loading...</p>',
   lookingFor: 'Okay, you’re looking for:',

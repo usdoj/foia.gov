@@ -42,7 +42,7 @@ function LastStepsBlock() {
             type="radio"
             name="help-anything-else"
             key={label}
-            label={label}
+            labelHtml={label}
             value={label}
             // Must give setSelectedAction a function so react doesn't interpret
             // it as a setter.

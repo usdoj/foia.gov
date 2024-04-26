@@ -9,7 +9,7 @@ let idCounter = 0;
 function FormItem({
   type,
   isLabelHidden,
-  label,
+  labelHtml,
   onChange,
   name,
   value,
@@ -49,7 +49,12 @@ function FormItem({
       className={`w-component-form-item${type ? ` w-component-form-item--${type}` : ''}`}
     >
       {(type === 'checkbox' || type === 'radio') && element}
-      <label htmlFor={id} className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}>{label}</label>
+      <label
+        htmlFor={id}
+        className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}
+        /* eslint-disable-next-line react/no-danger */
+        dangerouslySetInnerHTML={{ __html: labelHtml }}
+      />
       {(type === 'text' || type === 'textarea') && element}
       {tooltipMid ? (
         <div>
@@ -65,7 +70,7 @@ function FormItem({
 FormItem.propTypes = {
   type: PropTypes.string.isRequired,
   isLabelHidden: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  labelHtml: PropTypes.string.isRequired,
   tooltip: PropTypes.string,
   onChange: PropTypes.func,
   name: PropTypes.string,

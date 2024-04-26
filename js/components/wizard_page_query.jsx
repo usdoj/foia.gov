@@ -108,7 +108,7 @@ function Query() {
           <FormItem
             type="textarea"
             isLabelHidden
-            label="Query"
+            labelHtml="Query"
             onChange={(e) => setQuery(e.target.value)}
             value={query || ''}
             disabled={Boolean(selectedTopic)}

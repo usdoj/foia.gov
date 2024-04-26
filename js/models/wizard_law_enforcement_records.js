@@ -21,7 +21,7 @@ const lawEnforcementRecordsJourney = question('q20', [
         no: summary('m55'),
       })),
       answer('literal:Federal prison and parole records', summary('m56')),
-      answer('literal:Background check records', summary('m34')),
+      answer('literal:Background investigation and security records', summary('m34')),
       answer('literal:Court records', summary('m57')),
       answer('literal:Oversight of the environment and agriculture', summary('m58')),
       answer('literal:Oversight of U.S. financial institutions', summary('m59')),
@@ -43,7 +43,7 @@ const lawEnforcementRecordsJourney = question('q20', [
     ])),
     answer('literal:Prison records', question('q25', [
       answer('literal:County or state prison', summary('m52')),
-      answer('literal:Federal prison (view the list of federal prisons)', summary('m64')),
+      answer('literal:Federal prison (view the <a target="_blank" href="https://www.bop.gov/mobile/locations/">list of federal prisons</a>)', summary('m64')),
     ])),
     answer('literal:Body worn camera footage', question('q26', [
       answer('literal:Federal investigation', question22()),
@@ -53,7 +53,7 @@ const lawEnforcementRecordsJourney = question('q20', [
         next: summary('m52'),
       },
     ])),
-    answer('literal:Background check', question('q27', [
+    answer('literal:Background check for employment', question('q27', [
       {
         titleMid: 'literal:State or local agency',
         tooltipMid: 'tt1',
@@ -63,7 +63,7 @@ const lawEnforcementRecordsJourney = question('q20', [
       answer('literal:Private organization', summary('m65')),
     ])),
     answer('literal:Court records', question('q28', [
-      answer('literal:Federal (Federal Court Finder)', summary('m57')),
+      answer('literal:Federal (use the <a href="https://www.uscourts.gov/federal-court-finder/search" target="_blank">Federal Court Finder</a>)', summary('m57')),
       answer('literal:State or local', summary('m66')),
     ])),
   ])),
