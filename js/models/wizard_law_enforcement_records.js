@@ -33,7 +33,7 @@ const lawEnforcementRecordsJourney = question('q20', [
   answer("literal:I don't know", question('q23', [
     answer('literal:911 calls', summary('m52')),
     answer('literal:Arrest and/or investigation records', question('q24', [
-      answer('literal:Federal investigation'),
+      answer('literal:Federal investigation', question22()),
       {
         titleMid: 'literal:State or local investigation',
         tooltipMid: 'tt1',
