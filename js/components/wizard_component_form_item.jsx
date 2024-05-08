@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Modal from './wizard_component_modal';
+import { useWizard } from '../stores/wizard_store';
+import BodyText from './wizard_component_body_text';
 
 let idCounter = 0;
 
@@ -15,12 +18,13 @@ function FormItem({
   value,
   checked,
   mid,
-  tooltip,
   tooltipMid,
   placeholder,
   disabled,
   maxLength,
 }) {
+  const { getMessage } = useWizard();
+  const [modalIsOpen, setIsOpen] = useState(/** @type boolean */ false);
   const id = `FormItem${idCounter++}`;
   let element;
 
@@ -52,17 +56,24 @@ function FormItem({
       <label
         htmlFor={id}
         className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}
-        /* eslint-disable-next-line react/no-danger */
-        dangerouslySetInnerHTML={{ __html: labelHtml }}
-      />
+      >
+        <span
+          /* eslint-disable-next-line react/no-danger */
+          dangerouslySetInnerHTML={{ __html: labelHtml }}
+        />
+        {tooltipMid ? (
+          <button style={{ marginLeft: '0.25em' }} type="button" onClick={() => setIsOpen((prev) => !prev)} className="unstyled-button">(i)</button>
+        ) : null}
+      </label>
       {(type === 'text' || type === 'textarea') && element}
-      {tooltipMid ? (
-        <div>
-          {'(Tooltip: '}
-          <em>{tooltip}</em>
-          )
-        </div>
-      ) : null}
+
+      {tooltipMid
+        ? (
+          <Modal title="" modalIsOpen={modalIsOpen} closeModal={() => setIsOpen(false)} contentLabel="">
+            <BodyText html={getMessage(tooltipMid)} />
+          </Modal>
+        )
+        : null}
     </div>
   );
 }
@@ -71,7 +82,6 @@ FormItem.propTypes = {
   type: PropTypes.string.isRequired,
   isLabelHidden: PropTypes.bool,
   labelHtml: PropTypes.string.isRequired,
-  tooltip: PropTypes.string,
   onChange: PropTypes.func,
   name: PropTypes.string,
   value: PropTypes.oneOfType([
