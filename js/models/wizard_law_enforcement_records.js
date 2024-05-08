@@ -15,7 +15,6 @@ const lawEnforcementRecordsJourney = question('q20', [
   answer(
     'literal:Federal law enforcement',
     question('q21', [
-      answer('literal:Law enforcement policies and programs', summary('m53')),
       answer('literal:Records about a specific criminal or civil case', yesNoQuestion('q22', {
         yes: summary('m54'),
         no: summary('m55'),
@@ -28,6 +27,7 @@ const lawEnforcementRecordsJourney = question('q20', [
       answer('literal:Oversight of the workplace', summary('m60')),
       answer('literal:Consumer protection', summary('m61')),
       answer('literal:Oversight of federal agencies', summary('m62')),
+      answer('literal:Law enforcement/criminal justice policies and programs', summary('m53')),
     ]),
   ),
   answer("literal:I don't know", question('q23', [
