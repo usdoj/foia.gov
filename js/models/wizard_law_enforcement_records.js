@@ -2,11 +2,6 @@ import {
   answer, question, summary, yesNoQuestion,
 } from '../util/wizard_helpers';
 
-const question22 = () => yesNoQuestion('q22', {
-  yes: summary('m54'),
-  no: summary('m55'),
-});
-
 /**
  * @type {WizardQuestion}
  */
@@ -33,7 +28,10 @@ const lawEnforcementRecordsJourney = question('q20', [
   answer("literal:I don't know", question('q23', [
     answer('literal:911 calls', summary('m52')),
     answer('literal:Arrest and/or investigation records', question('q24', [
-      answer('literal:Federal investigation', question22()),
+      answer('literal:Federal investigation', yesNoQuestion('q22', {
+        yes: summary('m54'),
+        no: summary('m55'),
+      })),
       {
         titleMid: 'literal:State or local investigation',
         tooltipMid: 'tt1',
@@ -46,7 +44,10 @@ const lawEnforcementRecordsJourney = question('q20', [
       answer('literal:Federal prison (view the <a target="_blank" href="https://www.bop.gov/mobile/locations/">list of federal prisons</a>)', summary('m64')),
     ])),
     answer('literal:Body worn camera footage', question('q26', [
-      answer('literal:Federal investigation', question22()),
+      answer('literal:Federal investigation', yesNoQuestion('q22', {
+        yes: summary('m54'),
+        no: summary('m67'),
+      })),
       {
         titleMid: 'literal:State or local investigation',
         tooltipMid: 'tt1',
