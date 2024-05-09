@@ -62,7 +62,7 @@
     "typeahead.js": "0.x",
     "url": "0.x",
     "uswds": "1.x",
-    "zustand": "^4.3.7"
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
