@@ -13,7 +13,7 @@ const question22 = () => yesNoQuestion('q22', {
 const lawEnforcementRecordsJourney = question('q20', [
   answer('literal:State or local', summary('m52')),
   answer(
-    'literal:Federal law enforcement',
+    'literal:Federal',
     question('q21', [
       answer('literal:Records about a specific criminal or civil case', yesNoQuestion('q22', {
         yes: summary('m54'),
