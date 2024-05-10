@@ -37,7 +37,6 @@ const lawEnforcementRecordsJourney = question('q20', [
         tooltipMid: 'tt1',
         next: summary('m52'),
       },
-      answer('literal:Did the incident happen on or near a military base or involve active-duty military personnel?', summary('m63')),
     ])),
     answer('literal:Prison records', question('q25', [
       answer('literal:County or state prison', summary('m52')),
