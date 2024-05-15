@@ -4,6 +4,7 @@ $color-green-warm: #f5fbc1;
 // Icons
 $icon-checkbox-unchecked: '/img/icon-checkbox-unchecked.svg';
 $icon-checkbox-checked: '/img/icon-checkbox-checked.svg';
+$icon-info-outline: '/img/icon-info-outline.svg';
 $icon-radio-unchecked: '/img/icon-radio-unchecked.svg';
 $icon-radio-checked: '/img/icon-radio-checked.svg';
 $icon-check-circle-green: '/img/icon-check-circle-green.svg';
@@ -230,6 +231,30 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   margin-top: 0;
 }
 
+// Info Button Component
+.w-component-info-button {
+  background-color: unset;
+  box-sizing: content-box;
+  height: 24px;
+  margin: unset;
+  padding: 0.25rem 0.5rem;
+  position: relative;
+  vertical-align: text-top;
+  width: 24px;
+
+  &::before {
+    background-image: url($icon-info-outline);
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
 // Button Component
 .w-component-button {
   background-color: $color-primary-alt-lightest !important;
@@ -354,7 +379,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 .w-component-modal__content {
   background: $color-blue-light;
   bottom: auto;
-  inset: 50% auto auto 50%;
+  inset: 50% 5rem auto 50%;
   left: 50%;
   margin-right: -50%;
   max-width: 1168px;
@@ -363,7 +388,6 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   overflow: auto;
   padding: 50px;
   position: absolute;
-  right: auto;
   top: 50%;
   transform: translate(-50%, -50%);
 

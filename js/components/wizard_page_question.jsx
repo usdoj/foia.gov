@@ -36,9 +36,10 @@ function Question() {
                   <FormItem
                     type="radio"
                     name="question"
-                    label={getMessage(answer.titleMid)}
+                    labelHtml={getMessage(answer.titleMid)}
                     value={idx}
                     mid={answer.titleMid}
+                    tooltipMid={answer.tooltipMid}
                     checked={idx === answerIdx}
                     onChange={() => {
                       actions.selectAnswer(idx);

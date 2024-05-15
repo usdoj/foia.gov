@@ -4,6 +4,7 @@ import militaryRecordsJourney from './wizard_military_records';
 import personnelRecordsJourney from './wizard_personnel_records';
 import socsecRecordsJourney from './wizard_socsec_records';
 import taxRecordsJourney from './wizard_tax_records';
+import lawEnforcementRecordsJourney from './wizard_law_enforcement_records';
 
 /**
  * @type {WizardTopic[]}
@@ -26,6 +27,9 @@ const allTopics = [
   },
   {
     tid: 't6', title: 'Military records', journey: militaryRecordsJourney,
+  },
+  {
+    tid: 't8', title: 'Law Enforcement records', journey: lawEnforcementRecordsJourney,
   },
 ];
 

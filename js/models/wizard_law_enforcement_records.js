@@ -1,0 +1,72 @@
+import {
+  answer, question, summary, yesNoQuestion,
+} from '../util/wizard_helpers';
+
+/**
+ * @type {WizardQuestion}
+ */
+const lawEnforcementRecordsJourney = question('q20', [
+  answer('literal:State or local', summary('m52')),
+  answer(
+    'literal:Federal',
+    question('q21', [
+      answer('literal:Records about a specific criminal or civil case', yesNoQuestion('q22', {
+        yes: summary('m54'),
+        no: summary('m55'),
+      })),
+      answer('literal:Federal prison and parole records', summary('m56')),
+      answer('literal:Background investigation and security records', summary('m34')),
+      answer('literal:Court records', summary('m57')),
+      answer('literal:Oversight of the environment and agriculture', summary('m58')),
+      answer('literal:Oversight of U.S. financial institutions', summary('m59')),
+      answer('literal:Oversight of the workplace', summary('m60')),
+      answer('literal:Consumer protection', summary('m61')),
+      answer('literal:Oversight of federal agencies', summary('m62')),
+      answer('literal:Law enforcement/criminal justice policies and programs', summary('m53')),
+    ]),
+  ),
+  answer("literal:I don't know", question('q23', [
+    answer('literal:911 calls', summary('m52')),
+    answer('literal:Arrest and/or investigation records', question('q24', [
+      answer('literal:Federal investigation', yesNoQuestion('q22', {
+        yes: summary('m54'),
+        no: summary('m55'),
+      })),
+      {
+        titleMid: 'literal:State or local investigation',
+        tooltipMid: 'tt1',
+        next: summary('m52'),
+      },
+    ])),
+    answer('literal:Prison records', question('q25', [
+      answer('literal:County or state prison', summary('m52')),
+      answer('literal:Federal prison (view the <a target="_blank" href="https://www.bop.gov/mobile/locations/">list of federal prisons</a>)', summary('m64')),
+    ])),
+    answer('literal:Body worn camera footage', question('q26', [
+      answer('literal:Federal investigation', yesNoQuestion('q22', {
+        yes: summary('m54'),
+        no: summary('m67'),
+      })),
+      {
+        titleMid: 'literal:State or local investigation',
+        tooltipMid: 'tt1',
+        next: summary('m52'),
+      },
+    ])),
+    answer('literal:Background check for employment', question('q27', [
+      {
+        titleMid: 'literal:State or local agency',
+        tooltipMid: 'tt1',
+        next: summary('m52'),
+      },
+      answer('literal:Federal agency (including the military)', summary('m34')),
+      answer('literal:Private organization', summary('m65')),
+    ])),
+    answer('literal:Court records', question('q28', [
+      answer('literal:Federal (use the <a href="https://www.uscourts.gov/federal-court-finder/search" target="_blank">Federal Court Finder</a>)', summary('m57')),
+      answer('literal:State or local', summary('m66')),
+    ])),
+  ])),
+]);
+
+export default lawEnforcementRecordsJourney;

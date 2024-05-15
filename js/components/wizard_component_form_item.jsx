@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Modal from './wizard_component_modal';
+import { useWizard } from '../stores/wizard_store';
+import BodyText from './wizard_component_body_text';
+import InfoButton from './wizard_component_info_button';
 
 let idCounter = 0;
 
@@ -9,16 +13,19 @@ let idCounter = 0;
 function FormItem({
   type,
   isLabelHidden,
-  label,
+  labelHtml,
   onChange,
   name,
   value,
   checked,
   mid,
+  tooltipMid,
   placeholder,
   disabled,
   maxLength,
 }) {
+  const { getMessage } = useWizard();
+  const [modalIsOpen, setIsOpen] = useState(/** @type boolean */ false);
   const id = `FormItem${idCounter++}`;
   let element;
 
@@ -43,11 +50,31 @@ function FormItem({
   return (
     <div
       data-mid={mid}
+      data-tooltip-mid={tooltipMid}
       className={`w-component-form-item${type ? ` w-component-form-item--${type}` : ''}`}
     >
       {(type === 'checkbox' || type === 'radio') && element}
-      <label htmlFor={id} className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}>{label}</label>
+      <label
+        htmlFor={id}
+        className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}
+      >
+        <span
+          /* eslint-disable-next-line react/no-danger */
+          dangerouslySetInnerHTML={{ __html: labelHtml }}
+        />
+        {tooltipMid ? (
+          <InfoButton text="info" onClick={() => setIsOpen((prev) => !prev)} />
+        ) : null}
+      </label>
       {(type === 'text' || type === 'textarea') && element}
+
+      {tooltipMid
+        ? (
+          <Modal title="" modalIsOpen={modalIsOpen} closeModal={() => setIsOpen(false)} contentLabel="">
+            <BodyText html={getMessage(tooltipMid)} />
+          </Modal>
+        )
+        : null}
     </div>
   );
 }
@@ -55,7 +82,7 @@ function FormItem({
 FormItem.propTypes = {
   type: PropTypes.string.isRequired,
   isLabelHidden: PropTypes.bool,
-  label: PropTypes.string.isRequired,
+  labelHtml: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   name: PropTypes.string,
   value: PropTypes.oneOfType([
@@ -64,6 +91,7 @@ FormItem.propTypes = {
   ]),
   checked: PropTypes.bool,
   mid: PropTypes.string,
+  tooltipMid: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   maxLength: PropTypes.number,
