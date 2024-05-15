@@ -2,9 +2,10 @@
 start=$SECONDS
 set -B
 
-# Generate xml dataset by year
+# Generates xml dataset by year for Dataset Download Page
+# https://www.foia.gov/foia-dataset-download.html
 # USAGE: bash xml-dataset-download.sh <year> <api_key>
-# EXAMPLE: bash xml-dataset-download.sh 2000 N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N
+# EXAMPLE: bash xml-dataset-download.sh 2023 N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N
 # CURL: curl -H "X-API-Key: N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N" https://api.foia.gov/api/annual-report-xml/ibwc/2022 -o test.xml
 
 YEAR=$1
@@ -43,6 +44,9 @@ case $YEAR in
     ;;
   2022)
     declare -a agencies=(abmc doj achp acus afrh asc ceq cfa cfpb cftc cia cigie cncs co cppbsd cpsc csb csosa dc dfc dhs dnfsb doc dod doe doi dol dos dot eac ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gcerc gsa ha hhs hstsf hud iaf imls ipec fpisc jmmff lsc mcc mkuf mmc mspb nara nasa ncd ncpc ncua nea neh nigc nlrb nmb nrc nrpc nsf ntsb nw nwtrb odni oge omb ondcp onhir opm osc oshrc ostp pbgc pc pclob prc pt usrrb sba sec sigar ssa ssab sss stb treasury tva usab usadf usagm usaid usccr usda usibwc usich usip usitc usps ustda ustr va)
+    ;;
+  2023)
+    declare -a agencies=(oncd abmc doj achp acus afrh asc ceq cfa cfpb cftc cia cigie cncs co cppbsd cpsc csb csosa dc dfc dhs dnfsb doc dod doe doi dol dos dot eac ed eeoc epa fca fcc fcsic fdic fec ferc ffiec fhfa flra fmc fmcs fmshrc fomc frb frtib ftc gcerc gsa ha hhs hstsf hud iaf imls ipec fpisc jmmff lsc mcc mkuf mmc mspb nara nasa ncd ncpc ncua nea neh nigc nlrb nmb nrc nrpc nsf ntsb nw nwtrb odni oge omb ondcp onhir opm osc oshrc ostp pbgc pc pclob prc pt usrrb sba sec sigar ssa ssab sss stb treasury tva usab usadf usagm usaid usccr usda usibwc usich usip usitc usps ustda ustr va)
     ;;
   *)
     echo -n "Year unavailable: ${YEAR}"
