@@ -28,7 +28,7 @@ function FoiaDatasetDownload() {
         </ul>
       </div>
       <div className="usa-width-one-whole pt5">
-        <p>The following compressed files are complete archives of government wide FOIA data sets for the years 2008 through 2023 in .csv format.</p>
+        <p>The following compressed files are complete archives of governmentwide FOIA data sets for the years 2008 through 2023 in .csv format.</p>
         <ul>
           <li><a href="/downloads/all_agencies_csv_2023.zip">Download the full 2023 All Agency Data set</a> (.zip format)</li>
           <li><a href="/downloads/all_agencies_csv_2022.zip">Download the full 2022 All Agency Data set</a> (.zip format)</li>
