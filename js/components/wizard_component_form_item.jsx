@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from './wizard_component_modal';
 import { useWizard } from '../stores/wizard_store';
 import BodyText from './wizard_component_body_text';
+import InfoButton from './wizard_component_info_button';
 
 let idCounter = 0;
 
@@ -62,7 +63,7 @@ function FormItem({
           dangerouslySetInnerHTML={{ __html: labelHtml }}
         />
         {tooltipMid ? (
-          <button style={{ marginLeft: '0.25em' }} type="button" onClick={() => setIsOpen((prev) => !prev)} className="unstyled-button">(i)</button>
+          <InfoButton text="info" onClick={() => setIsOpen((prev) => !prev)} />
         ) : null}
       </label>
       {(type === 'text' || type === 'textarea') && element}
