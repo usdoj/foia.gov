@@ -37,7 +37,6 @@ function Question() {
                     type="radio"
                     name="question"
                     labelHtml={getMessage(answer.titleMid)}
-                    tooltip={answer.tooltipMid ? getMessage(answer.tooltipMid) : undefined}
                     value={idx}
                     mid={answer.titleMid}
                     tooltipMid={answer.tooltipMid}
