@@ -193,6 +193,9 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 
 .w-component-form-item--radio {
   .w-component-form-item__label {
+    padding-left: 50px;
+    position: relative;
+
     &::before {
       background-color: transparent;
       background-image: url($icon-radio-unchecked);
@@ -202,10 +205,11 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
       content: '\a0';
       cursor: pointer;
       height: 30px;
-      margin-right: 28px;
+      margin-right: 0;
       outline: none;
-      position: relative;
-      top: -3px;
+      position: absolute;
+      top: 3px;
+      left: 0;
       vertical-align: middle;
       width: 30px;
     }
@@ -372,8 +376,9 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 // Modal Component
 .w-component-modal__overlay {
   background-color: #{$color-gray-light}99;
-  inset: 0px;
+  inset: 0;
   position: fixed;
+  z-index: 2;
 }
 
 .w-component-modal__content {
@@ -383,7 +388,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   left: 50%;
   margin-right: -50%;
   max-width: 1168px;
-  min-height: 65%;
+  max-height: 100vh;
   outline: none;
   overflow: auto;
   padding: 50px;
@@ -393,6 +398,11 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 
   .w-component-modal--alt & {
     min-height: 25%;
+  }
+
+  @media screen and (max-width: 500px) {
+    inset: 50% 0 auto 50%;
+    padding: 50px 30px;
   }
 }
 
