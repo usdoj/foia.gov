@@ -341,14 +341,18 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 .w-component-pill-group__list {
   display: flex;
   flex-wrap: wrap;
+  column-gap: 30px;
 
   li {
     margin: 0;
     padding: 0;
 
+    &::marker {
+      font-size: 0;
+    }
+
     button {
       margin-bottom: 15px;
-      margin-right: 30px;
       margin-top: 15px;
     }
   }
