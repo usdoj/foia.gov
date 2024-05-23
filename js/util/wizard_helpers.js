@@ -74,7 +74,7 @@ export function urlParams() {
  * @returns {string}
  */
 export function convertSomeLinksToCards(html) {
-  return html.replace(/<p>(.+?)<\/p>/sg, (m0, pInnerHtml) => {
+  const out = html.replace(/<p>(.+?)<\/p>/sg, (m0, pInnerHtml) => {
     const [n0, linkOpenTag, linkInnerHtml] = pInnerHtml.trim().match(/^(<a [^>]+>)(.+?)<\/a>$/s) || [];
     if (!n0) {
       // No modification
@@ -109,6 +109,47 @@ export function convertSomeLinksToCards(html) {
       </a>
     `;
   });
+
+  // Separate HTML into square links and everything else.
+  const regexp = /<a class="foia-component-card foia-component-card--inline[^>]+>.+?<\/a>/sg;
+  const parts = [];
+  let substringStart = 0;
+  let match;
+
+  // eslint-disable-next-line no-cond-assign
+  while ((match = regexp.exec(out)) !== null) {
+    parts.push({
+      isMatch: false,
+      text: out.substring(substringStart, match.index).trim(),
+    });
+    substringStart = match.index + match[0].length;
+    parts.push({
+      isMatch: true,
+      text: match[0],
+    });
+  }
+
+  // No square links
+  if (!parts.length) {
+    return out;
+  }
+
+  // Place wrapper divs around sets of square links
+  let sectionStarted = false;
+  for (let i = 0; i < parts.length; i++) {
+    if (!sectionStarted && parts[i].isMatch) {
+      parts[i - 1].text += '<div class="foia-component-card--wrapper">';
+      sectionStarted = true;
+    } else if (sectionStarted && !parts[i].isMatch && parts[i].text !== '') {
+      parts[i].text = `</div>${parts[i].text}`;
+      sectionStarted = false;
+    }
+  }
+  if (sectionStarted) {
+    parts.push({ isMatch: false, text: '</div>' });
+  }
+
+  return parts.map((part) => part.text).join('');
 }
 
 /**

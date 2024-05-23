@@ -35,6 +35,11 @@
   }
 }
 
+.foia-component-card--wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .foia-component-card--inline {
   display: inline-block;
   margin-top: 3rem;
