@@ -103,9 +103,17 @@ export function convertSomeLinksToCards(html) {
       linkOpenTagNew = linkOpenTag.replace('<a ', `<a class="${classes.join(' ')}" `);
     }
 
+    // Pull out eyebrow text
+    let eyebrow = '';
+    const linkInner = linkInnerHtml.replace(/<span class="eyebrow">(.*?)<\/span>/s, (_, m1) => {
+      eyebrow = `<span class="foia-component-card__tag">${m1}</span>`;
+      return '';
+    });
+
     return `
       ${linkOpenTagNew}
-        <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
+        ${eyebrow}
+        <h2 class="foia-component-card__title">${linkInner}</h2>
       </a>
     `;
   });
