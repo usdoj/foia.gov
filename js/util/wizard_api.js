@@ -26,3 +26,27 @@ export function fetchWizardPredictions(query) {
   return fetch(settings.api.wizardApiURL, polydeltaOptions)
     .then((response) => response.json());
 }
+
+/**
+ * @param {number} relevanceValue
+ * @param {number} expectationsValue
+ * @param {string} otherFeedback
+ */
+export function sendWizardFeedback(relevanceValue, expectationsValue, otherFeedback) {
+  const url = `${settings.api.jsonApiBaseURL}/webform/submit`;
+  // const url = `${settings.api.jsonApiBaseURL}/webform_submission/wizard_feedback`;
+  const options = {
+    method: 'POST',
+    headers: {
+      'X-Api-Key': settings.api.jsonApiKey,
+      'Content-Type': 'application/vnd.api+json',
+    },
+    body: JSON.stringify({
+      id: 'wizard_feedback',
+      results_meet_expectations: { 'How well do these results meet your expectations?': expectationsValue },
+      results_relevant_to_search: { 'How relevant were the results to your search?': relevanceValue },
+      additional_feedback: otherFeedback,
+    }),
+  };
+  return fetch(url, options).then((response) => response.json);
+}

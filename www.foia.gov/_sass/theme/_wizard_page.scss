@@ -529,3 +529,48 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
     color: $color-primary-alt-light !important;
   }
 }
+
+// Feedback
+.w-component-skip-button-container {
+  display: flex;
+  justify-content: end;
+}
+
+.w-feedback-legend {
+  font-family: $font-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.w-component-feedback-option-set {
+  align-content: space-around;
+  color: $color-primary-darkest;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  p, .w-component-form-item.w-component-form-item--radio {
+    display: inline-flex;
+    max-height: 2rem;
+    padding: 0 2rem;
+
+    .w-component-form-item__label {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.w-component-option-annotation {
+  color: $color-primary-darkest;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 auto;
+
+  @media screen and (max-width: 830px) {
+    justify-content: space-between;
+    padding: 0 4.5rem
+  }
+}
