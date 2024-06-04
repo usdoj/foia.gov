@@ -143,7 +143,7 @@ function Summary() {
                 name="was-helpful"
                 labelHtml="Yes"
                 value="Yes"
-                onChange={() => setSelectedAction(() => actions.toLastSteps)}
+                onChange={() => setSelectedAction(() => () => actions.toLastSteps(true))}
               />
               <FormItem
                 type="radio"

@@ -34,12 +34,11 @@ export function fetchWizardPredictions(query) {
  */
 export function sendWizardFeedback(relevanceValue, expectationsValue, otherFeedback) {
   const url = `${settings.api.jsonApiBaseURL}/webform/submit`;
-  // const url = `${settings.api.jsonApiBaseURL}/webform_submission/wizard_feedback`;
   const options = {
     method: 'POST',
     headers: {
       'X-Api-Key': settings.api.jsonApiKey,
-      'Content-Type': 'application/vnd.api+json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       id: 'wizard_feedback',
@@ -48,5 +47,5 @@ export function sendWizardFeedback(relevanceValue, expectationsValue, otherFeedb
       additional_feedback: otherFeedback,
     }),
   };
-  return fetch(url, options).then((response) => response.json);
+  return fetch(url, options).then((response) => response.json());
 }

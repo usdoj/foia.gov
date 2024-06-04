@@ -435,10 +435,10 @@ const useRawWizardStore = create((
     await sendWizardFeedback(relevanceValue, expectationsValue, otherFeedback)
       .then((data) => {
         log(data);
-        // set(withCapturedHistory({
-        //   activity: { type: 'lastSteps' },
-        //   showFeedbackOption: false,
-        // }));
+        set(withCapturedHistory({
+          activity: { type: 'lastSteps' },
+          showFeedbackOption: false,
+        }));
       })
       .catch((err) => {
         console.error(err);
