@@ -245,7 +245,7 @@ const useRawWizardStore = create((
 
   /**
    * @type {WizardActions['toLastSteps']}
-   * @param shouldShowFeedbackOption boolean optional
+   * @param {boolean} [shouldShowFeedbackOption=true]
   */
   function toLastSteps(shouldShowFeedbackOption = true) {
     set(() => withCapturedHistory({
