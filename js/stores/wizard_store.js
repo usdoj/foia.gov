@@ -434,7 +434,9 @@ const useRawWizardStore = create((
   const submitFeedback = async (relevanceValue, expectationsValue, otherFeedback) => {
     await sendWizardFeedback(relevanceValue, expectationsValue, otherFeedback)
       .then((data) => {
-        log(data);
+        if (!data.submission_id) {
+          log(data);
+        }
         set(withCapturedHistory({
           activity: { type: 'lastSteps' },
           showFeedbackOption: false,
