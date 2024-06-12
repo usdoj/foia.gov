@@ -6,7 +6,7 @@ set -B
 # https://www.foia.gov/foia-dataset-download.html
 # USAGE: bash xml-dataset-download.sh <year> <api_key>
 # EXAMPLE: bash xml-dataset-download.sh 2023 N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N
-# CURL: curl -H "X-API-Key: N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N" https://api.foia.gov/api/annual-report-xml/ibwc/2022 -o test.xml
+# CURL: curl -H "X-API-Key: N4aCuDuJO8Ucf1FTR2EzVPZqo8NsSl1c7YLYOk8N" https://api.foia.gov/api/annual-report-xml/ibwc/2023 -o test.xml
 
 YEAR=$1
 API_KEY=$2
@@ -97,7 +97,7 @@ done
 
 echo -e "Zipping all XML files for the year ${YEAR}... \n"
 zip -r -j zips/$YEAR-FOIASetFull.zip files/$YEAR/*.xml
-echo -e "Removing all XML files from this directory... \n"
+#echo -e "Removing all XML files from this directory... \n"
 #rm -r files/$YEAR/*.xml # leave files but use gitignore for testing
 duration=$(( SECONDS - start ))
 echo -e "You can now manually place the zip files into the www.foia.gov directory..."
