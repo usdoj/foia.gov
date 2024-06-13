@@ -37,7 +37,9 @@ Feature: wizard
     And I wait 1 second
     Then I should see "Visit the Internal Revenue Service (IRS) website"
     And I should see 1 "external link card" element
-    And I should see "Can we help you with anything else?"
+    And I should see "Were these results helpful?"
+    Then I select the radio option for the answer "Yes"
+    And I hard click on "the wizard primary button"
     Then I select the radio option for the answer "Yes, I would like to do another search."
     And I hard click on "the wizard primary button"
     And I wait 1 second
@@ -55,4 +57,4 @@ Feature: wizard
     And I should see "We found the following public information:"
     And the "external link card" element should exist
     And I should see "If the information above is not what you're looking for, the following agencies may have it."
-    And I should see "Can we help you with anything else?"
+    And I should see "Were these results helpful?"

@@ -7,7 +7,7 @@
 
 import { create } from 'zustand';
 import { shallow } from 'zustand/shallow';
-import { fetchWizardInitData, fetchWizardPredictions } from '../util/wizard_api';
+import { fetchWizardInitData, fetchWizardPredictions, sendWizardFeedback } from '../util/wizard_api';
 import {
   convertSomeLinksToCards, normalizeScore, scanForTriggers,
 } from '../util/wizard_helpers';
@@ -41,6 +41,7 @@ const initialWizardState = {
   isError: false,
   ui: extraMessages,
   userTopic: null,
+  showFeedbackOption: true,
 };
 
 export const log = (...args) => DEBUG_TO_CONSOLE && console.log(...args);
@@ -216,7 +217,20 @@ const useRawWizardStore = create((
       });
     }
 
-    if (activity.type === 'summary' || activity.type === 'query') {
+    if (activity.type === 'summary' || activity.type === 'feedback') {
+      return withCapturedHistory({
+        activity: { type: 'lastSteps' },
+        showFeedbackOption: activity.type !== 'feedback',
+      });
+    }
+
+    if (activity.type === 'lastSteps') {
+      return withCapturedHistory({
+        activity: { type: 'feedback' },
+      });
+    }
+
+    if (activity.type === 'query') {
       throw new Error('Next page not allowed');
     }
 
@@ -224,6 +238,21 @@ const useRawWizardStore = create((
       activity: activity.next,
     });
   });
+
+  const toFeedback = () => set(() => withCapturedHistory({
+    activity: { type: 'feedback' },
+  }));
+
+  /**
+   * @type {WizardActions['toLastSteps']}
+   * @param {boolean} [shouldShowFeedbackOption=true]
+  */
+  function toLastSteps(shouldShowFeedbackOption = true) {
+    set(() => withCapturedHistory({
+      activity: { type: 'lastSteps' },
+      showFeedbackOption: shouldShowFeedbackOption,
+    }));
+  }
 
   /** @type {WizardActions['submitRequest']} */
   const submitRequest = async ({ query, topic }) => {
@@ -401,6 +430,23 @@ const useRawWizardStore = create((
     }));
   };
 
+  /** @type {WizardActions['submitFeedback']} */
+  const submitFeedback = async (relevanceValue, expectationsValue, otherFeedback) => {
+    await sendWizardFeedback(relevanceValue, expectationsValue, otherFeedback)
+      .then((data) => {
+        if (!data.submission_id) {
+          log(data);
+        }
+        set(withCapturedHistory({
+          activity: { type: 'lastSteps' },
+          showFeedbackOption: false,
+        }));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   const switchToModelResults = () => {
     set(withCapturedHistory({
       activity: { type: 'summary' },
@@ -420,8 +466,11 @@ const useRawWizardStore = create((
     prevPage,
     reset,
     jumpBackToQueryPage,
+    toFeedback,
+    toLastSteps,
     selectAnswer,
     setFlatList,
+    submitFeedback,
     submitRequest,
     switchToModelResults,
   };
@@ -445,6 +494,7 @@ const useRawWizardStore = create((
  *   canSwitchToModelResults: boolean;
  *   displayedTopic: string;
  *   introReady: boolean;
+ *   showFeedbackOption: boolean;
  *   loading: boolean;
  *   request: {
  *     agencies: WizardVars['recommendedAgencies'];
@@ -469,6 +519,7 @@ function useWizard() {
     canSwitchToModelResults: Boolean(!state.showModelResults && state.query),
     displayedTopic: state.displayedTopic,
     introReady: Boolean(state.triggerPhrases),
+    showFeedbackOption: state.showFeedbackOption,
     loading: Boolean(state.modelLoading || !state.flatList || !state.triggerPhrases),
     request: {
       agencies: state.recommendedAgencies,

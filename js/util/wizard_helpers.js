@@ -225,7 +225,7 @@ function normalizeForTriggers(str) {
 /**
  * @param {string} string
  * @returns {string}
- * @licence https://github.com/sindresorhus/escape-string-regexp/blob/main/license
+ * @license https://github.com/sindresorhus/escape-string-regexp/blob/main/license
  */
 function escapeStringRegexp(string) {
   // Escape characters with special meaning either inside or outside character sets.
