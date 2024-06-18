@@ -34,6 +34,10 @@ function Modal({
         />
       </div>
       <h2 className="w-component-modal__title">{title}</h2>
+      <div className="w-component-modal__eyebrow">
+        <div className="w-component-modal__icon" />
+        Definition
+      </div>
       {children}
     </ReactModal>
   );
