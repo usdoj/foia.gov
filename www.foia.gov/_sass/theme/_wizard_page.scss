@@ -439,6 +439,26 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   }
 }
 
+.w-component-modal__eyebrow {
+  align-items: center;
+  color: $color-white;
+  display: flex;
+  font-size: 36px;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.w-component-modal__icon {
+  background-image: url($icon-info-outline);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  display: inline-block;
+  height: 38px;
+  padding: 0.25rem 0.5rem;
+  width: 38px;
+}
+
 // Rich Text Component
 .w-component-rich-text {
   color: $color-white;
