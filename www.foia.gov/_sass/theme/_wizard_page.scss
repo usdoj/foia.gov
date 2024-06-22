@@ -399,6 +399,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: fit-content;
 
   .w-component-modal--alt & {
     min-height: 25%;
@@ -551,7 +552,8 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 }
 
 // Feedback
-.w-component-skip-button-container {
+.w-component-skip-button-container,
+.w-component-max-length-message-container {
   display: flex;
   justify-content: end;
 }
@@ -561,36 +563,54 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   font-weight: 400;
   font-size: 24px;
   line-height: 1;
+  margin: 4rem 0 1.5rem;
 }
 
 .w-component-feedback-option-set {
-  align-content: space-around;
-  color: $color-primary-darkest;
+  background-color: $color-primary-alt-light;
+  border-radius: 5px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin: 0 0 4rem;
 
-  p, .w-component-form-item.w-component-form-item--radio {
-    display: inline-flex;
-    max-height: 2rem;
-    padding: 0 2rem;
+  label {
+    align-items: center;
+    color: $color-primary-darkest;
+    display: flex;
+    flex-direction: column;
+    font-family: $font-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 1rem;
+    text-align: center;
 
-    .w-component-form-item__label {
-      display: flex;
-      flex-direction: column;
+    &:not(:first-of-type), &:not(:last-of-type) {
+      width: 5rem;
+    }
+
+    @media screen and (max-width: 435px) {
+      font-size: 14px;
+      width: 2rem;
+    }
+  }
+
+  input[type="radio"] {
+    border: 0.15em solid $color-primary-darkest;
+    border-radius: 50%;
+    display: flex !important;
+    height: 2rem !important;
+    left: 0 !important;
+    position: relative !important;
+    width: 2rem !important;
+
+    &:checked {
+      background-color: $color-primary-darkest;
     }
   }
 }
 
-.w-component-option-annotation {
-  color: $color-primary-darkest;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 0 auto;
-
-  @media screen and (max-width: 830px) {
-    justify-content: space-between;
-    padding: 0 4.5rem
-  }
+.w-component-max-length-message {
+  font-style: italic;
+  font-weight: 200;
+  margin-top: 0 !important;
 }

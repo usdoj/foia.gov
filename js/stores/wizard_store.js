@@ -42,6 +42,7 @@ const initialWizardState = {
   ui: extraMessages,
   userTopic: null,
   showFeedbackOption: true,
+  feedbackErrorMessages: null,
 };
 
 export const log = (...args) => DEBUG_TO_CONSOLE && console.log(...args);
@@ -436,11 +437,17 @@ const useRawWizardStore = create((
       .then((data) => {
         if (!data.submission_id) {
           log(data);
+          set(withCapturedHistory({
+            feedbackErrorMessages: data.errors || {
+              all_items: 'An error occurred while submitting feedback, please try again later.',
+            },
+          }));
+        } else {
+          set(withCapturedHistory({
+            activity: { type: 'lastSteps' },
+            showFeedbackOption: false,
+          }));
         }
-        set(withCapturedHistory({
-          activity: { type: 'lastSteps' },
-          showFeedbackOption: false,
-        }));
       })
       .catch((err) => {
         console.error(err);
@@ -459,6 +466,11 @@ const useRawWizardStore = create((
     answerIdx,
   }));
 
+  /** @type {WizardActions['clearFeedbackErrors']} */
+  const clearFeedbackErrors = () => set(({
+    feedbackErrorMessages: null,
+  }));
+
   /** @type {WizardActions} */
   const actions = {
     initLoad,
@@ -471,6 +483,7 @@ const useRawWizardStore = create((
     selectAnswer,
     setFlatList,
     submitFeedback,
+    clearFeedbackErrors,
     submitRequest,
     switchToModelResults,
   };
@@ -495,6 +508,7 @@ const useRawWizardStore = create((
  *   displayedTopic: string;
  *   introReady: boolean;
  *   showFeedbackOption: boolean;
+ *   feedbackErrorMessages: WizardFeedbackErrors | null;
  *   loading: boolean;
  *   request: {
  *     agencies: WizardVars['recommendedAgencies'];
@@ -520,6 +534,7 @@ function useWizard() {
     displayedTopic: state.displayedTopic,
     introReady: Boolean(state.triggerPhrases),
     showFeedbackOption: state.showFeedbackOption,
+    feedbackErrorMessages: state.feedbackErrorMessages,
     loading: Boolean(state.modelLoading || !state.flatList || !state.triggerPhrases),
     request: {
       agencies: state.recommendedAgencies,
