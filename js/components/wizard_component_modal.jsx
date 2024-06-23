@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import ReactModal from 'react-modal';
 
 const rootEl = document.querySelector('#wizard-react-app');
@@ -17,6 +17,7 @@ function Modal({
   closeModal,
   contentLabel,
   isAlt,
+  isDefinition = true,
 }) {
   return (
     <ReactModal
@@ -34,10 +35,12 @@ function Modal({
         />
       </div>
       <h2 className="w-component-modal__title">{title}</h2>
-      <div className="w-component-modal__eyebrow">
-        <div className="w-component-modal__icon" />
-        Definition
-      </div>
+      {isDefinition && (
+        <div className="w-component-modal__eyebrow">
+          <div className="w-component-modal__icon" />
+          Definition
+        </div>
+      )}
       {children}
     </ReactModal>
   );
@@ -50,6 +53,7 @@ Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   contentLabel: PropTypes.string.isRequired,
   isAlt: PropTypes.bool,
+  isDefinition: PropTypes.bool,
 };
 
 export default Modal;
