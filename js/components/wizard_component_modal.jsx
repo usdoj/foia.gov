@@ -17,7 +17,6 @@ function Modal({
   closeModal,
   contentLabel,
   isAlt,
-  isDefinition = true,
 }) {
   return (
     <ReactModal
@@ -34,13 +33,14 @@ function Modal({
           aria-label="Close Modal"
         />
       </div>
-      <h2 className="w-component-modal__title">{title}</h2>
-      {isDefinition && (
-        <div className="w-component-modal__eyebrow">
-          <div className="w-component-modal__icon" />
-          Definition
-        </div>
-      )}
+      <h2 className="w-component-modal__title">
+        {title === '' ? (
+          <div className="w-component-modal__eyebrow">
+            <div className="w-component-modal__icon" />
+            Definition
+          </div>
+        ) : title}
+      </h2>
       {children}
     </ReactModal>
   );
@@ -53,7 +53,6 @@ Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   contentLabel: PropTypes.string.isRequired,
   isAlt: PropTypes.bool,
-  isDefinition: PropTypes.bool,
 };
 
 export default Modal;

@@ -84,7 +84,6 @@ function LastSteps() {
               closeModal={closeModal}
               contentLabel="Thank you for using our tool!"
               isAlt
-              isDefinition={false}
             >
               <BodyText>You may close this browser window.</BodyText>
             </Modal>

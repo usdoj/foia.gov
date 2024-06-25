@@ -437,11 +437,11 @@ const useRawWizardStore = create((
       .then((data) => {
         if (!data.submission_id) {
           log(data);
-          set(withCapturedHistory({
+          set({
             feedbackErrorMessages: data.errors || {
               all_items: 'An error occurred while submitting feedback, please try again later.',
             },
-          }));
+          });
         } else {
           set(withCapturedHistory({
             activity: { type: 'lastSteps' },
