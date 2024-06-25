@@ -318,10 +318,7 @@ const useRawWizardStore = create((
     if (query && !topic) {
       set({ modelLoading: true });
       await fetchWizardPredictions(query)
-        .then((data) => {
-          // Support both V1.1 and V1.0 API output.
-          const modelOutput = data.model_output || data;
-
+        .then((modelOutput) => {
           if (triggerMatch) {
             log('Collecting model results in case user chooses to switch to them.');
           } else if (trustAgencyMatch) {
@@ -382,7 +379,7 @@ const useRawWizardStore = create((
 
           // Match from finder if above threshold.
           recommendedAgencies.push(
-            ...modelOutput.agency_finder_predictions[0]
+            ...modelOutput.agency_finder_predictions
               .map(normalizeScore)
               .filter((agency) => (agency.confidence_score >= THRESHOLDS.agencyFinder)),
           );
