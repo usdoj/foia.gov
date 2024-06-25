@@ -143,6 +143,10 @@ declare global {
 
   type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'modelLoading'>;
 
+  type WizardFeedbackErrors = {
+    [key: string]: string;
+  };
+
   type WizardActions = {
     initLoad: () => void;
     jumpBackToQueryPage: () => void;
@@ -156,6 +160,7 @@ declare global {
         expectationsValue: number,
         otherFeedback: string
     ) => Promise<void>;
+    clearFeedbackErrors: () => void;
     submitRequest: (arg: {
       query: string;
       topic: WizardTopic | null;
@@ -181,6 +186,7 @@ declare global {
     recommendedAgencies: WizardAgency[] | null;
     recommendedLinks: WizardLink[] | null;
     showFeedbackOption: boolean;
+    feedbackErrorMessages: WizardFeedbackErrors | null;
     showModelResults: boolean;
     triggerPhrases: WizardTriggerPhrase[] | null;
     ui: Record<string, string>;

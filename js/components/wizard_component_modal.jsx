@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import ReactModal from 'react-modal';
 
 const rootEl = document.querySelector('#wizard-react-app');
@@ -33,11 +33,14 @@ function Modal({
           aria-label="Close Modal"
         />
       </div>
-      <h2 className="w-component-modal__title">{title}</h2>
-      <div className="w-component-modal__eyebrow">
-        <div className="w-component-modal__icon" />
-        Definition
-      </div>
+      <h2 className="w-component-modal__title">
+        {title === '' ? (
+          <div className="w-component-modal__eyebrow">
+            <div className="w-component-modal__icon" />
+            Definition
+          </div>
+        ) : title}
+      </h2>
       {children}
     </ReactModal>
   );

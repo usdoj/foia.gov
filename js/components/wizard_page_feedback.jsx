@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useWizard } from '../stores/wizard_store';
 import Button from './wizard_component_button';
+import FeedbackRadioSet from './wizard_component_feedback_radio';
 import FormItem from './wizard_component_form_item';
-import WizardHtml from './wizard_html';
-import PageTemplate from './wizard_template_page';
-import Constrain from './wizard_layout_constrain';
 import RichText from './wizard_component_rich_text';
+import WizardHtml from './wizard_html';
+import Constrain from './wizard_layout_constrain';
+import PageTemplate from './wizard_template_page';
 
 function UserFeedback() {
-  const { actions } = useWizard();
+  const { actions, feedbackErrorMessages } = useWizard();
 
   const [meetsExpectations, setMeetsExpectations] = useState(
     /** @type number|null */ null,
@@ -19,10 +20,12 @@ function UserFeedback() {
   const [otherFeedback, setOtherFeedback] = useState(
     /** @type string */ '',
   );
+  const [submitted, setSubmitted] = useState(/** @type boolean */ false);
 
-  const options = [
+  const options = (variableName) => [
     {
-      label: '1',
+      // eslint-disable-next-line react/jsx-one-expression-per-line
+      label: <>1<br />{variableName === 'expectations' ? 'Not at all' : 'Not Relevant'}</>,
       value: 1,
     },
     {
@@ -38,12 +41,14 @@ function UserFeedback() {
       value: 4,
     },
     {
-      label: '5',
+      // eslint-disable-next-line react/jsx-one-expression-per-line
+      label: <>5<br />{variableName === 'expectations' ? 'Very Well' : 'Very Relevant'}</>,
       value: 5,
     },
   ];
 
   function handleSubmit() {
+    setSubmitted(true);
     actions.submitFeedback(meetsExpectations, relevanceToSearch, otherFeedback);
   }
 
@@ -68,43 +73,29 @@ function UserFeedback() {
               <legend className="w-feedback-legend">
                 How well do these results meet your expectations?
               </legend>
-              <div className="w-component-feedback-option-set">
-                {options.map(({ label, value }) => (
-                  <FormItem
-                    type="radio"
-                    name="meets-expectations"
-                    key={label}
-                    labelHtml={label}
-                    value={value}
-                    onChange={(e) => setMeetsExpectations(e.target.value)}
-                  />
-                ))}
-              </div>
-              <div className="w-component-option-annotation">
-                <p>Not at all</p>
-                <p>Very Well</p>
-              </div>
+              <FeedbackRadioSet
+                name="meets-expectations"
+                options={options('expectations')}
+                onChange={(e) => {
+                  actions.clearFeedbackErrors();
+                  setSubmitted(false);
+                  setMeetsExpectations(e.target.value);
+                }}
+              />
             </fieldset>
             <fieldset>
               <legend className="w-feedback-legend">
                 How relevant were the results to your search?
               </legend>
-              <div className="w-component-feedback-option-set">
-                {options.map(({ label, value }) => (
-                  <FormItem
-                    type="radio"
-                    name="relevance-to-search"
-                    key={label}
-                    labelHtml={label}
-                    value={value}
-                    onChange={(e) => setRelevanceToSearch(e.target.value)}
-                  />
-                ))}
-              </div>
-              <div className="w-component-option-annotation">
-                <p>Not Relevant</p>
-                <p>Very Relevant</p>
-              </div>
+              <FeedbackRadioSet
+                name="relevance-to-search"
+                options={options('relevance')}
+                onChange={(e) => {
+                  actions.clearFeedbackErrors();
+                  setSubmitted(false);
+                  setRelevanceToSearch(e.target.value);
+                }}
+              />
             </fieldset>
             <fieldset>
               <legend className="w-feedback-legend">
@@ -116,9 +107,30 @@ function UserFeedback() {
                 labelHtml="other-feedback"
                 isLabelHidden
                 value={otherFeedback}
-                onChange={(e) => setOtherFeedback(e.target.value)}
+                maxLength={2000}
+                onChange={(e) => {
+                  actions.clearFeedbackErrors();
+                  setSubmitted(false);
+                  setOtherFeedback(e.target.value);
+                }}
               />
+              {otherFeedback.length > 1800 && !submitted && (
+                <div className="w-component-max-length-message-container">
+                  <p className="w-component-max-length-message">
+                    {2000 - otherFeedback.length}
+                    /2000
+                  </p>
+                </div>
+              )}
             </fieldset>
+            {feedbackErrorMessages
+              && Object.keys(feedbackErrorMessages).map((key) => (
+                <div
+                  key={key}
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{ __html: feedbackErrorMessages[key] }}
+                />
+              ))}
             <Button
               onClick={handleSubmit}
             >

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Modal from './wizard_component_modal';
+import React, { useState } from 'react';
 import { useWizard } from '../stores/wizard_store';
 import BodyText from './wizard_component_body_text';
 import InfoButton from './wizard_component_info_button';
+import Modal from './wizard_component_modal';
 
 let idCounter = 0;
 
@@ -70,7 +70,12 @@ function FormItem({
 
       {tooltipMid
         ? (
-          <Modal title="" modalIsOpen={modalIsOpen} closeModal={() => setIsOpen(false)} contentLabel="">
+          <Modal
+            title=""
+            modalIsOpen={modalIsOpen}
+            closeModal={() => setIsOpen(false)}
+            contentLabel="Definition Tooltip"
+          >
             <BodyText html={getMessage(tooltipMid)} />
           </Modal>
         )
