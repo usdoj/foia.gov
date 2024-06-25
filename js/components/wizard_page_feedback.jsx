@@ -118,8 +118,7 @@ function UserFeedback() {
                 <div className="w-component-max-length-message-container">
                   <p className="w-component-max-length-message">
                     {2000 - otherFeedback.length}
-                    {' '}
-                    characters remaining of 2000 limit
+                    /2000
                   </p>
                 </div>
               )}

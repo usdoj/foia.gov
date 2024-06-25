@@ -566,6 +566,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   margin: 4rem 0 1.5rem;
 }
 
+.w-feedback-legend + .w-component-form-item {
+  margin-bottom: 1rem;
+}
+
 .w-component-feedback-option-set {
   background-color: $color-primary-alt-light;
   border-radius: 5px;
