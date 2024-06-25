@@ -62,7 +62,13 @@ export function fetchWizardPredictions(query) {
         throw new Error('Polydelta response not an object');
       }
 
-      if (polydeltaApi.nestedAgencyFinder) {
+      const hasNestedAgencyFinder = Array.isArray(output.agency_finder_predictions[0]);
+      if (hasNestedAgencyFinder !== polydeltaApi.nestedAgencyFinder) {
+        // eslint-disable-next-line no-console
+        console.warn(`agency_finder_predictions is ${hasNestedAgencyFinder ? 'nested' : 'not nested'}. This doesn't match the configured API.`);
+      }
+
+      if (hasNestedAgencyFinder) {
         output.agency_finder_predictions = output.agency_finder_predictions[0];
       }
 
