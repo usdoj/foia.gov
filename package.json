@@ -73,7 +73,7 @@
     "btoa": "^1.2.1",
     "buffer": "^6.0.3",
     "chai": "4.x",
-    "css-loader": "6.x",
+    "css-loader": "7.x",
     "enzyme": "3.x",
     "enzyme-adapter-react-16": "1.x",
     "eslint": "^8.37.0",
