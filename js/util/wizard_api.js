@@ -7,13 +7,8 @@ const POLYDELTA_APIS = {
     inputIsArray: true,
     nestedAgencyFinder: true,
   },
-  v2_0beta: {
-    proxyPath: '/doj-foia/pd-api/wizard-api/development/predict',
-    inputIsArray: false,
-    nestedAgencyFinder: false,
-  },
   v2_0: {
-    proxyPath: '/doj-foia/pd-api/wizard-api/production/predict',
+    proxyPath: '/doj-foia/pd-api/wizard-api/v2/predict',
     inputIsArray: false,
     nestedAgencyFinder: false,
   },
