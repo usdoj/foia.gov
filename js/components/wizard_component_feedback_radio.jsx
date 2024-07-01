@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FormItem from './wizard_component_form_item';
 
-function FeedbackRadioSet({ name, prefix, suffix, options, onChange }) {
+function FeedbackRadioSet({
+  name, prefix, suffix, options, onChange,
+}) {
   return (
     <div className="w-component-feedback-option-set">
       {prefix}
