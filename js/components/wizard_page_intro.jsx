@@ -11,6 +11,8 @@ function Intro() {
   return (
     <PageTemplate>
       <Constrain>
+        <h1>Search Introduction</h1>
+
         {!introReady && (
           <WizardHtml mid="loading" />
         )}

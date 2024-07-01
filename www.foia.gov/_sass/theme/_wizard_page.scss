@@ -5,8 +5,7 @@ $color-green-warm: #f5fbc1;
 $icon-checkbox-unchecked: '/img/icon-checkbox-unchecked.svg';
 $icon-checkbox-checked: '/img/icon-checkbox-checked.svg';
 $icon-info-outline: '/img/icon-info-outline.svg';
-$icon-radio-unchecked: '/img/icon-radio-unchecked.svg';
-$icon-radio-checked: '/img/icon-radio-checked.svg';
+$icon-radio: '/img/icon-radio.svg';
 $icon-check-circle-green: '/img/icon-check-circle-green.svg';
 $icon-chevron-left: '/img/icon-chevron-left.svg';
 
@@ -17,6 +16,17 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   background-color: $color-primary-darkest !important;
   min-height: 100vh;
   padding-bottom: 40px;
+
+  h1 {
+    &:not(.w-component-logo__text) {
+      clip: rect(1px, 1px, 1px, 1px);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      width: 1px;
+      word-wrap: normal;
+    }
+  }
 }
 
 // Constrain Layout
@@ -64,7 +74,28 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   padding-right: 0;
 }
 
+// Flex Layout
+.w-layout-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+// Inline Layout
+.w-layout-inline {
+  display: flex;
+  gap: 1rem;
+}
+
+.w-layout-inline--large {
+  gap: 4rem;
+}
+
 // Header Layout
+.w-layout-header {
+  margin-bottom: 6.6rem;
+}
+
 .w-layout-header__upper {
   padding-bottom: 36px;
   padding-top: 36px;
@@ -75,6 +106,13 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 .w-layout-header__lower {
   padding-bottom: 16px;
   padding-top: 4px;
+}
+
+// Question Head Layout
+.w-layout-question-head {
+  border-bottom: 1px solid $color-gray-light;
+  margin-bottom: 5rem;
+  padding-bottom: 5rem;
 }
 
 // Back Link Component
@@ -193,25 +231,26 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 
 .w-component-form-item--radio {
   .w-component-form-item__label {
-    padding-left: 50px;
+    line-height: 24px;
+    padding-left: 40px;
     position: relative;
 
     &::before {
-      background-color: transparent;
-      background-image: url($icon-radio-unchecked);
+      background-color: #d9d9d9;
+      background-image: url($icon-radio);
       background-repeat: no-repeat;
-      background-size: 30px;
+      background-size: 24px;
       box-shadow: unset;
       content: '\a0';
       cursor: pointer;
-      height: 30px;
+      height: 24px;
       margin-right: 0;
       outline: none;
       position: absolute;
-      top: 3px;
+      top: 0;
       left: 0;
       vertical-align: middle;
-      width: 30px;
+      width: 24px;
     }
   }
 
@@ -219,11 +258,85 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
     &:checked {
       + .w-component-form-item__label {
         &::before {
-          background-color: transparent;
-          background-image: url($icon-radio-checked);
+          background-color: #212121;
+          box-shadow: none;
         }
       }
     }
+  }
+}
+
+// Rich Text Component
+.w-component-rich-text {
+  color: $color-white;
+  position: relative;
+  z-index: 0;
+
+  a:any-link {
+    color: $color-primary-alt;
+  }
+  a:visited {
+    color: $color-primary-alt-lightest;
+  }
+
+  p,
+  li,
+  h1,
+  h2,
+  h3,
+  div {
+    color: inherit;
+    max-width: none;
+  }
+
+  h2:not(.foia-component-card__title) {
+    font-family: $font-serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 0;
+  }
+
+  h3 {
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  p,
+  li,
+  blockquote {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 1.6rem 0 3.2rem;
+
+    &:last-child {
+      margin-bottom: 3rem;
+    }
+    
+    &.big {
+      font-family: $font-serif;
+      font-size: 44px;
+      font-weight: 400;
+      line-height: 1.4;
+      margin-bottom: 2.2rem;
+    }
+  }
+
+  div.description {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  ol, ul {
+    padding-left: 3rem;
+  }
+
+  blockquote {
+    margin-block-end: 7rem;
   }
 }
 
@@ -233,6 +346,36 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   font-size: 30px;
   font-weight: 400;
   margin-top: 0;
+}
+
+// Label Component
+.w-component-label {
+  color: $color-white;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+
+.w-component-label--italic {
+  font-style: italic;
+  font-weight: 400;
+}
+
+// Description Component
+.w-component-description {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 300;
+
+  p {
+    margin-bottom: 3rem;
+  }
+}
+
+// Quote Component
+.w-component-quote {
+  font-size: 20px;
+  font-weight: 700;
 }
 
 // Info Button Component
@@ -296,6 +439,7 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   color: $color-primary-darkest;
   font-size: 18px;
   font-weight: 500;
+  margin: 0;
   padding: 12px 20px;
 
   &:hover,
@@ -339,9 +483,10 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 }
 
 .w-component-pill-group__list {
+  gap: 30px;
   display: flex;
   flex-wrap: wrap;
-  column-gap: 30px;
+  margin: 0;
 
   li {
     margin: 0;
@@ -349,11 +494,6 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 
     &::marker {
       font-size: 0;
-    }
-
-    button {
-      margin-bottom: 15px;
-      margin-top: 15px;
     }
   }
 }
@@ -460,68 +600,19 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   width: 38px;
 }
 
-// Rich Text Component
-.w-component-rich-text {
+// Question Component
+.w-component-question {
   color: $color-white;
-  position: relative;
-  z-index: 0;
+  font-family: $font-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
 
-  a:any-link {
-    color: $color-primary-alt;
-  }
-  a:visited {
-    color: $color-primary-alt-lightest;
-  }
-
-  p,
-  li,
-  h1,
-  h2,
-  h3,
-  div {
-    color: inherit;
-    max-width: none;
-  }
-
-  h1 {
-    font-size: 44px;
-    font-weight: 400;
-  }
-
-  h2:not(.foia-component-card__title) {
-    font-family: $font-serif;
-    font-size: 40px;
-    font-weight: 400;
-  }
-
-  h3 {
-    font-size: 32px;
-    font-weight: 400;
-  }
-
-  p,
-  li,
-  blockquote {
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1.2;
-  }
-
-  p {
-    margin: 1.5rem 0;
-
-    &:last-child {
-      margin-bottom: 3rem;
-    }
-  }
-
-  ol, ul {
-    padding-left: 3rem;
-  }
-
-  blockquote {
-    margin-block-end: 7rem;
-  }
+.w-component-question--sub {
+  font-weight: 400;
+  margin-bottom: 0;
 }
 
 .w-legend {
@@ -543,7 +634,6 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   font-size: 24px;
   margin-top: 3rem;
   padding: unset;
-  padding-left: 20px;
   text-decoration: underline;
 
   &:hover {
@@ -552,10 +642,15 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 }
 
 // Feedback
-.w-component-skip-button-container,
 .w-component-max-length-message-container {
   display: flex;
   justify-content: end;
+}
+
+.w-component-skip-button-container {
+  button {
+    margin-right: 0;
+  }
 }
 
 .w-feedback-legend {
@@ -566,50 +661,28 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
   margin: 4rem 0 1.5rem;
 }
 
-.w-feedback-legend + .w-component-form-item {
-  margin-bottom: 1rem;
+.w-component-feedback {
+  fieldset:not(:last-of-type) {
+    margin-bottom: 4rem;
+  }
 }
 
 .w-component-feedback-option-set {
-  background-color: $color-primary-alt-light;
-  border-radius: 5px;
+  align-items: center;
   display: flex;
-  justify-content: space-evenly;
-  margin: 0 0 4rem;
+  gap: 1.25rem;
+}
 
-  label {
-    align-items: center;
-    color: $color-primary-darkest;
-    display: flex;
-    flex-direction: column;
-    font-family: $font-serif;
+.w-component-feedback-option-set__options {
+  align-items: center;
+  color: $color-primary-darkest;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+
+  .w-component-form-item__label {
     font-size: 18px;
-    font-weight: 600;
-    margin: 1rem;
-    text-align: center;
-
-    &:not(:first-of-type), &:not(:last-of-type) {
-      width: 5rem;
-    }
-
-    @media screen and (max-width: 435px) {
-      font-size: 14px;
-      width: 2rem;
-    }
-  }
-
-  input[type="radio"] {
-    border: 0.15em solid $color-primary-darkest;
-    border-radius: 50%;
-    display: flex !important;
-    height: 2rem !important;
-    left: 0 !important;
-    position: relative !important;
-    width: 2rem !important;
-
-    &:checked {
-      background-color: $color-primary-darkest;
-    }
+    margin-bottom: 0;
   }
 }
 

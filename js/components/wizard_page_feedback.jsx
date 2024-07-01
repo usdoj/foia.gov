@@ -7,6 +7,9 @@ import RichText from './wizard_component_rich_text';
 import WizardHtml from './wizard_html';
 import Constrain from './wizard_layout_constrain';
 import PageTemplate from './wizard_template_page';
+import QuestionHead from './wizard_layout_question_head';
+import Inline from './wizard_layout_inline';
+import QuestionText from './wizard_component_question';
 
 function UserFeedback() {
   const { actions, feedbackErrorMessages } = useWizard();
@@ -22,10 +25,9 @@ function UserFeedback() {
   );
   const [submitted, setSubmitted] = useState(/** @type boolean */ false);
 
-  const options = (variableName) => [
+  const options = () => [
     {
-      // eslint-disable-next-line react/jsx-one-expression-per-line
-      label: <>1<br />{variableName === 'expectations' ? 'Not at all' : 'Not Relevant'}</>,
+      label: '1',
       value: 1,
     },
     {
@@ -41,8 +43,7 @@ function UserFeedback() {
       value: 4,
     },
     {
-      // eslint-disable-next-line react/jsx-one-expression-per-line
-      label: <>5<br />{variableName === 'expectations' ? 'Very Well' : 'Very Relevant'}</>,
+      label: '5',
       value: 5,
     },
   ];
@@ -56,25 +57,32 @@ function UserFeedback() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          <h1>
-            <WizardHtml mid="literal:Will you answer a few questions to help us improve?" />
-          </h1>
-          <div className="w-component-skip-button-container">
-            <Button
-              className="w-component-skip-button"
-              onClick={() => actions.toLastSteps(false)}
-              // don't show "leave feedback" option on the next screen
-            >
-              Skip
-            </Button>
-          </div>
+          <QuestionHead>
+            <h1>Search Feedback</h1>
+            <Inline largeGap>
+              <QuestionText>
+                <WizardHtml mid="literal:Will you answer a few questions to help us improve?" />
+              </QuestionText>
+              <div className="w-component-skip-button-container">
+                <Button
+                  className="w-component-skip-button"
+                  onClick={() => actions.toLastSteps(false)}
+                  // don't show "leave feedback" option on the next screen
+                >
+                  Skip
+                </Button>
+              </div>
+            </Inline>
+          </QuestionHead>
           <form className="w-component-feedback">
             <fieldset>
-              <legend className="w-feedback-legend">
+              <QuestionText isSubQuestion>
                 How well do these results meet your expectations?
-              </legend>
+              </QuestionText>
               <FeedbackRadioSet
                 name="meets-expectations"
+                prefix="Not at all"
+                suffix="Very Well"
                 options={options('expectations')}
                 onChange={(e) => {
                   actions.clearFeedbackErrors();
@@ -84,11 +92,13 @@ function UserFeedback() {
               />
             </fieldset>
             <fieldset>
-              <legend className="w-feedback-legend">
+              <QuestionText isSubQuestion>
                 How relevant were the results to your search?
-              </legend>
+              </QuestionText>
               <FeedbackRadioSet
                 name="relevance-to-search"
+                prefix="Not Relevant"
+                suffix="Very Relevant"
                 options={options('relevance')}
                 onChange={(e) => {
                   actions.clearFeedbackErrors();
@@ -98,9 +108,9 @@ function UserFeedback() {
               />
             </fieldset>
             <fieldset>
-              <legend className="w-feedback-legend">
+              <QuestionText isSubQuestion>
                 Please explain your answers or provide any other feedback.
-              </legend>
+              </QuestionText>
               <FormItem
                 type="textarea"
                 name="other-feedback"

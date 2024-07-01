@@ -7,7 +7,9 @@ import FormItem from './wizard_component_form_item';
 import Modal from './wizard_component_modal';
 import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
-import Heading from './wizard_component_heading';
+import Label from './wizard_component_label';
+import Flex from './wizard_layout_flex';
+import Description from './wizard_component_description';
 
 const MAX_QUERY_LENGTH = 500;
 
@@ -69,53 +71,58 @@ function Query() {
   return (
     <PageTemplate>
       <Constrain>
-        <WizardHtml mid="query_slide_1" />
-        <PillGroup
-          label="Select a common topic"
-          topics={displayedTopics}
-          isTopicSelected={isTopicSelected}
-          onClickTopicButton={onClickTopicButton}
-          suffix={allTopics.length > 10 ? (
-            <button onClick={openModal} className="button-as-link" style={{ color: '#fff' }}>
-              See all
-            </button>
-          ) : null}
-        />
-        <Modal
-          title="Common topics"
-          contentLabel="All topics"
-          modalIsOpen={modalIsOpen}
-          closeModal={closeModal}
-        >
+        <h1>Start Search</h1>
+        <Flex>
+          <WizardHtml mid="query_slide_1" />
           <PillGroup
-            topics={allTopics}
+            label="Select a common topic"
+            topics={displayedTopics}
             isTopicSelected={isTopicSelected}
             onClickTopicButton={onClickTopicButton}
+            suffix={allTopics.length > 10 ? (
+              <button onClick={openModal} className="button-as-link" style={{ color: '#fff' }}>
+                See all
+              </button>
+            ) : null}
           />
-        </Modal>
-        {selectedTopic ? submitButton : null}
+          <Modal
+            title="Common topics"
+            contentLabel="All topics"
+            modalIsOpen={modalIsOpen}
+            closeModal={closeModal}
+          >
+            <PillGroup
+              topics={allTopics}
+              isTopicSelected={isTopicSelected}
+              onClickTopicButton={onClickTopicButton}
+            />
+          </Modal>
+          {selectedTopic ? submitButton : null}
 
-        <div style={{
-          opacity: selectedTopic ? 0.5 : 1,
-          transition: 'opacity 1s',
-          paddingTop: '2rem',
-        }}
-        >
-          <Heading tag="h2">Or search for something else</Heading>
-          <WizardHtml mid="query_slide_2" />
+          <div style={{
+            opacity: selectedTopic ? 0.5 : 1,
+            transition: 'opacity 1s',
+          }}
+          >
+            <Label>Or search for something else</Label>
 
-          {exceededMaxLengthQuery && <p style={{ color: 'white' }}>Query is limited to 500 characters</p>}
-          <FormItem
-            type="textarea"
-            isLabelHidden
-            labelHtml="Query"
-            onChange={(e) => setQuery(e.target.value)}
-            value={query || ''}
-            disabled={Boolean(selectedTopic)}
-          />
+            {exceededMaxLengthQuery && <p style={{ color: 'white' }}>Query is limited to 500 characters</p>}
+            <FormItem
+              type="textarea"
+              isLabelHidden
+              labelHtml="Query"
+              onChange={(e) => setQuery(e.target.value)}
+              value={query || ''}
+              disabled={Boolean(selectedTopic)}
+            />
 
-          {(query && query.trim() !== '' && !exceededMaxLengthQuery) ? submitButton : null}
-        </div>
+            <Description>
+              <WizardHtml mid="query_slide_2" />
+            </Description>
+
+            {(query && query.trim() !== '' && !exceededMaxLengthQuery) ? submitButton : null}
+          </div>
+        </Flex>
       </Constrain>
     </PageTemplate>
   );

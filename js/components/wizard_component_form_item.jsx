@@ -58,10 +58,14 @@ function FormItem({
         htmlFor={id}
         className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}
       >
-        <span
-          /* eslint-disable-next-line react/no-danger */
-          dangerouslySetInnerHTML={{ __html: labelHtml }}
-        />
+        {labelHtml && typeof labelHtml === 'string' ? (
+          <span
+            /* eslint-disable-next-line react/no-danger */
+            dangerouslySetInnerHTML={{ __html: labelHtml }}
+          />
+        ) : (
+          labelHtml
+        )}
         {tooltipMid ? (
           <InfoButton text="info" onClick={() => setIsOpen((prev) => !prev)} />
         ) : null}
