@@ -53,9 +53,10 @@ function searchMatchingAgency(query, flatList, debug = false) {
   /**
    * @param {string} str
    * @param {boolean} replaceWords
+   * @param {boolean} logAsUserQuery
    * @returns {string[]}
    */
-  const normalize = (str, replaceWords) => str
+  const normalize = (str, replaceWords, logAsUserQuery = false) => str
     // Remove tags.
     .replace(/(<([^>]+)>)/ig, '')
     // I don't recall why this was done.
@@ -82,7 +83,14 @@ function searchMatchingAgency(query, flatList, debug = false) {
       }
 
       // Mixed or lowercase words, don't allow stop words
-      return !stopWords.includes(el.toLowerCase());
+      if (stopWords.includes(el.toLowerCase())) {
+        if (logAsUserQuery) {
+          log(`Removed stop word "${el}" from user query.`);
+        }
+        return false;
+      }
+
+      return true;
     })
     .map((el) => {
       if (!replaceWords) {
@@ -148,7 +156,7 @@ function searchMatchingAgency(query, flatList, debug = false) {
       });
     });
 
-  const words = normalize(query, true);
+  const words = normalize(query, true, true);
 
   log(`User's query normalized and with stop words removed: [${words.join()}]`);
 
