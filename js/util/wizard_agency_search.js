@@ -124,6 +124,11 @@ function searchMatchingAgency(query, flatList, debug = false) {
     };
   });
 
+  // Some agencies have "abbreviations" that are instead common words.
+  // We don't match them because it would too heavily weigh the results in
+  // favor of showing just agency matches instead of model results.
+  const ignoreAbbrWords = ['CIVIL', 'CRIMINAL'];
+
   let matchedAbbr = false;
 
   // Score matching abbreviations by how long they are. We hope regular words are not
@@ -132,7 +137,9 @@ function searchMatchingAgency(query, flatList, debug = false) {
     .map((word) => word.toUpperCase())
     .forEach((word) => {
       indexItems.forEach((item) => {
-        if (word === item.abbr || word === `US${item.abbr}`) {
+        if (ignoreAbbrWords.includes(word)) {
+          log(`Word "${word}" was not considered for agency match because it is not an abbreviation.`);
+        } else if (word === item.abbr || word === `US${item.abbr}`) {
           item.score += word.length;
           item.wordsMatched += 1;
           matchedAbbr = true;
