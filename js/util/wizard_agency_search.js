@@ -124,6 +124,9 @@ function searchMatchingAgency(query, flatList, debug = false) {
     };
   });
 
+  // Common words that are also abbreviations which we don't want to match.
+  const ignoreAbbrWords = ['CIVIL', 'CRIMINAL'];
+
   let matchedAbbr = false;
 
   // Score matching abbreviations by how long they are. We hope regular words are not
@@ -132,11 +135,13 @@ function searchMatchingAgency(query, flatList, debug = false) {
     .map((word) => word.toUpperCase())
     .forEach((word) => {
       indexItems.forEach((item) => {
-        if (word === item.abbr || word === `US${item.abbr}`) {
-          item.score += word.length;
-          item.wordsMatched += 1;
-          matchedAbbr = true;
-          log(`Added ${word.length}pts to ${item.item.title} because user's query had word "${word}" matching item.abbr`, item);
+        if (!ignoreAbbrWords.includes(word)) {
+          if (word === item.abbr || word === `US${item.abbr}`) {
+            item.score += word.length;
+            item.wordsMatched += 1;
+            matchedAbbr = true;
+            log(`Added ${word.length}pts to ${item.item.title} because user's query had word "${word}" matching item.abbr`, item);
+          }
         }
       });
     });
