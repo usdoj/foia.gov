@@ -17,6 +17,7 @@ function Modal({
   closeModal,
   contentLabel,
   isAlt,
+  hasInfoIcon,
 }) {
   return (
     <ReactModal
@@ -34,12 +35,10 @@ function Modal({
         />
       </div>
       <h2 className="w-component-modal__title">
-        {title === '' ? (
-          <div className="w-component-modal__eyebrow">
-            <div className="w-component-modal__icon" />
-            Definition
-          </div>
-        ) : title}
+        {hasInfoIcon && (
+          <div className="w-component-modal__icon" />
+        )}
+        {title}
       </h2>
       {children}
     </ReactModal>
@@ -53,6 +52,7 @@ Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   contentLabel: PropTypes.string.isRequired,
   isAlt: PropTypes.bool,
+  hasInfoIcon: PropTypes.bool,
 };
 
 export default Modal;

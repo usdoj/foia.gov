@@ -71,7 +71,8 @@ function FormItem({
       {tooltipMid
         ? (
           <Modal
-            title=""
+            title="Definition"
+            hasInfoIcon
             modalIsOpen={modalIsOpen}
             closeModal={() => setIsOpen(false)}
             contentLabel="Definition Tooltip"

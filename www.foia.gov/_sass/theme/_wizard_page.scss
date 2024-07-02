@@ -431,22 +431,17 @@ $icon-chevron-left: '/img/icon-chevron-left.svg';
 }
 
 .w-component-modal__title {
+  align-items: center;
   color: $color-white;
+  display: flex;
   font-size: 32px;
+  gap: 1.5rem;
   margin-top: 0.5em;
+  margin-bottom: 3rem;
 
   .w-component-modal--alt & {
     font-family: $font-serif;
   }
-}
-
-.w-component-modal__eyebrow {
-  align-items: center;
-  color: $color-white;
-  display: flex;
-  font-size: 36px;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
 }
 
 .w-component-modal__icon {
