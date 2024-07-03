@@ -41,7 +41,7 @@ const lawEnforcementRecordsJourney = question('q20', [
       answer(
         'literal:Oversight of the environment, natural resources, and agriculture',
         summary('m58'),
-        'Federal records related to the oversight of the environment and agriculture',
+        'Federal records related to the oversight of the environment, natural resources, and agriculture',
       ),
       answer(
         'literal:Oversight of U.S. financial institutions',
