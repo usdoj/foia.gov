@@ -60,7 +60,7 @@ function UserFeedback() {
           <QuestionHead>
             <h1>Search Feedback</h1>
             <Inline largeGap>
-              <QuestionText>
+              <QuestionText notLegend>
                 <WizardHtml mid="literal:Will you answer a few questions to help us improve?" />
               </QuestionText>
               <div className="w-component-skip-button-container">
