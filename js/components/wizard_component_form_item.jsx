@@ -23,6 +23,7 @@ function FormItem({
   placeholder,
   disabled,
   maxLength,
+  ariaLabel,
 }) {
   const { getMessage } = useWizard();
   const [modalIsOpen, setIsOpen] = useState(/** @type boolean */ false);
@@ -31,16 +32,16 @@ function FormItem({
 
   switch (type) {
     case 'text':
-      element = <input id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} />;
+      element = <input id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} aria-label={ariaLabel} />;
       break;
     case 'textarea':
-      element = <textarea id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} disabled={disabled} maxLength={maxLength} />;
+      element = <textarea id={id} className="w-component-form-item__element" onChange={onChange} value={value} placeholder={placeholder} disabled={disabled} maxLength={maxLength} aria-label={ariaLabel} />;
       break;
     case 'checkbox':
-      element = <input type="checkbox" id={id} className="w-component-form-item__element" onChange={onChange} name={name} value={value} checked={checked} />;
+      element = <input type="checkbox" id={id} className="w-component-form-item__element" onChange={onChange} name={name} value={value} checked={checked} aria-label={ariaLabel} />;
       break;
     case 'radio':
-      element = <input type="radio" id={id} className="w-component-form-item__element" onChange={onChange} name={name} value={value} checked={checked} />;
+      element = <input type="radio" id={id} className="w-component-form-item__element" onChange={onChange} name={name} value={value} checked={checked} aria-label={ariaLabel} />;
       break;
 
     default:
@@ -58,10 +59,14 @@ function FormItem({
         htmlFor={id}
         className={`w-component-form-item__label${isLabelHidden ? ' visually-hidden' : ''}`}
       >
-        <span
-          /* eslint-disable-next-line react/no-danger */
-          dangerouslySetInnerHTML={{ __html: labelHtml }}
-        />
+        {labelHtml && typeof labelHtml === 'string' ? (
+          <span
+            /* eslint-disable-next-line react/no-danger */
+            dangerouslySetInnerHTML={{ __html: labelHtml }}
+          />
+        ) : (
+          labelHtml
+        )}
         {tooltipMid ? (
           <InfoButton text="info" onClick={() => setIsOpen((prev) => !prev)} />
         ) : null}
@@ -101,6 +106,7 @@ FormItem.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   maxLength: PropTypes.number,
+  ariaLabel: PropTypes.string,
 };
 
 export default FormItem;

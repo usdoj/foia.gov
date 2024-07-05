@@ -1,31 +1,46 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import FormItem from './wizard_component_form_item';
 
-function FeedbackRadioSet({ name, options, onChange }) {
+function FeedbackRadioSet({
+  name, prefix, suffix, options, onChange,
+}) {
   return (
     <div className="w-component-feedback-option-set">
-      {options.map(({ label, value }) => {
-        const id = `${name}-${value}`;
-        return (
-          <label key={id}>
-            <input
+      {prefix}
+      <div className="w-component-feedback-option-set__options">
+        {options.map(({ label, value }, index) => {
+          let ariaLabel;
+          if (index === 0) {
+            ariaLabel = `${prefix} ${value}`;
+          } else if (index === options.length - 1) {
+            ariaLabel = `${suffix} ${value}`;
+          } else {
+            ariaLabel = value;
+          }
+
+          return (
+            <FormItem
               type="radio"
-              id={id}
-              className="w-component-form-item__element"
               name={name}
+              key={label}
+              labelHtml={label}
               value={value}
               onChange={onChange}
+              ariaLabel={ariaLabel}
             />
-            {label}
-          </label>
-        );
-      })}
+          );
+        })}
+      </div>
+      {suffix}
     </div>
   );
 }
 
 FeedbackRadioSet.propTypes = {
   name: PropTypes.string.isRequired,
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.node,

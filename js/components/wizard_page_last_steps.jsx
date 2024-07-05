@@ -5,6 +5,7 @@ import Button from './wizard_component_button';
 import FormItem from './wizard_component_form_item';
 import Modal from './wizard_component_modal';
 import RichText from './wizard_component_rich_text';
+import QuestionText from './wizard_component_question';
 import Constrain from './wizard_layout_constrain';
 import PageTemplate from './wizard_template_page';
 
@@ -51,11 +52,13 @@ function LastSteps() {
     <PageTemplate>
       <Constrain>
         <RichText>
+          <h1>Search Last Steps</h1>
+
           <form className="w-component-last-steps">
             <fieldset>
-              <legend className="w-legend">
+              <QuestionText>
                 Can we help you with anything else?
-              </legend>
+              </QuestionText>
               {options.map(
                 ({ action, label }) => ((action === actions.toFeedback
                     && showFeedbackOption === true)

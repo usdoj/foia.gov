@@ -10,9 +10,15 @@ import Heading from './wizard_component_heading';
 import MoreResults from './wizard_component_more_results';
 import NoResults from './wizard_component_no_results';
 import RichText from './wizard_component_rich_text';
+import QuestionText from './wizard_component_question';
 import WizardHtml from './wizard_html';
 import Constrain from './wizard_layout_constrain';
 import PageTemplate from './wizard_template_page';
+import Description from './wizard_component_description';
+import QuestionHead from './wizard_layout_question_head';
+import Quote from './wizard_component_quote';
+import Inline from './wizard_layout_inline';
+import Label from './wizard_component_label';
 
 const limit = parseInt(urlParams().get('limit') || '6', 10);
 
@@ -104,14 +110,17 @@ function Summary() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          <h1>
-            <WizardHtml mid="lookingFor" />
-          </h1>
-          <blockquote>
-            &ldquo;
-            {showModelResults ? request.query : displayedTopic || request.query}
-            &rdquo;
-          </blockquote>
+          <QuestionHead>
+            <h1>Search Summary</h1>
+            <Inline>
+              <Label isItalic>
+                <WizardHtml mid="lookingFor" />
+              </Label>
+              <Quote>
+                {showModelResults ? request.query : displayedTopic || request.query}
+              </Quote>
+            </Inline>
+          </QuestionHead>
 
           {Boolean(activity.titleMid) && !showModelResults && (
             <WizardHtml mid={activity.titleMid} isSummaryAdvice />
@@ -128,16 +137,18 @@ function Summary() {
               {!agenciesFirst && hasAgencies && agencySection}
             </>
           )}
-          <a
-            href="/how-wizard-works.html"
-            target="_blank"
-            className="w-how-wizard-works"
-          >
-            Learn more about why you got these results.
-          </a>
+          <Description>
+            <a
+              href="/how-wizard-works.html"
+              target="_blank"
+              className="w-how-wizard-works"
+            >
+              Learn more about why you got these results.
+            </a>
+          </Description>
           <form className="w-component-last-steps">
             <fieldset>
-              <legend className="w-legend">Were these results helpful?</legend>
+              <QuestionText>Were these results helpful?</QuestionText>
               <FormItem
                 type="radio"
                 name="was-helpful"
