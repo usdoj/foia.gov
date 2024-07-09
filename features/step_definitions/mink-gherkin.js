@@ -10,7 +10,7 @@ const customSteps = [
     async callback(value) {
       const inputSelector = this.mink.getSelector(value);
       const inputHandle = await this.mink.page.$(inputSelector);
-      await inputHandle.evaluate(b => b.click());
+      await inputHandle.evaluate((b) => b.click());
       return inputHandle.dispose();
     },
   },
@@ -68,7 +68,7 @@ const customSteps = [
       const inputSelector = `input[name="${value}"]`;
       const inputHandle = await this.mink.page.$(inputSelector);
       await Promise.delay(1 * 1000);
-      await inputHandle.evaluate(b => b.click());
+      await inputHandle.evaluate((b) => b.click());
       return inputHandle.dispose();
     },
   },
@@ -78,7 +78,7 @@ const customSteps = [
       const inputSelector = this.mink.getSelector('the first radio option');
       const inputHandle = await this.mink.page.$(inputSelector);
       await Promise.delay(1 * 1000);
-      await inputHandle.evaluate(b => b.click());
+      await inputHandle.evaluate((b) => b.click());
       return inputHandle.dispose();
     },
   },
@@ -88,7 +88,7 @@ const customSteps = [
       const inputSelector = this.mink.getSelector('the first radio option');
       const inputHandle = await this.mink.page.$(inputSelector);
       await Promise.delay(1 * 1000);
-      await inputHandle.evaluate(b => b.click());
+      await inputHandle.evaluate((b) => b.click());
       return inputHandle.dispose();
     },
   },
@@ -98,7 +98,7 @@ const customSteps = [
       const inputSelector = this.mink.getSelector('the first radio option');
       const inputHandle = await this.mink.page.$(inputSelector);
       await Promise.delay(1 * 1000);
-      await inputHandle.evaluate(b => b.click());
+      await inputHandle.evaluate((b) => b.click());
       return inputHandle.dispose();
     },
   },

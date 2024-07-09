@@ -31,8 +31,14 @@
   }
 
   + .foia-component-card--alt {
-    margin-top: 2rem;
+    margin-block: 2rem 1.5rem;
   }
+}
+
+.foia-component-card--wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
 }
 
 .foia-component-card--inline {
@@ -80,6 +86,7 @@
       flex-shrink: 0;
       height: 18px;
       width: 18px;
+      margin-left: 5px;
     }
   }
 

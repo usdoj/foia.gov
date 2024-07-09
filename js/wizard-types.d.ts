@@ -100,6 +100,14 @@ declare global {
     titleMid?: string;
   }
 
+  type WizardFeedback = {
+    type: 'feedback';
+  }
+
+  type WizardLastSteps = {
+    type: 'lastSteps';
+  }
+
   type WizardStartOver = {
     type: 'start-over';
   }
@@ -109,6 +117,8 @@ declare global {
       | WizardQuery
       | WizardQuestion
       | WizardContinue
+      | WizardFeedback
+      | WizardLastSteps
       | WizardSummary
       | WizardStartOver;
 
@@ -122,12 +132,20 @@ declare global {
      */
     newDisplayedTopic?: string;
     /**
+     * If set, tooltip MID
+     */
+    tooltipMid?: string;
+    /**
      * The next activity: a question, continue, or the summary
      */
     next: WizardQuestion | WizardContinue | WizardSummary | WizardStartOver;
   };
 
   type WizardHistorySnapshot = Omit<WizardVars, 'actions' | 'allTopics' | 'ui' | 'modelLoading'>;
+
+  type WizardFeedbackErrors = {
+    [key: string]: string;
+  };
 
   type WizardActions = {
     initLoad: () => void;
@@ -137,11 +155,19 @@ declare global {
     reset: () => void;
     selectAnswer: (answerIdx: number) => void;
     setFlatList: (flatList: FlatListItem[]) => void;
+    submitFeedback: (
+        relevanceValue: number,
+        expectationsValue: number,
+        otherFeedback: string
+    ) => Promise<void>;
+    clearFeedbackErrors: () => void;
     submitRequest: (arg: {
       query: string;
       topic: WizardTopic | null;
     }) => void;
     switchToModelResults: () => void;
+    toFeedback: () => void;
+    toLastSteps: (shouldShowFeedbackOption: boolean) => void;
   };
 
   type WizardVars = {
@@ -159,6 +185,8 @@ declare global {
     query: string | null;
     recommendedAgencies: WizardAgency[] | null;
     recommendedLinks: WizardLink[] | null;
+    showFeedbackOption: boolean;
+    feedbackErrorMessages: WizardFeedbackErrors | null;
     showModelResults: boolean;
     triggerPhrases: WizardTriggerPhrase[] | null;
     ui: Record<string, string>;

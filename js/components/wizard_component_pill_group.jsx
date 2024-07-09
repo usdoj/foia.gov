@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Pill from './wizard_component_pill';
-import Heading from './wizard_component_heading';
+import Label from './wizard_component_label';
 
 /**
  * @param {Object} props
@@ -23,7 +23,7 @@ function PillGroup({
     return (
       <div className="w-component-pill-group">
         {label && (
-          <Heading tag="h2" className="w-component-pill-group__label">{label}</Heading>
+          <Label className="w-component-pill-group__label">{label}</Label>
         )}
         <ul className="w-component-pill-group__list">
           {topics.map((topic) => (
