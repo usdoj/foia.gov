@@ -74,7 +74,7 @@ export function urlParams() {
  * @returns {string}
  */
 export function convertSomeLinksToCards(html) {
-  return html.replace(/<p>(.+?)<\/p>/sg, (m0, pInnerHtml) => {
+  const out = html.replace(/<p>(.+?)<\/p>/sg, (m0, pInnerHtml) => {
     const [n0, linkOpenTag, linkInnerHtml] = pInnerHtml.trim().match(/^(<a [^>]+>)(.+?)<\/a>$/s) || [];
     if (!n0) {
       // No modification
@@ -103,12 +103,61 @@ export function convertSomeLinksToCards(html) {
       linkOpenTagNew = linkOpenTag.replace('<a ', `<a class="${classes.join(' ')}" `);
     }
 
+    // Pull out eyebrow text
+    let eyebrow = '';
+    const linkInner = linkInnerHtml.replace(/<span class="eyebrow">(.*?)<\/span>/s, (_, m1) => {
+      eyebrow = `<span class="foia-component-card__tag">${m1}</span>`;
+      return '';
+    });
+
     return `
       ${linkOpenTagNew}
-        <h2 class="foia-component-card__title">${linkInnerHtml}</h2>
+        ${eyebrow}
+        <h2 class="foia-component-card__title">${linkInner}</h2>
       </a>
     `;
   });
+
+  // Separate HTML into square links and everything else.
+  const regexp = /<a class="foia-component-card foia-component-card--inline[^>]+>.+?<\/a>/sg;
+  const parts = [];
+  let substringStart = 0;
+  let match;
+
+  // eslint-disable-next-line no-cond-assign
+  while ((match = regexp.exec(out)) !== null) {
+    parts.push({
+      isMatch: false,
+      text: out.substring(substringStart, match.index).trim(),
+    });
+    substringStart = match.index + match[0].length;
+    parts.push({
+      isMatch: true,
+      text: match[0],
+    });
+  }
+
+  // No square links
+  if (!parts.length) {
+    return out;
+  }
+
+  // Place wrapper divs around sets of square links
+  let sectionStarted = false;
+  for (let i = 0; i < parts.length; i++) {
+    if (!sectionStarted && parts[i].isMatch) {
+      parts[i - 1].text += '<div class="foia-component-card--wrapper">';
+      sectionStarted = true;
+    } else if (sectionStarted && !parts[i].isMatch && parts[i].text !== '') {
+      parts[i].text = `</div>${parts[i].text}`;
+      sectionStarted = false;
+    }
+  }
+  if (sectionStarted) {
+    parts.push({ isMatch: false, text: '</div>' });
+  }
+
+  return parts.map((part) => part.text).join('');
 }
 
 /**
@@ -176,7 +225,7 @@ function normalizeForTriggers(str) {
 /**
  * @param {string} string
  * @returns {string}
- * @licence https://github.com/sindresorhus/escape-string-regexp/blob/main/license
+ * @license https://github.com/sindresorhus/escape-string-regexp/blob/main/license
  */
 function escapeStringRegexp(string) {
   // Escape characters with special meaning either inside or outside character sets.
