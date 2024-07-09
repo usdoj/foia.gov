@@ -6,6 +6,10 @@ import Constrain from './wizard_layout_constrain';
 import Button from './wizard_component_button';
 import RichText from './wizard_component_rich_text';
 import MoreResults from './wizard_component_more_results';
+import QuestionHead from './wizard_layout_question_head';
+import Inline from './wizard_layout_inline';
+import Label from './wizard_component_label';
+import Quote from './wizard_component_quote';
 
 function Continue() {
   const {
@@ -20,12 +24,17 @@ function Continue() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          <h1><WizardHtml mid="lookingFor" /></h1>
-          <blockquote>
-            &ldquo;
-            {displayedTopic || request.query}
-            &rdquo;
-          </blockquote>
+          <QuestionHead>
+            <h1>Continue Search</h1>
+            <Inline>
+              <Label isItalic>
+                <WizardHtml mid="lookingFor" />
+              </Label>
+              <Quote>
+                {displayedTopic || request.query}
+              </Quote>
+            </Inline>
+          </QuestionHead>
           <h2><WizardHtml mid="soundsGood" /></h2>
         </RichText>
 

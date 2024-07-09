@@ -7,6 +7,11 @@ import RichText from './wizard_component_rich_text';
 import FormItem from './wizard_component_form_item';
 import WizardHtml from './wizard_html';
 import MoreResults from './wizard_component_more_results';
+import Label from './wizard_component_label';
+import Quote from './wizard_component_quote';
+import QuestionText from './wizard_component_question';
+import Inline from './wizard_layout_inline';
+import QuestionHead from './wizard_layout_question_head';
 
 function Question() {
   const {
@@ -21,24 +26,32 @@ function Question() {
     <PageTemplate>
       <Constrain>
         <RichText>
-          <h1><WizardHtml mid="lookingFor" /></h1>
-          <blockquote>
-            &ldquo;
-            {displayedTopic || request.query}
-            &rdquo;
-          </blockquote>
+          <QuestionHead>
+            <h1>Search Question</h1>
+            <Inline>
+              <Label isItalic>
+                <WizardHtml mid="lookingFor" />
+              </Label>
+              <Quote>
+                {displayedTopic || request.query}
+              </Quote>
+            </Inline>
+          </QuestionHead>
 
           <form>
             <fieldset>
-              <legend className="w-legend"><WizardHtml mid={activity.titleMid} /></legend>
+              <QuestionText>
+                <WizardHtml mid={activity.titleMid} />
+              </QuestionText>
               {activity.answers.map((answer, idx) => (
                 <div key={answer.titleMid}>
                   <FormItem
                     type="radio"
                     name="question"
-                    label={getMessage(answer.titleMid)}
+                    labelHtml={getMessage(answer.titleMid)}
                     value={idx}
                     mid={answer.titleMid}
+                    tooltipMid={answer.tooltipMid}
                     checked={idx === answerIdx}
                     onChange={() => {
                       actions.selectAnswer(idx);
