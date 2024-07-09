@@ -53,9 +53,10 @@ function searchMatchingAgency(query, flatList, debug = false) {
   /**
    * @param {string} str
    * @param {boolean} replaceWords
+   * @param {boolean} logAsUserQuery
    * @returns {string[]}
    */
-  const normalize = (str, replaceWords) => str
+  const normalize = (str, replaceWords, logAsUserQuery = false) => str
     // Remove tags.
     .replace(/(<([^>]+)>)/ig, '')
     // I don't recall why this was done.
@@ -82,7 +83,14 @@ function searchMatchingAgency(query, flatList, debug = false) {
       }
 
       // Mixed or lowercase words, don't allow stop words
-      return !stopWords.includes(el.toLowerCase());
+      if (stopWords.includes(el.toLowerCase())) {
+        if (logAsUserQuery) {
+          log(`Removed stop word "${el}" from user query.`);
+        }
+        return false;
+      }
+
+      return true;
     })
     .map((el) => {
       if (!replaceWords) {
@@ -124,6 +132,11 @@ function searchMatchingAgency(query, flatList, debug = false) {
     };
   });
 
+  // Some agencies have "abbreviations" that are instead common words.
+  // We don't match them because it would too heavily weigh the results in
+  // favor of showing just agency matches instead of model results.
+  const ignoreAbbrWords = ['CIVIL', 'CRIMINAL'];
+
   let matchedAbbr = false;
 
   // Score matching abbreviations by how long they are. We hope regular words are not
@@ -132,7 +145,9 @@ function searchMatchingAgency(query, flatList, debug = false) {
     .map((word) => word.toUpperCase())
     .forEach((word) => {
       indexItems.forEach((item) => {
-        if (word === item.abbr || word === `US${item.abbr}`) {
+        if (ignoreAbbrWords.includes(word)) {
+          log(`Word "${word}" was not considered for agency match because it is not an abbreviation.`);
+        } else if (word === item.abbr || word === `US${item.abbr}`) {
           item.score += word.length;
           item.wordsMatched += 1;
           matchedAbbr = true;
@@ -141,7 +156,7 @@ function searchMatchingAgency(query, flatList, debug = false) {
       });
     });
 
-  const words = normalize(query, true);
+  const words = normalize(query, true, true);
 
   log(`User's query normalized and with stop words removed: [${words.join()}]`);
 
