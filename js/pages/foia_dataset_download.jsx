@@ -7,8 +7,9 @@ function FoiaDatasetDownload() {
     <div className="usa-grid">
       <div className="usa-width-one-whole">
         <h1>FOIA Data Set Downloads</h1>
-        <p>The following compressed files are complete archives of the agency FOIA data sets for the years 2008 through 2022 in .xml format.</p>
+        <p>The following compressed files are complete archives of the agency FOIA data sets for the years 2008 through 2023 in .xml format.</p>
         <ul>
+          <li><a href="/2023-FOIASetFull.zip">Download the full 2023 FOIA Data set</a> (.zip format)</li>
           <li><a href="/2022-FOIASetFull.zip">Download the full 2022 FOIA Data set</a> (.zip format)</li>
           <li><a href="/2021-FOIASetFull.zip">Download the full 2021 FOIA Data set</a> (.zip format)</li>
           <li><a href="/2020-FOIASetFull.zip">Download the full 2020 FOIA Data set</a> (.zip format)</li>
@@ -27,8 +28,9 @@ function FoiaDatasetDownload() {
         </ul>
       </div>
       <div className="usa-width-one-whole pt5">
-        <p>The following compressed files are complete archives of governmentwide FOIA data sets for the years 2008 through 2022 in .csv format.</p>
+        <p>The following compressed files are complete archives of governmentwide FOIA data sets for the years 2008 through 2023 in .csv format.</p>
         <ul>
+          <li><a href="/downloads/all_agencies_csv_2023.zip">Download the full 2023 All Agency Data set</a> (.zip format)</li>
           <li><a href="/downloads/all_agencies_csv_2022.zip">Download the full 2022 All Agency Data set</a> (.zip format)</li>
           <li><a href="/downloads/all_agencies_csv_2021.zip">Download the full 2021 All Agency Data set</a> (.zip format)</li>
           <li><a href="/downloads/all_agencies_csv_2020.zip">Download the full 2020 All Agency Data set</a> (.zip format)</li>
