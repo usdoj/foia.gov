@@ -31,7 +31,7 @@
   "homepage": "https://github.com/18F/beta.foia.gov#readme",
   "dependencies": {
     "@rjsf/core": "^5.18.5",
-    "@rjsf/utils": "^5.3.1",
+    "@rjsf/utils": "^5.19.3",
     "@rjsf/validator-ajv8": "^5.3.1",
     "@usdoj/uswds-external-link": "github:ameshkin/uswds-external-link",
     "assert": "2.x",
