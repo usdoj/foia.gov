@@ -14,7 +14,7 @@ Feature: wizard
     And I should see "The government hosts a vast amount of information,"
     And I hard click on "the wizard primary button"
     And I wait 1 second
-    Then I should see "Let's dive in..."
+    Then I should see "What information are you looking for?"
 
   Scenario: The tax records journey can be navigated
     Then I hard click on "the wizard primary button"
