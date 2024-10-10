@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import Form from '@rjsf/core';
 import validator from '@rjsf/validator-ajv8';
@@ -15,10 +15,13 @@ import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 import UploadProgress from './upload_progress';
 import { scrollOffset } from '../util/dom';
 import dispatcher from '../util/dispatcher';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 function FoiaRequestForm({
   formData, upload, onSubmit, requestForm, submissionResult,
 }) {
+  const recaptchaRef = useRef();
+
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
     const fieldErrors = document.getElementsByClassName('usa-input-error');
@@ -62,6 +65,10 @@ function FoiaRequestForm({
   }
 
   function onFormSubmit({ formData: data }) {
+    const recaptchaValue = recaptchaRef.current.getValue();
+    // Now you can use the recaptchaValue for your form submission
+    console.log(recaptchaValue);
+
     // Merge the sections into a single payload
     const payload = rf.mergeSectionFormData(data);
     // Transform file fields to attachments
@@ -149,12 +156,17 @@ function FoiaRequestForm({
             />
           )
           : (
+            <div>
             <button
               className="usa-button usa-button-big usa-button-primary-alt"
               type="submit"
             >
               Submit request
             </button>
+              <ReCAPTCHA ref={recaptchaRef} sitekey="6Le3tV0qAAAAAJB8fxsSPxs3v46Zo69t2IaRFU5C" />
+              {/*  <ReCAPTCHA ref={recaptcha} sitekey={process.env.REACT_APP_SITE_KEY} />*/}
+            {/*  <ReCAPTCHA ref={recaptcha} sitekey={process.env.PORT} /> */}
+            </div>
           )}
         {submissionResult.errorMessage
           && (
