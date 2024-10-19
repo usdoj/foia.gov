@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Form from '@rjsf/core';
 import validator from '@rjsf/validator-ajv8';
@@ -21,6 +21,15 @@ function FoiaRequestForm({
   formData, upload, onSubmit, requestForm, submissionResult,
 }) {
   const recaptchaRef = useRef();
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch('/files/settings.json')
+      .then(response => response.json())
+      .then(result => setData(result))
+      .catch(error => console.error('Error fetching recaptcha site key:', error));
+  }, []);
 
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
@@ -67,8 +76,16 @@ function FoiaRequestForm({
   function onFormSubmit({ formData: data }) {
     const recaptchaValue = recaptchaRef.current.getValue();
     // Now you can use the recaptchaValue for your form submission
+    // TODO: Remove debugging
+    console.log("recaptchaValue follows:");
     console.log(recaptchaValue);
+    console.log("form data follows:");
+    console.log(data);
 
+    // TODO - probably not needed -- remove ?
+    // The captcha field is added to the Expedited Processing section.
+    data.expedited_processing.captcha = recaptchaValue;
+    
     // Merge the sections into a single payload
     const payload = rf.mergeSectionFormData(data);
     // Transform file fields to attachments
@@ -117,6 +134,8 @@ function FoiaRequestForm({
     ObjectFieldTemplate: CustomObjectFieldTemplate,
   };
 
+  console.log(data);
+
   return (
     <Form
       className="foia-request-form sidebar_content-inner"
@@ -156,16 +175,18 @@ function FoiaRequestForm({
             />
           )
           : (
-            <div>
-            <button
-              className="usa-button usa-button-big usa-button-primary-alt"
-              type="submit"
-            >
+            <div style={{ marginTop: '2em' }}>
+              {data && data.RECAPTCHA_SITE_KEY 
+              ?
+              <ReCAPTCHA ref={recaptchaRef} sitekey={data.RECAPTCHA_SITE_KEY} />
+              :
+                <p>Inavlid Site Key</p>
+              }<button
+                className="usa-button usa-button-big usa-button-primary-alt"
+                type="submit"
+              >
               Submit request
-            </button>
-              <ReCAPTCHA ref={recaptchaRef} sitekey="6Le3tV0qAAAAAJB8fxsSPxs3v46Zo69t2IaRFU5C" />
-              {/*  <ReCAPTCHA ref={recaptcha} sitekey={process.env.REACT_APP_SITE_KEY} />*/}
-            {/*  <ReCAPTCHA ref={recaptcha} sitekey={process.env.PORT} /> */}
+              </button>
             </div>
           )}
         {submissionResult.errorMessage
