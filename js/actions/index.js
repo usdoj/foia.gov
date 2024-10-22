@@ -243,6 +243,10 @@ export const requestActions = {
           submissionResult.errorMessage = 'Sorry, there was a problem with the information you provided, please check the form and correct any errors.';
         }
 
+        if (error.response && error.response.status === 401) {
+          submissionResult.errorMessage = 'Sorry, there was a problem with captcha confirming you are human, please check the captcha and re-submit the form.';
+        }
+
         return Promise.resolve(submissionResult);
       })
       .then(requestActions.completeSubmitRequestForm);
