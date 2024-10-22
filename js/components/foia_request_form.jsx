@@ -6,6 +6,7 @@ import { Map } from 'immutable';
 import CustomFieldTemplate from 'components/request_custom_field_template';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { requestActions } from '../actions';
 import { SubmissionResult } from '../models';
 import CustomObjectFieldTemplate from './object_field_template';
@@ -15,20 +16,19 @@ import { dataUrlToAttachment, findFileFields } from '../util/attachment';
 import UploadProgress from './upload_progress';
 import { scrollOffset } from '../util/dom';
 import dispatcher from '../util/dispatcher';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 function FoiaRequestForm({
   formData, upload, onSubmit, requestForm, submissionResult,
 }) {
   const recaptchaRef = useRef();
 
-  const [data, setData] = useState(null);
+  const [settingsdata, setData] = useState(null);
 
   useEffect(() => {
     fetch('/files/settings.json')
-      .then(response => response.json())
-      .then(result => setData(result))
-      .catch(error => console.error('Error fetching recaptcha site key:', error));
+      .then((response) => response.json())
+      .then((result) => setData(result))
+      .catch((error) => console.error('Error fetching recaptcha site key:', error));
   }, []);
 
   // Helper function to jump to the first form error.
@@ -76,16 +76,11 @@ function FoiaRequestForm({
   function onFormSubmit({ formData: data }) {
     const recaptchaValue = recaptchaRef.current.getValue();
     // Now you can use the recaptchaValue for your form submission
-    // TODO: Remove debugging
-    console.log("recaptchaValue follows:");
-    console.log(recaptchaValue);
-    console.log("form data follows:");
-    console.log(data);
 
     // TODO - probably not needed -- remove ?
     // The captcha field is added to the Expedited Processing section.
     data.expedited_processing.captcha = recaptchaValue;
-    
+
     // Merge the sections into a single payload
     const payload = rf.mergeSectionFormData(data);
     // Transform file fields to attachments
@@ -134,8 +129,6 @@ function FoiaRequestForm({
     ObjectFieldTemplate: CustomObjectFieldTemplate,
   };
 
-  console.log(data);
-
   return (
     <Form
       className="foia-request-form sidebar_content-inner"
@@ -176,16 +169,13 @@ function FoiaRequestForm({
           )
           : (
             <div style={{ marginTop: '2em' }}>
-              {data && data.RECAPTCHA_SITE_KEY 
-              ?
-              <ReCAPTCHA ref={recaptchaRef} sitekey={data.RECAPTCHA_SITE_KEY} />
-              :
-                <p>Inavlid Site Key</p>
-              }<button
+              {settingsdata && settingsdata.RECAPTCHA_SITE_KEY
+                ? <ReCAPTCHA ref={recaptchaRef} sitekey={settingsdata.RECAPTCHA_SITE_KEY} /> : <p>Inavlid Site Key</p>}
+              <button
                 className="usa-button usa-button-big usa-button-primary-alt"
                 type="submit"
               >
-              Submit request
+                Submit request
               </button>
             </div>
           )}
