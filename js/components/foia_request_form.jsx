@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Form from '@rjsf/core';
 import validator from '@rjsf/validator-ajv8';
@@ -6,7 +6,7 @@ import { Map } from 'immutable';
 import CustomFieldTemplate from 'components/request_custom_field_template';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
-import ReCAPTCHA from 'react-google-recaptcha';
+import { GoogleReCaptchaProvider, GoogleReCaptcha } from 'react-google-recaptcha-v3'; // Import v3 hook
 import { requestActions } from '../actions';
 import { SubmissionResult } from '../models';
 import CustomObjectFieldTemplate from './object_field_template';
@@ -20,16 +20,21 @@ import dispatcher from '../util/dispatcher';
 function FoiaRequestForm({
   formData, upload, onSubmit, requestForm, submissionResult,
 }) {
-  const recaptchaRef = useRef();
 
-  const [settingsdata, setData] = useState(null);
+  const [settingsdata, setSettingsdata] = useState(null);
+  const [token, setToken] = useState("");
+  const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
 
   useEffect(() => {
     fetch('/files/settings.json')
       .then((response) => response.json())
-      .then((result) => setData(result))
+      .then((result) => setSettingsdata(result))
       .catch((error) => console.error('Error fetching recaptcha site key:', error));
   }, []);
+
+  const setTokenFunc = (getToken) => {
+    setToken(getToken);
+  };
 
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
@@ -74,12 +79,10 @@ function FoiaRequestForm({
   }
 
   function onFormSubmit({ formData: data }) {
-    const recaptchaValue = recaptchaRef.current.getValue();
-    // Now you can use the recaptchaValue for your form submission
 
-    // TODO - probably not needed -- remove ?
-    // The captcha field is added to the Expedited Processing section.
-    data.expedited_processing.captcha = recaptchaValue;
+    // Now you can use the recaptcha token for your form submission
+    data.expedited_processing.captcha = token;
+    console.log("token = [" + token + "]");
 
     // Merge the sections into a single payload
     const payload = rf.mergeSectionFormData(data);
@@ -167,18 +170,21 @@ function FoiaRequestForm({
               progressLoaded={upload.get('progressLoaded')}
             />
           )
-          : (
-            <div style={{ marginTop: '2em' }}>
-              {settingsdata && settingsdata.RECAPTCHA_SITE_KEY
-                ? <ReCAPTCHA ref={recaptchaRef} sitekey={settingsdata.RECAPTCHA_SITE_KEY} /> : <p>Inavlid Site Key</p>}
+          : settingsdata && settingsdata.RECAPTCHA_SITE_KEY ? ( <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY}>
+              <GoogleReCaptcha
+                className="google-recaptcha-custom-class"
+                onVerify={setTokenFunc}
+                refreshReCaptcha={refreshReCaptcha}
+              /> 
+              <div style={{ marginTop: '2em' }}></div>
               <button
                 className="usa-button usa-button-big usa-button-primary-alt"
                 type="submit"
               >
                 Submit request
               </button>
-            </div>
-          )}
+            </GoogleReCaptchaProvider>
+          ): (<p>Invalid key</p>)}
         {submissionResult.errorMessage
           && (
             <p>
