@@ -20,9 +20,8 @@ import dispatcher from '../util/dispatcher';
 function FoiaRequestForm({
   formData, upload, onSubmit, requestForm, submissionResult,
 }) {
-
   const [settingsdata, setSettingsdata] = useState(null);
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState('');
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
 
   useEffect(() => {
@@ -62,6 +61,7 @@ function FoiaRequestForm({
 
   // Listen for jsonSchema validation errors and jump to them.
   function onError() {
+    setRefreshReCaptcha(!refreshReCaptcha);
     focusOnFirstError();
   }
 
@@ -79,10 +79,8 @@ function FoiaRequestForm({
   }
 
   function onFormSubmit({ formData: data }) {
-
     // Now you can use the recaptcha token for your form submission
     data.expedited_processing.captcha = token;
-    console.log("token = [" + token + "]");
 
     // Merge the sections into a single payload
     const payload = rf.mergeSectionFormData(data);
@@ -163,6 +161,7 @@ function FoiaRequestForm({
             using the contact information provided to you on this site.
           </p>
         </div>
+        { /* eslint-disable-next-line no-nested-ternary */ }
         {upload.get('inProgress')
           ? (
             <UploadProgress
@@ -170,21 +169,20 @@ function FoiaRequestForm({
               progressLoaded={upload.get('progressLoaded')}
             />
           )
-          : settingsdata && settingsdata.RECAPTCHA_SITE_KEY ? ( <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY}>
-              <GoogleReCaptcha
-                className="google-recaptcha-custom-class"
-                onVerify={setTokenFunc}
-                refreshReCaptcha={refreshReCaptcha}
-              /> 
-              <div style={{ marginTop: '2em' }}></div>
-              <button
-                className="usa-button usa-button-big usa-button-primary-alt"
-                type="submit"
-              >
-                Submit request
-              </button>
-            </GoogleReCaptchaProvider>
-          ): (<p>Invalid key</p>)}
+          : settingsdata && settingsdata.RECAPTCHA_SITE_KEY
+            ? (
+              <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY}>
+                <GoogleReCaptcha
+                  className="google-recaptcha-custom-class"
+                  onVerify={setTokenFunc}
+                  refreshReCaptcha={refreshReCaptcha}
+                />
+                <div style={{ marginTop: '2em' }} />
+                <button className="usa-button usa-button-big usa-button-primary-alt" type="submit">
+                  Submit request
+                </button>
+              </GoogleReCaptchaProvider>
+            ) : (<p>Invalid key</p>)}
         {submissionResult.errorMessage
           && (
             <p>
