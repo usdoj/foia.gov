@@ -123,7 +123,7 @@ function searchMatchingAgency(query, flatList, debug = false) {
       item,
       titleNormalized: joinWithCommas(normalize(item.title, true)),
       // missionNormalized: joinWithCommas(normalize(item))
-      abbr: item.abbreviation ? item.abbreviation.toUpperCase() : "",
+      abbr: item.abbreviation ? item.abbreviation.toUpperCase() : '',
       missionNormalized: joinWithCommas(
         normalize(removeLinksFromMission(processed), true),
       ),
