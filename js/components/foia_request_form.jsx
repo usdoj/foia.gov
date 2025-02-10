@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Form from '@rjsf/core';
 import validator from '@rjsf/validator-ajv8';
@@ -6,7 +6,7 @@ import { Map } from 'immutable';
 import CustomFieldTemplate from 'components/request_custom_field_template';
 import USWDSRadioWidget from 'components/uswds_radio_widget';
 import USWDSCheckboxWidget from 'components/uswds_checkbox_widget';
-import { GoogleReCaptchaProvider, GoogleReCaptcha } from 'react-google-recaptcha-v3'; // Import v3 hook
+import { GoogleReCaptchaProvider, GoogleReCaptcha, useGoogleReCaptcha } from 'react-google-recaptcha-v3'; // Import v3 hook
 import { requestActions } from '../actions';
 import { SubmissionResult } from '../models';
 import CustomObjectFieldTemplate from './object_field_template';
@@ -23,17 +23,31 @@ function FoiaRequestForm({
   const [settingsdata, setSettingsdata] = useState(null);
   const [token, setToken] = useState('');
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  const setTokenFunc = (getToken) => {
+    setToken(getToken);
+  };
+
+  const handleReCaptchaVerify = useCallback(async () => {
+    if (!executeRecaptcha) {
+      console.log('Execute recaptcha not yet available');
+      return;
+    }
+
+    const newtoken = await executeRecaptcha('submit');
+    setTokenFunc(newtoken);
+    console.log('newtoken:');
+    console.log(newtoken);
+  }, [executeRecaptcha]);
 
   useEffect(() => {
     fetch('/files/settings.json')
       .then((response) => response.json())
       .then((result) => setSettingsdata(result))
       .catch((error) => console.error('Error fetching recaptcha site key:', error));
-  }, []);
-
-  const setTokenFunc = (getToken) => {
-    setToken(getToken);
-  };
+    handleReCaptchaVerify();
+  }, [handleReCaptchaVerify]);
 
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
@@ -80,6 +94,7 @@ function FoiaRequestForm({
 
   function onFormSubmit({ formData: data }) {
     // Now you can use the recaptcha token for your form submission
+    handleReCaptchaVerify();
     data.expedited_processing.captcha = token;
 
     // Merge the sections into a single payload
@@ -88,7 +103,13 @@ function FoiaRequestForm({
     findFileFields(requestForm)
       .filter((fileFieldName) => fileFieldName in payload)
       .forEach((fileFieldName) => {
-        payload[fileFieldName] = dataUrlToAttachment(payload[fileFieldName]);
+        payload[fileFieldName] = dataUrlToAttachment(payload[fileFieldName])
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Error2:', error);
       });
     // Submit the request
     return requestActions
