@@ -18,8 +18,26 @@ import { scrollOffset } from '../util/dom';
 import dispatcher from '../util/dispatcher';
 
 function FoiaRequestForm({
-  formData, upload, onSubmit, requestForm, submissionResult, token, setRefreshReCaptcha, refreshReCaptcha,
+  formData, upload, onSubmit, requestForm, submissionResult, refreshReCaptcha, setRefreshReCaptcha, token, setTokenFunc,
 }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  const handleReCaptchaVerify = useCallback(async () => {
+    if (!executeRecaptcha) {
+      console.log('Execute recaptcha not yet available');
+      return;
+    }
+
+    const newtoken = await executeRecaptcha('submit');
+    setTokenFunc(newtoken);
+    console.log('newtoken:');
+    console.log(newtoken);
+  }, [executeRecaptcha]);
+
+  useEffect(() => {
+    handleReCaptchaVerify();
+  }, [handleReCaptchaVerify]);
+
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
     const fieldErrors = document.getElementsByClassName('usa-input-error');
@@ -108,13 +126,26 @@ function FoiaRequestForm({
   };
 
   // Map these to react-jsonschema-form Ids
-  const steps = (requestForm.sections || []).map((section) => `root_${section.id}`);
+  const steps = ((requestForm && requestForm.sections) || []).map((section) => `root_${section.id}`);
 
-  const errors = (submissionResult.errors instanceof Map)
+  // eslint-disable-next-line no-nested-ternary
+  const errors = (submissionResult !== undefined ? ((submissionResult.errors instanceof Map)
     ? submissionResult.errors.toJS()
-    : submissionResult.errors;
+    : submissionResult.errors) : null);
+
   const formContext = { steps, errors };
-  const { jsonSchema, uiSchema } = requestForm;
+
+  let jsonSchema;
+  let uiSchema;
+  if (requestForm) {
+    ({ jsonSchema, uiSchema } = requestForm);
+  } else {
+    return (
+      <Form
+        validator={validator}
+      />
+    );
+  }
 
   const templates = {
     FieldTemplate: CustomFieldTemplate,
@@ -124,14 +155,14 @@ function FoiaRequestForm({
   return (
     <Form
       className="foia-request-form sidebar_content-inner"
-      disabled={upload.get('inProgress')}
+      disabled={(upload !== undefined ? upload.get('inProgress') : false)}
       templates={templates}
       formContext={formContext}
-      formData={formData.toJS()}
+      formData={(formData !== undefined ? formData.toJS() : [])}
       onChange={onChange}
       onSubmit={onFormSubmit}
-      schema={jsonSchema}
-      uiSchema={uiSchema}
+      schema={(jsonSchema !== undefined ? jsonSchema : [])}
+      uiSchema={(uiSchema !== undefined ? uiSchema : [])}
       widgets={widgets}
       customValidate={validate}
       validator={validator}
@@ -153,7 +184,7 @@ function FoiaRequestForm({
           </p>
         </div>
         { /* eslint-disable-next-line no-nested-ternary */ }
-        {upload.get('inProgress')
+        {((upload !== undefined) && upload.get('inProgress'))
           ? (
             <UploadProgress
               progressTotal={upload.get('progressTotal')}
@@ -166,7 +197,7 @@ function FoiaRequestForm({
               </button>
             </div>
           )}
-        {submissionResult.errorMessage
+        {(submissionResult !== undefined && submissionResult.errorMessage)
           && (
             <p>
               <span className="usa-input-error-message" role="alert">
@@ -185,9 +216,10 @@ FoiaRequestForm.propTypes = {
   onSubmit: PropTypes.func,
   requestForm: PropTypes.object,
   submissionResult: PropTypes.instanceOf(SubmissionResult),
-  token: PropTypes.string.isRequired,
   setRefreshReCaptcha: PropTypes.func,
   refreshReCaptcha: PropTypes.bool,
+  token: PropTypes.string,
+  setTokenFunc: PropTypes.func,
 };
 
 FoiaRequestForm.defaultProps = {
@@ -196,46 +228,32 @@ FoiaRequestForm.defaultProps = {
 
 function SubmitRequestPage() {
   const [settingsdata, setSettingsdata] = useState(null);
-  const [token, setToken] = useState('');
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
-  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [token, setToken] = useState('');
 
   const setTokenFunc = (getToken) => {
     setToken(getToken);
   };
-
-  const handleReCaptchaVerify = useCallback(async () => {
-    if (!executeRecaptcha) {
-      console.log('Execute recaptcha not yet available');
-      return;
-    }
-
-    const newtoken = await executeRecaptcha('submit');
-    setTokenFunc(newtoken);
-    console.log('newtoken:');
-    console.log(newtoken);
-  }, [executeRecaptcha]);
 
   useEffect(() => {
     fetch('/files/settings.json')
       .then((response) => response.json())
       .then((result) => setSettingsdata(result))
       .catch((error) => console.error('Error fetching recaptcha site key:', error));
-    handleReCaptchaVerify();
-  }, [handleReCaptchaVerify]);
+  }, []);
 
   return (
     settingsdata && settingsdata.RECAPTCHA_SITE_KEY
       ? (
         // eslint-disable-next-line react/jsx-wrap-multilines
-        <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY}>
+        <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY} scriptProps={{ async: true }}>
           <GoogleReCaptcha
             className="google-recaptcha-custom-class"
             onVerify={setTokenFunc}
             refreshReCaptcha={refreshReCaptcha}
             scriptProps={{ async: true }}
           />
-          <FoiaRequestForm token={token} setRefreshReCaptcha={setRefreshReCaptcha} refreshReCaptcha={refreshReCaptcha} />
+          <FoiaRequestForm setRefreshReCaptcha={setRefreshReCaptcha} refreshReCaptcha={refreshReCaptcha} token={token} setTokenFunc={setTokenFunc} />
         </GoogleReCaptchaProvider>)
       : (
         <p>Invalid key</p>
