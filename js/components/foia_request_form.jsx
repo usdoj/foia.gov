@@ -32,11 +32,11 @@ function FoiaRequestForm({
     setTokenFunc(newtoken);
     console.log('newtoken:');
     console.log(newtoken);
-  }, [executeRecaptcha]);
+  }, []);
 
   useEffect(() => {
     handleReCaptchaVerify();
-  }, [handleReCaptchaVerify]);
+  }, []);
 
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
@@ -226,7 +226,9 @@ FoiaRequestForm.defaultProps = {
   onSubmit: () => { },
 };
 
-function SubmitRequestPage() {
+function SubmitRequestPage({
+  formData, upload, onSubmit, requestForm, submissionResult,
+}) {
   const [settingsdata, setSettingsdata] = useState(null);
   const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
   const [token, setToken] = useState('');
@@ -238,7 +240,10 @@ function SubmitRequestPage() {
   useEffect(() => {
     fetch('/files/settings.json')
       .then((response) => response.json())
-      .then((result) => setSettingsdata(result))
+      .then((result) => {
+        console.log('result = ', result);
+        setSettingsdata(result);
+      })
       .catch((error) => console.error('Error fetching recaptcha site key:', error));
   }, []);
 
@@ -246,19 +251,37 @@ function SubmitRequestPage() {
     settingsdata && settingsdata.RECAPTCHA_SITE_KEY
       ? (
         // eslint-disable-next-line react/jsx-wrap-multilines
-        <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY} scriptProps={{ async: true }}>
+        <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY}>
           <GoogleReCaptcha
             className="google-recaptcha-custom-class"
             onVerify={setTokenFunc}
             refreshReCaptcha={refreshReCaptcha}
             scriptProps={{ async: true }}
           />
-          <FoiaRequestForm setRefreshReCaptcha={setRefreshReCaptcha} refreshReCaptcha={refreshReCaptcha} token={token} setTokenFunc={setTokenFunc} />
+          <FoiaRequestForm
+            setRefreshReCaptcha={setRefreshReCaptcha}
+            refreshReCaptcha={refreshReCaptcha}
+            token={token}
+            setTokenFunc={setTokenFunc}
+            formData={formData}
+            upload={upload}
+            onSubmit={onSubmit}
+            requestForm={requestForm}
+            submissionResult={submissionResult}
+          />
         </GoogleReCaptchaProvider>)
       : (
         <p>Invalid key</p>
       )
   );
 }
+
+SubmitRequestPage.propTypes = {
+  formData: PropTypes.object,
+  upload: PropTypes.instanceOf(Map),
+  onSubmit: PropTypes.func,
+  requestForm: PropTypes.object,
+  submissionResult: PropTypes.instanceOf(SubmissionResult),
+};
 
 export default SubmitRequestPage;
