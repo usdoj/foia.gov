@@ -18,37 +18,8 @@ import { scrollOffset } from '../util/dom';
 import dispatcher from '../util/dispatcher';
 
 function FoiaRequestForm({
-  formData, upload, onSubmit, requestForm, submissionResult,
+  formData, upload, onSubmit, requestForm, submissionResult, token, setRefreshReCaptcha, refreshReCaptcha,
 }) {
-  const [settingsdata, setSettingsdata] = useState(null);
-  const [token, setToken] = useState('');
-  const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
-  const { executeRecaptcha } = useGoogleReCaptcha();
-
-  const setTokenFunc = (getToken) => {
-    setToken(getToken);
-  };
-
-  const handleReCaptchaVerify = useCallback(async () => {
-    if (!executeRecaptcha) {
-      console.log('Execute recaptcha not yet available');
-      return;
-    }
-
-    const newtoken = await executeRecaptcha('submit');
-    setTokenFunc(newtoken);
-    console.log('newtoken:');
-    console.log(newtoken);
-  }, [executeRecaptcha]);
-
-  useEffect(() => {
-    fetch('/files/settings.json')
-      .then((response) => response.json())
-      .then((result) => setSettingsdata(result))
-      .catch((error) => console.error('Error fetching recaptcha site key:', error));
-    handleReCaptchaVerify();
-  }, [handleReCaptchaVerify]);
-
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
     const fieldErrors = document.getElementsByClassName('usa-input-error');
@@ -94,7 +65,6 @@ function FoiaRequestForm({
 
   function onFormSubmit({ formData: data }) {
     // Now you can use the recaptcha token for your form submission
-    handleReCaptchaVerify();
     data.expedited_processing.captcha = token;
 
     // Merge the sections into a single payload
@@ -189,21 +159,13 @@ function FoiaRequestForm({
               progressTotal={upload.get('progressTotal')}
               progressLoaded={upload.get('progressLoaded')}
             />
-          )
-          : settingsdata && settingsdata.RECAPTCHA_SITE_KEY
-            ? (
-              <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY}>
-                <GoogleReCaptcha
-                  className="google-recaptcha-custom-class"
-                  onVerify={setTokenFunc}
-                  refreshReCaptcha={refreshReCaptcha}
-                />
-                <div style={{ marginTop: '2em' }} />
-                <button className="usa-button usa-button-big usa-button-primary-alt" type="submit">
-                  Submit request
-                </button>
-              </GoogleReCaptchaProvider>
-            ) : (<p>Invalid key</p>)}
+          ) : (
+            <div style={{ marginTop: '2em' }}>
+              <button className="usa-button usa-button-big usa-button-primary-alt" type="submit">
+                Submit request
+              </button>
+            </div>
+          )}
         {submissionResult.errorMessage
           && (
             <p>
@@ -218,15 +180,67 @@ function FoiaRequestForm({
 }
 
 FoiaRequestForm.propTypes = {
-  formData: PropTypes.object.isRequired,
-  upload: PropTypes.instanceOf(Map).isRequired,
+  formData: PropTypes.object,
+  upload: PropTypes.instanceOf(Map),
   onSubmit: PropTypes.func,
-  requestForm: PropTypes.object.isRequired,
-  submissionResult: PropTypes.instanceOf(SubmissionResult).isRequired,
+  requestForm: PropTypes.object,
+  submissionResult: PropTypes.instanceOf(SubmissionResult),
+  token: PropTypes.string.isRequired,
+  setRefreshReCaptcha: PropTypes.func,
+  refreshReCaptcha: PropTypes.bool,
 };
 
 FoiaRequestForm.defaultProps = {
   onSubmit: () => { },
 };
 
-export default FoiaRequestForm;
+function SubmitRequestPage() {
+  const [settingsdata, setSettingsdata] = useState(null);
+  const [token, setToken] = useState('');
+  const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  const setTokenFunc = (getToken) => {
+    setToken(getToken);
+  };
+
+  const handleReCaptchaVerify = useCallback(async () => {
+    if (!executeRecaptcha) {
+      console.log('Execute recaptcha not yet available');
+      return;
+    }
+
+    const newtoken = await executeRecaptcha('submit');
+    setTokenFunc(newtoken);
+    console.log('newtoken:');
+    console.log(newtoken);
+  }, [executeRecaptcha]);
+
+  useEffect(() => {
+    fetch('/files/settings.json')
+      .then((response) => response.json())
+      .then((result) => setSettingsdata(result))
+      .catch((error) => console.error('Error fetching recaptcha site key:', error));
+    handleReCaptchaVerify();
+  }, [handleReCaptchaVerify]);
+
+  return (
+    settingsdata && settingsdata.RECAPTCHA_SITE_KEY
+      ? (
+        // eslint-disable-next-line react/jsx-wrap-multilines
+        <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY}>
+          <GoogleReCaptcha
+            className="google-recaptcha-custom-class"
+            onVerify={setTokenFunc}
+            refreshReCaptcha={refreshReCaptcha}
+            scriptProps={{ async: true }}
+          />
+          <FoiaRequestForm token={token} setRefreshReCaptcha={setRefreshReCaptcha} refreshReCaptcha={refreshReCaptcha} />
+        </GoogleReCaptchaProvider>)
+      : (
+        <p>Invalid key</p>
+      )
+  );
+}
+
+export default SubmitRequestPage;
