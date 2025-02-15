@@ -244,7 +244,10 @@ function SubmitRequestPage({
         console.log('result = ', result);
         setSettingsdata(result);
       })
-      .catch((error) => console.error('Error fetching recaptcha site key:', error));
+      .catch((error) => {
+        settingsdata.RECAPTCHA_SITE_KEY = 'DEFAULT';
+        console.error('Error fetching recaptcha site key:', error);
+      });
   }, []);
 
   return (
