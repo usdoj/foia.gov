@@ -14,5 +14,4 @@ jobs:
           bundle install
       - name: Run tests
         run: |
-          sh build/update-linux-sandbox.sh
           make test
