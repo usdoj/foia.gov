@@ -38,7 +38,7 @@
     "axios": "0.x",
     "babel-polyfill": "6.x",
     "bluebird": "^3.7.2",
-    "cucumber-mink": "2.x",
+    "cucumber-mink": "github:brockfanning/cucumber-mink#patch-1",
     "d8-jsonapi-querystring": "0.0.8",
     "excellentexport": "3.x",
     "flux": "4.x",
