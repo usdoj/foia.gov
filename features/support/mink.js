@@ -8,6 +8,7 @@ const driver = new mink.Mink({
     height: 768,
   },
   headless: true,
+  devtools: false,
   selectors: {
     'homepage search button': '.usa-search-submit-text',
     'the homepage search box': '#search-field-big',
