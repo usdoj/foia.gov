@@ -13,5 +13,6 @@ jobs:
           npm i
           bundle install
       - name: Run tests
-        run: | 
+        run: |
+          sh build/update-linux-sandbox.sh
           make test
