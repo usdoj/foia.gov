@@ -18,16 +18,9 @@ import { scrollOffset } from '../util/dom';
 import dispatcher from '../util/dispatcher';
 
 function FoiaRequestForm({
-  formData, upload, onSubmit, requestForm, submissionResult,
+  formData, upload, onSubmit, requestForm, submissionResult, refreshReCaptcha, setRefreshReCaptcha, token, setTokenFunc,
 }) {
-  const [settingsdata, setSettingsdata] = useState(null);
-  const [token, setToken] = useState('');
-  const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
-
-  const setTokenFunc = (getToken) => {
-    setToken(getToken);
-  };
 
   const handleReCaptchaVerify = useCallback(async () => {
     if (!executeRecaptcha) {
@@ -39,15 +32,11 @@ function FoiaRequestForm({
     setTokenFunc(newtoken);
     console.log('newtoken:');
     console.log(newtoken);
-  }, [executeRecaptcha]);
+  }, []);
 
   useEffect(() => {
-    fetch('/files/settings.json')
-      .then((response) => response.json())
-      .then((result) => setSettingsdata(result))
-      .catch((error) => console.error('Error fetching recaptcha site key:', error));
     handleReCaptchaVerify();
-  }, [handleReCaptchaVerify]);
+  }, []);
 
   // Helper function to jump to the first form error.
   function focusOnFirstError() {
@@ -94,7 +83,6 @@ function FoiaRequestForm({
 
   function onFormSubmit({ formData: data }) {
     // Now you can use the recaptcha token for your form submission
-    handleReCaptchaVerify();
     data.expedited_processing.captcha = token;
 
     // Merge the sections into a single payload
@@ -138,13 +126,26 @@ function FoiaRequestForm({
   };
 
   // Map these to react-jsonschema-form Ids
-  const steps = (requestForm.sections || []).map((section) => `root_${section.id}`);
+  const steps = ((requestForm && requestForm.sections) || []).map((section) => `root_${section.id}`);
 
-  const errors = (submissionResult.errors instanceof Map)
+  // eslint-disable-next-line no-nested-ternary
+  const errors = (submissionResult !== undefined ? ((submissionResult.errors instanceof Map)
     ? submissionResult.errors.toJS()
-    : submissionResult.errors;
+    : submissionResult.errors) : null);
+
   const formContext = { steps, errors };
-  const { jsonSchema, uiSchema } = requestForm;
+
+  let jsonSchema;
+  let uiSchema;
+  if (requestForm) {
+    ({ jsonSchema, uiSchema } = requestForm);
+  } else {
+    return (
+      <Form
+        validator={validator}
+      />
+    );
+  }
 
   const templates = {
     FieldTemplate: CustomFieldTemplate,
@@ -154,14 +155,14 @@ function FoiaRequestForm({
   return (
     <Form
       className="foia-request-form sidebar_content-inner"
-      disabled={upload.get('inProgress')}
+      disabled={(upload !== undefined ? upload.get('inProgress') : false)}
       templates={templates}
       formContext={formContext}
-      formData={formData.toJS()}
+      formData={(formData !== undefined ? formData.toJS() : [])}
       onChange={onChange}
       onSubmit={onFormSubmit}
-      schema={jsonSchema}
-      uiSchema={uiSchema}
+      schema={(jsonSchema !== undefined ? jsonSchema : [])}
+      uiSchema={(uiSchema !== undefined ? uiSchema : [])}
       widgets={widgets}
       customValidate={validate}
       validator={validator}
@@ -183,28 +184,20 @@ function FoiaRequestForm({
           </p>
         </div>
         { /* eslint-disable-next-line no-nested-ternary */ }
-        {upload.get('inProgress')
+        {((upload !== undefined) && upload.get('inProgress'))
           ? (
             <UploadProgress
               progressTotal={upload.get('progressTotal')}
               progressLoaded={upload.get('progressLoaded')}
             />
-          )
-          : settingsdata && settingsdata.RECAPTCHA_SITE_KEY
-            ? (
-              <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY}>
-                <GoogleReCaptcha
-                  className="google-recaptcha-custom-class"
-                  onVerify={setTokenFunc}
-                  refreshReCaptcha={refreshReCaptcha}
-                />
-                <div style={{ marginTop: '2em' }} />
-                <button className="usa-button usa-button-big usa-button-primary-alt" type="submit">
-                  Submit request
-                </button>
-              </GoogleReCaptchaProvider>
-            ) : (<p>Invalid key</p>)}
-        {submissionResult.errorMessage
+          ) : (
+            <div style={{ marginTop: '2em' }}>
+              <button className="usa-button usa-button-big usa-button-primary-alt" type="submit">
+                Submit request
+              </button>
+            </div>
+          )}
+        {(submissionResult !== undefined && submissionResult.errorMessage)
           && (
             <p>
               <span className="usa-input-error-message" role="alert">
@@ -218,15 +211,80 @@ function FoiaRequestForm({
 }
 
 FoiaRequestForm.propTypes = {
-  formData: PropTypes.object.isRequired,
-  upload: PropTypes.instanceOf(Map).isRequired,
+  formData: PropTypes.object,
+  upload: PropTypes.instanceOf(Map),
   onSubmit: PropTypes.func,
-  requestForm: PropTypes.object.isRequired,
-  submissionResult: PropTypes.instanceOf(SubmissionResult).isRequired,
+  requestForm: PropTypes.object,
+  submissionResult: PropTypes.instanceOf(SubmissionResult),
+  setRefreshReCaptcha: PropTypes.func,
+  refreshReCaptcha: PropTypes.bool,
+  token: PropTypes.string,
+  setTokenFunc: PropTypes.func,
 };
 
 FoiaRequestForm.defaultProps = {
   onSubmit: () => { },
 };
 
-export default FoiaRequestForm;
+function SubmitRequestPage({
+  formData, upload, onSubmit, requestForm, submissionResult,
+}) {
+  const [settingsdata, setSettingsdata] = useState(null);
+  const [refreshReCaptcha, setRefreshReCaptcha] = useState(false);
+  const [token, setToken] = useState('');
+
+  const setTokenFunc = (getToken) => {
+    setToken(getToken);
+  };
+
+  useEffect(() => {
+    fetch('/files/settings.json')
+      .then((response) => response.json())
+      .then((result) => {
+        console.log('result = ', result);
+        setSettingsdata(result);
+      })
+      .catch((error) => {
+        settingsdata.RECAPTCHA_SITE_KEY = 'DEFAULT';
+        console.error('Error fetching recaptcha site key:', error);
+      });
+  }, []);
+
+  return (
+    settingsdata && settingsdata.RECAPTCHA_SITE_KEY
+      ? (
+        // eslint-disable-next-line react/jsx-wrap-multilines
+        <GoogleReCaptchaProvider reCaptchaKey={settingsdata.RECAPTCHA_SITE_KEY}>
+          <GoogleReCaptcha
+            className="google-recaptcha-custom-class"
+            onVerify={setTokenFunc}
+            refreshReCaptcha={refreshReCaptcha}
+            scriptProps={{ async: true }}
+          />
+          <FoiaRequestForm
+            setRefreshReCaptcha={setRefreshReCaptcha}
+            refreshReCaptcha={refreshReCaptcha}
+            token={token}
+            setTokenFunc={setTokenFunc}
+            formData={formData}
+            upload={upload}
+            onSubmit={onSubmit}
+            requestForm={requestForm}
+            submissionResult={submissionResult}
+          />
+        </GoogleReCaptchaProvider>)
+      : (
+        <p>Invalid key</p>
+      )
+  );
+}
+
+SubmitRequestPage.propTypes = {
+  formData: PropTypes.object,
+  upload: PropTypes.instanceOf(Map),
+  onSubmit: PropTypes.func,
+  requestForm: PropTypes.object,
+  submissionResult: PropTypes.instanceOf(SubmissionResult),
+};
+
+export default SubmitRequestPage;
