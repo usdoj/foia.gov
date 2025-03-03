@@ -7,10 +7,10 @@ const driver = new mink.Mink({
     width: 1366,
     height: 768,
   },
-  headless: true,
-  devtools: false,
   puppeteer: {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    headless: true,
+    devtools: false,
   },
   selectors: {
     'homepage search button': '.usa-search-submit-text',
