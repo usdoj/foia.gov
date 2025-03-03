@@ -7,6 +7,11 @@ const driver = new mink.Mink({
     width: 1366,
     height: 768,
   },
+  headless: true,
+  devtools: false,
+  puppeteer: {
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  },
   selectors: {
     'homepage search button': '.usa-search-submit-text',
     'the homepage search box': '#search-field-big',
