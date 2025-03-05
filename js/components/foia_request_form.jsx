@@ -95,6 +95,9 @@ function FoiaRequestForm({
           .catch((error) => {
             console.error('Error:', error);
           });
+      })
+      .catch((error) => {
+        console.error('Error2:', error);
       });
     // Submit the request
     return requestActions
