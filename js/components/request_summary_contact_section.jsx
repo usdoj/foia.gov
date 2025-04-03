@@ -8,6 +8,10 @@ function name(requester) {
     nameParts.push(requester.name_first);
   }
 
+  if (requester.name_middle_initial_middle) {
+    nameParts.push(requester.name_middle_initial_middle);
+  }
+
   if (requester.name_last) {
     nameParts.push(requester.name_last);
   }
