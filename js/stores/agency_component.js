@@ -89,7 +89,28 @@ class AgencyComponentStore extends Store {
           (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
         )
           .sort((a, b) => collator.compare(a.title, b.title)),
-      );
+      )
+      .map((/** @type FlatListItem */ a) => {
+        if (!a.title) {
+          console.warn('agencyComponentStore: agency has no title', a);
+          a.title = '';
+        }
+        if (!a.abbreviation) {
+          console.warn('agencyComponentStore: agency has no abbreviation', a);
+          a.abbreviation = '';
+        }
+        if (a.agency) {
+          if (!a.agency.name) {
+            console.warn('agencyComponentStore: parent agency has no name', a);
+            a.agency.name = '';
+          }
+          if (!a.agency.abbreviation) {
+            console.warn('agencyComponentStore: parent agency has no abbreviation', a);
+            a.agency.abbreviation = '';
+          }
+        }
+        return a;
+      });
   }
 
   getFlatItemUrl(flatItem) {
