@@ -103,7 +103,7 @@ const lawEnforcementRecordsJourney = question('q20', [
           'County or state prison records',
         ),
         answer(
-          'literal:Federal prison (view the <a target="_blank" href="https://www.bop.gov/mobile/locations/">list of federal prisons</a>)',
+          'literal:Federal prison (view the <a rel="noopener" target="_blank" href="https://www.bop.gov/mobile/locations/">list of federal prisons</a>)',
           summary('m64'),
           'Federal prison records',
         ),
@@ -157,7 +157,7 @@ const lawEnforcementRecordsJourney = question('q20', [
       'literal:Court records',
       question('q28', [
         answer(
-          'literal:Federal (use the <a href="https://www.uscourts.gov/federal-court-finder/search" target="_blank">Federal Court Finder</a>)',
+          'literal:Federal (use the <a href="https://www.uscourts.gov/federal-court-finder/search" rel="noopener" target="_blank">Federal Court Finder</a>)',
           summary('m57'),
           'Federal court case records',
         ),
