@@ -32,7 +32,7 @@ function RichText({ children = '', html = '', mid }) {
 
       const hrefOrigin = href.split('/').slice(0, 3).join('/');
       if (hrefOrigin !== location.origin) {
-        return `<a ${attrs} target="_blank">${inner}</a>`;
+        return `<a ${attrs} rel="noopener" target="_blank">${inner}</a>`;
       }
 
       return m0;
