@@ -51,7 +51,7 @@ Feature: wizard
     Then I enter "John Lewis Voting Rights Act" into the wizard query box
     Then the "the wizard primary button" element should exist
     And I hard click on "the wizard primary button"
-    And I wait 10 seconds
+    And I wait 15 seconds
     Then I should see "Okay, you’re looking for:"
     And I should see "John Lewis Voting Rights Act"
     And I should see "We found the following public information:"

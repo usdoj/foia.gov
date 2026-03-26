@@ -9,6 +9,10 @@ Header setifempty Cache-Control "max-age=300, public, must-revalidate"
 Header setifempty Cache-Control "max-age=0, public, must-revalidate"
 {% endif %}
 
+<IfModule mod_headers.c>
+  Header set Cross-Origin-Opener-Policy "same-origin"
+</IfModule>
+
 # Longer cache time for static assets
 <FilesMatch "\.(eot|gif|ico|jpe?g|json|pdf|png|svg|swf|ttf|txt|woff2?|xls|xml|zip)$">
 Header set Cache-Control "max-age=86400, public, must-revalidate"

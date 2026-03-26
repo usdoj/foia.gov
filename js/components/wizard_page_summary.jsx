@@ -141,6 +141,7 @@ function Summary() {
             <a
               href="/how-wizard-works.html"
               target="_blank"
+              rel="noopener"
               className="w-how-wizard-works"
             >
               Learn more about why you got these results.
