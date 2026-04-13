@@ -19,6 +19,7 @@ function toJsonSchemaType(webformFieldType) {
     case 'tel':
     case 'textarea':
     case 'textfield':
+    case 'processed_text':
     default:
       type = 'string';
   }
@@ -121,6 +122,11 @@ function toUiSchemaProperty(webformField) {
       break;
     case 'tel':
       uiSchemaProperty['ui:options'] = { inputType: 'tel' };
+      break;
+    case 'processed_text':
+      uiSchemaProperty['ui:description'] = webformField.text && domify(webformField.text);
+      uiSchemaProperty['ui:title'] = domify('');
+      uiSchemaProperty['ui:widget'] = 'hidden';
       break;
     default:
       break;
