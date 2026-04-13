@@ -127,6 +127,7 @@ function toUiSchemaProperty(webformField) {
       uiSchemaProperty['ui:description'] = webformField.text && domify(webformField.text);
       uiSchemaProperty['ui:title'] = domify('');
       uiSchemaProperty['ui:widget'] = 'hidden';
+      break;
     default:
       break;
   }
