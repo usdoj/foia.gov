@@ -40,3 +40,5 @@ Feature: Request
     And I should see "The amount of money you’re willing to pay in fees, if any"
     And I should see "Expedited processing"
     And I should see "Justification for expedited processing"
+    And I should see "Terms of service"
+    And I should see "For site security purposes, we monitor network traffic."
