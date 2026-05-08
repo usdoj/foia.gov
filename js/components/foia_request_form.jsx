@@ -46,6 +46,11 @@ function FoiaRequestForm({
     if (data.requester_contact[honField]) {
       errors.addError('Error');
     }
+    if (data.terms_of_service && data.terms_of_service.terms_of_service_accept === '') {
+      errors.terms_of_service
+        .terms_of_service_accept
+        .addError('Please accept the terms of service.');
+    }
     return errors;
   }
 
@@ -83,6 +88,8 @@ function FoiaRequestForm({
 
     // Merge the sections into a single payload
     const payload = rf.mergeSectionFormData(data);
+    // Clear out the unnecessary terms of service input.
+    delete payload.terms_of_service_accept;
     // Transform file fields to attachments
     findFileFields(requestForm)
       .filter((fileFieldName) => fileFieldName in payload)
@@ -149,7 +156,7 @@ function FoiaRequestForm({
     >
       <div id="foia-request-form_submit" className="foia-request-form_submit">
         <div className="foia-request-form_inline-progress">
-          Step 6 of 6
+          Step 7 of 7
         </div>
         <h3>Review and submit</h3>
         <div className="info-box">

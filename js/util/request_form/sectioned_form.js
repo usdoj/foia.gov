@@ -45,9 +45,9 @@ class SectionedFormBuilder {
   sectionedFormFromAgencyComponent(agencyComponent) {
     const fieldsBySection = this.bucketFieldsBySection(agencyComponent.formFields || []);
 
-    // Grab a list of sections, skipping empty sections
+    // Grab a list of sections, skipping empty sections (special exception for TOS)
     const sections = this.formSections
-      .filter((section) => section.id in fieldsBySection);
+      .filter((section) => section.id in fieldsBySection || section.id === 'terms_of_service');
 
     const result = sections
       .map((section) => {

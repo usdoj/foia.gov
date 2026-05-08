@@ -178,6 +178,31 @@ function conditionalRequirement(webformField) {
 }
 
 /**
+ * Adds a hardcoded terms_of_service field.
+ */
+function addTermsOfService(jsonSchema, uiSchema) {
+  jsonSchema.properties = jsonSchema.properties || {};
+  jsonSchema.required = jsonSchema.required || [];
+
+  jsonSchema.properties.terms_of_service_accept = {
+    type: 'string',
+    title: 'Terms of Service',
+    enum: ['', 'yes'],
+    enumNames: ['Select an option', 'I agree to the terms of service.'],
+    default: '',
+  };
+
+  if (!jsonSchema.required.includes('terms_of_service_accept')) {
+    jsonSchema.required.push('terms_of_service_accept');
+  }
+
+  uiSchema.terms_of_service_accept = {
+    'ui:widget': 'select',
+  };
+  uiSchema['ui:order'] = ['terms_of_service_accept'];
+}
+
+/**
  * Translates agency components' Drupal Webform fields into JSON schema and uiSchema
  * for use with react-jsonschema-form.
  */
@@ -304,6 +329,10 @@ function webformFieldsToJsonSchema(formFields = [], { title, description, id } =
   // Set the description for this section.
   uiSchema['ui:description'] = description;
 
+  // Add the terms of service.
+  if (jsonSchema.title === 'Terms of service') {
+    addTermsOfService(jsonSchema, uiSchema);
+  }
   return { jsonSchema, uiSchema };
 }
 
