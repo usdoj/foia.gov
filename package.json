@@ -83,7 +83,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.9.0",
     "eslint-plugin-react": "^7.34.3",
-    "express": "4.x",
+    "express": "5.x",
     "faker": "5.x",
     "mocha": "10.x",
     "mochapack": "2.x",
