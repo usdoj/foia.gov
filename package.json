@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
-    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-env": "^7.29.5",
     "@babel/preset-react": "^7.24.7",
     "@cucumber/cucumber": "^11",
     "@types/react-google-recaptcha": "^2.1.9",
