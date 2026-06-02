@@ -152,6 +152,7 @@ export const requestActions = {
     return request
       .filter('status', 'status', 1)
       .limit(50) // Maximum allowed by drupal
+      .sort('-num_requests,title')
       .paginate('/agency_components', requestActions.receiveAgencyFinderData)
       .then(requestActions.completeAgencyFinderData);
   },
