@@ -77,11 +77,10 @@ class AgencyComponentStore extends Store {
           // Add the agency to the index of centralized agencies
           centralizedAgencyIndex[agency.id] = true;
           // Add the agency_component's num_request to the agency.
-          this.getAgencyComponentsForAgency(agency.id).forEach(component => {
+          this.getAgencyComponentsForAgency(agency.id).forEach((component) => {
             agency.num_requests = component.num_requests;
           });
-        }
-        else {
+        } else {
           // For decentralized agencies, set num requests to 0.
           agency.num_requests = 0;
         }
