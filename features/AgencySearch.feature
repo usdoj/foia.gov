@@ -9,8 +9,8 @@ Feature: Agency Search
     Given I am on "/agency-search.html"
     And I wait 60 seconds
 
-  Scenario: The default sorting works (temporary testing)
-    Then I should see "Federal Aviation Administration"
+  Scenario: The sorting works to show the most popular components first
+    Then I should see "U.S. Customs & Border Protection"
 
   Scenario: The agency type-ahead works
     Then I should see "Search an agency name or keyword"
