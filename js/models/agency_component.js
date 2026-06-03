@@ -21,6 +21,7 @@ const defaults = {
   formFields: new List(),
   id: null,
   links: new Map(),
+  num_requests: 0,
   paper_receiver: null, // foia_personnel
   portal_submission_format: 'email',
   public_liaisons: [], // foia_personnel
