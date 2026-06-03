@@ -80,11 +80,9 @@ class AgencyComponentStore extends Store {
         // Count up the agency's num_requests total from components.
         let numRequests = 0;
         this.getAgencyComponentsForAgency(agency.id).forEach((component) => {
-          console.log('Component - ' + component.title + ' num_requests: ' + component.num_requests);
           numRequests += parseInt(component?.num_requests, 10) || 0;
         });
         // Add a title and num_requests property for common displayKey
-        console.log('Agency - ' + agency.name + ' num_requests: ' + numRequests);
         return {
           ...agency.toJS(),
           title: agency.name,
