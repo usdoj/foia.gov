@@ -82,17 +82,15 @@ class AgencyComponentStore extends Store {
         return { ...agency.toJS(), title: agency.name };
       })
       .toJS()
-      .sort((a, b) =>
-        collator.compare(a.num_requests, b.num_requests) ||
-        collator.compare(a.title, b.title))
+      .sort((a, b) => collator.compare(a.num_requests, b.num_requests)
+        || collator.compare(a.title, b.title))
       // Include decentralized agency components in typeahead
       .concat(
         this.state.agencyComponents.toJS().filter(
           (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
         )
-          .sort((a, b) =>
-            collator.compare(a.num_requests, b.num_requests) ||
-            collator.compare(a.title, b.title)),
+          .sort((a, b) => collator.compare(a.num_requests, b.num_requests)
+            || collator.compare(a.title, b.title)),
       )
       .map((/** @type FlatListItem */ a) => {
         if (!a.title) {
