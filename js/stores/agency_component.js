@@ -72,17 +72,16 @@ class AgencyComponentStore extends Store {
     return this.state.agencies
       .valueSeq()
       .map((agency) => {
-        let numRequests = 0;
         if (agency.isCentralized()) {
           // Warning: Side-effect
           // Add the agency to the index of centralized agencies
           centralizedAgencyIndex[agency.id] = true;
-          // Add the agency_component's num_request to the agency.
-          this.getAgencyComponentsForAgency(agency.id).forEach((component) => {
-            numRequests = component.num_requests;
-          });
         }
-
+        // Count up the agency's num_requests total from components.
+        let numRequests = 0;
+        this.getAgencyComponentsForAgency(agency.id).forEach((component) => {
+          numRequests += component.num_requests;
+        });
         // Add a title and num_requests property for common displayKey
         return {
           ...agency.toJS(),

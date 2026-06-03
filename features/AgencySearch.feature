@@ -10,7 +10,7 @@ Feature: Agency Search
     And I wait 60 seconds
 
   Scenario: The sorting works to show the most popular components first
-    Then I should see "U.S. Customs & Border Protection"
+    Then I should see "Department of Homeland Security"
 
   Scenario: The agency type-ahead works
     Then I should see "Search an agency name or keyword"
