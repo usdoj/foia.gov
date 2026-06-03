@@ -136,7 +136,7 @@ export const requestActions = {
     });
 
     const referenceFields = includeReferenceFields || {
-      agency_component: ['title', 'abbreviation', 'agency', 'description', 'status'],
+      agency_component: ['title', 'abbreviation', 'agency', 'description', 'status', 'num_requests'],
       agency: ['name', 'abbreviation', 'description', 'category'],
       'agency.category': ['name'],
     };
@@ -152,7 +152,6 @@ export const requestActions = {
     return request
       .filter('status', 'status', 1)
       .limit(50) // Maximum allowed by drupal
-      .sort('-num_requests,title')
       .paginate('/agency_components', requestActions.receiveAgencyFinderData)
       .then(requestActions.completeAgencyFinderData);
   },

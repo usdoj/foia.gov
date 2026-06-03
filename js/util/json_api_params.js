@@ -68,11 +68,6 @@ class JsonApiParams {
     return this;
   }
 
-  sort(sort) {
-    this._params.sort = sort;
-    return this;
-  }
-
   // https://www.drupal.org/docs/8/modules/json-api/collections-filtering-sorting-and-paginating
   filter(name, path, value) {
     const filter = this._params.filter || {};
