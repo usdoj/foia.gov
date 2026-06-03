@@ -5,6 +5,8 @@ const defaults = {
   // component_count is not from the API, we track the number of components to
   // determine is_centralized
   component_count: 0,
+  // Same with num_requests.
+  num_requests: 0,
   description: {},
   id: null,
   links: {},

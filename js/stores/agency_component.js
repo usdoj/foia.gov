@@ -92,14 +92,14 @@ class AgencyComponentStore extends Store {
         };
       })
       .toJS()
-      .sort((a, b) => collator.compare(b.num_requests, a.num_requests)
+      .sort((a, b) => (b.num_requests - a.num_requests)
         || collator.compare(a.title, b.title))
       // Include decentralized agency components in typeahead
       .concat(
         this.state.agencyComponents.toJS().filter(
           (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
         )
-          .sort((a, b) => collator.compare(b.num_requests, a.num_requests)
+          .sort((a, b) => (b.num_requests - a.num_requests)
             || collator.compare(a.title, b.title)),
       )
       .map((/** @type FlatListItem */ a) => {
