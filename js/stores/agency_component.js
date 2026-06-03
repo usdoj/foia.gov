@@ -76,20 +76,28 @@ class AgencyComponentStore extends Store {
           // Warning: Side-effect
           // Add the agency to the index of centralized agencies
           centralizedAgencyIndex[agency.id] = true;
+          // Add the agency_component's num_request to the agency.
+          this.getAgencyComponentsForAgency(agency.id).forEach(component => {
+            agency.num_requests = component.num_requests;
+          });
+        }
+        else {
+          // For decentralized agencies, set num requests to 0.
+          agency.num_requests = 0;
         }
 
         // Add a title property for common displayKey
         return { ...agency.toJS(), title: agency.name };
       })
       .toJS()
-      .sort((a, b) => collator.compare(a.num_requests, b.num_requests)
+      .sort((a, b) => collator.compare(b.num_requests, a.num_requests)
         || collator.compare(a.title, b.title))
       // Include decentralized agency components in typeahead
       .concat(
         this.state.agencyComponents.toJS().filter(
           (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
         )
-          .sort((a, b) => collator.compare(a.num_requests, b.num_requests)
+          .sort((a, b) => collator.compare(b.num_requests, a.num_requests)
             || collator.compare(a.title, b.title)),
       )
       .map((/** @type FlatListItem */ a) => {
