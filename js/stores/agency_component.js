@@ -83,6 +83,7 @@ class AgencyComponentStore extends Store {
           numRequests += component.num_requests;
         });
         // Add a title and num_requests property for common displayKey
+        console.log(agency.name + ' num_quests: ' + numRequests);
         return {
           ...agency.toJS(),
           title: agency.name,
