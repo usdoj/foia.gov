@@ -77,18 +77,30 @@ class AgencyComponentStore extends Store {
           // Add the agency to the index of centralized agencies
           centralizedAgencyIndex[agency.id] = true;
         }
-
-        // Add a title property for common displayKey
-        return { ...agency.toJS(), title: agency.name };
+        // Count up the agency's num_requests total from components.
+        let numRequests = 0;
+        this.getAgencyComponentsForAgency(agency.id).forEach((component) => {
+          if (component.num_requests) {
+            numRequests += parseInt(component.num_requests, 10) || 0;
+          }
+        });
+        // Add a title and num_requests property for common displayKey
+        return {
+          ...agency.toJS(),
+          title: agency.name,
+          num_requests: numRequests,
+        };
       })
       .toJS()
-      .sort((a, b) => collator.compare(a.title, b.title))
+      .sort((a, b) => (b.num_requests - a.num_requests)
+        || collator.compare(a.title, b.title))
       // Include decentralized agency components in typeahead
       .concat(
         this.state.agencyComponents.toJS().filter(
           (agencyComponent) => !(agencyComponent.agency.id in centralizedAgencyIndex),
         )
-          .sort((a, b) => collator.compare(a.title, b.title)),
+          .sort((a, b) => (b.num_requests - a.num_requests)
+            || collator.compare(a.title, b.title)),
       )
       .map((/** @type FlatListItem */ a) => {
         if (!a.title) {
