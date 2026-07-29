@@ -11,7 +11,7 @@ ruby RUBY_VERSION
 # Happy Jekylling!
 gem "jekyll", "3.10.0"
 
-gem "html-proofer", "3.19.4"
+gem "html-proofer", "5.2.2"
 gem "kramdown-parser-gfm", "1.1.0"
 
 # If you have any plugins, put them here!
