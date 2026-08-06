@@ -18,5 +18,5 @@ Feature: Agency Search
     And I wait 1 second
     Then I should see "Council on Environmental Quality"
     And I hard click on "the first agency suggestion"
-    And I wait 5 seconds
+    And I wait 10 seconds
     Then I should see "The Council on Environmental Quality oversees NEPA implementation"
