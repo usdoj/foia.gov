@@ -14,9 +14,9 @@ Feature: Agency Search
 
   Scenario: The agency type-ahead works
     Then I should see "Search an agency name or keyword"
-    And I enter "ENV" into the agency search box
+    And I enter "EPA" into the agency search box
     And I wait 1 second
-    Then I should see "Council on Environmental Quality"
+    Then I should see "Environmental Protection Agency"
     And I hard click on "the first agency suggestion"
     And I wait 5 seconds
-    Then I should see "The Council on Environmental Quality oversees NEPA implementation"
+    Then I should see "The mission of EPA is to protect human health and the environment."
