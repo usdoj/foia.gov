@@ -70,7 +70,7 @@
     "@cucumber/cucumber": "^11",
     "@types/react-google-recaptcha": "^2.1.9",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
-    "babel-loader": "9.x",
+    "babel-loader": "10.x",
     "btoa": "^1.2.1",
     "buffer": "^6.0.3",
     "chai": "4.x",
